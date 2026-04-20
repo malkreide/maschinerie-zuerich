@@ -13,7 +13,7 @@ jobs:
       run:
         working-directory: stadt-zuerich-next
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: actions/setup-node@v5
         with:
           node-version: 22
@@ -27,7 +27,7 @@ jobs:
     name: data.json + lebenslagen.json validieren
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: actions/setup-node@v5
         with:
           node-version: 22
