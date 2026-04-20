@@ -1,0 +1,106 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":timezone(Europe/Zurich)",
+    ":dependencyDashboard",
+    ":semanticCommitType(deps)",
+    ":semanticCommitScope(deps)"
+  ],
+  "description": "Renovate-Config für malkreide/maschinerie-zuerich. Ersetzt Dependabot.",
+  "schedule": ["before 5am on monday"],
+  "rangeStrategy": "bump",
+  "labels": ["dependencies"],
+  "prHourlyLimit": 4,
+  "prConcurrentLimit": 8,
+  "packageRules": [
+    {
+      "description": "Gruppiert React-Familie + Types in einem PR",
+      "matchPackageNames": [
+        "next",
+        "react",
+        "react-dom",
+        "/^@types/react/"
+      ],
+      "groupName": "react"
+    },
+    {
+      "description": "Gruppiert alle d3-Module + Types",
+      "matchPackageNames": [
+        "/^d3-/",
+        "/^@types/d3-/"
+      ],
+      "groupName": "d3"
+    },
+    {
+      "description": "Gruppiert Tailwind + PostCSS",
+      "matchPackageNames": [
+        "tailwindcss",
+        "postcss",
+        "/^@tailwindcss//"
+      ],
+      "groupName": "tailwind"
+    },
+    {
+      "description": "Gruppiert Cytoscape + Plugins",
+      "matchPackageNames": [
+        "cytoscape",
+        "@types/cytoscape",
+        "/^cytoscape-/"
+      ],
+      "groupName": "cytoscape"
+    },
+    {
+      "description": "Gruppiert TypeScript-Tooling",
+      "matchPackageNames": [
+        "typescript",
+        "@types/node"
+      ],
+      "groupName": "tooling"
+    },
+    {
+      "description": "Gruppiert GitHub Actions Updates monatlich",
+      "matchManagers": ["github-actions"],
+      "groupName": "github-actions",
+      "schedule": ["before 5am on the first day of the month"]
+    },
+    {
+      "description": "Auto-Merge: Patch- und Minor-Updates von devDependencies",
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "automerge": true,
+      "automergeStrategy": "squash"
+    },
+    {
+      "description": "Auto-Merge: Patch-Updates der Runtime-Deps",
+      "matchDepTypes": ["dependencies"],
+      "matchUpdateTypes": ["patch"],
+      "automerge": true,
+      "automergeStrategy": "squash"
+    },
+    {
+      "description": "Major-Updates: manuell prüfen (Breaking-Change-Risiko)",
+      "matchUpdateTypes": ["major"],
+      "automerge": false,
+      "addLabels": ["major-update"]
+    },
+    {
+      "description": "Lock-File-Maintenance: Transitive Deps refreshen",
+      "matchUpdateTypes": ["lockFileMaintenance"],
+      "automerge": true,
+      "automergeStrategy": "squash"
+    }
+  ],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 5am on monday"]
+  },
+  "vulnerabilityAlerts": {
+    "labels": ["security", "dependencies"],
+    "automerge": true,
+    "automergeStrategy": "squash"
+  },
+  "configMigration": true,
+  "dependencyDashboardTitle": "Renovate Dashboard",
+  "platformAutomerge": true
+}
