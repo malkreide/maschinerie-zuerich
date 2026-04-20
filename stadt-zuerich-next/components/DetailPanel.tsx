@@ -98,13 +98,15 @@ function findItem(data: StadtData, id: string): Department | Unit | Beteiligung 
     ?? null;
 }
 
-function budgetRows(b: Budget, t: T) {
+type Row = { k: React.ReactNode; v: React.ReactNode };
+
+function budgetRows(b: Budget, t: T): Row[] {
   const phase = ({
     GEMEINDERAT_BESCHLUSS: t('phaseBudget'),
     STADTRAT_ANTRAG: t('phaseProposal'),
     RECHNUNG: t('phaseAccount'),
   } as Record<string, string>)[b.typ] ?? b.typ;
-  const rows = [{ k: `${phase} ${b.jahr}`, v: '' }];
+  const rows: Row[] = [{ k: `${phase} ${b.jahr}`, v: '' }];
   rows.push({ k: `  ${t('expense')}`,    v: fmtCHF(b.aufwand) });
   rows.push({ k: `  ${t('income')}`,     v: fmtCHF(b.ertrag) });
   rows.push({ k: `  ${t('netExpense')}`, v: fmtCHF(b.nettoaufwand) });
@@ -116,7 +118,7 @@ function budgetRows(b: Budget, t: T) {
   return rows;
 }
 
-function fteRows(f: Fte, t: T) {
+function fteRows(f: Fte, t: T): Row[] {
   if (f.quelle === 'pdf') {
     return [{
       k: `${f.einheit ?? t('fteUnitFallback')} (${f.jahr ?? '?'})`,
