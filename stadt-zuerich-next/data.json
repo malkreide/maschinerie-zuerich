@@ -33,10 +33,10 @@
       "budget": {
         "jahr": 2024,
         "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 97367300,
-        "ertrag": -31905300,
-        "nettoaufwand": 129272600,
-        "_aggregiertAus": 5
+        "aufwand": 298222700,
+        "ertrag": -97693400,
+        "nettoaufwand": 395916100,
+        "_aggregiertAus": 9
       },
       "fte": {
         "schaetzung": 429.8,
@@ -60,10 +60,10 @@
       "budget": {
         "jahr": 2024,
         "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 949425300,
-        "ertrag": -4310759200,
-        "nettoaufwand": 5260184500,
-        "_aggregiertAus": 4
+        "aufwand": 1285084300,
+        "ertrag": -4649108800,
+        "nettoaufwand": 5934193100,
+        "_aggregiertAus": 9
       },
       "fte": {
         "schaetzung": 1100.6,
@@ -87,10 +87,10 @@
       "budget": {
         "jahr": 2024,
         "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 1332631500,
-        "ertrag": -720915100,
-        "nettoaufwand": 2053546600,
-        "_aggregiertAus": 6
+        "aufwand": 1585534100,
+        "ertrag": -732399000,
+        "nettoaufwand": 2317933100,
+        "_aggregiertAus": 7
       },
       "fte": {
         "schaetzung": 1834.6,
@@ -114,10 +114,10 @@
       "budget": {
         "jahr": 2024,
         "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 1388042000,
-        "ertrag": -1125033100,
-        "nettoaufwand": 2513075100,
-        "_aggregiertAus": 4
+        "aufwand": 1398115400,
+        "ertrag": -1126917100,
+        "nettoaufwand": 2525032500,
+        "_aggregiertAus": 5
       },
       "fte": {
         "schaetzung": 6476.4,
@@ -141,10 +141,10 @@
       "budget": {
         "jahr": 2024,
         "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 654995500,
-        "ertrag": -438218400,
-        "nettoaufwand": 1093213900,
-        "_aggregiertAus": 7
+        "aufwand": 696812700,
+        "ertrag": -477067800,
+        "nettoaufwand": 1173880500,
+        "_aggregiertAus": 9
       },
       "fte": {
         "schaetzung": 1864.2,
@@ -168,10 +168,10 @@
       "budget": {
         "jahr": 2024,
         "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 488593800,
-        "ertrag": -532325000,
-        "nettoaufwand": 1020918800,
-        "_aggregiertAus": 4
+        "aufwand": 523902000,
+        "ertrag": -549418700,
+        "nettoaufwand": 1073320700,
+        "_aggregiertAus": 6
       },
       "fte": {
         "schaetzung": 838.2,
@@ -195,10 +195,10 @@
       "budget": {
         "jahr": 2024,
         "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 606003000,
-        "ertrag": -274004900,
-        "nettoaufwand": 880007900,
-        "_aggregiertAus": 5
+        "aufwand": 645281900,
+        "ertrag": -308107400,
+        "nettoaufwand": 953389300,
+        "_aggregiertAus": 8
       },
       "fte": {
         "schaetzung": 2823.4,
@@ -222,10 +222,10 @@
       "budget": {
         "jahr": 2024,
         "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 1596275900,
-        "ertrag": -231477600,
-        "nettoaufwand": 1827753500,
-        "_aggregiertAus": 10
+        "aufwand": 1638683600,
+        "ertrag": -233509100,
+        "nettoaufwand": 1872192700,
+        "_aggregiertAus": 11
       },
       "fte": {
         "schaetzung": 5587.9,
@@ -249,10 +249,10 @@
       "budget": {
         "jahr": 2024,
         "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 2672751200,
-        "ertrag": -2672751200,
-        "nettoaufwand": 5345502400,
-        "_aggregiertAus": 3
+        "aufwand": 2797152200,
+        "ertrag": -2755359000,
+        "nettoaufwand": 5552511200,
+        "_aggregiertAus": 4
       },
       "fte": {
         "schaetzung": 4177.9,
@@ -267,6 +267,34 @@
         "key": "45",
         "kurzname": "DIB",
         "bezeichnung": "Departement der Industriellen Betriebe"
+      }
+    },
+    {
+      "id": "BUG",
+      "name": "Behörden und Gesamtverwaltung",
+      "vorsteher": "Kollegial / Gesamtverwaltung",
+      "odz": {
+        "key": "10",
+        "kurzname": "BUG",
+        "bezeichnung": "Behörden und Gesamtverwaltung"
+      },
+      "budget": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "aufwand": 109492400,
+        "ertrag": -39344900,
+        "nettoaufwand": 148837300,
+        "_aggregiertAus": 11
+      },
+      "fte": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "methode": "personalaufwand/vollkosten",
+        "vollkostenProFte": 130000,
+        "schaetzung": 675,
+        "personalaufwand": 87701500,
+        "_aggregiertAus": 11,
+        "quelle": "schaetzung"
       }
     }
   ],
@@ -1740,6 +1768,782 @@
         "bezeichnung": "Verkehrsbetriebe",
         "departementKurzname": "DIB"
       }
+    },
+    {
+      "id": "PRD-ds",
+      "parent": "PRD",
+      "name": "Präsidialdepartement (Sekretariat)",
+      "kind": "staff",
+      "odz": {
+        "key": "1500",
+        "kurzname": "PRD",
+        "bezeichnung": "Präsidialdepartement Departementssekretariat",
+        "departementKurzname": "PRD"
+      },
+      "budget": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "aufwand": 9374000,
+        "ertrag": -1475300,
+        "nettoaufwand": 10849300
+      },
+      "fte": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "methode": "personalaufwand/vollkosten",
+        "vollkostenProFte": 130000,
+        "schaetzung": 38,
+        "personalaufwand": 4923200,
+        "quelle": "schaetzung"
+      }
+    },
+    {
+      "id": "PRD-kult",
+      "parent": "PRD",
+      "name": "Kultur",
+      "kind": "unit",
+      "odz": {
+        "key": "1510",
+        "kurzname": "KTR",
+        "bezeichnung": "Kultur",
+        "departementKurzname": "PRD"
+      },
+      "budget": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "aufwand": 169864000,
+        "ertrag": -59382400,
+        "nettoaufwand": 229246400
+      },
+      "fte": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "methode": "personalaufwand/vollkosten",
+        "vollkostenProFte": 130000,
+        "schaetzung": 64,
+        "personalaufwand": 8284100,
+        "quelle": "schaetzung"
+      }
+    },
+    {
+      "id": "PRD-mrz",
+      "parent": "PRD",
+      "name": "Museum Rietberg",
+      "kind": "extern",
+      "odz": {
+        "key": "1520",
+        "kurzname": "MRZ",
+        "bezeichnung": "Museum Rietberg",
+        "departementKurzname": "PRD"
+      },
+      "budget": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "aufwand": 16889000,
+        "ertrag": -4930400,
+        "nettoaufwand": 21819400
+      },
+      "fte": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "methode": "personalaufwand/vollkosten",
+        "vollkostenProFte": 130000,
+        "schaetzung": 61,
+        "personalaufwand": 7927900,
+        "quelle": "schaetzung"
+      }
+    },
+    {
+      "id": "PRD-pss",
+      "parent": "PRD",
+      "name": "Projektstab Stadtrat",
+      "kind": "staff",
+      "odz": {
+        "key": "1561",
+        "kurzname": "PSS",
+        "bezeichnung": "Projektstab Stadtrat",
+        "departementKurzname": "PRD"
+      },
+      "budget": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "aufwand": 4728400,
+        "ertrag": 0,
+        "nettoaufwand": 4728400
+      },
+      "fte": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "methode": "personalaufwand/vollkosten",
+        "vollkostenProFte": 130000,
+        "schaetzung": 10,
+        "personalaufwand": 1302300,
+        "quelle": "schaetzung"
+      }
+    },
+    {
+      "id": "FD-ds",
+      "parent": "FD",
+      "name": "Finanzdepartement (Sekretariat)",
+      "kind": "staff",
+      "odz": {
+        "key": "2000",
+        "kurzname": "FID",
+        "bezeichnung": "Finanzdepartement Departementssekretariat",
+        "departementKurzname": "FD"
+      },
+      "budget": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "aufwand": 21903600,
+        "ertrag": -1605500,
+        "nettoaufwand": 23509100
+      },
+      "fte": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "methode": "personalaufwand/vollkosten",
+        "vollkostenProFte": 130000,
+        "schaetzung": 34,
+        "personalaufwand": 4461000,
+        "quelle": "schaetzung"
+      }
+    },
+    {
+      "id": "FD-lsz",
+      "parent": "FD",
+      "name": "Liegenschaften Stadt Zürich",
+      "kind": "unit",
+      "odz": {
+        "key": "2021",
+        "kurzname": "LSZ",
+        "bezeichnung": "Liegenschaften Stadt Zürich",
+        "departementKurzname": "FD"
+      },
+      "budget": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "aufwand": 95342300,
+        "ertrag": -118331000,
+        "nettoaufwand": 213673300
+      },
+      "fte": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "methode": "personalaufwand/vollkosten",
+        "vollkostenProFte": 130000,
+        "schaetzung": 130,
+        "personalaufwand": 16922700,
+        "quelle": "schaetzung"
+      }
+    },
+    {
+      "id": "FD-wg",
+      "parent": "FD",
+      "name": "Wohnen und Gewerbe",
+      "kind": "unit",
+      "odz": {
+        "key": "2034",
+        "kurzname": "WG",
+        "bezeichnung": "Wohnen und Gewerbe",
+        "departementKurzname": "FD"
+      },
+      "budget": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "aufwand": 194791600,
+        "ertrag": -194791600,
+        "nettoaufwand": 389583200
+      },
+      "fte": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "methode": "personalaufwand/vollkosten",
+        "vollkostenProFte": 130000,
+        "schaetzung": 82,
+        "personalaufwand": 10643300,
+        "quelle": "schaetzung"
+      }
+    },
+    {
+      "id": "FD-ga",
+      "parent": "FD",
+      "name": "Gastronomie",
+      "kind": "unit",
+      "odz": {
+        "key": "2035",
+        "kurzname": "GA",
+        "bezeichnung": "Gastronomie",
+        "departementKurzname": "FD"
+      },
+      "budget": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "aufwand": 15716300,
+        "ertrag": -15716300,
+        "nettoaufwand": 31432600
+      },
+      "fte": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "methode": "personalaufwand/vollkosten",
+        "vollkostenProFte": 130000,
+        "schaetzung": 5,
+        "personalaufwand": 607100,
+        "quelle": "schaetzung"
+      }
+    },
+    {
+      "id": "FD-pb",
+      "parent": "FD",
+      "name": "Parkierungsbauten",
+      "kind": "unit",
+      "odz": {
+        "key": "2036",
+        "kurzname": "PB",
+        "bezeichnung": "Parkierungsbauten",
+        "departementKurzname": "FD"
+      },
+      "budget": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "aufwand": 7905200,
+        "ertrag": -7905200,
+        "nettoaufwand": 15810400
+      }
+    },
+    {
+      "id": "SD-ds",
+      "parent": "SD",
+      "name": "Sozialdepartement (Sekretariat)",
+      "kind": "staff",
+      "odz": {
+        "key": "5500",
+        "kurzname": "SOZ-ZV",
+        "bezeichnung": "Sozialdepartement Departementssekretariat",
+        "departementKurzname": "SD"
+      },
+      "budget": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "aufwand": 252902600,
+        "ertrag": -11483900,
+        "nettoaufwand": 264386500
+      },
+      "fte": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "methode": "personalaufwand/vollkosten",
+        "vollkostenProFte": 130000,
+        "schaetzung": 61,
+        "personalaufwand": 7910600,
+        "quelle": "schaetzung"
+      }
+    },
+    {
+      "id": "GUD-ds",
+      "parent": "GUD",
+      "name": "Gesundheits- und Umweltdepartement (Sekretariat)",
+      "kind": "staff",
+      "odz": {
+        "key": "3000",
+        "kurzname": "GUD",
+        "bezeichnung": "Gesundheits- und Umweltdepartement Departementssekretariat",
+        "departementKurzname": "GUD"
+      },
+      "budget": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "aufwand": 10073400,
+        "ertrag": -1884000,
+        "nettoaufwand": 11957400
+      },
+      "fte": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "methode": "personalaufwand/vollkosten",
+        "vollkostenProFte": 130000,
+        "schaetzung": 46,
+        "personalaufwand": 5929000,
+        "quelle": "schaetzung"
+      }
+    },
+    {
+      "id": "TED-ds",
+      "parent": "TED",
+      "name": "Tiefbau- und Entsorgungsdepartement (Sekretariat)",
+      "kind": "staff",
+      "odz": {
+        "key": "3500",
+        "kurzname": "TED",
+        "bezeichnung": "Tiefbau- und Entsorgungsdepartement Departementssekretariat",
+        "departementKurzname": "TED"
+      },
+      "budget": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "aufwand": 3967800,
+        "ertrag": -1000000,
+        "nettoaufwand": 4967800
+      },
+      "fte": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "methode": "personalaufwand/vollkosten",
+        "vollkostenProFte": 130000,
+        "schaetzung": 19,
+        "personalaufwand": 2526500,
+        "quelle": "schaetzung"
+      }
+    },
+    {
+      "id": "TED-sf",
+      "parent": "TED",
+      "name": "Fonds des überkommunalen Strassennetzes",
+      "kind": "unit",
+      "odz": {
+        "key": "3501",
+        "kurzname": "TED-SF",
+        "bezeichnung": "Fonds des überkommunalen Strassennetzes",
+        "departementKurzname": "TED"
+      },
+      "budget": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "aufwand": 37849400,
+        "ertrag": -37849400,
+        "nettoaufwand": 75698800
+      }
+    },
+    {
+      "id": "HBD-ds",
+      "parent": "HBD",
+      "name": "Hochbaudepartement (Sekretariat)",
+      "kind": "staff",
+      "odz": {
+        "key": "4000",
+        "kurzname": "HBD",
+        "bezeichnung": "Hochbaudepartement Departementssekretariat",
+        "departementKurzname": "HBD"
+      },
+      "budget": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "aufwand": 18508200,
+        "ertrag": -293700,
+        "nettoaufwand": 18801900
+      },
+      "fte": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "methode": "personalaufwand/vollkosten",
+        "vollkostenProFte": 130000,
+        "schaetzung": 47,
+        "personalaufwand": 6055700,
+        "quelle": "schaetzung"
+      }
+    },
+    {
+      "id": "HBD-maf",
+      "parent": "HBD",
+      "name": "Mehrwertausgleichsfonds",
+      "kind": "unit",
+      "odz": {
+        "key": "4004",
+        "kurzname": "MAF",
+        "bezeichnung": "Mehrwertausgleichsfonds",
+        "departementKurzname": "HBD"
+      },
+      "budget": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "aufwand": 16800000,
+        "ertrag": -16800000,
+        "nettoaufwand": 33600000
+      }
+    },
+    {
+      "id": "SiD-ds",
+      "parent": "SiD",
+      "name": "Sicherheitsdepartement (Sekretariat)",
+      "kind": "staff",
+      "odz": {
+        "key": "2500",
+        "kurzname": "SID",
+        "bezeichnung": "Sicherheitsdepartement Departementssekretariat",
+        "departementKurzname": "SID"
+      },
+      "budget": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "aufwand": 5263100,
+        "ertrag": -86700,
+        "nettoaufwand": 5349800
+      },
+      "fte": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "methode": "personalaufwand/vollkosten",
+        "vollkostenProFte": 130000,
+        "schaetzung": 28,
+        "personalaufwand": 3674000,
+        "quelle": "schaetzung"
+      }
+    },
+    {
+      "id": "SiD-pg",
+      "parent": "SiD",
+      "name": "Parkgebühren",
+      "kind": "unit",
+      "odz": {
+        "key": "2505",
+        "kurzname": "DAV-PG",
+        "bezeichnung": "Parkgebühren",
+        "departementKurzname": "SID"
+      },
+      "budget": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "aufwand": 15927400,
+        "ertrag": -15927400,
+        "nettoaufwand": 31854800
+      }
+    },
+    {
+      "id": "SiD-bz",
+      "parent": "SiD",
+      "name": "Blaue Zonen",
+      "kind": "unit",
+      "odz": {
+        "key": "2506",
+        "kurzname": "DAV-BZ",
+        "bezeichnung": "Blaue Zonen",
+        "departementKurzname": "SID"
+      },
+      "budget": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "aufwand": 18088400,
+        "ertrag": -18088400,
+        "nettoaufwand": 36176800
+      },
+      "fte": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "methode": "personalaufwand/vollkosten",
+        "vollkostenProFte": 130000,
+        "schaetzung": 4,
+        "personalaufwand": 547400,
+        "quelle": "schaetzung"
+      }
+    },
+    {
+      "id": "SSD-ds",
+      "parent": "SSD",
+      "name": "Schul- und Sportdepartement (Sekretariat)",
+      "kind": "staff",
+      "odz": {
+        "key": "5000",
+        "kurzname": "SSD-ZV",
+        "bezeichnung": "Schul- und Sportdepartement Departementssekretariat",
+        "departementKurzname": "SSD"
+      },
+      "budget": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "aufwand": 42407700,
+        "ertrag": -2031500,
+        "nettoaufwand": 44439200
+      },
+      "fte": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "methode": "personalaufwand/vollkosten",
+        "vollkostenProFte": 130000,
+        "schaetzung": 68,
+        "personalaufwand": 8880100,
+        "quelle": "schaetzung"
+      }
+    },
+    {
+      "id": "DIB-ds",
+      "parent": "DIB",
+      "name": "Departement der Industriellen Betriebe (Sekretariat)",
+      "kind": "staff",
+      "odz": {
+        "key": "4500",
+        "kurzname": "DIB",
+        "bezeichnung": "Departement der Industriellen Betriebe Departementssekretariat",
+        "departementKurzname": "DIB"
+      },
+      "budget": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "aufwand": 124401000,
+        "ertrag": -82607800,
+        "nettoaufwand": 207008800
+      },
+      "fte": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "methode": "personalaufwand/vollkosten",
+        "vollkostenProFte": 130000,
+        "schaetzung": 37,
+        "personalaufwand": 4767300,
+        "quelle": "schaetzung"
+      }
+    },
+    {
+      "id": "BUG-gvz",
+      "parent": "BUG",
+      "name": "Gesamtverwaltung",
+      "kind": "unit",
+      "odz": {
+        "key": "1060",
+        "kurzname": "GVZ",
+        "bezeichnung": "Gesamtverwaltung",
+        "departementKurzname": "BUG"
+      },
+      "budget": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "aufwand": 41439400,
+        "ertrag": -12248300,
+        "nettoaufwand": 53687700
+      },
+      "fte": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "methode": "personalaufwand/vollkosten",
+        "vollkostenProFte": 130000,
+        "schaetzung": 319,
+        "personalaufwand": 41439400,
+        "quelle": "schaetzung"
+      }
+    },
+    {
+      "id": "BUG-grz",
+      "parent": "BUG",
+      "name": "Gemeinderat",
+      "kind": "unit",
+      "odz": {
+        "key": "1005",
+        "kurzname": "GRZ",
+        "bezeichnung": "Gemeinderat",
+        "departementKurzname": "BUG"
+      },
+      "budget": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "aufwand": 7065300,
+        "ertrag": -5000,
+        "nettoaufwand": 7070300
+      },
+      "fte": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "methode": "personalaufwand/vollkosten",
+        "vollkostenProFte": 130000,
+        "schaetzung": 33,
+        "personalaufwand": 4332800,
+        "quelle": "schaetzung"
+      }
+    },
+    {
+      "id": "BUG-str",
+      "parent": "BUG",
+      "name": "Stadtrat (Gremium)",
+      "kind": "staff",
+      "odz": {
+        "key": "1015",
+        "kurzname": "STR",
+        "bezeichnung": "Stadtrat",
+        "departementKurzname": "BUG"
+      },
+      "budget": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "aufwand": 5134300,
+        "ertrag": -35000,
+        "nettoaufwand": 5169300
+      },
+      "fte": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "methode": "personalaufwand/vollkosten",
+        "vollkostenProFte": 130000,
+        "schaetzung": 22,
+        "personalaufwand": 2857100,
+        "quelle": "schaetzung"
+      }
+    },
+    {
+      "id": "BUG-zfk",
+      "parent": "BUG",
+      "name": "Finanzkontrolle",
+      "kind": "unit",
+      "odz": {
+        "key": "1007",
+        "kurzname": "ZFK",
+        "bezeichnung": "Finanzkontrolle",
+        "departementKurzname": "BUG"
+      },
+      "budget": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "aufwand": 5333100,
+        "ertrag": -1110800,
+        "nettoaufwand": 6443900
+      },
+      "fte": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "methode": "personalaufwand/vollkosten",
+        "vollkostenProFte": 130000,
+        "schaetzung": 36,
+        "personalaufwand": 4630800,
+        "quelle": "schaetzung"
+      }
+    },
+    {
+      "id": "BUG-omb",
+      "parent": "BUG",
+      "name": "Ombudsstelle",
+      "kind": "staff",
+      "odz": {
+        "key": "1010",
+        "kurzname": "OMB",
+        "bezeichnung": "Ombudsstelle",
+        "departementKurzname": "BUG"
+      },
+      "budget": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "aufwand": 1393300,
+        "ertrag": 0,
+        "nettoaufwand": 1393300
+      },
+      "fte": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "methode": "personalaufwand/vollkosten",
+        "vollkostenProFte": 130000,
+        "schaetzung": 8,
+        "personalaufwand": 1073400,
+        "quelle": "schaetzung"
+      }
+    },
+    {
+      "id": "BUG-das",
+      "parent": "BUG",
+      "name": "Datenschutzstelle",
+      "kind": "staff",
+      "odz": {
+        "key": "1035",
+        "kurzname": "DAS",
+        "bezeichnung": "Datenschutzstelle",
+        "departementKurzname": "BUG"
+      },
+      "budget": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "aufwand": 1037800,
+        "ertrag": -200,
+        "nettoaufwand": 1038000
+      },
+      "fte": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "methode": "personalaufwand/vollkosten",
+        "vollkostenProFte": 130000,
+        "schaetzung": 6,
+        "personalaufwand": 824100,
+        "quelle": "schaetzung"
+      }
+    },
+    {
+      "id": "BUG-rek",
+      "parent": "BUG",
+      "name": "Abteilung Rechtskonsulent",
+      "kind": "staff",
+      "odz": {
+        "key": "1025",
+        "kurzname": "REK",
+        "bezeichnung": "Abteilung Rechtskonsulent",
+        "departementKurzname": "BUG"
+      },
+      "budget": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "aufwand": 1055100,
+        "ertrag": 0,
+        "nettoaufwand": 1055100
+      },
+      "fte": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "methode": "personalaufwand/vollkosten",
+        "vollkostenProFte": 130000,
+        "schaetzung": 7,
+        "personalaufwand": 863900,
+        "quelle": "schaetzung"
+      }
+    },
+    {
+      "id": "BUG-fnn",
+      "parent": "BUG",
+      "name": "Friedensrichterämter",
+      "kind": "unit",
+      "odz": {
+        "key": "1080",
+        "kurzname": "FNN",
+        "bezeichnung": "Friedensrichterinnen- und Friedensrichterämter",
+        "departementKurzname": "BUG"
+      },
+      "budget": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "aufwand": 3693100,
+        "ertrag": -1012400,
+        "nettoaufwand": 4705500
+      },
+      "fte": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "methode": "personalaufwand/vollkosten",
+        "vollkostenProFte": 130000,
+        "schaetzung": 18,
+        "personalaufwand": 2347500,
+        "quelle": "schaetzung"
+      }
+    },
+    {
+      "id": "BUG-gz",
+      "parent": "BUG",
+      "name": "Gemeinde (Urnenabstimmungen, Wahlen)",
+      "kind": "unit",
+      "odz": {
+        "key": "1000",
+        "kurzname": "GZ",
+        "bezeichnung": "Gemeinde",
+        "departementKurzname": "BUG"
+      },
+      "budget": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "aufwand": 3834000,
+        "ertrag": -72000,
+        "nettoaufwand": 3906000
+      },
+      "fte": {
+        "jahr": 2024,
+        "typ": "GEMEINDERAT_BESCHLUSS",
+        "methode": "personalaufwand/vollkosten",
+        "vollkostenProFte": 130000,
+        "schaetzung": 12,
+        "personalaufwand": 1578100,
+        "quelle": "schaetzung"
+      }
     }
   ],
   "beteiligungen": [
@@ -1777,6 +2581,31 @@
       "verbunden": "SD",
       "budget": null,
       "fte": null
+    },
+    {
+      "id": "B-saw",
+      "name": "Stiftung Alterswohnungen der Stadt Zürich",
+      "verbunden": "GUD"
+    },
+    {
+      "id": "B-pwg",
+      "name": "Stiftung PWG (preisgünstige Wohn- und Gewerberäume)",
+      "verbunden": "FD"
+    },
+    {
+      "id": "B-sew",
+      "name": "Stiftung Einfach Wohnen",
+      "verbunden": "FD"
+    },
+    {
+      "id": "B-skf",
+      "name": "Stiftung Wohnungen für kinderreiche Familien",
+      "verbunden": "FD"
+    },
+    {
+      "id": "B-kszh",
+      "name": "Kongresshaus-Stiftung",
+      "verbunden": "FD"
     }
   ]
 }
