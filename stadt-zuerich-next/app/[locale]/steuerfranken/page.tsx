@@ -4,7 +4,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { loadStadtData } from '@/lib/data';
 import { routing, type Locale } from '@/i18n/routing';
-import TreemapView from '@/components/TreemapView';
+import TreemapLoader from '@/components/TreemapLoader';
 
 export async function generateMetadata({
   params,
@@ -23,5 +23,5 @@ export default async function SteuerfrankenPage({
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale as Locale);
   const data = await loadStadtData();
-  return <TreemapView data={data} />;
+  return <TreemapLoader data={data} />;
 }
