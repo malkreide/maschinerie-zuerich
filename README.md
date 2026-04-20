@@ -1,5 +1,9 @@
 # Maschinerie der Stadt Zürich
 
+[![CI](https://github.com/malkreide/maschinerie-zuerich/actions/workflows/ci.yml/badge.svg)](https://github.com/malkreide/maschinerie-zuerich/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Data: CC-BY 4.0](https://img.shields.io/badge/Data-CC--BY%204.0-green.svg)](https://data.stadt-zuerich.ch/terms-of-use)
+
 Interaktive, barrierefreie Visualisierung der Stadtverwaltung Zürich —
 Departemente, Dienstabteilungen, verselbständigte Betriebe und Beteiligungen,
 mit Budget und Stellenwerten aus öffentlichen Quellen.
