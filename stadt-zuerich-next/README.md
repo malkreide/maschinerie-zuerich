@@ -108,6 +108,14 @@ npm run data:fetch        # ETL einmal laufen lassen (data.json erzeugen)
 npm run dev               # http://localhost:3000
 ```
 
+## Environment-Variablen
+
+Optional, beeinflussen nur die Produktion:
+
+| Variable | Beispiel | Wirkung |
+|----------|----------|---------|
+| `NEXT_PUBLIC_SITE_URL` | `https://maschinerie-zuerich.vercel.app` | Basis-URL für `/sitemap.xml` und `/robots.txt`. Auf Vercel nach dem ersten Deployment eintragen unter Project Settings → Environment Variables. |
+
 ## Datenflüsse
 
 ```
