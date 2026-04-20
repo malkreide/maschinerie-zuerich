@@ -17,10 +17,9 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 22
-      # Kein npm-Cache, solange keine package-lock.json committed ist.
-      # Nach erstem 'npm install' lokal + Commit von package-lock.json
-      # kann 'cache: npm' reaktiviert werden.
-      - run: npm install
+          cache: npm
+          cache-dependency-path: stadt-zuerich-next/package-lock.json
+      - run: npm ci
       - run: npm run typecheck
       - run: npm run lint --if-present
 
