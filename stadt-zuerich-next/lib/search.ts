@@ -1,23 +1,34 @@
-// Lebenslagen-Suche mit gewichtetem Score (gleiche Logik wie Prototyp).
+// Lebenslagen-Suche mit gewichtetem Score, locale-aware.
+// Fehlt der angefragte Locale (null), fällt die Resolution auf 'de' zurück.
 
-import type { Lebenslage } from '@/types/stadt';
+import type { Lebenslage, LebenslageLocale, LebenslageHit } from '@/types/stadt';
 
-export function searchLebenslagen(q: string, all: Lebenslage[]): Lebenslage[] {
+export function resolveContent(l: Lebenslage, locale: LebenslageLocale = 'de') {
+  return l.i18n[locale] ?? l.i18n.de ?? null;
+}
+
+export function searchLebenslagen(
+  q: string,
+  all: Lebenslage[],
+  locale: LebenslageLocale = 'de',
+): LebenslageHit[] {
   if (!q.trim()) return [];
   const needle = q.trim().toLowerCase();
-  const scored: { l: Lebenslage; score: number }[] = [];
+  const scored: { hit: LebenslageHit; score: number }[] = [];
   for (const l of all) {
+    const c = resolveContent(l, locale);
+    if (!c) continue;
     let score = 0;
-    if (l.frage.toLowerCase().includes(needle)) score += 3;
-    if (l.antwort?.toLowerCase().includes(needle)) score += 1;
-    for (const w of l.stichworte) {
+    if (c.frage.toLowerCase().includes(needle)) score += 3;
+    if (c.antwort?.toLowerCase().includes(needle)) score += 1;
+    for (const w of c.stichworte) {
       const wl = w.toLowerCase();
       if (wl === needle) score += 5;
       else if (wl.includes(needle)) score += 2;
     }
-    if (score) scored.push({ l, score });
+    if (score) scored.push({ hit: { ...l, ...c }, score });
   }
-  return scored.sort((a, b) => b.score - a.score).slice(0, 6).map((x) => x.l);
+  return scored.sort((a, b) => b.score - a.score).slice(0, 6).map((x) => x.hit);
 }
 
 export function fmtCHF(v: number | null | undefined): string {

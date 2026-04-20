@@ -79,13 +79,25 @@ export interface Center {
   note?: string;
 }
 
-export interface Lebenslage {
-  id: string;
+// Lokalisierbarer Content einer Lebenslage. Schlüssel wie bisher:
+// frage = Kurz-Frage, stichworte = Suchbegriffe, antwort = Kurzerklärung.
+export interface LebenslageContent {
   frage: string;
   stichworte: string[];
-  zustaendig: string;          // unit-id oder dep-id
   antwort?: string;
 }
+
+export type LebenslageLocale = 'de' | 'en' | 'fr' | 'it' | 'ls';
+
+export interface Lebenslage {
+  id: string;
+  zustaendig: string;            // unit-id oder dep-id
+  i18n: Partial<Record<LebenslageLocale, LebenslageContent | null>>;
+}
+
+// Resultat der Suche: Lebenslage + aufgelöster Content in gewünschtem Locale
+// (mit Fallback auf de). Callers können .frage/.stichworte/.antwort direkt lesen.
+export type LebenslageHit = Lebenslage & LebenslageContent;
 
 export interface DataMeta {
   schemaVersion: number;

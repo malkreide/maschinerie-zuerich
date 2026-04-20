@@ -42,7 +42,11 @@ jobs:
             const d = JSON.parse(require('fs').readFileSync('stadt-zuerich-next/data.json','utf8'));
             const l = JSON.parse(require('fs').readFileSync('stadt-zuerich-next/data/manual/lebenslagen.json','utf8'));
             const ids = new Set([...d.units.map(u=>u.id), ...d.departments.map(x=>x.id)]);
-            const missing = l.lebenslagen.filter(e => !ids.has(e.zustaendig));
-            if (missing.length) { console.error('Unbekannte zustaendig-IDs:', missing.map(m=>m.id)); process.exit(1); }
-            console.log('✓ Alle ' + l.lebenslagen.length + ' Lebenslagen zeigen auf gültige Einheiten');
+            const problems = [];
+            for (const e of l.lebenslagen) {
+              if (!ids.has(e.zustaendig)) problems.push(e.id + ': unbekannte zustaendig ' + e.zustaendig);
+              if (!e.i18n?.de?.frage || !Array.isArray(e.i18n?.de?.stichworte)) problems.push(e.id + ': fehlt i18n.de.frage oder .stichworte');
+            }
+            if (problems.length) { console.error('Probleme:\n  ' + problems.join('\n  ')); process.exit(1); }
+            console.log('✓ Alle ' + l.lebenslagen.length + ' Lebenslagen haben i18n.de und gültige zustaendig');
           "

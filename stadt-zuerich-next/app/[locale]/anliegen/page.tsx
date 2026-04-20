@@ -10,8 +10,8 @@ import { hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { routing, type Locale } from '@/i18n/routing';
 import { loadStadtData } from '@/lib/data';
-import { searchLebenslagen } from '@/lib/search';
-import type { Department, Unit, Beteiligung, StadtData } from '@/types/stadt';
+import { searchLebenslagen, resolveContent } from '@/lib/search';
+import type { Department, Unit, Beteiligung, StadtData, LebenslageLocale } from '@/types/stadt';
 
 export async function generateMetadata({
   params,
@@ -35,7 +35,8 @@ export default async function AnliegenPage({
 
   const { q = '' } = await searchParams;
   const data = await loadStadtData();
-  const matches = q.trim() ? searchLebenslagen(q, data.lebenslagen ?? []) : [];
+  const lebLocale = locale as LebenslageLocale;
+  const matches = q.trim() ? searchLebenslagen(q, data.lebenslagen ?? [], lebLocale) : [];
   const t = await getTranslations({ locale, namespace: 'Anliegen' });
   const tSearch = await getTranslations({ locale, namespace: 'Search' });
 
@@ -108,16 +109,20 @@ export default async function AnliegenPage({
             {t('popularHeading')}
           </h3>
           <ul className="grid gap-2 list-none m-0 p-0">
-            {data.lebenslagen.slice(0, 8).map((l) => (
-              <li key={l.id}>
-                <Link
-                  href={{ pathname: '/anliegen', query: { q: l.stichworte[0] ?? l.frage } }}
-                  className="block px-3 py-2 bg-[var(--color-panel)] border border-[var(--color-line)] rounded text-[var(--color-ink)] no-underline hover:bg-[var(--color-bg)] text-sm"
-                >
-                  {l.frage}
-                </Link>
-              </li>
-            ))}
+            {data.lebenslagen.slice(0, 8).map((l) => {
+              const c = resolveContent(l, lebLocale);
+              if (!c) return null;
+              return (
+                <li key={l.id}>
+                  <Link
+                    href={{ pathname: '/anliegen', query: { q: c.stichworte[0] ?? c.frage } }}
+                    className="block px-3 py-2 bg-[var(--color-panel)] border border-[var(--color-line)] rounded text-[var(--color-ink)] no-underline hover:bg-[var(--color-bg)] text-sm"
+                  >
+                    {c.frage}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </section>
       )}

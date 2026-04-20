@@ -3,7 +3,7 @@
 import { useId, useMemo, useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { Link, usePathname, useRouter, getPathname } from '@/i18n/navigation';
-import type { Lebenslage } from '@/types/stadt';
+import type { Lebenslage, LebenslageLocale } from '@/types/stadt';
 import type { Locale } from '@/i18n/routing';
 import { searchLebenslagen } from '@/lib/search';
 
@@ -15,7 +15,10 @@ export default function Search({ lebenslagen }: { lebenslagen: Lebenslage[] }) {
   const router = useRouter();
   const pathname = usePathname();
 
-  const matches = useMemo(() => searchLebenslagen(q, lebenslagen), [q, lebenslagen]);
+  const matches = useMemo(
+    () => searchLebenslagen(q, lebenslagen, locale as LebenslageLocale),
+    [q, lebenslagen, locale],
+  );
 
   if (pathname === '/liste' || pathname === '/anliegen') return null;
 
