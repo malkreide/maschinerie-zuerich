@@ -20,6 +20,9 @@ yarn-error.log*
 out/
 next-env.d.ts
 
+# TypeScript incremental build cache
+*.tsbuildinfo
+
 # Python (für ETL-Skripte, falls lokal verwendet)
 __pycache__/
 *.pyc
