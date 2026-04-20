@@ -61,8 +61,15 @@ Warum:
 Wöchentliche PRs mit gruppierten Updates (React-Familie, d3-Module, Tailwind,
 Cytoscape, next-intl, Tooling) kommen automatisch von Dependabot — siehe
 [`.github/dependabot.yml`](.github/dependabot.yml). Jede:r Maintainer:in kann
-die PRs via Label `dependencies` filtern. CI läuft automatisch auf den PRs,
-grün ist in der Regel mergable ohne weiteren Check.
+die PRs via Label `dependencies` filtern.
+
+**Auto-Merge-Pipeline** (siehe [`.github/workflows/dependabot-auto-merge.yml`](.github/workflows/dependabot-auto-merge.yml)):
+
+- **Patch- und Minor-Updates**: automatischer Approve + Auto-Merge (Squash), sobald CI grün ist. Kein Maintainer-Klick nötig.
+- **Major-Updates**: automatischer Kommentar «Bitte manuell prüfen» — Approve und Merge bewusst nicht automatisiert, weil Breaking Changes Review brauchen.
+
+Die Squash-Strategie hält die Git-History sauber (ein Commit pro Update).
+Branches werden nach dem Merge automatisch gelöscht.
 
 ## Daten-Änderungen
 
