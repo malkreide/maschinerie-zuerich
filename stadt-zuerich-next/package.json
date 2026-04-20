@@ -8,7 +8,6 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "data:fetch": "node scripts/build-data.mjs",
     "data:fetch:force": "node scripts/build-data.mjs --force"
