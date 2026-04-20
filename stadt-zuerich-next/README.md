@@ -170,6 +170,23 @@ dabei `?focus=...` und andere Query-Parameter bei.
 
 `<html lang>` wird pro Locale gesetzt (Schweizer Varianten wo verfügbar).
 
+### Locale-Detection (Accept-Language)
+
+`localeDetection: true` in [`i18n/routing.ts`](i18n/routing.ts) aktiviert das
+automatische Sprach-Matching beim ersten Besuch:
+
+| Szenario | Verhalten |
+|----------|-----------|
+| Englischer Browser ruft `/` auf | Redirect nach `/en` |
+| Englischer Browser ruft `/steuerfranken` auf | Redirect nach `/en/steuerfranken` |
+| User:in wählt manuell DE im `LanguageSwitcher` | `NEXT_LOCALE=de` Cookie wird gesetzt, ab sofort keine Redirects mehr, Wahl persistiert |
+| Expliziter Deep-Link wie `/en/liste` oder `/fr/anliegen?q=chien` | **Keine** Umleitung – Prefix-Routen werden respektiert, damit geteilte Links immer die beabsichtigte Sprache zeigen |
+| Browser-Accept-Language enthält `de-CH`, `de`, `en` (mit q-Werten) | next-intl wählt das bestmatchende Locale aus der Liste unserer 5; Fallback auf `de` bei keinem Match |
+
+**Leichte Sprache (ls) wird nicht auto-detected** — niemand sendet
+`Accept-Language: ls` oder ähnliches. LS ist nur über manuelle Auswahl oder
+`/ls/…` erreichbar.
+
 ## Bekannte Verbesserungspotenziale
 
 - **Treemap-Tooltip** via `next/dynamic` lazy-loaden — aktuell synchron.
