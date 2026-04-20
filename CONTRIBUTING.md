@@ -56,6 +56,14 @@ Warum:
 - Der npm-Cache in GitHub Actions invalidiert automatisch, sobald sich `package-lock.json` ändert — ohne Commit des Lockfiles läuft jeder Build ohne Cache, das kostet ~20 s pro Run.
 - Reproduzierbare Installs: alle Contributors und die CI ziehen identische Versionen.
 
+### Dependabot
+
+Wöchentliche PRs mit gruppierten Updates (React-Familie, d3-Module, Tailwind,
+Cytoscape, next-intl, Tooling) kommen automatisch von Dependabot — siehe
+[`.github/dependabot.yml`](.github/dependabot.yml). Jede:r Maintainer:in kann
+die PRs via Label `dependencies` filtern. CI läuft automatisch auf den PRs,
+grün ist in der Regel mergable ohne weiteren Check.
+
 ## Daten-Änderungen
 
 Wenn sich Struktur der Stadtverwaltung ändert (neue Dienstabteilung, Reorganisation):
