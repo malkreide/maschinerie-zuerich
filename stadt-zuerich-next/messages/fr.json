@@ -1,0 +1,102 @@
+{
+  "App": {
+    "title": "Mécanique de la Ville de Zurich",
+    "subtitle": "Prototype · Next.js"
+  },
+  "Nav": {
+    "graph": "Mécanique",
+    "tax": "Franc d'impôt",
+    "list": "Liste",
+    "darkOn": "Activer le thème sombre",
+    "darkOff": "Activer le thème clair",
+    "darkLabelLight": "☼ Clair",
+    "darkLabelDark": "☾ Sombre",
+    "darkLabelLoading": "Thème",
+    "skipToList": "Vers l'aperçu textuel (lecteurs d'écran)",
+    "language": "Langue"
+  },
+  "Search": {
+    "label": "Chercher un service ou une démarche",
+    "placeholder": "Service ou démarche : « inscrire chien », « passeport »…",
+    "help": "Tapez un terme. Les suggestions apparaissent dessous. Entrée ouvre la page complète des résultats. Esc efface la recherche.",
+    "submit": "Chercher",
+    "suggestionsTitle": "Démarches",
+    "suggestionsListLabel": "Suggestions de démarches citoyennes",
+    "showAll": "Afficher tous les résultats sur une page dédiée →"
+  },
+  "Anliegen": {
+    "title": "Chercher une démarche",
+    "intro": "Cherchez des termes comme « inscrire chien », « passeport », « aide sociale » ou « électricité ». Cette page fonctionne sans JavaScript — elle est la version de secours de la recherche en direct en haut à gauche.",
+    "noResults": "Aucun résultat pour „{query}\". Essayez un autre terme — par exemple un mot-clé seul comme « impôt », « eau » ou « soins ».",
+    "resultsCount": "{count, plural, one {# résultat} other {# résultats}} pour „{query}\"",
+    "popularHeading": "Démarches courantes",
+    "placeholder": "p. ex. inscrire chien, passeport, aide sociale…"
+  },
+  "Treemap": {
+    "title": "Où va mon franc d'impôt ?",
+    "intro": "Charges {jahr} par département et division. Surface = charge. Cliquez sur un département pour zoomer.",
+    "total": " · Total {sum} CHF",
+    "back": "← Retour à l'aperçu",
+    "tooltipShare": "Part de la vue",
+    "tooltipExpense": "Charge",
+    "tooltipNet": "Charge nette",
+    "tooltipFte": "EPT",
+    "conflictNote": "⚠ Affectation citoyenne ≠ RPK",
+    "ariaLabel": "Treemap des charges"
+  },
+  "List": {
+    "title": "Administration de la Ville de Zurich – aperçu hiérarchique",
+    "intro": "Cette liste montre les mêmes données que l'onglet diagramme, en forme sémantique pour les lecteurs d'écran et la navigation au clavier. Tab parcourt la hiérarchie, Entrée ouvre/ferme un nœud.",
+    "ariaLabel": "Administration de la Ville de Zurich en hiérarchie textuelle",
+    "beteiligungenHeading": "Participations et fondations"
+  },
+  "Detail": {
+    "close": "Fermer le panneau de détail",
+    "ariaLabel": "Détails de l'unité administrative sélectionnée",
+    "vorsteher": "Responsable",
+    "department": "Département",
+    "ogdKey": "Clé OGD",
+    "abbreviation": "Sigle",
+    "expense": "Charge",
+    "income": "Recette",
+    "netExpense": "Charge nette",
+    "budgetYear": "Année du budget",
+    "fte": "Postes (EPT)",
+    "ftePublished": "✓ publié",
+    "fteEstimate": "ⓘ estimation",
+    "fteEstimateTitle": "Estimation : charges de personnel / {amount} CHF",
+    "conflictLabel": "⚠ Affectation",
+    "conflictCitizen": "Vue citoyenne",
+    "conflictRpk": "Vue RPK",
+    "aggregatedFrom": "agrégé depuis {n} unités",
+    "phaseBudget": "Budget",
+    "phaseProposal": "Proposition",
+    "phaseAccount": "Comptes",
+    "fteUnitFallback": "EPT",
+    "fteUnitPublished": "{value} {einheit} (publié)",
+    "fteEstimateText": "~{value} (estimation : charges de personnel ÷ {amount} CHF)"
+  },
+  "Legend": {
+    "headingTop": "Conseil municipal et départements",
+    "headingUnits": "Unités administratives",
+    "headingExtern": "Autonomes et participations",
+    "headingMarker": "Marqueur",
+    "stadtpraesidium": "Présidence de la Ville",
+    "stadtrat": "Conseillère / conseiller municipal",
+    "departement": "Département",
+    "dienstabteilung": "Division",
+    "stab": "État-major / transversal",
+    "verselbst": "Entreprise autonome",
+    "beteiligung": "Participation / fondation",
+    "konflikt": "Affectation citoyenne ≠ RPK"
+  },
+  "Hint": "Survol = explorer · Clic = sélectionner · Molette = zoomer · La recherche connaît aussi les démarches",
+  "Type": {
+    "center": "Exécutif",
+    "department": "Département",
+    "unit": "Division",
+    "staff": "État-major / transversal",
+    "extern": "Entreprise autonome",
+    "beteiligung": "Participation / fondation"
+  }
+}

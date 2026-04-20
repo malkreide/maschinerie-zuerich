@@ -1,0 +1,72 @@
+{
+  "_doc": [
+    "Manuell aus Budget- und Rechnungs-PDFs extrahierte FTE-/Mitarbeitenden-Werte.",
+    "Diese überschreiben in 'data.json' den FTE-Proxy aus dem Personalaufwand,",
+    "wo verfügbar. Pro Einheit wird zusätzlich 'quelle' gesetzt, damit das UI",
+    "publizierte Werte von Schätzungen unterscheiden kann.",
+    "",
+    "Vorgehen beim Aktualisieren:",
+    "1. Aktuelle Globalbudget-/Anstalten-PDFs auf stadt-zuerich.ch herunterladen",
+    "2. Nach 'Anzahl beschäftigte Mitarbeitende' und 'Vollzeitäquivalente' suchen",
+    "3. Werte hier ergänzen — Format: { id: '<unit-id>', wert, einheit, quelle, jahr, seite }"
+  ],
+
+  "werte": [
+    { "id": "PRD", "wert":  429.8, "einheit": "Stellenwerte (STW)",
+      "quelle": "Rechnung 2025, S. 30 (Hauptrechnung, Stellenwerte-Tabelle pro Departement)",
+      "url": "https://www.stadt-zuerich.ch/content/dam/web/de/aktuell/publikationen/2026/rechnung-2025/rechnung-2025-strb.pdf",
+      "jahr": 2025, "phase": "Rechnung" },
+    { "id": "FD",  "wert": 1100.6, "einheit": "Stellenwerte (STW)",
+      "quelle": "Rechnung 2025, S. 30",
+      "url": "https://www.stadt-zuerich.ch/content/dam/web/de/aktuell/publikationen/2026/rechnung-2025/rechnung-2025-strb.pdf",
+      "jahr": 2025, "phase": "Rechnung" },
+    { "id": "SD",  "wert": 1834.6, "einheit": "Stellenwerte (STW)",
+      "quelle": "Rechnung 2025, S. 30",
+      "url": "https://www.stadt-zuerich.ch/content/dam/web/de/aktuell/publikationen/2026/rechnung-2025/rechnung-2025-strb.pdf",
+      "jahr": 2025, "phase": "Rechnung" },
+    { "id": "GUD", "wert": 6476.4, "einheit": "Stellenwerte (STW)",
+      "quelle": "Rechnung 2025, S. 30",
+      "url": "https://www.stadt-zuerich.ch/content/dam/web/de/aktuell/publikationen/2026/rechnung-2025/rechnung-2025-strb.pdf",
+      "jahr": 2025, "phase": "Rechnung" },
+    { "id": "TED", "wert": 1864.2, "einheit": "Stellenwerte (STW)",
+      "quelle": "Rechnung 2025, S. 30",
+      "url": "https://www.stadt-zuerich.ch/content/dam/web/de/aktuell/publikationen/2026/rechnung-2025/rechnung-2025-strb.pdf",
+      "jahr": 2025, "phase": "Rechnung" },
+    { "id": "HBD", "wert":  838.2, "einheit": "Stellenwerte (STW)",
+      "quelle": "Rechnung 2025, S. 30",
+      "url": "https://www.stadt-zuerich.ch/content/dam/web/de/aktuell/publikationen/2026/rechnung-2025/rechnung-2025-strb.pdf",
+      "jahr": 2025, "phase": "Rechnung" },
+    { "id": "SiD", "wert": 2823.4, "einheit": "Stellenwerte (STW)",
+      "quelle": "Rechnung 2025, S. 30",
+      "url": "https://www.stadt-zuerich.ch/content/dam/web/de/aktuell/publikationen/2026/rechnung-2025/rechnung-2025-strb.pdf",
+      "jahr": 2025, "phase": "Rechnung" },
+    { "id": "SSD", "wert": 5587.9, "einheit": "Stellenwerte (STW)",
+      "quelle": "Rechnung 2025, S. 30",
+      "url": "https://www.stadt-zuerich.ch/content/dam/web/de/aktuell/publikationen/2026/rechnung-2025/rechnung-2025-strb.pdf",
+      "jahr": 2025, "phase": "Rechnung" },
+    { "id": "DIB", "wert": 4177.9, "einheit": "Stellenwerte (STW)",
+      "quelle": "Rechnung 2025, S. 30",
+      "url": "https://www.stadt-zuerich.ch/content/dam/web/de/aktuell/publikationen/2026/rechnung-2025/rechnung-2025-strb.pdf",
+      "jahr": 2025, "phase": "Rechnung" },
+
+    { "id": "FD-st", "wert": 222, "einheit": "Mitarbeitende",
+      "quelle": "Budget 2026, Globalbudgets, S. 191 (Steueramt 2040, PG-Kennzahlen)",
+      "url": "https://www.stadt-zuerich.ch/content/dam/web/de/aktuell/publikationen/2025/budget/globalbudgets-2026-beschluss-gemeinderat.pdf",
+      "jahr": 2026, "phase": "Budget" }
+  ],
+
+  "_nicht_uebernommen": [
+    {
+      "wo": "Globalbudgets 2026 / Rechnung 2025 GB, ewz 4530 PG2 Netzbetrieb",
+      "wert": 7.4,
+      "einheit": "VZÄ",
+      "grund": "Nur Sub-Produktegruppe (Netzbetrieb) — kein Total für ewz."
+    },
+    {
+      "wo": "Anstalten 2026, Stiftung PWG (9703)",
+      "wert": 38.7,
+      "einheit": "VZS Plan Ende 2026",
+      "grund": "Stiftung PWG ist (noch) nicht in unserem data.json modelliert."
+    }
+  ]
+}

@@ -1,0 +1,172 @@
+{
+  "_doc": [
+    "Lebenslagen-Mapping: Bürger-Anliegen → zuständige Dienstabteilung.",
+    "Pro Eintrag: id, frage, stichworte (Suchworte), zustaendig (Unit-ID),",
+    "antwort (kurze Erklärung). Manuell gepflegt – nicht aus OGD generierbar.",
+    "",
+    "Vor jedem Update prüfen: Stimmt die Zuordnung mit der aktuellen",
+    "Organisation (siehe data.json/units) noch überein?"
+  ],
+
+  "lebenslagen": [
+    { "id": "hund-anmelden",       "frage": "Hund anmelden / Hundesteuer",
+      "stichworte": ["hund", "hundesteuer", "haustier"],
+      "zustaendig": "FD-st",
+      "antwort": "Hundeanmeldung und Hundesteuer laufen beim Steueramt." },
+
+    { "id": "pass-id",             "frage": "Pass oder Identitätskarte beantragen",
+      "stichworte": ["pass", "id", "ausweis", "identitätskarte", "reisepass"],
+      "zustaendig": "SiD-bev",
+      "antwort": "Pässe und ID-Karten beim Bevölkerungsamt." },
+
+    { "id": "umzug-melden",        "frage": "Umzug an- oder abmelden",
+      "stichworte": ["umzug", "anmelden", "abmelden", "wegzug", "zuzug", "wohnsitz"],
+      "zustaendig": "SiD-bev",
+      "antwort": "An- und Abmeldung beim Bevölkerungsamt." },
+
+    { "id": "heiraten",            "frage": "Heiraten / Zivilstandsamt",
+      "stichworte": ["heirat", "heiraten", "ehe", "zivilstand", "trauung", "partnerschaft"],
+      "zustaendig": "SiD-bev",
+      "antwort": "Eheschliessung beim Zivilstandsamt (Bevölkerungsamt)." },
+
+    { "id": "schule-anmelden",     "frage": "Kind in der Schule anmelden",
+      "stichworte": ["schule", "kindergarten", "primar", "sekundar", "einschulung", "schulkreis"],
+      "zustaendig": "SSD-schule",
+      "antwort": "Schulamt – Anmeldung läuft über den zuständigen Schulkreis." },
+
+    { "id": "kita-platz",          "frage": "Kita- oder Hortplatz suchen",
+      "stichworte": ["kita", "hort", "tagesschule", "kinderbetreuung", "tagesfamilie"],
+      "zustaendig": "SSD-schule",
+      "antwort": "Tagesbetreuung über das Schulamt." },
+
+    { "id": "musikschule",         "frage": "Kind in Musikschule anmelden",
+      "stichworte": ["musik", "musikschule", "instrument", "konservatorium", "mkz"],
+      "zustaendig": "SSD-mkz",
+      "antwort": "Musikschule Konservatorium Zürich (MKZ)." },
+
+    { "id": "sportplatz",          "frage": "Sportanlage, Hallenbad, Schwimmbad",
+      "stichworte": ["sport", "schwimmbad", "hallenbad", "freibad", "sportanlage", "turnhalle"],
+      "zustaendig": "SSD-sport",
+      "antwort": "Sportamt – Bäder und Sportanlagen der Stadt." },
+
+    { "id": "sozialhilfe",         "frage": "Sozialhilfe beantragen",
+      "stichworte": ["sozialhilfe", "unterstützung", "fürsorge", "notlage", "geld"],
+      "zustaendig": "SD-soz",
+      "antwort": "Soziale Dienste – Beratung und Sozialhilfe." },
+
+    { "id": "ahv-zusatz",          "frage": "Zusatzleistungen zur AHV/IV",
+      "stichworte": ["zusatzleistung", "ergänzungsleistung", "ahv", "iv", "rente"],
+      "zustaendig": "SD-azl",
+      "antwort": "Amt für Zusatzleistungen zur AHV/IV." },
+
+    { "id": "kesb",                "frage": "Kindes-/Erwachsenenschutz, Beistandschaft, Adoption",
+      "stichworte": ["kesb", "beistand", "vormund", "adoption", "pflegekind", "kindesschutz"],
+      "zustaendig": "SD-keb",
+      "antwort": "Kindes- und Erwachsenenschutzbehörde (KESB)." },
+
+    { "id": "asyl",                "frage": "Asylsuchende, Aufnahme, Integration",
+      "stichworte": ["asyl", "flüchtling", "geflüchtet", "aufnahme", "aoz"],
+      "zustaendig": "SD-aoz",
+      "antwort": "AOZ – Asyl-Organisation Zürich." },
+
+    { "id": "berufslehre",         "frage": "Lehrstelle suchen, Berufsberatung",
+      "stichworte": ["lehre", "lehrstelle", "berufsberatung", "berufswahl", "laufbahn", "ausbildung"],
+      "zustaendig": "SD-lbz",
+      "antwort": "Laufbahnzentrum – Berufsberatung." },
+
+    { "id": "baugesuch",           "frage": "Baugesuch einreichen / Baubewilligung",
+      "stichworte": ["baugesuch", "baubewilligung", "bauen", "umbau", "anbau", "sanierung"],
+      "zustaendig": "HBD-bb",
+      "antwort": "Amt für Baubewilligungen." },
+
+    { "id": "stadtwohnung",        "frage": "Städtische Wohnung suchen",
+      "stichworte": ["wohnung", "stadtwohnung", "miete", "wohnbau", "gemeinnützig"],
+      "zustaendig": "FD-imm",
+      "antwort": "Immobilien Stadt Zürich – städtische Mietwohnungen." },
+
+    { "id": "steuern",             "frage": "Steuern bezahlen / Steuererklärung",
+      "stichworte": ["steuer", "steuererklärung", "veranlagung", "fristverlängerung"],
+      "zustaendig": "FD-st",
+      "antwort": "Steueramt der Stadt Zürich." },
+
+    { "id": "strom",               "frage": "Strom anmelden, Stromanbieter",
+      "stichworte": ["strom", "elektrizität", "ewz", "energie", "umzug strom"],
+      "zustaendig": "DIB-ewz",
+      "antwort": "ewz – Elektrizitätswerk der Stadt Zürich." },
+
+    { "id": "wasser",              "frage": "Wasseranschluss, Trinkwasserqualität",
+      "stichworte": ["wasser", "trinkwasser", "wasseranschluss", "leitung"],
+      "zustaendig": "DIB-wv",
+      "antwort": "Wasserversorgung Zürich." },
+
+    { "id": "abfall",              "frage": "Abfallkalender, Sperrgut, Recycling",
+      "stichworte": ["abfall", "sperrgut", "kehricht", "recycling", "altglas", "papier", "tonne"],
+      "zustaendig": "TED-erz-abf",
+      "antwort": "ERZ – Entsorgung + Recycling Zürich, Bereich Abfall." },
+
+    { "id": "stadtreinigung",      "frage": "Strassenreinigung, Schneeräumung",
+      "stichworte": ["stadtreinigung", "putzen", "schnee", "schneeräumung", "winterdienst"],
+      "zustaendig": "TED-erz-r",
+      "antwort": "ERZ – Stadtreinigung." },
+
+    { "id": "öv",                  "frage": "Tram, Bus, ÖV-Abos",
+      "stichworte": ["tram", "bus", "öv", "vbz", "abo", "ticket", "verkehrsbetriebe"],
+      "zustaendig": "DIB-vbz",
+      "antwort": "VBZ – Verkehrsbetriebe Zürich." },
+
+    { "id": "pflegeheim",          "frage": "Pflegeheim, Spitex, Altersbetreuung",
+      "stichworte": ["pflege", "pflegeheim", "altersheim", "spitex", "alterszentrum", "demenz"],
+      "zustaendig": "GUD-pflege",
+      "antwort": "Pflegezentren / Gesundheitszentren für das Alter." },
+
+    { "id": "spital",              "frage": "Spitalbehandlung",
+      "stichworte": ["spital", "krankenhaus", "behandlung", "notfall medizinisch", "stadtspital"],
+      "zustaendig": "GUD-spital",
+      "antwort": "Stadtspital Zürich (Standorte Triemli und Waid)." },
+
+    { "id": "schul-arzt",          "frage": "Schulärztliche Untersuchung, Schulgesundheit",
+      "stichworte": ["schularzt", "schulärztin", "schulgesundheit", "impfung schule"],
+      "zustaendig": "SSD-sg",
+      "antwort": "Schulgesundheitsdienste." },
+
+    { "id": "umwelt",              "frage": "Lärm, Luftqualität, Lebensmittelkontrolle",
+      "stichworte": ["lärm", "luft", "umwelt", "lebensmittel", "gastronomie", "ugz"],
+      "zustaendig": "GUD-ugz",
+      "antwort": "Umwelt- und Gesundheitsschutz Zürich (UGZ)." },
+
+    { "id": "polizei",             "frage": "Polizei, Anzeige erstatten",
+      "stichworte": ["polizei", "anzeige", "diebstahl", "einbruch", "verkehrsunfall"],
+      "zustaendig": "SiD-stapo",
+      "antwort": "Stadtpolizei Zürich." },
+
+    { "id": "feuerwehr",           "frage": "Feuerwehr, Sanität, Notfall",
+      "stichworte": ["feuerwehr", "brand", "sanität", "rettung", "ambulanz", "notfall"],
+      "zustaendig": "SiD-srz",
+      "antwort": "Schutz & Rettung Zürich – Feuerwehr und Sanität." },
+
+    { "id": "parkbusse",           "frage": "Parkbusse / Strafmandat",
+      "stichworte": ["parkbusse", "busse", "strafmandat", "strafzettel", "ordnungsbusse"],
+      "zustaendig": "SiD-richt",
+      "antwort": "Stadtrichteramt – Bussen und Strafmandate." },
+
+    { "id": "parkplatz",           "frage": "Parkkarte, blaue Zone, Parkplätze",
+      "stichworte": ["parkkarte", "blaue zone", "parkplatz", "anwohner", "parkieren"],
+      "zustaendig": "SiD-dav",
+      "antwort": "Dienstabteilung Verkehr – Parkbewirtschaftung." },
+
+    { "id": "betreibung",          "frage": "Betreibung einleiten, Auszug Betreibungsregister",
+      "stichworte": ["betreibung", "schulden", "stadtammann", "register", "konkurs"],
+      "zustaendig": "PRD-stab",
+      "antwort": "Stadtammann- und Betreibungsamt." },
+
+    { "id": "stadtarchiv",         "frage": "Historische Akten, Familienforschung",
+      "stichworte": ["archiv", "geschichte", "familienforschung", "ahnen", "akten"],
+      "zustaendig": "PRD-arch",
+      "antwort": "Stadtarchiv Zürich." },
+
+    { "id": "statistik",           "frage": "Bevölkerungszahlen, Statistik-Daten",
+      "stichworte": ["statistik", "bevölkerungszahl", "daten", "zahlen", "open data"],
+      "zustaendig": "PRD-stat",
+      "antwort": "Statistik Stadt Zürich." }
+  ]
+}

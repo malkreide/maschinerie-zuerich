@@ -1,0 +1,102 @@
+{
+  "App": {
+    "title": "Maschinerie der Stadt Zürich",
+    "subtitle": "Prototyp · Next.js"
+  },
+  "Nav": {
+    "graph": "Maschinerie",
+    "tax": "Steuerfranken",
+    "list": "Liste",
+    "darkOn": "Dunkles Theme aktivieren",
+    "darkOff": "Helles Theme aktivieren",
+    "darkLabelLight": "☼ Hell",
+    "darkLabelDark": "☾ Dunkel",
+    "darkLabelLoading": "Theme",
+    "skipToList": "Zur textuellen Übersicht (für Screenreader)",
+    "language": "Sprache"
+  },
+  "Search": {
+    "label": "Stelle oder Anliegen suchen",
+    "placeholder": "Stelle oder Anliegen: 'Hund anmelden', 'Pass'…",
+    "help": "Tippt einen Suchbegriff ein. Vorschläge erscheinen darunter. Enter öffnet die volle Trefferliste auf einer eigenen Seite. Esc leert die Suche.",
+    "submit": "Suchen",
+    "suggestionsTitle": "Anliegen",
+    "suggestionsListLabel": "Vorschläge zu Bürger-Anliegen",
+    "showAll": "Alle Treffer auf eigener Seite anzeigen →"
+  },
+  "Anliegen": {
+    "title": "Anliegen suchen",
+    "intro": "Suche nach Begriffen wie «Hund anmelden», «Pass», «Sozialhilfe» oder «Strom». Diese Seite funktioniert auch ohne JavaScript — sie ist die Fallback-Variante der Live-Suche oben links.",
+    "noResults": "Keine Treffer für „{query}\". Versuchen Sie einen anderen Begriff — z. B. einzelne Schlüsselwörter wie «Steuer», «Wasser» oder «Pflege».",
+    "resultsCount": "{count, plural, one {# Treffer} other {# Treffer}} für „{query}\"",
+    "popularHeading": "Häufige Anliegen",
+    "placeholder": "z. B. Hund anmelden, Pass, Sozialhilfe…"
+  },
+  "Treemap": {
+    "title": "Wohin geht mein Steuerfranken?",
+    "intro": "Aufwand {jahr} nach Departement und Dienstabteilung. Fläche = Aufwand. Klick auf Departement zoomt hinein.",
+    "total": " · Total {sum} CHF",
+    "back": "← Zurück zur Übersicht",
+    "tooltipShare": "Anteil Ansicht",
+    "tooltipExpense": "Aufwand",
+    "tooltipNet": "Nettoaufwand",
+    "tooltipFte": "FTE",
+    "conflictNote": "⚠ Bürger-/RPK-Zuordnung divergiert",
+    "ariaLabel": "Treemap des Aufwands"
+  },
+  "List": {
+    "title": "Stadtverwaltung Zürich – Hierarchische Übersicht",
+    "intro": "Diese Liste zeigt die gleichen Daten wie der grafische Diagramm-Tab in semantisch strukturierter Form für Screenreader und Tastatur-Bedienung. Mit Tab durch die Hierarchie navigieren, mit Enter Knoten auf-/zuklappen.",
+    "ariaLabel": "Stadtverwaltung Zürich als textuelle Hierarchie",
+    "beteiligungenHeading": "Beteiligungen und Stiftungen"
+  },
+  "Detail": {
+    "close": "Detail-Panel schliessen",
+    "ariaLabel": "Detail-Information zur ausgewählten Verwaltungseinheit",
+    "vorsteher": "Vorsteher:in",
+    "department": "Departement",
+    "ogdKey": "OGD-Schlüssel",
+    "abbreviation": "Kürzel",
+    "expense": "Aufwand",
+    "income": "Ertrag",
+    "netExpense": "Nettoaufwand",
+    "budgetYear": "Budget-Jahr",
+    "fte": "Stellen (FTE)",
+    "ftePublished": "✓ publiziert",
+    "fteEstimate": "ⓘ Schätzung",
+    "fteEstimateTitle": "Schätzung: Personalaufwand / {amount} CHF",
+    "conflictLabel": "⚠ Zuordnung",
+    "conflictCitizen": "Bürger-Sicht",
+    "conflictRpk": "RPK-Sicht",
+    "aggregatedFrom": "aggregiert aus {n} Einheiten",
+    "phaseBudget": "Budget",
+    "phaseProposal": "Antrag",
+    "phaseAccount": "Rechnung",
+    "fteUnitFallback": "FTE",
+    "fteUnitPublished": "{value} {einheit} (publiziert)",
+    "fteEstimateText": "~{value} (Schätzung: Personalaufwand ÷ {amount} CHF)"
+  },
+  "Legend": {
+    "headingTop": "Stadtrat & Departemente",
+    "headingUnits": "Verwaltungseinheiten",
+    "headingExtern": "Verselbständigt & Beteiligungen",
+    "headingMarker": "Marker",
+    "stadtpraesidium": "Stadtpräsidium",
+    "stadtrat": "Stadtrat / Departementsvorsteher:in",
+    "departement": "Departement",
+    "dienstabteilung": "Dienstabteilung",
+    "stab": "Stab / Querschnitt",
+    "verselbst": "Verselbständigter Betrieb",
+    "beteiligung": "Beteiligung / Stiftung",
+    "konflikt": "Bürger-/RPK-Zuordnung divergiert"
+  },
+  "Hint": "Hover = erkunden · Klick = auswählen · Scroll = zoomen · Suche kennt auch Anliegen",
+  "Type": {
+    "center": "Exekutive",
+    "department": "Departement",
+    "unit": "Dienstabteilung",
+    "staff": "Stab- / Querschnittsstelle",
+    "extern": "Verselbständigter Betrieb",
+    "beteiligung": "Beteiligung / Stiftung"
+  }
+}

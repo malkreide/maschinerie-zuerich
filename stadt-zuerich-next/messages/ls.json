@@ -1,0 +1,102 @@
+{
+  "App": {
+    "title": "Die Stadt Zürich von innen",
+    "subtitle": "Eine einfache Übersicht"
+  },
+  "Nav": {
+    "graph": "Bild",
+    "tax": "Geld",
+    "list": "Liste",
+    "darkOn": "Dunkles Bild einschalten",
+    "darkOff": "Helles Bild einschalten",
+    "darkLabelLight": "☼ Hell",
+    "darkLabelDark": "☾ Dunkel",
+    "darkLabelLoading": "Bild",
+    "skipToList": "Zur Liste springen. Die Liste ist gut für Sprach-Programme.",
+    "language": "Sprache"
+  },
+  "Search": {
+    "label": "Wonach suchen Sie?",
+    "placeholder": "Was wollen Sie tun? Zum Beispiel: Hund anmelden",
+    "help": "Schreiben Sie ein Wort. Es zeigt Vorschläge. Drücken Sie Enter. Dann sehen Sie alle Treffer. Mit Esc löschen Sie das Wort.",
+    "submit": "Suchen",
+    "suggestionsTitle": "Sie können das tun",
+    "suggestionsListLabel": "Vorschläge",
+    "showAll": "Alle Treffer auf einer eigenen Seite zeigen →"
+  },
+  "Anliegen": {
+    "title": "Was wollen Sie tun?",
+    "intro": "Hier können Sie etwas suchen. Zum Beispiel: «Hund anmelden». Oder: «Pass». Diese Seite geht auch ohne JavaScript. Sie ist die einfache Version von der Suche oben links.",
+    "noResults": "Es gibt nichts für „{query}\". Bitte versuchen Sie ein anderes Wort. Zum Beispiel «Steuer» oder «Wasser».",
+    "resultsCount": "{count, plural, one {# Treffer} other {# Treffer}} für „{query}\"",
+    "popularHeading": "Das suchen viele Leute",
+    "placeholder": "Schreiben Sie hier ein Wort"
+  },
+  "Treemap": {
+    "title": "Wofür gibt die Stadt Geld aus?",
+    "intro": "Hier sehen Sie das Geld der Stadt im Jahr {jahr}. Die Felder zeigen die Bereiche der Stadt. Ein grosses Feld bedeutet: viel Geld. Klicken Sie auf ein Feld. Dann sehen Sie mehr.",
+    "total": " · Insgesamt {sum} Schweizer Franken",
+    "back": "← Zurück",
+    "tooltipShare": "Anteil",
+    "tooltipExpense": "Geld ausgegeben",
+    "tooltipNet": "Geld ausgegeben minus Einnahmen",
+    "tooltipFte": "Stellen",
+    "conflictNote": "⚠ Hier passt etwas nicht zusammen.",
+    "ariaLabel": "Geld der Stadt als Bild"
+  },
+  "List": {
+    "title": "Die Stadt-Verwaltung in einer Liste",
+    "intro": "Hier sehen Sie alle Bereiche von der Stadt Zürich als Liste. Diese Liste ist gut für Sprach-Programme. Mit der Tab-Taste gehen Sie weiter. Mit Enter öffnen oder schliessen Sie einen Bereich.",
+    "ariaLabel": "Die Stadt-Verwaltung als Liste",
+    "beteiligungenHeading": "Andere Stellen von der Stadt"
+  },
+  "Detail": {
+    "close": "Dieses Fenster schliessen",
+    "ariaLabel": "Mehr Informationen über diesen Teil der Stadt-Verwaltung",
+    "vorsteher": "Chef oder Chefin",
+    "department": "Bereich",
+    "ogdKey": "Code für offene Daten",
+    "abbreviation": "Kurzwort",
+    "expense": "Ausgaben",
+    "income": "Einnahmen",
+    "netExpense": "Ausgaben minus Einnahmen",
+    "budgetYear": "Jahr",
+    "fte": "Stellen",
+    "ftePublished": "✓ Diese Zahl ist sicher.",
+    "fteEstimate": "ⓘ Diese Zahl ist eine Schätzung.",
+    "fteEstimateTitle": "Schätzung: Lohn-Geld geteilt durch {amount} Franken",
+    "conflictLabel": "⚠ Wo gehört das hin?",
+    "conflictCitizen": "Aus der Sicht von Bürgerinnen und Bürgern",
+    "conflictRpk": "Aus der Sicht der Buchhaltung",
+    "aggregatedFrom": "zusammen aus {n} kleineren Stellen",
+    "phaseBudget": "Geplant",
+    "phaseProposal": "Vorschlag",
+    "phaseAccount": "Wirklich ausgegeben",
+    "fteUnitFallback": "Stellen",
+    "fteUnitPublished": "{value} {einheit} (sichere Zahl)",
+    "fteEstimateText": "Etwa {value} Stellen (Schätzung: Lohn geteilt durch {amount} Franken)"
+  },
+  "Legend": {
+    "headingTop": "Die Chefs der Stadt",
+    "headingUnits": "Die Bereiche",
+    "headingExtern": "Stellen, die selbst entscheiden",
+    "headingMarker": "Zeichen",
+    "stadtpraesidium": "Die Stadt-Präsidentin oder der Stadt-Präsident",
+    "stadtrat": "Stadt-Rätin oder Stadt-Rat",
+    "departement": "Grosser Bereich",
+    "dienstabteilung": "Amt",
+    "stab": "Hilfs-Stelle",
+    "verselbst": "Eigene Firma der Stadt",
+    "beteiligung": "Stiftung oder Beteiligung",
+    "konflikt": "Hier passt etwas nicht zusammen."
+  },
+  "Hint": "Mit der Maus über die Bilder fahren · Klicken: auswählen · Mit dem Rad gross machen · Sie können auch nach Wörtern suchen",
+  "Type": {
+    "center": "Die Chefs",
+    "department": "Grosser Bereich",
+    "unit": "Amt",
+    "staff": "Hilfs-Stelle",
+    "extern": "Eigene Firma der Stadt",
+    "beteiligung": "Stiftung oder Beteiligung"
+  }
+}

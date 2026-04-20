@@ -1,0 +1,102 @@
+{
+  "App": {
+    "title": "Machinery of the City of Zurich",
+    "subtitle": "Prototype · Next.js"
+  },
+  "Nav": {
+    "graph": "Machinery",
+    "tax": "Tax franc",
+    "list": "List",
+    "darkOn": "Activate dark theme",
+    "darkOff": "Activate light theme",
+    "darkLabelLight": "☼ Light",
+    "darkLabelDark": "☾ Dark",
+    "darkLabelLoading": "Theme",
+    "skipToList": "Skip to textual overview (for screen readers)",
+    "language": "Language"
+  },
+  "Search": {
+    "label": "Search for an office or a concern",
+    "placeholder": "Office or concern: 'register dog', 'passport'…",
+    "help": "Type a search term. Suggestions appear below. Enter opens the full results page. Esc clears the search.",
+    "submit": "Search",
+    "suggestionsTitle": "Concerns",
+    "suggestionsListLabel": "Suggestions for citizen concerns",
+    "showAll": "Show all results on a dedicated page →"
+  },
+  "Anliegen": {
+    "title": "Search citizen concerns",
+    "intro": "Search for terms like «register dog», «passport», «social aid» or «electricity». This page works without JavaScript — it is the fallback for the live search at the top left.",
+    "noResults": "No results for „{query}\". Try another term — for example single keywords like «tax», «water» or «care».",
+    "resultsCount": "{count, plural, one {# result} other {# results}} for „{query}\"",
+    "popularHeading": "Common concerns",
+    "placeholder": "e.g. register dog, passport, social aid…"
+  },
+  "Treemap": {
+    "title": "Where does my tax franc go?",
+    "intro": "Expenses {jahr} by department and division. Area = expense. Click on a department to zoom in.",
+    "total": " · Total {sum} CHF",
+    "back": "← Back to overview",
+    "tooltipShare": "Share of view",
+    "tooltipExpense": "Expense",
+    "tooltipNet": "Net expense",
+    "tooltipFte": "FTE",
+    "conflictNote": "⚠ Citizen vs. RPK assignment differs",
+    "ariaLabel": "Treemap of expenses"
+  },
+  "List": {
+    "title": "City of Zurich administration – hierarchical overview",
+    "intro": "This list shows the same data as the graphical diagram tab in semantically structured form for screen readers and keyboard navigation. Use Tab to navigate the hierarchy, Enter to expand or collapse nodes.",
+    "ariaLabel": "City of Zurich administration as textual hierarchy",
+    "beteiligungenHeading": "Holdings and foundations"
+  },
+  "Detail": {
+    "close": "Close detail panel",
+    "ariaLabel": "Detail information about the selected administrative unit",
+    "vorsteher": "Head",
+    "department": "Department",
+    "ogdKey": "OGD key",
+    "abbreviation": "Code",
+    "expense": "Expense",
+    "income": "Income",
+    "netExpense": "Net expense",
+    "budgetYear": "Budget year",
+    "fte": "Positions (FTE)",
+    "ftePublished": "✓ published",
+    "fteEstimate": "ⓘ estimate",
+    "fteEstimateTitle": "Estimate: personnel expense / {amount} CHF",
+    "conflictLabel": "⚠ Assignment",
+    "conflictCitizen": "Citizen view",
+    "conflictRpk": "RPK view",
+    "aggregatedFrom": "aggregated from {n} units",
+    "phaseBudget": "Budget",
+    "phaseProposal": "Proposal",
+    "phaseAccount": "Account",
+    "fteUnitFallback": "FTE",
+    "fteUnitPublished": "{value} {einheit} (published)",
+    "fteEstimateText": "~{value} (estimate: personnel expense ÷ {amount} CHF)"
+  },
+  "Legend": {
+    "headingTop": "City council & departments",
+    "headingUnits": "Administrative units",
+    "headingExtern": "Independent & holdings",
+    "headingMarker": "Marker",
+    "stadtpraesidium": "Mayor's office",
+    "stadtrat": "City council member / department head",
+    "departement": "Department",
+    "dienstabteilung": "Division",
+    "stab": "Staff / cross-cutting",
+    "verselbst": "Independent operation",
+    "beteiligung": "Holding / foundation",
+    "konflikt": "Citizen vs. RPK assignment differs"
+  },
+  "Hint": "Hover = explore · Click = select · Scroll = zoom · Search also knows concerns",
+  "Type": {
+    "center": "Executive",
+    "department": "Department",
+    "unit": "Division",
+    "staff": "Staff unit",
+    "extern": "Independent operation",
+    "beteiligung": "Holding / foundation"
+  }
+}

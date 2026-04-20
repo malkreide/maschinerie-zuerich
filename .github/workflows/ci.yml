@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  next-app:
+    name: Next.js typecheck + lint
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: stadt-zuerich-next
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: stadt-zuerich-next/package-lock.json
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint --if-present
+
+  data-validation:
+    name: data.json + lebenslagen.json validieren
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Syntax-Check (JSON)
+        run: |
+          node -e "JSON.parse(require('fs').readFileSync('stadt-zuerich-next/data.json','utf8'))"
+          node -e "JSON.parse(require('fs').readFileSync('stadt-zuerich-next/data/manual/lebenslagen.json','utf8'))"
+      - name: Lebenslagen-IDs gegen data.json prüfen
+        run: |
+          node -e "
+            const d = JSON.parse(require('fs').readFileSync('stadt-zuerich-next/data.json','utf8'));
+            const l = JSON.parse(require('fs').readFileSync('stadt-zuerich-next/data/manual/lebenslagen.json','utf8'));
+            const ids = new Set([...d.units.map(u=>u.id), ...d.departments.map(x=>x.id)]);
+            const missing = l.lebenslagen.filter(e => !ids.has(e.zustaendig));
+            if (missing.length) { console.error('Unbekannte zustaendig-IDs:', missing.map(m=>m.id)); process.exit(1); }
+            console.log('✓ Alle ' + l.lebenslagen.length + ' Lebenslagen zeigen auf gültige Einheiten');
+          "

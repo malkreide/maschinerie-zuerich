@@ -1,0 +1,17 @@
+{
+  "name": "stadt-zuerich-mog",
+  "version": "0.1.0",
+  "description": "Maschinerie der Stadt Zürich – interaktive Übersicht der Stadtverwaltung",
+  "type": "module",
+  "private": true,
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "fetch:struct": "node scripts/fetch-rpktool.mjs",
+    "fetch:budget": "node scripts/fetch-budget.mjs",
+    "enrich:struct": "node scripts/enrich-from-rpktool.mjs",
+    "enrich:budget": "node scripts/enrich-budget.mjs",
+    "enrich:fte": "node scripts/enrich-fte-proxy.mjs",
+    "build": "node scripts/build-data.mjs",
+    "serve": "python -m http.server 8000"
+  }
+}

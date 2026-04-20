@@ -1,0 +1,186 @@
+# Maschinerie der Stadt Zürich – Next.js-Port
+
+Next.js-16-Variante des Vanilla-Prototyps in `../stadt-zuerich-mog/`.
+Gleiche Funktionalität, gleicher Daten-Fluss, aber als typsichere
+React-App mit komponentenbasiertem UI.
+
+## Stack
+
+- **Next.js 16** (App Router, Server- + Client-Components)
+- **React 19** + **TypeScript** strict
+- **Tailwind CSS v4** (CSS-only Konfig in [`app/globals.css`](app/globals.css))
+- **next-intl 4** für 5 Sprachen (DE/EN/FR/IT/Leichte Sprache)
+- **Cytoscape.js** + cytoscape-fcose (radialer + force-directed Graph)
+- **D3** (`d3-hierarchy`, `d3-scale` — nur die benötigten Module)
+- ETL-Skripte aus `scripts/` unverändert übernommen (Node 20+, stdlib-only)
+
+## Architektur
+
+Multi-Route mit Deep-Linking:
+
+Alle Routen sind locale-präfixiert. **DE** ist Default und braucht **kein**
+Prefix; alle anderen Sprachen kriegen den Locale als ersten Pfadteil:
+
+| Route | Zweck | Server / Client |
+|-------|-------|-----------------|
+| `/`, `/en`, `/fr`, `/it`, `/ls` | Maschinerie (Cytoscape-Graph) | Server-Component, GraphView client-only |
+| `/?focus=<unit-id>` | Graph zoomt auf gewählte Einheit, Detail-Panel offen | Deep-Link tauglich |
+| `/steuerfranken`, `/en/steuerfranken`, … | Treemap «Wohin geht mein Steuerfranken?» | Server, TreemapView client |
+| `/liste`, `/en/liste`, … | Hierarchische `<details>`-Liste für SR + Tastatur | **Komplett server-renderbar**, funktioniert ohne JS |
+| `/anliegen?q=…`, `/en/anliegen?q=…`, … | Lebenslagen-Suche, Trefferliste mit Deep-Links | **Komplett server-renderbar**, Progressive-Enhancement-Fallback der Live-Suche |
+
+```
+app/
+  layout.tsx              ← Server, lädt Lebenslagen, wraps in <Shell>
+  page.tsx                ← / – Graph + DetailPanel (Suspense für useSearchParams)
+  steuerfranken/page.tsx  ← /steuerfranken – Treemap
+  liste/page.tsx          ← /liste – Liste (server-rendered)
+  anliegen/page.tsx       ← /anliegen?q=… – server-rendered Lebenslagen-Suche
+  globals.css             ← Tailwind v4 Theme + Komponentennahe Styles
+
+components/
+  Shell.tsx       ← Server-Wrapper: <Header/> + <Search/> + {children}
+  Header.tsx      ← Client, Link-basierte Tab-Nav, dark-mode persistent
+  Search.tsx      ← Client, Lebenslagen → router.push('/?focus=…')
+  GraphView.tsx   ← Client, Cytoscape dynamic-import,
+                    useSearchParams für ?focus= als Source-of-Truth
+  TreemapView.tsx ← Client, D3-Hierarchy + React-JSX
+  ListView.tsx    ← Server-renderbar, native <details>
+  DetailPanel.tsx ← Client, useSearchParams + URL-State, close → router.replace
+  Legend.tsx      ← Statische Farbkodierung
+
+lib/
+  data.ts         ← loadStadtData() liest data.json + lebenslagen.json
+  search.ts       ← Lebenslagen-Score + CHF/Mio-Formatter
+
+types/stadt.ts    ← Typedefinitionen für data.json
+scripts/          ← ETL unverändert aus Prototyp
+data/manual/      ← fte-publiziert.json, lebenslagen.json
+data/raw/         ← gitignored, ETL-Cache
+data.json         ← Output der ETL-Pipeline
+```
+
+### Deep-Linking-Verhalten
+
+- `/?focus=FD-st` öffnet Maschinerie und zoomt direkt auf das Steueramt
+- Klick auf einen Lebenslagen-Vorschlag in der Suche navigiert via `router.push()`
+- Klick auf einen Knoten im Graph aktualisiert die URL (`router.replace`, kein Scroll)
+- Schliessen des Detail-Panels entfernt den `?focus`-Parameter
+- Browser-Back funktioniert wie erwartet
+- Die URL ist teilbar: «Schau dir das Steueramt an» → `https://…/?focus=FD-st`
+
+### Dark-Mode-Persistenz
+
+Cookie-basiert (`mog-theme=dark|light`, `samesite=lax`, 1 Jahr Max-Age),
+**ohne FOUC**:
+
+| Schritt | Wer | Was |
+|---------|-----|-----|
+| 1. Request | Server (`app/layout.tsx`) | liest Cookie via `getTheme()` aus `lib/theme.ts` |
+| 2. Render | Server | setzt `<html class="dark">` direkt in der HTML-Antwort |
+| 3. Paint | Browser | Theme ist sofort korrekt — kein Flash |
+| 4. Hydration | Client (`Header.tsx`) | liest aktuelle Klasse aus dem DOM, synct State |
+| 5. Toggle | Client | togglet Klasse + setzt Cookie via `document.cookie` (kein Roundtrip) |
+| 6. Nächster Request | Server | liest Cookie → renders mit korrektem Theme |
+
+Side-Effekt: Layout wird durch `cookies()` zur dynamischen Route — was sie
+ohnehin schon ist (data.json + lebenslagen.json sind dynamisch geladen).
+
+### Progressive Enhancement der Suche
+
+Die Suche unter `/` und `/steuerfranken` ist ein echtes
+`<form method="get" action="/anliegen">`:
+
+| Szenario | Ablauf |
+|----------|--------|
+| **Ohne JS** (Lynx, NoScript, alte Browser) | Enter im Suchfeld submittet das Formular → Browser navigiert zu `/anliegen?q=...`, Server rendert die Trefferliste, jeder Treffer ist ein `<Link href="/?focus=...">` → vollständig nutzbar |
+| **Mit JS** | Live-Dropdown zeigt Top-6-Treffer beim Tippen, Klick auf Treffer → `router.push('/?focus=...')`. Enter funktioniert weiterhin und führt auf `/anliegen` für die volle Trefferliste |
+
+`/anliegen` ist auch direkt aufrufbar — ohne `q` werden 8 «häufige Anliegen»
+als Vorschläge angeboten. Diese Vorschläge sind Links zu `/anliegen?q=<stichwort>`,
+also wieder server-rendered.
+
+## Setup
+
+```bash
+npm install
+npm run data:fetch        # ETL einmal laufen lassen (data.json erzeugen)
+npm run dev               # http://localhost:3000
+```
+
+## Datenflüsse
+
+```
+data.stadt-zuerich.ch (RPK API)         Budget-PDFs
+      │                                       │
+      ▼                                       ▼
+scripts/fetch-rpktool.mjs       data/manual/fte-publiziert.json
+scripts/fetch-budget.mjs                      │
+      │                                       │
+      ▼                                       │
+data/raw/*.json (Cache)                       │
+      │                                       │
+      ▼                                       │
+scripts/enrich-{...}.mjs ◄────────────────────┘
+      │
+      ▼
+data.json  ──►  lib/data.ts (loadStadtData)  ──►  app/page.tsx (server)
+                                                       │
+                                                       ▼
+                                              <App data={data}>
+                                                       │
+                              ┌────────────────────────┼────────────────────────┐
+                              ▼                        ▼                        ▼
+                        <GraphView>            <TreemapView>             <ListView>
+                          (client)               (client)              (server-renderbar)
+```
+
+## Unterschiede zum Prototyp
+
+| Aspekt | Prototyp | Next.js-Port |
+|--------|----------|--------------|
+| Sprachen | HTML+JS | TypeScript strict |
+| Bundling | Keines (CDN) | Next.js (Turbopack) |
+| Daten-Loading | client-side `fetch()` | Server-Component, einmaliger `fs.readFile` |
+| Cytoscape/D3 | UMD via CDN | npm-Pakete, dynamic import für Cytoscape |
+| State-Management | DOM-Klassen + globale Variablen | React-Hooks |
+| Tabs | CSS-Body-Klasse | Conditional Rendering |
+| ListView | DOM-Mutation via JS | React-rendered, server-fähig |
+| Routing | Single-Page | Single-Page (Tabs in einer Route) — Multi-Route wäre ein Refactor wert |
+
+## Internationalisierung
+
+5 Sprachen über `next-intl 4`, mit `localePrefix: 'as-needed'`:
+
+| Locale | URL | Sprachcode | Notiz |
+|--------|-----|-----------|-------|
+| `de` | `/` (kein Prefix) | de-CH | Default |
+| `en` | `/en/...` | en | English |
+| `fr` | `/fr/...` | fr-CH | Français |
+| `it` | `/it/...` | it-CH | Italiano |
+| `ls` | `/ls/...` | de-CH | **Leichte Sprache** – einfache Sätze, kurze Wörter, gemäss Inclusion-Handicap-Regeln |
+
+Übersetzungs-Dateien in [`messages/{de,en,fr,it,ls}.json`](messages/).
+UI-Chrome (Buttons, Headings, Hints) ist vollständig übersetzt.
+**Institutionsnamen** (Stadtkanzlei, Steueramt etc.) bleiben Deutsch — das
+sind Eigennamen Schweizer Behörden, die nicht übersetzt werden.
+
+`<LanguageSwitcher>` im Header ändert die URL via `router.replace`, behält
+dabei `?focus=...` und andere Query-Parameter bei.
+
+`<html lang>` wird pro Locale gesetzt (Schweizer Varianten wo verfügbar).
+
+## Bekannte Verbesserungspotenziale
+
+- **Treemap-Tooltip** via `next/dynamic` lazy-loaden — aktuell synchron.
+- **Lebenslagen-Übersetzungen**: aktuell nur in DE. Pro Lebenslage
+  `i18n: { de:..., en:..., fr:..., it:..., ls:... }` ergänzen.
+- **Open-Graph-Bilder** pro Departement für geteilte Deep-Links.
+- **Sitemap + robots.txt** für `/`, `/steuerfranken`, `/liste`, `/anliegen`
+  in jeder Sprachvariante.
+- **Such-Performance** für `/anliegen` mit grosser Lebenslagen-Datenbank:
+  Suche im Server-Loader mit Index (z. B. MiniSearch) statt linearem Scan.
+- **Locale-Detection** beim ersten Besuch (Accept-Language-Header) — aktuell
+  geht der Browser standardmässig auf `/` (Deutsch), unabhängig von der
+  Browser-Sprache. `next-intl` hat dafür `localeDetection: true`, müsste
+  in `routing.ts` aktiviert werden.

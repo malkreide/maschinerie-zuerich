@@ -1,0 +1,102 @@
+{
+  "App": {
+    "title": "Macchina amministrativa della Città di Zurigo",
+    "subtitle": "Prototipo · Next.js"
+  },
+  "Nav": {
+    "graph": "Macchina",
+    "tax": "Franco fiscale",
+    "list": "Elenco",
+    "darkOn": "Attivare il tema scuro",
+    "darkOff": "Attivare il tema chiaro",
+    "darkLabelLight": "☼ Chiaro",
+    "darkLabelDark": "☾ Scuro",
+    "darkLabelLoading": "Tema",
+    "skipToList": "Vai alla panoramica testuale (lettori di schermo)",
+    "language": "Lingua"
+  },
+  "Search": {
+    "label": "Cerca un ufficio o una pratica",
+    "placeholder": "Ufficio o pratica: « registrare cane », « passaporto »…",
+    "help": "Digita un termine. I suggerimenti appaiono sotto. Invio apre la pagina completa dei risultati. Esc cancella la ricerca.",
+    "submit": "Cerca",
+    "suggestionsTitle": "Pratiche",
+    "suggestionsListLabel": "Suggerimenti per pratiche cittadine",
+    "showAll": "Mostra tutti i risultati su pagina dedicata →"
+  },
+  "Anliegen": {
+    "title": "Cerca pratiche cittadine",
+    "intro": "Cerca termini come « registrare cane », « passaporto », « assistenza sociale » o « elettricità ». Questa pagina funziona senza JavaScript — è la versione di riserva della ricerca live in alto a sinistra.",
+    "noResults": "Nessun risultato per „{query}\". Prova un altro termine — ad esempio una sola parola chiave come « tassa », « acqua » o « cura ».",
+    "resultsCount": "{count, plural, one {# risultato} other {# risultati}} per „{query}\"",
+    "popularHeading": "Pratiche frequenti",
+    "placeholder": "p. es. registrare cane, passaporto, assistenza sociale…"
+  },
+  "Treemap": {
+    "title": "Dove va il mio franco fiscale?",
+    "intro": "Spese {jahr} per dipartimento e divisione. Area = spesa. Clic su un dipartimento per ingrandire.",
+    "total": " · Totale {sum} CHF",
+    "back": "← Torna alla panoramica",
+    "tooltipShare": "Quota della vista",
+    "tooltipExpense": "Spesa",
+    "tooltipNet": "Spesa netta",
+    "tooltipFte": "ETP",
+    "conflictNote": "⚠ Assegnazione cittadini ≠ RPK",
+    "ariaLabel": "Treemap delle spese"
+  },
+  "List": {
+    "title": "Amministrazione della Città di Zurigo – panoramica gerarchica",
+    "intro": "Questo elenco mostra gli stessi dati del diagramma grafico in forma semanticamente strutturata, per lettori di schermo e navigazione da tastiera. Tab per spostarsi nella gerarchia, Invio per espandere o chiudere un nodo.",
+    "ariaLabel": "Amministrazione della Città di Zurigo come gerarchia testuale",
+    "beteiligungenHeading": "Partecipazioni e fondazioni"
+  },
+  "Detail": {
+    "close": "Chiudi pannello dettagli",
+    "ariaLabel": "Dettagli sull'unità amministrativa selezionata",
+    "vorsteher": "Responsabile",
+    "department": "Dipartimento",
+    "ogdKey": "Chiave OGD",
+    "abbreviation": "Sigla",
+    "expense": "Spesa",
+    "income": "Ricavo",
+    "netExpense": "Spesa netta",
+    "budgetYear": "Anno di budget",
+    "fte": "Posti (ETP)",
+    "ftePublished": "✓ pubblicato",
+    "fteEstimate": "ⓘ stima",
+    "fteEstimateTitle": "Stima: spese del personale / {amount} CHF",
+    "conflictLabel": "⚠ Assegnazione",
+    "conflictCitizen": "Vista cittadini",
+    "conflictRpk": "Vista RPK",
+    "aggregatedFrom": "aggregato da {n} unità",
+    "phaseBudget": "Budget",
+    "phaseProposal": "Proposta",
+    "phaseAccount": "Consuntivo",
+    "fteUnitFallback": "ETP",
+    "fteUnitPublished": "{value} {einheit} (pubblicato)",
+    "fteEstimateText": "~{value} (stima: spese del personale ÷ {amount} CHF)"
+  },
+  "Legend": {
+    "headingTop": "Consiglio municipale e dipartimenti",
+    "headingUnits": "Unità amministrative",
+    "headingExtern": "Autonome e partecipazioni",
+    "headingMarker": "Marcatore",
+    "stadtpraesidium": "Presidenza della Città",
+    "stadtrat": "Membro del Consiglio municipale",
+    "departement": "Dipartimento",
+    "dienstabteilung": "Divisione",
+    "stab": "Stato maggiore / trasversale",
+    "verselbst": "Azienda autonoma",
+    "beteiligung": "Partecipazione / fondazione",
+    "konflikt": "Assegnazione cittadini ≠ RPK"
+  },
+  "Hint": "Hover = esplorare · Clic = selezionare · Rotella = zoom · La ricerca conosce anche le pratiche",
+  "Type": {
+    "center": "Esecutivo",
+    "department": "Dipartimento",
+    "unit": "Divisione",
+    "staff": "Stato maggiore",
+    "extern": "Azienda autonoma",
+    "beteiligung": "Partecipazione / fondazione"
+  }
+}

@@ -1,0 +1,1075 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Maschinerie der Stadt Zürich – Prototyp</title>
+<meta name="description" content="Interaktive Übersicht der Stadtverwaltung Zürich – Departemente, Dienstabteilungen, verselbständigte Betriebe und Beteiligungen." />
+<script src="https://unpkg.com/cytoscape@3.30.2/dist/cytoscape.min.js"></script>
+<script src="https://unpkg.com/layout-base@2.0.1/layout-base.js"></script>
+<script src="https://unpkg.com/cose-base@2.2.0/cose-base.js"></script>
+<script src="https://unpkg.com/cytoscape-fcose@2.2.0/cytoscape-fcose.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<style>
+  :root {
+    --bg: #f6f7fb;
+    --panel: #ffffff;
+    --ink: #1a1f2e;
+    --mute: #5b6478;
+    --line: #e3e6ef;
+    --accent: #1f3a8a;
+    --shadow: 0 2px 8px rgba(20,30,60,.08);
+  }
+  html.dark {
+    --bg: #0e1118;
+    --panel: #161a24;
+    --ink: #e9ecf5;
+    --mute: #8a93a8;
+    --line: #232838;
+    --accent: #6ea8ff;
+    --shadow: 0 2px 8px rgba(0,0,0,.4);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink);
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+  header {
+    position: fixed; top: 0; left: 0; right: 0; height: 56px; z-index: 10;
+    display: flex; align-items: center; padding: 0 16px;
+    background: var(--accent); color: white;
+  }
+  header h1 { font-size: 16px; margin: 0; font-weight: 600; }
+  header .sub { margin-left: 12px; font-size: 12px; opacity: .85; }
+  header .spacer { flex: 1; }
+  header button, .toolbar button {
+    background: rgba(255,255,255,.12); color: white; border: 1px solid rgba(255,255,255,.2);
+    padding: 6px 10px; border-radius: 6px; font-size: 12px; cursor: pointer; margin-left: 6px;
+  }
+  header button:hover, .toolbar button:hover { background: rgba(255,255,255,.22); }
+  .toolbar {
+    position: fixed; top: 64px; right: 12px; z-index: 9;
+    display: flex; flex-direction: column; gap: 6px; align-items: flex-end;
+  }
+  .toolbar .group { display: flex; gap: 6px; background: var(--panel);
+    padding: 6px; border-radius: 8px; box-shadow: var(--shadow); }
+  .toolbar .group button {
+    background: transparent; color: var(--ink); border: 1px solid var(--line);
+    padding: 5px 9px; border-radius: 5px; font-size: 12px; cursor: pointer;
+  }
+  .toolbar .group button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  #search {
+    position: fixed; top: 64px; left: 12px; z-index: 9;
+    background: var(--panel); padding: 6px; border-radius: 8px; box-shadow: var(--shadow);
+    display: flex; flex-direction: column; gap: 4px; min-width: 320px; max-width: 380px;
+  }
+  #search input {
+    border: 1px solid var(--line); background: transparent; color: var(--ink);
+    padding: 6px 8px; border-radius: 5px; font-size: 13px; width: 100%;
+  }
+  #search-results {
+    max-height: 340px; overflow-y: auto;
+    border-top: 1px solid var(--line); padding-top: 4px; margin-top: 2px;
+  }
+  #search-results:empty { display: none; }
+  #search-results .heading {
+    font-size: 10px; text-transform: uppercase; color: var(--mute);
+    letter-spacing: 0.5px; padding: 6px 6px 2px; font-weight: 600;
+  }
+  #search-results .item {
+    display: block; padding: 6px 8px; border-radius: 5px; cursor: pointer;
+    border: 1px solid transparent; margin-bottom: 2px;
+  }
+  #search-results .item:hover {
+    background: var(--bg); border-color: var(--line);
+  }
+  #search-results .item .frage { font-size: 13px; color: var(--ink); }
+  #search-results .item .ziel  { font-size: 11px; color: var(--accent); margin-top: 2px; }
+  #search-results .item .ziel::before { content: '→ '; }
+  #cy { position: absolute; top: 56px; left: 0; right: 0; bottom: 0; }
+  #legend {
+    position: fixed; left: 12px; bottom: 12px; z-index: 9;
+    background: var(--panel); padding: 10px 12px; border-radius: 8px;
+    box-shadow: var(--shadow); font-size: 12px; max-width: 320px;
+  }
+  #legend h4 { margin: 0 0 6px; font-size: 11px; text-transform: uppercase; color: var(--mute); letter-spacing: .5px; }
+  #legend .row { display: flex; align-items: center; gap: 8px; padding: 3px 0; }
+  #legend .swatch { width: 14px; height: 14px; border-radius: 50%; border: 1px solid rgba(0,0,0,.1); }
+  #legend .swatch.sq { border-radius: 3px; }
+  #legend .swatch.dia { border-radius: 0; transform: rotate(45deg); width: 11px; height: 11px; }
+  #detail {
+    position: fixed; right: 12px; bottom: 12px; z-index: 9; width: 320px;
+    background: var(--panel); padding: 14px 16px; border-radius: 8px; box-shadow: var(--shadow);
+    font-size: 13px; line-height: 1.45; display: none;
+  }
+  #detail h3 { margin: 0 0 4px; font-size: 15px; }
+  #detail .type { color: var(--mute); font-size: 12px; margin-bottom: 8px; }
+  #detail .stat { display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px dashed var(--line); }
+  #detail .stat:last-child { border-bottom: 0; }
+  #detail .close { position: absolute; top: 8px; right: 10px; background: transparent;
+    border: 0; color: var(--mute); cursor: pointer; font-size: 16px; }
+  #detail a { color: var(--accent); text-decoration: none; }
+  #detail a:hover { text-decoration: underline; }
+  .hint {
+    position: fixed; bottom: 12px; left: 50%; transform: translateX(-50%);
+    color: var(--mute); font-size: 11px; pointer-events: none; z-index: 8;
+  }
+  /* Tab-Umschaltung Maschinerie ↔ Steuerfranken */
+  .tabs { display: flex; gap: 4px; margin-right: 12px; }
+  .tabs button {
+    background: rgba(255,255,255,.12); color: white; border: 1px solid rgba(255,255,255,.2);
+    padding: 6px 14px; border-radius: 6px; font-size: 12px; cursor: pointer;
+  }
+  .tabs button.active { background: white; color: var(--accent); font-weight: 600; }
+  /* Treemap-View */
+  #treemap-view { position: absolute; top: 56px; left: 0; right: 0; bottom: 0;
+                  display: none; padding: 16px 16px 40px; overflow: hidden; }
+  body.view-tax #treemap-view { display: block; }
+  body.view-tax #cy,
+  body.view-tax #legend,
+  body.view-tax #search,
+  body.view-tax .toolbar,
+  body.view-tax .hint { display: none; }
+  #treemap-view h2 { margin: 0 0 4px; font-size: 18px; }
+  #treemap-view .lead { color: var(--mute); font-size: 13px; margin-bottom: 12px; }
+  #treemap-svg { width: 100%; height: calc(100% - 70px); }
+  #treemap-svg rect { stroke: var(--bg); stroke-width: 1; cursor: pointer;
+                      transition: opacity .15s; }
+  #treemap-svg rect:hover { opacity: 0.85; }
+  #treemap-svg text { fill: white; font-size: 11px; pointer-events: none;
+                      font-family: -apple-system, "Segoe UI", sans-serif; }
+  #treemap-svg .dep-label { font-size: 13px; font-weight: 600; }
+  #treemap-tooltip {
+    position: fixed; pointer-events: none; background: var(--panel);
+    border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px;
+    box-shadow: var(--shadow); font-size: 12px; max-width: 280px;
+    color: var(--ink); z-index: 100; opacity: 0; transition: opacity .12s;
+  }
+  #treemap-tooltip.visible { opacity: 1; }
+  #treemap-tooltip .name { font-weight: 600; margin-bottom: 4px; }
+  #treemap-tooltip .row { display: flex; justify-content: space-between; gap: 16px; }
+  #treemap-tooltip .row .v { color: var(--accent); font-variant-numeric: tabular-nums; }
+
+  /* Screenreader-only: standardmässig versteckt, aber im A11y-Tree */
+  .sr-only {
+    position: absolute !important;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  /* Skip-Link wird nur sichtbar bei Fokus */
+  .skip-link {
+    position: absolute; top: 8px; left: 8px; z-index: 1000;
+    background: var(--accent); color: white;
+    padding: 8px 12px; border-radius: 6px; font-size: 13px;
+    text-decoration: none; transform: translateY(-200%);
+    transition: transform .15s;
+  }
+  .skip-link:focus { transform: translateY(0); outline: 2px solid white; }
+
+  /* Listen-View: parallel zur Maschinerie/Treemap, ⓘ-Tab zugänglich */
+  #list-view {
+    position: absolute; top: 56px; left: 0; right: 0; bottom: 0;
+    padding: 16px 24px 40px; overflow-y: auto;
+    background: var(--bg); color: var(--ink);
+  }
+  body:not(.view-list) #list-view { /* nicht aktiv: aus Layout, aber im A11y-Tree */
+    clip: rect(0,0,0,0);
+    width: 1px; height: 1px;
+    overflow: hidden;
+  }
+  body.view-list #cy,
+  body.view-list #legend,
+  body.view-list .toolbar,
+  body.view-list .hint,
+  body.view-list #treemap-view { display: none; }
+  #list-view h2 { margin: 0 0 4px; font-size: 18px; }
+  #list-view .lead { color: var(--mute); font-size: 13px; margin-bottom: 16px; max-width: 70ch; }
+  #list-view details { margin: 6px 0; }
+  #list-view details > summary {
+    cursor: pointer; padding: 6px 8px; border-radius: 5px;
+    list-style: none; user-select: none;
+  }
+  #list-view details > summary::-webkit-details-marker { display: none; }
+  #list-view details > summary::before { content: '▸'; display: inline-block;
+    width: 1.2em; transition: transform .15s; color: var(--mute); }
+  #list-view details[open] > summary::before { transform: rotate(90deg); }
+  #list-view details > summary:hover,
+  #list-view details > summary:focus-visible { background: var(--panel); outline: none; }
+  #list-view details > summary:focus-visible { box-shadow: 0 0 0 2px var(--accent); }
+  #list-view .dep > summary { font-size: 16px; font-weight: 600; background: var(--panel);
+                              border-left: 4px solid var(--accent); padding-left: 10px; }
+  #list-view .unit > summary { font-size: 14px; }
+  #list-view .meta {
+    margin: 4px 0 8px 24px; font-size: 12px; color: var(--mute);
+    display: grid; grid-template-columns: max-content 1fr; gap: 2px 12px;
+    font-variant-numeric: tabular-nums;
+  }
+  #list-view .meta dt { font-weight: 500; }
+  #list-view .meta dd { margin: 0; color: var(--ink); }
+  #list-view .konflikt { color: #e67e22; }
+  #list-view .quelle-pdf { color: #16a085; font-size: 11px; }
+  #list-view .units { margin-left: 18px; }
+
+  @media (max-width: 700px) {
+    #legend { max-width: 200px; font-size: 11px; }
+    #detail { width: calc(100% - 24px); }
+    #search { min-width: 0; width: calc(100% - 24px); }
+    .toolbar { top: auto; bottom: 64px; right: 12px; }
+    .tabs button { padding: 5px 8px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#list-view" id="skip-link">Zur textuellen Übersicht (für Screenreader)</a>
+<header>
+  <h1>Maschinerie der Stadt Zürich</h1>
+  <span class="sub">Prototyp</span>
+  <span class="spacer"></span>
+  <div class="tabs" role="tablist" aria-label="Ansichten">
+    <button id="tab-graph" class="active" role="tab" aria-selected="true">Maschinerie</button>
+    <button id="tab-tax"                  role="tab" aria-selected="false">Steuerfranken</button>
+    <button id="tab-list"                 role="tab" aria-selected="false">Liste</button>
+  </div>
+  <button id="btn-dark">Dark Mode</button>
+  <button id="btn-about">Info</button>
+</header>
+
+<div id="search" role="search">
+  <label for="search-input" class="sr-only">Stelle oder Anliegen suchen</label>
+  <input id="search-input" type="search" autocomplete="off"
+         aria-describedby="search-help"
+         placeholder="Stelle suchen oder Anliegen: 'Hund anmelden', 'Pass'…" />
+  <span id="search-help" class="sr-only">
+    Tippt einen Suchbegriff ein. Die Liste der gefundenen Anliegen
+    erscheint darunter. Esc leert die Suche.
+  </span>
+  <div id="search-results" role="listbox" aria-label="Vorschläge zu Bürger-Anliegen"></div>
+</div>
+
+<div class="toolbar" role="toolbar" aria-label="Diagramm-Werkzeuge">
+  <div class="group" role="group" aria-label="Layout">
+    <button id="btn-radial" class="active" aria-pressed="true">Radial</button>
+    <button id="btn-force"                 aria-pressed="false">Gravitation</button>
+  </div>
+  <div class="group" role="group" aria-label="Ansicht">
+    <button id="btn-recenter" aria-label="Diagramm auf Stadtrat zentrieren">Zentrieren</button>
+    <button id="btn-fit"      aria-label="Alle Knoten ins Sichtfeld einpassen">Alles zeigen</button>
+  </div>
+</div>
+
+<div id="cy" role="img" aria-label="Interaktiver Graph der Stadtverwaltung – nicht barrierefrei. Bitte zur Liste wechseln."></div>
+
+<div id="treemap-view" role="region" aria-label="Treemap des Aufwands">
+  <h2>Wohin geht mein Steuerfranken?</h2>
+  <div class="lead">
+    Aufwand <span id="treemap-jahr">2024</span> nach Departement und Dienstabteilung.
+    Fläche = Aufwand. Klick auf Departement zoomt hinein, Klick ins Leere zoomt zurück.
+    <strong id="treemap-total"></strong>
+  </div>
+  <svg id="treemap-svg"></svg>
+</div>
+
+<div id="treemap-tooltip"></div>
+
+<main id="list-view" role="region" aria-label="Stadtverwaltung Zürich als textuelle Hierarchie"
+      tabindex="-1">
+  <h2>Stadtverwaltung Zürich – Hierarchische Übersicht</h2>
+  <p class="lead">
+    Diese Liste zeigt die gleichen Daten wie der grafische Diagramm-Tab in
+    semantisch strukturierter Form für Screenreader und Tastatur-Bedienung.
+    Mit Tab durch die Hierarchie navigieren, mit Enter Knoten auf-/zuklappen.
+  </p>
+  <div id="list-content"></div>
+</main>
+
+<div id="legend">
+  <h4>Stadtrat & Departemente</h4>
+  <div class="row"><div class="swatch" style="background:#7a1f2b"></div>Stadtpräsidium</div>
+  <div class="row"><div class="swatch" style="background:#c0392b"></div>Stadtrat / Departementsvorsteher:in</div>
+  <div class="row"><div class="swatch sq" style="background:#e67e22"></div>Departement</div>
+  <h4 style="margin-top:8px">Verwaltungseinheiten</h4>
+  <div class="row"><div class="swatch sq" style="background:#3b6ea5"></div>Dienstabteilung</div>
+  <div class="row"><div class="swatch sq" style="background:#8b5cf6"></div>Stab / Querschnitt</div>
+  <h4 style="margin-top:8px">Verselbständigt & Beteiligungen</h4>
+  <div class="row"><div class="swatch dia" style="background:#16a085"></div>Verselbständigter Betrieb</div>
+  <div class="row"><div class="swatch dia" style="background:#f1c40f"></div>Beteiligung / Stiftung</div>
+  <h4 style="margin-top:8px">Marker</h4>
+  <div class="row"><div class="swatch sq" style="background:transparent;border:2px dashed #e67e22"></div>Bürger-/RPK-Zuordnung divergiert</div>
+</div>
+
+<aside id="detail" role="region" aria-label="Detail-Information zur ausgewählten Verwaltungseinheit" aria-live="polite">
+  <button class="close" id="detail-close" aria-label="Detail-Panel schliessen">×</button>
+  <h3 id="detail-name">—</h3>
+  <div class="type" id="detail-type">—</div>
+  <div id="detail-body"></div>
+</aside>
+
+<div class="hint">Hover = erkunden · Klick = auswählen · Scroll = zoomen · Suche kennt auch Anliegen («Hund anmelden»)</div>
+
+<script>
+/* ------------------------------------------------------------------
+   DATEN
+   --------------------------------------------------------------------
+   Daten liegen in data.json. Strukturdaten stammen aus öffentlichen
+   Quellen (stadt-zuerich.ch); Budget-/FTE-Felder sind Platzhalter und
+   sollen aus Geschäftsbericht / data.stadt-zuerich.ch gespeist werden.
+
+   Hinweis: data.json wird per fetch() geladen — die Datei muss daher
+   über HTTP ausgeliefert werden (z. B. python -m http.server). Bei
+   direktem Öffnen via file:// blockiert der Browser den Fetch.
+   ------------------------------------------------------------------ */
+
+async function loadData() {
+  const [data, leb] = await Promise.all([
+    fetch('./data.json', { cache: 'no-cache' }).then(r => {
+      if (!r.ok) throw new Error(`data.json HTTP ${r.status}`);
+      return r.json();
+    }),
+    // Lebenslagen optional – Fehler nicht fatal
+    fetch('./data/manual/lebenslagen.json', { cache: 'no-cache' })
+      .then(r => r.ok ? r.json() : { lebenslagen: [] })
+      .catch(() => ({ lebenslagen: [] })),
+  ]);
+  data.lebenslagen = leb.lebenslagen || [];
+  return data;
+}
+
+/* ------------------------------------------------------------------
+   GRAPH-AUFBAU
+   ------------------------------------------------------------------ */
+
+function buildElements(d) {
+  const nodes = [];
+  const edges = [];
+
+  nodes.push({
+    data: { id: d.center.id, label: d.center.name, type: 'center',
+            level: 0, note: d.center.note }
+  });
+
+  d.departments.forEach(dep => {
+    nodes.push({
+      data: { id: dep.id, label: dep.name, fullName: dep.name, abbr: dep.id,
+              vorsteher: dep.vorsteher, type: 'department', level: 1,
+              budget: dep.budget, fte: dep.fte, odz: dep.odz }
+    });
+    edges.push({ data: { id: `e-${d.center.id}-${dep.id}`, source: d.center.id, target: dep.id } });
+  });
+
+  d.units.forEach(u => {
+    const lvl = u.kind === 'extern' ? 3 : 2;
+    nodes.push({
+      data: { id: u.id, label: u.name, type: u.kind, level: lvl, parentDep: u.parent,
+              budget: u.budget, fte: u.fte, odz: u.odz, konflikt: u.konflikt }
+    });
+    edges.push({ data: { id: `e-${u.parent}-${u.id}`, source: u.parent, target: u.id } });
+  });
+
+  d.beteiligungen.forEach(b => {
+    nodes.push({
+      data: { id: b.id, label: b.name, type: 'beteiligung', level: 4, parentDep: b.verbunden,
+              budget: b.budget, fte: b.fte, odz: b.odz }
+    });
+    edges.push({ data: { id: `e-${b.verbunden}-${b.id}`, source: b.verbunden, target: b.id, dashed: true } });
+  });
+
+  return { nodes, edges };
+}
+
+/* ------------------------------------------------------------------
+   STYLE
+   ------------------------------------------------------------------ */
+
+const style = [
+  { selector: 'node',
+    style: {
+      'label': 'data(label)',
+      'font-size': 9,
+      'text-valign': 'center',
+      'text-halign': 'center',
+      'color': '#1a1f2e',
+      'text-outline-color': '#fff',
+      'text-outline-width': 2,
+      'border-width': 1,
+      'border-color': 'rgba(0,0,0,.2)',
+      'width': 18, 'height': 18,
+    }
+  },
+  { selector: 'node[type = "center"]',
+    style: { 'background-color': '#7a1f2b', 'shape': 'ellipse',
+             'width': 70, 'height': 70, 'font-size': 13, 'color': '#fff',
+             'text-outline-color': '#7a1f2b' } },
+  { selector: 'node[type = "department"]',
+    style: { 'background-color': '#e67e22', 'shape': 'round-rectangle',
+             'width': 130, 'height': 54, 'font-size': 10,
+             'font-weight': 'bold', 'color': '#fff',
+             'text-outline-color': '#e67e22',
+             'text-wrap': 'wrap', 'text-max-width': 120,
+             'padding': 4 } },
+  { selector: 'node[type = "unit"]',
+    style: { 'background-color': '#3b6ea5', 'shape': 'round-rectangle',
+             'width': 22, 'height': 16 } },
+  { selector: 'node[type = "staff"]',
+    style: { 'background-color': '#8b5cf6', 'shape': 'round-rectangle',
+             'width': 22, 'height': 16 } },
+  { selector: 'node[type = "extern"]',
+    style: { 'background-color': '#16a085', 'shape': 'diamond',
+             'width': 22, 'height': 22 } },
+  { selector: 'node[type = "beteiligung"]',
+    style: { 'background-color': '#f1c40f', 'shape': 'diamond',
+             'width': 18, 'height': 18 } },
+  { selector: 'edge',
+    style: { 'width': 1, 'line-color': '#c8cdda', 'curve-style': 'bezier',
+             'target-arrow-shape': 'none', 'opacity': 0.6 } },
+  { selector: 'edge[?dashed]',
+    style: { 'line-style': 'dashed', 'opacity': 0.45 } },
+  { selector: '.faded',
+    style: { 'opacity': 0.12, 'text-opacity': 0.1 } },
+  { selector: '.highlighted',
+    style: { 'border-width': 3, 'border-color': '#1f3a8a', 'opacity': 1 } },
+  { selector: '.search-hit',
+    style: { 'border-width': 4, 'border-color': '#ff4081' } },
+  // Knoten mit Bürger-vs-RPK-Konflikt: orange Borderline + ⚠ vor dem Label
+  { selector: 'node[?konflikt]',
+    style: { 'border-width': 2.5, 'border-color': '#e67e22',
+             'border-style': 'dashed' } }
+];
+
+/* ------------------------------------------------------------------
+   LAYOUTS
+   ------------------------------------------------------------------ */
+
+function radialLayout() {
+  return {
+    name: 'concentric',
+    concentric: n => 10 - n.data('level'),  // zentrum innen
+    levelWidth: () => 1,
+    minNodeSpacing: 28,
+    spacingFactor: 1.25,
+    avoidOverlap: true,
+    animate: true,
+    animationDuration: 600,
+  };
+}
+
+function forceLayout() {
+  return {
+    name: 'fcose',
+    quality: 'default',
+    animate: true,
+    animationDuration: 800,
+    nodeRepulsion: 6000,
+    idealEdgeLength: 60,
+    gravity: 0.15,
+    nestingFactor: 0.6,
+    randomize: false,
+  };
+}
+
+/* ------------------------------------------------------------------
+   INTERAKTIONEN
+   ------------------------------------------------------------------ */
+
+const TYPE_LABEL = {
+  center: 'Exekutive',
+  department: 'Departement',
+  unit: 'Dienstabteilung',
+  staff: 'Stab- / Querschnittsstelle',
+  extern: 'Verselbständigter Betrieb',
+  beteiligung: 'Beteiligung / Stiftung',
+};
+
+const detailEl   = document.getElementById('detail');
+const detailName = document.getElementById('detail-name');
+const detailType = document.getElementById('detail-type');
+const detailBody = document.getElementById('detail-body');
+document.getElementById('detail-close').onclick = () => detailEl.style.display = 'none';
+
+function showDetail(cy, node) {
+  const d = node.data();
+  detailName.textContent = d.fullName || d.label;
+  detailType.textContent = (TYPE_LABEL[d.type] || d.type) + (d.abbr ? ` · Kürzel: ${d.abbr}` : '');
+
+  const nf = new Intl.NumberFormat('de-CH', { maximumFractionDigits: 0 });
+  const fmtCHF = v => v == null ? '<em style="color:var(--mute)">— aus Geschäftsbericht</em>'
+                                : nf.format(v) + ' CHF';
+  const fmtFTE = v => v == null ? '<em style="color:var(--mute)">— aus Personalstatistik</em>'
+                                : nf.format(v);
+
+  const rows = [];
+  if (d.vorsteher) rows.push(['Vorsteher:in', d.vorsteher]);
+  if (d.parentDep) {
+    const dep = cy.getElementById(d.parentDep).data();
+    rows.push(['Departement', `${dep.label}${dep.abbr ? ' (' + dep.abbr + ')' : ''}`]);
+  }
+  if (d.note) rows.push(['Hinweis', d.note]);
+
+  if (d.budget && typeof d.budget === 'object') {
+    const b = d.budget;
+    const phaseLabel = ({
+      GEMEINDERAT_BESCHLUSS: 'Budget',
+      STADTRAT_ANTRAG: 'Antrag',
+      RECHNUNG: 'Rechnung',
+    }[b.typ]) || b.typ;
+    rows.push([`${phaseLabel} ${b.jahr}`, '']);
+    rows.push(['  Aufwand',      fmtCHF(b.aufwand)]);
+    rows.push(['  Ertrag',       fmtCHF(b.ertrag)]);
+    rows.push(['  Nettoaufwand', `<strong>${fmtCHF(b.nettoaufwand)}</strong>`]);
+    if (b._aggregiertAus) rows.push(['  Quelle',
+        `<em style="color:var(--mute)">aggregiert aus ${b._aggregiertAus} Einheiten</em>`]);
+  } else {
+    rows.push(['Budget', fmtCHF(d.budget)]);
+  }
+
+  if (d.fte && typeof d.fte === 'object') {
+    const f = d.fte;
+    if (f.quelle === 'pdf') {
+      const label = f.einheit || 'FTE';
+      rows.push([`${label} (${f.jahr})`,
+        `<strong>${nf.format(f.schaetzung)}</strong> ` +
+        `<span title="${f.quelleDetail || ''}" ` +
+        `style="color:#16a085;font-size:11px;cursor:help">✓ publiziert</span>`]);
+    } else {
+      rows.push(['Stellen (FTE)',
+        `~${nf.format(f.schaetzung)} ` +
+        `<span title="Schätzung: Personalaufwand / ${nf.format(f.vollkostenProFte)} CHF" ` +
+        `style="color:var(--mute);font-size:11px;cursor:help">ⓘ Schätzung</span>`]);
+    }
+  } else {
+    rows.push(['Stellen (FTE)', fmtFTE(d.fte)]);
+  }
+
+  // Anreicherung aus data.stadt-zuerich.ch / fd_rpktool
+  if (d.odz) {
+    rows.push(['OGD-Schlüssel', `${d.odz.kurzname} · key ${d.odz.key}`]);
+  }
+  if (d.konflikt) {
+    const ourDep = cy.getElementById(d.konflikt.unsereZuordnung)?.data();
+    const ourLabel = ourDep?.label || d.konflikt.unsereZuordnung;
+    rows.push(['⚠ Zuordnung',
+      `<span style="color:#e67e22">Bürger-Sicht: ${ourLabel}<br>` +
+      `RPK-Sicht: ${d.konflikt.rpkBezeichnung || d.konflikt.rpkKurzname}</span>`]);
+  }
+
+  detailBody.innerHTML = rows.map(([k,v]) =>
+    `<div class="stat"><span style="color:var(--mute)">${k}</span><span>${v}</span></div>`
+  ).join('') +
+    `<div style="margin-top:10px"><a href="https://www.stadt-zuerich.ch/" target="_blank" rel="noopener">stadt-zuerich.ch ↗</a></div>`;
+
+  detailEl.style.display = 'block';
+}
+
+function attachInteractions(cy) {
+  cy.on('mouseover', 'node', evt => {
+    const nb = evt.target.closedNeighborhood();
+    cy.elements().addClass('faded');
+    nb.removeClass('faded').addClass('highlighted');
+  });
+  cy.on('mouseout', 'node', () => {
+    cy.elements().removeClass('faded').removeClass('highlighted');
+  });
+  cy.on('tap', 'node', evt => showDetail(cy, evt.target));
+  cy.on('tap', evt => { if (evt.target === cy) detailEl.style.display = 'none'; });
+  cy.on('dbltap', 'node', () => window.open('https://www.stadt-zuerich.ch/', '_blank'));
+}
+
+/* ------------------------------------------------------------------
+   TOOLBAR
+   ------------------------------------------------------------------ */
+
+// Lebenslagen-Index: Map<unitId, [leb...]> + Suche.
+// Globale Variable, weil sie sowohl von Toolbar (Search) als auch von
+// Tab-Wechsel-Handler benötigt wird.
+let LEBENSLAGEN = [];
+
+function searchLebenslagen(q) {
+  if (!q) return [];
+  const needle = q.toLowerCase();
+  const scored = [];
+  for (const l of LEBENSLAGEN) {
+    let score = 0;
+    if (l.frage.toLowerCase().includes(needle))   score += 3;
+    if (l.antwort?.toLowerCase().includes(needle)) score += 1;
+    for (const w of l.stichworte || []) {
+      if (w.toLowerCase().includes(needle)) score += 2;
+      if (w.toLowerCase() === needle)        score += 5; // exact match
+    }
+    if (score) scored.push({ l, score });
+  }
+  return scored.sort((a, b) => b.score - a.score).slice(0, 6).map(x => x.l);
+}
+
+function attachToolbar(cy) {
+  const btnRadial = document.getElementById('btn-radial');
+  const btnForce  = document.getElementById('btn-force');
+
+  btnRadial.onclick = () => {
+    cy.layout(radialLayout()).run();
+    btnRadial.classList.add('active'); btnForce.classList.remove('active');
+    btnRadial.setAttribute('aria-pressed', 'true');
+    btnForce.setAttribute('aria-pressed', 'false');
+  };
+  btnForce.onclick = () => {
+    cy.layout(forceLayout()).run();
+    btnForce.classList.add('active'); btnRadial.classList.remove('active');
+    btnForce.setAttribute('aria-pressed', 'true');
+    btnRadial.setAttribute('aria-pressed', 'false');
+  };
+
+  document.getElementById('btn-recenter').onclick = () => {
+    cy.animate({ center: { eles: cy.getElementById('stadtrat') }, zoom: 1 }, { duration: 500 });
+  };
+  document.getElementById('btn-fit').onclick = () => cy.fit(undefined, 40);
+
+  const btnDark = document.getElementById('btn-dark');
+  btnDark.setAttribute('aria-pressed', 'false');
+  btnDark.onclick = () => {
+    document.documentElement.classList.toggle('dark');
+    const dark = document.documentElement.classList.contains('dark');
+    btnDark.setAttribute('aria-pressed', String(dark));
+    cy.style().selector('node').style({
+      'color': dark ? '#fff' : '#1a1f2e',
+      'text-outline-color': dark ? '#161a24' : '#fff',
+    }).update();
+  };
+
+  const searchInput   = document.getElementById('search-input');
+  const searchResults = document.getElementById('search-results');
+
+  function jumpToUnit(unitId) {
+    // Bei Tab «Steuerfranken» auf Maschinerie wechseln, dann zoomen.
+    if (document.body.classList.contains('view-tax')) {
+      document.getElementById('tab-graph').click();
+    }
+    const target = cy.getElementById(unitId);
+    if (!target || target.length === 0) return;
+    cy.elements().removeClass('faded').removeClass('search-hit').removeClass('highlighted');
+    cy.elements().addClass('faded');
+    target.closedNeighborhood().removeClass('faded').addClass('highlighted');
+    target.addClass('search-hit');
+    cy.animate({ center: { eles: target }, zoom: 1.6 }, { duration: 500 });
+    showDetail(cy, target);
+  }
+
+  function renderResults(lebMatches) {
+    if (!lebMatches.length) { searchResults.innerHTML = ''; return; }
+    let html = '<div class="heading">Anliegen</div>';
+    for (const l of lebMatches) {
+      const u = cy.getElementById(l.zustaendig).data();
+      const ziel = u?.fullName || u?.label || l.zustaendig;
+      html += `<div class="item" data-unit="${l.zustaendig}">
+                 <div class="frage">${l.frage}</div>
+                 <div class="ziel">${ziel}</div>
+               </div>`;
+    }
+    searchResults.innerHTML = html;
+    searchResults.querySelectorAll('.item').forEach(el => {
+      el.addEventListener('click', () => jumpToUnit(el.dataset.unit));
+    });
+  }
+
+  searchInput.addEventListener('input', e => {
+    const q = e.target.value.trim().toLowerCase();
+    cy.elements().removeClass('search-hit').removeClass('faded');
+    renderResults(searchLebenslagen(q));
+    if (!q) return;
+    const hits = cy.nodes().filter(n => {
+      const d = n.data();
+      return (d.label && d.label.toLowerCase().includes(q)) ||
+             (d.fullName && d.fullName.toLowerCase().includes(q));
+    });
+    if (hits.length) {
+      cy.elements().addClass('faded');
+      hits.removeClass('faded').addClass('search-hit');
+      hits.connectedEdges().removeClass('faded');
+      hits.neighborhood('node').removeClass('faded');
+      if (hits.length === 1) cy.animate({ center: { eles: hits }, zoom: 1.6 }, { duration: 400 });
+      else cy.fit(hits, 80);
+    }
+  });
+
+  // Esc / Klick ausserhalb leert die Suche
+  searchInput.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      searchInput.value = '';
+      searchInput.dispatchEvent(new Event('input'));
+      searchInput.blur();
+    }
+  });
+
+  document.getElementById('btn-about').onclick = () => alert(
+    'Maschinerie der Stadt Zürich – Prototyp\n\n' +
+    'Inspiriert von machineryofgovernment.uk.\n' +
+    'Strukturdaten basieren auf öffentlichen Quellen (stadt-zuerich.ch).\n' +
+    'Budget- und Stellenwerte sind Platzhalter und müssen aus dem ' +
+    'Geschäftsbericht / Open Data Zürich gespeist werden.\n\n' +
+    'Bedienung: Hover = Nachbarschaft hervorheben, Klick = Detail, ' +
+    'Doppelklick = Quelle öffnen.\n\n' +
+    'Tab «Steuerfranken»: Treemap des Aufwands pro Departement und ' +
+    'Dienstabteilung. Klick auf ein Departement zoomt hinein.'
+  );
+}
+
+/* ------------------------------------------------------------------
+   TREEMAP «Wohin geht mein Steuerfranken?»
+   --------------------------------------------------------------------
+   D3 statt Recharts: passt zum vanilla-Stack (kein React-Build nötig).
+   Fläche eines Tiles = Aufwand der Einheit. Eigenwirtschaftsbetriebe
+   (ewz, VBZ, Wasser, ERZ) finanzieren sich grossteils selbst – ihr
+   Aufwand ist also nicht steuerfinanziert. Tooltip zeigt zusätzlich
+   Nettoaufwand zur Einordnung.
+   ------------------------------------------------------------------ */
+
+function setupTreemap(DATA) {
+  const svg     = d3.select('#treemap-svg');
+  const tooltip = d3.select('#treemap-tooltip');
+  const totalEl = document.getElementById('treemap-total');
+  const jahrEl  = document.getElementById('treemap-jahr');
+
+  const nf = new Intl.NumberFormat('de-CH', { maximumFractionDigits: 0 });
+  const fmtMio = v => v >= 1e9 ? (v / 1e9).toFixed(2) + ' Mrd'
+                    : v >= 1e7 ? (v / 1e6).toFixed(0) + ' Mio'
+                    :            (v / 1e6).toFixed(1) + ' Mio';
+
+  const depColors = d3.scaleOrdinal()
+    .domain(DATA.departments.map(d => d.id))
+    .range(['#c0392b', '#e67e22', '#f1c40f', '#16a085', '#3b6ea5',
+            '#8b5cf6', '#7a1f2b', '#2c7a7b', '#d35400']);
+
+  let currentRoot = null;
+
+  // Jahr aus den Daten lesen
+  const sampleBudget = DATA.units.find(u => u.budget?.jahr)?.budget;
+  if (sampleBudget) jahrEl.textContent = sampleBudget.jahr;
+
+  function buildHierarchy() {
+    const allDeps = DATA.departments.map(dep => {
+      const units = DATA.units
+        .filter(u => u.parent === dep.id && u.budget?.aufwand > 0)
+        .map(u => ({
+          name: u.name, id: u.id, depId: dep.id,
+          value: u.budget.aufwand,
+          netto: u.budget.nettoaufwand,
+          ertrag: u.budget.ertrag,
+          fte: u.fte?.schaetzung,
+          konflikt: !!u.konflikt,
+        }));
+      return { name: dep.name, id: dep.id, children: units };
+    }).filter(d => d.children.length > 0);
+
+    if (currentRoot) {
+      const dep = allDeps.find(d => d.id === currentRoot);
+      if (dep) return { name: dep.name, id: dep.id, depId: dep.id, children: dep.children, isFocus: true };
+    }
+    return { name: 'Stadt Zürich', children: allDeps };
+  }
+
+  function render() {
+    const container = document.getElementById('treemap-svg');
+    const w = container.clientWidth;
+    const h = container.clientHeight;
+    if (!w || !h) return;
+
+    const data = buildHierarchy();
+    const root = d3.hierarchy(data)
+      .sum(d => d.value || 0)
+      .sort((a, b) => b.value - a.value);
+
+    const headerH = currentRoot ? 0 : 22;
+    d3.treemap()
+      .size([w, h])
+      .paddingTop(headerH)
+      .paddingInner(2)
+      .round(true)(root);
+
+    totalEl.textContent = ' · Total ' + fmtMio(root.value) + ' CHF';
+
+    svg.selectAll('*').remove();
+
+    // Departement-Header (nur in Übersicht)
+    if (!currentRoot) {
+      const deps = svg.selectAll('.dep')
+        .data(root.children)
+        .join('g')
+        .attr('class', 'dep')
+        .style('cursor', 'pointer')
+        .on('click', (e, d) => { currentRoot = d.data.id; render(); });
+      deps.append('rect')
+        .attr('x', d => d.x0)
+        .attr('y', d => d.y0)
+        .attr('width', d => d.x1 - d.x0)
+        .attr('height', headerH)
+        .attr('fill', d => depColors(d.data.id))
+        .attr('opacity', 1);
+      deps.append('text')
+        .attr('class', 'dep-label')
+        .attr('x', d => d.x0 + 6)
+        .attr('y', d => d.y0 + 15)
+        .text(d => {
+          const tw = d.x1 - d.x0;
+          const txt = `${d.data.name} · ${fmtMio(d.value)}`;
+          if (tw < 60) return '';
+          if (tw < 220) return d.data.id;
+          return txt;
+        });
+    }
+
+    // Leaves (Dienstabteilungen)
+    root.leaves().forEach(d => {
+      const tw = d.x1 - d.x0;
+      const th = d.y1 - d.y0;
+      const g = svg.append('g').attr('class', 'leaf');
+      g.append('rect')
+        .attr('x', d.x0)
+        .attr('y', d.y0)
+        .attr('width', tw)
+        .attr('height', th)
+        .attr('fill', depColors(d.data.depId))
+        .attr('opacity', 0.65)
+        .on('mousemove', e => showTooltip(e, d, root.value))
+        .on('mouseleave', hideTooltip);
+      if (d.data.konflikt && tw > 10 && th > 10) {
+        g.append('rect')
+          .attr('x', d.x0).attr('y', d.y0)
+          .attr('width', tw).attr('height', th)
+          .attr('fill', 'none')
+          .attr('stroke', '#e67e22')
+          .attr('stroke-width', 2)
+          .attr('stroke-dasharray', '4 3')
+          .style('pointer-events', 'none');
+      }
+      if (tw > 60 && th > 18) {
+        const maxChars = Math.floor(tw / 6.5) - 1;
+        const name = d.data.name.length > maxChars
+                   ? d.data.name.slice(0, maxChars) + '…' : d.data.name;
+        g.append('text')
+          .attr('x', d.x0 + 5).attr('y', d.y0 + 14)
+          .text(name);
+        if (th > 32) {
+          g.append('text')
+            .attr('x', d.x0 + 5).attr('y', d.y0 + 28)
+            .style('font-size', '10px').style('opacity', 0.85)
+            .text(fmtMio(d.value));
+        }
+      }
+    });
+
+    // Zurück-Button (nur im Drilldown)
+    if (currentRoot) {
+      const back = svg.append('g')
+        .style('cursor', 'pointer')
+        .on('click', () => { currentRoot = null; render(); });
+      back.append('rect')
+        .attr('x', 0).attr('y', 0).attr('width', 200).attr('height', 24)
+        .attr('fill', 'rgba(20,30,60,.78)');
+      back.append('text')
+        .attr('x', 10).attr('y', 16)
+        .style('fill', 'white').style('font-size', '12px')
+        .text('← Zurück zur Übersicht');
+    }
+  }
+
+  function showTooltip(event, d, total) {
+    const pct = (d.value / total * 100).toFixed(1);
+    const dat = d.data;
+    let html = `<div class="name">${dat.name}</div>`;
+    html += `<div class="row"><span>Aufwand</span><span class="v">${nf.format(d.value)} CHF</span></div>`;
+    if (dat.netto != null)  html += `<div class="row"><span>Nettoaufwand</span><span class="v">${nf.format(dat.netto)} CHF</span></div>`;
+    if (dat.fte != null)    html += `<div class="row"><span>FTE</span><span class="v">${nf.format(dat.fte)}</span></div>`;
+    html += `<div class="row"><span>Anteil Ansicht</span><span class="v">${pct} %</span></div>`;
+    if (dat.konflikt)       html += `<div style="margin-top:6px;color:#e67e22;font-size:11px">⚠ Bürger-/RPK-Zuordnung divergiert</div>`;
+    tooltip.html(html)
+      .style('left', Math.min(event.clientX + 14, window.innerWidth - 300) + 'px')
+      .style('top',  Math.min(event.clientY + 14, window.innerHeight - 140) + 'px')
+      .classed('visible', true);
+  }
+  function hideTooltip() { tooltip.classed('visible', false); }
+
+  window.addEventListener('resize', () => {
+    if (document.body.classList.contains('view-tax')) render();
+  });
+
+  return { render, reset: () => { currentRoot = null; } };
+}
+
+function attachTabs(cy, treemap) {
+  const btnG = document.getElementById('tab-graph');
+  const btnT = document.getElementById('tab-tax');
+  const btnL = document.getElementById('tab-list');
+  const btns = [btnG, btnT, btnL];
+  const setActive = which => {
+    btns.forEach(b => {
+      const isActive = b === which;
+      b.classList.toggle('active', isActive);
+      b.setAttribute('aria-selected', String(isActive));
+    });
+  };
+  btnG.onclick = () => {
+    document.body.classList.remove('view-tax', 'view-list');
+    setActive(btnG);
+    cy.resize(); cy.fit(undefined, 60);
+  };
+  btnT.onclick = () => {
+    document.body.classList.remove('view-list');
+    document.body.classList.add('view-tax');
+    setActive(btnT);
+    treemap.render();
+  };
+  btnL.onclick = () => {
+    document.body.classList.remove('view-tax');
+    document.body.classList.add('view-list');
+    setActive(btnL);
+    document.getElementById('list-view').focus();
+  };
+  // Skip-Link aktiviert ebenfalls den Listen-Tab, damit er sichtbar wird
+  document.getElementById('skip-link').addEventListener('click', e => {
+    e.preventDefault();
+    btnL.click();
+  });
+}
+
+/* ------------------------------------------------------------------
+   LISTEN-VIEW (semantisch, für Screenreader & Tastatur)
+   --------------------------------------------------------------------
+   Baut eine <details>-Hierarchie auf: Stadtrat → Departement → Unit.
+   Bewusst ohne JS-Interaktivität jenseits des nativen <details>-toggle —
+   so funktioniert es auch ohne JS-Engine korrekt.
+   ------------------------------------------------------------------ */
+
+function buildListView(DATA) {
+  const nf = new Intl.NumberFormat('de-CH', { maximumFractionDigits: 0 });
+  const fmtCHF = v => v == null ? '—' : nf.format(v) + ' CHF';
+  const fmtFTE = f => {
+    if (!f) return '—';
+    const v = nf.format(f.schaetzung);
+    if (f.quelle === 'pdf') return `${v} ${f.einheit || 'FTE'} (publiziert)`;
+    return `~${v} (Schätzung: Personalaufwand ÷ ${nf.format(f.vollkostenProFte || 130000)} CHF)`;
+  };
+  const esc = s => String(s == null ? '' : s)
+    .replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+
+  const meta = (item, isDep = false) => {
+    const rows = [];
+    if (item.vorsteher) rows.push(['Vorsteher:in', esc(item.vorsteher)]);
+    if (item.odz) rows.push(['OGD-Schlüssel',
+      `${esc(item.odz.kurzname)} (key ${esc(item.odz.key)})`]);
+    if (item.budget?.aufwand != null) {
+      rows.push(['Aufwand', fmtCHF(item.budget.aufwand)]);
+      if (item.budget.ertrag       != null) rows.push(['Ertrag', fmtCHF(item.budget.ertrag)]);
+      if (item.budget.nettoaufwand != null) rows.push(['Nettoaufwand', `<strong>${fmtCHF(item.budget.nettoaufwand)}</strong>`]);
+      rows.push(['Budget-Jahr', `${item.budget.jahr || '?'} (${item.budget.typ || ''})`]);
+    }
+    if (item.fte) rows.push(['Stellen', fmtFTE(item.fte)]);
+    if (item.konflikt) {
+      rows.push(['<span class="konflikt">⚠ Zuordnung</span>',
+        `<span class="konflikt">Bürger-Sicht: ${esc(item.konflikt.unsereZuordnung)}, ` +
+        `RPK-Sicht: ${esc(item.konflikt.rpkBezeichnung || item.konflikt.rpkKurzname)}</span>`]);
+    }
+    if (item.note) rows.push(['Hinweis', esc(item.note)]);
+    if (!rows.length) return '';
+    return '<dl class="meta">' +
+      rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('') +
+      '</dl>';
+  };
+
+  // Departement-Aggregate aufbauen
+  let html = '';
+  for (const dep of DATA.departments) {
+    const units = DATA.units.filter(u => u.parent === dep.id);
+    const summary = `<summary>${esc(dep.name)} ` +
+      `<span style="color:var(--mute);font-size:13px">(${esc(dep.id)}` +
+      (dep.budget?.aufwand ? `, ${nf.format(Math.round(dep.budget.aufwand / 1e6))} Mio CHF` : '') +
+      (dep.fte?.schaetzung ? `, ${nf.format(dep.fte.schaetzung)} FTE` : '') +
+      `)</span></summary>`;
+    let body = meta(dep, true);
+    if (units.length) {
+      body += '<div class="units">';
+      for (const u of units) {
+        const labelExtra = [];
+        if (u.budget?.aufwand) labelExtra.push(nf.format(Math.round(u.budget.aufwand / 1e6)) + ' Mio');
+        if (u.fte?.schaetzung)  labelExtra.push(nf.format(u.fte.schaetzung) + ' FTE');
+        const meta2 = labelExtra.length ? ` <span style="color:var(--mute);font-size:12px">(${labelExtra.join(' · ')})</span>` : '';
+        body += `<details class="unit"><summary>${esc(u.name)}${meta2}</summary>${meta(u)}</details>`;
+      }
+      body += '</div>';
+    }
+    html += `<details class="dep">${summary}${body}</details>`;
+  }
+
+  // Beteiligungen separat
+  if (DATA.beteiligungen?.length) {
+    html += `<details class="dep"><summary>Beteiligungen und Stiftungen
+      <span style="color:var(--mute);font-size:13px">(${DATA.beteiligungen.length})</span></summary>
+      <div class="units">`;
+    for (const b of DATA.beteiligungen) {
+      html += `<details class="unit"><summary>${esc(b.name)}</summary>${meta(b)}</details>`;
+    }
+    html += '</div></details>';
+  }
+
+  document.getElementById('list-content').innerHTML = html;
+}
+
+/* ------------------------------------------------------------------
+   FEHLERANZEIGE (Datenladefehler)
+   ------------------------------------------------------------------ */
+
+function showFatalError(err) {
+  const c = document.getElementById('cy');
+  c.innerHTML =
+    `<div style="position:absolute;inset:0;display:flex;align-items:center;
+                 justify-content:center;flex-direction:column;gap:10px;
+                 padding:24px;text-align:center;color:var(--ink);">
+       <div style="font-size:32px">⚠️</div>
+       <div style="font-weight:600">Daten konnten nicht geladen werden</div>
+       <div style="font-size:13px;color:var(--mute);max-width:520px">
+         <code>data.json</code> wurde nicht gefunden oder ist ungültig.
+         Bitte die Seite über einen lokalen Webserver ausliefern
+         (z. B. <code>python -m http.server</code>) — direktes Öffnen via
+         <code>file://</code> blockiert <code>fetch()</code>.
+       </div>
+       <div style="font-size:12px;color:var(--mute);font-family:monospace;
+                   background:var(--panel);padding:6px 10px;border-radius:5px;
+                   border:1px solid var(--line)">${String(err)}</div>
+     </div>`;
+}
+
+/* ------------------------------------------------------------------
+   BOOTSTRAP
+   ------------------------------------------------------------------ */
+
+(async function init() {
+  let DATA;
+  try {
+    DATA = await loadData();
+  } catch (err) {
+    console.error(err);
+    showFatalError(err);
+    return;
+  }
+
+  const elements = buildElements(DATA);
+
+  const cy = cytoscape({
+    container: document.getElementById('cy'),
+    elements: [...elements.nodes, ...elements.edges],
+    style,
+    layout: radialLayout(),
+    wheelSensitivity: 0.2,
+    minZoom: 0.2, maxZoom: 4,
+  });
+
+  LEBENSLAGEN = DATA.lebenslagen || [];
+
+  attachInteractions(cy);
+  attachToolbar(cy);
+  const treemap = setupTreemap(DATA);
+  buildListView(DATA);
+  attachTabs(cy, treemap);
+  cy.ready(() => cy.fit(undefined, 60));
+})();
+</script>
+</body>
+</html>

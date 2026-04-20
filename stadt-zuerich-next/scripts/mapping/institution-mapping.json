@@ -1,0 +1,95 @@
+{
+  "_doc": [
+    "Mapping zwischen unseren internen IDs (data.json) und den 'kurzname'-Codes",
+    "der RPK-API (data.stadt-zuerich.ch / fd_rpktool).",
+    "Wert null = bewusst nicht gemappt (z. B. Beteiligung, die nicht zur",
+    "Stadtverwaltung gehört, oder Querschnittsstelle ohne eigene Institution).",
+    "Vor jedem Daten-Refresh prüfen: stimmt die Zuordnung noch?"
+  ],
+
+  "departments": {
+    "PRD": "PRD",
+    "FD":  "FD",
+    "SD":  "SD",
+    "GUD": "GUD",
+    "TED": "TED",
+    "HBD": "HBD",
+    "SiD": "SID",
+    "SSD": "SSD",
+    "DIB": "DIB"
+  },
+
+  "units": {
+    "PRD-stk":    "SKZ",
+    "PRD-stat":   "SSZ",
+    "PRD-se":     "STE",
+    "PRD-arch":   "SAR",
+    "PRD-wifo":   null,
+    "PRD-int":    null,
+    "PRD-gleich": "ZFG",
+    "PRD-stab":   "BNN",
+
+    "FD-fv":      "FVW",
+    "FD-st":      "SST",
+    "FD-pers":    "HRZ",
+    "FD-imm":     "IMO",
+    "FD-oiz":     "OIZ",
+
+    "SD-soz":     "SOD",
+    "SD-aoz":     "AOZ",
+    "SD-supp":    "SDS",
+    "SD-azl":     "AZL",
+    "SD-lbz":     "LBZ",
+    "SD-keb":     "KEB",
+    "SD-seb":     "SEB",
+
+    "GUD-spital": "STZ",
+    "GUD-pflege": "GFA",
+    "GUD-sgd":    "SGD",
+    "GUD-staz":   null,
+    "GUD-ugz":    "UGZ",
+    "GUD-vet":    null,
+
+    "TED-tba":     "TAZ",
+    "TED-erz-abf": "ERZ-Abf",
+    "TED-erz-abw": "ERZ-Abw",
+    "TED-erz-w":   "ERZ-W",
+    "TED-erz-r":   "ERZ-R",
+    "TED-geo":     "GEO",
+    "TED-grun":    "GSZ",
+
+    "HBD-staedt": "AFS",
+    "HBD-hb":     "AHB",
+    "HBD-bb":     "AFB",
+
+    "SiD-stapo":  "STP",
+    "SiD-srz":    "SRZ",
+    "SiD-bev":    "BVA",
+    "SiD-richt":  "SRA",
+    "SiD-dav":    "DAV",
+    "SiD-bzb":    "BZB",
+
+    "SSD-schule": "SAM",
+    "SSD-mkz":    "MKZ",
+    "SSD-sport":  "SPA",
+    "SSD-sg":     "SG",
+    "SSD-hps":    "HPS",
+    "SSD-skb":    "SKB",
+    "SSD-sfs":    "SFS",
+    "SSD-v15":    "V15",
+    "SSD-fsv":    "FSV",
+    "SSD-sbmv":   "SBMV",
+
+    "DIB-ewz":    "EWZ",
+    "DIB-wv":     "WVZ",
+    "DIB-vbz":    "VBZ"
+  },
+
+  "beteiligungen": {
+    "B-energie360": null,
+    "B-flughafen":  null,
+    "B-zkb":        null,
+    "B-zoo":        null,
+    "B-okj":        null
+  }
+}
