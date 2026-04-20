@@ -20,6 +20,10 @@ export default function Header() {
   const [dark, setDark] = useState<boolean | null>(null);
 
   useEffect(() => {
+    // Sync mit der vom Server gesetzten <html class="dark">. Die Rule
+    // react-hooks/set-state-in-effect warnt hier zu Recht im Allgemeinen,
+    // aber bei reiner DOM-Hydration nach SSR ist das der empfohlene Weg.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setDark(document.documentElement.classList.contains('dark'));
   }, []);
 

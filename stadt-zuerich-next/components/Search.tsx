@@ -64,6 +64,7 @@ export default function Search({ lebenslagen }: { lebenslagen: Lebenslage[] }) {
               key={l.id}
               type="button"
               role="option"
+              aria-selected={false}
               onClick={() => jump(l.zustaendig)}
               className="block w-full text-left px-2 py-1.5 rounded mb-0.5 border border-transparent hover:bg-[var(--color-bg)] hover:border-[var(--color-line)] cursor-pointer"
             >

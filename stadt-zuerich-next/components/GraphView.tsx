@@ -4,7 +4,8 @@ import { useEffect, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 import { usePathname, useRouter } from '@/i18n/navigation';
-import type { Core } from 'cytoscape';
+import type cytoscape from 'cytoscape';
+import type { Core, ElementDefinition, LayoutOptions, NodeSingular } from 'cytoscape';
 import type { StadtData } from '@/types/stadt';
 
 type Layout = 'radial' | 'force';
@@ -146,9 +147,9 @@ function Toolbar({
 
 /* -------- Helpers -------- */
 
-function buildElements(d: StadtData) {
-  const nodes: any[] = [];
-  const edges: any[] = [];
+function buildElements(d: StadtData): ElementDefinition[] {
+  const nodes: ElementDefinition[] = [];
+  const edges: ElementDefinition[] = [];
   nodes.push({ data: { id: d.center.id, label: d.center.name, type: 'center', level: 0 } });
   for (const dep of d.departments) {
     nodes.push({
@@ -184,24 +185,25 @@ function buildElements(d: StadtData) {
   return [...nodes, ...edges];
 }
 
-function layoutOptions(name: Layout) {
+function layoutOptions(name: Layout): LayoutOptions {
   if (name === 'force') {
+    // fcose-spezifische Optionen (nicht in den Cytoscape-Core-Typen)
     return {
       name: 'fcose', quality: 'default', animate: true, animationDuration: 800,
       nodeRepulsion: 6000, idealEdgeLength: 60, gravity: 0.15, nestingFactor: 0.6, randomize: false,
-    } as any;
+    } as unknown as LayoutOptions;
   }
   return {
     name: 'concentric',
-    concentric: (n: any) => 10 - n.data('level'),
+    concentric: (n: NodeSingular) => 10 - (n.data('level') as number),
     levelWidth: () => 1,
     minNodeSpacing: 28,
     spacingFactor: 1.25,
     avoidOverlap: true, animate: true, animationDuration: 600,
-  } as any;
+  };
 }
 
-const GRAPH_STYLE: any[] = [
+const GRAPH_STYLE: cytoscape.StylesheetStyle[] = [
   { selector: 'node', style: {
       'label': 'data(label)', 'font-size': 9,
       'text-valign': 'center', 'text-halign': 'center',
@@ -214,7 +216,7 @@ const GRAPH_STYLE: any[] = [
       'background-color': '#e67e22', 'shape': 'round-rectangle',
       'width': 130, 'height': 54, 'font-size': 10, 'font-weight': 'bold',
       'color': '#fff', 'text-outline-color': '#e67e22',
-      'text-wrap': 'wrap', 'text-max-width': 120, 'padding': 4 } },
+      'text-wrap': 'wrap', 'text-max-width': '120', 'padding': '4' } },
   { selector: 'node[type = "unit"]', style: {
       'background-color': '#3b6ea5', 'shape': 'round-rectangle', 'width': 22, 'height': 16 } },
   { selector: 'node[type = "staff"]', style: {
