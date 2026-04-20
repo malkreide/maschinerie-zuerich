@@ -7,7 +7,8 @@ Repo ist so gebaut, dass Beiträge aus verschiedenen Richtungen willkommen sind.
 
 | Was | Wie |
 |-----|-----|
-| **Übersetzung** einer Lebenslage in FR/IT | PR gegen [`stadt-zuerich-next/messages/`](stadt-zuerich-next/messages/) |
+| **Übersetzung** einer Lebenslage in FR/IT | PR gegen [`stadt-zuerich-next/data/manual/lebenslagen.json`](stadt-zuerich-next/data/manual/lebenslagen.json) — Feld `i18n.fr` / `i18n.it` pro Eintrag |
+| **Übersetzung** der UI-Chrome (Buttons, Überschriften) | PR gegen [`stadt-zuerich-next/messages/{fr,it}.json`](stadt-zuerich-next/messages/) |
 | **Leichte-Sprache-Review** | Issue mit Kommentar zu einer konkreten Datei in `messages/ls.json` |
 | **Bug-Report** | Issue mit Screenshot, Browser, URL |
 | **Feature-Idee** | Issue, damit wir vorher Scope klären |
@@ -37,8 +38,23 @@ Vor einem PR:
 ```bash
 cd stadt-zuerich-next
 npm run typecheck
-npm run lint
 ```
+
+## Dependencies ändern
+
+Wenn du eine Library in [`stadt-zuerich-next/package.json`](stadt-zuerich-next/package.json) hinzufügst, aktualisierst oder entfernst, **immer lokal `npm install` laufen lassen** und die daraus entstehende `package-lock.json` mit-committen.
+
+```bash
+cd stadt-zuerich-next
+npm install <neues-paket>      # oder manuelle Edit in package.json + npm install
+git add package.json package-lock.json
+git commit -m "deps: add <paket> for <reason>"
+```
+
+Warum:
+- Die CI nutzt `npm ci` (nicht `npm install`) — das ist strikt und bricht ab, wenn `package.json` und `package-lock.json` divergieren. Vergessene Lockfile-Updates werden im Build sofort sichtbar.
+- Der npm-Cache in GitHub Actions invalidiert automatisch, sobald sich `package-lock.json` ändert — ohne Commit des Lockfiles läuft jeder Build ohne Cache, das kostet ~20 s pro Run.
+- Reproduzierbare Installs: alle Contributors und die CI ziehen identische Versionen.
 
 ## Daten-Änderungen
 
@@ -53,18 +69,26 @@ Wenn sich Struktur der Stadtverwaltung ändert (neue Dienstabteilung, Reorganisa
 ## Lebenslagen hinzufügen oder korrigieren
 
 `stadt-zuerich-next/data/manual/lebenslagen.json`:
+
 ```json
 {
   "id": "eindeutige-id",
-  "frage": "Kurze Frage in Bürgerdeutsch",
-  "stichworte": ["wort1", "wort2"],
   "zustaendig": "<unit-id aus data.json>",
-  "antwort": "Ein-Satz-Antwort"
+  "i18n": {
+    "de": {
+      "frage": "Kurze Frage in Bürgerdeutsch",
+      "stichworte": ["wort1", "wort2"],
+      "antwort": "Ein-Satz-Antwort"
+    },
+    "en": null, "fr": null, "it": null, "ls": null
+  }
 }
 ```
 
-Die `zustaendig`-ID muss in `data.json` existieren — ein Skript validiert das
-beim Build. Stichworte bitte klein, singular, ohne Sonderzeichen.
+- Die `zustaendig`-ID muss in `data.json` existieren — der CI-Validator prüft das.
+- `i18n.de` ist Pflicht (die anderen Locales fallen auf `de` zurück, wenn leer).
+- Stichworte bitte klein, singular, ohne Sonderzeichen.
+- Für Übersetzungen nur die jeweiligen Locale-Slots (`fr`, `it`, …) füllen — Rest unverändert lassen.
 
 ## Code of Conduct
 
