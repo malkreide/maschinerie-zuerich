@@ -3,13 +3,11 @@ import { routing } from './i18n/routing';
 
 export default createMiddleware(routing);
 
-// Node.js-Runtime statt Edge-Default: next-intl v4 + localeDetection=true
-// pulled transitive Dependencies, die auf Vercels Edge-Bundle zu
-// MIDDLEWARE_INVOCATION_FAILED führten. Node-Runtime ist seit Next.js 16
-// stabil für Middleware und hat volle Kompatibilität.
-// Richtige Stelle: im config-Objekt, nicht als separater Export.
 export const config = {
-  runtime: 'nodejs',
-  // Aktiviert i18n-Routing für alle Pfade ausser API, Next-internals und Assets.
+  // Edge-Runtime (Next.js-Default). Node-Runtime wurde probiert, brach aber
+  // mit ERR_MODULE_NOT_FOUND weil next-intl 'next/server' ohne .js-Suffix
+  // importiert — Node's ESM-strict-Resolver auf Vercel lehnt das ab. Edge
+  // bundler löst das anders auf und kommt damit klar. Mit next-intl >=4.9
+  // gibt es auf Edge keine 'MIDDLEWARE_INVOCATION_FAILED' mehr.
   matcher: ['/((?!api|_next|_vercel|.*\\..*).*)'],
 };
