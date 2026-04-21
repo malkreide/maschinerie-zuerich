@@ -4,7 +4,7 @@
   "description": "Maschinerie der Stadt Zürich – interaktive Übersicht der Stadtverwaltung",
   "type": "module",
   "private": true,
-  "engines": { "node": ">=20" },
+  "engines": { "node": ">=20.20.2" },
   "scripts": {
     "fetch:struct": "node scripts/fetch-rpktool.mjs",
     "fetch:budget": "node scripts/fetch-budget.mjs",
