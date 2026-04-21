@@ -42,7 +42,7 @@ export default async function LocaleLayout({
     <html lang={htmlLang} className={theme === 'dark' ? 'dark' : ''}>
       <body className="font-sans antialiased">
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <a className="skip-link" href={locale === 'de' ? '/liste' : `/${locale}/liste`}>
+          <a className="skip-link" href={`/${locale}/liste`}>
             {t('skipToList')}
           </a>
           <Shell lebenslagen={data.lebenslagen ?? []}>{children}</Shell>

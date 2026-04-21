@@ -39,7 +39,7 @@ export default async function AnliegenPage({
   const t       = getT(locale as Locale, 'Anliegen');
   const tSearch = getT(locale as Locale, 'Search');
 
-  const formAction = locale === 'de' ? '/anliegen' : `/${locale}/anliegen`;
+  const formAction = `/${locale}/anliegen`;
 
   return (
     <main

@@ -14,8 +14,12 @@ import { defineRouting } from 'next-intl/routing';
 export const routing = defineRouting({
   locales: ['de', 'en', 'fr', 'it', 'ls'] as const,
   defaultLocale: 'de',
-  localePrefix: 'as-needed',
-  localeDetection: true,
+  // 'always' statt 'as-needed': seit der Middleware wegen Vercel-Bugs
+  // gelöscht wurde, gibt es keine Instanz mehr, die Default-Locale '/' →
+  // '/de' umschreibt. Mit 'always' hat jedes Locale ein Prefix und wir
+  // brauchen keine serverseitige Umschreibung.
+  localePrefix: 'always',
+  localeDetection: false,
 });
 
 export type Locale = (typeof routing.locales)[number];
