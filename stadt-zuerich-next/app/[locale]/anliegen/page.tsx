@@ -4,13 +4,13 @@
 //   Maschinerie mit ?focus=<unit-id>
 
 import type { Metadata } from 'next';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { routing, type Locale } from '@/i18n/routing';
 import { loadStadtData } from '@/lib/data';
 import { searchLebenslagen, resolveContent } from '@/lib/search';
+import { getT } from '@/lib/i18n-server';
 import type { Department, Unit, Beteiligung, StadtData, LebenslageLocale } from '@/types/stadt';
 
 export async function generateMetadata({
@@ -18,8 +18,8 @@ export async function generateMetadata({
 }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) return {};
-  const tApp = await getTranslations({ locale, namespace: 'App' });
-  const t    = await getTranslations({ locale, namespace: 'Anliegen' });
+  const tApp = getT(locale as Locale, 'App');
+  const t    = getT(locale as Locale, 'Anliegen');
   return { title: `${t('title')} · ${tApp('title')}`, description: t('intro') };
 }
 
@@ -31,14 +31,13 @@ export default async function AnliegenPage({
 }) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
-  setRequestLocale(locale as Locale);
 
   const { q = '' } = await searchParams;
   const data = await loadStadtData();
   const lebLocale = locale as LebenslageLocale;
   const matches = q.trim() ? searchLebenslagen(q, data.lebenslagen ?? [], lebLocale) : [];
-  const t = await getTranslations({ locale, namespace: 'Anliegen' });
-  const tSearch = await getTranslations({ locale, namespace: 'Search' });
+  const t       = getT(locale as Locale, 'Anliegen');
+  const tSearch = getT(locale as Locale, 'Search');
 
   const formAction = locale === 'de' ? '/anliegen' : `/${locale}/anliegen`;
 

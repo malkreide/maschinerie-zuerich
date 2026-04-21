@@ -1,7 +1,8 @@
-import { useTranslations } from 'next-intl';
+import { getT } from '@/lib/i18n-server';
+import type { Locale } from '@/i18n/routing';
 
-export default function Legend() {
-  const t = useTranslations('Legend');
+export default function Legend({ locale }: { locale: Locale }) {
+  const t = getT(locale, 'Legend');
   return (
     <aside
       aria-label={t('headingTop')}

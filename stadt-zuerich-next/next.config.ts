@@ -1,15 +1,14 @@
 import type { NextConfig } from 'next';
-import createNextIntlPlugin from 'next-intl/plugin';
 
-const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
+// Kein createNextIntlPlugin-Wrapper: das Plugin injiziert Runtime-Code,
+// der auf Vercels Edge-Runtime zu `__dirname is not defined` führte.
+// Statt via Plugin holen wir Messages in Server-Components über einen
+// eigenen Helper (lib/i18n-server.ts) und reichen sie an den
+// NextIntlClientProvider explizit als Props durch.
 
 const config: NextConfig = {
   reactStrictMode: true,
-  // transpilePackages zwingt Next, die Deps durch seinen eigenen Transformer zu
-  // jagen — löst ESM/CJS-Interop-Probleme auf Vercels Edge-Runtime für Pakete,
-  // die original als Node-ESM kompiliert wurden.
-  transpilePackages: ['next-intl'],
   experimental: { optimizePackageImports: ['d3-hierarchy', 'd3-scale'] },
 };
 
-export default withNextIntl(config);
+export default config;

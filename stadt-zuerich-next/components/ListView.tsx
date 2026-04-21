@@ -1,12 +1,17 @@
 // Server-renderbare semantische <details>-Hierarchie für Screenreader und
 // Tastatur-Navigation. Kein 'use client' — pure HTML, kein State.
 
-import { useTranslations } from 'next-intl';
 import type { StadtData, Department, Unit, Beteiligung, Fte } from '@/types/stadt';
+import type { Locale } from '@/i18n/routing';
+import { getT } from '@/lib/i18n-server';
 import { fmtCHF, fmtNumber } from '@/lib/search';
 
-export default function ListView({ data }: { data: StadtData }) {
-  const t = useTranslations('List');
+type TFn = ReturnType<typeof getT>;
+
+export default function ListView({ data, locale }: { data: StadtData; locale: Locale }) {
+  const t = getT(locale, 'List');
+  const tDetail = getT(locale, 'Detail');
+
   return (
     <main
       id="list-view"
@@ -19,7 +24,12 @@ export default function ListView({ data }: { data: StadtData }) {
       <p className="text-[13px] text-[var(--color-mute)] mb-4 max-w-[70ch]">{t('intro')}</p>
 
       {data.departments.map((dep) => (
-        <DepDetail key={dep.id} dep={dep} units={data.units.filter((u) => u.parent === dep.id)} />
+        <DepDetail
+          key={dep.id}
+          dep={dep}
+          units={data.units.filter((u) => u.parent === dep.id)}
+          tDetail={tDetail}
+        />
       ))}
 
       {data.beteiligungen.length > 0 && (
@@ -29,7 +39,7 @@ export default function ListView({ data }: { data: StadtData }) {
             <span className="text-[var(--color-mute)] text-[13px]">({data.beteiligungen.length})</span>
           </summary>
           <div className="units">
-            {data.beteiligungen.map((b) => <BetDetail key={b.id} b={b} />)}
+            {data.beteiligungen.map((b) => <BetDetail key={b.id} b={b} tDetail={tDetail} />)}
           </div>
         </details>
       )}
@@ -37,27 +47,27 @@ export default function ListView({ data }: { data: StadtData }) {
   );
 }
 
-function DepDetail({ dep, units }: { dep: Department; units: Unit[] }) {
+function DepDetail({ dep, units, tDetail }: { dep: Department; units: Unit[]; tDetail: TFn }) {
   const extras: string[] = [dep.id];
-  if (dep.budget?.aufwand)   extras.push(Math.round(dep.budget.aufwand / 1e6) + ' Mio CHF');
-  if (dep.fte?.schaetzung)   extras.push(fmtNumber(dep.fte.schaetzung) + ' FTE');
+  if (dep.budget?.aufwand) extras.push(Math.round(dep.budget.aufwand / 1e6) + ' Mio CHF');
+  if (dep.fte?.schaetzung) extras.push(fmtNumber(dep.fte.schaetzung) + ' FTE');
   return (
     <details className="dep">
       <summary>
         {dep.name}{' '}
         <span className="text-[var(--color-mute)] text-[13px]">({extras.join(', ')})</span>
       </summary>
-      <Meta dep={dep} />
+      <Meta dep={dep} tDetail={tDetail} />
       {units.length > 0 && (
         <div className="units">
-          {units.map((u) => <UnitDetail key={u.id} unit={u} />)}
+          {units.map((u) => <UnitDetail key={u.id} unit={u} tDetail={tDetail} />)}
         </div>
       )}
     </details>
   );
 }
 
-function UnitDetail({ unit }: { unit: Unit }) {
+function UnitDetail({ unit, tDetail }: { unit: Unit; tDetail: TFn }) {
   const extras: string[] = [];
   if (unit.budget?.aufwand) extras.push(Math.round(unit.budget.aufwand / 1e6) + ' Mio');
   if (unit.fte?.schaetzung) extras.push(fmtNumber(unit.fte.schaetzung) + ' FTE');
@@ -69,29 +79,30 @@ function UnitDetail({ unit }: { unit: Unit }) {
           <span className="text-[var(--color-mute)] text-xs"> ({extras.join(' · ')})</span>
         )}
       </summary>
-      <Meta unit={unit} />
+      <Meta unit={unit} tDetail={tDetail} />
     </details>
   );
 }
 
-function BetDetail({ b }: { b: Beteiligung }) {
+function BetDetail({ b, tDetail }: { b: Beteiligung; tDetail: TFn }) {
   return (
     <details className="unit">
       <summary>{b.name}</summary>
-      <Meta beteiligung={b} />
+      <Meta beteiligung={b} tDetail={tDetail} />
     </details>
   );
 }
 
 function Meta({
-  dep, unit, beteiligung,
+  dep, unit, beteiligung, tDetail,
 }: {
   dep?: Department;
   unit?: Unit;
   beteiligung?: Beteiligung;
+  tDetail: TFn;
 }) {
-  const t = useTranslations('Detail');
   const item = dep ?? unit ?? beteiligung!;
+  const t = tDetail;
   const rows: { k: React.ReactNode; v: React.ReactNode }[] = [];
   if ('vorsteher' in item && item.vorsteher) rows.push({ k: t('vorsteher'), v: item.vorsteher });
   if (item.odz)
@@ -128,7 +139,7 @@ function Meta({
   );
 }
 
-function fteLabel(f: Fte, t: ReturnType<typeof useTranslations<'Detail'>>): string {
+function fteLabel(f: Fte, t: TFn): string {
   const v = fmtNumber(f.schaetzung);
   if (f.quelle === 'pdf') {
     return t('fteUnitPublished', { value: v, einheit: f.einheit ?? t('fteUnitFallback') });

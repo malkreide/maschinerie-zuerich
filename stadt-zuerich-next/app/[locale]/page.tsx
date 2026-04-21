@@ -1,6 +1,5 @@
 import { Suspense } from 'react';
 import { hasLocale } from 'next-intl';
-import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { loadStadtData } from '@/lib/data';
 import { routing, type Locale } from '@/i18n/routing';
@@ -13,7 +12,6 @@ export default async function MaschineriePage({
 }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
-  setRequestLocale(locale as Locale);
   const data = await loadStadtData();
   return (
     <>
@@ -22,7 +20,7 @@ export default async function MaschineriePage({
         <GraphView data={data} />
         <DetailPanel data={data} />
       </Suspense>
-      <Legend />
+      <Legend locale={locale as Locale} />
     </>
   );
 }
