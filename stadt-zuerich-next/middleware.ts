@@ -75,6 +75,12 @@ export default function middleware(request: NextRequest) {
 }
 
 export const config = {
+  // Node.js-Runtime explizit. Grund: mit Edge knallt auf Vercel konsistent
+  // `__dirname is not defined`, obwohl unser Code __dirname nicht nutzt —
+  // irgendetwas in Vercels Middleware-Bundler-Pfad bringt es ein. Node hat
+  // __dirname nativ. Mit next-intl aus der Middleware-Chain raus gibt es
+  // auch keinen ERR_MODULE_NOT_FOUND mehr (das war der next-intl-Bug).
+  runtime: 'nodejs',
   // Alle Pfade ausser API, Next-Internals und Assets
   matcher: ['/((?!api|_next|_vercel|.*\\..*).*)'],
 };
