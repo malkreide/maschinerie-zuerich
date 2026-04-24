@@ -84,4 +84,8 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
-          cache-to: type=gha,mode=max
+          # ignore-error=true: wenn das GHA-Cache-Backend 502 wirft (passiert
+          # regelmässig bei grossen Multi-Arch-Caches), soll der erfolgreich
+          # gepushte Image-Build nicht als Failure markiert werden. Cache ist
+          # Speedup — nicht Korrektheit.
+          cache-to: type=gha,mode=max,ignore-error=true
