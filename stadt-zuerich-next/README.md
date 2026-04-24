@@ -4,6 +4,14 @@ Next.js-16-Variante des Vanilla-Prototyps in `../stadt-zuerich-mog/`.
 Gleiche Funktionalität, gleicher Daten-Fluss, aber als typsichere
 React-App mit komponentenbasiertem UI.
 
+> **Auch als Template für andere Städte gedacht.** Die Code-Basis ist
+> stadt-agnostisch — Name, Theme, Datenquellen und ETL-Logik sind in
+> drei Pfaden entkoppelt (`config/city.config.json`,
+> `scripts/adapters/<id>.mjs`, `data/<id>/`). Fork & klone, dann
+> `npm run scaffold:city <id> "<name>"` + Checkliste in
+> **[PORTING.md](PORTING.md)** abarbeiten. Genf als durchgearbeitetes
+> Beispiel im Guide.
+
 ## Stack
 
 - **Next.js 16** (App Router, Server- + Client-Components)

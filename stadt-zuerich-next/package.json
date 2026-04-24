@@ -14,7 +14,8 @@
     "data:fetch": "node scripts/build-data.mjs",
     "data:fetch:force": "node scripts/build-data.mjs --force",
     "validate:prozesse": "node scripts/validate-prozesse.mjs",
-    "migrate:schema:v2": "node scripts/migrate-prozesse-schema-v2.mjs"
+    "migrate:schema:v2": "node scripts/migrate-prozesse-schema-v2.mjs",
+    "scaffold:city": "node scripts/scaffold-city.mjs"
   },
   "dependencies": {
     "@xyflow/react": "^12.10.2",
