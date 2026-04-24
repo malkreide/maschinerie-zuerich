@@ -22,7 +22,15 @@ type Datum = {
 const DEP_COLORS = ['#c0392b', '#e67e22', '#f1c40f', '#16a085', '#3b6ea5',
                     '#8b5cf6', '#7a1f2b', '#2c7a7b', '#d35400'];
 
-export default function TreemapView({ data }: { data: StadtData }) {
+export default function TreemapView({
+  data,
+  rootName,
+}: {
+  data: StadtData;
+  /** Label für den Root-Knoten des Treemaps (z. B. 'Stadt Zürich').
+   *  Wird vom Server-Component aus city.config.name[locale] befüllt. */
+  rootName: string;
+}) {
   const t = useTranslations('Treemap');
   const hostRef = useRef<HTMLDivElement>(null);
   const [focus, setFocus] = useState<string | null>(null);
@@ -47,7 +55,7 @@ export default function TreemapView({ data }: { data: StadtData }) {
     .domain(data.departments.map((d) => d.id))
     .range(DEP_COLORS);
 
-  const tree = buildHierarchy(data, focus);
+  const tree = buildHierarchy(data, focus, rootName);
   const root = computeLayout(tree, size.w, size.h, focus !== null);
 
   const sampleJahr = data.units.find((u) => u.budget?.jahr)?.budget?.jahr ?? 2024;
@@ -105,7 +113,7 @@ function Row({ k, v }: { k: string; v: string }) {
   );
 }
 
-function buildHierarchy(data: StadtData, focus: string | null): Datum {
+function buildHierarchy(data: StadtData, focus: string | null, rootName: string): Datum {
   const allDeps: Datum[] = data.departments.map((dep: Department) => {
     const units: Datum[] = data.units
       .filter((u: Unit) => u.parent === dep.id && (u.budget?.aufwand ?? 0) > 0)
@@ -123,7 +131,7 @@ function buildHierarchy(data: StadtData, focus: string | null): Datum {
     const dep = allDeps.find((d) => d.id === focus);
     if (dep) return { ...dep, depId: dep.id, isFocus: true };
   }
-  return { name: 'Stadt Zürich', children: allDeps };
+  return { name: rootName, children: allDeps };
 }
 
 function computeLayout(data: Datum, w: number, h: number, isFocus: boolean) {

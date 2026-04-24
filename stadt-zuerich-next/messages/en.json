@@ -1,6 +1,6 @@
 {
   "App": {
-    "title": "Machinery of the City of Zurich",
+    "title": "Machinery of the {cityName}",
     "subtitle": "Prototype · Next.js"
   },
   "Nav": {
@@ -46,9 +46,9 @@
     "ariaLabel": "Treemap of expenses"
   },
   "List": {
-    "title": "City of Zurich administration – hierarchical overview",
+    "title": "{cityName} administration – hierarchical overview",
     "intro": "This list shows the same data as the graphical diagram tab in semantically structured form for screen readers and keyboard navigation. Use Tab to navigate the hierarchy, Enter to expand or collapse nodes.",
-    "ariaLabel": "City of Zurich administration as textual hierarchy",
+    "ariaLabel": "{cityName} administration as textual hierarchy",
     "beteiligungenHeading": "Holdings and foundations"
   },
   "Detail": {

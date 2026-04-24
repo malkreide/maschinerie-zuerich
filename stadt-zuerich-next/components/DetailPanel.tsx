@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import { Link, usePathname, useRouter } from '@/i18n/navigation';
 import type { StadtData, Department, Unit, Beteiligung, Fte, Budget } from '@/types/stadt';
 import { fmtCHF, fmtNumber } from '@/lib/search';
+import { city, externalSearchUrl } from '@/config/city.config';
 
 type T = ReturnType<typeof useTranslations<'Detail'>>;
 
@@ -98,13 +99,11 @@ export default function DetailPanel({
       />
       <div className="mt-2.5">
         <a
-          href={item.odz?.kurzname
-            ? `https://www.stadt-zuerich.ch/de.html?q=${encodeURIComponent(item.name)}`
-            : 'https://www.stadt-zuerich.ch/'}
+          href={item.odz?.kurzname ? externalSearchUrl(item.name) : city.homepageUrl}
           target="_blank" rel="noopener"
           className="text-[var(--color-accent)] no-underline hover:underline"
         >
-          stadt-zuerich.ch ↗
+          {city.domain} ↗
         </a>
       </div>
     </aside>

@@ -24,6 +24,12 @@ const TreemapView = dynamic(() => import('./TreemapView'), {
   ),
 });
 
-export default function TreemapLoader({ data }: { data: StadtData }) {
-  return <TreemapView data={data} />;
+export default function TreemapLoader({
+  data,
+  rootName,
+}: {
+  data: StadtData;
+  rootName: string;
+}) {
+  return <TreemapView data={data} rootName={rootName} />;
 }

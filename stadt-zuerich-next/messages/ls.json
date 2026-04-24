@@ -1,6 +1,6 @@
 {
   "App": {
-    "title": "Die Stadt Zürich von innen",
+    "title": "Die {cityName} von innen",
     "subtitle": "Eine einfache Übersicht"
   },
   "Nav": {
@@ -47,7 +47,7 @@
   },
   "List": {
     "title": "Die Stadt-Verwaltung in einer Liste",
-    "intro": "Hier sehen Sie alle Bereiche von der Stadt Zürich als Liste. Diese Liste ist gut für Sprach-Programme. Mit der Tab-Taste gehen Sie weiter. Mit Enter öffnen oder schliessen Sie einen Bereich.",
+    "intro": "Hier sehen Sie alle Bereiche von der {cityName} als Liste. Diese Liste ist gut für Sprach-Programme. Mit der Tab-Taste gehen Sie weiter. Mit Enter öffnen oder schliessen Sie einen Bereich.",
     "ariaLabel": "Die Stadt-Verwaltung als Liste",
     "beteiligungenHeading": "Andere Stellen von der Stadt"
   },

@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Link, usePathname } from '@/i18n/navigation';
+import { useT } from '@/lib/i18n-client';
 import LanguageSwitcher from './LanguageSwitcher';
 
 const ROUTES = [
@@ -15,7 +16,10 @@ const ROUTES = [
 const COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
 
 export default function Header() {
-  const t = useTranslations('App');
+  // useT statt useTranslations, damit {cityName} in App.title automatisch
+  // aus city.config aufgelöst wird — Nav-Strings haben keine Platzhalter,
+  // dort reicht das schlanke useTranslations.
+  const t = useT('App');
   const tNav = useTranslations('Nav');
   const pathname = usePathname();
   const [dark, setDark] = useState<boolean | null>(null);

@@ -1,0 +1,21 @@
+{
+  "id": "zh",
+  "name": {
+    "de": "Stadt Zürich",
+    "en": "City of Zurich",
+    "fr": "Ville de Zurich",
+    "it": "Città di Zurigo",
+    "ls": "Stadt Zürich"
+  },
+  "shortName": {
+    "de": "Zürich",
+    "en": "Zurich",
+    "fr": "Zurich",
+    "it": "Zurigo",
+    "ls": "Zürich"
+  },
+  "domain": "stadt-zuerich.ch",
+  "externalSearchUrlTemplate": "https://www.stadt-zuerich.ch/de.html?q={q}",
+  "homepageUrl": "https://www.stadt-zuerich.ch/",
+  "orgChartPath": "data.json"
+}

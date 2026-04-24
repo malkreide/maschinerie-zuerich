@@ -1,6 +1,6 @@
 {
   "App": {
-    "title": "Maschinerie der Stadt Zürich",
+    "title": "Maschinerie der {cityName}",
     "subtitle": "Prototyp · Next.js"
   },
   "Nav": {
@@ -46,9 +46,9 @@
     "ariaLabel": "Treemap des Aufwands"
   },
   "List": {
-    "title": "Stadtverwaltung Zürich – Hierarchische Übersicht",
+    "title": "Verwaltung der {cityName} – Hierarchische Übersicht",
     "intro": "Diese Liste zeigt die gleichen Daten wie der grafische Diagramm-Tab in semantisch strukturierter Form für Screenreader und Tastatur-Bedienung. Mit Tab durch die Hierarchie navigieren, mit Enter Knoten auf-/zuklappen.",
-    "ariaLabel": "Stadtverwaltung Zürich als textuelle Hierarchie",
+    "ariaLabel": "Verwaltung der {cityName} als textuelle Hierarchie",
     "beteiligungenHeading": "Beteiligungen und Stiftungen"
   },
   "Detail": {

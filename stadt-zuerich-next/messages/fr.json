@@ -1,6 +1,6 @@
 {
   "App": {
-    "title": "Mécanique de la Ville de Zurich",
+    "title": "Mécanique de la {cityName}",
     "subtitle": "Prototype · Next.js"
   },
   "Nav": {
@@ -46,9 +46,9 @@
     "ariaLabel": "Treemap des charges"
   },
   "List": {
-    "title": "Administration de la Ville de Zurich – aperçu hiérarchique",
+    "title": "Administration de la {cityName} – aperçu hiérarchique",
     "intro": "Cette liste montre les mêmes données que l'onglet diagramme, en forme sémantique pour les lecteurs d'écran et la navigation au clavier. Tab parcourt la hiérarchie, Entrée ouvre/ferme un nœud.",
-    "ariaLabel": "Administration de la Ville de Zurich en hiérarchie textuelle",
+    "ariaLabel": "Administration de la {cityName} en hiérarchie textuelle",
     "beteiligungenHeading": "Participations et fondations"
   },
   "Detail": {

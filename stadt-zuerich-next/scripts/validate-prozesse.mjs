@@ -13,13 +13,12 @@
 //      - Schritt.quelle (falls gesetzt) muss in quellen[].id existieren
 //      - Bei Entscheidungs-Schritten sollte mindestens eine ausgehende Flow-
 //        Kante eine bedingung tragen
-//   3. Cross-Reference gegen data.json (Org-Chart-Brücke):
+//   3. Cross-Reference gegen Org-Chart-JSON (Org-Chart-Brücke):
 //      - akteure[].einheit_ref muss als ID einer Unit/Department/Beteiligung
-//        in der Stadt-spezifischen data.json existieren
-//      - Pro city: Pfad ist aktuell 'data.json' im Projekt-Root (ZH ist
-//        die Default-Stadt). Andere Städte brauchen später eigene
-//        data-<city>.json — derzeit nur ZH unterstützt, andere Cities
-//        überspringen den Check mit einer Warnung.
+//        in der Stadt-spezifischen Org-Chart-JSON existieren
+//      - Mapping city → Pfad lebt in config/city.config.json. Aktuell ist
+//        nur ZH konfiguriert. Andere Städte überspringen den Check mit
+//        einer Warnung, bis ihre eigene Konfiguration ergänzt wurde.
 //
 // Exit-Code: 0 = alles gut. 1 = Fehler. Warnungen stehen auf stderr, brechen
 // aber nicht ab.
@@ -34,13 +33,16 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(here, '..');
 const SCHEMA_PATH = path.join(projectRoot, 'schemas', 'opengov-process-schema.json');
 const PROZESSE_ROOT = path.join(projectRoot, 'data', 'prozesse');
+const CITY_CONFIG_PATH = path.join(projectRoot, 'config', 'city.config.json');
 
-// Mapping city → Pfad der zugehörigen Org-Chart-JSON. Aktuell gibt es nur
-// ZH; andere Städte werden beim einheit_ref-Check mit einer Warnung
-// übersprungen.
-const CITY_DATA_PATHS = {
-  zh: path.join(projectRoot, 'data.json'),
-};
+// Mapping city → Pfad der zugehörigen Org-Chart-JSON. Single Source of Truth
+// ist config/city.config.json, damit TS-Code (loadStadtData) und dieses
+// Node-Skript exakt denselben Pfad benutzen. Aktuell ist nur eine Stadt
+// konfiguriert; Multi-City kommt mit einer späteren Config-Erweiterung.
+async function loadCityDataPaths() {
+  const cfg = JSON.parse(await readFile(CITY_CONFIG_PATH, 'utf-8'));
+  return { [cfg.id]: path.join(projectRoot, cfg.orgChartPath) };
+}
 
 // --- Colors ---------------------------------------------------------------
 const isTTY = process.stdout.isTTY && !process.env.NO_COLOR;
@@ -87,9 +89,9 @@ function formatAjvError(err) {
 
 // Cache: city → Set of known unit IDs (oder null wenn kein Mapping).
 const cityIdsCache = new Map();
-async function loadCityIds(city) {
+async function loadCityIds(city, cityDataPaths) {
   if (cityIdsCache.has(city)) return cityIdsCache.get(city);
-  const file = CITY_DATA_PATHS[city];
+  const file = cityDataPaths[city];
   if (!file) {
     cityIdsCache.set(city, null);
     return null;
@@ -198,6 +200,8 @@ async function main() {
   addFormats.default ? addFormats.default(ajv) : addFormats(ajv);
   const validate = ajv.compile(schema);
 
+  const cityDataPaths = await loadCityDataPaths();
+
   const files = await listProzessFiles();
   if (files.length === 0) {
     console.log(c.yellow('No prozess files found under data/prozesse/*/'));
@@ -225,7 +229,7 @@ async function main() {
     // Nur bei formal gültigen Dateien, sonst ist akteure evtl. unbrauchbar.
     const refErrors = [];
     if (schemaOk) {
-      const cityIds = await loadCityIds(city);
+      const cityIds = await loadCityIds(city, cityDataPaths);
       if (cityIds === null) {
         const refs = (data.akteure ?? []).filter((a) => a.einheit_ref);
         if (refs.length > 0) {
@@ -234,7 +238,7 @@ async function main() {
       } else {
         for (const a of data.akteure ?? []) {
           if (a.einheit_ref && !cityIds.has(a.einheit_ref)) {
-            refErrors.push(`akteur '${a.id}'.einheit_ref '${a.einheit_ref}' not found in ${city}/data.json`);
+            refErrors.push(`akteur '${a.id}'.einheit_ref '${a.einheit_ref}' not found in org-chart for city '${city}'`);
           }
         }
       }

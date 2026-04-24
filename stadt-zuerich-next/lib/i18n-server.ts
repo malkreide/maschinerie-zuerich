@@ -6,6 +6,7 @@
 
 import { createTranslator } from 'next-intl';
 import type { Locale } from '@/i18n/routing';
+import { city } from '@/config/city.config';
 import de from '@/messages/de.json';
 import en from '@/messages/en.json';
 import fr from '@/messages/fr.json';
@@ -18,6 +19,16 @@ export type Messages = typeof de;
 
 export function getMessages(locale: Locale): Messages {
   return MESSAGES[locale] as Messages;
+}
+
+// Werte, die wir in jeden Aufruf von t(key, values) als Default
+// einspielen — so müssen einzelne Call-Sites keinen cityName o.ä.
+// mitführen. Locale-abhängig, daher beim getT-Aufruf berechnet.
+function getDefaultValues(locale: Locale): Record<string, string> {
+  return {
+    cityName: city.name[locale],
+    cityShortName: city.shortName[locale],
+  };
 }
 
 // Translator-Wrapper: String-basierte Keys + Values (statt der strikt
@@ -33,6 +44,7 @@ export function getT(locale: Locale, namespace?: string): Translator {
     namespace: namespace as any,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   }) as any;
+  const defaults = getDefaultValues(locale);
   return ((key: string, values?: Record<string, string | number>) =>
-    values ? t(key, values) : t(key)) as Translator;
+    t(key, values ? { ...defaults, ...values } : defaults)) as Translator;
 }

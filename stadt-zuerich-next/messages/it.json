@@ -1,6 +1,6 @@
 {
   "App": {
-    "title": "Macchina amministrativa della Città di Zurigo",
+    "title": "Macchina amministrativa della {cityName}",
     "subtitle": "Prototipo · Next.js"
   },
   "Nav": {
@@ -46,9 +46,9 @@
     "ariaLabel": "Treemap delle spese"
   },
   "List": {
-    "title": "Amministrazione della Città di Zurigo – panoramica gerarchica",
+    "title": "Amministrazione della {cityName} – panoramica gerarchica",
     "intro": "Questo elenco mostra gli stessi dati del diagramma grafico in forma semanticamente strutturata, per lettori di schermo e navigazione da tastiera. Tab per spostarsi nella gerarchia, Invio per espandere o chiudere un nodo.",
-    "ariaLabel": "Amministrazione della Città di Zurigo come gerarchia testuale",
+    "ariaLabel": "Amministrazione della {cityName} come gerarchia testuale",
     "beteiligungenHeading": "Partecipazioni e fondazioni"
   },
   "Detail": {
