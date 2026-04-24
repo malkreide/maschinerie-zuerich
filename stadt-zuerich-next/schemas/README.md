@@ -4,6 +4,26 @@ Portables JSON-Schema (Draft-07) zur Beschreibung von Verwaltungsprozessen.
 Jede Datei in `../data/prozesse/<city>/*.json` wird gegen
 [`opengov-process-schema.json`](./opengov-process-schema.json) validiert.
 
+## Stabile URL (für andere Städte / externe Tools)
+
+Das Schema liegt unter einer raw-fetchbaren URL — identisch mit dem `$id`
+im Schema selbst:
+
+```
+https://raw.githubusercontent.com/malkreide/maschinerie-zuerich/main/stadt-zuerich-next/schemas/opengov-process-schema.json
+```
+
+Andere Städte, die unsere „Maschinerie"-Visualisierung nutzen wollen,
+referenzieren diese URL als `$schema` in ihren Prozess-Dateien und können
+ihre Daten mit `ajv -s <URL> -d '<datei>.json' --strict=false` validieren,
+ohne den Repo klonen zu müssen. Die URL folgt dem `main`-Branch; wer
+Version-Stabilität will, pinnt einen Commit-SHA statt `main`.
+
+Schema-Referenz im Code (ajv kompiliert von der lokalen Datei): der `$id`
+ist nur Metadaten, der tatsächliche Load-Pfad steht in
+`scripts/validate-prozesse.mjs`. Schema-Content und URL müssen daher nur
+bei MAJOR-Bumps zueinander passen.
+
 ## Validieren
 
 ```bash

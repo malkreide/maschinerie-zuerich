@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://github.com/malkreide/maschinerie-zuerich/schemas/opengov-process-schema.json",
+  "$id": "https://raw.githubusercontent.com/malkreide/maschinerie-zuerich/main/stadt-zuerich-next/schemas/opengov-process-schema.json",
   "title": "OpenGov-Process-Schema",
   "description": "Portables Schema zur Beschreibung von Verwaltungsprozessen (Antragsverfahren, Bewilligungen, Meldungen). Zielpublikum: Bevölkerung + Behörden + Forschung. Ein Prozess = gerichteter Graph aus typisierten Schritten mit klaren Akteuren und geschätzten Dauern.",
   "type": "object",
