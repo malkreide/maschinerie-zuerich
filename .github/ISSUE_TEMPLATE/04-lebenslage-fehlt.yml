@@ -1,0 +1,45 @@
+name: "➕ Anliegen fehlt in der Suche"
+description: "Ein Bürger-Anliegen ist nicht in der Maschinerie-Suche hinterlegt — neuer Lebenslagen-Eintrag."
+title: "[Lebenslage fehlt]: "
+labels: ["daten", "lebenslage", "good first issue"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Dir fällt ein Anliegen ein, das typischerweise bei der Stadt
+        landet, aber in unserer Suche nicht gefunden wird? Melde es hier
+        — oder noch besser: öffne direkt einen PR gegen
+        `stadt-zuerich-next/data/zh/lebenslagen.json` mit dem neuen
+        Eintrag. Das Schema ist dokumentiert in CONTRIBUTING.md.
+
+  - type: input
+    id: anliegen
+    attributes:
+      label: Wie heisst das Anliegen in Bürgersprache?
+      description: Die Frage, die jemand stellen würde.
+      placeholder: "z.B. 'Kind zur Musikschule anmelden', 'Steuererklärung-Fristverlängerung'"
+    validations:
+      required: true
+
+  - type: input
+    id: stichworte
+    attributes:
+      label: Welche Wörter würdest du in die Suche eintippen?
+      description: Mit Komma trennen. Wichtig für die Fuzzy-Suche — umfasst auch Alltags-Slang.
+      placeholder: "hochzeit, heirat, trauung, ehe"
+    validations:
+      required: true
+
+  - type: input
+    id: zustaendig
+    attributes:
+      label: Welches Amt ist zuständig?
+      description: Falls bekannt — sonst lassen wir das beim Triage klären.
+      placeholder: "z.B. 'Bevölkerungsamt' oder Unit-ID aus data/zh/org-chart.json"
+
+  - type: textarea
+    id: antwort
+    attributes:
+      label: Ein-Satz-Antwort (falls du eine hast)
+      description: Wird in der Suchergebnis-Liste angezeigt.
+      placeholder: "z.B. 'Heiraten in Zürich läuft über das Zivilstandsamt (Teil des Bevölkerungsamts).'"

@@ -1,0 +1,72 @@
+name: "💡 Behördengang vereinfachen"
+description: "Konkreter Vorschlag, wie ein Prozess effizienter laufen könnte — der \"Pull Request\" für Leute, die nicht coden."
+title: "[Vorschlag]: "
+labels: ["vereinfachung", "verwaltung"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Der "Pull Request" ohne Code
+
+        Gute Ideen für einen einfacheren Behördengang brauchen keinen
+        GitHub-Account mit Programmierkenntnissen. Beschreib hier deinen
+        Vorschlag strukturiert — das Projekt dokumentiert ihn öffentlich
+        und macht ihn damit zum **zitierbaren Input** für die
+        Stadtverwaltung, die sich diese Issues aktiv anschauen kann.
+
+        Wer programmieren UND einen Vorschlag hat, kann direkt einen
+        echten Pull Request gegen `data/<stadt>/prozesse/` oder die
+        Lebenslagen öffnen. Siehe CONTRIBUTING.md.
+
+  - type: input
+    id: prozess
+    attributes:
+      label: Welcher Prozess?
+      placeholder: "z.B. 'Baugesuch einreichen' oder 'AHV-Zusatzleistung beantragen'"
+    validations:
+      required: true
+
+  - type: textarea
+    id: status-quo
+    attributes:
+      label: Status quo — wie läuft es heute?
+      description: Kurze Beschreibung des aktuellen Ablaufs (je konkreter, desto besser)
+      placeholder: |
+        Beispiel:
+        "1. Online-Formular ausfüllen
+         2. Formular ausdrucken und unterschreiben
+         3. Beilagen (Bauplan, Grundriss) separat per Post senden
+         4. Bestätigung per Post abwarten (~3 Wochen)
+         5. Terminvereinbarung für physische Vorlage"
+    validations:
+      required: true
+
+  - type: textarea
+    id: vorschlag
+    attributes:
+      label: Der Vorschlag
+      description: Wie könnte es stattdessen laufen? Was würde sich dadurch verbessern?
+      placeholder: |
+        Beispiel:
+        "Der Bauplan-Upload direkt im Online-Formular würde Schritte 2–4
+         ersetzen. Die physische Vorlage bleibt nur für den finalen
+         Sign-Off, bei dem sowieso ein Termin nötig ist."
+    validations:
+      required: true
+
+  - type: textarea
+    id: referenzen
+    attributes:
+      label: Referenzen (optional)
+      description: Läuft das anderswo schon so? Gibt es Studien, Berichte, andere Städte?
+      placeholder: "z.B. 'Stadt Basel hat das 2023 eingeführt — Link zur Meldung', oder 'EU-E-Government-Benchmark'"
+
+  - type: checkboxes
+    id: konsens
+    attributes:
+      label: Bestätigungen
+      options:
+        - label: Ich verstehe, dass der Vorschlag **öffentlich** dokumentiert wird.
+          required: true
+        - label: Ich habe oben eine konkrete aktuelle Situation UND eine konkrete Alternative beschrieben (keine reine Kritik).
+          required: true

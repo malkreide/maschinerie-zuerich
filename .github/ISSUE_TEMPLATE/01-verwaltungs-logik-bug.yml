@@ -1,0 +1,86 @@
+name: "🏛️ Verwaltungs-Logik-Bug"
+description: "Ein Behördengang ist umständlich, unklar oder die Zuständigkeit ist nicht nachvollziehbar."
+title: "[Logik-Bug]: "
+labels: ["logik-bug", "verwaltung"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Was ist ein "Verwaltungs-Logik-Bug"?
+
+        Nicht alle Probleme sind Code-Bugs. Manchmal funktioniert die App
+        einwandfrei, aber **der Prozess dahinter hat Tücken**:
+
+        - Ein Anliegen landet in drei Ämtern, obwohl eins reichen sollte.
+        - Die Zuständigkeit zwischen zwei Stellen ist nicht dokumentiert.
+        - Ein Formular verlangt Daten, die die Verwaltung schon hat.
+        - Eine Lebenslage ("Hund anmelden") braucht 4 Besuche für etwas,
+          das anderswo in 1 Klick läuft.
+
+        Diese Issues sind **bewusst Teil dieses Repos**, auch wenn sie
+        kein Code-Fix auslösen. Sie dokumentieren öffentlich, wo die
+        Verwaltungs-Logik hakt — und bilden die Grundlage für
+        Vereinfachungs-Vorschläge via Pull Request.
+
+        _(Für persönliche Beschwerden an ein Amt → siehe
+        [Kontakt Stadt Zürich](https://www.stadt-zuerich.ch/de/kontakt.html).)_
+
+  - type: input
+    id: prozess
+    attributes:
+      label: Welcher Behördengang / welche Lebenslage?
+      description: Titel, Lebenslagen-ID aus der Suche, oder direkter Link auf /anliegen?q=…
+      placeholder: "z.B. 'Umzug anmelden' oder lebenslagen-id: umzug-melden"
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Was ist das Problem?
+      description: Status quo beschreiben — was läuft heute schief oder umständlich?
+      placeholder: |
+        Beispiel:
+        "Beim Zuzug verlangt das Bevölkerungsamt eine Meldebestätigung, die
+        das alte Wohnamt ausstellen muss. Diese gleiche Information liegt
+        aber schon in der zentralen Einwohnerdatenbank — warum muss ich
+        sie nochmal papierform abholen?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: vorschlag
+    attributes:
+      label: Was würde es einfacher machen?
+      description: Optional — dein Vorschlag, falls du einen hast.
+      placeholder: "z.B. 'Direkter Abgleich zwischen Einwohnerämtern via Schnittstelle'"
+
+  - type: dropdown
+    id: quelle
+    attributes:
+      label: Woher die Erfahrung?
+      options:
+        - Selbst erlebt
+        - Von Bekannten / Angehörigen gehört
+        - Offizielle Quelle (Merkblatt, Verordnung, Zeitungsartikel)
+        - Schlussfolgerung aus den Daten der Maschinerie
+        - Andere
+    validations:
+      required: true
+
+  - type: input
+    id: beleg
+    attributes:
+      label: Beleg / Quelle (falls offiziell)
+      description: Optional — Link auf Merkblatt, Artikel, Gemeinderatsbeschluss, …
+      placeholder: "https://…"
+
+  - type: checkboxes
+    id: konsens
+    attributes:
+      label: Bestätigungen
+      options:
+        - label: Ich verstehe, dass dieses Issue **öffentlich** sichtbar ist und keine persönlichen Daten enthalten sollte.
+          required: true
+        - label: Ich melde hier einen Prozess-Mangel, keine persönliche Beschwerde an ein Amt.
+          required: true

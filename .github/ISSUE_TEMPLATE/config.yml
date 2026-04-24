@@ -1,0 +1,29 @@
+# Konfiguration für den "New Issue"-Chooser.
+#
+# `blank_issues_enabled: false` zwingt User, eine Template-Kategorie zu
+# wählen — das reduziert No-Context-Issues und hilft beim Triage.
+#
+# Die contact_links verweisen auf Kanäle, die für bestimmte Anliegen
+# besser geeignet sind als unser Repo (echte Beschwerden an die Stadt,
+# Sicherheits-Reports, Fragen die eher ein Chat sind).
+
+blank_issues_enabled: false
+
+contact_links:
+  - name: 📣 Echte Beschwerde / Verwaltungs-Anliegen an die Stadt Zürich
+    url: https://www.stadt-zuerich.ch/de/kontakt.html
+    about: |
+      Dieses Repo visualisiert die Verwaltung — es ist KEIN offizieller
+      Kanal zu den Ämtern. Für konkrete persönliche Anliegen (Gesuche,
+      Anträge, Beschwerden an ein Amt) wende dich direkt an die Stadt.
+
+  - name: 🔒 Sicherheits-Lücke melden (vertraulich)
+    url: https://github.com/malkreide/maschinerie-zuerich/security/advisories/new
+    about: |
+      Bitte nicht öffentlich als Issue. Siehe SECURITY.md.
+
+  - name: 💬 Frage / Diskussion ohne konkretes Issue
+    url: https://github.com/malkreide/maschinerie-zuerich/discussions
+    about: |
+      Für offene Fragen, Ideen-Austausch, "wäre es nicht sinnvoller,
+      wenn…"-Gespräche. Issues sind für konkrete, umsetzbare Dinge.

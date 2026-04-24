@@ -1,19 +1,52 @@
 # Mitmachen
 
 Danke für dein Interesse am Projekt «Maschinerie der Stadt Zürich»! Das
-Repo ist so gebaut, dass Beiträge aus verschiedenen Richtungen willkommen sind.
+Repo ist so gebaut, dass Beiträge aus verschiedenen Richtungen willkommen
+sind — **Code ist nur eine davon.**
+
+## Technik UND Verwaltungs-Logik
+
+Issues in diesem Repo sind bewusst nicht auf Code-Bugs beschränkt. Die
+Maschinerie visualisiert ein reales Verwaltungs-System, und dieses System
+hat seine eigenen "Bugs" — Prozesse, die umständlich sind, Zuständigkeiten,
+die nicht nachvollziehbar sind, Formulare, die Daten verlangen, die der
+Staat schon hat. Solche **Verwaltungs-Logik-Bugs** gehören ebenso in den
+Issue-Tracker wie kaputte React-Hooks.
+
+Das gleiche gilt für Pull Requests: ein PR kann Code-Änderung sein — oder
+eine Daten-Änderung, die einen Behördengang korrekter abbildet, ein
+Vorschlag für einen vereinfachten Prozess, eine bessere Suchwort-Liste.
+
+Der praktische Effekt:
+
+- **Bürger:innen** bekommen einen strukturierten, zitierbaren Kanal für
+  Verbesserungs-Ideen an die Stadtverwaltung — öffentlich und dauerhaft,
+  statt E-Mail-Versand ins Ungefähre.
+- **Verwaltung und Politik** sehen in aggregierter Form, wo Bürger:innen
+  an denselben Stellen hängenbleiben.
+- **Civic-Tech** kann Vorschläge aufgreifen und prototypisch umsetzen,
+  ohne auf offizielle Einladungen zu warten.
+
+Die Issue-Templates im `.github/ISSUE_TEMPLATE/`-Ordner sind entsprechend
+aufgebaut. Für persönliche Beschwerden an ein konkretes Amt bleibt
+allerdings der offizielle Kanal der richtige — das Issue-Repo ist für
+**strukturelle** Verbesserungen, nicht für Einzelfälle.
 
 ## Kategorien von Beiträgen
 
 | Was | Wie |
 |-----|-----|
-| **Übersetzung** einer Lebenslage in FR/IT | PR gegen [`stadt-zuerich-next/data/manual/lebenslagen.json`](stadt-zuerich-next/data/manual/lebenslagen.json) — Feld `i18n.fr` / `i18n.it` pro Eintrag |
+| 🏛️ **Verwaltungs-Logik-Bug** (umständlicher Behördengang, unklare Zuständigkeit) | Issue via Template "Verwaltungs-Logik-Bug" |
+| 💡 **Prozess-Vereinfachung** vorschlagen | Issue via Template "Behördengang vereinfachen" |
+| 🎯 **Falsche Zuständigkeit** in der Suche | Issue via Template oder direkt PR gegen `stadt-zuerich-next/data/zh/lebenslagen.json` (Feld `zustaendig`) |
+| ➕ **Fehlende Lebenslage** (Anliegen fehlt in der Suche) | Issue via Template oder PR gegen `stadt-zuerich-next/data/zh/lebenslagen.json` |
+| 🌍 **Übersetzung** einer Lebenslage in FR/IT/EN | PR gegen [`stadt-zuerich-next/data/zh/lebenslagen.json`](stadt-zuerich-next/data/zh/lebenslagen.json) — Feld `i18n.fr` / `i18n.it` pro Eintrag |
 | **Übersetzung** der UI-Chrome (Buttons, Überschriften) | PR gegen [`stadt-zuerich-next/messages/{fr,it}.json`](stadt-zuerich-next/messages/) |
 | **Leichte-Sprache-Review** | Issue mit Kommentar zu einer konkreten Datei in `messages/ls.json` |
-| **Bug-Report** | Issue mit Screenshot, Browser, URL |
-| **Feature-Idee** | Issue, damit wir vorher Scope klären |
-| **Daten-Pflege** (nach Wahlen, Reorganisationen) | PR gegen [`scripts/mapping/institution-mapping.json`](stadt-zuerich-next/scripts/mapping/institution-mapping.json) |
-| **Adaption für andere Stadt** | Fork — Änderungen an `data.json` und `i18n/routing.ts` reichen meistens |
+| 🐛 **App-Bug** (technischer Fehler) | Issue via Template "Technischer App-Bug" |
+| ✨ **App-Feature** | Issue via Template "Feature-Idee" |
+| 📊 **Daten-Pflege** (nach Wahlen, Reorganisationen) | PR gegen [`scripts/mapping/institution-mapping.json`](stadt-zuerich-next/scripts/mapping/institution-mapping.json) + ggf. `data/zh/org-chart.json` |
+| 🏙️ **Adaption für andere Stadt** | Fork + `npm run scaffold:city <id> "<name>"` — Details in [PORTING.md](stadt-zuerich-next/PORTING.md) |
 
 ## Entwicklungs-Setup
 
@@ -87,15 +120,15 @@ Renovate erstellt ausserdem ein zentrales [Dependency-Dashboard-Issue](https://g
 
 Wenn sich Struktur der Stadtverwaltung ändert (neue Dienstabteilung, Reorganisation):
 
-1. `scripts/mapping/institution-mapping.json` aktualisieren
-2. Falls neu: `data.json` im Repo-Root ergänzen (units / beteiligungen)
-3. `npm run data:fetch:force` lokal laufen lassen
-4. Resultat prüfen: Konflikte in `data.json` sind OK, wenn bewusst gesetzt
-5. PR mit einer Erklärung, woher die Änderung stammt (Stadtratsbeschluss, GRB, etc.)
+1. `stadt-zuerich-next/scripts/mapping/institution-mapping.json` aktualisieren (alte→neue IDs bei Umbenennungen).
+2. `stadt-zuerich-next/data/zh/org-chart.json` ergänzen, falls eine neue Einheit (Dienstabteilung / Amt / Beteiligung) dazukommt.
+3. `npm run data:fetch:force` lokal laufen lassen — generiert `data/zh/*.json` aus Quellen + Mapping neu.
+4. Resultat prüfen: Konflikte in den generierten Dateien sind OK, wenn bewusst gesetzt.
+5. PR mit einer Erklärung, woher die Änderung stammt (Stadtratsbeschluss, GRB, Medienmitteilung mit Datum etc.).
 
 ## Lebenslagen hinzufügen oder korrigieren
 
-`stadt-zuerich-next/data/manual/lebenslagen.json`:
+`stadt-zuerich-next/data/zh/lebenslagen.json`:
 
 ```json
 {
@@ -112,7 +145,7 @@ Wenn sich Struktur der Stadtverwaltung ändert (neue Dienstabteilung, Reorganisa
 }
 ```
 
-- Die `zustaendig`-ID muss in `data.json` existieren — der CI-Validator prüft das.
+- Die `zustaendig`-ID muss in `stadt-zuerich-next/data/zh/org-chart.json` existieren — der CI-Validator prüft das.
 - `i18n.de` ist Pflicht (die anderen Locales fallen auf `de` zurück, wenn leer).
 - Stichworte bitte klein, singular, ohne Sonderzeichen.
 - Für Übersetzungen nur die jeweiligen Locale-Slots (`fr`, `it`, …) füllen — Rest unverändert lassen.

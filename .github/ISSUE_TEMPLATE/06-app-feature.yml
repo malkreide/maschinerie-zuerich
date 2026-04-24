@@ -1,0 +1,34 @@
+name: "✨ Feature-Idee für die App"
+description: "Vorschlag für neue Funktionalität in der Maschinerie-App selbst."
+title: "[Feature]: "
+labels: ["enhancement", "app"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Für Ideen, die die **App** weiterbringen (neue Visualisierung,
+        bessere Suche, neue Export-Formate, …). Für Vorschläge, wie die
+        Stadt Zürich ihre Verwaltung effizienter organisieren könnte →
+        Template "Behördengang vereinfachen".
+
+  - type: textarea
+    id: idee
+    attributes:
+      label: Die Idee
+      description: Was soll die App können?
+    validations:
+      required: true
+
+  - type: textarea
+    id: nutzen
+    attributes:
+      label: Für wen bringt das was?
+      description: Bürger:innen? Journalist:innen? Andere Städte, die den Fork nutzen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternativen
+    attributes:
+      label: Alternativen (optional)
+      description: Gibt es andere Wege, das gleiche Ziel zu erreichen?
