@@ -17,6 +17,7 @@ import { loadProzess, listProzessParams } from '@/lib/prozesse';
 import { loadStadtData } from '@/lib/data';
 import { city as cityConfig } from '@/config/city.config';
 import { layoutProzess } from '@/lib/prozess-layout';
+import { prozessToJsonLd } from '@/lib/prozess-jsonld';
 import { resolveI18n, type ProzessLocale, type Dauer } from '@/types/prozess';
 import type { Department, Unit, Beteiligung, StadtData } from '@/types/stadt';
 import ProzessFlow, {
@@ -164,11 +165,31 @@ export default async function ProzessDetailPage({
   const titel = resolveI18n(prozess.titel, lebLoc);
   const kurz  = resolveI18n(prozess.kurzbeschreibung, lebLoc);
 
+  // schema.org/GovernmentService als JSON-LD für Suchmaschinen. Absolute
+  // URL aus NEXT_PUBLIC_SITE_URL (gleiche Konvention wie sitemap.ts), damit
+  // `@id`/`mainEntityOfPage` canonical sind. Lokal ohne Env fällt das auf
+  // die Vercel-Default-URL zurück — harmlos, weil JSON-LD-Discovery erst
+  // in Produktion relevant ist.
+  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL
+                   ?? 'https://maschinerie-zuerich.vercel.app').replace(/\/$/, '');
+  const localePrefix = loc === routing.defaultLocale ? '' : `/${loc}`;
+  const canonicalUrl = `${baseUrl}${localePrefix}/prozesse/${city}/${id}`;
+  const jsonLd = prozessToJsonLd(prozess, { locale: loc, canonicalUrl });
+
   return (
     <main
       className="absolute top-14 inset-x-0 bottom-0 px-6 pt-4 pb-10 overflow-y-auto bg-[var(--color-bg)]"
       aria-labelledby="prozess-heading"
     >
+      {/* JSON-LD: macht die Seite für Google/Bing als GovernmentService
+          maschinenlesbar. Im <main> statt <head>, weil Next.js App Router
+          das server-gerenderte <script> im Body ohne Lifecycle-Knie
+          unterbringt — Suchmaschinen parsen beide Orte gleich. */}
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <nav aria-label="Breadcrumb" className="text-[13px] text-[var(--color-mute)] mb-3">
         <Link href={{ pathname: '/prozesse' }} className="hover:underline">
           {t('title')}
