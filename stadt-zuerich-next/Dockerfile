@@ -7,11 +7,16 @@
 #   builder → kompiliert Next.js mit output=standalone
 #   runner  → schlanker Runtime (~150 MB), läuft als non-root user
 #
-# Die Node-Version kommt aus dem Alpine-Image (Pin auf 20.20 — siehe
-# package.json → engines.node >=20.20.2). Beim Upgrade hier UND in
-# package.json bumpen, sonst entsteht Version-Drift.
+# Die Node-Version kommt aus dem Alpine-Image. Sie muss mit der CI-
+# Version (.github/workflows/ci.yml → node-version) übereinstimmen,
+# sonst löst der npm-Resolver unterschiedliche Peer-Dep-Versionen auf
+# und `npm ci` bricht ab mit "Missing: X from lock file".
+#
+# Aktuell: Node 24-alpine (matcht CI + lokales Dev-Setup).
+# package.json → engines.node >=20.20.2 bleibt absichtlich permissiv,
+# damit Downstream-Forks auch auf Node 20 bauen können.
 
-ARG NODE_VERSION=20.20-alpine
+ARG NODE_VERSION=24-alpine
 
 # ─── Stage 1: deps ──────────────────────────────────────────────────────────
 # Installiert nur die Abhängigkeiten. Eigener Stage, damit `npm ci` nur
