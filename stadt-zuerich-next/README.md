@@ -22,6 +22,26 @@ D3 und offenen Daten aus `data.stadt-zuerich.ch` (CC-BY 4.0).
 > [How-To](#how-to-eigene-stadt-abbilden) und
 > [PORTING.md](PORTING.md).
 
+## Mit einem Klick starten
+
+Für alle, die das Ding erstmal nur anschauen oder für ihre Stadt als
+Template verwenden wollen — ohne vorher Node, Git oder Docker zu
+installieren:
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fmalkreide%2Fmaschinerie-zuerich&root-directory=stadt-zuerich-next&project-name=maschinerie&repository-name=maschinerie)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/malkreide/maschinerie-zuerich)
+[![Use this template](https://img.shields.io/badge/Use%20this%20template-2ea44f?logo=github)](https://github.com/malkreide/maschinerie-zuerich/generate)
+
+- **Vercel** — Fork + Live-Preview unter eigener Subdomain, Build in ~2 Min.
+- **Codespaces** — fertige Dev-Umgebung im Browser (Node 20 vorinstalliert,
+  Port 3000 automatisch weitergeleitet). Nach dem Start einfach
+  `cd stadt-zuerich-next && npm run dev`.
+- **Use this template** — neues Repo mit der Maschinerie als Basis,
+  ohne Commit-History. Ideal als Startpunkt für eine andere Stadt
+  (Genf, Bern, Winterthur, …) — siehe [PORTING.md](PORTING.md).
+
+Oder lokal:
+
 ## Quickstart
 
 Node ≥ 20.20.2 vorausgesetzt. Die aktuelle Datenbasis (Organigramm,
@@ -56,6 +76,14 @@ docker compose up app
 # ETL-Pipeline einmalig laufen lassen (aktualisiert data/*.json im Repo):
 #   braucht .env.local mit RPK_API_KEY — siehe .env.example
 docker compose --profile etl run --rm etl
+```
+
+Oder direkt das pre-built Image von GitHub Container Registry pullen —
+kein lokaler Build nötig (GitHub Actions baut `main` automatisch
+für `linux/amd64` und `linux/arm64`):
+
+```bash
+docker run -p 3000:3000 ghcr.io/malkreide/maschinerie-zuerich:latest
 ```
 
 Der Build ist multi-stage (`deps` → `builder` → `runner`); das Runtime-
