@@ -116,6 +116,30 @@ npm run data:fetch        # ETL einmal laufen lassen (data.json erzeugen)
 npm run dev               # http://localhost:3000
 ```
 
+## Docker
+
+Wer keine passende Node-Version installieren mag: die App läuft komplett
+isoliert in Docker, ohne lokale Node-/npm-Installation.
+
+```bash
+# Web-UI auf http://localhost:3000
+docker compose up app
+
+# ETL-Pipeline einmalig laufen lassen (aktualisiert data/*.json im Repo):
+#   braucht .env.local mit RPK_API_KEY — siehe .env.example
+docker compose --profile etl run --rm etl
+```
+
+Der Build ist multi-stage (`deps` → `builder` → `runner`); das Runtime-Image
+liegt bei ~150 MB und läuft als non-root User. Der ETL-Service hängt an einem
+Compose-Profil (`--profile etl`) und startet NICHT bei `docker compose up` —
+ETL ist ein einmaliger Lauf, kein Daemon. Die `./data/`-Mounts im ETL-Service
+sorgen dafür, dass frisch geholte JSONs in deinem Arbeitsverzeichnis landen
+und nicht im Container verloren gehen.
+
+Für Production-Deploys (Vercel/Netlify/eigener Server) ist Docker optional —
+`output: 'standalone'` in `next.config.ts` funktioniert überall.
+
 ## Environment-Variablen
 
 Optional, beeinflussen nur die Produktion:

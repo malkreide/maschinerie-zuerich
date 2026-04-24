@@ -9,6 +9,13 @@ import type { NextConfig } from 'next';
 const config: NextConfig = {
   reactStrictMode: true,
   experimental: { optimizePackageImports: ['d3-hierarchy', 'd3-scale'] },
+  // Für Docker: minimaler Runtime-Bundle unter `.next/standalone/`, der
+  // nur die tatsächlich benötigten node_modules enthält. Der Runtime-Stage
+  // im Dockerfile kopiert NUR diesen Ordner + `.next/static/` — der
+  // Production-Image-Size bleibt damit unter 200 MB, ohne dass wir die
+  // volle `node_modules/` (~500 MB) einbacken müssen.
+  // Für Vercel/Netlify/etc. ist die Option harmlos (ignoriert).
+  output: 'standalone',
 };
 
 export default config;

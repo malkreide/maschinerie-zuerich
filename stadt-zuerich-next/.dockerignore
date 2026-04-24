@@ -1,0 +1,31 @@
+# Ausgeschlossen, damit der Build-Kontext klein bleibt und keine
+# Secrets / Build-Outputs versehentlich ins Image wandern.
+
+# Node + Next Build-Outputs (werden im Image frisch erzeugt)
+node_modules
+.next
+out
+
+# Git + Editor
+.git
+.gitignore
+.vscode
+.idea
+*.swp
+.DS_Store
+
+# Env mit Secrets
+.env
+.env.local
+.env.*.local
+
+# ETL-Cache (gitignored, kann riesig sein — wird bei Bedarf via ETL neu geholt)
+data/raw
+
+# Docker-Artefakte selber nicht nochmal reinkopieren
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Dokumentation — nicht laufzeitrelevant
+*.md

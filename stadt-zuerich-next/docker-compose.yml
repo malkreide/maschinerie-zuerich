@@ -1,0 +1,62 @@
+# Compose-Setup für die Maschinerie.
+#
+# Zwei Services, beide aus demselben Dockerfile gebaut, nur unterschiedliche
+# Build-Targets:
+#
+#   app  → Production-Webserver (standalone, Port 3000)
+#   etl  → Einmal-Lauf für die Datenaktualisierung (ruft `npm run data:fetch`,
+#          braucht die kompletten node_modules + scripts/, nicht nur den
+#          Standalone-Bundle). Profil-gated, läuft NICHT bei `compose up`.
+#
+# Aufrufe:
+#   docker compose up app                       # Web-UI auf localhost:3000
+#   docker compose --profile etl run --rm etl   # Daten neu holen
+#
+# Für die ETL-Variante muss eine .env.local mit dem nötigen API-Key
+# neben dieser Datei liegen (siehe .env.example).
+
+services:
+  app:
+    build:
+      context: .
+      target: runner
+    image: maschinerie:latest
+    container_name: maschinerie-app
+    ports:
+      - "3000:3000"
+    environment:
+      # NEXT_PUBLIC_SITE_URL kommt in die Sitemap/JSON-LD als kanonische
+      # Basis-URL. Für lokales Docker reicht der Default; Production-Deploy
+      # überschreibt via `.env` oder Orchestrator-Secrets.
+      NEXT_PUBLIC_SITE_URL: "${NEXT_PUBLIC_SITE_URL:-http://localhost:3000}"
+    restart: unless-stopped
+    healthcheck:
+      # Redundant zum HEALTHCHECK im Dockerfile, aber Compose zeigt's in `ps`.
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:3000/robots.txt"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+  etl:
+    build:
+      context: .
+      # `builder`-Stage hat node_modules + scripts/ + data/ vollständig —
+      # genau das, was die Fetch-Pipeline braucht.
+      target: builder
+    image: maschinerie-etl:latest
+    container_name: maschinerie-etl
+    profiles: ["etl"]         # nur aktiv, wenn `--profile etl` angegeben
+    env_file:
+      - path: .env.local
+        required: false        # fehlt locally ok, CI setzt Env anders
+    environment:
+      # Überschreibbar per `BUDGET_JAHR=2024 docker compose --profile etl run etl`
+      BUDGET_JAHR: "${BUDGET_JAHR:-}"
+      BUDGET_BETRAGSTYP: "${BUDGET_BETRAGSTYP:-}"
+    volumes:
+      # data/ als Read-Write-Mount, damit die ETL-Skripte ihren Cache und
+      # die aktualisierten Org-Chart-/Budget-JSONs in deinem lokalen
+      # Arbeitsverzeichnis persistieren statt im Container verloren zu gehen.
+      - ./data:/app/data
+    command: ["npm", "run", "data:fetch"]
