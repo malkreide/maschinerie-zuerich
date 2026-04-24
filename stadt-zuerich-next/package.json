@@ -2,6 +2,8 @@
   "name": "stadt-zuerich-next",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
+  "author": "Hayal Oezkan",
   "engines": {
     "node": ">=20.20.2"
   },

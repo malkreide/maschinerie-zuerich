@@ -76,6 +76,11 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder --chown=nextjs:nodejs /app/data ./data
 COPY --from=builder --chown=nextjs:nodejs /app/config ./config
 
+# LICENSE ins Image mitnehmen — MIT verlangt, dass die Copyright-Notice
+# "in all copies or substantial portions of the Software" enthalten ist,
+# und ein verteiltes Docker-Image zählt als Kopie.
+COPY --from=builder --chown=nextjs:nodejs /app/LICENSE ./LICENSE
+
 USER nextjs
 
 EXPOSE 3000

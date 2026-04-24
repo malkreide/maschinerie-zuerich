@@ -241,3 +241,16 @@ automatische Sprach-Matching beim ersten Besuch:
   geht der Browser standardmässig auf `/` (Deutsch), unabhängig von der
   Browser-Sprache. `next-intl` hat dafür `localeDetection: true`, müsste
   in `routing.ts` aktiviert werden.
+
+## Lizenz
+
+**MIT** — siehe [LICENSE](LICENSE).
+
+Kurz: forken, umbauen, publizieren — privat oder kommerziell — ist
+ausdrücklich erwünscht, solange die Copyright-Notice in der Kopie bleibt.
+Genau das erlaubt das [Template-System für City-Forks](PORTING.md).
+
+**Datenquellen sind separat lizenziert.** Die aus `data.stadt-zuerich.ch`
+geladenen Roh-Daten stehen unter **CC-BY 4.0** (Stadt Zürich) — bei
+Weiterverwendung muss die Quelle attribuiert werden. Details dazu stehen
+im LICENSE-Anhang und auf <https://data.stadt-zuerich.ch/terms-of-use>.
