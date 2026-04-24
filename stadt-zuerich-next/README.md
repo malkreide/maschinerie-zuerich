@@ -362,6 +362,37 @@ Der Prototyp bleibt als minimaler Referenz-Fall erhalten.
   würde Redirect-Verhalten für Erstbesuche einführen (englischer Browser
   → `/en`), das braucht einen genauen UX-Entscheid.
 
+## Mitwirken
+
+Beiträge sind ausdrücklich erwünscht — **Code ist nur eine Form davon.**
+Die Maschinerie bildet ein reales Verwaltungs-System ab, und dieses
+System hat seine eigenen "Bugs": umständliche Prozesse, unklare
+Zuständigkeiten, Formulare, die Daten verlangen, die der Staat schon hat.
+Solche **Verwaltungs-Logik-Bugs** gehören in den Issue-Tracker — genauso
+wie kaputte React-Hooks.
+
+Konkret:
+
+- 🏛️ **Verwaltungs-Logik-Bug melden** (umständlicher Behördengang,
+  unklare Zuständigkeit) → [neues Issue](../../issues/new/choose),
+  Template *"Verwaltungs-Logik-Bug"*.
+- 💡 **Prozess-Vereinfachung vorschlagen** — ein "Pull Request" an die
+  Stadtverwaltung ohne Code → Template *"Behördengang vereinfachen"*.
+- 🎯 **Falsche Zuständigkeit** / ➕ **fehlende Lebenslage** in der
+  Suche → Issue via Template oder direkt PR gegen
+  [`data/zh/lebenslagen.json`](data/zh/lebenslagen.json).
+- 🐛 **App-Bug** / ✨ **Feature-Idee** → entsprechende Issue-Templates.
+- 🌍 **Übersetzung** (FR/IT/EN oder Leichte Sprache) → PR gegen
+  [`data/zh/lebenslagen.json`](data/zh/lebenslagen.json) (Lebenslagen)
+  oder [`messages/`](messages/) (UI-Chrome).
+
+Ausführliche Anleitung + Checklisten in der
+[CONTRIBUTING.md](../CONTRIBUTING.md) im Repo-Root.
+
+Für persönliche Beschwerden an ein konkretes Amt bleibt allerdings der
+[offizielle Kanal](https://www.stadt-zuerich.ch/kontakt) der richtige —
+dieses Repo ist für **strukturelle** Verbesserungen gedacht.
+
 ## Lizenz
 
 **MIT** — siehe [LICENSE](LICENSE).

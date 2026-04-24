@@ -1,0 +1,51 @@
+name: "🎯 Falsche Zuständigkeit in der Suche"
+description: "Die App verweist bei einem Anliegen auf das falsche Amt — ein Daten-Fix."
+title: "[Zuständigkeit]: "
+labels: ["daten", "zustaendigkeit"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Du hast in der Maschinerie-Suche (`/anliegen`) nach einem Anliegen
+        gesucht, und die vorgeschlagene zuständige Stelle stimmt nicht?
+        Das ist ein **Daten-Problem**, das wir per PR fixen können.
+
+        Wenn du einen GitHub-Account hast und den Fix direkt einreichen
+        willst: die Lebenslagen liegen in
+        `stadt-zuerich-next/data/zh/lebenslagen.json` — ein PR gegen das
+        `zustaendig`-Feld reicht.
+
+  - type: input
+    id: anliegen
+    attributes:
+      label: Welches Anliegen?
+      description: Titel aus der Suche oder Lebenslagen-ID
+      placeholder: "z.B. 'Hund anmelden' oder hund-anmelden"
+    validations:
+      required: true
+
+  - type: input
+    id: aktuell
+    attributes:
+      label: Wohin verweist die App aktuell?
+      description: Name oder ID des aktuell angezeigten Amts
+      placeholder: "z.B. 'Steueramt (FD-st)'"
+    validations:
+      required: true
+
+  - type: input
+    id: richtig
+    attributes:
+      label: Was wäre die richtige Stelle?
+      placeholder: "z.B. 'Bevölkerungsamt (SiD-bev)'"
+    validations:
+      required: true
+
+  - type: textarea
+    id: begruendung
+    attributes:
+      label: Woher weisst du das?
+      description: Offizielle Quelle, eigene Erfahrung, …
+      placeholder: "z.B. 'Auf stadt-zuerich.ch/hund steht das Bevölkerungsamt als Ansprechstelle' (Link)"
+    validations:
+      required: true

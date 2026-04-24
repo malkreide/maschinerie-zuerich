@@ -1,0 +1,49 @@
+name: "🐛 Technischer App-Bug"
+description: "Die Maschinerie selbst hat einen Bug — Fehler, Darstellungsproblem, kaputter Link."
+title: "[Bug]: "
+labels: ["bug", "app"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Für technische Probleme mit der Web-App (Fehler, falsche
+        Darstellung, Graph lädt nicht, …). Für Logik-Probleme in den
+        Daten oder im Verwaltungsprozess → separate Templates.
+
+  - type: input
+    id: url
+    attributes:
+      label: URL
+      description: Wo ist der Bug aufgetreten?
+      placeholder: "https://maschinerie-zuerich.vercel.app/?focus=FD-st"
+    validations:
+      required: true
+
+  - type: textarea
+    id: was-passiert
+    attributes:
+      label: Was passiert?
+      placeholder: |
+        z.B. "Nach Klick auf das Steueramt bleibt das Detail-Panel leer,
+        in der Console steht 'TypeError: Cannot read properties of null'."
+    validations:
+      required: true
+
+  - type: textarea
+    id: erwartet
+    attributes:
+      label: Was sollte passieren?
+    validations:
+      required: true
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser / OS
+      placeholder: "z.B. 'Firefox 134 auf Windows 11' oder 'Safari iOS 17'"
+
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Screenshot oder Screen-Recording (optional)
+      description: Drag & Drop ins Feld — GitHub lädt es automatisch hoch.
