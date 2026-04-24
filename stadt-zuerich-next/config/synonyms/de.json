@@ -1,0 +1,348 @@
+{
+  "_doc": [
+    "Synonym-Cluster für die Lebenslagen-Suche (Locale: de-CH).",
+    "",
+    "Jeder Cluster ist ein ungerichteter Äquivalenz-Pool: wenn eine Lebenslage",
+    "irgendeinen Term aus dem Cluster in ihren indexierten Feldern (frage,",
+    "antwort, stichworte) enthält, werden ALLE anderen Terme aus dem Cluster",
+    "automatisch als zusätzliche Suchbegriffe in einem _synonyms-Feld angehängt.",
+    "",
+    "Dadurch matcht 'Hochzeit' die Lebenslage 'heiraten' (die 'heirat' in",
+    "stichworte führt), ohne dass die Datenautor:innen an jeden Eintrag manuell",
+    "alltagssprachliche Varianten schreiben müssen.",
+    "",
+    "Regeln:",
+    " • Nur Einzelwörter, keine Phrasen ('blaue zone' → einzeln 'blau', 'zone').",
+    " • Kleinschreibung (das Such-Tokenizing normalisiert Input auf lower-case).",
+    " • Wenn ein Term in mehreren Clustern Sinn ergibt, darf er mehrfach",
+    "   vorkommen — die Expansion vereinigt alle zugehörigen Cluster.",
+    " • Fork für andere Städte: Cluster hier anpassen, dann reicht es den",
+    "   lokalen Jargon (z. B. 'TED' durch 'voirie' für Genf) zu ersetzen."
+  ],
+  "clusters": [
+    {
+      "concept": "abfall-entsorgung",
+      "terms": [
+        "abfall", "abfälle", "müll", "muell",
+        "kehricht", "kehrichtabfuhr", "abfuhr",
+        "entsorgung", "entsorgen",
+        "recycling", "wiederverwertung",
+        "sperrgut", "sperrmüll", "grobabfall",
+        "tonne", "container", "mulde",
+        "altglas", "glas", "altpapier", "papier", "karton",
+        "bioabfall", "grüngut", "kompost",
+        "erz"
+      ]
+    },
+    {
+      "concept": "heirat-zivilstand",
+      "terms": [
+        "heirat", "heiraten", "vermählung",
+        "hochzeit", "trauung", "ehe", "eheschliessung", "eheschließung",
+        "zivilstand", "zivilstandsamt",
+        "partnerschaft", "lebenspartnerschaft", "verpartnern",
+        "scheidung", "ehescheidung",
+        "namensänderung", "namensaenderung", "doppelname",
+        "geburt", "geburtsurkunde",
+        "todesfall", "tod", "sterbefall"
+      ]
+    },
+    {
+      "concept": "pass-ausweis",
+      "terms": [
+        "pass", "reisepass", "passport",
+        "ausweis", "id", "identitätskarte", "identitaetskarte", "idk",
+        "identität", "identitaet",
+        "verloren", "verlust", "gestohlen",
+        "bevölkerungsamt", "bevoelkerungsamt"
+      ]
+    },
+    {
+      "concept": "umzug-einwohner",
+      "terms": [
+        "umzug", "umziehen",
+        "zuzug", "zuziehen", "neu",
+        "wegzug", "wegziehen",
+        "anmeldung", "anmelden",
+        "abmeldung", "abmelden",
+        "wohnsitz", "adresse", "adressänderung", "adressaenderung",
+        "meldepflicht", "einwohnerkontrolle", "einwohneramt"
+      ]
+    },
+    {
+      "concept": "schule-bildung",
+      "terms": [
+        "schule", "schulamt", "schulbehörde", "schulbehoerde",
+        "einschulung", "schulstart", "erstklässler", "erstklaessler",
+        "kindergarten", "chindsgi",
+        "primarschule", "primar",
+        "sekundarschule", "sekundar", "sek",
+        "schulkreis", "schulhaus",
+        "unterricht", "pflichtschule",
+        "schulferien", "ferien"
+      ]
+    },
+    {
+      "concept": "kinderbetreuung",
+      "terms": [
+        "kita", "kinderkrippe", "krippe", "kindertagesstätte", "kindertagesstaette",
+        "hort", "mittagstisch",
+        "tagesschule", "tagi",
+        "tagesbetreuung", "kinderbetreuung", "betreuung",
+        "tagesfamilie", "tageseltern"
+      ]
+    },
+    {
+      "concept": "hund-haustier",
+      "terms": [
+        "hund", "hunde", "welpe", "dackel",
+        "hundesteuer", "hundemarke",
+        "haustier", "katze", "kater",
+        "tierhaltung"
+      ]
+    },
+    {
+      "concept": "sozialhilfe-unterstützung",
+      "terms": [
+        "sozialhilfe", "sozialamt", "soziale",
+        "fürsorge", "fuersorge",
+        "unterstützung", "unterstuetzung", "hilfe",
+        "notlage", "notsituation",
+        "armut", "armutsgefährdung", "armutsgefaehrdung",
+        "finanzielle", "geld",
+        "grundbedarf"
+      ]
+    },
+    {
+      "concept": "alter-rente",
+      "terms": [
+        "ahv", "iv",
+        "rente", "pension",
+        "altersvorsorge", "vorsorge",
+        "zusatzleistung", "zusatzleistungen", "zl",
+        "ergänzungsleistung", "ergaenzungsleistung", "el",
+        "senior", "seniorin", "pensionierung"
+      ]
+    },
+    {
+      "concept": "kesb-beistand",
+      "terms": [
+        "kesb",
+        "beistand", "beistandschaft",
+        "vormund", "vormundschaft",
+        "adoption", "adoptieren",
+        "pflegekind", "pflegefamilie",
+        "kindesschutz", "kindswohl",
+        "erwachsenenschutz"
+      ]
+    },
+    {
+      "concept": "asyl-migration",
+      "terms": [
+        "asyl", "asylsuchende", "asylbewerber",
+        "flüchtling", "fluechtling", "geflüchtet", "gefluechtet",
+        "aufnahme", "unterbringung",
+        "migration", "ausländer", "auslaender",
+        "integration", "deutschkurs",
+        "aoz"
+      ]
+    },
+    {
+      "concept": "lehre-beruf",
+      "terms": [
+        "lehre", "lehrstelle", "lehrvertrag", "lehrling",
+        "berufsbildung", "berufsberatung", "berufsberater",
+        "berufswahl", "schnupperlehre",
+        "ausbildung", "laufbahn", "laufbahnzentrum",
+        "praktikum"
+      ]
+    },
+    {
+      "concept": "bauen-baugesuch",
+      "terms": [
+        "baugesuch", "baubewilligung", "baueingabe",
+        "bauen", "neubau", "umbau", "anbau", "aufstockung",
+        "sanierung", "renovation", "renovieren",
+        "bauherr", "bauherrin", "bauleitung",
+        "bauamt", "hochbau"
+      ]
+    },
+    {
+      "concept": "wohnen-miete",
+      "terms": [
+        "wohnung", "wohnungssuche",
+        "miete", "mieten", "mieter", "mieterin",
+        "stadtwohnung", "mietwohnung",
+        "wohnbau", "wohnbaugenossenschaft",
+        "gemeinnützig", "gemeinnuetzig",
+        "wohnberechtigt", "wbs"
+      ]
+    },
+    {
+      "concept": "steuern",
+      "terms": [
+        "steuer", "steuern", "steueramt",
+        "steuererklärung", "steuererklaerung",
+        "veranlagung", "einschätzung", "einschaetzung",
+        "fristverlängerung", "fristverlaengerung",
+        "quellensteuer"
+      ]
+    },
+    {
+      "concept": "strom-energie",
+      "terms": [
+        "strom", "stromanschluss", "elektrizität", "elektrizitaet",
+        "ewz", "energie", "energieversorgung"
+      ]
+    },
+    {
+      "concept": "wasser",
+      "terms": [
+        "wasser", "trinkwasser",
+        "wasseranschluss", "wasserversorgung",
+        "leitung", "hauptleitung",
+        "abwasser", "kanalisation"
+      ]
+    },
+    {
+      "concept": "oev-tram-bus",
+      "terms": [
+        "öv", "oev", "nahverkehr", "verkehrsbetriebe",
+        "tram", "strassenbahn",
+        "bus", "trolleybus",
+        "vbz", "zvv",
+        "abo", "monatsabo", "jahresabo", "ticket", "billet",
+        "haltestelle"
+      ]
+    },
+    {
+      "concept": "pflege-alter",
+      "terms": [
+        "pflege", "pflegeheim", "pflegebedürftig", "pflegebeduerftig",
+        "altersheim", "altersbetreuung", "alterszentrum",
+        "seniorenheim", "altenpflege",
+        "spitex",
+        "demenz", "alzheimer"
+      ]
+    },
+    {
+      "concept": "spital-medizin",
+      "terms": [
+        "spital", "krankenhaus", "klinik",
+        "stadtspital", "triemli", "waid",
+        "behandlung", "operation", "op",
+        "notfall", "notfallstation",
+        "sprechstunde", "ambulant", "stationär", "stationaer"
+      ]
+    },
+    {
+      "concept": "musik-kultur",
+      "terms": [
+        "musik", "musikschule", "musikunterricht",
+        "instrument", "klavier", "geige", "gitarre",
+        "konservatorium", "mkz",
+        "orchester", "chor", "singen"
+      ]
+    },
+    {
+      "concept": "sport-bad",
+      "terms": [
+        "sport", "sportamt", "sportanlage",
+        "schwimmbad", "hallenbad", "freibad", "badi",
+        "turnhalle", "sporthalle",
+        "eisbahn", "kunsteisbahn",
+        "fussballplatz", "fußballplatz", "fussball", "fußball"
+      ]
+    },
+    {
+      "concept": "laerm-umwelt",
+      "terms": [
+        "lärm", "laerm", "ruhestörung", "ruhestoerung", "nachtruhe",
+        "luft", "luftqualität", "luftqualitaet", "feinstaub",
+        "umwelt", "umweltschutz",
+        "lebensmittel", "lebensmittelkontrolle",
+        "gastronomie", "restaurant",
+        "ugz"
+      ]
+    },
+    {
+      "concept": "polizei-anzeige",
+      "terms": [
+        "polizei", "stadtpolizei", "stapo",
+        "kantonspolizei",
+        "anzeige", "strafanzeige",
+        "diebstahl", "velodiebstahl", "einbruch",
+        "verkehrsunfall", "unfall",
+        "sicherheit"
+      ]
+    },
+    {
+      "concept": "feuer-rettung",
+      "terms": [
+        "feuerwehr", "brand", "feuer",
+        "sanität", "sanitaet", "ambulanz", "rettung",
+        "notfall", "notruf", "112", "144",
+        "schutz", "srz"
+      ]
+    },
+    {
+      "concept": "bussen",
+      "terms": [
+        "busse", "bussen", "bußgeld", "bussgeld",
+        "parkbusse", "parkbuße",
+        "strafmandat", "strafzettel",
+        "ordnungsbusse", "ordnungsbuße",
+        "stadtrichter", "stadtrichteramt"
+      ]
+    },
+    {
+      "concept": "parken",
+      "terms": [
+        "parken", "parkieren", "parkplatz", "parkfeld",
+        "parkkarte", "anwohnerparkkarte", "bewohnerparkkarte",
+        "blau", "zone", "weiss", "weiß",
+        "parkgebühr", "parkgebuehr",
+        "parkhaus", "tiefgarage"
+      ]
+    },
+    {
+      "concept": "betreibung-schulden",
+      "terms": [
+        "betreibung", "betreibungsamt",
+        "schulden", "mahnung",
+        "konkurs", "privatkonkurs",
+        "register", "betreibungsregister", "betreibungsauszug",
+        "pfändung", "pfaendung",
+        "stadtammann", "stadtammannamt"
+      ]
+    },
+    {
+      "concept": "archiv-geschichte",
+      "terms": [
+        "archiv", "stadtarchiv",
+        "akten", "aktenbestand",
+        "familienforschung", "ahnenforschung", "ahnen",
+        "geschichte", "historisch",
+        "chronik"
+      ]
+    },
+    {
+      "concept": "statistik-daten",
+      "terms": [
+        "statistik",
+        "bevölkerungszahl", "bevoelkerungszahl", "bevölkerung", "bevoelkerung", "einwohnerzahl",
+        "daten", "zahlen",
+        "opendata", "offene"
+      ]
+    },
+    {
+      "concept": "reinigung-winter",
+      "terms": [
+        "stadtreinigung", "strassenreinigung", "straßenreinigung",
+        "reinigung", "putzen", "sauber",
+        "schnee", "schneeräumung", "schneeraeumung",
+        "winterdienst", "salz", "streudienst"
+      ]
+    }
+  ]
+}

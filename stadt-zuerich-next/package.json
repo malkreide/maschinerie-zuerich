@@ -15,7 +15,8 @@
     "data:fetch:force": "node scripts/build-data.mjs --force",
     "validate:prozesse": "node scripts/validate-prozesse.mjs",
     "migrate:schema:v2": "node scripts/migrate-prozesse-schema-v2.mjs",
-    "scaffold:city": "node scripts/scaffold-city.mjs"
+    "scaffold:city": "node scripts/scaffold-city.mjs",
+    "probe:search": "node scripts/probe-search.mjs"
   },
   "dependencies": {
     "@xyflow/react": "^12.10.2",
@@ -25,6 +26,7 @@
     "d3-scale": "^4.0.2",
     "d3-scale-chromatic": "^3.1.0",
     "d3-selection": "^3.0.0",
+    "fuse.js": "^7.3.0",
     "next": "^16.2.4",
     "next-intl": "^4.9.1",
     "react": "^19.2.5",
