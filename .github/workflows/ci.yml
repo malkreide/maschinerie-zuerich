@@ -24,30 +24,39 @@ jobs:
       - run: npm run lint
 
   data-validation:
-    name: data.json + lebenslagen.json validieren
+    name: org-chart.json + lebenslagen.json validieren
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
         with:
           node-version: 24.15.0
+      # Pfade spiegeln die data/zh/-Struktur (scaffold:city legt dieselbe
+      # Form für jede weitere Stadt an). Früher lagen diese Dateien in
+      # stadt-zuerich-next/data.json bzw. data/manual/lebenslagen.json —
+      # der Job lief seitdem ins Leere. Siehe PR #29.
       - name: Syntax-Check (JSON)
         run: |
-          node -e "JSON.parse(require('fs').readFileSync('stadt-zuerich-next/data.json','utf8'))"
-          node -e "JSON.parse(require('fs').readFileSync('stadt-zuerich-next/data/manual/lebenslagen.json','utf8'))"
-      - name: Lebenslagen-IDs gegen data.json prüfen
+          node -e "JSON.parse(require('fs').readFileSync('stadt-zuerich-next/data/zh/org-chart.json','utf8'))"
+          node -e "JSON.parse(require('fs').readFileSync('stadt-zuerich-next/data/zh/lebenslagen.json','utf8'))"
+      - name: Lebenslagen-IDs gegen org-chart.json prüfen
         run: |
           node -e "
-            const d = JSON.parse(require('fs').readFileSync('stadt-zuerich-next/data.json','utf8'));
-            const l = JSON.parse(require('fs').readFileSync('stadt-zuerich-next/data/manual/lebenslagen.json','utf8'));
-            const ids = new Set([...d.units.map(u=>u.id), ...d.departments.map(x=>x.id)]);
+            const d = JSON.parse(require('fs').readFileSync('stadt-zuerich-next/data/zh/org-chart.json','utf8'));
+            const l = JSON.parse(require('fs').readFileSync('stadt-zuerich-next/data/zh/lebenslagen.json','utf8'));
+            const ids = new Set([
+              d.center?.id,
+              ...d.departments.map(x => x.id),
+              ...d.units.map(u => u.id),
+              ...(d.beteiligungen ?? []).map(b => b.id),
+            ].filter(Boolean));
             const problems = [];
             for (const e of l.lebenslagen) {
               if (!ids.has(e.zustaendig)) problems.push(e.id + ': unbekannte zustaendig ' + e.zustaendig);
               if (!e.i18n?.de?.frage || !Array.isArray(e.i18n?.de?.stichworte)) problems.push(e.id + ': fehlt i18n.de.frage oder .stichworte');
             }
             if (problems.length) { console.error('Probleme:\n  ' + problems.join('\n  ')); process.exit(1); }
-            console.log('✓ Alle ' + l.lebenslagen.length + ' Lebenslagen haben i18n.de und gültige zustaendig');
+            console.log('✓ Alle ' + l.lebenslagen.length + ' Lebenslagen haben i18n.de und gültige zustaendig (' + ids.size + ' bekannte IDs in org-chart)');
           "
 
   prozesse-validation:
