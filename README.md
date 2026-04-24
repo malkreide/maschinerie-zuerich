@@ -8,9 +8,6 @@ Interaktive, barrierefreie Visualisierung der Stadtverwaltung Zürich —
 Departemente, Dienstabteilungen, verselbständigte Betriebe und Beteiligungen,
 mit Budget und Stellenwerten aus öffentlichen Quellen.
 
-Inspiriert von [machineryofgovernment.uk](https://machineryofgovernment.uk/)
-von Hugo Rushworth.
-
 ## Zwei Varianten
 
 Das Repo enthält zwei eigenständige Implementationen der gleichen Idee:
