@@ -75,7 +75,8 @@
     "phaseAccount": "Consuntivo",
     "fteUnitFallback": "ETP",
     "fteUnitPublished": "{value} {einheit} (pubblicato)",
-    "fteEstimateText": "~{value} (stima: spese del personale ÷ {amount} CHF)"
+    "fteEstimateText": "~{value} (stima: spese del personale ÷ {amount} CHF)",
+    "relatedProzesseHeading": "Coinvolta nelle seguenti procedure"
   },
   "Legend": {
     "headingTop": "Consiglio municipale e dipartimenti",
@@ -109,6 +110,7 @@
     "legalHeading": "Basi legali",
     "sourcesHeading": "Fonti",
     "retrieved": "consultato il {date}",
+    "goToUnit": "All'unità: {name}",
     "schrittTyp": {
       "start": "Inizio",
       "input": "Ingresso",

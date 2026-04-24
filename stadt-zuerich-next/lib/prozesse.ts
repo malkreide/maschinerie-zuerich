@@ -124,3 +124,103 @@ export async function listProzessParams(): Promise<Array<{ city: string; id: str
   const entries = await listProzesse();
   return entries.map((e) => ({ city: e.city, id: e.id }));
 }
+
+/**
+ * Baut die komplette einheit_ref → Prozesse-Map in einem Durchlauf —
+ * effizienter als findProzesseForEinheit pro Einheit, wenn man den
+ * kompletten invertierten Index braucht (z. B. zum Vorberechnen im
+ * Server-Component und anschliessenden Übergeben an den DetailPanel).
+ * Ergebnis ist als Plain-Object serialisierbar (wichtig für RSC → Client-
+ * Component Prop-Passing).
+ */
+export async function buildEinheitProzesseMap(): Promise<Record<string, ProzessIndexEntry[]>> {
+  const root = prozessRoot();
+  let cities: string[];
+  try { cities = await fs.readdir(root); } catch { return {}; }
+  const map: Record<string, ProzessIndexEntry[]> = {};
+  for (const city of cities) {
+    const cityDir = path.join(root, city);
+    const st = await fs.stat(cityDir).catch(() => null);
+    if (!st?.isDirectory()) continue;
+    for (const file of await fs.readdir(cityDir)) {
+      if (!file.endsWith('.json')) continue;
+      try {
+        const raw = await fs.readFile(path.join(cityDir, file), 'utf-8');
+        const p = JSON.parse(raw) as Prozess;
+        if (validateProzess(p).length > 0) continue;
+        const entry: ProzessIndexEntry = {
+          id: p.id,
+          city: p.city,
+          slug: `${p.city}/${p.id}`,
+          titel: p.titel,
+          kurzbeschreibung: p.kurzbeschreibung,
+          version: p.version,
+        };
+        for (const a of p.akteure ?? []) {
+          if (!a.einheit_ref) continue;
+          const bucket = map[a.einheit_ref] ??= [];
+          if (!bucket.some((e) => e.id === entry.id && e.city === entry.city)) {
+            bucket.push(entry);
+          }
+        }
+      } catch {
+        // skip file silently
+      }
+    }
+  }
+  // Deterministische Reihenfolge für stabile Snapshot-Tests.
+  for (const key of Object.keys(map)) {
+    map[key].sort((a, b) => a.id.localeCompare(b.id));
+  }
+  return map;
+}
+
+/**
+ * Reverse-Lookup für die Org-Chart-Brücke: gibt alle Prozesse zurück,
+ * die eine gegebene Einheit referenzieren (über akteure[].einheit_ref).
+ * Wird im DetailPanel der Hauptansicht verwendet, um "Diese Stelle ist
+ * an folgenden Verfahren beteiligt" anzuzeigen.
+ *
+ * Implementiert naiv: lädt alle Prozesse und filtert. Für unsere Grössen-
+ * ordnung (<100 Prozesse) unproblematisch. Falls irgendwann nötig, könnte
+ * der Loader einen invertierten Index im Speicher halten.
+ */
+export async function findProzesseForEinheit(einheitId: string): Promise<ProzessIndexEntry[]> {
+  if (!einheitId) return [];
+  const root = prozessRoot();
+  let cities: string[];
+  try {
+    cities = await fs.readdir(root);
+  } catch {
+    return [];
+  }
+
+  const matches: ProzessIndexEntry[] = [];
+  for (const city of cities) {
+    const cityDir = path.join(root, city);
+    const st = await fs.stat(cityDir).catch(() => null);
+    if (!st?.isDirectory()) continue;
+
+    for (const file of await fs.readdir(cityDir)) {
+      if (!file.endsWith('.json')) continue;
+      try {
+        const raw = await fs.readFile(path.join(cityDir, file), 'utf-8');
+        const p = JSON.parse(raw) as Prozess;
+        if (validateProzess(p).length > 0) continue;
+        if ((p.akteure ?? []).some((a) => a.einheit_ref === einheitId)) {
+          matches.push({
+            id: p.id,
+            city: p.city,
+            slug: `${p.city}/${p.id}`,
+            titel: p.titel,
+            kurzbeschreibung: p.kurzbeschreibung,
+            version: p.version,
+          });
+        }
+      } catch {
+        // skip file silently
+      }
+    }
+  }
+  return matches.sort((a, b) => a.id.localeCompare(b.id));
+}

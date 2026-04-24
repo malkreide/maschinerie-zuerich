@@ -2,13 +2,28 @@
 
 import { useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
-import { usePathname, useRouter } from '@/i18n/navigation';
+import { Link, usePathname, useRouter } from '@/i18n/navigation';
 import type { StadtData, Department, Unit, Beteiligung, Fte, Budget } from '@/types/stadt';
 import { fmtCHF, fmtNumber } from '@/lib/search';
 
 type T = ReturnType<typeof useTranslations<'Detail'>>;
 
-export default function DetailPanel({ data }: { data: StadtData }) {
+/** Vorberechnetes, server-seitig aufgelöstes Prozess-Bündel pro Einheit.
+ *  Bewusst mit bereits resolvtem titel: DetailPanel ist client-seitig,
+ *  i18n-Auflösung passiert im Server-Component (page.tsx). */
+export interface RelatedProzess {
+  id: string;
+  city: string;
+  titel: string;
+}
+
+export default function DetailPanel({
+  data,
+  relatedProzesse,
+}: {
+  data: StadtData;
+  relatedProzesse?: Record<string, RelatedProzess[]>;
+}) {
   const t = useTranslations('Detail');
   const tType = useTranslations('Type');
   const router = useRouter();
@@ -76,6 +91,11 @@ export default function DetailPanel({ data }: { data: StadtData }) {
           <span className="text-right">{r.v}</span>
         </div>
       ))}
+      <RelatedProzesseSection
+        selectedId={selectedId}
+        relatedProzesse={relatedProzesse}
+        t={t}
+      />
       <div className="mt-2.5">
         <a
           href={item.odz?.kurzname
@@ -88,6 +108,41 @@ export default function DetailPanel({ data }: { data: StadtData }) {
         </a>
       </div>
     </aside>
+  );
+}
+
+/** Brücke vom Org-Chart zu Prozessen: wenn die fokussierte Einheit in
+ *  data/prozesse/<city>/*.json via akteure[].einheit_ref referenziert wird,
+ *  listen wir diese Verfahren mit Link zur Detail-Ansicht. */
+function RelatedProzesseSection({
+  selectedId,
+  relatedProzesse,
+  t,
+}: {
+  selectedId: string;
+  relatedProzesse?: Record<string, RelatedProzess[]>;
+  t: T;
+}) {
+  const list = relatedProzesse?.[selectedId];
+  if (!list || list.length === 0) return null;
+  return (
+    <div className="mt-3 pt-2.5 border-t border-[var(--color-line)]">
+      <div className="text-[var(--color-mute)] text-[11px] uppercase tracking-wider mb-1.5">
+        {t('relatedProzesseHeading')}
+      </div>
+      <ul className="space-y-1">
+        {list.map((p) => (
+          <li key={`${p.city}-${p.id}`}>
+            <Link
+              href={{ pathname: `/prozesse/${p.city}/${p.id}` }}
+              className="text-[var(--color-accent)] no-underline hover:underline"
+            >
+              {p.titel} →
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 

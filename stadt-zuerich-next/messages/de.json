@@ -75,7 +75,8 @@
     "phaseAccount": "Rechnung",
     "fteUnitFallback": "FTE",
     "fteUnitPublished": "{value} {einheit} (publiziert)",
-    "fteEstimateText": "~{value} (Schätzung: Personalaufwand ÷ {amount} CHF)"
+    "fteEstimateText": "~{value} (Schätzung: Personalaufwand ÷ {amount} CHF)",
+    "relatedProzesseHeading": "An folgenden Verfahren beteiligt"
   },
   "Legend": {
     "headingTop": "Stadtrat & Departemente",
@@ -109,6 +110,7 @@
     "legalHeading": "Rechtsgrundlagen",
     "sourcesHeading": "Quellen",
     "retrieved": "abgerufen {date}",
+    "goToUnit": "Zur Einheit: {name}",
     "schrittTyp": {
       "start": "Start",
       "input": "Eingabe",

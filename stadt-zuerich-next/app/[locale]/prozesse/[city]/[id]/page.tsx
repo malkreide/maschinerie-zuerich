@@ -14,13 +14,25 @@ import { Link } from '@/i18n/navigation';
 import { routing, type Locale } from '@/i18n/routing';
 import { getT } from '@/lib/i18n-server';
 import { loadProzess, listProzessParams } from '@/lib/prozesse';
+import { loadStadtData } from '@/lib/data';
 import { layoutProzess } from '@/lib/prozess-layout';
 import { resolveI18n, type ProzessLocale, type Dauer } from '@/types/prozess';
+import type { Department, Unit, Beteiligung, StadtData } from '@/types/stadt';
 import ProzessFlow, {
   type ProzessFlowSchritt,
   type ProzessFlowKante,
   type ProzessFlowAkteur,
 } from '@/components/prozess/ProzessFlow';
+
+// Nur Zürich hat aktuell ein Org-Chart; andere Städte bekommen keinen
+// einheit_ref-Link (Mapping aus validate-prozesse.mjs bewusst nicht
+// geteilt — Render-Zeit-Code ist ein anderes Lifecycle als Build-Zeit).
+function findEinheit(id: string, data: StadtData): Department | Unit | Beteiligung | null {
+  return data.departments.find((d) => d.id === id)
+    ?? data.units.find((u) => u.id === id)
+    ?? data.beteiligungen.find((b) => b.id === id)
+    ?? null;
+}
 
 // Nur im Schema erfasste Prozesse sind gültige URLs — alles andere → 404.
 // Mit dynamicParams=false kann Next das Ergebnis vollständig statisch
@@ -85,21 +97,48 @@ export default async function ProzessDetailPage({
 
   const t = getT(loc, 'Prozesse');
 
-  // Akteur-ID → Label-Map
-  const akteurLabel = new Map(
-    prozess.akteure.map((a) => [a.id, resolveI18n(a.label, lebLoc)]),
-  );
+  // Brücke in den Org-Chart: wenn der Prozess für eine Stadt gilt, für die
+  // wir data.json haben (aktuell nur ZH), lösen wir einheit_ref gegen data
+  // auf. Für andere Städte: einheit info bleibt undefined → Swimlane-Label
+  // ist plain Text statt Link.
+  const stadtData = city === 'zh' ? await loadStadtData() : null;
 
-  const schritte: ProzessFlowSchritt[] = prozess.schritte.map((s) => ({
-    id: s.id,
-    typ: s.typ,
-    akteurId: s.akteur,
-    label: resolveI18n(s.label, lebLoc),
-    beschreibung: s.beschreibung ? resolveI18n(s.beschreibung, lebLoc) : undefined,
-    dauer: formatDauer(s.dauer_est, loc),
-    kosten: formatKosten(s.kosten_chf),
-    akteurLabel: akteurLabel.get(s.akteur) ?? s.akteur,
-  }));
+  // Akteur-ID → { label, einheitHref?, einheitName? }-Map
+  const akteurInfo = new Map<string, { label: string; einheitHref?: string; einheitName?: string }>();
+  for (const a of prozess.akteure) {
+    const label = resolveI18n(a.label, lebLoc);
+    if (a.einheit_ref && stadtData) {
+      const unit = findEinheit(a.einheit_ref, stadtData);
+      if (unit) {
+        // Link zur Hauptansicht mit fokussierter Einheit. Wir benutzen hier
+        // absichtlich keinen <Link>-Import — der href-String passt in ein
+        // einfaches <a>, was auch in der Client-Komponente funktioniert.
+        akteurInfo.set(a.id, {
+          label,
+          einheitHref: `/${locale}/?focus=${encodeURIComponent(a.einheit_ref)}`,
+          einheitName: unit.name,
+        });
+        continue;
+      }
+    }
+    akteurInfo.set(a.id, { label });
+  }
+
+  const schritte: ProzessFlowSchritt[] = prozess.schritte.map((s) => {
+    const info = akteurInfo.get(s.akteur);
+    return {
+      id: s.id,
+      typ: s.typ,
+      akteurId: s.akteur,
+      label: resolveI18n(s.label, lebLoc),
+      beschreibung: s.beschreibung ? resolveI18n(s.beschreibung, lebLoc) : undefined,
+      dauer: formatDauer(s.dauer_est, loc),
+      kosten: formatKosten(s.kosten_chf),
+      akteurLabel: info?.label ?? s.akteur,
+      akteurEinheitHref: info?.einheitHref,
+      akteurEinheitName: info?.einheitName,
+    };
+  });
 
   const kanten: ProzessFlowKante[] = prozess.flow.map((f, i) => ({
     id: `e-${i}-${f.von}-${f.nach}`,
@@ -109,11 +148,16 @@ export default async function ProzessDetailPage({
     bedingung: f.bedingung,
   }));
 
-  const akteure: ProzessFlowAkteur[] = prozess.akteure.map((a) => ({
-    id: a.id,
-    label: resolveI18n(a.label, lebLoc),
-    typ: a.typ,
-  }));
+  const akteure: ProzessFlowAkteur[] = prozess.akteure.map((a) => {
+    const info = akteurInfo.get(a.id);
+    return {
+      id: a.id,
+      label: info?.label ?? resolveI18n(a.label, lebLoc),
+      typ: a.typ,
+      einheitHref: info?.einheitHref,
+      einheitName: info?.einheitName,
+    };
+  });
 
   const layout = layoutProzess(prozess);
 
@@ -143,6 +187,7 @@ export default async function ProzessDetailPage({
           kanten={kanten}
           akteure={akteure}
           layout={layout}
+          goToUnitLabelTemplate={t('goToUnit', { name: '{name}' })}
         />
       </div>
 
@@ -158,9 +203,21 @@ export default async function ProzessDetailPage({
                 <span className="text-[11px] uppercase tracking-wider text-[var(--color-mute)]">
                   {t(`schrittTyp.${s.typ}`)}
                 </span>
-                <span className="text-[11px] text-[var(--color-accent)]">
-                  {s.akteurLabel}
-                </span>
+                {s.akteurEinheitHref ? (
+                  <a
+                    href={s.akteurEinheitHref}
+                    className="text-[11px] text-[var(--color-accent)] underline decoration-dotted hover:decoration-solid"
+                    title={s.akteurEinheitName
+                      ? t('goToUnit', { name: s.akteurEinheitName })
+                      : undefined}
+                  >
+                    {s.akteurLabel}
+                  </a>
+                ) : (
+                  <span className="text-[11px] text-[var(--color-accent)]">
+                    {s.akteurLabel}
+                  </span>
+                )}
               </div>
               {s.beschreibung && (
                 <p className="mt-1 text-[var(--color-mute)]">{s.beschreibung}</p>

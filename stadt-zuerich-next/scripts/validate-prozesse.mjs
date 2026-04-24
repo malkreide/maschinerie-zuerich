@@ -2,7 +2,7 @@
 // Validiert alle Prozess-JSONs unter data/prozesse/<city>/*.json
 // gegen schemas/opengov-process-schema.json.
 //
-// Zwei Stufen:
+// Drei Stufen:
 //   1. Formale Validierung via ajv (JSON-Schema draft-07) — inkl. Format-
 //      Checks für uri/date. Schlägt bei Pflichtfeldern, falschen Typen,
 //      ungültigen Enums an.
@@ -13,6 +13,13 @@
 //      - Schritt.quelle (falls gesetzt) muss in quellen[].id existieren
 //      - Bei Entscheidungs-Schritten sollte mindestens eine ausgehende Flow-
 //        Kante eine bedingung tragen
+//   3. Cross-Reference gegen data.json (Org-Chart-Brücke):
+//      - akteure[].einheit_ref muss als ID einer Unit/Department/Beteiligung
+//        in der Stadt-spezifischen data.json existieren
+//      - Pro city: Pfad ist aktuell 'data.json' im Projekt-Root (ZH ist
+//        die Default-Stadt). Andere Städte brauchen später eigene
+//        data-<city>.json — derzeit nur ZH unterstützt, andere Cities
+//        überspringen den Check mit einer Warnung.
 //
 // Exit-Code: 0 = alles gut. 1 = Fehler. Warnungen stehen auf stderr, brechen
 // aber nicht ab.
@@ -27,6 +34,13 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(here, '..');
 const SCHEMA_PATH = path.join(projectRoot, 'schemas', 'opengov-process-schema.json');
 const PROZESSE_ROOT = path.join(projectRoot, 'data', 'prozesse');
+
+// Mapping city → Pfad der zugehörigen Org-Chart-JSON. Aktuell gibt es nur
+// ZH; andere Städte werden beim einheit_ref-Check mit einer Warnung
+// übersprungen.
+const CITY_DATA_PATHS = {
+  zh: path.join(projectRoot, 'data.json'),
+};
 
 // --- Colors ---------------------------------------------------------------
 const isTTY = process.stdout.isTTY && !process.env.NO_COLOR;
@@ -69,6 +83,30 @@ async function listProzessFiles() {
 function formatAjvError(err) {
   const loc = err.instancePath || '/';
   return `${loc}: ${err.message}${err.params ? ' ' + JSON.stringify(err.params) : ''}`;
+}
+
+// Cache: city → Set of known unit IDs (oder null wenn kein Mapping).
+const cityIdsCache = new Map();
+async function loadCityIds(city) {
+  if (cityIdsCache.has(city)) return cityIdsCache.get(city);
+  const file = CITY_DATA_PATHS[city];
+  if (!file) {
+    cityIdsCache.set(city, null);
+    return null;
+  }
+  try {
+    const data = await loadJson(file);
+    const ids = new Set([
+      ...(data.departments ?? []).map((d) => d.id),
+      ...(data.units ?? []).map((u) => u.id),
+      ...(data.beteiligungen ?? []).map((b) => b.id),
+    ]);
+    cityIdsCache.set(city, ids);
+    return ids;
+  } catch {
+    cityIdsCache.set(city, null);
+    return null;
+  }
 }
 
 function semanticCheck(prozess) {
@@ -183,7 +221,27 @@ async function main() {
     const schemaOk = validate(data);
     const { errors: semErrors, warnings } = semanticCheck(data);
 
-    if (schemaOk && semErrors.length === 0 && warnings.length === 0) {
+    // Cross-Check gegen Org-Chart der Stadt (einheit_ref → data.json).
+    // Nur bei formal gültigen Dateien, sonst ist akteure evtl. unbrauchbar.
+    const refErrors = [];
+    if (schemaOk) {
+      const cityIds = await loadCityIds(city);
+      if (cityIds === null) {
+        const refs = (data.akteure ?? []).filter((a) => a.einheit_ref);
+        if (refs.length > 0) {
+          warnings.push(`${refs.length} einheit_ref(s) present but no org-chart data available for city '${city}' — skipping cross-check`);
+        }
+      } else {
+        for (const a of data.akteure ?? []) {
+          if (a.einheit_ref && !cityIds.has(a.einheit_ref)) {
+            refErrors.push(`akteur '${a.id}'.einheit_ref '${a.einheit_ref}' not found in ${city}/data.json`);
+          }
+        }
+      }
+    }
+
+    const hasError = !schemaOk || semErrors.length > 0 || refErrors.length > 0;
+    if (!hasError && warnings.length === 0) {
       console.log(c.green(`✓ ${rel}`));
       continue;
     }
@@ -200,11 +258,16 @@ async function main() {
       for (const e of semErrors) console.error(c.red(`  - ${e}`));
       anyError = true;
     }
+    if (refErrors.length > 0) {
+      console.error(c.red(`✗ ${rel}: einheit_ref errors`));
+      for (const e of refErrors) console.error(c.red(`  - ${e}`));
+      anyError = true;
+    }
     if (warnings.length > 0) {
       console.error(c.yellow(`⚠ ${rel}: warnings`));
       for (const w of warnings) console.error(c.yellow(`  - ${w}`));
       anyWarn = true;
-      if (schemaOk && semErrors.length === 0) {
+      if (!hasError) {
         console.log(c.dim(`  (${city}/${file} passes schema + semantic — warnings only)`));
       }
     }

@@ -75,7 +75,8 @@
     "phaseAccount": "Wirklich ausgegeben",
     "fteUnitFallback": "Stellen",
     "fteUnitPublished": "{value} {einheit} (sichere Zahl)",
-    "fteEstimateText": "Etwa {value} Stellen (Schätzung: Lohn geteilt durch {amount} Franken)"
+    "fteEstimateText": "Etwa {value} Stellen (Schätzung: Lohn geteilt durch {amount} Franken)",
+    "relatedProzesseHeading": "Diese Stelle hilft bei diesen Abläufen"
   },
   "Legend": {
     "headingTop": "Die Chefs der Stadt",
@@ -109,6 +110,7 @@
     "legalHeading": "Gesetze",
     "sourcesHeading": "Woher sind die Informationen?",
     "retrieved": "geholt am {date}",
+    "goToUnit": "Zu dieser Stelle: {name}",
     "schrittTyp": {
       "start": "Start",
       "input": "Sie geben etwas ab",

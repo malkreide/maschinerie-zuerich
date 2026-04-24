@@ -75,7 +75,8 @@
     "phaseAccount": "Account",
     "fteUnitFallback": "FTE",
     "fteUnitPublished": "{value} {einheit} (published)",
-    "fteEstimateText": "~{value} (estimate: personnel expense ÷ {amount} CHF)"
+    "fteEstimateText": "~{value} (estimate: personnel expense ÷ {amount} CHF)",
+    "relatedProzesseHeading": "Involved in the following procedures"
   },
   "Legend": {
     "headingTop": "City council & departments",
@@ -109,6 +110,7 @@
     "legalHeading": "Legal basis",
     "sourcesHeading": "Sources",
     "retrieved": "retrieved {date}",
+    "goToUnit": "Go to unit: {name}",
     "schrittTyp": {
       "start": "Start",
       "input": "Input",

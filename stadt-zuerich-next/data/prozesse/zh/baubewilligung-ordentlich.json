@@ -44,13 +44,13 @@
       "id": "amt-baubewilligungen",
       "label": { "de": "Amt für Baubewilligungen (AfB)", "en": "Building-Permit Office", "ls": "Bau-Amt" },
       "typ": "behoerde",
-      "einheit_ref": "u-afb"
+      "einheit_ref": "HBD-bb"
     },
     {
       "id": "hochbauamt",
-      "label": { "de": "Hochbauamt", "en": "Department of Buildings" },
+      "label": { "de": "Amt für Hochbauten", "en": "Department of Buildings" },
       "typ": "fachstelle",
-      "einheit_ref": "u-hba"
+      "einheit_ref": "HBD-hb"
     },
     {
       "id": "kanton",

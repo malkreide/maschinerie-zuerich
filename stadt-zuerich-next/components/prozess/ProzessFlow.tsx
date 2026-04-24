@@ -34,6 +34,11 @@ export interface ProzessFlowSchritt {
   dauer?: string;
   kosten?: string;
   akteurLabel: string;
+  /** Wenn der Akteur per einheit_ref auf eine Org-Chart-Einheit verweist:
+   *  href zur Hauptansicht mit ?focus=<id>. Sonst undefined. */
+  akteurEinheitHref?: string;
+  /** Name der Einheit aus data.json — für Title/Tooltip und a11y. */
+  akteurEinheitName?: string;
 }
 
 export interface ProzessFlowKante {
@@ -48,6 +53,12 @@ export interface ProzessFlowAkteur {
   id: string;
   label: string;
   typ: string;
+  /** Wenn der Akteur per einheit_ref auf eine Einheit im Org-Chart verweist:
+   *  Link zur Hauptansicht mit ?focus=<id>. Sonst undefined. */
+  einheitHref?: string;
+  /** Kanonischer Name der Einheit aus data.json — für Screenreader-Label
+   *  und als Link-Text in der Swimlane. */
+  einheitName?: string;
 }
 
 export interface ProzessFlowProps {
@@ -57,6 +68,10 @@ export interface ProzessFlowProps {
   akteure: ProzessFlowAkteur[];
   layout: Layout;
   colorMode?: ColorMode;
+  /** Server-seitig i18n-aufgelöster Tooltip für Einheit-Links in der
+   *  Swimlane. Erhält {name} als Platzhalter und wird via String.replace
+   *  gefüllt — so bleibt die Client-Komponente frei von next-intl. */
+  goToUnitLabelTemplate?: string;
 }
 
 export default function ProzessFlow(props: ProzessFlowProps) {
@@ -67,7 +82,7 @@ export default function ProzessFlow(props: ProzessFlowProps) {
   );
 }
 
-function ProzessFlowInner({ titel, schritte, kanten, akteure, layout, colorMode = 'light' }: ProzessFlowProps) {
+function ProzessFlowInner({ titel, schritte, kanten, akteure, layout, colorMode = 'light', goToUnitLabelTemplate }: ProzessFlowProps) {
   const nodes = useMemo<Node<ProzessNodeData>[]>(() => {
     return schritte.map((s) => {
       const ln = layout.nodes.find((n) => n.id === s.id);
@@ -111,7 +126,12 @@ function ProzessFlowInner({ titel, schritte, kanten, akteure, layout, colorMode 
       role="application"
       aria-label={`Prozess-Diagramm: ${titel}`}
     >
-      <SwimlaneOverlay lanes={layout.lanes} akteure={akteure} height={layout.height} />
+      <SwimlaneOverlay
+        lanes={layout.lanes}
+        akteure={akteure}
+        height={layout.height}
+        goToUnitLabelTemplate={goToUnitLabelTemplate}
+      />
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -142,10 +162,12 @@ function SwimlaneOverlay({
   lanes,
   akteure,
   height,
+  goToUnitLabelTemplate,
 }: {
   lanes: LayoutLane[];
   akteure: ProzessFlowAkteur[];
   height: number;
+  goToUnitLabelTemplate?: string;
 }) {
   const akteurMap = new Map(akteure.map((a) => [a.id, a]));
   return (
@@ -156,6 +178,25 @@ function SwimlaneOverlay({
     >
       {lanes.map((lane, i) => {
         const a = akteurMap.get(lane.akteurId);
+        const label = a?.label ?? lane.akteurId;
+        // Wenn per einheit_ref verlinkt: Swimlane-Label wird zum Link auf die
+        // Hauptansicht mit fokussierter Einheit. pointer-events-auto hebt
+        // das pointer-events-none des Container-Overlays für genau dieses
+        // Element auf, damit der Link klickbar bleibt.
+        const title = a?.einheitName && goToUnitLabelTemplate
+          ? goToUnitLabelTemplate.replace('{name}', a.einheitName)
+          : a?.einheitName;
+        const inner = a?.einheitHref ? (
+          <a
+            href={a.einheitHref}
+            className="pointer-events-auto underline decoration-dotted hover:text-[var(--color-accent)]"
+            title={title}
+          >
+            {label}
+          </a>
+        ) : (
+          label
+        );
         return (
           <div
             key={lane.akteurId}
@@ -167,7 +208,7 @@ function SwimlaneOverlay({
             }}
           >
             <div className="absolute left-2 top-2 text-[11px] font-semibold uppercase tracking-wider text-[var(--color-mute)] max-w-[140px] leading-tight">
-              {a?.label ?? lane.akteurId}
+              {inner}
             </div>
           </div>
         );

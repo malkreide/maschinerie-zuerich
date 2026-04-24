@@ -75,7 +75,8 @@
     "phaseAccount": "Comptes",
     "fteUnitFallback": "EPT",
     "fteUnitPublished": "{value} {einheit} (publié)",
-    "fteEstimateText": "~{value} (estimation : charges de personnel ÷ {amount} CHF)"
+    "fteEstimateText": "~{value} (estimation : charges de personnel ÷ {amount} CHF)",
+    "relatedProzesseHeading": "Impliqué dans les démarches suivantes"
   },
   "Legend": {
     "headingTop": "Conseil municipal et départements",
@@ -109,6 +110,7 @@
     "legalHeading": "Bases légales",
     "sourcesHeading": "Sources",
     "retrieved": "consulté le {date}",
+    "goToUnit": "Vers l'unité : {name}",
     "schrittTyp": {
       "start": "Début",
       "input": "Entrée",
