@@ -7,6 +7,14 @@ import { fileURLToPath } from 'node:url';
 
 export const ROOT = resolve(fileURLToPath(import.meta.url), '..', '..');
 
+// Pfad der Org-Chart-JSON relativ zum Projekt-Root, aus city.config.json
+// gelesen — so teilen sich ETL-Skripte und der Runtime-Loader (lib/data.ts)
+// exakt denselben Pfad. Top-level-await ist in ESM okay und wird beim ersten
+// Import aufgelöst.
+const _cityCfgPath = resolve(ROOT, 'config', 'city.config.json');
+const _cityCfg = JSON.parse(await fs.readFile(_cityCfgPath, 'utf8'));
+export const ORG_CHART_PATH = _cityCfg.orgChartPath;
+
 // data.stadt-zuerich.ch hat den API-Key in den Open-Data-Metadaten publiziert.
 // Override via Umgebungsvariable möglich, falls die Stadt den Key rotiert.
 export const RPK_API_BASE = 'https://api.stadt-zuerich.ch/rpkk-rs/v1';

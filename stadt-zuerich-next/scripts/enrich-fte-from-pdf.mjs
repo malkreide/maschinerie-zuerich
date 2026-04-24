@@ -18,10 +18,10 @@
 //   'pdf'        → publizierter Wert aus PDF
 //   'schaetzung' → Proxy aus Personalaufwand
 
-import { readJSON, writeJSON, log } from './_lib.mjs';
+import { ORG_CHART_PATH, readJSON, writeJSON, log } from './_lib.mjs';
 
 async function main() {
-  const data      = await readJSON('data.json');
+  const data      = await readJSON(ORG_CHART_PATH);
   const overrides = await readJSON('data/manual/fte-publiziert.json');
 
   let replaced = 0;
@@ -41,7 +41,7 @@ async function main() {
   for (const o of overrides.werte) {
     const item = byId.get(o.id);
     if (!item) {
-      log(`  WARN: id '${o.id}' nicht in data.json gefunden`);
+      log(`  WARN: id '${o.id}' nicht in ${ORG_CHART_PATH} gefunden`);
       continue;
     }
     item.fte = {
@@ -63,7 +63,7 @@ async function main() {
     'FTE-Werte sind primär Schätzungen (Personalaufwand / 130\'000 CHF). ' +
     `${replaced} Einheit(en) haben publizierte Werte aus Budget-/Rechnungs-PDFs.`;
 
-  await writeJSON('data.json', data);
+  await writeJSON(ORG_CHART_PATH, data);
   log(`---\nreplaced ${replaced} FTE-Werte mit publizierten PDF-Daten`);
 }
 

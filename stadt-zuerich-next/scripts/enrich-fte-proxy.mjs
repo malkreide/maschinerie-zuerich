@@ -20,7 +20,7 @@
 
 import { promises as fs } from 'node:fs';
 import { resolve } from 'node:path';
-import { ROOT, readJSON, writeJSON, log } from './_lib.mjs';
+import { ROOT, ORG_CHART_PATH, readJSON, writeJSON, log } from './_lib.mjs';
 
 const VOLLKOSTEN  = Number(process.env.FTE_VOLLKOSTEN) || 130000;
 const JAHR        = Number(process.env.BUDGET_JAHR) || (new Date().getFullYear() - 1);
@@ -43,7 +43,7 @@ async function loadAllRows() {
 }
 
 async function main() {
-  const data = await readJSON('data.json');
+  const data = await readJSON(ORG_CHART_PATH);
   const rows = await loadAllRows();
 
   // Personalaufwand pro Institution: nur Sachkonto "30"
@@ -91,8 +91,8 @@ async function main() {
   data._meta = data._meta || {};
   data._meta.fteHinweis = `FTE sind Schätzungen aus Personalaufwand / ${VOLLKOSTEN} CHF — kein direkter OGD-Datensatz verfügbar.`;
 
-  await writeJSON('data.json', data);
-  log(`enriched FTE-Schätzung auf ${written} items → data.json`);
+  await writeJSON(ORG_CHART_PATH, data);
+  log(`enriched FTE-Schätzung auf ${written} items → ${ORG_CHART_PATH}`);
 }
 
 main().catch(err => { console.error(err); process.exit(1); });

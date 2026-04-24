@@ -1,6 +1,6 @@
-// Reichert data.json mit Referenzdaten aus der RPK-API an.
+// Reichert die Org-Chart-Datei mit Referenzdaten aus der RPK-API an.
 // Erwartet, dass scripts/fetch-rpktool.mjs vorher gelaufen ist (Cache liegt
-// in data/raw/). Schreibt das Resultat zurück nach data.json.
+// in data/raw/). Zielpfad kommt aus config/city.config.json (orgChartPath).
 //
 // Pro Knoten wird ein Feld 'odz' angefügt:
 //   { key, kurzname, bezeichnung, departementKurzname }
@@ -9,10 +9,10 @@
 // geloggt – nicht stillschweigend überschrieben, weil unsere Strukturierung
 // bewusst nach Bürger-Logik sortiert ist und von der RPK-Sicht abweichen kann.
 
-import { readJSON, writeJSON, log } from './_lib.mjs';
+import { ORG_CHART_PATH, readJSON, writeJSON, log } from './_lib.mjs';
 
 async function main() {
-  const data    = await readJSON('data.json');
+  const data    = await readJSON(ORG_CHART_PATH);
   const depRaw  = await readJSON('data/raw/rpktool-departemente.json');
   const instRaw = await readJSON('data/raw/rpktool-institutionen.json');
   const map     = await readJSON('scripts/mapping/institution-mapping.json');
@@ -88,7 +88,7 @@ async function main() {
   data._meta.angereichert = new Date().toISOString().slice(0, 10);
   data._meta.quelleEnrichment = 'data.stadt-zuerich.ch / fd_rpktool (rpkk-rs/v1)';
 
-  await writeJSON('data.json', data);
+  await writeJSON(ORG_CHART_PATH, data);
 
   log('---');
   log(`enriched: ${stats.departments} departments, ${stats.units} units`);

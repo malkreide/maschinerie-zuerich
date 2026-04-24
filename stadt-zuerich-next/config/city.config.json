@@ -17,5 +17,5 @@
   "domain": "stadt-zuerich.ch",
   "externalSearchUrlTemplate": "https://www.stadt-zuerich.ch/de.html?q={q}",
   "homepageUrl": "https://www.stadt-zuerich.ch/",
-  "orgChartPath": "data.json"
+  "orgChartPath": "data/zh/org-chart.json"
 }

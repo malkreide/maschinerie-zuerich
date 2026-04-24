@@ -1,5 +1,6 @@
 // Aggregiert die per Departement gecachten /sachkonto2stellig-Daten zu
-// 'aufwand' / 'ertrag' pro Institution und schreibt sie in data.json.
+// 'aufwand' / 'ertrag' pro Institution und schreibt sie in die Org-Chart-
+// Datei (Pfad aus city.config.json).
 //
 // HRM2-Konvention:
 //   Sachkonto 30…39 = Aufwand
@@ -10,7 +11,7 @@
 
 import { promises as fs } from 'node:fs';
 import { resolve } from 'node:path';
-import { ROOT, readJSON, writeJSON, log } from './_lib.mjs';
+import { ROOT, ORG_CHART_PATH, readJSON, writeJSON, log } from './_lib.mjs';
 
 const JAHR        = Number(process.env.BUDGET_JAHR) || (new Date().getFullYear() - 1);
 const BETRAGS_TYP = process.env.BUDGET_BETRAGSTYP    || 'GEMEINDERAT_BESCHLUSS';
@@ -49,7 +50,7 @@ function aggregateByInstitution(rows) {
 }
 
 async function main() {
-  const data = await readJSON('data.json');
+  const data = await readJSON(ORG_CHART_PATH);
   const rows = await loadAllRows();
   log(`loaded ${rows.length} sachkonto2stellig rows from cache`);
 
@@ -99,8 +100,8 @@ async function main() {
   data._meta = data._meta || {};
   data._meta.budgetStand = `${JAHR} (${BETRAGS_TYP})`;
 
-  await writeJSON('data.json', data);
-  log(`enriched budget on ${written} items → data.json`);
+  await writeJSON(ORG_CHART_PATH, data);
+  log(`enriched budget on ${written} items → ${ORG_CHART_PATH}`);
 }
 
 main().catch(err => { console.error(err); process.exit(1); });

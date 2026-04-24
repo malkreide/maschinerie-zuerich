@@ -29,4 +29,4 @@ for (const [script, args] of STEPS) {
   console.log(`\n▶ ${script} ${args.join(' ')}`);
   await run(script, args);
 }
-console.log('\n✓ build complete – data.json ist aktualisiert');
+console.log('\n✓ build complete – Org-Chart-Datei ist aktualisiert (Pfad aus config/city.config.json)');

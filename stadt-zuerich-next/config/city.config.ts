@@ -31,9 +31,9 @@ export interface CityConfig {
   externalSearchUrlTemplate: string;
   /** Fallback-Link, wenn kein sinnvoller Suchbegriff verfügbar ist. */
   homepageUrl: string;
-  /** Pfad zur Org-Chart-JSON relativ zum Projekt-Root. Wird von
-   *  loadStadtData() gelesen. Aktuell 'data.json'; ein Folge-Commit
-   *  zieht das Mapping auf 'data/<id>/org-chart.json' um. */
+  /** Pfad zur Org-Chart-JSON relativ zum Projekt-Root. Konvention:
+   *  'data/<id>/org-chart.json'. loadStadtData() und das
+   *  validate-prozesse-Skript lesen beide hier. */
   orgChartPath: string;
 }
 

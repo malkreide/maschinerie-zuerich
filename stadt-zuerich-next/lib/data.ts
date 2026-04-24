@@ -1,14 +1,16 @@
-// Server-seitiger Daten-Loader. Liest data.json + lebenslagen.json
-// direkt aus dem Public-Verzeichnis. Wird in Server-Components für die
-// initial-render aufgerufen.
+// Server-seitiger Daten-Loader. Liest Org-Chart + Lebenslagen-JSON vom
+// Disk. Der Pfad der Org-Chart-Datei kommt aus config/city.config.json
+// (orgChartPath) — so bleibt die Datei-Struktur ein Fork-Detail der
+// jeweiligen Stadt und wird nicht im Code fixiert.
 
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import type { StadtData, Lebenslage } from '@/types/stadt';
+import { city } from '@/config/city.config';
 
 export async function loadStadtData(): Promise<StadtData> {
   const root = process.cwd();
-  const dataPath = path.join(root, 'data.json');
+  const dataPath = path.join(root, city.orgChartPath);
   const lebPath  = path.join(root, 'data', 'manual', 'lebenslagen.json');
 
   const data = JSON.parse(await fs.readFile(dataPath, 'utf-8')) as StadtData;
