@@ -1,7 +1,10 @@
 # ETL-Skripte
 
-Pipeline für die Aktualisierung von [`data.json`](../data.json) aus offenen
-Datenquellen der Stadt Zürich.
+Pipeline für die Aktualisierung der Org-Chart-JSON (Pfad aus
+[`config/city.config.json`](../config/city.config.json) → `orgChartPath`,
+für Zürich `data/zh/org-chart.json`) aus offenen Datenquellen der jeweiligen
+Stadt. Stadt-spezifische API-Calls leben in `adapters/<cityId>.mjs` — der
+Rest der Pipeline ist generisch.
 
 ## Quellen
 
@@ -15,42 +18,61 @@ API-Doku & Beispiele:
 
 Lizenz: CC0 (Open Government Data der Stadt Zürich).
 
-Der API-Key ist in den OD-Metadaten publiziert und im Code als Default
-hinterlegt. Falls die Stadt ihn rotiert, via Umgebungsvariable überschreiben:
+Der API-Key wird aus der Env-Variable `RPK_API_KEY` gelesen (Name steht in
+`config/city.config.json` → `dataSources.rpk.apiKeyEnv`). Lokal landet er
+in `.env.local` (siehe [`.env.example`](../.env.example)), in CI als
+Plattform-Secret. Die Datei `.env.local` ist via `.gitignore` ausgeschlossen.
 
-```bash
-export RPK_API_KEY="..."
-```
+## Architektur: Stadt-Adapter
+
+Die fetch-Scripts sind stadt-agnostisch: sie laden
+`scripts/adapters/<cityId>.mjs` basierend auf `city.config.json → id` und
+rufen dessen Methoden (`fetchStructure`, `fetchBudget`). Der Kontrakt ist
+in [`adapters/index.mjs`](adapters/index.mjs) als JSDoc dokumentiert.
+
+### Neue Stadt andocken
+
+1. Leg `config/city.config.json` mit deiner `id`, `name`, `domain`, …,
+   `dataSources` und `theme` an (siehe ZH als Vorlage).
+2. Schreib `scripts/adapters/<id>.mjs` — implementiere mindestens eine der
+   Methoden (`fetchStructure` / `fetchBudget`) sowie `pipeline`, die die
+   build-Reihenfolge angibt. Kopier [`zh.mjs`](adapters/zh.mjs) als Start.
+3. Leg `data/<id>/org-chart.json` und `data/<id>/lebenslagen.json` an.
+   Pfade müssen mit `orgChartPath` / `lebenslagenPath` in der config
+   übereinstimmen.
+4. `npm run data:fetch` ruft dein Adapter auf. `npm run build` prüft, dass
+   das Resultat typecheckt und die Seiten vorrendern.
+
+Alles, was unter `app/`, `components/`, `lib/` liegt, bleibt unverändert —
+der Code liest ausschliesslich über `@/config/city.config`.
 
 ## Ablauf
 
 ```
-┌──────────────────┐    ┌────────────────────┐    ┌────────────┐
-│ fetch-rpktool    │───▶│ data/raw/*.json    │───▶│ enrich-…   │───▶ data.json
-│ (CKAN→cache)     │    │ (gitignored)       │    │ + mapping/ │
-└──────────────────┘    └────────────────────┘    └────────────┘
+┌──────────────────┐    ┌────────────────────┐    ┌──────────────────┐
+│ fetch-rpktool    │───▶│ data/raw/*.json    │───▶│ enrich-…         │───▶ data/<id>/org-chart.json
+│ (adapter→cache)  │    │ (gitignored)       │    │ + mapping/       │
+└──────────────────┘    └────────────────────┘    └──────────────────┘
 ```
 
 **Befehle (npm scripts in [`package.json`](../package.json)):**
 
 ```bash
-npm run fetch:struct       # /departemente + /institutionen → cache
-npm run fetch:budget       # /sachkonto2stellig pro Departement → cache
-npm run enrich:struct      # data.json mit Strukturdaten anreichern
-npm run enrich:budget      # data.json mit Budget anreichern
-npm run build              # full pipeline (alle 4 Schritte)
-npm run build -- --force   # full pipeline, ignoriert Cache
-npm run serve              # http://localhost:8000
+npm run data:fetch         # full pipeline (Adapter entscheidet die Schritte)
+npm run data:fetch:force   # full pipeline, ignoriert Cache
 
-# ENV für Budget-Schritt:
-BUDGET_JAHR=2024 BUDGET_BETRAGSTYP=GEMEINDERAT_BESCHLUSS npm run build
-# Optionen für BUDGET_BETRAGSTYP: STADTRAT_ANTRAG | GEMEINDERAT_BESCHLUSS | RECHNUNG
+# ENV:
+BUDGET_JAHR=2024 BUDGET_BETRAGSTYP=GEMEINDERAT_BESCHLUSS npm run data:fetch
+# Werte werden an den Adapter durchgereicht; Zürich kennt
+# BUDGET_BETRAGSTYP: STADTRAT_ANTRAG | GEMEINDERAT_BESCHLUSS | RECHNUNG
 ```
 
 Direkt mit Node ohne npm:
 
 ```bash
 node scripts/build-data.mjs
+node scripts/fetch-rpktool.mjs   # nur Struktur-Schritt
+node scripts/fetch-budget.mjs    # nur Budget-Schritt
 ```
 
 ## Mapping

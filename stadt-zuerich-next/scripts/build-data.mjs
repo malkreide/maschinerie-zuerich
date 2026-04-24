@@ -1,32 +1,22 @@
-// Orchestrator: ruft alle ETL-Schritte in der richtigen Reihenfolge auf.
+// Orchestrator: führt die Pipeline aus, die der Stadt-Adapter vorgibt.
 // Aufruf: node scripts/build-data.mjs [--force]
+//
+// Der Adapter definiert Reihenfolge & Inhalt der Pipeline — für andere
+// Städte ist das also nur ein Austausch von scripts/adapters/<id>.mjs.
 
-import { spawn } from 'node:child_process';
-import { fileURLToPath } from 'node:url';
-import { dirname, resolve } from 'node:path';
+import { loadAdapter } from './adapters/index.mjs';
 
-const HERE = dirname(fileURLToPath(import.meta.url));
-const FORCE = process.argv.includes('--force') ? ['--force'] : [];
+const FORCE = process.argv.includes('--force');
 
-const STEPS = [
-  ['fetch-rpktool.mjs',       FORCE],
-  ['enrich-from-rpktool.mjs', []],
-  ['fetch-budget.mjs',        FORCE],
-  ['enrich-budget.mjs',       []],
-  ['enrich-fte-proxy.mjs',    []],
-  ['enrich-fte-from-pdf.mjs', []],
-];
-
-function run(script, args) {
-  return new Promise((ok, fail) => {
-    const p = spawn(process.execPath, [resolve(HERE, script), ...args],
-                    { stdio: 'inherit' });
-    p.on('exit', code => code === 0 ? ok() : fail(new Error(`${script} exit ${code}`)));
-  });
+const adapter = await loadAdapter();
+if (!Array.isArray(adapter.pipeline) || adapter.pipeline.length === 0) {
+  console.error(`Adapter "${adapter.id}" definiert keine pipeline — nichts zu bauen.`);
+  process.exit(1);
 }
+adapter.setForce?.(FORCE);
 
-for (const [script, args] of STEPS) {
-  console.log(`\n▶ ${script} ${args.join(' ')}`);
-  await run(script, args);
+for (const [name, step] of adapter.pipeline) {
+  console.log(`\n▶ ${name}${FORCE ? ' (force)' : ''}`);
+  await step();
 }
 console.log('\n✓ build complete – Org-Chart-Datei ist aktualisiert (Pfad aus config/city.config.json)');
