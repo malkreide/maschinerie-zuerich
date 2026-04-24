@@ -45,7 +45,10 @@ export default function GraphView({ data }: { data: StadtData }) {
         elements,
         style: GRAPH_STYLE,
         layout: layoutOptions('radial'),
-        wheelSensitivity: 0.2,
+        // Cytoscape default (1) zoomt mit vernünftiger Geschwindigkeit.
+        // Ältere Werte von 0.2 zwangen Nutzer:innen zu langem Scrollen,
+        // um überhaupt reinzukommen.
+        wheelSensitivity: 1,
         minZoom: 0.2,
         maxZoom: 4,
       });
@@ -60,7 +63,14 @@ export default function GraphView({ data }: { data: StadtData }) {
       cy.on('tap', 'node', (e) => setFocus(e.target.id()));
       cy.on('tap', (e) => { if (e.target === cy) setFocus(null); });
       cyRef.current = cy;
-      cy.ready(() => cy.fit(undefined, 60));
+      // Kleinere Padding (20 statt 60) füllt die Canvas deutlich besser
+      // aus — Labels sind auf der Startansicht lesbar. Anschließend noch
+      // ~20 % näher reinzoomen, damit die äußeren Ringe nicht unnötig
+      // klein wirken.
+      cy.ready(() => {
+        cy.fit(undefined, 20);
+        cy.zoom({ level: cy.zoom() * 1.2, renderedPosition: { x: cy.width() / 2, y: cy.height() / 2 } });
+      });
     })();
     return () => {
       canceled = true;
@@ -198,8 +208,11 @@ function layoutOptions(name: Layout): LayoutOptions {
     name: 'concentric',
     concentric: (n: NodeSingular) => 10 - (n.data('level') as number),
     levelWidth: () => 1,
-    minNodeSpacing: 28,
-    spacingFactor: 1.25,
+    // Engere Ringe + dichtere Knoten: die vorherigen 28/1.25 ließen die
+    // Ringe so weit auseinander, dass bei Start fast nur leere Fläche
+    // zu sehen war.
+    minNodeSpacing: 14,
+    spacingFactor: 0.75,
     avoidOverlap: true, animate: true, animationDuration: 600,
   };
 }
