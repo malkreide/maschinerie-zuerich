@@ -11,7 +11,7 @@ import { city } from '@/config/city.config';
 export async function loadStadtData(): Promise<StadtData> {
   const root = process.cwd();
   const dataPath = path.join(root, city.orgChartPath);
-  const lebPath  = path.join(root, 'data', 'manual', 'lebenslagen.json');
+  const lebPath  = path.join(root, city.lebenslagenPath);
 
   const data = JSON.parse(await fs.readFile(dataPath, 'utf-8')) as StadtData;
   try {

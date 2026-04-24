@@ -7,19 +7,32 @@ import { fileURLToPath } from 'node:url';
 
 export const ROOT = resolve(fileURLToPath(import.meta.url), '..', '..');
 
-// Pfad der Org-Chart-JSON relativ zum Projekt-Root, aus city.config.json
-// gelesen — so teilen sich ETL-Skripte und der Runtime-Loader (lib/data.ts)
-// exakt denselben Pfad. Top-level-await ist in ESM okay und wird beim ersten
-// Import aufgelöst.
+// `.env.local` automatisch laden, damit Devs nicht jedes Mal `export …` vor
+// den npm-Script-Aufruf setzen müssen. `loadEnvFile` existiert ab Node 21
+// (optional-chain, damit ältere Runtimes nicht crashen). Fehlt die Datei,
+// wirft die Funktion — dann fallen wir still auf existierende process.env
+// zurück (in CI kommen die Keys aus Plattform-Secrets, nicht aus Dateien).
+try {
+  process.loadEnvFile?.(resolve(ROOT, '.env.local'));
+} catch { /* keine .env.local — ok */ }
+
+// Pfad der Org-Chart-JSON + API-Settings aus city.config.json gelesen — so
+// teilen sich ETL-Skripte und der Runtime-Loader (lib/data.ts) exakt denselben
+// Pfad, und die API-URL ist kein Zürich-Hardcode mehr. Top-level-await ist in
+// ESM okay und wird beim ersten Import aufgelöst.
 const _cityCfgPath = resolve(ROOT, 'config', 'city.config.json');
 const _cityCfg = JSON.parse(await fs.readFile(_cityCfgPath, 'utf8'));
+export const CITY_CONFIG = _cityCfg;
 export const ORG_CHART_PATH = _cityCfg.orgChartPath;
 
-// data.stadt-zuerich.ch hat den API-Key in den Open-Data-Metadaten publiziert.
-// Override via Umgebungsvariable möglich, falls die Stadt den Key rotiert.
-export const RPK_API_BASE = 'https://api.stadt-zuerich.ch/rpkk-rs/v1';
-export const RPK_API_KEY  = process.env.RPK_API_KEY
-  || 'vopVcmhIMkeUCf8gQjk1GgU2wK+fKihAdlCl0WKJ';
+// RPK-API-Settings. baseUrl steht in city.config.json, der Key NICHT —
+// der wird aus der Env-Variable gelesen, deren Name in apiKeyEnv steht.
+// `.env.local` ist gitignored; in CI hinterlegt man das Secret als
+// Plattform-Variable. Andere Städte setzen eigene dataSources-Einträge
+// und adressieren sie über ihren Adapter unter scripts/adapters/<id>.mjs.
+const _rpk = _cityCfg.dataSources?.rpk;
+export const RPK_API_BASE = _rpk?.baseUrl ?? '';
+export const RPK_API_KEY  = _rpk?.apiKeyEnv ? (process.env[_rpk.apiKeyEnv] ?? '') : '';
 
 export function log(...args) {
   const ts = new Date().toISOString().slice(11, 19);
@@ -46,6 +59,19 @@ export async function fetchRpk(endpoint, { cachePath, force = false } = {}) {
       log(`cache hit ${endpoint} → ${cachePath}`);
       return cached;
     } catch { /* kein Cache, weiter zu fetch */ }
+  }
+
+  if (!RPK_API_BASE) {
+    throw new Error(
+      'dataSources.rpk.baseUrl fehlt in config/city.config.json — RPK-Fetch nicht möglich.'
+    );
+  }
+  if (!RPK_API_KEY) {
+    const envName = _rpk?.apiKeyEnv ?? 'RPK_API_KEY';
+    throw new Error(
+      `Environment-Variable ${envName} nicht gesetzt. ` +
+      `Leg die Datei .env.local im Projekt-Root an (siehe .env.example).`
+    );
   }
 
   const url = `${RPK_API_BASE}${endpoint}`;

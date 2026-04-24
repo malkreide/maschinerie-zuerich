@@ -35,6 +35,23 @@ export interface CityConfig {
    *  'data/<id>/org-chart.json'. loadStadtData() und das
    *  validate-prozesse-Skript lesen beide hier. */
   orgChartPath: string;
+  /** Pfad zur Lebenslagen-/Anliegen-JSON (Bürger-Anliegen → Unit-Mapping).
+   *  Konvention: 'data/<id>/lebenslagen.json'. */
+  lebenslagenPath: string;
+  /** Datenquellen der Stadt. Die ETL-Skripte unter scripts/adapters/<id>.mjs
+   *  lesen diesen Block, um an ihre APIs anzudocken. Welche Keys erwartet
+   *  werden, hängt vom Adapter ab — ZH braucht 'rpk', andere Städte
+   *  ergänzen eigene Einträge. */
+  dataSources: {
+    rpk?: {
+      baseUrl: string;
+      /** Name der Environment-Variable, aus der der API-Key gelesen wird.
+       *  Keys NIE in die Config selbst schreiben — die Datei wird committed.
+       *  Lokal: `.env.local` (gitignored). CI: Secret der Plattform. */
+      apiKeyEnv: string;
+    };
+    [key: string]: unknown;
+  };
   /** Farb-Theme der Stadt. Wird vom Root-Layout als CSS-Variablen injiziert
    *  (siehe themeCssVars()) und zusätzlich direkt von Komponenten gelesen,
    *  die einen JS-Array oder Cytoscape-Stylesheet brauchen. */

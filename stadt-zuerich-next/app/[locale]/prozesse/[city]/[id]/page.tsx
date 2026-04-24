@@ -15,6 +15,7 @@ import { routing, type Locale } from '@/i18n/routing';
 import { getT } from '@/lib/i18n-server';
 import { loadProzess, listProzessParams } from '@/lib/prozesse';
 import { loadStadtData } from '@/lib/data';
+import { city as cityConfig } from '@/config/city.config';
 import { layoutProzess } from '@/lib/prozess-layout';
 import { resolveI18n, type ProzessLocale, type Dauer } from '@/types/prozess';
 import type { Department, Unit, Beteiligung, StadtData } from '@/types/stadt';
@@ -97,11 +98,10 @@ export default async function ProzessDetailPage({
 
   const t = getT(loc, 'Prozesse');
 
-  // Brücke in den Org-Chart: wenn der Prozess für eine Stadt gilt, für die
-  // wir data.json haben (aktuell nur ZH), lösen wir einheit_ref gegen data
-  // auf. Für andere Städte: einheit info bleibt undefined → Swimlane-Label
-  // ist plain Text statt Link.
-  const stadtData = city === 'zh' ? await loadStadtData() : null;
+  // Brücke in den Org-Chart: nur Prozesse unserer konfigurierten Stadt
+  // können einheit_ref gegen das Org-Chart auflösen. Prozesse anderer
+  // Städte (falls irgendwann mitverwaltet) behalten plain-Text-Swimlanes.
+  const stadtData = city === cityConfig.id ? await loadStadtData() : null;
 
   // Akteur-ID → { label, einheitHref?, einheitName? }-Map
   const akteurInfo = new Map<string, { label: string; einheitHref?: string; einheitName?: string }>();

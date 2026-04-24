@@ -18,6 +18,13 @@
   "externalSearchUrlTemplate": "https://www.stadt-zuerich.ch/de.html?q={q}",
   "homepageUrl": "https://www.stadt-zuerich.ch/",
   "orgChartPath": "data/zh/org-chart.json",
+  "lebenslagenPath": "data/zh/lebenslagen.json",
+  "dataSources": {
+    "rpk": {
+      "baseUrl": "https://api.stadt-zuerich.ch/rpkk-rs/v1",
+      "apiKeyEnv": "RPK_API_KEY"
+    }
+  },
   "theme": {
     "accent": "#1f3a8a",
     "nodeType": {
