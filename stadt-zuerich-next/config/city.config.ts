@@ -35,6 +35,35 @@ export interface CityConfig {
    *  'data/<id>/org-chart.json'. loadStadtData() und das
    *  validate-prozesse-Skript lesen beide hier. */
   orgChartPath: string;
+  /** Farb-Theme der Stadt. Wird vom Root-Layout als CSS-Variablen injiziert
+   *  (siehe themeCssVars()) und zusätzlich direkt von Komponenten gelesen,
+   *  die einen JS-Array oder Cytoscape-Stylesheet brauchen. */
+  theme: CityTheme;
+}
+
+/** City-spezifisches Farb-Theme. Alle Werte sind CSS-Farb-Strings (Hex,
+ *  rgb(), etc.). Die Dark-Mode-Overrides für Hintergrund/Panel/Ink/Mute/Line
+ *  leben weiterhin in globals.css — das hier ist Stadt-Branding, nicht
+ *  Theme-Modus. */
+export interface CityTheme {
+  /** Primärfarbe der UI (Header, aktive Tabs, Link-Akzente). */
+  accent: string;
+  /** Farb-Mapping pro Knotentyp im Graphen. Keys matchen die 'type'-Werte
+   *  aus types/stadt.ts + zwei Sonderrollen aus Legend.tsx. */
+  nodeType: {
+    stadtpraesidium: string;
+    stadtrat: string;
+    department: string;
+    unit: string;
+    staff: string;
+    extern: string;
+    beteiligung: string;
+  };
+  /** Warn-Farbe für Konflikte (Bürger- vs. RPK-Zuordnung). */
+  konflikt: string;
+  /** Palette für die Treemap — Departemente werden per d3.scaleOrdinal
+   *  zyklisch gemappt. */
+  departmentPalette: string[];
 }
 
 export const city: CityConfig = cfg as CityConfig;
@@ -43,4 +72,24 @@ export const city: CityConfig = cfg as CityConfig;
  *  Kapselt die URL-Kodierung, damit Aufrufer das Rohstring übergeben. */
 export function externalSearchUrl(query: string): string {
   return city.externalSearchUrlTemplate.replace('{q}', encodeURIComponent(query));
+}
+
+/** Baut den `<style>`-Inhalt mit den theme-CSS-Variablen, die das Layout
+ *  als Inline-Stylesheet in den `<head>` setzt. Damit gelten die Stadt-
+ *  Farben noch vor dem ersten Paint — kein Flash-of-Wrong-Brand. */
+export function themeCssVars(): string {
+  const t = city.theme;
+  return [
+    `:root {`,
+    `  --color-accent: ${t.accent};`,
+    `  --color-node-stadtpraesidium: ${t.nodeType.stadtpraesidium};`,
+    `  --color-node-stadtrat: ${t.nodeType.stadtrat};`,
+    `  --color-node-department: ${t.nodeType.department};`,
+    `  --color-node-unit: ${t.nodeType.unit};`,
+    `  --color-node-staff: ${t.nodeType.staff};`,
+    `  --color-node-extern: ${t.nodeType.extern};`,
+    `  --color-node-beteiligung: ${t.nodeType.beteiligung};`,
+    `  --color-konflikt: ${t.konflikt};`,
+    `}`,
+  ].join('\n');
 }

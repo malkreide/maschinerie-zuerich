@@ -1,22 +1,20 @@
 @import "tailwindcss";
 
+/* Theme-Modus-Farben (hell/dunkel). Die Stadt-spezifischen Farben
+ * (--color-accent und --color-node-*) liegen nicht hier, sondern werden
+ * aus config/city.config.json via themeCssVars() als Inline-<style> im
+ * Layout injiziert — so bleibt diese CSS-Datei Tenant-neutral.
+ *
+ * Ausnahme: --color-accent im Dark-Mode. Die Dunkel-Variante hebt die
+ * Stadt-Akzentfarbe auf einen helleren Lesbarkeits-Wert; dieser Wert
+ * hängt aktuell nicht vom Tenant ab, weshalb er hier bleibt. Bei Bedarf
+ * später auch ins Theme wandern. */
 @theme {
   --color-bg: #f6f7fb;
   --color-panel: #ffffff;
   --color-ink: #1a1f2e;
   --color-mute: #5b6478;
   --color-line: #e3e6ef;
-  --color-accent: #1f3a8a;
-
-  --color-dep-prd: #c0392b;
-  --color-dep-fd:  #e67e22;
-  --color-dep-sd:  #f1c40f;
-  --color-dep-gud: #16a085;
-  --color-dep-ted: #3b6ea5;
-  --color-dep-hbd: #8b5cf6;
-  --color-dep-sid: #7a1f2b;
-  --color-dep-ssd: #2c7a7b;
-  --color-dep-dib: #d35400;
 }
 
 html.dark {
@@ -84,5 +82,5 @@ html, body { height: 100%; background: var(--color-bg); color: var(--color-ink);
 }
 .liste .meta dt { font-weight: 500; }
 .liste .meta dd { margin: 0; color: var(--color-ink); }
-.liste .konflikt { color: #e67e22; }
+.liste .konflikt { color: var(--color-konflikt); }
 .liste .units { margin-left: 18px; }

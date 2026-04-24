@@ -59,9 +59,9 @@ export default function DetailPanel({
   if (item.odz)    rows.push({ k: t('ogdKey'), v: `${item.odz.kurzname} · key ${item.odz.key}` });
   if ('konflikt' in item && item.konflikt) {
     rows.push({
-      k: <span className="text-[#e67e22]">{t('conflictLabel')}</span>,
+      k: <span className="text-[var(--color-konflikt)]">{t('conflictLabel')}</span>,
       v: (
-        <span className="text-[#e67e22]">
+        <span className="text-[var(--color-konflikt)]">
           {t('conflictCitizen')}: {item.konflikt.unsereZuordnung}<br />
           {t('conflictRpk')}: {item.konflikt.rpkBezeichnung || item.konflikt.rpkKurzname}
         </span>

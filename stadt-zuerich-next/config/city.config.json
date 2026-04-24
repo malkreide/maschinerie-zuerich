@@ -17,5 +17,22 @@
   "domain": "stadt-zuerich.ch",
   "externalSearchUrlTemplate": "https://www.stadt-zuerich.ch/de.html?q={q}",
   "homepageUrl": "https://www.stadt-zuerich.ch/",
-  "orgChartPath": "data/zh/org-chart.json"
+  "orgChartPath": "data/zh/org-chart.json",
+  "theme": {
+    "accent": "#1f3a8a",
+    "nodeType": {
+      "stadtpraesidium": "#7a1f2b",
+      "stadtrat": "#c0392b",
+      "department": "#e67e22",
+      "unit": "#3b6ea5",
+      "staff": "#8b5cf6",
+      "extern": "#16a085",
+      "beteiligung": "#f1c40f"
+    },
+    "konflikt": "#e67e22",
+    "departmentPalette": [
+      "#c0392b", "#e67e22", "#f1c40f", "#16a085", "#3b6ea5",
+      "#8b5cf6", "#7a1f2b", "#2c7a7b", "#d35400"
+    ]
+  }
 }

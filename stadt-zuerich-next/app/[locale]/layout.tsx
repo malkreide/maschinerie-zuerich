@@ -8,6 +8,7 @@ import { loadStadtData } from '@/lib/data';
 import { getTheme } from '@/lib/theme';
 import { routing, type Locale } from '@/i18n/routing';
 import { getT, getMessages } from '@/lib/i18n-server';
+import { themeCssVars } from '@/config/city.config';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -40,6 +41,15 @@ export default async function LocaleLayout({
 
   return (
     <html lang={htmlLang} className={theme === 'dark' ? 'dark' : ''}>
+      <head>
+        {/* Stadt-spezifische Theme-Variablen. Inline statt via <link>,
+            damit die Farben ohne zusätzlichen Request vor dem ersten
+            Paint feststehen. Quelle: config/city.config.json → theme. */}
+        <style
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: themeCssVars() }}
+        />
+      </head>
       <body className="font-sans antialiased">
         <NextIntlClientProvider locale={locale} messages={messages}>
           <a className="skip-link" href={`/${locale}/liste`}>

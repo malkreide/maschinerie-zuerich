@@ -1,28 +1,30 @@
 import { getT } from '@/lib/i18n-server';
 import type { Locale } from '@/i18n/routing';
+import { city } from '@/config/city.config';
 
 export default function Legend({ locale }: { locale: Locale }) {
   const t = getT(locale, 'Legend');
+  const c = city.theme.nodeType;
   return (
     <aside
       aria-label={t('headingTop')}
       className="fixed left-3 bottom-3 z-[9] bg-[var(--color-panel)] px-3 py-2.5 rounded-lg shadow text-xs max-w-[320px]"
     >
       <Heading>{t('headingTop')}</Heading>
-      <Row color="#7a1f2b" round>{t('stadtpraesidium')}</Row>
-      <Row color="#c0392b" round>{t('stadtrat')}</Row>
-      <Row color="#e67e22" sq>{t('departement')}</Row>
+      <Row color={c.stadtpraesidium} round>{t('stadtpraesidium')}</Row>
+      <Row color={c.stadtrat} round>{t('stadtrat')}</Row>
+      <Row color={c.department} sq>{t('departement')}</Row>
 
       <Heading mt>{t('headingUnits')}</Heading>
-      <Row color="#3b6ea5" sq>{t('dienstabteilung')}</Row>
-      <Row color="#8b5cf6" sq>{t('stab')}</Row>
+      <Row color={c.unit} sq>{t('dienstabteilung')}</Row>
+      <Row color={c.staff} sq>{t('stab')}</Row>
 
       <Heading mt>{t('headingExtern')}</Heading>
-      <Row color="#16a085" dia>{t('verselbst')}</Row>
-      <Row color="#f1c40f" dia>{t('beteiligung')}</Row>
+      <Row color={c.extern} dia>{t('verselbst')}</Row>
+      <Row color={c.beteiligung} dia>{t('beteiligung')}</Row>
 
       <Heading mt>{t('headingMarker')}</Heading>
-      <Row dashed>{t('konflikt')}</Row>
+      <Row dashed dashColor={city.theme.konflikt}>{t('konflikt')}</Row>
     </aside>
   );
 }
@@ -36,13 +38,14 @@ function Heading({ children, mt }: { children: React.ReactNode; mt?: boolean }) 
 }
 
 function Row({
-  color, sq, dia, round, dashed, children,
+  color, sq, dia, round, dashed, dashColor, children,
 }: {
   color?: string; sq?: boolean; dia?: boolean; round?: boolean; dashed?: boolean;
+  dashColor?: string;
   children: React.ReactNode;
 }) {
   const style: React.CSSProperties = dashed
-    ? { background: 'transparent', border: '2px dashed #e67e22', width: 14, height: 14, borderRadius: 3 }
+    ? { background: 'transparent', border: `2px dashed ${dashColor ?? 'currentColor'}`, width: 14, height: 14, borderRadius: 3 }
     : {
         background: color,
         width: dia ? 11 : 14,

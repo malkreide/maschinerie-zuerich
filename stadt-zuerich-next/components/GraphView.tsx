@@ -7,6 +7,7 @@ import { usePathname, useRouter } from '@/i18n/navigation';
 import type cytoscape from 'cytoscape';
 import type { Core, ElementDefinition, LayoutOptions, NodeSingular } from 'cytoscape';
 import type { StadtData } from '@/types/stadt';
+import { city } from '@/config/city.config';
 
 type Layout = 'radial' | 'force';
 
@@ -203,6 +204,10 @@ function layoutOptions(name: Layout): LayoutOptions {
   };
 }
 
+// Cytoscape kann CSS-Variablen nicht direkt lesen (Canvas-Renderer); daher
+// lesen wir die Farben aus dem Stadt-Config direkt als Hex-Werte ein.
+// Tenant-Override: city.config.json → theme.
+const TC = city.theme;
 const GRAPH_STYLE: cytoscape.StylesheetStyle[] = [
   { selector: 'node', style: {
       'label': 'data(label)', 'font-size': 9,
@@ -210,28 +215,29 @@ const GRAPH_STYLE: cytoscape.StylesheetStyle[] = [
       'color': '#1a1f2e', 'text-outline-color': '#fff', 'text-outline-width': 2,
       'border-width': 1, 'border-color': 'rgba(0,0,0,.2)', 'width': 18, 'height': 18 } },
   { selector: 'node[type = "center"]', style: {
-      'background-color': '#7a1f2b', 'shape': 'ellipse',
-      'width': 70, 'height': 70, 'font-size': 13, 'color': '#fff', 'text-outline-color': '#7a1f2b' } },
+      'background-color': TC.nodeType.stadtpraesidium, 'shape': 'ellipse',
+      'width': 70, 'height': 70, 'font-size': 13, 'color': '#fff',
+      'text-outline-color': TC.nodeType.stadtpraesidium } },
   { selector: 'node[type = "department"]', style: {
-      'background-color': '#e67e22', 'shape': 'round-rectangle',
+      'background-color': TC.nodeType.department, 'shape': 'round-rectangle',
       'width': 130, 'height': 54, 'font-size': 10, 'font-weight': 'bold',
-      'color': '#fff', 'text-outline-color': '#e67e22',
+      'color': '#fff', 'text-outline-color': TC.nodeType.department,
       'text-wrap': 'wrap', 'text-max-width': '120', 'padding': '4' } },
   { selector: 'node[type = "unit"]', style: {
-      'background-color': '#3b6ea5', 'shape': 'round-rectangle', 'width': 22, 'height': 16 } },
+      'background-color': TC.nodeType.unit, 'shape': 'round-rectangle', 'width': 22, 'height': 16 } },
   { selector: 'node[type = "staff"]', style: {
-      'background-color': '#8b5cf6', 'shape': 'round-rectangle', 'width': 22, 'height': 16 } },
+      'background-color': TC.nodeType.staff, 'shape': 'round-rectangle', 'width': 22, 'height': 16 } },
   { selector: 'node[type = "extern"]', style: {
-      'background-color': '#16a085', 'shape': 'diamond', 'width': 22, 'height': 22 } },
+      'background-color': TC.nodeType.extern, 'shape': 'diamond', 'width': 22, 'height': 22 } },
   { selector: 'node[type = "beteiligung"]', style: {
-      'background-color': '#f1c40f', 'shape': 'diamond', 'width': 18, 'height': 18 } },
+      'background-color': TC.nodeType.beteiligung, 'shape': 'diamond', 'width': 18, 'height': 18 } },
   { selector: 'edge', style: {
       'width': 1, 'line-color': '#c8cdda', 'curve-style': 'bezier',
       'target-arrow-shape': 'none', 'opacity': 0.6 } },
   { selector: 'edge[?dashed]', style: { 'line-style': 'dashed', 'opacity': 0.45 } },
   { selector: '.faded',       style: { 'opacity': 0.12, 'text-opacity': 0.1 } },
-  { selector: '.highlighted', style: { 'border-width': 3, 'border-color': '#1f3a8a', 'opacity': 1 } },
+  { selector: '.highlighted', style: { 'border-width': 3, 'border-color': TC.accent, 'opacity': 1 } },
   { selector: '.search-hit',  style: { 'border-width': 4, 'border-color': '#ff4081' } },
   { selector: 'node[?konflikt]', style: {
-      'border-width': 2.5, 'border-color': '#e67e22', 'border-style': 'dashed' } },
+      'border-width': 2.5, 'border-color': TC.konflikt, 'border-style': 'dashed' } },
 ];

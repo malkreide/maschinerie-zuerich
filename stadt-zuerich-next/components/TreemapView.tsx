@@ -6,6 +6,7 @@ import { hierarchy, treemap, type HierarchyRectangularNode } from 'd3-hierarchy'
 import { scaleOrdinal } from 'd3-scale';
 import type { StadtData, Department, Unit } from '@/types/stadt';
 import { fmtMio, fmtNumber } from '@/lib/search';
+import { city } from '@/config/city.config';
 
 type Datum = {
   name: string;
@@ -19,8 +20,9 @@ type Datum = {
   children?: Datum[];
 };
 
-const DEP_COLORS = ['#c0392b', '#e67e22', '#f1c40f', '#16a085', '#3b6ea5',
-                    '#8b5cf6', '#7a1f2b', '#2c7a7b', '#d35400'];
+// Departement-Palette kommt aus der Stadt-Konfiguration — andere Städte
+// haben andere Corporate-Palettes, ohne Code-Änderung im Treemap.
+const DEP_COLORS = city.theme.departmentPalette;
 
 export default function TreemapView({
   data,
@@ -96,7 +98,7 @@ export default function TreemapView({
             {tooltip.node.netto != null && <Row k={t('tooltipNet')} v={`${fmtNumber(tooltip.node.netto)} CHF`} />}
             {tooltip.node.fte   != null && <Row k={t('tooltipFte')} v={fmtNumber(tooltip.node.fte)} />}
             <Row k={t('tooltipShare')} v={`${(((tooltip.node.value ?? 0) / tooltip.total) * 100).toFixed(1)} %`} />
-            {tooltip.node.konflikt && <div className="mt-1 text-[#e67e22] text-[11px]">{t('conflictNote')}</div>}
+            {tooltip.node.konflikt && <div className="mt-1 text-[var(--color-konflikt)] text-[11px]">{t('conflictNote')}</div>}
           </div>
         )}
       </div>
@@ -194,7 +196,7 @@ function Leaf({
       <rect x={d.x0} y={d.y0} width={w} height={h} fill={color} opacity={0.65} />
       {d.data.konflikt && w > 10 && h > 10 && (
         <rect x={d.x0} y={d.y0} width={w} height={h} fill="none"
-              stroke="#e67e22" strokeWidth={2} strokeDasharray="4 3" pointerEvents="none" />
+              stroke="var(--color-konflikt)" strokeWidth={2} strokeDasharray="4 3" pointerEvents="none" />
       )}
       {showName && <text x={d.x0 + 5} y={d.y0 + 14}>{name}</text>}
       {showName && showValue && (
