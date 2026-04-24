@@ -1,16 +1,169 @@
-# Maschinerie der Stadt Zürich – Next.js-Port
+# Maschinerie der Stadt Zürich
 
-Next.js-16-Variante des Vanilla-Prototyps in `../stadt-zuerich-mog/`.
-Gleiche Funktionalität, gleicher Daten-Fluss, aber als typsichere
-React-App mit komponentenbasiertem UI.
+**Interaktive Visualisierung der Zürcher Stadtverwaltung** — Organigramm
+mit Departementen, Dienstabteilungen und Beteiligungen, flankiert von
+Budget-Flüssen, FTE-Zahlen und einer fuzzy-toleranten "Welches Amt ist
+für mein Anliegen zuständig?"-Suche. Gebaut mit Next.js 16, Cytoscape,
+D3 und offenen Daten aus `data.stadt-zuerich.ch` (CC-BY 4.0).
 
-> **Auch als Template für andere Städte gedacht.** Die Code-Basis ist
-> stadt-agnostisch — Name, Theme, Datenquellen und ETL-Logik sind in
-> drei Pfaden entkoppelt (`config/city.config.json`,
-> `scripts/adapters/<id>.mjs`, `data/<id>/`). Fork & klone, dann
-> `npm run scaffold:city <id> "<name>"` + Checkliste in
-> **[PORTING.md](PORTING.md)** abarbeiten. Genf als durchgearbeitetes
-> Beispiel im Guide.
+**Für wen:**
+
+- **Bürger:innen** — verstehen, wer wofür zuständig ist und wohin
+  der eigene Steuerfranken fliesst.
+- **Stadtverwaltungen und Open-Government-Projekte** — ein fertiges
+  White-Label-Tool statt Eigenbau.
+- **Journalist:innen und Civic-Tech-Initiativen** — Einstieg ins
+  Verwaltungsgeflecht, ohne selbst eine Graph-Engine zu bauen.
+
+> **Gebaut für Zürich, gedacht für jede Stadt.** Der Code ist
+> stadt-agnostisch — ein Fork für Genf oder Bern ist eine Checkliste,
+> kein Refactor. Details in
+> [White-Label](#white-label--ein-code-viele-städte),
+> [How-To](#how-to-eigene-stadt-abbilden) und
+> [PORTING.md](PORTING.md).
+
+## Quickstart
+
+Node ≥ 20.20.2 vorausgesetzt. Die aktuelle Datenbasis (Organigramm,
+Budget, FTE, Lebenslagen) liegt bereits im Repo unter `data/zh/` —
+die App startet also ohne vorheriges ETL:
+
+```bash
+npm install
+npm run dev          # → http://localhost:3000
+```
+
+Um die Daten zu aktualisieren (holt frische Zahlen vom Stadt-Zürich-
+Open-Data-Portal), einmalig die ETL-Pipeline laufen lassen:
+
+```bash
+cp .env.example .env.local    # RPK_API_KEY eintragen — siehe Kommentar im File
+npm run data:fetch            # ~2 min, schreibt data/zh/org-chart.json & Co.
+```
+
+Keine Lust auf Node-Installation? → [Docker](#docker).
+
+## Docker
+
+Die App läuft komplett isoliert in Docker, ohne lokale Node-/npm-
+Installation — praktisch für "einfach mal anschauen" oder Production-
+Deploys auf Servern ohne Node-Umgebung.
+
+```bash
+# Web-UI auf http://localhost:3000
+docker compose up app
+
+# ETL-Pipeline einmalig laufen lassen (aktualisiert data/*.json im Repo):
+#   braucht .env.local mit RPK_API_KEY — siehe .env.example
+docker compose --profile etl run --rm etl
+```
+
+Der Build ist multi-stage (`deps` → `builder` → `runner`); das Runtime-
+Image liegt bei ~150 MB und läuft als non-root User. Der ETL-Service
+hängt an einem Compose-Profil (`--profile etl`) und startet NICHT bei
+`docker compose up` — ETL ist ein einmaliger Lauf, kein Daemon. Die
+`./data/`-Mounts im ETL-Service sorgen dafür, dass frisch geholte JSONs
+in deinem Arbeitsverzeichnis landen und nicht im Container verloren
+gehen.
+
+Für Production-Deploys (Vercel/Netlify/eigener Server) ist Docker
+optional — `output: 'standalone'` in `next.config.ts` funktioniert
+überall.
+
+## White-Label — ein Code, viele Städte
+
+Die Maschinerie ist als **Referenz-Implementierung für Zürich** gebaut,
+aber der Code selbst weiss nichts über Zürich. Alle stadt-spezifischen
+Teile sind in drei klar benannte Pfade ausgelagert:
+
+| Pfad | Was liegt drin | Zürich-Beispiel |
+|------|----------------|-----------------|
+| `config/city.config.json` | Name, Logo, Primärfarben, Locales, Domain, externe Such-URL | `"name": { "de": "Stadt Zürich" }` |
+| `scripts/adapters/<id>.mjs` | ETL-Pipeline: welche APIs/PDFs werden abgefragt, wie gemappt? | `zh.mjs` → RPK-Tool + Budget-PDFs |
+| `data/<id>/` | Rohdaten, Organigramm, Lebenslagen, Prozesse | `data/zh/org-chart.json`, `data/zh/lebenslagen.json` |
+
+Zusätzlich optional pro Stadt:
+
+| Pfad | Was liegt drin |
+|------|----------------|
+| `config/synonyms/<locale>.json` | Alltagssprache↔Jargon-Cluster für die Suche ("Abfall"↔"Entsorgung") |
+| `public/brand/<id>-logo.svg` | Optionales Glyph im Header (kein Wappen — Anti-Staatsemblem-Policy) |
+| `schemas/opengov-process-schema.json` | JSON-Schema für Prozess-Beschreibungen — städteübergreifend stabil |
+
+### Das Template-System: Core + City-Forks
+
+Dieses Repo ist gleichzeitig **Core-Implementierung UND Template**.
+Der Workflow für andere Städte ist klein:
+
+1. **Fork** auf GitHub (oder Git-Host deiner Wahl).
+2. **Scaffold** die neue Stadt:
+   `npm run scaffold:city ge "Genève" "Genf"`.
+   Das Skript legt `config/city.config.ge.json`, `scripts/adapters/ge.mjs`,
+   `data/ge/`-Skeleton und ein Platzhalter-Logo an — **ohne** bestehende
+   Dateien zu überschreiben.
+3. **Daten + Adapter befüllen** — siehe
+   [How-To](#how-to-eigene-stadt-abbilden) unten für die Kurzfassung
+   und [PORTING.md](PORTING.md) für die vollständige Schritt-für-Schritt-
+   Checkliste (Genf als durchgezogenes Beispiel).
+4. **Deploy** — Vercel, Docker, eigener Server. Der Code ist identisch
+   zum Zürich-Fork; nur die drei oben genannten Pfade unterscheiden sich.
+
+**Upstream-Merges bleiben möglich.** Code-Verbesserungen aus diesem
+Core (Such-Engine, neue Visualisierungen, Bug-Fixes) können nachträglich
+in den City-Fork gemerged werden, ohne dass die lokalen Daten verloren
+gehen — die sind ja in `data/ge/` und `config/city.config.ge.json`
+sauber isoliert.
+
+## How-To: Eigene Stadt abbilden
+
+Vollständige Checkliste in [PORTING.md](PORTING.md). Hier die
+Kurzfassung für "ich will's mal ausprobieren":
+
+```bash
+# 1. Scaffold neue Stadt (id = kurzer Slug, Name = Anzeige-Name)
+npm run scaffold:city ge "Genève" "Genf"
+
+# 2. Config aktivieren
+#    → config/city.config.zh.json  (alte wegsichern)
+#    → config/city.config.ge.json → config/city.config.json umbenennen
+#    → Platzhalter-Werte (domain, URLs) durch echte ersetzen
+
+# 3. Org-Chart für Genf befüllen
+#    → data/ge/org-chart.json      (departments, units, beteiligungen)
+#    → data/ge/lebenslagen.json    (Bürger-Anliegen-Mapping)
+
+# 4. Entweder ETL-Adapter schreiben (für spätere Auto-Updates) ...
+#    → scripts/adapters/ge.mjs     (Pipeline mit fetch + enrich Schritten)
+
+# 5. ... oder die Daten einfach manuell pflegen und ETL überspringen.
+npm run dev
+```
+
+**Mindest-Datensatz** für ein lauffähiges Fork:
+
+1. **`data/<id>/org-chart.json`** — Organigramm im
+   `StadtData`-Schema (`departments[]`, `units[]`, `beteiligungen[]`
+   mit IDs + Bezeichnungen + optionalen Budget-/FTE-Zahlen). Der
+   Scaffold-Befehl erzeugt ein minimales, valides Skeleton.
+2. **`data/<id>/lebenslagen.json`** — "Bürger-Anliegen → zuständiges
+   Amt"-Mappings. Schema: `{ id, zustaendig, i18n: { de: { frage,
+   stichworte, antwort } } }`. 10-20 Einträge reichen für einen
+   sinnvollen Suche-Test.
+3. **Optional**: `config/synonyms/<locale>.json` — Alltagsbegriffe ↔
+   Fachjargon für die Fuzzy-Suche (Beispiel: "Abfall" ↔ "voirie"). Die
+   Zürcher Cluster taugen als Startpunkt; tausch die stadt-spezifischen
+   Institutionskürzel (ERZ, VBZ, UGZ) gegen die lokalen aus.
+
+**Daten aus offenen Quellen holen**: die Adapter-API in
+`scripts/adapters/` ist absichtlich klein — ein Adapter exportiert eine
+Pipeline (Liste von `{id, run}`-Schritten). Der ZH-Adapter ruft das
+RPK-Tool und holt Budget-PDFs; ein Genf-Adapter würde z. B. das
+SITG-Portal (sitg.ge.ch) und ville-ge.ch anzapfen. `scripts/adapters/zh.mjs`
+dient als kommentierte Vorlage.
+
+Mit den drei Schritten oben bekommst du ein lauffähiges "Maschinerie
+Genève" oder "Maschinerie Bern" — gleiche UX, gleiche Deep-Links,
+gleiche Fuzzy-Suche, aber mit deinen Daten.
 
 ## Stack
 
@@ -20,22 +173,22 @@ React-App mit komponentenbasiertem UI.
 - **next-intl 4** für 5 Sprachen (DE/EN/FR/IT/Leichte Sprache)
 - **Cytoscape.js** + cytoscape-fcose (radialer + force-directed Graph)
 - **D3** (`d3-hierarchy`, `d3-scale` — nur die benötigten Module)
-- ETL-Skripte aus `scripts/` unverändert übernommen (Node 20+, stdlib-only)
+- **Fuse.js 7** — Fuzzy-Suche mit Synonym-Cluster-Expansion
+- ETL-Skripte aus `scripts/` (Node 20+, stdlib-only)
 
 ## Architektur
 
-Multi-Route mit Deep-Linking:
-
-Alle Routen sind locale-präfixiert. **DE** ist Default und braucht **kein**
-Prefix; alle anderen Sprachen kriegen den Locale als ersten Pfadteil:
+Multi-Route mit Deep-Linking. Alle Routen sind locale-präfixiert;
+Default-Locale ist DE.
 
 | Route | Zweck | Server / Client |
 |-------|-------|-----------------|
 | `/`, `/en`, `/fr`, `/it`, `/ls` | Maschinerie (Cytoscape-Graph) | Server-Component, GraphView client-only |
-| `/?focus=<unit-id>` | Graph zoomt auf gewählte Einheit, Detail-Panel offen | Deep-Link tauglich |
+| `/?focus=<unit-id>` | Graph zoomt auf gewählte Einheit, Detail-Panel offen | Deep-Link-tauglich |
 | `/steuerfranken`, `/en/steuerfranken`, … | Treemap «Wohin geht mein Steuerfranken?» | Server, TreemapView client |
 | `/liste`, `/en/liste`, … | Hierarchische `<details>`-Liste für SR + Tastatur | **Komplett server-renderbar**, funktioniert ohne JS |
-| `/anliegen?q=…`, `/en/anliegen?q=…`, … | Lebenslagen-Suche, Trefferliste mit Deep-Links | **Komplett server-renderbar**, Progressive-Enhancement-Fallback der Live-Suche |
+| `/anliegen?q=…`, `/en/anliegen?q=…`, … | Lebenslagen-Suche mit Deep-Links | **Komplett server-renderbar**, Progressive-Enhancement-Fallback der Live-Suche |
+| `/prozesse/<city>/<id>` | Detail-Seite pro Verwaltungs-Prozess (schema.org/GovernmentService JSON-LD) | Server |
 
 ```
 app/
@@ -44,12 +197,15 @@ app/
   steuerfranken/page.tsx  ← /steuerfranken – Treemap
   liste/page.tsx          ← /liste – Liste (server-rendered)
   anliegen/page.tsx       ← /anliegen?q=… – server-rendered Lebenslagen-Suche
+  prozesse/.../page.tsx   ← Prozess-Detailseite mit JSON-LD
+  sitemap.ts + robots.ts  ← SEO-Basics
   globals.css             ← Tailwind v4 Theme + Komponentennahe Styles
 
 components/
   Shell.tsx       ← Server-Wrapper: <Header/> + <Search/> + {children}
   Header.tsx      ← Client, Link-basierte Tab-Nav, dark-mode persistent
-  Search.tsx      ← Client, Lebenslagen → router.push('/?focus=…')
+  Brand.tsx       ← Optionales Logo-Glyph (pro Stadt konfigurierbar)
+  Search.tsx      ← Client, Fuse.js + Synonym-Cluster → router.push('/?focus=…')
   GraphView.tsx   ← Client, Cytoscape dynamic-import,
                     useSearchParams für ?focus= als Source-of-Truth
   TreemapView.tsx ← Client, D3-Hierarchy + React-JSX
@@ -57,15 +213,19 @@ components/
   DetailPanel.tsx ← Client, useSearchParams + URL-State, close → router.replace
   Legend.tsx      ← Statische Farbkodierung
 
-lib/
-  data.ts         ← loadStadtData() liest data.json + lebenslagen.json
-  search.ts       ← Lebenslagen-Score + CHF/Mio-Formatter
+config/
+  city.config.json          ← stadt-spezifische Werte (Name, Theme, Pfade)
+  synonyms/<locale>.json    ← Such-Synonym-Cluster pro Locale
 
-types/stadt.ts    ← Typedefinitionen für data.json
-scripts/          ← ETL unverändert aus Prototyp
-data/manual/      ← fte-publiziert.json, lebenslagen.json
-data/raw/         ← gitignored, ETL-Cache
-data.json         ← Output der ETL-Pipeline
+lib/
+  data.ts         ← loadStadtData() liest city.config.orgChartPath + lebenslagenPath
+  search.ts       ← Fuse.js-Index + Synonym-Expansion, CHF/Mio-Formatter
+  prozess-jsonld.ts ← schema.org GovernmentService JSON-LD-Projektion
+
+types/stadt.ts    ← Typdefinitionen
+scripts/adapters/ ← ETL pro Stadt (zh.mjs, ge.mjs, …)
+data/<id>/        ← Rohdaten pro Stadt (org-chart.json, lebenslagen.json, prozesse/)
+schemas/          ← JSON-Schema für Prozess-Beschreibungen (stabile $id)
 ```
 
 ### Deep-Linking-Verhalten
@@ -91,9 +251,6 @@ Cookie-basiert (`mog-theme=dark|light`, `samesite=lax`, 1 Jahr Max-Age),
 | 5. Toggle | Client | togglet Klasse + setzt Cookie via `document.cookie` (kein Roundtrip) |
 | 6. Nächster Request | Server | liest Cookie → renders mit korrektem Theme |
 
-Side-Effekt: Layout wird durch `cookies()` zur dynamischen Route — was sie
-ohnehin schon ist (data.json + lebenslagen.json sind dynamisch geladen).
-
 ### Progressive Enhancement der Suche
 
 Die Suche unter `/` und `/steuerfranken` ist ein echtes
@@ -102,51 +259,27 @@ Die Suche unter `/` und `/steuerfranken` ist ein echtes
 | Szenario | Ablauf |
 |----------|--------|
 | **Ohne JS** (Lynx, NoScript, alte Browser) | Enter im Suchfeld submittet das Formular → Browser navigiert zu `/anliegen?q=...`, Server rendert die Trefferliste, jeder Treffer ist ein `<Link href="/?focus=...">` → vollständig nutzbar |
-| **Mit JS** | Live-Dropdown zeigt Top-6-Treffer beim Tippen, Klick auf Treffer → `router.push('/?focus=...')`. Enter funktioniert weiterhin und führt auf `/anliegen` für die volle Trefferliste |
+| **Mit JS** | Live-Dropdown zeigt Top-6-Treffer beim Tippen, Klick auf Treffer → `router.push('/?focus=...')`. Enter führt weiterhin auf `/anliegen` für die volle Trefferliste |
 
 `/anliegen` ist auch direkt aufrufbar — ohne `q` werden 8 «häufige Anliegen»
 als Vorschläge angeboten. Diese Vorschläge sind Links zu `/anliegen?q=<stichwort>`,
 also wieder server-rendered.
 
-## Setup
+### Suche: Fuzzy + Jargon-Tolerant
 
-```bash
-npm install
-npm run data:fetch        # ETL einmal laufen lassen (data.json erzeugen)
-npm run dev               # http://localhost:3000
-```
+`lib/search.ts` kombiniert zwei Mechanismen:
 
-## Docker
+1. **Synonym-Cluster** aus `config/synonyms/<locale>.json` — ungerichtete
+   Äquivalenz-Pools. Enthält eine Lebenslage irgendeinen Term eines
+   Clusters, werden alle Cluster-Kollegen automatisch als zusätzliche
+   Such-Tokens indexiert. "Hochzeit" findet damit "heiraten", obwohl
+   dort nur "heirat/ehe/trauung" als Stichworte stehen.
+2. **Fuse.js (v7)** mit gewichteter Multi-Feld-Suche und Bitap-Fuzzy-
+   Matching. Threshold 0.35 verzeiht typische Tippfehler ("Abfal",
+   "Hochzit", "Reisepas"), ohne Fremdwörter durchzulassen.
 
-Wer keine passende Node-Version installieren mag: die App läuft komplett
-isoliert in Docker, ohne lokale Node-/npm-Installation.
-
-```bash
-# Web-UI auf http://localhost:3000
-docker compose up app
-
-# ETL-Pipeline einmalig laufen lassen (aktualisiert data/*.json im Repo):
-#   braucht .env.local mit RPK_API_KEY — siehe .env.example
-docker compose --profile etl run --rm etl
-```
-
-Der Build ist multi-stage (`deps` → `builder` → `runner`); das Runtime-Image
-liegt bei ~150 MB und läuft als non-root User. Der ETL-Service hängt an einem
-Compose-Profil (`--profile etl`) und startet NICHT bei `docker compose up` —
-ETL ist ein einmaliger Lauf, kein Daemon. Die `./data/`-Mounts im ETL-Service
-sorgen dafür, dass frisch geholte JSONs in deinem Arbeitsverzeichnis landen
-und nicht im Container verloren gehen.
-
-Für Production-Deploys (Vercel/Netlify/eigener Server) ist Docker optional —
-`output: 'standalone'` in `next.config.ts` funktioniert überall.
-
-## Environment-Variablen
-
-Optional, beeinflussen nur die Produktion:
-
-| Variable | Beispiel | Wirkung |
-|----------|----------|---------|
-| `NEXT_PUBLIC_SITE_URL` | `https://maschinerie-zuerich.vercel.app` | Basis-URL für `/sitemap.xml` und `/robots.txt`. Auf Vercel nach dem ersten Deployment eintragen unter Project Settings → Environment Variables. |
+Regressions-Probe: `npm run probe:search` fährt 18 echte Queries gegen
+den Index und druckt die Top-3-Treffer.
 
 ## Datenflüsse
 
@@ -154,51 +287,45 @@ Optional, beeinflussen nur die Produktion:
 data.stadt-zuerich.ch (RPK API)         Budget-PDFs
       │                                       │
       ▼                                       ▼
-scripts/fetch-rpktool.mjs       data/manual/fte-publiziert.json
-scripts/fetch-budget.mjs                      │
+scripts/adapters/zh.mjs → pipeline[]      (fte-publiziert.json)
       │                                       │
       ▼                                       │
-data/raw/*.json (Cache)                       │
+data/raw/*.json (ETL-Cache)                   │
       │                                       │
       ▼                                       │
 scripts/enrich-{...}.mjs ◄────────────────────┘
       │
       ▼
-data.json  ──►  lib/data.ts (loadStadtData)  ──►  app/page.tsx (server)
+data/zh/org-chart.json  ──►  lib/data.ts  ──►  app/[locale]/page.tsx
                                                        │
                                                        ▼
                                               <App data={data}>
-                                                       │
                               ┌────────────────────────┼────────────────────────┐
                               ▼                        ▼                        ▼
                         <GraphView>            <TreemapView>             <ListView>
                           (client)               (client)              (server-renderbar)
 ```
 
-## Unterschiede zum Prototyp
+## Environment-Variablen
 
-| Aspekt | Prototyp | Next.js-Port |
-|--------|----------|--------------|
-| Sprachen | HTML+JS | TypeScript strict |
-| Bundling | Keines (CDN) | Next.js (Turbopack) |
-| Daten-Loading | client-side `fetch()` | Server-Component, einmaliger `fs.readFile` |
-| Cytoscape/D3 | UMD via CDN | npm-Pakete, dynamic import für Cytoscape |
-| State-Management | DOM-Klassen + globale Variablen | React-Hooks |
-| Tabs | CSS-Body-Klasse | Conditional Rendering |
-| ListView | DOM-Mutation via JS | React-rendered, server-fähig |
-| Routing | Single-Page | Single-Page (Tabs in einer Route) — Multi-Route wäre ein Refactor wert |
+| Variable | Beispiel | Wirkung | Wo setzen |
+|----------|----------|---------|-----------|
+| `RPK_API_KEY` | (siehe .env.example) | Auth für `data.stadt-zuerich.ch` RPK-Endpunkt | `.env.local` (lokal), Docker `.env.local` (ETL-Service) |
+| `NEXT_PUBLIC_SITE_URL` | `https://maschinerie-zuerich.vercel.app` | Basis-URL für `/sitemap.xml`, `/robots.txt`, JSON-LD | Production-Env (Vercel Project Settings, Docker-Env) |
+| `BUDGET_JAHR` | `2024` | Optional: Budget-Jahr übersteuern beim ETL-Lauf | `docker compose --profile etl run etl` oder `.env.local` |
+| `BUDGET_BETRAGSTYP` | `budgetiert` | Optional: Betragstyp-Filter für Budget-ETL | dto. |
 
 ## Internationalisierung
 
-5 Sprachen über `next-intl 4`, mit `localePrefix: 'as-needed'`:
+5 Sprachen über `next-intl 4`:
 
-| Locale | URL | Sprachcode | Notiz |
-|--------|-----|-----------|-------|
-| `de` | `/` (kein Prefix) | de-CH | Default |
-| `en` | `/en/...` | en | English |
-| `fr` | `/fr/...` | fr-CH | Français |
-| `it` | `/it/...` | it-CH | Italiano |
-| `ls` | `/ls/...` | de-CH | **Leichte Sprache** – einfache Sätze, kurze Wörter, gemäss Inclusion-Handicap-Regeln |
+| Locale | Sprachcode | Notiz |
+|--------|-----------|-------|
+| `de` | de-CH | Default |
+| `en` | en | English |
+| `fr` | fr-CH | Français |
+| `it` | it-CH | Italiano |
+| `ls` | de-x-ls | **Leichte Sprache** — einfache Sätze, kurze Wörter, gemäss Inclusion-Handicap-Regeln |
 
 Übersetzungs-Dateien in [`messages/{de,en,fr,it,ls}.json`](messages/).
 UI-Chrome (Buttons, Headings, Hints) ist vollständig übersetzt.
@@ -208,39 +335,32 @@ sind Eigennamen Schweizer Behörden, die nicht übersetzt werden.
 `<LanguageSwitcher>` im Header ändert die URL via `router.replace`, behält
 dabei `?focus=...` und andere Query-Parameter bei.
 
-`<html lang>` wird pro Locale gesetzt (Schweizer Varianten wo verfügbar).
+## Unterschiede zum Prototyp
 
-### Locale-Detection (Accept-Language)
+Historisch ist die Maschinerie aus einem Vanilla-JS-Prototyp in
+`../stadt-zuerich-mog/` hervorgegangen. Die Next.js-Variante bringt:
 
-`localeDetection: true` in [`i18n/routing.ts`](i18n/routing.ts) aktiviert das
-automatische Sprach-Matching beim ersten Besuch:
+- Typsicherheit (TypeScript strict statt plain JS)
+- Server-side Data-Loading (einmaliger `fs.readFile` statt client-side `fetch`)
+- Routing (Deep-Links, Locale-Prefixes, Server-renderable Fallbacks)
+- Multi-Stadt-Architektur (siehe [White-Label](#white-label--ein-code-viele-städte))
+- Komponenten-basiertes UI statt DOM-Mutation
+- Fuzzy-Suche mit Synonym-Expansion statt Substring-Match
 
-| Szenario | Verhalten |
-|----------|-----------|
-| Englischer Browser ruft `/` auf | Redirect nach `/en` |
-| Englischer Browser ruft `/steuerfranken` auf | Redirect nach `/en/steuerfranken` |
-| User:in wählt manuell DE im `LanguageSwitcher` | `NEXT_LOCALE=de` Cookie wird gesetzt, ab sofort keine Redirects mehr, Wahl persistiert |
-| Expliziter Deep-Link wie `/en/liste` oder `/fr/anliegen?q=chien` | **Keine** Umleitung – Prefix-Routen werden respektiert, damit geteilte Links immer die beabsichtigte Sprache zeigen |
-| Browser-Accept-Language enthält `de-CH`, `de`, `en` (mit q-Werten) | next-intl wählt das bestmatchende Locale aus der Liste unserer 5; Fallback auf `de` bei keinem Match |
-
-**Leichte Sprache (ls) wird nicht auto-detected** — niemand sendet
-`Accept-Language: ls` oder ähnliches. LS ist nur über manuelle Auswahl oder
-`/ls/…` erreichbar.
+Der Prototyp bleibt als minimaler Referenz-Fall erhalten.
 
 ## Bekannte Verbesserungspotenziale
 
 - **Treemap-Tooltip** via `next/dynamic` lazy-loaden — aktuell synchron.
 - **Lebenslagen-Übersetzungen**: aktuell nur in DE. Pro Lebenslage
   `i18n: { de:..., en:..., fr:..., it:..., ls:... }` ergänzen.
+- **Synonym-Cluster** für EN/FR/IT/LS (aktuell nur DE) —
+  `config/synonyms/<locale>.json` pro Sprache.
 - **Open-Graph-Bilder** pro Departement für geteilte Deep-Links.
-- **Sitemap + robots.txt** für `/`, `/steuerfranken`, `/liste`, `/anliegen`
-  in jeder Sprachvariante.
-- **Such-Performance** für `/anliegen` mit grosser Lebenslagen-Datenbank:
-  Suche im Server-Loader mit Index (z. B. MiniSearch) statt linearem Scan.
-- **Locale-Detection** beim ersten Besuch (Accept-Language-Header) — aktuell
-  geht der Browser standardmässig auf `/` (Deutsch), unabhängig von der
-  Browser-Sprache. `next-intl` hat dafür `localeDetection: true`, müsste
-  in `routing.ts` aktiviert werden.
+- **Locale-Detection** beim ersten Besuch (Accept-Language-Header) —
+  aktuell `localeDetection: false` in `i18n/routing.ts`. Aktivieren
+  würde Redirect-Verhalten für Erstbesuche einführen (englischer Browser
+  → `/en`), das braucht einen genauen UX-Entscheid.
 
 ## Lizenz
 
