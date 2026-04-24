@@ -19,6 +19,16 @@
   "homepageUrl": "https://www.stadt-zuerich.ch/",
   "orgChartPath": "data/zh/org-chart.json",
   "lebenslagenPath": "data/zh/lebenslagen.json",
+  "brand": {
+    "logoPath": "/brand/zh-logo.svg",
+    "logoAlt": {
+      "de": "Org-Graph-Glyph (kein offizielles Wappen)",
+      "en": "Org-graph glyph (not the official coat of arms)",
+      "fr": "Symbole d'organigramme (pas les armoiries officielles)",
+      "it": "Simbolo dell'organigramma (non lo stemma ufficiale)",
+      "ls": "Org-Graph-Glyph (nüd s offizielle Wappen)"
+    }
+  },
   "dataSources": {
     "rpk": {
       "baseUrl": "https://api.stadt-zuerich.ch/rpkk-rs/v1",

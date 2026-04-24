@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Abstraktes Platzhalter-Glyph für die Stadt-Zürich-Variante.
+  Drei-Knoten-Graph als Bezug auf das Org-Chart-Thema der Seite.
+  BEWUSST kein Zürcher Wappen (rechtlich geschützt) und bewusst
+  nicht als offizielles Logo erkennbar.
+
+  Farbe: weiss, da der Header immer `bg-[var(--color-accent)]` mit
+  `text-white` hat (sowohl Light- als auch Darkmode). Wenn eine andere
+  Stadt den Header anders färbt, passt sie ihr Logo entsprechend an.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+     stroke="#ffffff" stroke-width="1.75" stroke-linecap="round"
+     stroke-linejoin="round" aria-hidden="true" focusable="false">
+  <!-- Verbindungen: Top-Node zu beiden unteren Nodes -->
+  <line x1="12" y1="5.5" x2="6" y2="18" />
+  <line x1="12" y1="5.5" x2="18" y2="18" />
+  <!-- Knoten -->
+  <circle cx="12" cy="5.5" r="2.25" fill="#ffffff" />
+  <circle cx="6"  cy="18"  r="2.25" fill="#ffffff" />
+  <circle cx="18" cy="18"  r="2.25" fill="#ffffff" />
+</svg>

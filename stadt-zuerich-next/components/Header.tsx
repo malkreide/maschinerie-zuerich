@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Link, usePathname } from '@/i18n/navigation';
 import { useT } from '@/lib/i18n-client';
+import Brand from './Brand';
 import LanguageSwitcher from './LanguageSwitcher';
 
 const ROUTES = [
@@ -43,6 +44,7 @@ export default function Header() {
   return (
     <header className="fixed inset-x-0 top-0 h-14 z-10 flex items-center px-4
                        bg-[var(--color-accent)] text-white">
+      <Brand className="mr-2.5 shrink-0" />
       <h1 className="text-base font-semibold m-0">{t('title')}</h1>
       <span className="ml-3 text-xs opacity-85 hidden sm:inline">{t('subtitle')}</span>
       <span className="flex-1" />

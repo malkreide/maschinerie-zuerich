@@ -38,6 +38,19 @@ export interface CityConfig {
   /** Pfad zur Lebenslagen-/Anliegen-JSON (Bürger-Anliegen → Unit-Mapping).
    *  Konvention: 'data/<id>/lebenslagen.json'. */
   lebenslagenPath: string;
+  /** Optionales Brand-Glyph für den Header. Weggelassen = nur Text im
+   *  Header (Default-Layout). Für Zürich verwenden wir bewusst ein
+   *  abstraktes Org-Graph-Icon, NICHT das offizielle Wappen — das wäre
+   *  rechtlich heikel und würde die Seite fälschlich wie einen offiziellen
+   *  Stadt-Auftritt aussehen lassen. */
+  brand?: {
+    /** Pfad relativ zu `/` (also `public/…`). SVG bevorzugt, damit
+     *  `currentColor` die Textfarbe des Headers erben kann. */
+    logoPath: string;
+    /** Alt-Text pro Locale. Sollte klarstellen, dass es kein offizielles
+     *  Wappen ist, falls das Glyph eines suggerieren könnte. */
+    logoAlt: Record<Locale, string>;
+  };
   /** Datenquellen der Stadt. Die ETL-Skripte unter scripts/adapters/<id>.mjs
    *  lesen diesen Block, um an ihre APIs anzudocken. Welche Keys erwartet
    *  werden, hängt vom Adapter ab — ZH braucht 'rpk', andere Städte
