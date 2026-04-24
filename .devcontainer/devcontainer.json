@@ -1,0 +1,45 @@
+{
+  "name": "Maschinerie der Stadt Zürich",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:1-20-bookworm",
+
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss",
+        "ms-azuretools.vscode-docker",
+        "GitHub.vscode-pull-request-github"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "eslint.workingDirectories": [
+          { "pattern": "stadt-zuerich-next" }
+        ],
+        "terminal.integrated.cwd": "${containerWorkspaceFolder}/stadt-zuerich-next"
+      }
+    }
+  },
+
+  "forwardPorts": [3000],
+  "portsAttributes": {
+    "3000": {
+      "label": "Maschinerie App",
+      "onAutoForward": "openBrowser"
+    }
+  },
+
+  "postCreateCommand": "cd stadt-zuerich-next && npm ci",
+
+  "postAttachCommand": {
+    "welcome": "echo '' && echo '👋 Codespace bereit. Zum Starten:' && echo '   cd stadt-zuerich-next && npm run dev' && echo ''"
+  },
+
+  "remoteUser": "node",
+  "waitFor": "postCreateCommand"
+}
