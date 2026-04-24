@@ -1,10 +1,14 @@
 import type { NextConfig } from 'next';
+import createNextIntlPlugin from 'next-intl/plugin';
 
-// Kein createNextIntlPlugin-Wrapper: das Plugin injiziert Runtime-Code,
-// der auf Vercels Edge-Runtime zu `__dirname is not defined` führte.
-// Statt via Plugin holen wir Messages in Server-Components über einen
-// eigenen Helper (lib/i18n-server.ts) und reichen sie an den
-// NextIntlClientProvider explizit als Props durch.
+// Plugin-Wrapper registriert i18n/request.ts im Build, damit die
+// next-intl-Server-Runtime die Config beim SSR auflösen kann. Ohne
+// Plugin warf der Server auf Vercel `Couldn't find next-intl config file`,
+// weil Turbopack die Datei mangels statischem Import nicht bundelt.
+// Edge-Runtime wird im Projekt nicht genutzt (keine `runtime = 'edge'`
+// Exports) — der frühere `__dirname is not defined`-Fall ist damit
+// nicht mehr relevant.
+const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
 
 const config: NextConfig = {
   reactStrictMode: true,
@@ -18,4 +22,4 @@ const config: NextConfig = {
   output: 'standalone',
 };
 
-export default config;
+export default withNextIntl(config);
