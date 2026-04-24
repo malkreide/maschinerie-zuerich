@@ -7,6 +7,7 @@
     "graph": "Macchina",
     "tax": "Franco fiscale",
     "list": "Elenco",
+    "prozesse": "Procedure",
     "darkOn": "Attivare il tema scuro",
     "darkOff": "Attivare il tema chiaro",
     "darkLabelLight": "☼ Chiaro",
@@ -98,5 +99,24 @@
     "staff": "Stato maggiore",
     "extern": "Azienda autonoma",
     "beteiligung": "Partecipazione / fondazione"
+  },
+  "Prozesse": {
+    "title": "Procedure amministrative",
+    "intro": "Diagrammi tipizzati secondo l'OpenGov-Process-Schema. Ogni procedura mostra le fasi, gli attori coinvolti e le durate stimate — così la popolazione capisce cosa comporta davvero una pratica.",
+    "empty": "Nessuna procedura ancora registrata.",
+    "city": "Città di {city}",
+    "stepsHeading": "Fasi (testo)",
+    "legalHeading": "Basi legali",
+    "sourcesHeading": "Fonti",
+    "retrieved": "consultato il {date}",
+    "schrittTyp": {
+      "start": "Inizio",
+      "input": "Ingresso",
+      "prozess": "Processo",
+      "entscheidung": "Decisione",
+      "loop": "Ritorno",
+      "warten": "Attesa",
+      "ende": "Fine"
+    }
   }
 }

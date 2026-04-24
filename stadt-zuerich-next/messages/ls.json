@@ -7,6 +7,7 @@
     "graph": "Bild",
     "tax": "Geld",
     "list": "Liste",
+    "prozesse": "Abläufe",
     "darkOn": "Dunkles Bild einschalten",
     "darkOff": "Helles Bild einschalten",
     "darkLabelLight": "☼ Hell",
@@ -98,5 +99,24 @@
     "staff": "Hilfs-Stelle",
     "extern": "Eigene Firma der Stadt",
     "beteiligung": "Stiftung oder Beteiligung"
+  },
+  "Prozesse": {
+    "title": "Abläufe in der Stadt",
+    "intro": "Hier sehen Sie: So läuft ein Antrag ab. Zum Beispiel: Wenn Sie ein Haus bauen wollen. Sie sehen jeden Schritt. Sie sehen: Wer macht was. Sie sehen: Wie lange dauert es.",
+    "empty": "Noch keine Abläufe.",
+    "city": "Stadt {city}",
+    "stepsHeading": "Die Schritte",
+    "legalHeading": "Gesetze",
+    "sourcesHeading": "Woher sind die Informationen?",
+    "retrieved": "geholt am {date}",
+    "schrittTyp": {
+      "start": "Start",
+      "input": "Sie geben etwas ab",
+      "prozess": "Das Amt arbeitet",
+      "entscheidung": "Entscheidung",
+      "loop": "Nochmal zurück",
+      "warten": "Warten",
+      "ende": "Ende"
+    }
   }
 }

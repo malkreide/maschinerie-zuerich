@@ -7,6 +7,7 @@
     "graph": "Maschinerie",
     "tax": "Steuerfranken",
     "list": "Liste",
+    "prozesse": "Prozesse",
     "darkOn": "Dunkles Theme aktivieren",
     "darkOff": "Helles Theme aktivieren",
     "darkLabelLight": "☼ Hell",
@@ -98,5 +99,24 @@
     "staff": "Stab- / Querschnittsstelle",
     "extern": "Verselbständigter Betrieb",
     "beteiligung": "Beteiligung / Stiftung"
+  },
+  "Prozesse": {
+    "title": "Verwaltungsprozesse",
+    "intro": "Typisierte Ablaufdiagramme nach dem OpenGov-Process-Schema. Jeder Prozess zeigt Schritte, beteiligte Stellen und geschätzte Dauern — damit die Bevölkerung sieht, was ein Verfahren wirklich umfasst.",
+    "empty": "Noch keine Prozesse erfasst.",
+    "city": "Stadt {city}",
+    "stepsHeading": "Schritte (textuell)",
+    "legalHeading": "Rechtsgrundlagen",
+    "sourcesHeading": "Quellen",
+    "retrieved": "abgerufen {date}",
+    "schrittTyp": {
+      "start": "Start",
+      "input": "Eingabe",
+      "prozess": "Prozess",
+      "entscheidung": "Entscheidung",
+      "loop": "Rücksprung",
+      "warten": "Wartezeit",
+      "ende": "Ende"
+    }
   }
 }

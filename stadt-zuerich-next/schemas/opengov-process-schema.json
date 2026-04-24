@@ -1,0 +1,180 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/malkreide/maschinerie-zuerich/schemas/opengov-process-schema.json",
+  "title": "OpenGov-Process-Schema",
+  "description": "Portables Schema zur Beschreibung von Verwaltungsprozessen (Antragsverfahren, Bewilligungen, Meldungen). Zielpublikum: Bevölkerung + Behörden + Forschung. Ein Prozess = gerichteter Graph aus typisierten Schritten mit klaren Akteuren und geschätzten Dauern.",
+  "type": "object",
+  "required": ["id", "version", "city", "titel", "akteure", "schritte", "flow"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "Stabile ID des Prozesses, z.B. 'baubewilligung-ordentlich'."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "SemVer der Prozessbeschreibung. Breaking Changes am Flow erhöhen MAJOR."
+    },
+    "city": {
+      "type": "string",
+      "pattern": "^[a-z]{2,}$",
+      "description": "Stadt-/Gemeindekennung (ISO-ähnlich, Kleinbuchstaben). 'zh' für Zürich, 'be' für Bern, 'basel' für Basel, etc."
+    },
+    "titel": { "$ref": "#/definitions/i18nString" },
+    "kurzbeschreibung": { "$ref": "#/definitions/i18nString" },
+    "rechtsgrundlagen": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["bezeichnung"],
+        "properties": {
+          "bezeichnung": { "type": "string", "description": "z.B. 'PBG §§ 309–341'" },
+          "url": { "type": "string", "format": "uri" }
+        }
+      }
+    },
+    "quellen": {
+      "type": "array",
+      "description": "Belegquellen (Merkblätter, Gesetze, Behördenseiten). Jeder Schritt kann per 'quelle'-Feld auf diese Liste referenzieren.",
+      "items": {
+        "type": "object",
+        "required": ["id", "titel"],
+        "properties": {
+          "id": { "type": "string" },
+          "titel": { "type": "string" },
+          "url": { "type": "string", "format": "uri" },
+          "abgerufen": { "type": "string", "format": "date" }
+        }
+      }
+    },
+    "akteure": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Beteiligte Rollen/Organisationen. Werden in der Visualisierung zu Swimlanes.",
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "typ"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "label": { "$ref": "#/definitions/i18nString" },
+          "typ": {
+            "type": "string",
+            "enum": ["antragsteller", "behoerde", "fachstelle", "gericht", "dritte"]
+          },
+          "einheit_ref": {
+            "type": "string",
+            "description": "Optional: ID einer Organisationseinheit aus data.json (z.B. 'u-hba' für Hochbauamt), um Prozess und Org-Chart zu verknüpfen."
+          }
+        }
+      }
+    },
+    "schritte": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Alle Knoten des Prozess-Graphen. Reihenfolge in der Datei ist semantisch bedeutungslos — der Ablauf ergibt sich aus 'flow'.",
+      "items": { "$ref": "#/definitions/Schritt" }
+    },
+    "flow": {
+      "type": "array",
+      "description": "Kanten des Graphen (von-nach). Bedingungen nur bei Entscheidungsknoten.",
+      "items": {
+        "type": "object",
+        "required": ["von", "nach"],
+        "properties": {
+          "von": { "type": "string" },
+          "nach": { "type": "string" },
+          "bedingung": {
+            "type": "string",
+            "description": "Bei Entscheidungs-Schritten: maschinenlesbare Bedingung oder Label ('ja', 'nein', 'unvollstaendig')."
+          },
+          "label": { "$ref": "#/definitions/i18nString" }
+        }
+      }
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "erstellt": { "type": "string", "format": "date" },
+        "aktualisiert": { "type": "string", "format": "date" },
+        "maintainer": { "type": "string" },
+        "lizenz": { "type": "string", "default": "CC-BY-4.0" }
+      }
+    }
+  },
+  "definitions": {
+    "i18nString": {
+      "oneOf": [
+        { "type": "string", "description": "Einsprachig (Kurzform): Fallback-Sprache = defaultLocale der App." },
+        {
+          "type": "object",
+          "description": "Mehrsprachige Variante. 'de' ist Pflicht, weitere Locales optional.",
+          "required": ["de"],
+          "properties": {
+            "de": { "type": "string" },
+            "en": { "type": "string" },
+            "fr": { "type": "string" },
+            "it": { "type": "string" },
+            "ls": { "type": "string", "description": "Leichte Sprache" }
+          }
+        }
+      ]
+    },
+    "Dauer": {
+      "type": "object",
+      "description": "Zeitschätzung für einen Schritt. Min/max in Arbeitstagen oder Stunden. 'typ' regelt, ob es eine Bearbeitungsdauer (amtsseitig) oder eine Durchlaufzeit (wall clock) ist.",
+      "required": ["min", "max", "einheit"],
+      "properties": {
+        "min": { "type": "number", "minimum": 0 },
+        "max": { "type": "number", "minimum": 0 },
+        "einheit": { "type": "string", "enum": ["minuten", "stunden", "arbeitstage", "kalendertage", "wochen", "monate"] },
+        "typ": { "type": "string", "enum": ["bearbeitung", "durchlauf"], "default": "durchlauf" },
+        "anmerkung": { "$ref": "#/definitions/i18nString" }
+      }
+    },
+    "Schritt": {
+      "type": "object",
+      "required": ["id", "typ", "akteur", "label"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "typ": {
+          "type": "string",
+          "enum": ["start", "input", "prozess", "entscheidung", "loop", "warten", "ende"],
+          "description": "start/ende = Terminals. input = Antragsteller liefert Unterlagen. prozess = Behörde arbeitet. entscheidung = Verzweigung (erwartet mehrere ausgehende 'flow'-Kanten mit 'bedingung'). loop = Rücksprung (z.B. Nachbesserung). warten = Fristen/Wartezeit ohne aktive Handlung."
+        },
+        "akteur": {
+          "type": "string",
+          "description": "ID aus 'akteure' — bestimmt die Swimlane."
+        },
+        "label": { "$ref": "#/definitions/i18nString" },
+        "beschreibung": { "$ref": "#/definitions/i18nString" },
+        "dauer_est": { "$ref": "#/definitions/Dauer" },
+        "kosten_chf": {
+          "type": "object",
+          "properties": {
+            "min": { "type": "number", "minimum": 0 },
+            "max": { "type": "number", "minimum": 0 },
+            "anmerkung": { "$ref": "#/definitions/i18nString" }
+          }
+        },
+        "unterlagen": {
+          "type": "array",
+          "description": "Nur für 'input'-Schritte sinnvoll: Liste der benötigten Dokumente/Formulare.",
+          "items": {
+            "type": "object",
+            "required": ["label"],
+            "properties": {
+              "label": { "$ref": "#/definitions/i18nString" },
+              "url": { "type": "string", "format": "uri" },
+              "pflicht": { "type": "boolean", "default": true }
+            }
+          }
+        },
+        "quelle": {
+          "type": "string",
+          "description": "ID einer Quelle aus 'quellen'-Liste."
+        }
+      }
+    }
+  }
+}

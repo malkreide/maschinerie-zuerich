@@ -1,0 +1,239 @@
+{
+  "$schema": "../../../schemas/opengov-process-schema.json",
+  "id": "baubewilligung-ordentlich",
+  "version": "0.1.0",
+  "city": "zh",
+  "titel": {
+    "de": "Baubewilligung – ordentliches Verfahren",
+    "en": "Building permit – ordinary procedure",
+    "fr": "Permis de construire – procédure ordinaire",
+    "it": "Licenza edilizia – procedura ordinaria",
+    "ls": "Bau-Bewilligung in Zürich (normales Verfahren)"
+  },
+  "kurzbeschreibung": {
+    "de": "Ablauf einer Baubewilligung für bewilligungspflichtige Bauvorhaben in der Stadt Zürich nach PBG. Umfasst Vorprüfung, öffentliche Auflage, Einsprachen, Entscheid und Rechtsmittelverfahren.",
+    "en": "Building-permit workflow in the City of Zurich under the cantonal Planning and Building Act, including public notice, objections, decision and appeal.",
+    "ls": "So bekommst du die Erlaubnis, ein Haus zu bauen oder umzubauen. Du schickst einen Antrag an das Amt. Das Amt prüft. Nachbarn dürfen Einwände machen. Am Schluss sagt das Amt: Ja oder Nein."
+  },
+  "rechtsgrundlagen": [
+    { "bezeichnung": "PBG ZH §§ 309–341 (Baubewilligungsverfahren)", "url": "https://www.zhlaw.ch/Erlass/700.1" },
+    { "bezeichnung": "BZO Stadt Zürich", "url": "https://www.stadt-zuerich.ch/de/planen-bauen/bauen/bauvorschriften/bzo.html" },
+    { "bezeichnung": "VRG ZH (Einsprache- und Rekursverfahren)", "url": "https://www.zhlaw.ch/Erlass/175.2" }
+  ],
+  "quellen": [
+    {
+      "id": "q-stz-baueingabe",
+      "titel": "Stadt Zürich – Baueingabe",
+      "url": "https://www.stadt-zuerich.ch/de/planen-bauen/bauen/baueingabe.html",
+      "abgerufen": "2026-04-24"
+    },
+    {
+      "id": "q-ebaugesuch",
+      "titel": "eBaugesuche Kanton Zürich",
+      "url": "https://www.zh.ch/de/planen-bauen/baugesuche.html",
+      "abgerufen": "2026-04-24"
+    }
+  ],
+  "akteure": [
+    {
+      "id": "bauherr",
+      "label": { "de": "Bauherrschaft", "en": "Applicant", "fr": "Maître d'ouvrage", "it": "Committente", "ls": "Du (die Person, die bauen will)" },
+      "typ": "antragsteller"
+    },
+    {
+      "id": "amt-baubewilligungen",
+      "label": { "de": "Amt für Baubewilligungen (AfB)", "en": "Building-Permit Office", "ls": "Bau-Amt" },
+      "typ": "behoerde",
+      "einheit_ref": "u-afb"
+    },
+    {
+      "id": "hochbauamt",
+      "label": { "de": "Hochbauamt", "en": "Department of Buildings" },
+      "typ": "fachstelle",
+      "einheit_ref": "u-hba"
+    },
+    {
+      "id": "kanton",
+      "label": { "de": "Kantonale Fachstellen", "en": "Cantonal specialist offices", "ls": "Ämter vom Kanton" },
+      "typ": "fachstelle"
+    },
+    {
+      "id": "nachbarn",
+      "label": { "de": "Einsprachelegitimierte (Nachbarn)", "en": "Objectors (neighbours)", "ls": "Nachbarn" },
+      "typ": "dritte"
+    },
+    {
+      "id": "baurekurs",
+      "label": { "de": "Baurekursgericht", "en": "Building Appeals Court", "ls": "Gericht" },
+      "typ": "gericht"
+    }
+  ],
+  "schritte": [
+    {
+      "id": "start",
+      "typ": "start",
+      "akteur": "bauherr",
+      "label": { "de": "Bauvorhaben geplant", "en": "Building project planned", "ls": "Du willst etwas bauen" }
+    },
+    {
+      "id": "unterlagen-erstellen",
+      "typ": "input",
+      "akteur": "bauherr",
+      "label": { "de": "Baugesuch erstellen", "en": "Prepare building application", "ls": "Du sammelst alle Papiere" },
+      "beschreibung": {
+        "de": "Pläne, Projektbeschrieb, Nachweise (Energie, Schall, Statik) und Formulare gemäss Wegleitung zusammenstellen.",
+        "en": "Plans, project description, evidence of energy/acoustics/statics and application forms."
+      },
+      "dauer_est": { "min": 4, "max": 12, "einheit": "wochen", "typ": "durchlauf" },
+      "kosten_chf": {
+        "min": 5000,
+        "max": 50000,
+        "anmerkung": { "de": "Architekt:innen- und Fachplaner-Honorare; stark abhängig vom Projektumfang." }
+      },
+      "unterlagen": [
+        { "label": { "de": "Baugesuchsformular" }, "url": "https://www.stadt-zuerich.ch/de/planen-bauen/bauen/baueingabe.html", "pflicht": true },
+        { "label": { "de": "Situationsplan 1:500" }, "pflicht": true },
+        { "label": { "de": "Grundriss / Schnitt / Fassade 1:100" }, "pflicht": true },
+        { "label": { "de": "Energetischer Nachweis (MuKEn)" }, "pflicht": true },
+        { "label": { "de": "Umgebungsplan" }, "pflicht": true }
+      ],
+      "quelle": "q-stz-baueingabe"
+    },
+    {
+      "id": "einreichen",
+      "typ": "input",
+      "akteur": "bauherr",
+      "label": { "de": "Baugesuch einreichen (eBaugesuche)", "en": "Submit application (eBaugesuche)", "ls": "Du reichst die Papiere online ein" },
+      "dauer_est": { "min": 1, "max": 1, "einheit": "arbeitstage", "typ": "durchlauf" },
+      "kosten_chf": { "min": 300, "max": 2000, "anmerkung": { "de": "Gebühr abhängig von Bausumme." } },
+      "quelle": "q-ebaugesuch"
+    },
+    {
+      "id": "vorpruefung",
+      "typ": "prozess",
+      "akteur": "amt-baubewilligungen",
+      "label": { "de": "Formelle Vorprüfung", "en": "Formal completeness check" },
+      "beschreibung": { "de": "Prüfung, ob das Gesuch vollständig und bearbeitbar ist." },
+      "dauer_est": { "min": 5, "max": 15, "einheit": "arbeitstage", "typ": "bearbeitung" }
+    },
+    {
+      "id": "vollstaendig",
+      "typ": "entscheidung",
+      "akteur": "amt-baubewilligungen",
+      "label": { "de": "Unterlagen vollständig?", "en": "Application complete?", "ls": "Sind alle Papiere da?" }
+    },
+    {
+      "id": "nachfrist",
+      "typ": "loop",
+      "akteur": "bauherr",
+      "label": { "de": "Unterlagen nachliefern", "en": "Submit missing documents", "ls": "Fehlende Papiere nachliefern" },
+      "dauer_est": { "min": 1, "max": 6, "einheit": "wochen", "typ": "durchlauf" }
+    },
+    {
+      "id": "oeffentliche-auflage",
+      "typ": "prozess",
+      "akteur": "amt-baubewilligungen",
+      "label": { "de": "Öffentliche Auflage / Publikation", "en": "Public notice", "ls": "Das Amt macht öffentlich: Hier wird gebaut" },
+      "dauer_est": { "min": 20, "max": 20, "einheit": "arbeitstage", "typ": "durchlauf", "anmerkung": { "de": "20 Tage gesetzliche Auflagefrist." } }
+    },
+    {
+      "id": "einsprachen",
+      "typ": "entscheidung",
+      "akteur": "nachbarn",
+      "label": { "de": "Einsprachen erhoben?", "en": "Objections filed?", "ls": "Gibt es Einwände von Nachbarn?" }
+    },
+    {
+      "id": "einsprache-behandeln",
+      "typ": "prozess",
+      "akteur": "amt-baubewilligungen",
+      "label": { "de": "Einsprachen behandeln", "en": "Process objections" },
+      "dauer_est": { "min": 4, "max": 16, "einheit": "wochen", "typ": "bearbeitung" }
+    },
+    {
+      "id": "fachstellen",
+      "typ": "prozess",
+      "akteur": "kanton",
+      "label": { "de": "Kantonale Fachstellen anhören (Zirkulationsverfahren)", "en": "Cantonal specialist review" },
+      "dauer_est": { "min": 4, "max": 12, "einheit": "wochen", "typ": "bearbeitung" }
+    },
+    {
+      "id": "materielle-pruefung",
+      "typ": "prozess",
+      "akteur": "hochbauamt",
+      "label": { "de": "Materielle Prüfung (BZO, PBG, Lärm, Brandschutz …)", "en": "Substantive review" },
+      "dauer_est": { "min": 6, "max": 20, "einheit": "wochen", "typ": "bearbeitung" }
+    },
+    {
+      "id": "entscheid",
+      "typ": "entscheidung",
+      "akteur": "amt-baubewilligungen",
+      "label": { "de": "Bewilligung erteilen?", "en": "Grant permit?", "ls": "Erlaubnis – ja oder nein?" }
+    },
+    {
+      "id": "bewilligung",
+      "typ": "prozess",
+      "akteur": "amt-baubewilligungen",
+      "label": { "de": "Baubewilligung erteilen (evtl. mit Auflagen)", "en": "Grant permit (possibly with conditions)", "ls": "Amt sagt Ja" },
+      "dauer_est": { "min": 1, "max": 2, "einheit": "wochen", "typ": "bearbeitung" }
+    },
+    {
+      "id": "abweisung",
+      "typ": "prozess",
+      "akteur": "amt-baubewilligungen",
+      "label": { "de": "Gesuch abweisen", "en": "Reject application", "ls": "Amt sagt Nein" }
+    },
+    {
+      "id": "rekurs-moeglich",
+      "typ": "entscheidung",
+      "akteur": "bauherr",
+      "label": { "de": "Rekurs einlegen?", "en": "File appeal?", "ls": "Willst du dagegen klagen?" }
+    },
+    {
+      "id": "rekurs",
+      "typ": "prozess",
+      "akteur": "baurekurs",
+      "label": { "de": "Rekursverfahren Baurekursgericht", "en": "Appeal proceedings" },
+      "dauer_est": { "min": 6, "max": 18, "einheit": "monate", "typ": "durchlauf" }
+    },
+    {
+      "id": "ende-bewilligt",
+      "typ": "ende",
+      "akteur": "bauherr",
+      "label": { "de": "Bauen möglich (nach Rechtskraft)", "en": "Construction may begin (after legal force)", "ls": "Du darfst bauen" }
+    },
+    {
+      "id": "ende-abgelehnt",
+      "typ": "ende",
+      "akteur": "bauherr",
+      "label": { "de": "Verfahren rechtskräftig abgeschlossen (ohne Bewilligung)", "en": "Application denied (final)", "ls": "Du darfst nicht bauen" }
+    }
+  ],
+  "flow": [
+    { "von": "start", "nach": "unterlagen-erstellen" },
+    { "von": "unterlagen-erstellen", "nach": "einreichen" },
+    { "von": "einreichen", "nach": "vorpruefung" },
+    { "von": "vorpruefung", "nach": "vollstaendig" },
+    { "von": "vollstaendig", "nach": "nachfrist", "bedingung": "nein", "label": { "de": "unvollständig", "en": "incomplete" } },
+    { "von": "nachfrist", "nach": "vorpruefung" },
+    { "von": "vollstaendig", "nach": "oeffentliche-auflage", "bedingung": "ja", "label": { "de": "vollständig", "en": "complete" } },
+    { "von": "oeffentliche-auflage", "nach": "einsprachen" },
+    { "von": "einsprachen", "nach": "einsprache-behandeln", "bedingung": "ja" },
+    { "von": "einsprache-behandeln", "nach": "fachstellen" },
+    { "von": "einsprachen", "nach": "fachstellen", "bedingung": "nein" },
+    { "von": "fachstellen", "nach": "materielle-pruefung" },
+    { "von": "materielle-pruefung", "nach": "entscheid" },
+    { "von": "entscheid", "nach": "bewilligung", "bedingung": "ja" },
+    { "von": "entscheid", "nach": "abweisung", "bedingung": "nein" },
+    { "von": "bewilligung", "nach": "ende-bewilligt" },
+    { "von": "abweisung", "nach": "rekurs-moeglich" },
+    { "von": "rekurs-moeglich", "nach": "rekurs", "bedingung": "ja" },
+    { "von": "rekurs-moeglich", "nach": "ende-abgelehnt", "bedingung": "nein" },
+    { "von": "rekurs", "nach": "entscheid", "label": { "de": "Neubeurteilung", "en": "re-evaluation" } }
+  ],
+  "meta": {
+    "erstellt": "2026-04-24",
+    "aktualisiert": "2026-04-24",
+    "maintainer": "malkreide",
+    "lizenz": "CC-BY-4.0"
+  }
+}

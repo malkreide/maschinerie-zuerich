@@ -9,11 +9,12 @@
 
 import type { MetadataRoute } from 'next';
 import { routing, type Locale } from '@/i18n/routing';
+import { listProzesse } from '@/lib/prozesse';
 
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL
                   ?? 'https://maschinerie-zuerich.vercel.app').replace(/\/$/, '');
 
-const ROUTES = ['', '/steuerfranken', '/liste', '/anliegen'] as const;
+const ROUTES = ['', '/steuerfranken', '/liste', '/anliegen', '/prozesse'] as const;
 
 // BCP 47 Language Codes für hreflang. Leichte Sprache mit 'de-x-ls'
 // (private use subtag) — technisch valide, von Suchmaschinen ignoriert,
@@ -31,10 +32,15 @@ function urlFor(locale: Locale, path: string): string {
   return `${BASE_URL}${prefix}${path}`;
 }
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
+  const prozesse = await listProzesse();
+  const prozessPaths = prozesse.map((p) => `/prozesse/${p.city}/${p.id}`);
+
+  const allPaths: string[] = [...ROUTES, ...prozessPaths];
+
   return routing.locales.flatMap((locale) =>
-    ROUTES.map((path) => ({
+    allPaths.map((path) => ({
       url: urlFor(locale, path),
       lastModified: now,
       changeFrequency: 'weekly' as const,

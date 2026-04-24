@@ -8,6 +8,7 @@ import LanguageSwitcher from './LanguageSwitcher';
 const ROUTES = [
   { href: '/',              key: 'graph' },
   { href: '/steuerfranken', key: 'tax' },
+  { href: '/prozesse',      key: 'prozesse' },
   { href: '/liste',         key: 'list' },
 ] as const;
 
@@ -43,7 +44,11 @@ export default function Header() {
       <span className="flex-1" />
       <nav role="tablist" aria-label={tNav('graph')} className="flex gap-1 mr-3">
         {ROUTES.map((r) => {
-          const active = pathname === r.href;
+          // Sub-Routen (z.B. /prozesse/zh/...) aktivieren den übergeordneten
+          // Tab, damit der Navigationszustand auch in der Detail-Seite stimmt.
+          const active =
+            pathname === r.href ||
+            (r.href !== '/' && pathname.startsWith(r.href + '/'));
           return (
             <Link
               key={r.href}

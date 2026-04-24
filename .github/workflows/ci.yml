@@ -49,3 +49,22 @@ jobs:
             if (problems.length) { console.error('Probleme:\n  ' + problems.join('\n  ')); process.exit(1); }
             console.log('✓ Alle ' + l.lebenslagen.length + ' Lebenslagen haben i18n.de und gültige zustaendig');
           "
+
+  prozesse-validation:
+    name: OpenGov-Process-Schema validieren
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: stadt-zuerich-next
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24.15.0
+          cache: npm
+          cache-dependency-path: stadt-zuerich-next/package-lock.json
+      - run: npm ci
+      - name: Schema + semantic validation für data/prozesse/**/*.json
+        run: npm run validate:prozesse
+        env:
+          NO_COLOR: '1'

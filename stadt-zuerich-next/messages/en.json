@@ -7,6 +7,7 @@
     "graph": "Machinery",
     "tax": "Tax franc",
     "list": "List",
+    "prozesse": "Processes",
     "darkOn": "Activate dark theme",
     "darkOff": "Activate light theme",
     "darkLabelLight": "☼ Light",
@@ -98,5 +99,24 @@
     "staff": "Staff unit",
     "extern": "Independent operation",
     "beteiligung": "Holding / foundation"
+  },
+  "Prozesse": {
+    "title": "Administrative processes",
+    "intro": "Typed flowcharts following the OpenGov-Process-Schema. Each process shows steps, involved actors and estimated durations — so residents can see what a procedure actually entails.",
+    "empty": "No processes yet.",
+    "city": "City {city}",
+    "stepsHeading": "Steps (textual)",
+    "legalHeading": "Legal basis",
+    "sourcesHeading": "Sources",
+    "retrieved": "retrieved {date}",
+    "schrittTyp": {
+      "start": "Start",
+      "input": "Input",
+      "prozess": "Process",
+      "entscheidung": "Decision",
+      "loop": "Loop",
+      "warten": "Wait",
+      "ende": "End"
+    }
   }
 }

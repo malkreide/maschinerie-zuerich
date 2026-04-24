@@ -7,6 +7,7 @@
     "graph": "Mécanique",
     "tax": "Franc d'impôt",
     "list": "Liste",
+    "prozesse": "Procédures",
     "darkOn": "Activer le thème sombre",
     "darkOff": "Activer le thème clair",
     "darkLabelLight": "☼ Clair",
@@ -98,5 +99,24 @@
     "staff": "État-major / transversal",
     "extern": "Entreprise autonome",
     "beteiligung": "Participation / fondation"
+  },
+  "Prozesse": {
+    "title": "Procédures administratives",
+    "intro": "Organigrammes typés selon l'OpenGov-Process-Schema. Chaque procédure montre les étapes, les acteurs impliqués et les durées estimées — afin que la population comprenne ce qu'une démarche implique réellement.",
+    "empty": "Aucune procédure enregistrée pour l'instant.",
+    "city": "Ville de {city}",
+    "stepsHeading": "Étapes (texte)",
+    "legalHeading": "Bases légales",
+    "sourcesHeading": "Sources",
+    "retrieved": "consulté le {date}",
+    "schrittTyp": {
+      "start": "Début",
+      "input": "Entrée",
+      "prozess": "Processus",
+      "entscheidung": "Décision",
+      "loop": "Boucle",
+      "warten": "Attente",
+      "ende": "Fin"
+    }
   }
 }
