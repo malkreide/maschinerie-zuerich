@@ -23,12 +23,17 @@
     "submit": "Cerca",
     "suggestionsTitle": "Pratiche",
     "suggestionsListLabel": "Suggerimenti per pratiche cittadine",
-    "showAll": "Mostra tutti i risultati su pagina dedicata →"
+    "showAll": "Mostra tutti i risultati su pagina dedicata →",
+    "noMatchesTitle": "Nessun suggerimento rapido per „{query}\"",
+    "noMatchesHint": "Forse intendevi:",
+    "popularFallback": "Pratiche frequenti",
+    "openFullSearch": "Apri ricerca completa →"
   },
   "Anliegen": {
     "title": "Cerca pratiche cittadine",
     "intro": "Cerca termini come « registrare cane », « passaporto », « assistenza sociale » o « elettricità ». Questa pagina funziona senza JavaScript — è la versione di riserva della ricerca live in alto a sinistra.",
     "noResults": "Nessun risultato per „{query}\". Prova un altro termine — ad esempio una sola parola chiave come « tassa », « acqua » o « cura ».",
+    "noResultsFallbackHeading": "Cosa cercano spesso gli altri",
     "resultsCount": "{count, plural, one {# risultato} other {# risultati}} per „{query}\"",
     "popularHeading": "Pratiche frequenti",
     "placeholder": "p. es. registrare cane, passaporto, assistenza sociale…"
@@ -43,13 +48,20 @@
     "tooltipNet": "Spesa netta",
     "tooltipFte": "ETP",
     "conflictNote": "⚠ Assegnazione cittadini ≠ RPK",
-    "ariaLabel": "Treemap delle spese"
+    "ariaLabel": "Treemap delle spese",
+    "emptyTitle": "Nessun dato di budget disponibile",
+    "emptyBody": "Nessun ufficio ha registrato spese. Prova invece con {listLink} o usa la {searchLink}.",
+    "emptyListLink": "l'elenco degli uffici",
+    "emptySearchLink": "ricerca pratiche",
+    "hiddenDepartments": "{count, plural, one {# dipartimento non è mostrato} other {# dipartimenti non sono mostrati}} — nessun dato di budget per: {names}."
   },
   "List": {
     "title": "Amministrazione della {cityName} – panoramica gerarchica",
     "intro": "Questo elenco mostra gli stessi dati del diagramma grafico in forma semanticamente strutturata, per lettori di schermo e navigazione da tastiera. Tab per spostarsi nella gerarchia, Invio per espandere o chiudere un nodo.",
     "ariaLabel": "Amministrazione della {cityName} come gerarchia testuale",
-    "beteiligungenHeading": "Partecipazioni e fondazioni"
+    "beteiligungenHeading": "Partecipazioni e fondazioni",
+    "noUnits": "Nessuna suddivisione registrata.",
+    "noBudget": "Nessun dato di budget registrato per questo ufficio."
   },
   "Detail": {
     "close": "Chiudi pannello dettagli",

@@ -23,12 +23,17 @@
     "submit": "Search",
     "suggestionsTitle": "Concerns",
     "suggestionsListLabel": "Suggestions for citizen concerns",
-    "showAll": "Show all results on a dedicated page →"
+    "showAll": "Show all results on a dedicated page →",
+    "noMatchesTitle": "No quick matches for „{query}\"",
+    "noMatchesHint": "Did you mean one of these?",
+    "popularFallback": "Common concerns",
+    "openFullSearch": "Open full search →"
   },
   "Anliegen": {
     "title": "Search citizen concerns",
     "intro": "Search for terms like «register dog», «passport», «social aid» or «electricity». This page works without JavaScript — it is the fallback for the live search at the top left.",
     "noResults": "No results for „{query}\". Try another term — for example single keywords like «tax», «water» or «care».",
+    "noResultsFallbackHeading": "What others commonly look for",
     "resultsCount": "{count, plural, one {# result} other {# results}} for „{query}\"",
     "popularHeading": "Common concerns",
     "placeholder": "e.g. register dog, passport, social aid…"
@@ -43,13 +48,20 @@
     "tooltipNet": "Net expense",
     "tooltipFte": "FTE",
     "conflictNote": "⚠ Citizen vs. RPK assignment differs",
-    "ariaLabel": "Treemap of expenses"
+    "ariaLabel": "Treemap of expenses",
+    "emptyTitle": "No budget data available",
+    "emptyBody": "No office has recorded expenses yet. Try the {listLink} instead, or use the {searchLink}.",
+    "emptyListLink": "list of offices",
+    "emptySearchLink": "concern search",
+    "hiddenDepartments": "{count, plural, one {# department is} other {# departments are}} not shown — no budget data available for: {names}."
   },
   "List": {
     "title": "{cityName} administration – hierarchical overview",
     "intro": "This list shows the same data as the graphical diagram tab in semantically structured form for screen readers and keyboard navigation. Use Tab to navigate the hierarchy, Enter to expand or collapse nodes.",
     "ariaLabel": "{cityName} administration as textual hierarchy",
-    "beteiligungenHeading": "Holdings and foundations"
+    "beteiligungenHeading": "Holdings and foundations",
+    "noUnits": "No subdivisions recorded.",
+    "noBudget": "No budget data recorded for this office yet."
   },
   "Detail": {
     "close": "Close detail panel",

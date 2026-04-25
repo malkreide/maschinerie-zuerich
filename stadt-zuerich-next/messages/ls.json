@@ -23,12 +23,17 @@
     "submit": "Suchen",
     "suggestionsTitle": "Sie können das tun",
     "suggestionsListLabel": "Vorschläge",
-    "showAll": "Alle Treffer auf einer eigenen Seite zeigen →"
+    "showAll": "Alle Treffer auf einer eigenen Seite zeigen →",
+    "noMatchesTitle": "Keine Vorschläge für „{query}\"",
+    "noMatchesHint": "Meinten Sie vielleicht das?",
+    "popularFallback": "Das suchen viele Leute",
+    "openFullSearch": "Alle Treffer zeigen →"
   },
   "Anliegen": {
     "title": "Was wollen Sie tun?",
     "intro": "Hier können Sie etwas suchen. Zum Beispiel: «Hund anmelden». Oder: «Pass». Diese Seite geht auch ohne JavaScript. Sie ist die einfache Version von der Suche oben links.",
     "noResults": "Es gibt nichts für „{query}\". Bitte versuchen Sie ein anderes Wort. Zum Beispiel «Steuer» oder «Wasser».",
+    "noResultsFallbackHeading": "Das suchen viele Leute",
     "resultsCount": "{count, plural, one {# Treffer} other {# Treffer}} für „{query}\"",
     "popularHeading": "Das suchen viele Leute",
     "placeholder": "Schreiben Sie hier ein Wort"
@@ -43,13 +48,20 @@
     "tooltipNet": "Geld ausgegeben minus Einnahmen",
     "tooltipFte": "Stellen",
     "conflictNote": "⚠ Hier passt etwas nicht zusammen.",
-    "ariaLabel": "Geld der Stadt als Bild"
+    "ariaLabel": "Geld der Stadt als Bild",
+    "emptyTitle": "Es gibt keine Daten zum Geld.",
+    "emptyBody": "Für keine Stelle gibt es Zahlen. Schauen Sie in die {listLink}. Oder nutzen Sie die {searchLink}.",
+    "emptyListLink": "Liste der Stellen",
+    "emptySearchLink": "Suche",
+    "hiddenDepartments": "{count, plural, one {# Bereich wird} other {# Bereiche werden}} nicht gezeigt. Dafür gibt es keine Zahlen: {names}."
   },
   "List": {
     "title": "Die Stadt-Verwaltung in einer Liste",
     "intro": "Hier sehen Sie alle Bereiche von der {cityName} als Liste. Diese Liste ist gut für Sprach-Programme. Mit der Tab-Taste gehen Sie weiter. Mit Enter öffnen oder schliessen Sie einen Bereich.",
     "ariaLabel": "Die Stadt-Verwaltung als Liste",
-    "beteiligungenHeading": "Andere Stellen von der Stadt"
+    "beteiligungenHeading": "Andere Stellen von der Stadt",
+    "noUnits": "Keine Unter-Stellen.",
+    "noBudget": "Noch keine Zahlen für diese Stelle."
   },
   "Detail": {
     "close": "Dieses Fenster schliessen",

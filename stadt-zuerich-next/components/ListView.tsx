@@ -29,6 +29,7 @@ export default function ListView({ data, locale }: { data: StadtData; locale: Lo
           dep={dep}
           units={data.units.filter((u) => u.parent === dep.id)}
           tDetail={tDetail}
+          tList={t}
         />
       ))}
 
@@ -47,10 +48,22 @@ export default function ListView({ data, locale }: { data: StadtData; locale: Lo
   );
 }
 
-function DepDetail({ dep, units, tDetail }: { dep: Department; units: Unit[]; tDetail: TFn }) {
+function DepDetail({
+  dep, units, tDetail, tList,
+}: {
+  dep: Department;
+  units: Unit[];
+  tDetail: TFn;
+  tList: TFn;
+}) {
   const extras: string[] = [dep.id];
   if (dep.budget?.aufwand) extras.push(Math.round(dep.budget.aufwand / 1e6) + ' Mio CHF');
   if (dep.fte?.schaetzung) extras.push(fmtNumber(dep.fte.schaetzung) + ' FTE');
+  // Ein Amt gilt als "ohne Budgetdaten", wenn weder das Departement selbst
+  // noch eine seiner Einheiten einen Aufwand ausweist. Dieser Status wird
+  // sonst stumm geschluckt — der Hinweis macht ihn sichtbar.
+  const hasAnyBudget =
+    dep.budget?.aufwand != null || units.some((u) => u.budget?.aufwand != null);
   return (
     <details className="dep">
       <summary>
@@ -58,10 +71,19 @@ function DepDetail({ dep, units, tDetail }: { dep: Department; units: Unit[]; tD
         <span className="text-[var(--color-mute)] text-[13px]">({extras.join(', ')})</span>
       </summary>
       <Meta dep={dep} tDetail={tDetail} />
-      {units.length > 0 && (
+      {!hasAnyBudget && (
+        <p className="text-[12px] text-[var(--color-mute)] italic m-0 mt-1">
+          {tList('noBudget')}
+        </p>
+      )}
+      {units.length > 0 ? (
         <div className="units">
           {units.map((u) => <UnitDetail key={u.id} unit={u} tDetail={tDetail} />)}
         </div>
+      ) : (
+        <p className="text-[12px] text-[var(--color-mute)] italic m-0 mt-1">
+          {tList('noUnits')}
+        </p>
       )}
     </details>
   );

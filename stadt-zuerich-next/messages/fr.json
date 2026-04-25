@@ -23,12 +23,17 @@
     "submit": "Chercher",
     "suggestionsTitle": "Démarches",
     "suggestionsListLabel": "Suggestions de démarches citoyennes",
-    "showAll": "Afficher tous les résultats sur une page dédiée →"
+    "showAll": "Afficher tous les résultats sur une page dédiée →",
+    "noMatchesTitle": "Aucune suggestion rapide pour „{query}\"",
+    "noMatchesHint": "Vouliez-vous dire :",
+    "popularFallback": "Démarches courantes",
+    "openFullSearch": "Ouvrir la recherche complète →"
   },
   "Anliegen": {
     "title": "Chercher une démarche",
     "intro": "Cherchez des termes comme « inscrire chien », « passeport », « aide sociale » ou « électricité ». Cette page fonctionne sans JavaScript — elle est la version de secours de la recherche en direct en haut à gauche.",
     "noResults": "Aucun résultat pour „{query}\". Essayez un autre terme — par exemple un mot-clé seul comme « impôt », « eau » ou « soins ».",
+    "noResultsFallbackHeading": "Ce que d'autres recherchent souvent",
     "resultsCount": "{count, plural, one {# résultat} other {# résultats}} pour „{query}\"",
     "popularHeading": "Démarches courantes",
     "placeholder": "p. ex. inscrire chien, passeport, aide sociale…"
@@ -43,13 +48,20 @@
     "tooltipNet": "Charge nette",
     "tooltipFte": "EPT",
     "conflictNote": "⚠ Affectation citoyenne ≠ RPK",
-    "ariaLabel": "Treemap des charges"
+    "ariaLabel": "Treemap des charges",
+    "emptyTitle": "Aucune donnée budgétaire disponible",
+    "emptyBody": "Aucun service n'a encore enregistré de charges. Essayez plutôt la {listLink}, ou utilisez la {searchLink}.",
+    "emptyListLink": "liste des services",
+    "emptySearchLink": "recherche de démarches",
+    "hiddenDepartments": "{count, plural, one {# département n'est} other {# départements ne sont}} pas affiché{count, plural, one {} other {s}} — aucune donnée budgétaire pour : {names}."
   },
   "List": {
     "title": "Administration de la {cityName} – aperçu hiérarchique",
     "intro": "Cette liste montre les mêmes données que l'onglet diagramme, en forme sémantique pour les lecteurs d'écran et la navigation au clavier. Tab parcourt la hiérarchie, Entrée ouvre/ferme un nœud.",
     "ariaLabel": "Administration de la {cityName} en hiérarchie textuelle",
-    "beteiligungenHeading": "Participations et fondations"
+    "beteiligungenHeading": "Participations et fondations",
+    "noUnits": "Aucune subdivision enregistrée.",
+    "noBudget": "Aucune donnée budgétaire enregistrée pour ce service."
   },
   "Detail": {
     "close": "Fermer le panneau de détail",
