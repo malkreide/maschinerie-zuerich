@@ -5,7 +5,27 @@
     "dataStand": "Datenstand: Finanzjahr {jahr}",
     "dataStandShort": "FJ {jahr}",
     "dataStandTitle": "Finanzjahr {jahr} · Phase {phase} · Letzte Aktualisierung: {stand}",
-    "dataStandTitleNoPhase": "Finanzjahr {jahr} · Letzte Aktualisierung: {stand}"
+    "dataStandTitleNoPhase": "Finanzjahr {jahr} · Letzte Aktualisierung: {stand}",
+    "helpButton": "Kurzes Tutorial anzeigen",
+    "helpButtonLabel": "Hilfe"
+  },
+  "Onboarding": {
+    "ariaLabel": "Kurzes Tutorial",
+    "stepLabel": "Schritt {current} von {total}",
+    "skip": "Überspringen",
+    "back": "Zurück",
+    "next": "Weiter",
+    "done": "Los geht's",
+    "dontShowAgain": "Nicht wieder zeigen",
+    "step1Eyebrow": "1 · Suchen",
+    "step1Title": "Suche dein Anliegen",
+    "step1Body": "Tippe oben links ein Stichwort ein — etwa «Hund anmelden», «Pass» oder «Sozialhilfe». Die Suche zeigt sofort die zuständige Stelle.",
+    "step2Eyebrow": "2 · Erkunden",
+    "step2Title": "Erkunde die Ämter",
+    "step2Body": "In der «Maschinerie» siehst du die ganze Stadtverwaltung als Netzwerk. Hover hebt eine Stelle samt Verbindungen hervor, Klick fixiert die Auswahl und öffnet das Detail.",
+    "step3Eyebrow": "3 · Verstehen",
+    "step3Title": "Verstehe das Budget",
+    "step3Body": "Im Tab «Steuerfranken» wird sichtbar, wohin dein Geld fliesst — jedes Departement als Fläche, gross = viel Aufwand. Klick auf ein Departement zoomt hinein."
   },
   "Nav": {
     "graph": "Maschinerie",

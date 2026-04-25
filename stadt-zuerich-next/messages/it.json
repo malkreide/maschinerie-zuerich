@@ -5,7 +5,27 @@
     "dataStand": "Dati: esercizio {jahr}",
     "dataStandShort": "Es. {jahr}",
     "dataStandTitle": "Esercizio {jahr} · fase {phase} · ultimo aggiornamento: {stand}",
-    "dataStandTitleNoPhase": "Esercizio {jahr} · ultimo aggiornamento: {stand}"
+    "dataStandTitleNoPhase": "Esercizio {jahr} · ultimo aggiornamento: {stand}",
+    "helpButton": "Mostra il breve tutorial",
+    "helpButtonLabel": "Aiuto"
+  },
+  "Onboarding": {
+    "ariaLabel": "Breve tutorial",
+    "stepLabel": "Passo {current} di {total}",
+    "skip": "Salta",
+    "back": "Indietro",
+    "next": "Avanti",
+    "done": "Iniziamo",
+    "dontShowAgain": "Non mostrare più",
+    "step1Eyebrow": "1 · Cerca",
+    "step1Title": "Cerca la tua pratica",
+    "step1Body": "Digita una parola chiave nella ricerca in alto a sinistra — ad es. « registrare cane », « passaporto » o « assistenza sociale ». Vedrai subito l'ufficio competente.",
+    "step2Eyebrow": "2 · Esplora",
+    "step2Title": "Esplora gli uffici",
+    "step2Body": "La scheda « Macchina » mostra l'intera amministrazione come rete. Il passaggio del mouse evidenzia un'unità e i suoi collegamenti, il clic fissa la selezione e apre il pannello dei dettagli.",
+    "step3Eyebrow": "3 · Capisci",
+    "step3Title": "Capisci il budget",
+    "step3Body": "La scheda « Franco fiscale » mostra dove vanno i tuoi soldi — ogni dipartimento come area, più grande = più spesa. Clic su un dipartimento per ingrandire."
   },
   "Nav": {
     "graph": "Macchina",

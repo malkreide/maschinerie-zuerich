@@ -5,7 +5,27 @@
     "dataStand": "Zahlen vom Jahr {jahr}",
     "dataStandShort": "Jahr {jahr}",
     "dataStandTitle": "Die Zahlen sind vom Jahr {jahr}. Stand: {phase}. Zuletzt geändert am {stand}.",
-    "dataStandTitleNoPhase": "Die Zahlen sind vom Jahr {jahr}. Zuletzt geändert am {stand}."
+    "dataStandTitleNoPhase": "Die Zahlen sind vom Jahr {jahr}. Zuletzt geändert am {stand}.",
+    "helpButton": "Zeig mir die Erklärung",
+    "helpButtonLabel": "Hilfe"
+  },
+  "Onboarding": {
+    "ariaLabel": "Kurze Erklärung",
+    "stepLabel": "Schritt {current} von {total}",
+    "skip": "Überspringen",
+    "back": "Zurück",
+    "next": "Weiter",
+    "done": "Los geht es",
+    "dontShowAgain": "Nicht mehr zeigen",
+    "step1Eyebrow": "1 · Suchen",
+    "step1Title": "Suchen Sie Ihr Anliegen",
+    "step1Body": "Schreiben Sie oben links ein Wort. Zum Beispiel: «Hund anmelden». Oder «Pass». Sie sehen sofort: Welche Stelle hilft Ihnen.",
+    "step2Eyebrow": "2 · Schauen",
+    "step2Title": "Schauen Sie die Stellen an",
+    "step2Body": "Die «Maschinerie» zeigt alle Stellen der Stadt. Mit der Maus über einer Stelle: Sie sehen die Verbindungen. Mit Klick: Sie sehen mehr Informationen.",
+    "step3Eyebrow": "3 · Verstehen",
+    "step3Title": "Verstehen Sie das Geld",
+    "step3Body": "Im Tab «Steuerfranken» sehen Sie: Wofür gibt die Stadt Ihr Geld aus? Ein grosses Feld bedeutet: Hier gibt die Stadt viel Geld aus."
   },
   "Nav": {
     "graph": "Bild",

@@ -7,6 +7,7 @@ import { useT } from '@/lib/i18n-client';
 import type { DataStandInfo } from '@/lib/data-meta';
 import Brand from './Brand';
 import LanguageSwitcher from './LanguageSwitcher';
+import { REOPEN_EVENT as ONBOARDING_REOPEN } from './Onboarding';
 
 const ROUTES = [
   { href: '/',              key: 'graph' },
@@ -100,6 +101,18 @@ export default function Header({ dataStand }: { dataStand: DataStandInfo }) {
         })}
       </nav>
       <LanguageSwitcher />
+      <button
+        type="button"
+        aria-label={t('helpButton')}
+        title={t('helpButton')}
+        // CustomEvent statt globaler Store: Onboarding-Komponente lebt im
+        // selben Tree, hört im useEffect mit. Hält den Header schlank.
+        onClick={() => window.dispatchEvent(new Event(ONBOARDING_REOPEN))}
+        className="ml-1 mr-1 px-2.5 py-1.5 rounded-md text-xs border border-white/20 bg-white/10 hover:bg-white/20 font-semibold"
+      >
+        ?
+        <span className="sr-only">{t('helpButtonLabel')}</span>
+      </button>
       <button
         type="button"
         aria-pressed={dark ?? false}

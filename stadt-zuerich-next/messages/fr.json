@@ -5,7 +5,27 @@
     "dataStand": "Données : exercice {jahr}",
     "dataStandShort": "Ex. {jahr}",
     "dataStandTitle": "Exercice {jahr} · phase {phase} · dernière mise à jour : {stand}",
-    "dataStandTitleNoPhase": "Exercice {jahr} · dernière mise à jour : {stand}"
+    "dataStandTitleNoPhase": "Exercice {jahr} · dernière mise à jour : {stand}",
+    "helpButton": "Afficher le tutoriel court",
+    "helpButtonLabel": "Aide"
+  },
+  "Onboarding": {
+    "ariaLabel": "Tutoriel court",
+    "stepLabel": "Étape {current} sur {total}",
+    "skip": "Passer",
+    "back": "Retour",
+    "next": "Suivant",
+    "done": "C'est parti",
+    "dontShowAgain": "Ne plus afficher",
+    "step1Eyebrow": "1 · Chercher",
+    "step1Title": "Cherchez votre démarche",
+    "step1Body": "Tapez un mot-clé dans la recherche en haut à gauche — p. ex. « inscrire chien », « passeport » ou « aide sociale ». Le service compétent apparaît aussitôt.",
+    "step2Eyebrow": "2 · Explorer",
+    "step2Title": "Explorez les services",
+    "step2Body": "L'onglet « Mécanique » montre toute l'administration en réseau. Le survol met en évidence un service et ses liens, le clic fixe la sélection et ouvre le panneau de détail.",
+    "step3Eyebrow": "3 · Comprendre",
+    "step3Title": "Comprenez le budget",
+    "step3Body": "L'onglet « Franc d'impôt » montre où va votre argent — chaque département est une surface, grande = forte dépense. Cliquez sur un département pour zoomer."
   },
   "Nav": {
     "graph": "Mécanique",

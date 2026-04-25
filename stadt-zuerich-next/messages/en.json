@@ -5,7 +5,27 @@
     "dataStand": "Data: fiscal year {jahr}",
     "dataStandShort": "FY {jahr}",
     "dataStandTitle": "Fiscal year {jahr} · phase {phase} · last updated: {stand}",
-    "dataStandTitleNoPhase": "Fiscal year {jahr} · last updated: {stand}"
+    "dataStandTitleNoPhase": "Fiscal year {jahr} · last updated: {stand}",
+    "helpButton": "Show short tutorial",
+    "helpButtonLabel": "Help"
+  },
+  "Onboarding": {
+    "ariaLabel": "Short tutorial",
+    "stepLabel": "Step {current} of {total}",
+    "skip": "Skip",
+    "back": "Back",
+    "next": "Next",
+    "done": "Let's go",
+    "dontShowAgain": "Don't show again",
+    "step1Eyebrow": "1 · Search",
+    "step1Title": "Search your concern",
+    "step1Body": "Type a keyword in the top-left search — e.g. «register dog», «passport» or «social aid». You'll instantly see the responsible office.",
+    "step2Eyebrow": "2 · Explore",
+    "step2Title": "Explore the offices",
+    "step2Body": "The «Machinery» tab shows the whole administration as a network. Hover highlights a unit and its connections, click pins the selection and opens the detail panel.",
+    "step3Eyebrow": "3 · Understand",
+    "step3Title": "Understand the budget",
+    "step3Body": "The «Tax franc» tab shows where your money goes — each department as an area, larger = more spending. Click a department to zoom in."
   },
   "Nav": {
     "graph": "Machinery",
