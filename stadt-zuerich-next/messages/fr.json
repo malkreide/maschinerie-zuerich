@@ -1,7 +1,11 @@
 {
   "App": {
     "title": "Mécanique de la {cityName}",
-    "subtitle": "Prototype · Next.js"
+    "subtitle": "Prototype · Next.js",
+    "dataStand": "Données : exercice {jahr}",
+    "dataStandShort": "Ex. {jahr}",
+    "dataStandTitle": "Exercice {jahr} · phase {phase} · dernière mise à jour : {stand}",
+    "dataStandTitleNoPhase": "Exercice {jahr} · dernière mise à jour : {stand}"
   },
   "Nav": {
     "graph": "Mécanique",

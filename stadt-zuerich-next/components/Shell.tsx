@@ -3,18 +3,20 @@
 
 import type { ReactNode } from 'react';
 import type { Lebenslage } from '@/types/stadt';
+import type { DataStandInfo } from '@/lib/data-meta';
 import Header from './Header';
 import Search from './Search';
 
 export default function Shell({
-  lebenslagen, children,
+  lebenslagen, dataStand, children,
 }: {
   lebenslagen: Lebenslage[];
+  dataStand: DataStandInfo;
   children: ReactNode;
 }) {
   return (
     <>
-      <Header />
+      <Header dataStand={dataStand} />
       <Search lebenslagen={lebenslagen} />
       {children}
     </>

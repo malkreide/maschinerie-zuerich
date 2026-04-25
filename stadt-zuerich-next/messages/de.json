@@ -1,7 +1,11 @@
 {
   "App": {
     "title": "Maschinerie der {cityName}",
-    "subtitle": "Prototyp · Next.js"
+    "subtitle": "Prototyp · Next.js",
+    "dataStand": "Datenstand: Finanzjahr {jahr}",
+    "dataStandShort": "FJ {jahr}",
+    "dataStandTitle": "Finanzjahr {jahr} · Phase {phase} · Letzte Aktualisierung: {stand}",
+    "dataStandTitleNoPhase": "Finanzjahr {jahr} · Letzte Aktualisierung: {stand}"
   },
   "Nav": {
     "graph": "Maschinerie",

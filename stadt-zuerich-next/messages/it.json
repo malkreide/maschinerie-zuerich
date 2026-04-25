@@ -1,7 +1,11 @@
 {
   "App": {
     "title": "Macchina amministrativa della {cityName}",
-    "subtitle": "Prototipo · Next.js"
+    "subtitle": "Prototipo · Next.js",
+    "dataStand": "Dati: esercizio {jahr}",
+    "dataStandShort": "Es. {jahr}",
+    "dataStandTitle": "Esercizio {jahr} · fase {phase} · ultimo aggiornamento: {stand}",
+    "dataStandTitleNoPhase": "Esercizio {jahr} · ultimo aggiornamento: {stand}"
   },
   "Nav": {
     "graph": "Macchina",

@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import Shell from '@/components/Shell';
 import { loadStadtData } from '@/lib/data';
+import { parseDataStand } from '@/lib/data-meta';
 import { getTheme } from '@/lib/theme';
 import { routing, type Locale } from '@/i18n/routing';
 import { getT, getMessages } from '@/lib/i18n-server';
@@ -33,6 +34,7 @@ export default async function LocaleLayout({
   if (!hasLocale(routing.locales, locale)) notFound();
 
   const data = await loadStadtData();
+  const dataStand = parseDataStand(data._meta);
   const theme = await getTheme();
   const t = getT(locale as Locale, 'Nav');
   const messages = getMessages(locale as Locale);
@@ -55,7 +57,7 @@ export default async function LocaleLayout({
           <a className="skip-link" href={`/${locale}/liste`}>
             {t('skipToList')}
           </a>
-          <Shell lebenslagen={data.lebenslagen ?? []}>{children}</Shell>
+          <Shell lebenslagen={data.lebenslagen ?? []} dataStand={dataStand}>{children}</Shell>
         </NextIntlClientProvider>
       </body>
     </html>

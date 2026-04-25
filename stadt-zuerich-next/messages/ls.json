@@ -1,7 +1,11 @@
 {
   "App": {
     "title": "Die {cityName} von innen",
-    "subtitle": "Eine einfache Übersicht"
+    "subtitle": "Eine einfache Übersicht",
+    "dataStand": "Zahlen vom Jahr {jahr}",
+    "dataStandShort": "Jahr {jahr}",
+    "dataStandTitle": "Die Zahlen sind vom Jahr {jahr}. Stand: {phase}. Zuletzt geändert am {stand}.",
+    "dataStandTitleNoPhase": "Die Zahlen sind vom Jahr {jahr}. Zuletzt geändert am {stand}."
   },
   "Nav": {
     "graph": "Bild",
