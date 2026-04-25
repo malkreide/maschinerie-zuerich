@@ -22,12 +22,33 @@ export default function GraphView({ data }: { data: StadtData }) {
   const cyRef = useRef<Core | null>(null);
   const [layout, setLayout] = useState<Layout>('radial');
 
+  // Mitgeführter, aktueller Fokus — die Event-Handler werden nur einmal
+  // registriert (im `[data]`-Effekt) und würden sonst den Wert aus der
+  // Mount-Render-Closure verwenden. Ein Ref hält den Stand synchron.
+  const focusIdRef = useRef<string | null>(focusId);
+  // Signalisiert dem focusId-Effekt, dass die Änderung aus einem Klick im
+  // Graphen selbst stammt — Highlights wurden dann schon im Tap-Handler
+  // gesetzt und das Viewport muss nicht neu eingezoomt werden.
+  const suppressFocusEffectRef = useRef(false);
+
   function setFocus(id: string | null) {
     const params = new URLSearchParams(searchParams.toString());
     if (id) params.set('focus', id); else params.delete('focus');
     const qs = params.toString();
     // i18n-Router erhält locale-Prefix automatisch; Query-String anhängen.
     router.replace((qs ? `${pathname}?${qs}` : pathname) as Parameters<typeof router.replace>[0], { scroll: false });
+  }
+
+  // Hilfsfunktion: Fokus-Markierung (gefadet + Nachbarschaft hervorgehoben)
+  // auf einen Knoten anwenden. Wird sowohl vom Tap-Handler als auch vom
+  // Mouseout-Handler (zum Wiederherstellen nach Hover) genutzt.
+  function applyFocusHighlight(cy: Core, id: string) {
+    const target = cy.getElementById(id);
+    if (!target || target.length === 0) return;
+    cy.elements().removeClass('faded').removeClass('highlighted').removeClass('search-hit');
+    cy.elements().addClass('faded');
+    target.closedNeighborhood().removeClass('faded').addClass('highlighted');
+    target.addClass('search-hit');
   }
 
   // Initialisierung
@@ -44,7 +65,11 @@ export default function GraphView({ data }: { data: StadtData }) {
         container: hostRef.current,
         elements,
         style: GRAPH_STYLE,
-        layout: layoutOptions('radial'),
+        // Erst-Layout ohne Animation: das frühere "Hineinfliegen von links"
+        // hat die Seite unruhig wirken lassen. Knoten erscheinen jetzt
+        // direkt an der Zielposition. Layout-Wechsel (siehe zweiter Effekt)
+        // animieren weiterhin, weil dort der Positionssprung nützlich ist.
+        layout: layoutOptions('radial', false),
         // Cytoscape default (1) zoomt mit vernünftiger Geschwindigkeit.
         // Ältere Werte von 0.2 zwangen Nutzer:innen zu langem Scrollen,
         // um überhaupt reinzukommen.
@@ -53,23 +78,48 @@ export default function GraphView({ data }: { data: StadtData }) {
         maxZoom: 4,
       });
       cy.on('mouseover', 'node', (e) => {
+        // Temporärer Hover: überschreibt einen vorhandenen Klick-Fokus,
+        // wird beim Mouseout wiederhergestellt.
         const nb = e.target.closedNeighborhood();
+        cy.elements().removeClass('highlighted').removeClass('search-hit');
         cy.elements().addClass('faded');
         nb.removeClass('faded').addClass('highlighted');
       });
       cy.on('mouseout', 'node', () => {
-        cy.elements().removeClass('faded').removeClass('highlighted');
+        cy.elements().removeClass('faded').removeClass('highlighted').removeClass('search-hit');
+        // Persistente Auswahl nach Klick nicht verlieren, wenn die Maus
+        // den Knoten verlässt — stattdessen den Fokus-Highlight neu setzen.
+        const fid = focusIdRef.current;
+        if (fid) applyFocusHighlight(cy, fid);
       });
-      cy.on('tap', 'node', (e) => setFocus(e.target.id()));
-      cy.on('tap', (e) => { if (e.target === cy) setFocus(null); });
+      cy.on('tap', 'node', (e) => {
+        const id = e.target.id();
+        // Highlight sofort anwenden und den nachfolgenden focusId-Effekt
+        // dazu bringen, das Viewport nicht neu zu zentrieren/zoomen.
+        suppressFocusEffectRef.current = true;
+        focusIdRef.current = id;
+        applyFocusHighlight(cy, id);
+        setFocus(id);
+      });
+      cy.on('tap', (e) => {
+        if (e.target === cy) {
+          suppressFocusEffectRef.current = true;
+          focusIdRef.current = null;
+          cy.elements().removeClass('faded').removeClass('highlighted').removeClass('search-hit');
+          setFocus(null);
+        }
+      });
       cyRef.current = cy;
-      // Kleinere Padding (20 statt 60) füllt die Canvas deutlich besser
-      // aus — Labels sind auf der Startansicht lesbar. Anschließend noch
-      // ~20 % näher reinzoomen, damit die äußeren Ringe nicht unnötig
-      // klein wirken.
+      // Startansicht: etwas mehr Padding unten, damit die äusseren Knoten
+      // die Fusszeilen-Hinweise (Hover=... und Legend) nicht überdecken,
+      // und dann deutlich näher reinzoomen — die Labels auf den Departements-
+      // Knoten sind sonst unlesbar klein.
       cy.ready(() => {
-        cy.fit(undefined, 20);
-        cy.zoom({ level: cy.zoom() * 1.2, renderedPosition: { x: cy.width() / 2, y: cy.height() / 2 } });
+        cy.fit(undefined, 40);
+        cy.zoom({ level: cy.zoom() * 1.45, renderedPosition: { x: cy.width() / 2, y: cy.height() / 2 } });
+        // Bei Deep-Link via ?focus=... den Highlight direkt anwenden.
+        const initialFocus = focusIdRef.current;
+        if (initialFocus) applyFocusHighlight(cy, initialFocus);
       });
     })();
     return () => {
@@ -82,19 +132,29 @@ export default function GraphView({ data }: { data: StadtData }) {
 
   // Layout-Wechsel
   useEffect(() => {
-    cyRef.current?.layout(layoutOptions(layout)).run();
+    cyRef.current?.layout(layoutOptions(layout, true)).run();
   }, [layout]);
 
-  // Auf URL-Fokus reagieren (Search → Sprung zu Knoten via Deep-Link)
+  // Auf URL-Fokus reagieren (Search → Sprung zu Knoten via Deep-Link).
+  // Wird bei User-Klicks übersprungen, da der Tap-Handler dort schon alles
+  // inkl. Highlight erledigt hat — ein zusätzlicher center/zoom-Animate
+  // würde sich wie das ungeliebte "Hineinfliegen" anfühlen.
   useEffect(() => {
-    if (!focusId || !cyRef.current) return;
-    const target = cyRef.current.getElementById(focusId);
+    focusIdRef.current = focusId;
+    if (suppressFocusEffectRef.current) {
+      suppressFocusEffectRef.current = false;
+      return;
+    }
+    const cy = cyRef.current;
+    if (!cy) return;
+    if (!focusId) {
+      cy.elements().removeClass('faded').removeClass('highlighted').removeClass('search-hit');
+      return;
+    }
+    const target = cy.getElementById(focusId);
     if (!target || target.length === 0) return;
-    cyRef.current.elements().removeClass('faded').removeClass('search-hit').removeClass('highlighted');
-    cyRef.current.elements().addClass('faded');
-    target.closedNeighborhood().removeClass('faded').addClass('highlighted');
-    target.addClass('search-hit');
-    cyRef.current.animate({ center: { eles: target }, zoom: 1.6 }, { duration: 500 });
+    applyFocusHighlight(cy, focusId);
+    cy.animate({ center: { eles: target }, zoom: 1.6 }, { duration: 500 });
   }, [focusId]);
 
   return (
@@ -115,7 +175,7 @@ export default function GraphView({ data }: { data: StadtData }) {
         }}
         onFit={() => cyRef.current?.fit(undefined, 40)}
       />
-      <div className="fixed bottom-3 left-1/2 -translate-x-1/2 text-[11px] text-[var(--color-mute)] pointer-events-none z-[8]">
+      <div className="fixed bottom-3 left-1/2 -translate-x-1/2 text-[11px] text-[var(--color-mute)] pointer-events-none z-[8] bg-[var(--color-panel)]/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow border border-[var(--color-line)] whitespace-nowrap max-w-[90vw] overflow-hidden text-ellipsis">
         {t('Hint')}
       </div>
     </>
@@ -196,11 +256,11 @@ function buildElements(d: StadtData): ElementDefinition[] {
   return [...nodes, ...edges];
 }
 
-function layoutOptions(name: Layout): LayoutOptions {
+function layoutOptions(name: Layout, animate: boolean): LayoutOptions {
   if (name === 'force') {
     // fcose-spezifische Optionen (nicht in den Cytoscape-Core-Typen)
     return {
-      name: 'fcose', quality: 'default', animate: true, animationDuration: 800,
+      name: 'fcose', quality: 'default', animate, animationDuration: 800,
       nodeRepulsion: 6000, idealEdgeLength: 60, gravity: 0.15, nestingFactor: 0.6, randomize: false,
     } as unknown as LayoutOptions;
   }
@@ -213,7 +273,7 @@ function layoutOptions(name: Layout): LayoutOptions {
     // zu sehen war.
     minNodeSpacing: 14,
     spacingFactor: 0.75,
-    avoidOverlap: true, animate: true, animationDuration: 600,
+    avoidOverlap: true, animate, animationDuration: 600,
   };
 }
 
