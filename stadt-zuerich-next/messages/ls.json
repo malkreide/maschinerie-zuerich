@@ -38,7 +38,9 @@
     "darkLabelDark": "☾ Dunkel",
     "darkLabelLoading": "Bild",
     "skipToList": "Zur Liste springen. Die Liste ist gut für Sprach-Programme.",
-    "language": "Sprache"
+    "language": "Sprache",
+    "expandAll": "Alles aufklappen",
+    "collapseAll": "Alles zuklappen"
   },
   "Search": {
     "label": "Wonach suchen Sie?",

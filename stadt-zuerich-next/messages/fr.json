@@ -38,7 +38,9 @@
     "darkLabelDark": "☾ Sombre",
     "darkLabelLoading": "Thème",
     "skipToList": "Vers l'aperçu textuel (lecteurs d'écran)",
-    "language": "Langue"
+    "language": "Langue",
+    "expandAll": "Tout déplier",
+    "collapseAll": "Tout replier"
   },
   "Search": {
     "label": "Chercher un service ou une démarche",

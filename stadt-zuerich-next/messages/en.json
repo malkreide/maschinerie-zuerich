@@ -38,7 +38,9 @@
     "darkLabelDark": "☾ Dark",
     "darkLabelLoading": "Theme",
     "skipToList": "Skip to textual overview (for screen readers)",
-    "language": "Language"
+    "language": "Language",
+    "expandAll": "Expand all",
+    "collapseAll": "Collapse all"
   },
   "Search": {
     "label": "Search for an office or a concern",

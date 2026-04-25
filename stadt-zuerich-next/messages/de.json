@@ -38,7 +38,9 @@
     "darkLabelDark": "☾ Dunkel",
     "darkLabelLoading": "Theme",
     "skipToList": "Zur textuellen Übersicht (für Screenreader)",
-    "language": "Sprache"
+    "language": "Sprache",
+    "expandAll": "Alle ausklappen",
+    "collapseAll": "Alle einklappen"
   },
   "Search": {
     "label": "Stelle oder Anliegen suchen",

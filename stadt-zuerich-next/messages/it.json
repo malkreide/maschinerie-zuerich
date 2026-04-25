@@ -38,7 +38,9 @@
     "darkLabelDark": "☾ Scuro",
     "darkLabelLoading": "Tema",
     "skipToList": "Vai alla panoramica testuale (lettori di schermo)",
-    "language": "Lingua"
+    "language": "Lingua",
+    "expandAll": "Espandi tutto",
+    "collapseAll": "Comprimi tutto"
   },
   "Search": {
     "label": "Cerca un ufficio o una pratica",
