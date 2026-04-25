@@ -1,11 +1,36 @@
 {
   "App": {
     "title": "Mécanique de la {cityName}",
-    "subtitle": "Prototype · Next.js"
+    "subtitle": "Prototype · Next.js",
+    "dataStand": "Données : exercice {jahr}",
+    "dataStandShort": "Ex. {jahr}",
+    "dataStandTitle": "Exercice {jahr} · phase {phase} · dernière mise à jour : {stand}",
+    "dataStandTitleNoPhase": "Exercice {jahr} · dernière mise à jour : {stand}",
+    "helpButton": "Afficher le tutoriel court",
+    "helpButtonLabel": "Aide"
+  },
+  "Onboarding": {
+    "ariaLabel": "Tutoriel court",
+    "stepLabel": "Étape {current} sur {total}",
+    "skip": "Passer",
+    "back": "Retour",
+    "next": "Suivant",
+    "done": "C'est parti",
+    "dontShowAgain": "Ne plus afficher",
+    "step1Eyebrow": "1 · Chercher",
+    "step1Title": "Cherchez votre démarche",
+    "step1Body": "Tapez un mot-clé dans la recherche en haut à gauche — p. ex. « inscrire chien », « passeport » ou « aide sociale ». Le service compétent apparaît aussitôt.",
+    "step2Eyebrow": "2 · Explorer",
+    "step2Title": "Explorez les services",
+    "step2Body": "L'onglet « Mécanique » montre toute l'administration en réseau. Le survol met en évidence un service et ses liens, le clic fixe la sélection et ouvre le panneau de détail.",
+    "step3Eyebrow": "3 · Comprendre",
+    "step3Title": "Comprenez le budget",
+    "step3Body": "L'onglet « Franc d'impôt » montre où va votre argent — chaque département est une surface, grande = forte dépense. Cliquez sur un département pour zoomer."
   },
   "Nav": {
     "graph": "Mécanique",
     "tax": "Franc d'impôt",
+    "simulator": "Simulateur",
     "list": "Liste",
     "prozesse": "Procédures",
     "darkOn": "Activer le thème sombre",
@@ -14,7 +39,9 @@
     "darkLabelDark": "☾ Sombre",
     "darkLabelLoading": "Thème",
     "skipToList": "Vers l'aperçu textuel (lecteurs d'écran)",
-    "language": "Langue"
+    "language": "Langue",
+    "expandAll": "Tout déplier",
+    "collapseAll": "Tout replier"
   },
   "Search": {
     "label": "Chercher un service ou une démarche",
@@ -23,12 +50,17 @@
     "submit": "Chercher",
     "suggestionsTitle": "Démarches",
     "suggestionsListLabel": "Suggestions de démarches citoyennes",
-    "showAll": "Afficher tous les résultats sur une page dédiée →"
+    "showAll": "Afficher tous les résultats sur une page dédiée →",
+    "noMatchesTitle": "Aucune suggestion rapide pour „{query}\"",
+    "noMatchesHint": "Vouliez-vous dire :",
+    "popularFallback": "Démarches courantes",
+    "openFullSearch": "Ouvrir la recherche complète →"
   },
   "Anliegen": {
     "title": "Chercher une démarche",
     "intro": "Cherchez des termes comme « inscrire chien », « passeport », « aide sociale » ou « électricité ». Cette page fonctionne sans JavaScript — elle est la version de secours de la recherche en direct en haut à gauche.",
     "noResults": "Aucun résultat pour „{query}\". Essayez un autre terme — par exemple un mot-clé seul comme « impôt », « eau » ou « soins ».",
+    "noResultsFallbackHeading": "Ce que d'autres recherchent souvent",
     "resultsCount": "{count, plural, one {# résultat} other {# résultats}} pour „{query}\"",
     "popularHeading": "Démarches courantes",
     "placeholder": "p. ex. inscrire chien, passeport, aide sociale…"
@@ -39,17 +71,28 @@
     "total": " · Total {sum} CHF",
     "back": "← Retour à l'aperçu",
     "tooltipShare": "Part de la vue",
+    "tooltipShareTotal": "Part du budget total",
+    "tooltipPerCapita": "Par habitant·e",
+    "tooltipPerCapitaNet": "Net par habitant·e",
     "tooltipExpense": "Charge",
     "tooltipNet": "Charge nette",
     "tooltipFte": "EPT",
     "conflictNote": "⚠ Affectation citoyenne ≠ RPK",
-    "ariaLabel": "Treemap des charges"
+    "ariaLabel": "Treemap des charges",
+    "totalPerCapita": " · ≈ {value} par habitant·e",
+    "emptyTitle": "Aucune donnée budgétaire disponible",
+    "emptyBody": "Aucun service n'a encore enregistré de charges. Essayez plutôt la {listLink}, ou utilisez la {searchLink}.",
+    "emptyListLink": "liste des services",
+    "emptySearchLink": "recherche de démarches",
+    "hiddenDepartments": "{count, plural, one {# département n'est} other {# départements ne sont}} pas affiché{count, plural, one {} other {s}} — aucune donnée budgétaire pour : {names}."
   },
   "List": {
     "title": "Administration de la {cityName} – aperçu hiérarchique",
     "intro": "Cette liste montre les mêmes données que l'onglet diagramme, en forme sémantique pour les lecteurs d'écran et la navigation au clavier. Tab parcourt la hiérarchie, Entrée ouvre/ferme un nœud.",
     "ariaLabel": "Administration de la {cityName} en hiérarchie textuelle",
-    "beteiligungenHeading": "Participations et fondations"
+    "beteiligungenHeading": "Participations et fondations",
+    "noUnits": "Aucune subdivision enregistrée.",
+    "noBudget": "Aucune donnée budgétaire enregistrée pour ce service."
   },
   "Detail": {
     "close": "Fermer le panneau de détail",
@@ -76,7 +119,13 @@
     "fteUnitFallback": "EPT",
     "fteUnitPublished": "{value} {einheit} (publié)",
     "fteEstimateText": "~{value} (estimation : charges de personnel ÷ {amount} CHF)",
-    "relatedProzesseHeading": "Impliqué dans les démarches suivantes"
+    "relatedProzesseHeading": "Impliqué dans les démarches suivantes",
+    "perCapitaLabel": "Par habitant·e",
+    "perCapitaValue": "≈ {value}",
+    "perCapitaTitle": "Charges par habitant·e — charges divisées par la population résidente de la ville",
+    "budgetShareLabel": "Part du budget total",
+    "budgetShareValue": "{percent} %",
+    "budgetShareTitle": "Part de ce poste dans les charges totales de la ville"
   },
   "Legend": {
     "headingTop": "Conseil municipal et départements",
@@ -93,6 +142,39 @@
     "konflikt": "Affectation citoyenne ≠ RPK"
   },
   "Hint": "Survol = explorer · Clic = sélectionner · Molette = zoomer · La recherche connaît aussi les démarches",
+  "Simulator": {
+    "title": "Simulateur de budget : et si ?",
+    "intro": "Déplacez à titre d'essai des fonds entre les départements et observez en direct l'évolution du budget total et de la charge par habitant·e. Pure simulation — sans effet sur les données financières réelles.",
+    "ariaLabel": "Simulateur de budget interactif",
+    "originalLabel": "Originel",
+    "simulatedLabel": "Simulé",
+    "deltaLabel": "Différence",
+    "deltaPerCapita": "≈ {value} par habitant·e",
+    "perCapitaUnit": "par habitant·e",
+    "departmentsHeading": "Départements — bougez les curseurs pour ajuster les charges",
+    "sliderLabel": "Ajustement du budget en pourcentage pour {dep}",
+    "percentDisplay": "{percent} %",
+    "originalToSimulated": "{orig} → {sim}",
+    "deltaCHF": "{value} CHF",
+    "noChange": "inchangé",
+    "increase": "dépenses supplémentaires",
+    "decrease": "économies",
+    "balanced": "équilibré",
+    "resetButton": "Tout réinitialiser",
+    "resetTitle": "Remettre tous les curseurs à 0 %",
+    "yearLabel": "Base : exercice {jahr}",
+    "disclaimer": "Note : ce simulateur est purement illustratif. Les vraies décisions budgétaires reviennent au conseil municipal — et sont bien plus complexes (engagements juridiques, charges fixes, effets induits, majorités politiques).",
+    "empty": "Aucune donnée budgétaire par département — le simulateur a besoin de chiffres de charges par département."
+  },
+  "BudgetSummary": {
+    "ariaLabel": "Budget de la ville en un coup d'œil",
+    "eyebrow": "Budget",
+    "eyebrowYear": "Budget {jahr}",
+    "aufwandLabel": "Charges",
+    "aufwandTitle": "Charges brutes de la ville — somme des charges de tous les départements ; entre parenthèses, le montant par habitant·e.",
+    "nettoLabel": "Net",
+    "nettoTitle": "Charges nettes (charges moins recettes) — le montant que les contribuables financent effectivement ; entre parenthèses, le montant par habitant·e."
+  },
   "Type": {
     "center": "Exécutif",
     "department": "Département",

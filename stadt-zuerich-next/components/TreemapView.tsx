@@ -1,11 +1,13 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { hierarchy, treemap, type HierarchyRectangularNode } from 'd3-hierarchy';
 import { scaleOrdinal } from 'd3-scale';
+import { Link } from '@/i18n/navigation';
 import type { StadtData, Department, Unit } from '@/types/stadt';
 import { fmtMio, fmtNumber } from '@/lib/search';
+import { computeTotalAufwand, perCapitaCHF, budgetSharePercent } from '@/lib/budget-context';
 import { city } from '@/config/city.config';
 
 type Datum = {
@@ -57,10 +59,21 @@ export default function TreemapView({
     .domain(data.departments.map((d) => d.id))
     .range(DEP_COLORS);
 
-  const tree = buildHierarchy(data, focus, rootName);
+  const { tree, hiddenDepartments } = buildHierarchy(data, focus, rootName);
   const root = computeLayout(tree, size.w, size.h, focus !== null);
 
+  // Stadt-weiter Gesamtaufwand als stabile Bezugsgrösse für die Anteils-
+  // Anzeige im Tooltip. Wichtig: aus den Originaldaten, nicht aus dem
+  // (bei Fokus auf ein Departement reduzierten) `root` — sonst würde die
+  // "Anteil Gesamtbudget"-Zahl beim Hineinzoomen kollabieren.
+  const cityTotalAufwand = useMemo(() => computeTotalAufwand(data), [data]);
+  const population = city.population;
+
   const sampleJahr = data.units.find((u) => u.budget?.jahr)?.budget?.jahr ?? 2024;
+
+  // Leer-Zustand: wenn in den Daten überhaupt kein Amt positive Aufwände hat,
+  // rendern wir statt eines leeren SVG einen Info-Block mit Handlungsangeboten.
+  const isEmpty = !tree.children || tree.children.length === 0;
 
   return (
     <main className="absolute top-14 inset-x-0 bottom-0 p-4 pb-10 overflow-hidden"
@@ -69,7 +82,43 @@ export default function TreemapView({
       <p className="text-[13px] text-[var(--color-mute)] mb-3">
         {t('intro', { jahr: sampleJahr })}
         {root && <strong>{t('total', { sum: fmtMio(root.value ?? 0) })}</strong>}
+        {/* Pro-Kopf-Einordnung der Gesamtsumme — macht aus "1.4 Mrd CHF"
+            (für die meisten abstrakt) eine greifbare Pro-Kopf-Zahl. */}
+        {root && (() => {
+          const pc = perCapitaCHF(root.value ?? 0, population);
+          return pc ? <em>{t('totalPerCapita', { value: pc })}</em> : null;
+        })()}
       </p>
+      {isEmpty && (
+        <div
+          role="status"
+          className="max-w-[70ch] rounded-lg border border-[var(--color-line)] bg-[var(--color-panel)] p-5"
+        >
+          <h3 className="text-base font-semibold mb-2">{t('emptyTitle')}</h3>
+          <p className="text-[13px] text-[var(--color-mute)] m-0">
+            {t.rich('emptyBody', {
+              listLink: (chunks) => (
+                <Link href="/liste" className="text-[var(--color-accent)] underline">
+                  {chunks}
+                </Link>
+              ),
+              searchLink: (chunks) => (
+                <Link href="/anliegen" className="text-[var(--color-accent)] underline">
+                  {chunks}
+                </Link>
+              ),
+            })}
+          </p>
+        </div>
+      )}
+      {!isEmpty && hiddenDepartments.length > 0 && !focus && (
+        <p className="text-[11px] text-[var(--color-mute)] mb-2 max-w-[80ch]">
+          {t('hiddenDepartments', {
+            count: hiddenDepartments.length,
+            names: hiddenDepartments.map((d) => d.name).join(', '),
+          })}
+        </p>
+      )}
       <div ref={hostRef} className="relative w-full h-[calc(100%-70px)]">
         <svg
           id="treemap-svg"
@@ -95,9 +144,27 @@ export default function TreemapView({
           >
             <div className="font-semibold mb-1">{tooltip.node.name}</div>
             <Row k={t('tooltipExpense')} v={`${fmtNumber(tooltip.node.value)} CHF`} />
+            {/* Pro-Kopf direkt nach Aufwand — ordnet die Brutto-Zahl ein. */}
+            {(() => {
+              const pc = perCapitaCHF(tooltip.node.value, population);
+              return pc ? <Row k={t('tooltipPerCapita')} v={`≈ ${pc}`} /> : null;
+            })()}
             {tooltip.node.netto != null && <Row k={t('tooltipNet')} v={`${fmtNumber(tooltip.node.netto)} CHF`} />}
+            {/* Pro-Kopf für Netto: das ist der Betrag, den Steuerzahlende
+                effektiv tragen — die ehrlichste Pro-Kopf-Grösse. */}
+            {tooltip.node.netto != null && (() => {
+              const pc = perCapitaCHF(tooltip.node.netto, population);
+              return pc ? <Row k={t('tooltipPerCapitaNet')} v={`≈ ${pc}`} /> : null;
+            })()}
             {tooltip.node.fte   != null && <Row k={t('tooltipFte')} v={fmtNumber(tooltip.node.fte)} />}
             <Row k={t('tooltipShare')} v={`${(((tooltip.node.value ?? 0) / tooltip.total) * 100).toFixed(1)} %`} />
+            {/* Anteil Stadt-Total bezieht sich bewusst auf das ganze Stadt-
+                Budget, nicht auf tooltip.total (welcher beim Hineinzoomen
+                schrumpft). */}
+            {(() => {
+              const sh = budgetSharePercent(tooltip.node.value, cityTotalAufwand);
+              return sh ? <Row k={t('tooltipShareTotal')} v={`${sh} %`} /> : null;
+            })()}
             {tooltip.node.konflikt && <div className="mt-1 text-[var(--color-konflikt)] text-[11px]">{t('conflictNote')}</div>}
           </div>
         )}
@@ -115,8 +182,17 @@ function Row({ k, v }: { k: string; v: string }) {
   );
 }
 
-function buildHierarchy(data: StadtData, focus: string | null, rootName: string): Datum {
-  const allDeps: Datum[] = data.departments.map((dep: Department) => {
+function buildHierarchy(
+  data: StadtData,
+  focus: string | null,
+  rootName: string,
+): { tree: Datum; hiddenDepartments: { id: string; name: string }[] } {
+  // Zwei parallele Listen: die sichtbaren Departemente (mit Budget-Units) und
+  // die ausgefilterten (die sonst unkommentiert aus dem Treemap verschwinden
+  // würden). Letztere rendern wir als kleinen Hinweis unter der Visualisierung.
+  const visible: Datum[] = [];
+  const hidden: { id: string; name: string }[] = [];
+  for (const dep of data.departments as Department[]) {
     const units: Datum[] = data.units
       .filter((u: Unit) => u.parent === dep.id && (u.budget?.aufwand ?? 0) > 0)
       .map((u: Unit) => ({
@@ -126,14 +202,18 @@ function buildHierarchy(data: StadtData, focus: string | null, rootName: string)
         fte: u.fte?.schaetzung,
         konflikt: !!u.konflikt,
       }));
-    return { name: dep.name, id: dep.id, children: units } as Datum;
-  }).filter((d) => d.children && d.children.length > 0);
+    if (units.length > 0) {
+      visible.push({ name: dep.name, id: dep.id, children: units });
+    } else {
+      hidden.push({ id: dep.id, name: dep.name });
+    }
+  }
 
   if (focus) {
-    const dep = allDeps.find((d) => d.id === focus);
-    if (dep) return { ...dep, depId: dep.id, isFocus: true };
+    const dep = visible.find((d) => d.id === focus);
+    if (dep) return { tree: { ...dep, depId: dep.id, isFocus: true }, hiddenDepartments: hidden };
   }
-  return { name: rootName, children: allDeps };
+  return { tree: { name: rootName, children: visible }, hiddenDepartments: hidden };
 }
 
 function computeLayout(data: Datum, w: number, h: number, isFocus: boolean) {

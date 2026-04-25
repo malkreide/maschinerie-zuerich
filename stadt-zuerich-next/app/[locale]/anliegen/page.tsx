@@ -69,7 +69,35 @@ export default async function AnliegenPage({
       </form>
 
       {q && matches.length === 0 && (
-        <p className="text-[var(--color-mute)] max-w-[70ch]">{t('noResults', { query: q })}</p>
+        <>
+          <p className="text-[var(--color-mute)] max-w-[70ch] mb-4">{t('noResults', { query: q })}</p>
+          {data.lebenslagen && data.lebenslagen.length > 0 && (
+            <section aria-labelledby="noresults-fallback-heading" className="max-w-[70ch]">
+              <h3
+                id="noresults-fallback-heading"
+                className="text-sm font-semibold uppercase tracking-wider text-[var(--color-mute)] mb-3"
+              >
+                {t('noResultsFallbackHeading')}
+              </h3>
+              <ul className="grid gap-2 list-none m-0 p-0">
+                {data.lebenslagen.slice(0, 8).map((l) => {
+                  const c = resolveContent(l, lebLocale);
+                  if (!c) return null;
+                  return (
+                    <li key={l.id}>
+                      <Link
+                        href={{ pathname: '/anliegen', query: { q: c.stichworte[0] ?? c.frage } }}
+                        className="block px-3 py-2 bg-[var(--color-panel)] border border-[var(--color-line)] rounded text-[var(--color-ink)] no-underline hover:bg-[var(--color-bg)] text-sm"
+                      >
+                        {c.frage}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </section>
+          )}
+        </>
       )}
 
       {matches.length > 0 && (

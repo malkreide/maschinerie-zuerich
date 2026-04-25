@@ -1,11 +1,36 @@
 {
   "App": {
     "title": "Die {cityName} von innen",
-    "subtitle": "Eine einfache Übersicht"
+    "subtitle": "Eine einfache Übersicht",
+    "dataStand": "Zahlen vom Jahr {jahr}",
+    "dataStandShort": "Jahr {jahr}",
+    "dataStandTitle": "Die Zahlen sind vom Jahr {jahr}. Stand: {phase}. Zuletzt geändert am {stand}.",
+    "dataStandTitleNoPhase": "Die Zahlen sind vom Jahr {jahr}. Zuletzt geändert am {stand}.",
+    "helpButton": "Zeig mir die Erklärung",
+    "helpButtonLabel": "Hilfe"
+  },
+  "Onboarding": {
+    "ariaLabel": "Kurze Erklärung",
+    "stepLabel": "Schritt {current} von {total}",
+    "skip": "Überspringen",
+    "back": "Zurück",
+    "next": "Weiter",
+    "done": "Los geht es",
+    "dontShowAgain": "Nicht mehr zeigen",
+    "step1Eyebrow": "1 · Suchen",
+    "step1Title": "Suchen Sie Ihr Anliegen",
+    "step1Body": "Schreiben Sie oben links ein Wort. Zum Beispiel: «Hund anmelden». Oder «Pass». Sie sehen sofort: Welche Stelle hilft Ihnen.",
+    "step2Eyebrow": "2 · Schauen",
+    "step2Title": "Schauen Sie die Stellen an",
+    "step2Body": "Die «Maschinerie» zeigt alle Stellen der Stadt. Mit der Maus über einer Stelle: Sie sehen die Verbindungen. Mit Klick: Sie sehen mehr Informationen.",
+    "step3Eyebrow": "3 · Verstehen",
+    "step3Title": "Verstehen Sie das Geld",
+    "step3Body": "Im Tab «Steuerfranken» sehen Sie: Wofür gibt die Stadt Ihr Geld aus? Ein grosses Feld bedeutet: Hier gibt die Stadt viel Geld aus."
   },
   "Nav": {
     "graph": "Bild",
     "tax": "Geld",
+    "simulator": "Geld-Spiel",
     "list": "Liste",
     "prozesse": "Abläufe",
     "darkOn": "Dunkles Bild einschalten",
@@ -14,7 +39,9 @@
     "darkLabelDark": "☾ Dunkel",
     "darkLabelLoading": "Bild",
     "skipToList": "Zur Liste springen. Die Liste ist gut für Sprach-Programme.",
-    "language": "Sprache"
+    "language": "Sprache",
+    "expandAll": "Alles aufklappen",
+    "collapseAll": "Alles zuklappen"
   },
   "Search": {
     "label": "Wonach suchen Sie?",
@@ -23,12 +50,17 @@
     "submit": "Suchen",
     "suggestionsTitle": "Sie können das tun",
     "suggestionsListLabel": "Vorschläge",
-    "showAll": "Alle Treffer auf einer eigenen Seite zeigen →"
+    "showAll": "Alle Treffer auf einer eigenen Seite zeigen →",
+    "noMatchesTitle": "Keine Vorschläge für „{query}\"",
+    "noMatchesHint": "Meinten Sie vielleicht das?",
+    "popularFallback": "Das suchen viele Leute",
+    "openFullSearch": "Alle Treffer zeigen →"
   },
   "Anliegen": {
     "title": "Was wollen Sie tun?",
     "intro": "Hier können Sie etwas suchen. Zum Beispiel: «Hund anmelden». Oder: «Pass». Diese Seite geht auch ohne JavaScript. Sie ist die einfache Version von der Suche oben links.",
     "noResults": "Es gibt nichts für „{query}\". Bitte versuchen Sie ein anderes Wort. Zum Beispiel «Steuer» oder «Wasser».",
+    "noResultsFallbackHeading": "Das suchen viele Leute",
     "resultsCount": "{count, plural, one {# Treffer} other {# Treffer}} für „{query}\"",
     "popularHeading": "Das suchen viele Leute",
     "placeholder": "Schreiben Sie hier ein Wort"
@@ -39,17 +71,28 @@
     "total": " · Insgesamt {sum} Schweizer Franken",
     "back": "← Zurück",
     "tooltipShare": "Anteil",
+    "tooltipShareTotal": "Anteil vom ganzen Geld",
+    "tooltipPerCapita": "Pro Person",
+    "tooltipPerCapitaNet": "Netto pro Person",
     "tooltipExpense": "Geld ausgegeben",
     "tooltipNet": "Geld ausgegeben minus Einnahmen",
     "tooltipFte": "Stellen",
     "conflictNote": "⚠ Hier passt etwas nicht zusammen.",
-    "ariaLabel": "Geld der Stadt als Bild"
+    "ariaLabel": "Geld der Stadt als Bild",
+    "totalPerCapita": " · Das ist ungefähr {value} pro Person",
+    "emptyTitle": "Es gibt keine Daten zum Geld.",
+    "emptyBody": "Für keine Stelle gibt es Zahlen. Schauen Sie in die {listLink}. Oder nutzen Sie die {searchLink}.",
+    "emptyListLink": "Liste der Stellen",
+    "emptySearchLink": "Suche",
+    "hiddenDepartments": "{count, plural, one {# Bereich wird} other {# Bereiche werden}} nicht gezeigt. Dafür gibt es keine Zahlen: {names}."
   },
   "List": {
     "title": "Die Stadt-Verwaltung in einer Liste",
     "intro": "Hier sehen Sie alle Bereiche von der {cityName} als Liste. Diese Liste ist gut für Sprach-Programme. Mit der Tab-Taste gehen Sie weiter. Mit Enter öffnen oder schliessen Sie einen Bereich.",
     "ariaLabel": "Die Stadt-Verwaltung als Liste",
-    "beteiligungenHeading": "Andere Stellen von der Stadt"
+    "beteiligungenHeading": "Andere Stellen von der Stadt",
+    "noUnits": "Keine Unter-Stellen.",
+    "noBudget": "Noch keine Zahlen für diese Stelle."
   },
   "Detail": {
     "close": "Dieses Fenster schliessen",
@@ -73,6 +116,12 @@
     "phaseBudget": "Geplant",
     "phaseProposal": "Vorschlag",
     "phaseAccount": "Wirklich ausgegeben",
+    "perCapitaLabel": "Pro Person",
+    "perCapitaValue": "≈ {value}",
+    "perCapitaTitle": "So viel Geld pro Person. Wir teilen das Geld durch alle Menschen, die in der Stadt wohnen.",
+    "budgetShareLabel": "Anteil vom ganzen Geld",
+    "budgetShareValue": "{percent} %",
+    "budgetShareTitle": "So viel Prozent vom ganzen Geld der Stadt geht hierher.",
     "fteUnitFallback": "Stellen",
     "fteUnitPublished": "{value} {einheit} (sichere Zahl)",
     "fteEstimateText": "Etwa {value} Stellen (Schätzung: Lohn geteilt durch {amount} Franken)",
@@ -93,6 +142,39 @@
     "konflikt": "Hier passt etwas nicht zusammen."
   },
   "Hint": "Mit der Maus über die Bilder fahren · Klicken: auswählen · Mit dem Rad gross machen · Sie können auch nach Wörtern suchen",
+  "Simulator": {
+    "title": "Geld-Spiel: Was wäre wenn?",
+    "intro": "Sie können hier ausprobieren: Was passiert, wenn ein Bereich der Stadt mehr oder weniger Geld bekommt? Das ist nur ein Spiel. Es ändert nichts an den echten Zahlen.",
+    "ariaLabel": "Spiel mit dem Geld der Stadt",
+    "originalLabel": "Vorher",
+    "simulatedLabel": "Im Spiel",
+    "deltaLabel": "Unterschied",
+    "deltaPerCapita": "≈ {value} pro Person",
+    "perCapitaUnit": "pro Person",
+    "departmentsHeading": "Bereiche der Stadt — Schieber bewegen für mehr oder weniger Geld",
+    "sliderLabel": "Mehr oder weniger Geld für {dep} in Prozent",
+    "percentDisplay": "{percent} %",
+    "originalToSimulated": "{orig} → {sim}",
+    "deltaCHF": "{value} CHF",
+    "noChange": "kein Unterschied",
+    "increase": "Mehr Geld",
+    "decrease": "Weniger Geld",
+    "balanced": "gleich viel",
+    "resetButton": "Alles zurück auf Anfang",
+    "resetTitle": "Alle Schieber wieder auf 0 stellen",
+    "yearLabel": "Zahlen vom Jahr {jahr}",
+    "disclaimer": "Achtung: Das ist nur ein Spiel. Über das echte Geld der Stadt entscheidet der Gemeinde-Rat. Das ist viel schwieriger als hier.",
+    "empty": "Keine Zahlen für die Bereiche der Stadt. Das Spiel kann nicht starten."
+  },
+  "BudgetSummary": {
+    "ariaLabel": "Geld der Stadt im Überblick",
+    "eyebrow": "Geld",
+    "eyebrowYear": "Geld im Jahr {jahr}",
+    "aufwandLabel": "Ausgaben",
+    "aufwandTitle": "So viel Geld gibt die Stadt aus. In Klammern: So viel ist das pro Person.",
+    "nettoLabel": "Netto",
+    "nettoTitle": "Ausgaben minus Einnahmen. So viel müssen die Steuer-Zahler bezahlen. In Klammern: So viel ist das pro Person."
+  },
   "Type": {
     "center": "Die Chefs",
     "department": "Grosser Bereich",

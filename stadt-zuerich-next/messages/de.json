@@ -1,11 +1,36 @@
 {
   "App": {
     "title": "Maschinerie der {cityName}",
-    "subtitle": "Prototyp · Next.js"
+    "subtitle": "Prototyp · Next.js",
+    "dataStand": "Datenstand: Finanzjahr {jahr}",
+    "dataStandShort": "FJ {jahr}",
+    "dataStandTitle": "Finanzjahr {jahr} · Phase {phase} · Letzte Aktualisierung: {stand}",
+    "dataStandTitleNoPhase": "Finanzjahr {jahr} · Letzte Aktualisierung: {stand}",
+    "helpButton": "Kurzes Tutorial anzeigen",
+    "helpButtonLabel": "Hilfe"
+  },
+  "Onboarding": {
+    "ariaLabel": "Kurzes Tutorial",
+    "stepLabel": "Schritt {current} von {total}",
+    "skip": "Überspringen",
+    "back": "Zurück",
+    "next": "Weiter",
+    "done": "Los geht's",
+    "dontShowAgain": "Nicht wieder zeigen",
+    "step1Eyebrow": "1 · Suchen",
+    "step1Title": "Suche dein Anliegen",
+    "step1Body": "Tippe oben links ein Stichwort ein — etwa «Hund anmelden», «Pass» oder «Sozialhilfe». Die Suche zeigt sofort die zuständige Stelle.",
+    "step2Eyebrow": "2 · Erkunden",
+    "step2Title": "Erkunde die Ämter",
+    "step2Body": "In der «Maschinerie» siehst du die ganze Stadtverwaltung als Netzwerk. Hover hebt eine Stelle samt Verbindungen hervor, Klick fixiert die Auswahl und öffnet das Detail.",
+    "step3Eyebrow": "3 · Verstehen",
+    "step3Title": "Verstehe das Budget",
+    "step3Body": "Im Tab «Steuerfranken» wird sichtbar, wohin dein Geld fliesst — jedes Departement als Fläche, gross = viel Aufwand. Klick auf ein Departement zoomt hinein."
   },
   "Nav": {
     "graph": "Maschinerie",
     "tax": "Steuerfranken",
+    "simulator": "Simulator",
     "list": "Liste",
     "prozesse": "Prozesse",
     "darkOn": "Dunkles Theme aktivieren",
@@ -14,7 +39,9 @@
     "darkLabelDark": "☾ Dunkel",
     "darkLabelLoading": "Theme",
     "skipToList": "Zur textuellen Übersicht (für Screenreader)",
-    "language": "Sprache"
+    "language": "Sprache",
+    "expandAll": "Alle ausklappen",
+    "collapseAll": "Alle einklappen"
   },
   "Search": {
     "label": "Stelle oder Anliegen suchen",
@@ -23,12 +50,17 @@
     "submit": "Suchen",
     "suggestionsTitle": "Anliegen",
     "suggestionsListLabel": "Vorschläge zu Bürger-Anliegen",
-    "showAll": "Alle Treffer auf eigener Seite anzeigen →"
+    "showAll": "Alle Treffer auf eigener Seite anzeigen →",
+    "noMatchesTitle": "Keine schnellen Vorschläge für „{query}\"",
+    "noMatchesHint": "Meintest du vielleicht einen dieser Begriffe?",
+    "popularFallback": "Häufige Anliegen",
+    "openFullSearch": "Vollständige Suche öffnen →"
   },
   "Anliegen": {
     "title": "Anliegen suchen",
     "intro": "Suche nach Begriffen wie «Hund anmelden», «Pass», «Sozialhilfe» oder «Strom». Diese Seite funktioniert auch ohne JavaScript — sie ist die Fallback-Variante der Live-Suche oben links.",
     "noResults": "Keine Treffer für „{query}\". Versuchen Sie einen anderen Begriff — z. B. einzelne Schlüsselwörter wie «Steuer», «Wasser» oder «Pflege».",
+    "noResultsFallbackHeading": "Das suchen andere häufig",
     "resultsCount": "{count, plural, one {# Treffer} other {# Treffer}} für „{query}\"",
     "popularHeading": "Häufige Anliegen",
     "placeholder": "z. B. Hund anmelden, Pass, Sozialhilfe…"
@@ -39,17 +71,28 @@
     "total": " · Total {sum} CHF",
     "back": "← Zurück zur Übersicht",
     "tooltipShare": "Anteil Ansicht",
+    "tooltipShareTotal": "Anteil Gesamtbudget",
+    "tooltipPerCapita": "Pro Einwohner",
+    "tooltipPerCapitaNet": "Netto pro Einwohner",
     "tooltipExpense": "Aufwand",
     "tooltipNet": "Nettoaufwand",
     "tooltipFte": "FTE",
     "conflictNote": "⚠ Bürger-/RPK-Zuordnung divergiert",
-    "ariaLabel": "Treemap des Aufwands"
+    "ariaLabel": "Treemap des Aufwands",
+    "totalPerCapita": " · ≈ {value} pro Einwohner",
+    "emptyTitle": "Keine Budgetdaten hinterlegt",
+    "emptyBody": "Für kein Amt sind Aufwände erfasst. Schauen Sie stattdessen in die {listLink} oder probieren Sie die {searchLink}.",
+    "emptyListLink": "Liste der Ämter",
+    "emptySearchLink": "Anliegen-Suche",
+    "hiddenDepartments": "{count, plural, one {# Departement ist} other {# Departemente sind}} nicht sichtbar — für diese sind keine Budgetdaten hinterlegt: {names}."
   },
   "List": {
     "title": "Verwaltung der {cityName} – Hierarchische Übersicht",
     "intro": "Diese Liste zeigt die gleichen Daten wie der grafische Diagramm-Tab in semantisch strukturierter Form für Screenreader und Tastatur-Bedienung. Mit Tab durch die Hierarchie navigieren, mit Enter Knoten auf-/zuklappen.",
     "ariaLabel": "Verwaltung der {cityName} als textuelle Hierarchie",
-    "beteiligungenHeading": "Beteiligungen und Stiftungen"
+    "beteiligungenHeading": "Beteiligungen und Stiftungen",
+    "noUnits": "Keine Unterstellen erfasst.",
+    "noBudget": "Noch keine Budgetdaten für dieses Amt hinterlegt."
   },
   "Detail": {
     "close": "Detail-Panel schliessen",
@@ -76,7 +119,13 @@
     "fteUnitFallback": "FTE",
     "fteUnitPublished": "{value} {einheit} (publiziert)",
     "fteEstimateText": "~{value} (Schätzung: Personalaufwand ÷ {amount} CHF)",
-    "relatedProzesseHeading": "An folgenden Verfahren beteiligt"
+    "relatedProzesseHeading": "An folgenden Verfahren beteiligt",
+    "perCapitaLabel": "Pro Einwohner",
+    "perCapitaValue": "≈ {value}",
+    "perCapitaTitle": "Aufwand pro Kopf — Aufwand geteilt durch ständige Wohnbevölkerung der Stadt",
+    "budgetShareLabel": "Anteil Gesamtbudget",
+    "budgetShareValue": "{percent} %",
+    "budgetShareTitle": "Anteil dieser Position am gesamten städtischen Aufwand"
   },
   "Legend": {
     "headingTop": "Stadtrat & Departemente",
@@ -93,6 +142,39 @@
     "konflikt": "Bürger-/RPK-Zuordnung divergiert"
   },
   "Hint": "Hover = erkunden · Klick = auswählen · Scroll = zoomen · Suche kennt auch Anliegen",
+  "Simulator": {
+    "title": "Budget-Simulator: Was wäre wenn?",
+    "intro": "Verschiebe testweise Mittel zwischen den Departementen — sieh sofort, wie sich das städtische Gesamtbudget und die Pro-Kopf-Belastung verändern würden. Reine Simulation ohne Wirkung auf echte Finanzdaten.",
+    "ariaLabel": "Interaktiver Budget-Simulator",
+    "originalLabel": "Ursprünglich",
+    "simulatedLabel": "Simuliert",
+    "deltaLabel": "Differenz",
+    "deltaPerCapita": "≈ {value} pro Einwohner",
+    "perCapitaUnit": "pro Einwohner",
+    "departmentsHeading": "Departemente — Schieberegler bewegen, um Aufwand anzupassen",
+    "sliderLabel": "Budget-Anpassung in Prozent für {dep}",
+    "percentDisplay": "{percent} %",
+    "originalToSimulated": "{orig} → {sim}",
+    "deltaCHF": "{value} CHF",
+    "noChange": "unverändert",
+    "increase": "Mehrausgaben",
+    "decrease": "Einsparung",
+    "balanced": "ausgeglichen",
+    "resetButton": "Alle zurücksetzen",
+    "resetTitle": "Alle Schieberegler auf 0 % zurücksetzen",
+    "yearLabel": "Basis: Finanzjahr {jahr}",
+    "disclaimer": "Hinweis: Diese Simulation dient nur der Illustration. Die echten Budgetentscheidungen liegen beim Gemeinderat — und sind ungleich komplexer (Rechtsbindungen, gebundener Aufwand, Folgekosten, politische Mehrheiten).",
+    "empty": "Keine Departements-Budgetdaten verfügbar — der Simulator braucht aufgeschlüsselte Aufwandszahlen pro Departement."
+  },
+  "BudgetSummary": {
+    "ariaLabel": "Stadt-Budget im Überblick",
+    "eyebrow": "Budget",
+    "eyebrowYear": "Budget {jahr}",
+    "aufwandLabel": "Aufwand",
+    "aufwandTitle": "Brutto-Aufwand der Stadt — Summe aller Departement-Aufwände, in Klammern die Pro-Kopf-Zahl (Einwohnerbasis Stadt Zürich).",
+    "nettoLabel": "Netto",
+    "nettoTitle": "Netto-Aufwand (Aufwand minus Ertrag) — der Betrag, den Steuerzahlende effektiv tragen, in Klammern die Pro-Kopf-Zahl."
+  },
   "Type": {
     "center": "Exekutive",
     "department": "Departement",

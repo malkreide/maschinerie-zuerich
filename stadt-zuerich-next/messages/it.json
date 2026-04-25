@@ -1,11 +1,36 @@
 {
   "App": {
     "title": "Macchina amministrativa della {cityName}",
-    "subtitle": "Prototipo · Next.js"
+    "subtitle": "Prototipo · Next.js",
+    "dataStand": "Dati: esercizio {jahr}",
+    "dataStandShort": "Es. {jahr}",
+    "dataStandTitle": "Esercizio {jahr} · fase {phase} · ultimo aggiornamento: {stand}",
+    "dataStandTitleNoPhase": "Esercizio {jahr} · ultimo aggiornamento: {stand}",
+    "helpButton": "Mostra il breve tutorial",
+    "helpButtonLabel": "Aiuto"
+  },
+  "Onboarding": {
+    "ariaLabel": "Breve tutorial",
+    "stepLabel": "Passo {current} di {total}",
+    "skip": "Salta",
+    "back": "Indietro",
+    "next": "Avanti",
+    "done": "Iniziamo",
+    "dontShowAgain": "Non mostrare più",
+    "step1Eyebrow": "1 · Cerca",
+    "step1Title": "Cerca la tua pratica",
+    "step1Body": "Digita una parola chiave nella ricerca in alto a sinistra — ad es. « registrare cane », « passaporto » o « assistenza sociale ». Vedrai subito l'ufficio competente.",
+    "step2Eyebrow": "2 · Esplora",
+    "step2Title": "Esplora gli uffici",
+    "step2Body": "La scheda « Macchina » mostra l'intera amministrazione come rete. Il passaggio del mouse evidenzia un'unità e i suoi collegamenti, il clic fissa la selezione e apre il pannello dei dettagli.",
+    "step3Eyebrow": "3 · Capisci",
+    "step3Title": "Capisci il budget",
+    "step3Body": "La scheda « Franco fiscale » mostra dove vanno i tuoi soldi — ogni dipartimento come area, più grande = più spesa. Clic su un dipartimento per ingrandire."
   },
   "Nav": {
     "graph": "Macchina",
     "tax": "Franco fiscale",
+    "simulator": "Simulatore",
     "list": "Elenco",
     "prozesse": "Procedure",
     "darkOn": "Attivare il tema scuro",
@@ -14,7 +39,9 @@
     "darkLabelDark": "☾ Scuro",
     "darkLabelLoading": "Tema",
     "skipToList": "Vai alla panoramica testuale (lettori di schermo)",
-    "language": "Lingua"
+    "language": "Lingua",
+    "expandAll": "Espandi tutto",
+    "collapseAll": "Comprimi tutto"
   },
   "Search": {
     "label": "Cerca un ufficio o una pratica",
@@ -23,12 +50,17 @@
     "submit": "Cerca",
     "suggestionsTitle": "Pratiche",
     "suggestionsListLabel": "Suggerimenti per pratiche cittadine",
-    "showAll": "Mostra tutti i risultati su pagina dedicata →"
+    "showAll": "Mostra tutti i risultati su pagina dedicata →",
+    "noMatchesTitle": "Nessun suggerimento rapido per „{query}\"",
+    "noMatchesHint": "Forse intendevi:",
+    "popularFallback": "Pratiche frequenti",
+    "openFullSearch": "Apri ricerca completa →"
   },
   "Anliegen": {
     "title": "Cerca pratiche cittadine",
     "intro": "Cerca termini come « registrare cane », « passaporto », « assistenza sociale » o « elettricità ». Questa pagina funziona senza JavaScript — è la versione di riserva della ricerca live in alto a sinistra.",
     "noResults": "Nessun risultato per „{query}\". Prova un altro termine — ad esempio una sola parola chiave come « tassa », « acqua » o « cura ».",
+    "noResultsFallbackHeading": "Cosa cercano spesso gli altri",
     "resultsCount": "{count, plural, one {# risultato} other {# risultati}} per „{query}\"",
     "popularHeading": "Pratiche frequenti",
     "placeholder": "p. es. registrare cane, passaporto, assistenza sociale…"
@@ -39,17 +71,28 @@
     "total": " · Totale {sum} CHF",
     "back": "← Torna alla panoramica",
     "tooltipShare": "Quota della vista",
+    "tooltipShareTotal": "Quota del budget totale",
+    "tooltipPerCapita": "Pro capite",
+    "tooltipPerCapitaNet": "Netto pro capite",
     "tooltipExpense": "Spesa",
     "tooltipNet": "Spesa netta",
     "tooltipFte": "ETP",
     "conflictNote": "⚠ Assegnazione cittadini ≠ RPK",
-    "ariaLabel": "Treemap delle spese"
+    "ariaLabel": "Treemap delle spese",
+    "totalPerCapita": " · ≈ {value} pro capite",
+    "emptyTitle": "Nessun dato di budget disponibile",
+    "emptyBody": "Nessun ufficio ha registrato spese. Prova invece con {listLink} o usa la {searchLink}.",
+    "emptyListLink": "l'elenco degli uffici",
+    "emptySearchLink": "ricerca pratiche",
+    "hiddenDepartments": "{count, plural, one {# dipartimento non è mostrato} other {# dipartimenti non sono mostrati}} — nessun dato di budget per: {names}."
   },
   "List": {
     "title": "Amministrazione della {cityName} – panoramica gerarchica",
     "intro": "Questo elenco mostra gli stessi dati del diagramma grafico in forma semanticamente strutturata, per lettori di schermo e navigazione da tastiera. Tab per spostarsi nella gerarchia, Invio per espandere o chiudere un nodo.",
     "ariaLabel": "Amministrazione della {cityName} come gerarchia testuale",
-    "beteiligungenHeading": "Partecipazioni e fondazioni"
+    "beteiligungenHeading": "Partecipazioni e fondazioni",
+    "noUnits": "Nessuna suddivisione registrata.",
+    "noBudget": "Nessun dato di budget registrato per questo ufficio."
   },
   "Detail": {
     "close": "Chiudi pannello dettagli",
@@ -73,6 +116,12 @@
     "phaseBudget": "Budget",
     "phaseProposal": "Proposta",
     "phaseAccount": "Consuntivo",
+    "perCapitaLabel": "Pro capite",
+    "perCapitaValue": "≈ {value}",
+    "perCapitaTitle": "Spesa pro capite — spesa divisa per la popolazione residente della città",
+    "budgetShareLabel": "Quota del budget totale",
+    "budgetShareValue": "{percent} %",
+    "budgetShareTitle": "Quota di questa voce sulle spese totali della città",
     "fteUnitFallback": "ETP",
     "fteUnitPublished": "{value} {einheit} (pubblicato)",
     "fteEstimateText": "~{value} (stima: spese del personale ÷ {amount} CHF)",
@@ -93,6 +142,39 @@
     "konflikt": "Assegnazione cittadini ≠ RPK"
   },
   "Hint": "Hover = esplorare · Clic = selezionare · Rotella = zoom · La ricerca conosce anche le pratiche",
+  "Simulator": {
+    "title": "Simulatore di budget: e se?",
+    "intro": "Sposta a titolo di prova fondi tra i dipartimenti e osserva subito come cambierebbero il budget complessivo e l'onere pro capite. Pura simulazione — senza effetto sui dati finanziari reali.",
+    "ariaLabel": "Simulatore di budget interattivo",
+    "originalLabel": "Originale",
+    "simulatedLabel": "Simulato",
+    "deltaLabel": "Differenza",
+    "deltaPerCapita": "≈ {value} pro capite",
+    "perCapitaUnit": "pro capite",
+    "departmentsHeading": "Dipartimenti — sposta i cursori per modificare le spese",
+    "sliderLabel": "Modifica del budget in percentuale per {dep}",
+    "percentDisplay": "{percent} %",
+    "originalToSimulated": "{orig} → {sim}",
+    "deltaCHF": "{value} CHF",
+    "noChange": "invariato",
+    "increase": "spese aggiuntive",
+    "decrease": "risparmi",
+    "balanced": "in pareggio",
+    "resetButton": "Reimposta tutto",
+    "resetTitle": "Riporta tutti i cursori a 0 %",
+    "yearLabel": "Base: esercizio {jahr}",
+    "disclaimer": "Nota: il simulatore è puramente illustrativo. Le vere decisioni di budget spettano al consiglio municipale — e sono molto più complesse (vincoli giuridici, costi fissi, effetti indotti, maggioranze politiche).",
+    "empty": "Nessun dato di budget per dipartimento — il simulatore richiede cifre di spesa suddivise per dipartimento."
+  },
+  "BudgetSummary": {
+    "ariaLabel": "Budget della città a colpo d'occhio",
+    "eyebrow": "Budget",
+    "eyebrowYear": "Budget {jahr}",
+    "aufwandLabel": "Spesa",
+    "aufwandTitle": "Spesa lorda della città — somma delle spese di tutti i dipartimenti; tra parentesi l'importo pro capite.",
+    "nettoLabel": "Netto",
+    "nettoTitle": "Spesa netta (spesa meno entrate) — l'importo che i contribuenti finanziano effettivamente; tra parentesi l'importo pro capite."
+  },
   "Type": {
     "center": "Esecutivo",
     "department": "Dipartimento",

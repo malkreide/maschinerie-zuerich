@@ -4,19 +4,22 @@ import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Link, usePathname } from '@/i18n/navigation';
 import { useT } from '@/lib/i18n-client';
+import type { DataStandInfo } from '@/lib/data-meta';
 import Brand from './Brand';
 import LanguageSwitcher from './LanguageSwitcher';
+import { REOPEN_EVENT as ONBOARDING_REOPEN } from './Onboarding';
 
 const ROUTES = [
   { href: '/',              key: 'graph' },
   { href: '/steuerfranken', key: 'tax' },
+  { href: '/simulator',     key: 'simulator' },
   { href: '/prozesse',      key: 'prozesse' },
   { href: '/liste',         key: 'list' },
 ] as const;
 
 const COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
 
-export default function Header() {
+export default function Header({ dataStand }: { dataStand: DataStandInfo }) {
   // useT statt useTranslations, damit {cityName} in App.title automatisch
   // aus city.config aufgelöst wird — Nav-Strings haben keine Platzhalter,
   // dort reicht das schlanke useTranslations.
@@ -47,6 +50,30 @@ export default function Header() {
       <Brand className="mr-2.5 shrink-0" />
       <h1 className="text-base font-semibold m-0">{t('title')}</h1>
       <span className="ml-3 text-xs opacity-85 hidden sm:inline">{t('subtitle')}</span>
+      {dataStand.jahr && (
+        <span
+          // role="status" macht die Freshness-Info für Screenreader auffindbar,
+          // ohne sie in den Nav-Flow zu ziehen. title-Attribut liefert die
+          // detaillierten Angaben (Phase + Stand-Datum) beim Hover.
+          role="status"
+          title={
+            dataStand.phase
+              ? t('dataStandTitle', {
+                  jahr: dataStand.jahr,
+                  phase: dataStand.phase,
+                  stand: dataStand.stand,
+                })
+              : t('dataStandTitleNoPhase', {
+                  jahr: dataStand.jahr,
+                  stand: dataStand.stand,
+                })
+          }
+          className="ml-3 text-[11px] px-2 py-0.5 rounded-full bg-white/15 border border-white/25 text-white whitespace-nowrap"
+        >
+          <span className="hidden md:inline">{t('dataStand', { jahr: dataStand.jahr })}</span>
+          <span className="md:hidden">{t('dataStandShort', { jahr: dataStand.jahr })}</span>
+        </span>
+      )}
       <span className="flex-1" />
       <nav role="tablist" aria-label={tNav('graph')} className="flex gap-1 mr-3">
         {ROUTES.map((r) => {
@@ -75,6 +102,18 @@ export default function Header() {
         })}
       </nav>
       <LanguageSwitcher />
+      <button
+        type="button"
+        aria-label={t('helpButton')}
+        title={t('helpButton')}
+        // CustomEvent statt globaler Store: Onboarding-Komponente lebt im
+        // selben Tree, hört im useEffect mit. Hält den Header schlank.
+        onClick={() => window.dispatchEvent(new Event(ONBOARDING_REOPEN))}
+        className="ml-1 mr-1 px-2.5 py-1.5 rounded-md text-xs border border-white/20 bg-white/10 hover:bg-white/20 font-semibold"
+      >
+        ?
+        <span className="sr-only">{t('helpButtonLabel')}</span>
+      </button>
       <button
         type="button"
         aria-pressed={dark ?? false}

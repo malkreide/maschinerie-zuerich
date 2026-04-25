@@ -1,11 +1,36 @@
 {
   "App": {
     "title": "Machinery of the {cityName}",
-    "subtitle": "Prototype · Next.js"
+    "subtitle": "Prototype · Next.js",
+    "dataStand": "Data: fiscal year {jahr}",
+    "dataStandShort": "FY {jahr}",
+    "dataStandTitle": "Fiscal year {jahr} · phase {phase} · last updated: {stand}",
+    "dataStandTitleNoPhase": "Fiscal year {jahr} · last updated: {stand}",
+    "helpButton": "Show short tutorial",
+    "helpButtonLabel": "Help"
+  },
+  "Onboarding": {
+    "ariaLabel": "Short tutorial",
+    "stepLabel": "Step {current} of {total}",
+    "skip": "Skip",
+    "back": "Back",
+    "next": "Next",
+    "done": "Let's go",
+    "dontShowAgain": "Don't show again",
+    "step1Eyebrow": "1 · Search",
+    "step1Title": "Search your concern",
+    "step1Body": "Type a keyword in the top-left search — e.g. «register dog», «passport» or «social aid». You'll instantly see the responsible office.",
+    "step2Eyebrow": "2 · Explore",
+    "step2Title": "Explore the offices",
+    "step2Body": "The «Machinery» tab shows the whole administration as a network. Hover highlights a unit and its connections, click pins the selection and opens the detail panel.",
+    "step3Eyebrow": "3 · Understand",
+    "step3Title": "Understand the budget",
+    "step3Body": "The «Tax franc» tab shows where your money goes — each department as an area, larger = more spending. Click a department to zoom in."
   },
   "Nav": {
     "graph": "Machinery",
     "tax": "Tax franc",
+    "simulator": "Simulator",
     "list": "List",
     "prozesse": "Processes",
     "darkOn": "Activate dark theme",
@@ -14,7 +39,9 @@
     "darkLabelDark": "☾ Dark",
     "darkLabelLoading": "Theme",
     "skipToList": "Skip to textual overview (for screen readers)",
-    "language": "Language"
+    "language": "Language",
+    "expandAll": "Expand all",
+    "collapseAll": "Collapse all"
   },
   "Search": {
     "label": "Search for an office or a concern",
@@ -23,12 +50,17 @@
     "submit": "Search",
     "suggestionsTitle": "Concerns",
     "suggestionsListLabel": "Suggestions for citizen concerns",
-    "showAll": "Show all results on a dedicated page →"
+    "showAll": "Show all results on a dedicated page →",
+    "noMatchesTitle": "No quick matches for „{query}\"",
+    "noMatchesHint": "Did you mean one of these?",
+    "popularFallback": "Common concerns",
+    "openFullSearch": "Open full search →"
   },
   "Anliegen": {
     "title": "Search citizen concerns",
     "intro": "Search for terms like «register dog», «passport», «social aid» or «electricity». This page works without JavaScript — it is the fallback for the live search at the top left.",
     "noResults": "No results for „{query}\". Try another term — for example single keywords like «tax», «water» or «care».",
+    "noResultsFallbackHeading": "What others commonly look for",
     "resultsCount": "{count, plural, one {# result} other {# results}} for „{query}\"",
     "popularHeading": "Common concerns",
     "placeholder": "e.g. register dog, passport, social aid…"
@@ -39,17 +71,28 @@
     "total": " · Total {sum} CHF",
     "back": "← Back to overview",
     "tooltipShare": "Share of view",
+    "tooltipShareTotal": "Share of total budget",
+    "tooltipPerCapita": "Per resident",
+    "tooltipPerCapitaNet": "Net per resident",
     "tooltipExpense": "Expense",
     "tooltipNet": "Net expense",
     "tooltipFte": "FTE",
     "conflictNote": "⚠ Citizen vs. RPK assignment differs",
-    "ariaLabel": "Treemap of expenses"
+    "ariaLabel": "Treemap of expenses",
+    "totalPerCapita": " · ≈ {value} per resident",
+    "emptyTitle": "No budget data available",
+    "emptyBody": "No office has recorded expenses yet. Try the {listLink} instead, or use the {searchLink}.",
+    "emptyListLink": "list of offices",
+    "emptySearchLink": "concern search",
+    "hiddenDepartments": "{count, plural, one {# department is} other {# departments are}} not shown — no budget data available for: {names}."
   },
   "List": {
     "title": "{cityName} administration – hierarchical overview",
     "intro": "This list shows the same data as the graphical diagram tab in semantically structured form for screen readers and keyboard navigation. Use Tab to navigate the hierarchy, Enter to expand or collapse nodes.",
     "ariaLabel": "{cityName} administration as textual hierarchy",
-    "beteiligungenHeading": "Holdings and foundations"
+    "beteiligungenHeading": "Holdings and foundations",
+    "noUnits": "No subdivisions recorded.",
+    "noBudget": "No budget data recorded for this office yet."
   },
   "Detail": {
     "close": "Close detail panel",
@@ -76,7 +119,13 @@
     "fteUnitFallback": "FTE",
     "fteUnitPublished": "{value} {einheit} (published)",
     "fteEstimateText": "~{value} (estimate: personnel expense ÷ {amount} CHF)",
-    "relatedProzesseHeading": "Involved in the following procedures"
+    "relatedProzesseHeading": "Involved in the following procedures",
+    "perCapitaLabel": "Per resident",
+    "perCapitaValue": "≈ {value}",
+    "perCapitaTitle": "Expense per capita — expense divided by the city's resident population",
+    "budgetShareLabel": "Share of total budget",
+    "budgetShareValue": "{percent} %",
+    "budgetShareTitle": "Share of this item in the city's total expense"
   },
   "Legend": {
     "headingTop": "City council & departments",
@@ -93,6 +142,39 @@
     "konflikt": "Citizen vs. RPK assignment differs"
   },
   "Hint": "Hover = explore · Click = select · Scroll = zoom · Search also knows concerns",
+  "Simulator": {
+    "title": "Budget simulator: what if?",
+    "intro": "Shift funds between departments and see immediately how the city's total budget and per-resident burden would change. Pure simulation — no impact on the real financial data.",
+    "ariaLabel": "Interactive budget simulator",
+    "originalLabel": "Original",
+    "simulatedLabel": "Simulated",
+    "deltaLabel": "Difference",
+    "deltaPerCapita": "≈ {value} per resident",
+    "perCapitaUnit": "per resident",
+    "departmentsHeading": "Departments — move the sliders to adjust expenses",
+    "sliderLabel": "Budget adjustment in percent for {dep}",
+    "percentDisplay": "{percent} %",
+    "originalToSimulated": "{orig} → {sim}",
+    "deltaCHF": "{value} CHF",
+    "noChange": "unchanged",
+    "increase": "additional spending",
+    "decrease": "savings",
+    "balanced": "balanced",
+    "resetButton": "Reset all",
+    "resetTitle": "Reset all sliders to 0 %",
+    "yearLabel": "Basis: fiscal year {jahr}",
+    "disclaimer": "Note: this simulator is for illustration only. Real budget decisions sit with the city council — and are far more complex (legal commitments, fixed costs, follow-on effects, political majorities).",
+    "empty": "No department budget data available — the simulator needs per-department expense figures."
+  },
+  "BudgetSummary": {
+    "ariaLabel": "City budget at a glance",
+    "eyebrow": "Budget",
+    "eyebrowYear": "Budget {jahr}",
+    "aufwandLabel": "Expense",
+    "aufwandTitle": "Gross expense of the city — sum of all department expenses; in parentheses the per-resident figure.",
+    "nettoLabel": "Net",
+    "nettoTitle": "Net expense (expense minus income) — the amount taxpayers effectively fund; in parentheses the per-resident figure."
+  },
   "Type": {
     "center": "Executive",
     "department": "Department",

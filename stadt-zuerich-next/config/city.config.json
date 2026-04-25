@@ -15,6 +15,9 @@
     "ls": "Zürich"
   },
   "domain": "stadt-zuerich.ch",
+  "population": 442047,
+  "populationStand": "2024",
+  "populationQuelle": "Statistik Stadt Zürich, ständige Wohnbevölkerung Ende 2024",
   "externalSearchUrlTemplate": "https://www.stadt-zuerich.ch/de.html?q={q}",
   "homepageUrl": "https://www.stadt-zuerich.ch/",
   "orgChartPath": "data/zh/org-chart.json",

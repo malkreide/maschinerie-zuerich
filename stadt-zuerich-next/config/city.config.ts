@@ -26,6 +26,17 @@ export interface CityConfig {
   shortName: Record<Locale, string>;
   /** Offizielle Domain der Stadt (ohne Protokoll/Pfad). */
   domain: string;
+  /** Ständige Wohnbevölkerung der Stadt — Basis für die Pro-Kopf-Anzeigen
+   *  (CHF/Einwohner) im DetailPanel, der Liste und dem Treemap-Tooltip.
+   *  Optional, weil nicht jede Tenant-Stadt eine offizielle Zahl publiziert.
+   *  Quelle/Stand werden in `populationStand` + `populationQuelle` notiert,
+   *  damit nachvollziehbar bleibt, welcher Stichtag verwendet wurde. */
+  population?: number;
+  /** Stichtag/Jahr der Bevölkerungszahl (z. B. "2024" oder "2024-12-31").
+   *  Rein dokumentarisch — wird (noch) nicht in der UI angezeigt. */
+  populationStand?: string;
+  /** Quelle der Bevölkerungszahl, z. B. "Statistik Stadt Zürich". */
+  populationQuelle?: string;
   /** Template für eine externe Suche auf der Stadt-Website. `{q}` wird
    *  mit URL-kodiertem Suchbegriff ersetzt (siehe externalSearchUrl()). */
   externalSearchUrlTemplate: string;
