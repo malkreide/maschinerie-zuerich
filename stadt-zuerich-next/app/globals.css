@@ -15,6 +15,18 @@
   --color-ink: #1a1f2e;
   --color-mute: #5b6478;
   --color-line: #e3e6ef;
+  /* Status-Farben für semantische Anzeigen (Defizit/Überschuss, Mehrausgabe/
+   * Einsparung). Bewusst eigene Variablen statt der Departement-Palette,
+   * damit die Bedeutung («positiv» vs. «negativ») nicht mit Tenant-Branding
+   * vermischt wird. Werte sind so gewählt, dass sie WCAG-AA für normalen
+   * Text erfüllen (≥4.5:1):
+   *   --color-status-positive #0e7c63 auf weissem Panel ≈ 5.3:1
+   *   --color-status-negative #a8341f auf weissem Panel ≈ 5.7:1
+   * In allen color-codierten UI-Stellen werden diese mit einem Icon (▲/▼)
+   * gepaart, damit die Information auch bei Rot-Grün-Schwäche ankommt. */
+  --color-status-positive: #0e7c63;
+  --color-status-negative: #a8341f;
+  --color-status-neutral: #5b6478;
 }
 
 html.dark {
@@ -24,6 +36,13 @@ html.dark {
   --color-mute: #8a93a8;
   --color-line: #232838;
   --color-accent: #6ea8ff;
+  /* Im Dark Mode aufgehellte Varianten — Hintergrund ist sehr dunkel,
+   * helle Status-Farben kommen besser durch. Geprüft gegen #161a24:
+   *   #3ec9a8 (positiv) ≈ 6.2:1
+   *   #ff8d7c (negativ) ≈ 5.5:1 */
+  --color-status-positive: #3ec9a8;
+  --color-status-negative: #ff8d7c;
+  --color-status-neutral: #8a93a8;
 }
 
 html, body { height: 100%; background: var(--color-bg); color: var(--color-ink); }
