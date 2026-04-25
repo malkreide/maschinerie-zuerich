@@ -27,6 +27,33 @@ const SLIDER_MIN = -50;
 const SLIDER_MAX = 50;
 const SLIDER_STEP = 1;
 
+// Double-Encoding: Farbe ALLEINE reicht nicht (≈8 % der Männer haben eine
+// Rot-Grün-Schwäche). Wir koppeln jede Status-Farbe an ein Form-Icon —
+// Dreieck-Spitze nach oben für Mehrausgaben, nach unten für Einsparungen.
+// Screenreader bekommen die Bedeutung über aria-label, nicht über das Icon.
+const ICON_INCREASE = '▲';
+const ICON_DECREASE = '▼';
+
+type DeltaSign = 'pos' | 'neg' | 'zero';
+
+function deltaSignOf(value: number): DeltaSign {
+  return value === 0 ? 'zero' : value > 0 ? 'pos' : 'neg';
+}
+
+// Tailwind-Klassen pro Vorzeichen — über CSS-Variablen, damit Light- und
+// Dark-Mode automatisch greifen und die Farbwerte WCAG-AA-konform sind.
+const SIGN_TEXT_CLASS: Record<DeltaSign, string> = {
+  pos:  'text-[var(--color-status-negative)]',  // Mehrausgaben = "negativ" im Sinne der Belastung
+  neg:  'text-[var(--color-status-positive)]',  // Einsparung   = "positiv" im Sinne der Belastung
+  zero: 'text-[var(--color-mute)]',
+};
+
+function signIcon(sign: DeltaSign): string {
+  if (sign === 'pos') return ICON_INCREASE;
+  if (sign === 'neg') return ICON_DECREASE;
+  return '';
+}
+
 export default function BudgetSimulator({
   departments,
   totalOriginal,
@@ -66,7 +93,7 @@ export default function BudgetSimulator({
   }, [deltas, departments, totalOriginal]);
 
   const deltaPerCapita = perCapitaCHF(Math.abs(deltaTotal), population);
-  const deltaSign = deltaTotal === 0 ? 'zero' : deltaTotal > 0 ? 'pos' : 'neg';
+  const deltaSign = deltaSignOf(deltaTotal);
 
   // Bar-Skala: längster ursprünglicher Wert bestimmt die Vollbreite, damit
   // alle Departemente proportional dargestellt werden.
@@ -111,15 +138,25 @@ export default function BudgetSimulator({
           <div className="text-[11px] uppercase tracking-wider text-[var(--color-mute)] mb-0.5">
             {t('deltaLabel')}
           </div>
-          <div className={
-            'text-base font-semibold tabular-nums ' +
-            (deltaSign === 'pos' ? 'text-[#c0392b]'
-             : deltaSign === 'neg' ? 'text-[#16a085]'
-             : 'text-[var(--color-mute)]')
-          }>
+          <div
+            // aria-label ersetzt die rein visuelle Farb-/Icon-Information für
+            // Screenreader. "Mehrausgaben +X CHF" statt nur "+X CHF" macht
+            // klar, was die Richtung bedeutet.
+            aria-label={
+              deltaSign === 'zero'
+                ? t('balanced')
+                : `${deltaSign === 'pos' ? t('increase') : t('decrease')}: ${fmtMio(Math.abs(deltaTotal))} CHF`
+            }
+            className={'text-base font-semibold tabular-nums ' + SIGN_TEXT_CLASS[deltaSign]}
+          >
             {deltaSign === 'zero'
               ? t('balanced')
-              : `${deltaSign === 'pos' ? '+' : '−'} ${fmtMio(Math.abs(deltaTotal))} CHF`}
+              : (
+                  <>
+                    <span aria-hidden="true">{signIcon(deltaSign)} </span>
+                    {deltaSign === 'pos' ? '+' : '−'} {fmtMio(Math.abs(deltaTotal))} CHF
+                  </>
+                )}
           </div>
           {deltaPerCapita && deltaSign !== 'zero' && (
             <div className="text-[11px] text-[var(--color-mute)] mt-0.5">
@@ -206,7 +243,7 @@ function SliderRow({
     perCapitaUnit: string;
   };
 }) {
-  const sign = deltaValue === 0 ? 'zero' : deltaValue > 0 ? 'pos' : 'neg';
+  const sign = deltaSignOf(deltaValue);
   // Bar-Längen relativ zur grössten Original-Summe: Original = graue Spur,
   // simulierte Länge in Departement-Farbe darüber. So sieht man auf einen
   // Blick, ob ein Dep gewachsen oder geschrumpft ist (über/unter dem Marker).
@@ -217,15 +254,22 @@ function SliderRow({
     <li className="rounded-lg bg-[var(--color-panel)] border border-[var(--color-line)] p-3">
       <div className="flex items-baseline justify-between gap-3 mb-2">
         <span className="text-[13px] font-semibold">{dep.name}</span>
-        <span className={
-          'text-[12px] tabular-nums ' +
-          (sign === 'pos' ? 'text-[#c0392b]'
-           : sign === 'neg' ? 'text-[#16a085]'
-           : 'text-[var(--color-mute)]')
-        }>
+        <span
+          aria-label={
+            sign === 'zero'
+              ? labels.noChange
+              : `${sign === 'pos' ? labels.increase : labels.decrease}: ${pct > 0 ? '+' : ''}${pct} %`
+          }
+          className={'text-[12px] tabular-nums ' + SIGN_TEXT_CLASS[sign]}
+        >
           {sign === 'zero'
             ? labels.noChange
-            : `${pct > 0 ? '+' : ''}${pct} %`}
+            : (
+                <>
+                  <span aria-hidden="true">{signIcon(sign)} </span>
+                  {pct > 0 ? '+' : ''}{pct} %
+                </>
+              )}
         </span>
       </div>
 

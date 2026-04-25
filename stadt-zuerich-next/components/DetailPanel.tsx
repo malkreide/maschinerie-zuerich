@@ -239,7 +239,10 @@ function fteRows(f: Fte, t: T): Row[] {
       v: (
         <span>
           <strong>{fmtNumber(f.schaetzung)}</strong>{' '}
-          <span title={f.quelleDetail} className="text-[#16a085] text-[11px] cursor-help">{t('ftePublished')}</span>
+          {/* Status-Var statt fixem Hex: greift Light/Dark und ist
+              WCAG-AA-getestet. Das ✓ kommt aus dem i18n-String — Doppel-
+              Codierung Farbe + Form. */}
+          <span title={f.quelleDetail} className="text-[var(--color-status-positive)] text-[11px] cursor-help">{t('ftePublished')}</span>
         </span>
       ),
     }];
