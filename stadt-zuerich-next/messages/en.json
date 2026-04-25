@@ -30,6 +30,7 @@
   "Nav": {
     "graph": "Machinery",
     "tax": "Tax franc",
+    "simulator": "Simulator",
     "list": "List",
     "prozesse": "Processes",
     "darkOn": "Activate dark theme",
@@ -141,6 +142,30 @@
     "konflikt": "Citizen vs. RPK assignment differs"
   },
   "Hint": "Hover = explore · Click = select · Scroll = zoom · Search also knows concerns",
+  "Simulator": {
+    "title": "Budget simulator: what if?",
+    "intro": "Shift funds between departments and see immediately how the city's total budget and per-resident burden would change. Pure simulation — no impact on the real financial data.",
+    "ariaLabel": "Interactive budget simulator",
+    "originalLabel": "Original",
+    "simulatedLabel": "Simulated",
+    "deltaLabel": "Difference",
+    "deltaPerCapita": "≈ {value} per resident",
+    "perCapitaUnit": "per resident",
+    "departmentsHeading": "Departments — move the sliders to adjust expenses",
+    "sliderLabel": "Budget adjustment in percent for {dep}",
+    "percentDisplay": "{percent} %",
+    "originalToSimulated": "{orig} → {sim}",
+    "deltaCHF": "{value} CHF",
+    "noChange": "unchanged",
+    "increase": "additional spending",
+    "decrease": "savings",
+    "balanced": "balanced",
+    "resetButton": "Reset all",
+    "resetTitle": "Reset all sliders to 0 %",
+    "yearLabel": "Basis: fiscal year {jahr}",
+    "disclaimer": "Note: this simulator is for illustration only. Real budget decisions sit with the city council — and are far more complex (legal commitments, fixed costs, follow-on effects, political majorities).",
+    "empty": "No department budget data available — the simulator needs per-department expense figures."
+  },
   "BudgetSummary": {
     "ariaLabel": "City budget at a glance",
     "eyebrow": "Budget",

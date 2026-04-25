@@ -30,6 +30,7 @@
   "Nav": {
     "graph": "Macchina",
     "tax": "Franco fiscale",
+    "simulator": "Simulatore",
     "list": "Elenco",
     "prozesse": "Procedure",
     "darkOn": "Attivare il tema scuro",
@@ -141,6 +142,30 @@
     "konflikt": "Assegnazione cittadini ≠ RPK"
   },
   "Hint": "Hover = esplorare · Clic = selezionare · Rotella = zoom · La ricerca conosce anche le pratiche",
+  "Simulator": {
+    "title": "Simulatore di budget: e se?",
+    "intro": "Sposta a titolo di prova fondi tra i dipartimenti e osserva subito come cambierebbero il budget complessivo e l'onere pro capite. Pura simulazione — senza effetto sui dati finanziari reali.",
+    "ariaLabel": "Simulatore di budget interattivo",
+    "originalLabel": "Originale",
+    "simulatedLabel": "Simulato",
+    "deltaLabel": "Differenza",
+    "deltaPerCapita": "≈ {value} pro capite",
+    "perCapitaUnit": "pro capite",
+    "departmentsHeading": "Dipartimenti — sposta i cursori per modificare le spese",
+    "sliderLabel": "Modifica del budget in percentuale per {dep}",
+    "percentDisplay": "{percent} %",
+    "originalToSimulated": "{orig} → {sim}",
+    "deltaCHF": "{value} CHF",
+    "noChange": "invariato",
+    "increase": "spese aggiuntive",
+    "decrease": "risparmi",
+    "balanced": "in pareggio",
+    "resetButton": "Reimposta tutto",
+    "resetTitle": "Riporta tutti i cursori a 0 %",
+    "yearLabel": "Base: esercizio {jahr}",
+    "disclaimer": "Nota: il simulatore è puramente illustrativo. Le vere decisioni di budget spettano al consiglio municipale — e sono molto più complesse (vincoli giuridici, costi fissi, effetti indotti, maggioranze politiche).",
+    "empty": "Nessun dato di budget per dipartimento — il simulatore richiede cifre di spesa suddivise per dipartimento."
+  },
   "BudgetSummary": {
     "ariaLabel": "Budget della città a colpo d'occhio",
     "eyebrow": "Budget",

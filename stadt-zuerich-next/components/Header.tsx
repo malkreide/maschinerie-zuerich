@@ -12,6 +12,7 @@ import { REOPEN_EVENT as ONBOARDING_REOPEN } from './Onboarding';
 const ROUTES = [
   { href: '/',              key: 'graph' },
   { href: '/steuerfranken', key: 'tax' },
+  { href: '/simulator',     key: 'simulator' },
   { href: '/prozesse',      key: 'prozesse' },
   { href: '/liste',         key: 'list' },
 ] as const;

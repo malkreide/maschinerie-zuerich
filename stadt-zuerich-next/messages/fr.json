@@ -30,6 +30,7 @@
   "Nav": {
     "graph": "Mécanique",
     "tax": "Franc d'impôt",
+    "simulator": "Simulateur",
     "list": "Liste",
     "prozesse": "Procédures",
     "darkOn": "Activer le thème sombre",
@@ -141,6 +142,30 @@
     "konflikt": "Affectation citoyenne ≠ RPK"
   },
   "Hint": "Survol = explorer · Clic = sélectionner · Molette = zoomer · La recherche connaît aussi les démarches",
+  "Simulator": {
+    "title": "Simulateur de budget : et si ?",
+    "intro": "Déplacez à titre d'essai des fonds entre les départements et observez en direct l'évolution du budget total et de la charge par habitant·e. Pure simulation — sans effet sur les données financières réelles.",
+    "ariaLabel": "Simulateur de budget interactif",
+    "originalLabel": "Originel",
+    "simulatedLabel": "Simulé",
+    "deltaLabel": "Différence",
+    "deltaPerCapita": "≈ {value} par habitant·e",
+    "perCapitaUnit": "par habitant·e",
+    "departmentsHeading": "Départements — bougez les curseurs pour ajuster les charges",
+    "sliderLabel": "Ajustement du budget en pourcentage pour {dep}",
+    "percentDisplay": "{percent} %",
+    "originalToSimulated": "{orig} → {sim}",
+    "deltaCHF": "{value} CHF",
+    "noChange": "inchangé",
+    "increase": "dépenses supplémentaires",
+    "decrease": "économies",
+    "balanced": "équilibré",
+    "resetButton": "Tout réinitialiser",
+    "resetTitle": "Remettre tous les curseurs à 0 %",
+    "yearLabel": "Base : exercice {jahr}",
+    "disclaimer": "Note : ce simulateur est purement illustratif. Les vraies décisions budgétaires reviennent au conseil municipal — et sont bien plus complexes (engagements juridiques, charges fixes, effets induits, majorités politiques).",
+    "empty": "Aucune donnée budgétaire par département — le simulateur a besoin de chiffres de charges par département."
+  },
   "BudgetSummary": {
     "ariaLabel": "Budget de la ville en un coup d'œil",
     "eyebrow": "Budget",
