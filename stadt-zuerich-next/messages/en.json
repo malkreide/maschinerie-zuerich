@@ -68,11 +68,15 @@
     "total": " · Total {sum} CHF",
     "back": "← Back to overview",
     "tooltipShare": "Share of view",
+    "tooltipShareTotal": "Share of total budget",
+    "tooltipPerCapita": "Per resident",
+    "tooltipPerCapitaNet": "Net per resident",
     "tooltipExpense": "Expense",
     "tooltipNet": "Net expense",
     "tooltipFte": "FTE",
     "conflictNote": "⚠ Citizen vs. RPK assignment differs",
     "ariaLabel": "Treemap of expenses",
+    "totalPerCapita": " · ≈ {value} per resident",
     "emptyTitle": "No budget data available",
     "emptyBody": "No office has recorded expenses yet. Try the {listLink} instead, or use the {searchLink}.",
     "emptyListLink": "list of offices",
@@ -112,7 +116,13 @@
     "fteUnitFallback": "FTE",
     "fteUnitPublished": "{value} {einheit} (published)",
     "fteEstimateText": "~{value} (estimate: personnel expense ÷ {amount} CHF)",
-    "relatedProzesseHeading": "Involved in the following procedures"
+    "relatedProzesseHeading": "Involved in the following procedures",
+    "perCapitaLabel": "Per resident",
+    "perCapitaValue": "≈ {value}",
+    "perCapitaTitle": "Expense per capita — expense divided by the city's resident population",
+    "budgetShareLabel": "Share of total budget",
+    "budgetShareValue": "{percent} %",
+    "budgetShareTitle": "Share of this item in the city's total expense"
   },
   "Legend": {
     "headingTop": "City council & departments",
@@ -129,6 +139,15 @@
     "konflikt": "Citizen vs. RPK assignment differs"
   },
   "Hint": "Hover = explore · Click = select · Scroll = zoom · Search also knows concerns",
+  "BudgetSummary": {
+    "ariaLabel": "City budget at a glance",
+    "eyebrow": "Budget",
+    "eyebrowYear": "Budget {jahr}",
+    "aufwandLabel": "Expense",
+    "aufwandTitle": "Gross expense of the city — sum of all department expenses; in parentheses the per-resident figure.",
+    "nettoLabel": "Net",
+    "nettoTitle": "Net expense (expense minus income) — the amount taxpayers effectively fund; in parentheses the per-resident figure."
+  },
   "Type": {
     "center": "Executive",
     "department": "Department",

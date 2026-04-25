@@ -68,11 +68,15 @@
     "total": " · Total {sum} CHF",
     "back": "← Zurück zur Übersicht",
     "tooltipShare": "Anteil Ansicht",
+    "tooltipShareTotal": "Anteil Gesamtbudget",
+    "tooltipPerCapita": "Pro Einwohner",
+    "tooltipPerCapitaNet": "Netto pro Einwohner",
     "tooltipExpense": "Aufwand",
     "tooltipNet": "Nettoaufwand",
     "tooltipFte": "FTE",
     "conflictNote": "⚠ Bürger-/RPK-Zuordnung divergiert",
     "ariaLabel": "Treemap des Aufwands",
+    "totalPerCapita": " · ≈ {value} pro Einwohner",
     "emptyTitle": "Keine Budgetdaten hinterlegt",
     "emptyBody": "Für kein Amt sind Aufwände erfasst. Schauen Sie stattdessen in die {listLink} oder probieren Sie die {searchLink}.",
     "emptyListLink": "Liste der Ämter",
@@ -112,7 +116,13 @@
     "fteUnitFallback": "FTE",
     "fteUnitPublished": "{value} {einheit} (publiziert)",
     "fteEstimateText": "~{value} (Schätzung: Personalaufwand ÷ {amount} CHF)",
-    "relatedProzesseHeading": "An folgenden Verfahren beteiligt"
+    "relatedProzesseHeading": "An folgenden Verfahren beteiligt",
+    "perCapitaLabel": "Pro Einwohner",
+    "perCapitaValue": "≈ {value}",
+    "perCapitaTitle": "Aufwand pro Kopf — Aufwand geteilt durch ständige Wohnbevölkerung der Stadt",
+    "budgetShareLabel": "Anteil Gesamtbudget",
+    "budgetShareValue": "{percent} %",
+    "budgetShareTitle": "Anteil dieser Position am gesamten städtischen Aufwand"
   },
   "Legend": {
     "headingTop": "Stadtrat & Departemente",
@@ -129,6 +139,15 @@
     "konflikt": "Bürger-/RPK-Zuordnung divergiert"
   },
   "Hint": "Hover = erkunden · Klick = auswählen · Scroll = zoomen · Suche kennt auch Anliegen",
+  "BudgetSummary": {
+    "ariaLabel": "Stadt-Budget im Überblick",
+    "eyebrow": "Budget",
+    "eyebrowYear": "Budget {jahr}",
+    "aufwandLabel": "Aufwand",
+    "aufwandTitle": "Brutto-Aufwand der Stadt — Summe aller Departement-Aufwände, in Klammern die Pro-Kopf-Zahl (Einwohnerbasis Stadt Zürich).",
+    "nettoLabel": "Netto",
+    "nettoTitle": "Netto-Aufwand (Aufwand minus Ertrag) — der Betrag, den Steuerzahlende effektiv tragen, in Klammern die Pro-Kopf-Zahl."
+  },
   "Type": {
     "center": "Exekutive",
     "department": "Departement",

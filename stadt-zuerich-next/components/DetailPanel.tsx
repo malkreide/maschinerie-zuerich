@@ -1,10 +1,17 @@
 'use client';
 
+import { useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 import { Link, usePathname, useRouter } from '@/i18n/navigation';
 import type { StadtData, Department, Unit, Beteiligung, Fte, Budget } from '@/types/stadt';
 import { fmtCHF, fmtNumber } from '@/lib/search';
+import {
+  computeTotalAufwand,
+  computeTotalNettoaufwand,
+  perCapitaCHF,
+  budgetSharePercent,
+} from '@/lib/budget-context';
 import { city, externalSearchUrl } from '@/config/city.config';
 
 type T = ReturnType<typeof useTranslations<'Detail'>>;
@@ -32,6 +39,15 @@ export default function DetailPanel({
   const searchParams = useSearchParams();
   const selectedId = searchParams.get('focus');
 
+  // Totale über alle Units einmal pro Daten-Snapshot berechnen — Basis für
+  // die Anteils-Anzeige (separat für Brutto-Aufwand und Netto-Aufwand,
+  // damit "Anteil Gesamtbudget" jeweils gegen das passende Total läuft).
+  // Stabil, solange `data` per Referenz unverändert bleibt (typischer Fall:
+  // nur die URL-Query ändert sich).
+  const totalAufwand = useMemo(() => computeTotalAufwand(data), [data]);
+  const totalNetto   = useMemo(() => computeTotalNettoaufwand(data), [data]);
+  const population = city.population;
+
   function close() {
     const params = new URLSearchParams(searchParams.toString());
     params.delete('focus');
@@ -54,7 +70,7 @@ export default function DetailPanel({
     const dep = data.departments.find((d) => d.id === item.parent);
     if (dep) rows.push({ k: t('department'), v: dep.name });
   }
-  if (item.budget) rows.push(...budgetRows(item.budget, t));
+  if (item.budget) rows.push(...budgetRows(item.budget, t, totalAufwand, totalNetto, population));
   if (item.fte)    rows.push(...fteRows(item.fte, t));
   if (item.odz)    rows.push({ k: t('ogdKey'), v: `${item.odz.kurzname} · key ${item.odz.key}` });
   if ('konflikt' in item && item.konflikt) {
@@ -154,7 +170,13 @@ function findItem(data: StadtData, id: string): Department | Unit | Beteiligung 
 
 type Row = { k: React.ReactNode; v: React.ReactNode };
 
-function budgetRows(b: Budget, t: T): Row[] {
+function budgetRows(
+  b: Budget,
+  t: T,
+  totalAufwand: number,
+  totalNetto: number,
+  population: number | undefined,
+): Row[] {
   const phase = ({
     GEMEINDERAT_BESCHLUSS: t('phaseBudget'),
     STADTRAT_ANTRAG: t('phaseProposal'),
@@ -162,14 +184,52 @@ function budgetRows(b: Budget, t: T): Row[] {
   } as Record<string, string>)[b.typ] ?? b.typ;
   const rows: Row[] = [{ k: `${phase} ${b.jahr}`, v: '' }];
   rows.push({ k: `  ${t('expense')}`,    v: fmtCHF(b.aufwand) });
+  // Aux-Zeilen direkt unter dem Bezugswert: Pro-Kopf und Anteil. Beide
+  // werden nur gerendert, wenn die nötige Bezugsgrösse vorhanden und die
+  // berechnete Zahl aussagekräftig ist (sonst würde "0 CHF/Einwohner" oder
+  // "0.0 %" einen vernachlässigbaren Posten suggerieren, wo eigentlich
+  // Daten fehlen). `↳` macht visuell klar, dass die Zeilen sich auf den
+  // jeweils darüberstehenden Betrag beziehen.
+  rows.push(...auxBudgetRows(b.aufwand, t, totalAufwand, population));
   rows.push({ k: `  ${t('income')}`,     v: fmtCHF(b.ertrag) });
   rows.push({ k: `  ${t('netExpense')}`, v: fmtCHF(b.nettoaufwand) });
+  rows.push(...auxBudgetRows(b.nettoaufwand, t, totalNetto, population));
   if (b._aggregiertAus)
     rows.push({
       k: `  ${t('budgetYear')}`,
       v: <em className="text-[var(--color-mute)]">{t('aggregatedFrom', { n: b._aggregiertAus })}</em>,
     });
   return rows;
+}
+
+/**
+ * Pro-Kopf- und Anteils-Zeilen für einen einzelnen CHF-Betrag. Wird zweimal
+ * aufgerufen: einmal nach `aufwand` (Bezug = totalAufwand), einmal nach
+ * `nettoaufwand` (Bezug = totalNetto). Liefert leeres Array, wenn weder
+ * Pro-Kopf- noch Anteils-Zahl darstellbar sind.
+ */
+function auxBudgetRows(
+  amount: number | null | undefined,
+  t: T,
+  total: number,
+  population: number | undefined,
+): Row[] {
+  const out: Row[] = [];
+  const pc = perCapitaCHF(amount, population);
+  if (pc) {
+    out.push({
+      k: <span title={t('perCapitaTitle')}>{'    ↳ '}{t('perCapitaLabel')}</span>,
+      v: <span className="text-[var(--color-mute)]">{t('perCapitaValue', { value: pc })}</span>,
+    });
+  }
+  const sh = budgetSharePercent(amount, total);
+  if (sh) {
+    out.push({
+      k: <span title={t('budgetShareTitle')}>{'    ↳ '}{t('budgetShareLabel')}</span>,
+      v: <span className="text-[var(--color-mute)]">{t('budgetShareValue', { percent: sh })}</span>,
+    });
+  }
+  return out;
 }
 
 function fteRows(f: Fte, t: T): Row[] {

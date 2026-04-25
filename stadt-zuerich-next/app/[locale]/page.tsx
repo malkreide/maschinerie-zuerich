@@ -8,6 +8,7 @@ import { resolveI18n, type ProzessLocale } from '@/types/prozess';
 import GraphView from '@/components/GraphView';
 import DetailPanel, { type RelatedProzess } from '@/components/DetailPanel';
 import Legend from '@/components/Legend';
+import BudgetSummary from '@/components/BudgetSummary';
 
 export default async function MaschineriePage({
   params,
@@ -41,6 +42,9 @@ export default async function MaschineriePage({
         <DetailPanel data={data} relatedProzesse={relatedProzesse} />
       </Suspense>
       <Legend locale={locale as Locale} />
+      {/* Pro-Kopf-Banner über dem Graphen — gibt der Visualisierung sofort
+          eine Bezugsgrösse, ohne dass User:innen erst klicken müssen. */}
+      <BudgetSummary data={data} locale={locale as Locale} />
     </>
   );
 }

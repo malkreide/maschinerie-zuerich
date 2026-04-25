@@ -68,11 +68,15 @@
     "total": " · Total {sum} CHF",
     "back": "← Retour à l'aperçu",
     "tooltipShare": "Part de la vue",
+    "tooltipShareTotal": "Part du budget total",
+    "tooltipPerCapita": "Par habitant·e",
+    "tooltipPerCapitaNet": "Net par habitant·e",
     "tooltipExpense": "Charge",
     "tooltipNet": "Charge nette",
     "tooltipFte": "EPT",
     "conflictNote": "⚠ Affectation citoyenne ≠ RPK",
     "ariaLabel": "Treemap des charges",
+    "totalPerCapita": " · ≈ {value} par habitant·e",
     "emptyTitle": "Aucune donnée budgétaire disponible",
     "emptyBody": "Aucun service n'a encore enregistré de charges. Essayez plutôt la {listLink}, ou utilisez la {searchLink}.",
     "emptyListLink": "liste des services",
@@ -112,7 +116,13 @@
     "fteUnitFallback": "EPT",
     "fteUnitPublished": "{value} {einheit} (publié)",
     "fteEstimateText": "~{value} (estimation : charges de personnel ÷ {amount} CHF)",
-    "relatedProzesseHeading": "Impliqué dans les démarches suivantes"
+    "relatedProzesseHeading": "Impliqué dans les démarches suivantes",
+    "perCapitaLabel": "Par habitant·e",
+    "perCapitaValue": "≈ {value}",
+    "perCapitaTitle": "Charges par habitant·e — charges divisées par la population résidente de la ville",
+    "budgetShareLabel": "Part du budget total",
+    "budgetShareValue": "{percent} %",
+    "budgetShareTitle": "Part de ce poste dans les charges totales de la ville"
   },
   "Legend": {
     "headingTop": "Conseil municipal et départements",
@@ -129,6 +139,15 @@
     "konflikt": "Affectation citoyenne ≠ RPK"
   },
   "Hint": "Survol = explorer · Clic = sélectionner · Molette = zoomer · La recherche connaît aussi les démarches",
+  "BudgetSummary": {
+    "ariaLabel": "Budget de la ville en un coup d'œil",
+    "eyebrow": "Budget",
+    "eyebrowYear": "Budget {jahr}",
+    "aufwandLabel": "Charges",
+    "aufwandTitle": "Charges brutes de la ville — somme des charges de tous les départements ; entre parenthèses, le montant par habitant·e.",
+    "nettoLabel": "Net",
+    "nettoTitle": "Charges nettes (charges moins recettes) — le montant que les contribuables financent effectivement ; entre parenthèses, le montant par habitant·e."
+  },
   "Type": {
     "center": "Exécutif",
     "department": "Département",

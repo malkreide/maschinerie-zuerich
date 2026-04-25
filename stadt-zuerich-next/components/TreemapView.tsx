@@ -1,12 +1,13 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { hierarchy, treemap, type HierarchyRectangularNode } from 'd3-hierarchy';
 import { scaleOrdinal } from 'd3-scale';
 import { Link } from '@/i18n/navigation';
 import type { StadtData, Department, Unit } from '@/types/stadt';
 import { fmtMio, fmtNumber } from '@/lib/search';
+import { computeTotalAufwand, perCapitaCHF, budgetSharePercent } from '@/lib/budget-context';
 import { city } from '@/config/city.config';
 
 type Datum = {
@@ -61,6 +62,13 @@ export default function TreemapView({
   const { tree, hiddenDepartments } = buildHierarchy(data, focus, rootName);
   const root = computeLayout(tree, size.w, size.h, focus !== null);
 
+  // Stadt-weiter Gesamtaufwand als stabile Bezugsgrösse für die Anteils-
+  // Anzeige im Tooltip. Wichtig: aus den Originaldaten, nicht aus dem
+  // (bei Fokus auf ein Departement reduzierten) `root` — sonst würde die
+  // "Anteil Gesamtbudget"-Zahl beim Hineinzoomen kollabieren.
+  const cityTotalAufwand = useMemo(() => computeTotalAufwand(data), [data]);
+  const population = city.population;
+
   const sampleJahr = data.units.find((u) => u.budget?.jahr)?.budget?.jahr ?? 2024;
 
   // Leer-Zustand: wenn in den Daten überhaupt kein Amt positive Aufwände hat,
@@ -74,6 +82,12 @@ export default function TreemapView({
       <p className="text-[13px] text-[var(--color-mute)] mb-3">
         {t('intro', { jahr: sampleJahr })}
         {root && <strong>{t('total', { sum: fmtMio(root.value ?? 0) })}</strong>}
+        {/* Pro-Kopf-Einordnung der Gesamtsumme — macht aus "1.4 Mrd CHF"
+            (für die meisten abstrakt) eine greifbare Pro-Kopf-Zahl. */}
+        {root && (() => {
+          const pc = perCapitaCHF(root.value ?? 0, population);
+          return pc ? <em>{t('totalPerCapita', { value: pc })}</em> : null;
+        })()}
       </p>
       {isEmpty && (
         <div
@@ -130,9 +144,27 @@ export default function TreemapView({
           >
             <div className="font-semibold mb-1">{tooltip.node.name}</div>
             <Row k={t('tooltipExpense')} v={`${fmtNumber(tooltip.node.value)} CHF`} />
+            {/* Pro-Kopf direkt nach Aufwand — ordnet die Brutto-Zahl ein. */}
+            {(() => {
+              const pc = perCapitaCHF(tooltip.node.value, population);
+              return pc ? <Row k={t('tooltipPerCapita')} v={`≈ ${pc}`} /> : null;
+            })()}
             {tooltip.node.netto != null && <Row k={t('tooltipNet')} v={`${fmtNumber(tooltip.node.netto)} CHF`} />}
+            {/* Pro-Kopf für Netto: das ist der Betrag, den Steuerzahlende
+                effektiv tragen — die ehrlichste Pro-Kopf-Grösse. */}
+            {tooltip.node.netto != null && (() => {
+              const pc = perCapitaCHF(tooltip.node.netto, population);
+              return pc ? <Row k={t('tooltipPerCapitaNet')} v={`≈ ${pc}`} /> : null;
+            })()}
             {tooltip.node.fte   != null && <Row k={t('tooltipFte')} v={fmtNumber(tooltip.node.fte)} />}
             <Row k={t('tooltipShare')} v={`${(((tooltip.node.value ?? 0) / tooltip.total) * 100).toFixed(1)} %`} />
+            {/* Anteil Stadt-Total bezieht sich bewusst auf das ganze Stadt-
+                Budget, nicht auf tooltip.total (welcher beim Hineinzoomen
+                schrumpft). */}
+            {(() => {
+              const sh = budgetSharePercent(tooltip.node.value, cityTotalAufwand);
+              return sh ? <Row k={t('tooltipShareTotal')} v={`${sh} %`} /> : null;
+            })()}
             {tooltip.node.konflikt && <div className="mt-1 text-[var(--color-konflikt)] text-[11px]">{t('conflictNote')}</div>}
           </div>
         )}
