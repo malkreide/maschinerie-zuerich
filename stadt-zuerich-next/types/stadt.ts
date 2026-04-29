@@ -109,6 +109,26 @@ export interface DataMeta {
   budgetStand?: string;
   fteHinweis?: string;
   fteOverridesAus?: string;
+  // Stadt-weite Eckwerte aus dem Geschäftsbericht / Rechnung. Gepflegt aus
+  // dem Pressetext, solange die per-Departement-Werte in `departments`/`units`
+  // noch aus einem älteren Budget-Stand stammen — die UI kann damit eine
+  // ehrliche "Stadtweit 2025: X Mio Aufwand" anzeigen, auch wenn die Detail-
+  // Aggregation summe(units) noch dem letzten API-Refresh entspricht.
+  gesamtstadt?: GesamtstadtSummary;
+}
+
+export interface GesamtstadtSummary {
+  jahr: number;
+  phase: 'RECHNUNG' | 'BUDGET' | 'GEMEINDERAT_BESCHLUSS';
+  aufwand: number;
+  ertrag: number;
+  /** Positiv = Aufwandüberschuss (Verlust), negativ = Ertragsüberschuss (Gewinn). */
+  aufwandueberschuss: number;
+  quelle: string;
+  quelleUrl: string;
+  kontext?: string;
+  kontextUrl?: string;
+  hinweis?: string;
 }
 
 export interface StadtData {
