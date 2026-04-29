@@ -35,7 +35,9 @@ Datenschema (`data.json`). Wähle, was zum Anwendungsfall passt.
 
 - Strukturdaten: [stadt-zuerich.ch](https://www.stadt-zuerich.ch/) (Organigramm)
 - Budget & Aufwand: [data.stadt-zuerich.ch / fd_rpktool](https://data.stadt-zuerich.ch/dataset/fd_rpktool)
-  (API-Key ist öffentlich und Teil der Datensatz-Dokumentation)
+  (API-Key ist öffentlich und Teil der Datensatz-Dokumentation).
+  Default-Phase ist `RECHNUNG` (Ist-Werte aus dem
+  [Geschäftsbericht 2025](https://www.stadt-zuerich.ch/de/aktuell/publikationen/2026/geschaeftsbericht-2025.html)).
 - FTE pro Departement: [Rechnung 2025 der Stadt Zürich, S. 30](https://www.stadt-zuerich.ch/content/dam/web/de/aktuell/publikationen/2026/rechnung-2025/rechnung-2025-strb.pdf)
 - FTE pro Einheit: Proxy aus Personalaufwand ÷ 130 000 CHF Vollkosten
   (Validierungspunkt Steueramt: Proxy 227 vs. publiziert 222 = 2 % Abweichung)

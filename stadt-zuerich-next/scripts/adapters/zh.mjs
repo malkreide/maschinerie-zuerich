@@ -30,7 +30,7 @@ async function fetchStructure({ force = false } = {}) {
 async function fetchBudget({
   force = false,
   jahr = Number(process.env.BUDGET_JAHR) || (new Date().getFullYear() - 1),
-  betragstyp = process.env.BUDGET_BETRAGSTYP || 'GEMEINDERAT_BESCHLUSS',
+  betragstyp = process.env.BUDGET_BETRAGSTYP || 'RECHNUNG',
 } = {}) {
   const dep = await readJSON('data/raw/rpktool-departemente.json');
   log(`fetching budget – jahr=${jahr}, betragsTyp=${betragstyp}`);

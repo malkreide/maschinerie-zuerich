@@ -4,7 +4,8 @@
 // GEMEINDERAT_BESCHLUSS / RECHNUNG, Bern etc. kennen andere Phasen).
 //
 //   BUDGET_JAHR        Default: aktuelles Jahr − 1
-//   BUDGET_BETRAGSTYP  Default im ZH-Adapter: GEMEINDERAT_BESCHLUSS
+//   BUDGET_BETRAGSTYP  Default im ZH-Adapter: RECHNUNG (Ist-Werte aus dem
+//                      Geschäftsbericht; verfügbar ab Publikation, ~April).
 
 import { loadAdapter } from './adapters/index.mjs';
 import { log } from './_lib.mjs';

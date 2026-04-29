@@ -340,8 +340,8 @@ data/zh/org-chart.json  ──►  lib/data.ts  ──►  app/[locale]/page.tsx
 |----------|----------|---------|-----------|
 | `RPK_API_KEY` | (siehe .env.example) | Auth für `data.stadt-zuerich.ch` RPK-Endpunkt | `.env.local` (lokal), Docker `.env.local` (ETL-Service) |
 | `NEXT_PUBLIC_SITE_URL` | `https://maschinerie-zuerich.vercel.app` | Basis-URL für `/sitemap.xml`, `/robots.txt`, JSON-LD | Production-Env (Vercel Project Settings, Docker-Env) |
-| `BUDGET_JAHR` | `2024` | Optional: Budget-Jahr übersteuern beim ETL-Lauf | `docker compose --profile etl run etl` oder `.env.local` |
-| `BUDGET_BETRAGSTYP` | `budgetiert` | Optional: Betragstyp-Filter für Budget-ETL | dto. |
+| `BUDGET_JAHR` | `2025` | Optional: Budget-Jahr übersteuern beim ETL-Lauf (Default: aktuelles Jahr − 1) | `docker compose --profile etl run etl` oder `.env.local` |
+| `BUDGET_BETRAGSTYP` | `RECHNUNG` | Optional: Betragstyp-Filter für Budget-ETL (Default: `RECHNUNG` = Ist-Werte aus dem Geschäftsbericht) | dto. |
 
 ## Internationalisierung
 
