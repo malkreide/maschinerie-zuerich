@@ -42,9 +42,11 @@ npm run build              # full pipeline (alle 4 Schritte)
 npm run build -- --force   # full pipeline, ignoriert Cache
 npm run serve              # http://localhost:8000
 
-# ENV für Budget-Schritt:
-BUDGET_JAHR=2024 BUDGET_BETRAGSTYP=GEMEINDERAT_BESCHLUSS npm run build
+# ENV für Budget-Schritt (Defaults: aktuelles Jahr − 1, RECHNUNG):
+BUDGET_JAHR=2025 BUDGET_BETRAGSTYP=RECHNUNG npm run build
 # Optionen für BUDGET_BETRAGSTYP: STADTRAT_ANTRAG | GEMEINDERAT_BESCHLUSS | RECHNUNG
+# RECHNUNG = Ist-Werte aus dem Geschäftsbericht (ab Publikation, ~April).
+# Vor Publikation des Geschäftsberichts: BUDGET_BETRAGSTYP=GEMEINDERAT_BESCHLUSS.
 ```
 
 Direkt mit Node ohne npm:

@@ -61,10 +61,12 @@ der Code liest ausschliesslich über `@/config/city.config`.
 npm run data:fetch         # full pipeline (Adapter entscheidet die Schritte)
 npm run data:fetch:force   # full pipeline, ignoriert Cache
 
-# ENV:
-BUDGET_JAHR=2024 BUDGET_BETRAGSTYP=GEMEINDERAT_BESCHLUSS npm run data:fetch
+# ENV (Defaults: aktuelles Jahr − 1, RECHNUNG):
+BUDGET_JAHR=2025 BUDGET_BETRAGSTYP=RECHNUNG npm run data:fetch
 # Werte werden an den Adapter durchgereicht; Zürich kennt
 # BUDGET_BETRAGSTYP: STADTRAT_ANTRAG | GEMEINDERAT_BESCHLUSS | RECHNUNG
+# RECHNUNG = Ist-Werte aus dem Geschäftsbericht (ab Publikation, ~April).
+# Vor Publikation: BUDGET_BETRAGSTYP=GEMEINDERAT_BESCHLUSS überschreiben.
 ```
 
 Direkt mit Node ohne npm:
