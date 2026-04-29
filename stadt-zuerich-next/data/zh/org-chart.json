@@ -11,13 +11,26 @@
     "hinweise": [
       "Strukturdaten sind prototypisch – vor Go-Live mit aktuellem Organigramm abgleichen.",
       "Personen bewusst als Rolle gehalten ('Stadtpräsident:in', 'Stadtrat / Stadträtin') – Namen wechseln, Strukturen bleiben länger stabil.",
-      "Felder budget und fte sind null und müssen aus Geschäftsbericht / Personalstatistik gespeist werden."
+      "Felder budget und fte sind null und müssen aus Geschäftsbericht / Personalstatistik gespeist werden.",
+      "Per-Departement-Aufwand stammt noch aus Budget 2024 (GEMEINDERAT_BESCHLUSS); FTE pro Departement bereits aus Rechnung 2025. Stadtweite Eckwerte aus Geschäftsbericht 2025 unter '_meta.gesamtstadt'. Per-Departement-Refresh aus RECHNUNG/2025 erfordert nächsten Lauf von 'npm run data:fetch:force' mit RPK_API_KEY."
     ],
     "angereichert": "2026-04-20",
     "quelleEnrichment": "data.stadt-zuerich.ch / fd_rpktool (rpkk-rs/v1)",
-    "budgetStand": "2024 (GEMEINDERAT_BESCHLUSS)",
+    "budgetStand": "2024 (GEMEINDERAT_BESCHLUSS) – per-Departement; Stadt-Total siehe _meta.gesamtstadt (Rechnung 2025)",
     "fteHinweis": "FTE-Werte sind primär Schätzungen (Personalaufwand / 130'000 CHF). 10 Einheit(en) haben publizierte Werte aus Budget-/Rechnungs-PDFs.",
-    "fteOverridesAus": "data/manual/fte-publiziert.json"
+    "fteOverridesAus": "data/manual/fte-publiziert.json",
+    "gesamtstadt": {
+      "jahr": 2025,
+      "phase": "RECHNUNG",
+      "aufwand": 10978000000,
+      "ertrag": 10955000000,
+      "aufwandueberschuss": 22900000,
+      "quelle": "Medienmitteilung Stadtrat 'Rechnung 2025 mit knappem Minus' (März 2026); Geschäftsbericht 2025 (April 2026)",
+      "quelleUrl": "https://www.stadt-zuerich.ch/de/aktuell/medienmitteilungen/2026/03/rechnung-2025-mit-knappem-minus.html",
+      "kontext": "Geschäftsbericht 2025 publiziert April 2026",
+      "kontextUrl": "https://www.stadt-zuerich.ch/de/aktuell/publikationen/2026/geschaeftsbericht-2025.html",
+      "hinweis": "Stadt-Total aus Pressetext/Geschäftsbericht. Per-Departement-Refresh aus RPK-API (betragsTyp=RECHNUNG, jahr=2025) erfordert lokal 'npm run data:fetch:force' mit gesetztem RPK_API_KEY – siehe scripts/README.md."
+    }
   },
   "center": {
     "id": "stadtrat",
