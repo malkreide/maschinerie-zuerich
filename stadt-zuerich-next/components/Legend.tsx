@@ -8,9 +8,28 @@ export default function Legend({ locale }: { locale: Locale }) {
   return (
     <aside
       aria-label={t('headingTop')}
-      className="fixed left-3 bottom-3 z-[9] bg-[var(--color-panel)] px-3 py-2.5 rounded-lg shadow text-xs max-w-[320px]"
+      className="fixed left-3 bottom-3 z-[9] bg-[var(--color-panel)] rounded-lg shadow text-xs max-w-[calc(100vw-24px)] sm:max-w-[320px] max-h-[50vh] overflow-y-auto sm:max-h-none pointer-events-auto"
     >
-      <Heading>{t('headingTop')}</Heading>
+      <details className="sm:hidden group">
+        <summary className="px-3 py-2.5 cursor-pointer font-semibold list-none [&::-webkit-details-marker]:hidden flex justify-between items-center gap-2">
+          {t('headingTop')}
+          <span className="group-open:rotate-180 transition-transform">▾</span>
+        </summary>
+        <div className="px-3 pb-2.5 pt-0 border-t border-[var(--color-line)]">
+          <LegendContent t={t} c={c} />
+        </div>
+      </details>
+      <div className="hidden sm:block px-3 py-2.5">
+        <LegendContent t={t} c={c} />
+      </div>
+    </aside>
+  );
+}
+
+function LegendContent({ t, c }: { t: any; c: any }) {
+  return (
+    <>
+      <Heading mt={false}>{t('headingTop')}</Heading>
       <Row color={c.stadtpraesidium} round>{t('stadtpraesidium')}</Row>
       <Row color={c.stadtrat} round>{t('stadtrat')}</Row>
       <Row color={c.department} sq>{t('departement')}</Row>
@@ -25,7 +44,7 @@ export default function Legend({ locale }: { locale: Locale }) {
 
       <Heading mt>{t('headingMarker')}</Heading>
       <Row dashed dashColor={city.theme.konflikt}>{t('konflikt')}</Row>
-    </aside>
+    </>
   );
 }
 

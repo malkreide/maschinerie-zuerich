@@ -301,7 +301,7 @@ function Toolbar({
       : 'bg-transparent text-[var(--color-ink)] border-[var(--color-line)] hover:bg-[var(--color-bg)]');
   return (
     <div role="toolbar" aria-label="Diagramm-Werkzeuge"
-         className="fixed top-[64px] right-3 z-[9] flex flex-col gap-1.5 items-end">
+         className="fixed top-[124px] sm:top-[64px] right-3 z-[9] flex flex-col sm:flex-col gap-1.5 items-end pointer-events-none [&>*]:pointer-events-auto">
       <div role="group" aria-label="Layout"
            className="flex gap-1.5 bg-[var(--color-panel)] p-1.5 rounded-lg shadow">
         <button className={btn(layout === 'radial')} aria-pressed={layout === 'radial'}

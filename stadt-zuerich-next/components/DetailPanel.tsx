@@ -90,7 +90,7 @@ export default function DetailPanel({
       role="region"
       aria-label={t('ariaLabel')}
       aria-live="polite"
-      className="fixed bottom-3 right-3 z-[9] w-[320px] bg-[var(--color-panel)] px-4 py-3.5 rounded-lg shadow text-[13px] leading-snug"
+      className="fixed bottom-3 right-3 z-[9] w-[calc(100vw-24px)] sm:w-[320px] bg-[var(--color-panel)] px-4 py-3.5 rounded-lg shadow text-[13px] leading-snug"
     >
       <button
         onClick={close}

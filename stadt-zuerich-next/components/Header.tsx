@@ -45,84 +45,88 @@ export default function Header({ dataStand }: { dataStand: DataStandInfo }) {
   }
 
   return (
-    <header className="fixed inset-x-0 top-0 h-14 z-10 flex items-center px-4
-                       bg-[var(--color-accent)] text-white">
-      <Brand className="mr-2.5 shrink-0" />
-      <h1 className="text-base font-semibold m-0">{t('title')}</h1>
-      <span className="ml-3 text-xs opacity-85 hidden sm:inline">{t('subtitle')}</span>
-      {dataStand.jahr && (
-        <span
-          // role="status" macht die Freshness-Info für Screenreader auffindbar,
-          // ohne sie in den Nav-Flow zu ziehen. title-Attribut liefert die
-          // detaillierten Angaben (Phase + Stand-Datum) beim Hover.
-          role="status"
-          title={
-            dataStand.phase
-              ? t('dataStandTitle', {
-                  jahr: dataStand.jahr,
-                  phase: dataStand.phase,
-                  stand: dataStand.stand,
-                })
-              : t('dataStandTitleNoPhase', {
-                  jahr: dataStand.jahr,
-                  stand: dataStand.stand,
-                })
-          }
-          className="ml-3 text-[11px] px-2 py-0.5 rounded-full bg-white/15 border border-white/25 text-white whitespace-nowrap"
+    <header className="fixed inset-x-0 top-0 h-14 z-10 flex items-center px-2 sm:px-4
+                       bg-[var(--color-accent)] text-white overflow-hidden">
+      <div className="flex items-center shrink-0 min-w-0">
+        <Brand className="mr-2 sm:mr-2.5 shrink-0" />
+        <h1 className="text-sm sm:text-base font-semibold m-0 hidden xs:block sm:block truncate">{t('title')}</h1>
+        <span className="ml-3 text-xs opacity-85 hidden sm:inline">{t('subtitle')}</span>
+        {dataStand.jahr && (
+          <span
+            // role="status" macht die Freshness-Info für Screenreader auffindbar,
+            // ohne sie in den Nav-Flow zu ziehen. title-Attribut liefert die
+            // detaillierten Angaben (Phase + Stand-Datum) beim Hover.
+            role="status"
+            title={
+              dataStand.phase
+                ? t('dataStandTitle', {
+                    jahr: dataStand.jahr,
+                    phase: dataStand.phase,
+                    stand: dataStand.stand,
+                  })
+                : t('dataStandTitleNoPhase', {
+                    jahr: dataStand.jahr,
+                    stand: dataStand.stand,
+                  })
+            }
+            className="ml-2 sm:ml-3 text-[10px] sm:text-[11px] px-2 py-0.5 rounded-full bg-white/15 border border-white/25 text-white whitespace-nowrap shrink-0"
+          >
+            <span className="hidden md:inline">{t('dataStand', { jahr: dataStand.jahr })}</span>
+            <span className="md:hidden">{t('dataStandShort', { jahr: dataStand.jahr })}</span>
+          </span>
+        )}
+      </div>
+      <span className="flex-1 min-w-2" />
+      <div className="flex items-center overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden pr-1 shrink-0 max-w-full">
+        <nav role="tablist" aria-label={tNav('graph')} className="flex gap-1 mr-1 sm:mr-3 shrink-0">
+          {ROUTES.map((r) => {
+            // Sub-Routen (z.B. /prozesse/zh/...) aktivieren den übergeordneten
+            // Tab, damit der Navigationszustand auch in der Detail-Seite stimmt.
+            const active =
+              pathname === r.href ||
+              (r.href !== '/' && pathname.startsWith(r.href + '/'));
+            return (
+              <Link
+                key={r.href}
+                href={r.href}
+                role="tab"
+                aria-selected={active}
+                prefetch
+                className={
+                  'px-2.5 sm:px-3.5 py-1.5 rounded-md text-xs border border-white/20 no-underline whitespace-nowrap ' +
+                  (active
+                    ? 'bg-white text-[var(--color-accent)] font-semibold'
+                    : 'bg-white/10 hover:bg-white/20 text-white')
+                }
+              >
+                {tNav(r.key)}
+              </Link>
+            );
+          })}
+        </nav>
+        <LanguageSwitcher />
+        <button
+          type="button"
+          aria-label={t('helpButton')}
+          title={t('helpButton')}
+          // CustomEvent statt globaler Store: Onboarding-Komponente lebt im
+          // selben Tree, hört im useEffect mit. Hält den Header schlank.
+          onClick={() => window.dispatchEvent(new Event(ONBOARDING_REOPEN))}
+          className="ml-1 mr-1 px-2.5 py-1.5 rounded-md text-xs border border-white/20 bg-white/10 hover:bg-white/20 font-semibold shrink-0"
         >
-          <span className="hidden md:inline">{t('dataStand', { jahr: dataStand.jahr })}</span>
-          <span className="md:hidden">{t('dataStandShort', { jahr: dataStand.jahr })}</span>
-        </span>
-      )}
-      <span className="flex-1" />
-      <nav role="tablist" aria-label={tNav('graph')} className="flex gap-1 mr-3">
-        {ROUTES.map((r) => {
-          // Sub-Routen (z.B. /prozesse/zh/...) aktivieren den übergeordneten
-          // Tab, damit der Navigationszustand auch in der Detail-Seite stimmt.
-          const active =
-            pathname === r.href ||
-            (r.href !== '/' && pathname.startsWith(r.href + '/'));
-          return (
-            <Link
-              key={r.href}
-              href={r.href}
-              role="tab"
-              aria-selected={active}
-              prefetch
-              className={
-                'px-3.5 py-1.5 rounded-md text-xs border border-white/20 no-underline ' +
-                (active
-                  ? 'bg-white text-[var(--color-accent)] font-semibold'
-                  : 'bg-white/10 hover:bg-white/20 text-white')
-              }
-            >
-              {tNav(r.key)}
-            </Link>
-          );
-        })}
-      </nav>
-      <LanguageSwitcher />
-      <button
-        type="button"
-        aria-label={t('helpButton')}
-        title={t('helpButton')}
-        // CustomEvent statt globaler Store: Onboarding-Komponente lebt im
-        // selben Tree, hört im useEffect mit. Hält den Header schlank.
-        onClick={() => window.dispatchEvent(new Event(ONBOARDING_REOPEN))}
-        className="ml-1 mr-1 px-2.5 py-1.5 rounded-md text-xs border border-white/20 bg-white/10 hover:bg-white/20 font-semibold"
-      >
-        ?
-        <span className="sr-only">{t('helpButtonLabel')}</span>
-      </button>
-      <button
-        type="button"
-        aria-pressed={dark ?? false}
-        aria-label={dark ? tNav('darkOff') : tNav('darkOn')}
-        onClick={toggleTheme}
-        className="px-2.5 py-1.5 rounded-md text-xs border border-white/20 bg-white/10 hover:bg-white/20"
-      >
-        {dark === null ? tNav('darkLabelLoading') : dark ? tNav('darkLabelLight') : tNav('darkLabelDark')}
-      </button>
+          ?
+          <span className="sr-only">{t('helpButtonLabel')}</span>
+        </button>
+        <button
+          type="button"
+          aria-pressed={dark ?? false}
+          aria-label={dark ? tNav('darkOff') : tNav('darkOn')}
+          onClick={toggleTheme}
+          className="px-2.5 py-1.5 rounded-md text-xs border border-white/20 bg-white/10 hover:bg-white/20 shrink-0 whitespace-nowrap"
+        >
+          {dark === null ? tNav('darkLabelLoading') : dark ? tNav('darkLabelLight') : tNav('darkLabelDark')}
+        </button>
+      </div>
     </header>
   );
 }

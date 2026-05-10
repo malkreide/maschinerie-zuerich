@@ -56,7 +56,7 @@ export default function Search({ lebenslagen }: { lebenslagen: Lebenslage[] }) {
   return (
     <div
       role="search"
-      className="fixed top-[64px] left-3 z-[9] bg-[var(--color-panel)] p-1.5 rounded-lg shadow flex flex-col gap-1 min-w-[320px] max-w-[380px]"
+      className="fixed top-[64px] left-3 z-[9] bg-[var(--color-panel)] p-1.5 rounded-lg shadow flex flex-col gap-1 w-[calc(100vw-24px)] sm:w-auto sm:min-w-[320px] max-w-[380px]"
     >
       <form method="get" action={formAction} className="contents">
         <label htmlFor={id} className="sr-only">{t('label')}</label>
