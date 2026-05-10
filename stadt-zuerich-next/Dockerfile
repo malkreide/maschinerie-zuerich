@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1.7
+# syntax=docker/dockerfile:1.23
 #
 # Multi-Stage-Build für die Maschinerie-App.
 #
