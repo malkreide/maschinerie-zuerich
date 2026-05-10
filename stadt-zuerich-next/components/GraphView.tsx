@@ -80,11 +80,32 @@ export default function GraphView({ data }: { data: StadtData }) {
   // Initialisierung
   useEffect(() => {
     let canceled = false;
-    (async () => {
+    let observer: ResizeObserver | null = null;
+
+    const initCy = async () => {
+      if (canceled || !hostRef.current) return;
+      
+      // Wenn der Container (z.B. wegen Mobile-Ansicht "hidden sm:block")
+      // unsichtbar ist, warten wir mit der Initialisierung, bis er
+      // Dimensionen hat. Cytoscape stürzt sonst ab oder rechnet falsch.
+      if (hostRef.current.clientWidth === 0) {
+        if (!observer) {
+          observer = new ResizeObserver(() => {
+            if (hostRef.current && hostRef.current.clientWidth > 0) {
+              observer?.disconnect();
+              observer = null;
+              initCy();
+            }
+          });
+          observer.observe(hostRef.current);
+        }
+        return;
+      }
+
       const cytoscape = (await import('cytoscape')).default;
       const fcose = (await import('cytoscape-fcose')).default;
       try { cytoscape.use(fcose); } catch { /* schon registriert */ }
-      if (canceled || !hostRef.current) return;
+      if (canceled || !hostRef.current || cyRef.current) return;
 
       const elements = buildElements(data, expandedRef.current);
       const cy = cytoscape({
@@ -159,9 +180,13 @@ export default function GraphView({ data }: { data: StadtData }) {
         const initialFocus = focusIdRef.current;
         if (initialFocus) applyFocusHighlight(cy, initialFocus);
       });
-    })();
+    };
+    
+    initCy();
+    
     return () => {
       canceled = true;
+      observer?.disconnect();
       cyRef.current?.destroy();
       cyRef.current = null;
     };

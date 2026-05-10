@@ -95,8 +95,9 @@ export default function Header({ dataStand }: { dataStand: DataStandInfo }) {
                 className={
                   'px-2.5 sm:px-3.5 py-1.5 rounded-md text-xs border border-white/20 no-underline whitespace-nowrap ' +
                   (active
-                    ? 'bg-white text-[var(--color-accent)] font-semibold'
-                    : 'bg-white/10 hover:bg-white/20 text-white')
+                    ? 'bg-white text-[var(--color-accent)] font-semibold '
+                    : 'bg-white/10 hover:bg-white/20 text-white ') +
+                  (r.key === 'list' ? 'hidden sm:block' : '')
                 }
               >
                 {tNav(r.key)}

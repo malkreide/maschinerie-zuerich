@@ -9,6 +9,7 @@ import GraphView from '@/components/GraphView';
 import DetailPanel, { type RelatedProzess } from '@/components/DetailPanel';
 import Legend from '@/components/Legend';
 import BudgetSummary from '@/components/BudgetSummary';
+import ListView from '@/components/ListView';
 
 export default async function MaschineriePage({
   params,
@@ -36,15 +37,20 @@ export default async function MaschineriePage({
 
   return (
     <>
-      {/* Suspense ist Pflicht, weil GraphView/DetailPanel useSearchParams() nutzen */}
-      <Suspense fallback={null}>
-        <GraphView data={data} />
-        <DetailPanel data={data} relatedProzesse={relatedProzesse} />
-      </Suspense>
-      <Legend locale={locale as Locale} />
-      {/* Pro-Kopf-Banner über dem Graphen — gibt der Visualisierung sofort
-          eine Bezugsgrösse, ohne dass User:innen erst klicken müssen. */}
-      <BudgetSummary data={data} locale={locale as Locale} />
+      <div className="hidden sm:block">
+        {/* Suspense ist Pflicht, weil GraphView/DetailPanel useSearchParams() nutzen */}
+        <Suspense fallback={null}>
+          <GraphView data={data} />
+          <DetailPanel data={data} relatedProzesse={relatedProzesse} />
+        </Suspense>
+        <Legend locale={locale as Locale} />
+        {/* Pro-Kopf-Banner über dem Graphen — gibt der Visualisierung sofort
+            eine Bezugsgrösse, ohne dass User:innen erst klicken müssen. */}
+        <BudgetSummary data={data} locale={locale as Locale} />
+      </div>
+      <div className="block sm:hidden">
+        <ListView data={data} locale={locale as Locale} />
+      </div>
     </>
   );
 }
