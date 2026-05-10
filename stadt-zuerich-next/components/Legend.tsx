@@ -26,7 +26,7 @@ export default function Legend({ locale }: { locale: Locale }) {
   );
 }
 
-function LegendContent({ t, c }: { t: any; c: any }) {
+function LegendContent({ t, c }: { t: ReturnType<typeof getT>; c: typeof city.theme.nodeType }) {
   return (
     <>
       <Heading mt={false}>{t('headingTop')}</Heading>

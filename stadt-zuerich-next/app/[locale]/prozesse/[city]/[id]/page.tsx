@@ -187,7 +187,6 @@ export default async function ProzessDetailPage({
           unterbringt — Suchmaschinen parsen beide Orte gleich. */}
       <script
         type="application/ld+json"
-        // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <nav aria-label="Breadcrumb" className="text-[13px] text-[var(--color-mute)] mb-3">

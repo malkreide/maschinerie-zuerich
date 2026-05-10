@@ -48,7 +48,6 @@ export default async function LocaleLayout({
             damit die Farben ohne zusätzlichen Request vor dem ersten
             Paint feststehen. Quelle: config/city.config.json → theme. */}
         <style
-          // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: themeCssVars() }}
         />
       </head>
