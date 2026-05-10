@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Screenreader Canvas-Fallback:** Eine visuell versteckte, native HTML-Datentabelle (`sr-only`) spiegelt nun den interaktiven Canvas-Graphen. Screenreader können so die Baumstruktur, Budgets und Stellen der aktuell sichtbaren Organisationseinheiten nativ als Tabelle auslesen.
 - **Geführte Tour für Erstnutzer:** Beim ersten Besuch oder durch Klick auf das `?` im Header startet nun eine interaktive Guided Tour, welche die UI-Elemente erklärt.
 - **Leichte Sprache (Graph Layout):** Bei Sprachwahl `ls` ("Leichte Sprache") wird nicht nur der Text vereinfacht, sondern auch der Graph signifikant entrümpelt (Stäbe und Beteiligungen ausgeblendet) und die Boxen/Schriften massiv vergrössert, um die Kognition zu entlasten.
 - **Hierarchisches Nesting (Compound Nodes):** Dienstabteilungen und Stäbe werden in Cytoscape nun visuell *innerhalb* der Box ihres zugehörigen Departements dargestellt. Das räumt den Graphen massiv auf und reduziert den "Spaghetti-Effekt". Beteiligungen und externe Betriebe bleiben als Satelliten erhalten.

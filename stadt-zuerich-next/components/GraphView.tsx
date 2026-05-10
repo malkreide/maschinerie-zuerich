@@ -57,6 +57,35 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
   const expandedRef = useRef<Set<string>>(initialExpanded);
   useEffect(() => { expandedRef.current = expanded; }, [expanded]);
 
+  // SR-Fallback Tabelle: Berechnet die aktuell sichtbaren Knoten für Screenreader
+  const tableNodes = useMemo(() => {
+    const isLs = locale === 'ls';
+    const list: Array<{ id: string; name: string; type: string; parent: string | null; budget?: typeof data.departments[0]['budget']; fte?: typeof data.departments[0]['fte'] }> = [];
+    
+    list.push({ id: data.center.id, name: data.center.name, type: 'center', parent: null });
+    
+    const depMap = new Map(data.departments.map(d => [d.id, d.name]));
+    
+    for (const d of data.departments) {
+      list.push({ id: d.id, name: d.name, type: 'department', parent: data.center.name, budget: d.budget, fte: d.fte });
+    }
+
+    for (const u of data.units) {
+      if (!expanded.has(u.parent)) continue;
+      if (isLs && u.kind !== 'unit') continue;
+      list.push({ id: u.id, name: u.name, type: u.kind, parent: depMap.get(u.parent) ?? u.parent, budget: u.budget, fte: u.fte });
+    }
+
+    if (!isLs) {
+      for (const b of data.beteiligungen) {
+        if (!expanded.has(b.verbunden)) continue;
+        list.push({ id: b.id, name: b.name, type: 'beteiligung', parent: depMap.get(b.verbunden) ?? b.verbunden, budget: b.budget, fte: b.fte });
+      }
+    }
+    
+    return list;
+  }, [data, expanded, locale]);
+
   function setFocus(id: string | null) {
     const params = new URLSearchParams(searchParams.toString());
     if (id) params.set('focus', id); else params.delete('focus');
@@ -264,10 +293,37 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
     <>
       <div
         ref={hostRef}
-        className="absolute top-14 inset-x-0 bottom-0 cy-host"
-        role="img"
-        aria-label="Interaktiver Graph der Stadtverwaltung – nicht barrierefrei. Bitte zur Liste wechseln."
+        className="absolute top-14 inset-x-0 bottom-0 cy-host focus:outline-none"
+        aria-hidden="true" // Canvas ist für SR nicht lesbar, wir haben die Tabelle unten
       />
+      
+      {/* Screenreader Fallback Tabelle */}
+      <div className="sr-only">
+        <table>
+          <caption>{t('GraphTable.caption')}</caption>
+          <thead>
+            <tr>
+              <th scope="col">{t('GraphTable.colName')}</th>
+              <th scope="col">{t('GraphTable.colType')}</th>
+              <th scope="col">{t('GraphTable.colParent')}</th>
+              <th scope="col">{t('GraphTable.colBudget')}</th>
+              <th scope="col">{t('GraphTable.colFte')}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tableNodes.map(n => (
+              <tr key={n.id}>
+                <td>{n.name}</td>
+                <td>{t.has(`Type.${n.type}`) ? t(`Type.${n.type}`) : n.type}</td>
+                <td>{n.parent ?? '-'}</td>
+                <td>{n.budget?.aufwand != null ? n.budget.aufwand.toLocaleString('de-CH') : ''}</td>
+                <td>{n.fte?.schaetzung != null ? n.fte.schaetzung.toLocaleString('de-CH') : ''}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      
       <Toolbar
         layout={layout}
         onLayoutChange={setLayout}

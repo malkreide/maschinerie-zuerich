@@ -202,5 +202,13 @@
       "warten": "Wartezeit",
       "ende": "Ende"
     }
+  },
+  "GraphTable": {
+    "caption": "Daten des Netzwerkgraphen (aktuell sichtbare Knoten)",
+    "colName": "Organisationseinheit",
+    "colType": "Typ",
+    "colParent": "Übergeordnet",
+    "colBudget": "Aufwand (CHF)",
+    "colFte": "Stellen (FTE)"
   }
 }
