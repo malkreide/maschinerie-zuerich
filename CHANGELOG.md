@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Hierarchisches Nesting (Compound Nodes):** Dienstabteilungen und Stäbe werden in Cytoscape nun visuell *innerhalb* der Box ihres zugehörigen Departements dargestellt. Das räumt den Graphen massiv auf und reduziert den "Spaghetti-Effekt". Beteiligungen und externe Betriebe bleiben als Satelliten erhalten.
 - **Mobile-First Ansicht:** Die hierarchische Listenansicht (`ListView`) wird nun auf mobilen Endgeräten (bis 640px) als Standard anstelle des interaktiven D3/Cytoscape-Graphen angezeigt, um das "Fat-Finger"-Problem zu umgehen. 
 - **Responsive Layout:** Das UI passt sich nun auf Smartphones automatisch an (scrollbare Tabs im Header, angepasste Breiten der Detail- und Such-Panels).
 - **Legende:** Die Legende ist auf mobilen Geräten standardmäßig als einklappbares Menü dargestellt (`<details>`), um wertvollen Platz zu sparen.

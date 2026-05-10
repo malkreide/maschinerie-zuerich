@@ -408,13 +408,19 @@ function buildElements(d: StadtData, expanded: Set<string>): ElementDefinition[]
   for (const u of d.units) {
     if (!expanded.has(u.parent)) continue;
     const lvl = u.kind === 'extern' ? 3 : 2;
+    // unit und staff gehen IN den Departements-Kasten (Compound Node), extern bleibt Satellit.
+    const isCompound = u.kind !== 'extern';
     nodes.push({
       data: {
         id: u.id, label: u.name, type: u.kind, level: lvl, parentDep: u.parent,
+        parent: isCompound ? u.parent : undefined,
         budget: u.budget, fte: u.fte, odz: u.odz, konflikt: u.konflikt,
       },
     });
-    edges.push({ data: { id: `e-${u.parent}-${u.id}`, source: u.parent, target: u.id } });
+    // Nur für Externe (Satelliten) ziehen wir noch eine explizite Kante.
+    if (!isCompound) {
+      edges.push({ data: { id: `e-${u.parent}-${u.id}`, source: u.parent, target: u.id } });
+    }
   }
 
   for (const b of d.beteiligungen) {
@@ -506,7 +512,17 @@ const GRAPH_STYLE: cytoscape.StylesheetStyle[] = [
       'background-color': TC.nodeType.department, 'shape': 'round-rectangle',
       'width': 130, 'height': 54, 'font-size': 10, 'font-weight': 'bold',
       'color': '#fff', 'text-outline-color': TC.nodeType.department,
-      'text-wrap': 'wrap', 'text-max-width': '120', 'padding': '4' } },
+      'text-wrap': 'wrap', 'text-max-width': '120', 'padding': '4px' } },
+  { selector: 'node[type = "department"]:parent', style: {
+      'background-color': 'rgba(255, 255, 255, 0.65)',
+      'border-width': 2, 'border-color': TC.nodeType.department,
+      'shape': 'round-rectangle', 'padding': '16px',
+      'text-valign': 'top', 'text-halign': 'center',
+      'color': TC.nodeType.department, 'text-outline-width': 0,
+      'font-size': 11, 'text-margin-y': -8,
+      // "width" und "height" entfernen wir für :parent implizit nicht, 
+      // aber Cytoscape ignoriert sie bei Compound Nodes meist ohnehin zugunsten der Bounding Box.
+  } },
   { selector: 'node[type = "unit"]', style: {
       'background-color': TC.nodeType.unit, 'shape': 'round-rectangle', 'width': 22, 'height': 16 } },
   { selector: 'node[type = "staff"]', style: {
