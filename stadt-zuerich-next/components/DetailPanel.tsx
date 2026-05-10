@@ -25,6 +25,32 @@ export interface RelatedProzess {
   titel: string;
 }
 
+function Sparkline({ data, dataKey }: { data?: any[]; dataKey: string }) {
+  if (!data || data.length < 2) return null;
+  const w = 40, h = 16;
+  const vals = data.map(d => d[dataKey] || 0);
+  const max = Math.max(...vals);
+  const min = Math.min(...vals);
+  const range = max - min || 1;
+  const step = w / (data.length - 1);
+  
+  const pts = vals.map((val, i) => {
+    const x = i * step;
+    const y = h - ((val - min) / range) * h;
+    return `${x},${y}`;
+  }).join(' ');
+
+  return (
+    <svg width={w} height={h} className="inline-block align-middle ml-2 opacity-60 overflow-visible" viewBox={`0 0 ${w} ${h}`} preserveAspectRatio="none">
+      <polyline points={pts} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      {/* Title for hover to show the start and end year growth */}
+      <title>
+        Trend {data[0].jahr} ({fmtCHF(data[0][dataKey])}) bis {data[data.length-1].jahr} ({fmtCHF(data[data.length-1][dataKey])})
+      </title>
+    </svg>
+  );
+}
+
 export default function DetailPanel({
   data,
   relatedProzesse,
@@ -70,7 +96,7 @@ export default function DetailPanel({
     const dep = data.departments.find((d) => d.id === item.parent);
     if (dep) rows.push({ k: t('department'), v: dep.name });
   }
-  if (item.budget) rows.push(...budgetRows(item.budget, t, totalAufwand, totalNetto, population));
+  if (item.budget) rows.push(...budgetRows(item.budget, t, totalAufwand, totalNetto, population, item.budgetHistory));
   if (item.fte)    rows.push(...fteRows(item.fte, t));
   if (item.odz)    rows.push({ k: t('ogdKey'), v: `${item.odz.kurzname} · key ${item.odz.key}` });
   if ('konflikt' in item && item.konflikt) {
@@ -176,6 +202,7 @@ function budgetRows(
   totalAufwand: number,
   totalNetto: number,
   population: number | undefined,
+  history?: Budget[]
 ): Row[] {
   const phase = ({
     GEMEINDERAT_BESCHLUSS: t('phaseBudget'),
@@ -183,7 +210,12 @@ function budgetRows(
     RECHNUNG: t('phaseAccount'),
   } as Record<string, string>)[b.typ] ?? b.typ;
   const rows: Row[] = [{ k: `${phase} ${b.jahr}`, v: '' }];
-  rows.push({ k: `  ${t('expense')}`,    v: fmtCHF(b.aufwand) });
+  
+  const trendAufwand = history ? <Sparkline data={history} dataKey="aufwand" /> : null;
+  const trendErtrag = history ? <Sparkline data={history} dataKey="ertrag" /> : null;
+  const trendNetto = history ? <Sparkline data={history} dataKey="nettoaufwand" /> : null;
+
+  rows.push({ k: `  ${t('expense')}`,    v: <span className="flex items-center justify-end">{fmtCHF(b.aufwand)}{trendAufwand}</span> });
   // Aux-Zeilen direkt unter dem Bezugswert: Pro-Kopf und Anteil. Beide
   // werden nur gerendert, wenn die nötige Bezugsgrösse vorhanden und die
   // berechnete Zahl aussagekräftig ist (sonst würde "0 CHF/Einwohner" oder
@@ -191,8 +223,8 @@ function budgetRows(
   // Daten fehlen). `↳` macht visuell klar, dass die Zeilen sich auf den
   // jeweils darüberstehenden Betrag beziehen.
   rows.push(...auxBudgetRows(b.aufwand, t, totalAufwand, population));
-  rows.push({ k: `  ${t('income')}`,     v: fmtCHF(b.ertrag) });
-  rows.push({ k: `  ${t('netExpense')}`, v: fmtCHF(b.nettoaufwand) });
+  rows.push({ k: `  ${t('income')}`,     v: <span className="flex items-center justify-end">{fmtCHF(b.ertrag)}{trendErtrag}</span> });
+  rows.push({ k: `  ${t('netExpense')}`, v: <span className="flex items-center justify-end">{fmtCHF(b.nettoaufwand)}{trendNetto}</span> });
   rows.push(...auxBudgetRows(b.nettoaufwand, t, totalNetto, population));
   if (b._aggregiertAus)
     rows.push({

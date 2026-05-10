@@ -13,36 +13,46 @@ import { promises as fs } from 'node:fs';
 import { resolve } from 'node:path';
 import { ROOT, ORG_CHART_PATH, readJSON, writeJSON, log } from './_lib.mjs';
 
-const JAHR        = Number(process.env.BUDGET_JAHR) || (new Date().getFullYear() - 1);
+const RECENT_JAHR = Number(process.env.BUDGET_JAHR) || (new Date().getFullYear() - 1);
 const BETRAGS_TYP = process.env.BUDGET_BETRAGSTYP    || 'RECHNUNG';
 
 async function loadAllRows() {
   const dir = resolve(ROOT, 'data/raw');
   const files = await fs.readdir(dir);
+  
   const rel = files.filter(f => f.startsWith(`rpktool-budget-`) &&
-                                 f.endsWith(`-${JAHR}-${BETRAGS_TYP}.json`));
+                                 f.endsWith(`-${BETRAGS_TYP}.json`));
   if (!rel.length) {
-    throw new Error(`Keine Budget-Caches in data/raw/ für jahr=${JAHR}, ` +
-                    `typ=${BETRAGS_TYP} – zuerst 'node scripts/fetch-budget.mjs' laufen lassen.`);
+    throw new Error(`Keine Budget-Caches in data/raw/ für typ=${BETRAGS_TYP}`);
   }
   const all = [];
   for (const f of rel) {
+    const match = f.match(/rpktool-budget-.*?-(20\d\d)-/);
+    if (!match) continue;
+    const jahr = Number(match[1]);
     const j = await readJSON(`data/raw/${f}`);
-    for (const r of j.value) all.push(r);
+    for (const r of j.value) {
+      all.push({ ...r, _jahr: jahr });
+    }
   }
   return all;
 }
 
 function aggregateByInstitution(rows) {
-  // institution-key (string, z. B. "1505") → { aufwand, ertrag }
+  // institution-key -> Map(jahr -> { aufwand, ertrag })
   const agg = new Map();
   for (const r of rows) {
     const inst = r.institution;
+    const jahr = r._jahr;
     const sk   = String(r.sachkonto);
     const val  = Number(r.betrag);
     if (!Number.isFinite(val)) continue;
-    if (!agg.has(inst)) agg.set(inst, { aufwand: 0, ertrag: 0 });
-    const bucket = agg.get(inst);
+    
+    if (!agg.has(inst)) agg.set(inst, new Map());
+    const instAgg = agg.get(inst);
+    if (!instAgg.has(jahr)) instAgg.set(jahr, { aufwand: 0, ertrag: 0 });
+    
+    const bucket = instAgg.get(jahr);
     if (sk.startsWith('3'))      bucket.aufwand += val;
     else if (sk.startsWith('4')) bucket.ertrag  += val;
   }
@@ -57,51 +67,77 @@ async function main() {
   const agg = aggregateByInstitution(rows);
   log(`aggregated to ${agg.size} institutions`);
 
-  const meta = { jahr: JAHR, typ: BETRAGS_TYP };
-  let written = 0;
-
   const apply = (item) => {
     const key = item.odz?.key;
     if (!key) return;
-    const v = agg.get(key);
-    if (!v) return;
-    item.budget = {
-      ...meta,
-      aufwand: Math.round(v.aufwand),
-      ertrag:  Math.round(v.ertrag),
-      nettoaufwand: Math.round(v.aufwand - v.ertrag),
-    };
-    written++;
+    const instAgg = agg.get(key);
+    if (!instAgg) return;
+    
+    const history = [];
+    for (const [jahr, v] of instAgg.entries()) {
+      history.push({
+        jahr,
+        typ: BETRAGS_TYP,
+        aufwand: Math.round(v.aufwand),
+        ertrag:  Math.round(v.ertrag),
+        nettoaufwand: Math.round(v.aufwand - v.ertrag),
+      });
+    }
+    history.sort((a, b) => a.jahr - b.jahr);
+    
+    if (history.length > 0) {
+      item.budgetHistory = history;
+      // Get the most recent one for 'budget'
+      item.budget = history[history.length - 1];
+    }
   };
 
   data.departments.forEach(apply);
   data.units.forEach(apply);
 
-  // Departement-Aggregat aus Units, falls API kein direktes Departement-Total liefert.
-  // Wir summieren über alle Units, deren odz.departementKurzname zum Departement passt.
-  // Bestehende Aggregate werden überschrieben — sonst altert der Wert, wenn neue
-  // Units ins Modell aufgenommen werden.
+  // Departement-Aggregat
   for (const dep of data.departments) {
-    const matches = data.units.filter(u => u.odz?.departementKurzname === dep.odz?.kurzname && u.budget);
+    const matches = data.units.filter(u => u.odz?.departementKurzname === dep.odz?.kurzname && u.budgetHistory);
     if (!matches.length) {
       delete dep.budget;
+      delete dep.budgetHistory;
       continue;
     }
-    dep.budget = {
-      ...meta,
-      aufwand: matches.reduce((s, u) => s + u.budget.aufwand, 0),
-      ertrag:  matches.reduce((s, u) => s + u.budget.ertrag,  0),
-      nettoaufwand: matches.reduce((s, u) => s + u.budget.nettoaufwand, 0),
-      _aggregiertAus: matches.length,
-    };
-    written++;
+    
+    const depHistoryMap = new Map();
+    for (const u of matches) {
+      for (const h of u.budgetHistory) {
+        if (!depHistoryMap.has(h.jahr)) {
+          depHistoryMap.set(h.jahr, { aufwand: 0, ertrag: 0, nettoaufwand: 0, _aggregiertAus: 0 });
+        }
+        const b = depHistoryMap.get(h.jahr);
+        b.aufwand += h.aufwand;
+        b.ertrag += h.ertrag;
+        b.nettoaufwand += h.nettoaufwand;
+        b._aggregiertAus++;
+      }
+    }
+    
+    const depHistory = Array.from(depHistoryMap.entries()).map(([jahr, b]) => ({
+      jahr,
+      typ: BETRAGS_TYP,
+      aufwand: b.aufwand,
+      ertrag: b.ertrag,
+      nettoaufwand: b.nettoaufwand,
+      _aggregiertAus: b._aggregiertAus,
+    })).sort((a, b) => a.jahr - b.jahr);
+    
+    dep.budgetHistory = depHistory;
+    if (depHistory.length > 0) {
+      dep.budget = depHistory[depHistory.length - 1];
+    }
   }
 
   data._meta = data._meta || {};
-  data._meta.budgetStand = `${JAHR} (${BETRAGS_TYP})`;
+  data._meta.budgetStand = `${RECENT_JAHR} (${BETRAGS_TYP})`;
 
   await writeJSON(ORG_CHART_PATH, data);
-  log(`enriched budget on ${written} items → ${ORG_CHART_PATH}`);
+  log(`enriched budget history → ${ORG_CHART_PATH}`);
 }
 
 main().catch(err => { console.error(err); process.exit(1); });

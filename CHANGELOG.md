@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Historische Zeitreihen (Sparklines):** Die ETL-Pipeline lädt und aggregiert nun automatisch historische Budget-Eckdaten ab 2018. Im interaktiven Detail-Panel (Seitenleiste) werden die Entwicklungen von Aufwand, Ertrag und Nettoaufwand als visuelle Trendlinien (Sparklines) gerendert. So lassen sich politische Trends und das prozentuale Wachstum einzelner Departemente über die letzten Jahre sofort visuell erfassen.
 - **Offene REST-API (Open Data):** Die vorverarbeiteten, aggregierten Daten (Org-Struktur, Budgets, FTEs) sind nun für externe Entwickler als offene JSON-Schnittstelle unter `/api/v1/org` abrufbar. Zudem sind die Prozesse unter `/api/v1/prozesse` verfügbar. Beide Endpunkte erlauben CORS für den Direktabruf im Browser.
 - **Screenreader Canvas-Fallback:** Eine visuell versteckte, native HTML-Datentabelle (`sr-only`) spiegelt nun den interaktiven Canvas-Graphen. Screenreader können so die Baumstruktur, Budgets und Stellen der aktuell sichtbaren Organisationseinheiten nativ als Tabelle auslesen.
 - **Geführte Tour für Erstnutzer:** Beim ersten Besuch oder durch Klick auf das `?` im Header startet nun eine interaktive Guided Tour, welche die UI-Elemente erklärt.

@@ -48,6 +48,7 @@ export interface Department {
   name: string;
   vorsteher: string;
   budget?: Budget;
+  budgetHistory?: Budget[];
   fte?: Fte;
   odz?: Odz;
 }
@@ -58,6 +59,7 @@ export interface Unit {
   name: string;
   kind: UnitKind;
   budget?: Budget;
+  budgetHistory?: Budget[];
   fte?: Fte;
   odz?: Odz;
   konflikt?: Konflikt;
@@ -68,6 +70,7 @@ export interface Beteiligung {
   name: string;
   verbunden: DepartmentId;
   budget?: Budget;
+  budgetHistory?: Budget[];
   fte?: Fte;
   odz?: Odz;
 }
