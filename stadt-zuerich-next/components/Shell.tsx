@@ -6,7 +6,7 @@ import type { Lebenslage } from '@/types/stadt';
 import type { DataStandInfo } from '@/lib/data-meta';
 import Header from './Header';
 import Search from './Search';
-import Onboarding from './Onboarding';
+import GuidedTour from './GuidedTour';
 
 export default function Shell({
   lebenslagen, dataStand, children,
@@ -24,7 +24,7 @@ export default function Shell({
           automatisch (localStorage-Marker) und reagiert auf das Re-Open-Event
           aus dem Header-«?»-Button. Eigene Komponente am Ende, damit der
           Backdrop garantiert über allen anderen z-Indizes liegt. */}
-      <Onboarding />
+      <GuidedTour />
     </>
   );
 }

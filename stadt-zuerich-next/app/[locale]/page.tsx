@@ -38,9 +38,8 @@ export default async function MaschineriePage({
   return (
     <>
       <div className="hidden sm:block">
-        {/* Suspense ist Pflicht, weil GraphView/DetailPanel useSearchParams() nutzen */}
         <Suspense fallback={null}>
-          <GraphView data={data} />
+          <GraphView data={data} locale={locale as Locale} />
           <DetailPanel data={data} relatedProzesse={relatedProzesse} />
         </Suspense>
         <Legend locale={locale as Locale} />

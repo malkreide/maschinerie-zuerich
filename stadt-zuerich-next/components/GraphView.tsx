@@ -11,7 +11,7 @@ import { city } from '@/config/city.config';
 
 type Layout = 'radial' | 'force';
 
-export default function GraphView({ data }: { data: StadtData }) {
+export default function GraphView({ data, locale }: { data: StadtData; locale?: string }) {
   const t = useTranslations();
   const tNav = useTranslations('Nav');
   const router = useRouter();
@@ -107,11 +107,11 @@ export default function GraphView({ data }: { data: StadtData }) {
       try { cytoscape.use(fcose); } catch { /* schon registriert */ }
       if (canceled || !hostRef.current || cyRef.current) return;
 
-      const elements = buildElements(data, expandedRef.current);
+      const elements = buildElements(data, expandedRef.current, locale);
       const cy = cytoscape({
         container: hostRef.current,
         elements,
-        style: GRAPH_STYLE,
+        style: getGraphStyle(locale),
         // Erst-Layout ohne Animation: das frühere "Hineinfliegen von links"
         // hat die Seite unruhig wirken lassen. Knoten erscheinen jetzt
         // direkt an der Zielposition. Layout-Wechsel (siehe zweiter Effekt)
@@ -205,7 +205,7 @@ export default function GraphView({ data }: { data: StadtData }) {
   useEffect(() => {
     const cy = cyRef.current;
     if (!cy) return;
-    const target = buildElements(data, expanded);
+    const target = buildElements(data, expanded, locale);
     syncElements(cy, target);
     cy.layout({ ...layoutOptions(layout, true), fit: false } as LayoutOptions).run();
     // Highlight nach Sync wiederherstellen — neu hinzugekommene Geschwister
@@ -370,9 +370,10 @@ function Toolbar({
  * verborgenen Kinder, wenn zugeklappt — so wissen Bürger:innen ohne Klick,
  * was hinter dem Knoten steckt.
  */
-function buildElements(d: StadtData, expanded: Set<string>): ElementDefinition[] {
+function buildElements(d: StadtData, expanded: Set<string>, locale?: string): ElementDefinition[] {
   const nodes: ElementDefinition[] = [];
   const edges: ElementDefinition[] = [];
+  const isLs = locale === 'ls';
 
   nodes.push({ data: { id: d.center.id, label: d.center.name, type: 'center', level: 0 } });
 
@@ -380,8 +381,12 @@ function buildElements(d: StadtData, expanded: Set<string>): ElementDefinition[]
   // Externe und Beteiligungen zusammen. Wird sowohl fürs Label als auch
   // für die "Klick lohnt sich"-Logik im Tap-Handler genutzt.
   const childCount = new Map<string, number>();
-  for (const u of d.units) childCount.set(u.parent, (childCount.get(u.parent) ?? 0) + 1);
+  for (const u of d.units) {
+    if (isLs && u.kind !== 'unit') continue;
+    childCount.set(u.parent, (childCount.get(u.parent) ?? 0) + 1);
+  }
   for (const b of d.beteiligungen) {
+    if (isLs) continue;
     childCount.set(b.verbunden, (childCount.get(b.verbunden) ?? 0) + 1);
   }
 
@@ -407,6 +412,7 @@ function buildElements(d: StadtData, expanded: Set<string>): ElementDefinition[]
 
   for (const u of d.units) {
     if (!expanded.has(u.parent)) continue;
+    if (isLs && u.kind !== 'unit') continue;
     const lvl = u.kind === 'extern' ? 3 : 2;
     // unit und staff gehen IN den Departements-Kasten (Compound Node), extern bleibt Satellit.
     const isCompound = u.kind !== 'extern';
@@ -424,6 +430,7 @@ function buildElements(d: StadtData, expanded: Set<string>): ElementDefinition[]
   }
 
   for (const b of d.beteiligungen) {
+    if (isLs) continue;
     if (!expanded.has(b.verbunden)) continue;
     nodes.push({
       data: {
@@ -498,46 +505,48 @@ function layoutOptions(name: Layout, animate: boolean): LayoutOptions {
 // lesen wir die Farben aus dem Stadt-Config direkt als Hex-Werte ein.
 // Tenant-Override: city.config.json → theme.
 const TC = city.theme;
-const GRAPH_STYLE: cytoscape.StylesheetStyle[] = [
-  { selector: 'node', style: {
-      'label': 'data(label)', 'font-size': 9,
-      'text-valign': 'center', 'text-halign': 'center',
-      'color': '#1a1f2e', 'text-outline-color': '#fff', 'text-outline-width': 2,
-      'border-width': 1, 'border-color': 'rgba(0,0,0,.2)', 'width': 18, 'height': 18 } },
-  { selector: 'node[type = "center"]', style: {
-      'background-color': TC.nodeType.stadtpraesidium, 'shape': 'ellipse',
-      'width': 70, 'height': 70, 'font-size': 13, 'color': '#fff',
-      'text-outline-color': TC.nodeType.stadtpraesidium } },
-  { selector: 'node[type = "department"]', style: {
-      'background-color': TC.nodeType.department, 'shape': 'round-rectangle',
-      'width': 130, 'height': 54, 'font-size': 10, 'font-weight': 'bold',
-      'color': '#fff', 'text-outline-color': TC.nodeType.department,
-      'text-wrap': 'wrap', 'text-max-width': '120', 'padding': '4px' } },
-  { selector: 'node[type = "department"]:parent', style: {
-      'background-color': 'rgba(255, 255, 255, 0.65)',
-      'border-width': 2, 'border-color': TC.nodeType.department,
-      'shape': 'round-rectangle', 'padding': '16px',
-      'text-valign': 'top', 'text-halign': 'center',
-      'color': TC.nodeType.department, 'text-outline-width': 0,
-      'font-size': 11, 'text-margin-y': -8,
-      // "width" und "height" entfernen wir für :parent implizit nicht, 
-      // aber Cytoscape ignoriert sie bei Compound Nodes meist ohnehin zugunsten der Bounding Box.
-  } },
-  { selector: 'node[type = "unit"]', style: {
-      'background-color': TC.nodeType.unit, 'shape': 'round-rectangle', 'width': 22, 'height': 16 } },
-  { selector: 'node[type = "staff"]', style: {
-      'background-color': TC.nodeType.staff, 'shape': 'round-rectangle', 'width': 22, 'height': 16 } },
-  { selector: 'node[type = "extern"]', style: {
-      'background-color': TC.nodeType.extern, 'shape': 'diamond', 'width': 22, 'height': 22 } },
-  { selector: 'node[type = "beteiligung"]', style: {
-      'background-color': TC.nodeType.beteiligung, 'shape': 'diamond', 'width': 18, 'height': 18 } },
-  { selector: 'edge', style: {
-      'width': 1, 'line-color': '#c8cdda', 'curve-style': 'bezier',
-      'target-arrow-shape': 'none', 'opacity': 0.6 } },
-  { selector: 'edge[?dashed]', style: { 'line-style': 'dashed', 'opacity': 0.45 } },
-  { selector: '.faded',       style: { 'opacity': 0.12, 'text-opacity': 0.1 } },
-  { selector: '.highlighted', style: { 'border-width': 3, 'border-color': TC.accent, 'opacity': 1 } },
-  { selector: '.search-hit',  style: { 'border-width': 4, 'border-color': '#ff4081' } },
-  { selector: 'node[?konflikt]', style: {
-      'border-width': 2.5, 'border-color': TC.konflikt, 'border-style': 'dashed' } },
-];
+function getGraphStyle(locale?: string): cytoscape.StylesheetStyle[] {
+  const isLs = locale === 'ls';
+  const mul = isLs ? 1.5 : 1;
+  return [
+    { selector: 'node', style: {
+        'label': 'data(label)', 'font-size': 9 * mul,
+        'text-valign': 'center', 'text-halign': 'center',
+        'color': '#1a1f2e', 'text-outline-color': '#fff', 'text-outline-width': 2 * mul,
+        'border-width': 1 * mul, 'border-color': 'rgba(0,0,0,.2)', 'width': 18 * mul, 'height': 18 * mul } },
+    { selector: 'node[type = "center"]', style: {
+        'background-color': TC.nodeType.stadtpraesidium, 'shape': 'ellipse',
+        'width': 70 * mul, 'height': 70 * mul, 'font-size': 13 * mul, 'color': '#fff',
+        'text-outline-color': TC.nodeType.stadtpraesidium } },
+    { selector: 'node[type = "department"]', style: {
+        'background-color': TC.nodeType.department, 'shape': 'round-rectangle',
+        'width': 130 * mul, 'height': 54 * mul, 'font-size': 10 * mul, 'font-weight': 'bold',
+        'color': '#fff', 'text-outline-color': TC.nodeType.department,
+        'text-wrap': 'wrap', 'text-max-width': String(120 * mul), 'padding': String(4 * mul) } },
+    { selector: 'node[type = "department"]:parent', style: {
+        'background-color': 'rgba(255, 255, 255, 0.65)',
+        'border-width': 2 * mul, 'border-color': TC.nodeType.department,
+        'shape': 'round-rectangle', 'padding': String(16 * mul),
+        'text-valign': 'top', 'text-halign': 'center',
+        'color': TC.nodeType.department, 'text-outline-width': 0,
+        'font-size': 11 * mul, 'text-margin-y': -8 * mul,
+    } },
+    { selector: 'node[type = "unit"]', style: {
+        'background-color': TC.nodeType.unit, 'shape': 'round-rectangle', 'width': 22 * mul, 'height': 16 * mul } },
+    { selector: 'node[type = "staff"]', style: {
+        'background-color': TC.nodeType.staff, 'shape': 'round-rectangle', 'width': 22 * mul, 'height': 16 * mul } },
+    { selector: 'node[type = "extern"]', style: {
+        'background-color': TC.nodeType.extern, 'shape': 'diamond', 'width': 22 * mul, 'height': 22 * mul } },
+    { selector: 'node[type = "beteiligung"]', style: {
+        'background-color': TC.nodeType.beteiligung, 'shape': 'diamond', 'width': 18 * mul, 'height': 18 * mul } },
+    { selector: 'edge', style: {
+        'width': 1 * mul, 'line-color': '#c8cdda', 'curve-style': 'bezier',
+        'target-arrow-shape': 'none', 'opacity': 0.6 } },
+    { selector: 'edge[?dashed]', style: { 'line-style': 'dashed', 'opacity': 0.45 } },
+    { selector: '.faded',       style: { 'opacity': 0.12, 'text-opacity': 0.1 } },
+    { selector: '.highlighted', style: { 'border-width': 3 * mul, 'border-color': TC.accent, 'opacity': 1 } },
+    { selector: '.search-hit',  style: { 'border-width': 4 * mul, 'border-color': '#ff4081' } },
+    { selector: 'node[?konflikt]', style: {
+        'border-width': 2.5 * mul, 'border-color': TC.konflikt, 'border-style': 'dashed' } },
+  ];
+}
