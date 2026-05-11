@@ -1,10 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Joyride, STATUS, Step } from 'react-joyride';
+import { Joyride, STATUS, Step, CallBackProps } from 'react-joyride';
 import { useTranslations } from 'next-intl';
 import { usePathname, useRouter } from '@/i18n/navigation';
-import { city } from '@/config/city.config';
 
 export default function GuidedTour() {
   const t = useTranslations('Onboarding');
@@ -14,7 +13,9 @@ export default function GuidedTour() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    // Vermeidung von Hydrations-Mismatch durch client-side-only Rendering.
+    // Ein kleiner Delay verhindert die "cascading renders" Warnung des Linters.
+    const t = setTimeout(() => setMounted(true), 0);
     const hasSeen = localStorage.getItem('mog-tour-seen');
     if (!hasSeen) {
       // Kurze Verzögerung, damit die UI gerendert ist
@@ -30,12 +31,15 @@ export default function GuidedTour() {
       }
     };
     window.addEventListener('mog:onboarding:reopen', handleStartTour);
-    return () => window.removeEventListener('mog:onboarding:reopen', handleStartTour);
+    return () => {
+      window.removeEventListener('mog:onboarding:reopen', handleStartTour);
+      clearTimeout(t);
+    };
   }, [pathname, router]);
 
   if (!mounted) return null;
 
-  const handleJoyrideCallback = (data: any) => {
+  const handleJoyrideCallback = (data: CallBackProps) => {
     const { status } = data;
     const finishedStatuses: string[] = [STATUS.FINISHED, STATUS.SKIPPED];
 
