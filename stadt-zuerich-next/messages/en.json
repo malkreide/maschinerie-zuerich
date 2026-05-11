@@ -202,5 +202,8 @@
       "warten": "Wait",
       "ende": "End"
     }
+  },
+  "Export": {
+    "csvButton": "Export current view as CSV"
   }
 }

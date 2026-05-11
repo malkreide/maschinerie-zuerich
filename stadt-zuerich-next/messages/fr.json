@@ -202,5 +202,8 @@
       "warten": "Attente",
       "ende": "Fin"
     }
+  },
+  "Export": {
+    "csvButton": "Exporter la vue actuelle au format CSV"
   }
 }
