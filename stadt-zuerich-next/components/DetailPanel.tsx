@@ -25,7 +25,7 @@ export interface RelatedProzess {
   titel: string;
 }
 
-function Sparkline({ data, dataKey }: { data?: any[]; dataKey: string }) {
+function Sparkline({ data, dataKey }: { data?: Budget[]; dataKey: keyof Budget }) {
   if (!data || data.length < 2) return null;
   const w = 40, h = 16;
   const vals = data.map(d => d[dataKey] || 0);
