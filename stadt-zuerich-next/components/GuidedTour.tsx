@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Joyride, STATUS, Step, CallBackProps } from 'react-joyride';
+import { Joyride, STATUS, Step, EventData } from 'react-joyride';
 import { useTranslations } from 'next-intl';
 import { usePathname, useRouter } from '@/i18n/navigation';
 
@@ -39,7 +39,7 @@ export default function GuidedTour() {
 
   if (!mounted) return null;
 
-  const handleJoyrideCallback = (data: CallBackProps) => {
+  const handleJoyrideCallback = (data: EventData) => {
     const { status } = data;
     const finishedStatuses: string[] = [STATUS.FINISHED, STATUS.SKIPPED];
 
