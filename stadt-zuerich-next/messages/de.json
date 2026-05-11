@@ -210,5 +210,8 @@
     "colParent": "Übergeordnet",
     "colBudget": "Aufwand (CHF)",
     "colFte": "Stellen (FTE)"
+  },
+  "Export": {
+    "csvButton": "Aktuelle Ansicht als CSV exportieren"
   }
 }

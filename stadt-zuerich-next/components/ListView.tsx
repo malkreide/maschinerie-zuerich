@@ -12,12 +12,14 @@ import {
   budgetSharePercent,
 } from '@/lib/budget-context';
 import { city } from '@/config/city.config';
+import ListExportButton from './ListExportButton';
 
 type TFn = ReturnType<typeof getT>;
 
 export default function ListView({ data, locale }: { data: StadtData; locale: Locale }) {
   const t = getT(locale, 'List');
   const tDetail = getT(locale, 'Detail');
+  const tExport = getT(locale, 'Export');
   // Bezugswerte für Pro-Kopf- und Anteils-Zeilen. Auf Server-Seite einmalig
   // berechnet — die ganze Liste ist statisch und wird pro Render erneut
   // erzeugt, daher reicht ein lokaler const. Brutto und Netto getrennt,
@@ -35,7 +37,13 @@ export default function ListView({ data, locale }: { data: StadtData; locale: Lo
       className="liste absolute top-14 inset-x-0 bottom-0 px-6 pt-4 pb-10 overflow-y-auto bg-[var(--color-bg)]"
     >
       <h2 className="text-lg font-semibold m-0 mb-1">{t('title')}</h2>
-      <p className="text-[13px] text-[var(--color-mute)] mb-4 max-w-[70ch]">{t('intro')}</p>
+      <p className="text-[13px] text-[var(--color-mute)] mb-1 max-w-[70ch]">{t('intro')}</p>
+      
+      <ListExportButton 
+        data={data} 
+        locale={locale} 
+        label={tExport('csvButton')} 
+      />
 
       {data.departments.map((dep) => (
         <DepDetail

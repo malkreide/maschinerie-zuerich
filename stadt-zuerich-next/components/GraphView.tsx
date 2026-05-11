@@ -325,6 +325,11 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
       </div>
       
       <Toolbar
+        onExportCSV={() => {
+          import('@/lib/export').then(({ downloadNodesAsCSV }) => {
+            downloadNodesAsCSV(tableNodes);
+          });
+        }}
         layout={layout}
         onLayoutChange={setLayout}
         onCenter={() => {
@@ -353,6 +358,7 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
         }}
         labelExpandAll={tNav('expandAll')}
         labelCollapseAll={tNav('collapseAll')}
+        labelExportCSV={t('Export.csvButton')}
       />
       <div className="fixed bottom-3 left-1/2 -translate-x-1/2 text-[11px] text-[var(--color-mute)] pointer-events-none z-[8] bg-[var(--color-panel)]/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow border border-[var(--color-line)] whitespace-nowrap max-w-[90vw] overflow-hidden text-ellipsis">
         {t('Hint')}
@@ -363,7 +369,7 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
 
 function Toolbar({
   layout, onLayoutChange, onCenter, onFit,
-  allExpanded, onExpandAll, onCollapseAll, labelExpandAll, labelCollapseAll,
+  allExpanded, onExpandAll, onCollapseAll, labelExpandAll, labelCollapseAll, onExportCSV, labelExportCSV
 }: {
   layout: Layout;
   onLayoutChange: (l: Layout) => void;
@@ -374,6 +380,8 @@ function Toolbar({
   onCollapseAll: () => void;
   labelExpandAll: string;
   labelCollapseAll: string;
+  labelExportCSV: string;
+  onExportCSV: () => void;
 }) {
   const btn = (active: boolean) =>
     'px-2.5 py-1.5 text-xs rounded border ' +
@@ -407,6 +415,11 @@ function Toolbar({
           title={allExpanded ? labelCollapseAll : labelExpandAll}
         >
           {allExpanded ? labelCollapseAll : labelExpandAll}
+        </button>
+      </div>
+      <div role="group" aria-label="Export" className="flex gap-1.5 bg-[var(--color-panel)] p-1.5 rounded-lg shadow mt-2">
+        <button className={btn(false)} onClick={onExportCSV} aria-label={labelExportCSV}>
+          {labelExportCSV}
         </button>
       </div>
     </div>
