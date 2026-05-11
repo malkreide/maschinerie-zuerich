@@ -25,10 +25,12 @@ export interface RelatedProzess {
   titel: string;
 }
 
-function Sparkline({ data, dataKey }: { data?: Budget[]; dataKey: keyof Budget }) {
+type BudgetNumericalKeys = 'aufwand' | 'ertrag' | 'nettoaufwand';
+
+function Sparkline({ data, dataKey }: { data?: Budget[]; dataKey: BudgetNumericalKeys }) {
   if (!data || data.length < 2) return null;
   const w = 40, h = 16;
-  const vals = data.map(d => d[dataKey] || 0);
+  const vals = data.map(d => (d[dataKey] as number) || 0);
   const max = Math.max(...vals);
   const min = Math.min(...vals);
   const range = max - min || 1;
@@ -45,7 +47,7 @@ function Sparkline({ data, dataKey }: { data?: Budget[]; dataKey: keyof Budget }
       <polyline points={pts} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
       {/* Title for hover to show the start and end year growth */}
       <title>
-        Trend {data[0].jahr} ({fmtCHF(data[0][dataKey])}) bis {data[data.length-1].jahr} ({fmtCHF(data[data.length-1][dataKey])})
+        Trend {data[0].jahr} ({fmtCHF(data[0][dataKey] as number)}) bis {data[data.length-1].jahr} ({fmtCHF(data[data.length-1][dataKey] as number)})
       </title>
     </svg>
   );
