@@ -202,5 +202,8 @@
       "warten": "Warten",
       "ende": "Ende"
     }
+  },
+  "Export": {
+    "csvButton": "Alles als CSV-Liste herunter-laden"
   }
 }
