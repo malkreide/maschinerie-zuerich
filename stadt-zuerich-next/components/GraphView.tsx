@@ -268,6 +268,7 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
         onCenter={() => {
           const cy = cyRef.current;
           if (!cy) return;
+          setExpanded(new Set());
           suppressFocusEffectRef.current = true;
           focusIdRef.current = null;
           cy.elements().removeClass('faded').removeClass('highlighted').removeClass('search-hit');
