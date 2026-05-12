@@ -4,10 +4,17 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 import { usePathname, useRouter } from '@/i18n/navigation';
-import type cytoscape from 'cytoscape';
 import type { Core, ElementDefinition, LayoutOptions, NodeSingular } from 'cytoscape';
-import type { StadtData } from '@/types/stadt';
+import cytoscape from 'cytoscape';
+import fcose from 'cytoscape-fcose';
+import type { StadtData, Unit } from '@/types/stadt';
 import { city } from '@/config/city.config';
+
+try {
+  cytoscape.use(fcose);
+} catch (e) {
+  // Already registered
+}
 
 type Layout = 'radial' | 'force';
 
@@ -23,12 +30,6 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
   const cyRef = useRef<Core | null>(null);
   const [layout, setLayout] = useState<Layout>('radial');
 
-  // Progressive Disclosure: beim Start nur Stadtrat + Departemente sichtbar.
-  // `expanded` enthält die IDs der Departemente, deren Unter-Einheiten
-  // (units, staff, externe, beteiligungen) im Graphen gerendert werden.
-  // Initial leer — User klickt sich gezielt rein. Bei Deep-Link via
-  // ?focus=<unit-id> aber direkt das Eltern-Departement aufklappen, sonst
-  // ist das Ziel beim Landen unsichtbar.
   const initialExpanded = useMemo<Set<string>>(() => {
     const set = new Set<string>();
     if (focusId) {
@@ -39,50 +40,33 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
     }
     return set;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // initial-only: Folge-Fokus-Wechsel werden im focusId-Effekt behandelt
+  }, []);
   const [expanded, setExpanded] = useState<Set<string>>(initialExpanded);
 
-  // Mitgeführter, aktueller Fokus — die Event-Handler werden nur einmal
-  // registriert (im `[data]`-Effekt) und würden sonst den Wert aus der
-  // Mount-Render-Closure verwenden. Ein Ref hält den Stand synchron.
   const focusIdRef = useRef<string | null>(focusId);
-  // Signalisiert dem focusId-Effekt, dass die Änderung aus einem Klick im
-  // Graphen selbst stammt — Highlights wurden dann schon im Tap-Handler
-  // gesetzt und das Viewport muss nicht neu eingezoomt werden.
   const suppressFocusEffectRef = useRef(false);
-  // Live-Ref auf `expanded`, damit der einmalig registrierte Tap-Handler
-  // die aktuelle Toggle-Logik kennt, ohne neu registriert zu werden.
-  // Update läuft in einem useEffect (nicht synchron im Render-Body), damit
-  // die `react-hooks/refs`-Regel zufrieden ist und Concurrent-Mode-sauber.
   const expandedRef = useRef<Set<string>>(initialExpanded);
   useEffect(() => { expandedRef.current = expanded; }, [expanded]);
 
-  // SR-Fallback Tabelle: Berechnet die aktuell sichtbaren Knoten für Screenreader
   const tableNodes = useMemo(() => {
     const isLs = locale === 'ls';
     const list: Array<{ id: string; name: string; type: string; parent: string | null; budget?: typeof data.departments[0]['budget']; fte?: typeof data.departments[0]['fte'] }> = [];
-    
     list.push({ id: data.center.id, name: data.center.name, type: 'center', parent: null });
-    
     const depMap = new Map(data.departments.map(d => [d.id, d.name]));
-    
     for (const d of data.departments) {
       list.push({ id: d.id, name: d.name, type: 'department', parent: data.center.name, budget: d.budget, fte: d.fte });
     }
-
     for (const u of data.units) {
       if (!expanded.has(u.parent)) continue;
       if (isLs && u.kind !== 'unit') continue;
       list.push({ id: u.id, name: u.name, type: u.kind, parent: depMap.get(u.parent) ?? u.parent, budget: u.budget, fte: u.fte });
     }
-
     if (!isLs) {
       for (const b of data.beteiligungen) {
         if (!expanded.has(b.verbunden)) continue;
         list.push({ id: b.id, name: b.name, type: 'beteiligung', parent: depMap.get(b.verbunden) ?? b.verbunden, budget: b.budget, fte: b.fte });
       }
     }
-    
     return list;
   }, [data, expanded, locale]);
 
@@ -90,13 +74,9 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
     const params = new URLSearchParams(searchParams.toString());
     if (id) params.set('focus', id); else params.delete('focus');
     const qs = params.toString();
-    // i18n-Router erhält locale-Prefix automatisch; Query-String anhängen.
     router.replace((qs ? `${pathname}?${qs}` : pathname) as Parameters<typeof router.replace>[0], { scroll: false });
   }
 
-  // Hilfsfunktion: Fokus-Markierung (gefadet + Nachbarschaft hervorgehoben)
-  // auf einen Knoten anwenden. Wird sowohl vom Tap-Handler als auch vom
-  // Mouseout-Handler (zum Wiederherstellen nach Hover) genutzt.
   function applyFocusHighlight(cy: Core, id: string) {
     const target = cy.getElementById(id);
     if (!target || target.length === 0) return;
@@ -106,21 +86,20 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
     target.addClass('search-hit');
   }
 
-  // Initialisierung
   useEffect(() => {
     let canceled = false;
     let observer: ResizeObserver | null = null;
 
-    const initCy = async () => {
-      if (canceled || !hostRef.current) return;
+    const initCy = () => {
+      if (canceled || !hostRef.current || cyRef.current) return;
       
-      // Wenn der Container (z.B. wegen Mobile-Ansicht "hidden sm:block")
-      // unsichtbar ist, warten wir mit der Initialisierung, bis er
-      // Dimensionen hat. Cytoscape stürzt sonst ab oder rechnet falsch.
-      if (hostRef.current.clientWidth === 0) {
+      const width = hostRef.current.clientWidth;
+      const height = hostRef.current.clientHeight;
+
+      if (width === 0 || height === 0) {
         if (!observer) {
           observer = new ResizeObserver(() => {
-            if (hostRef.current && hostRef.current.clientWidth > 0) {
+            if (hostRef.current && hostRef.current.clientWidth > 0 && hostRef.current.clientHeight > 0) {
               observer?.disconnect();
               observer = null;
               initCy();
@@ -131,31 +110,18 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
         return;
       }
 
-      const cytoscape = (await import('cytoscape')).default;
-      const fcose = (await import('cytoscape-fcose')).default;
-      try { cytoscape.use(fcose); } catch { /* schon registriert */ }
-      if (canceled || !hostRef.current || cyRef.current) return;
-
       const elements = buildElements(data, expandedRef.current, locale);
       const cy = cytoscape({
         container: hostRef.current,
         elements,
         style: getGraphStyle(locale),
-        // Erst-Layout ohne Animation: das frühere "Hineinfliegen von links"
-        // hat die Seite unruhig wirken lassen. Knoten erscheinen jetzt
-        // direkt an der Zielposition. Layout-Wechsel (siehe zweiter Effekt)
-        // animieren weiterhin, weil dort der Positionssprung nützlich ist.
         layout: layoutOptions('radial', false),
-        // Cytoscape default (1) zoomt mit vernünftiger Geschwindigkeit.
-        // Ältere Werte von 0.2 zwangen Nutzer:innen zu langem Scrollen,
-        // um überhaupt reinzukommen.
         wheelSensitivity: 1,
         minZoom: 0.2,
         maxZoom: 4,
       });
+
       cy.on('mouseover', 'node', (e) => {
-        // Temporärer Hover: überschreibt einen vorhandenen Klick-Fokus,
-        // wird beim Mouseout wiederhergestellt.
         const nb = e.target.closedNeighborhood();
         cy.elements().removeClass('highlighted').removeClass('search-hit');
         cy.elements().addClass('faded');
@@ -163,8 +129,6 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
       });
       cy.on('mouseout', 'node', () => {
         cy.elements().removeClass('faded').removeClass('highlighted').removeClass('search-hit');
-        // Persistente Auswahl nach Klick nicht verlieren, wenn die Maus
-        // den Knoten verlässt — stattdessen den Fokus-Highlight neu setzen.
         const fid = focusIdRef.current;
         if (fid) applyFocusHighlight(cy, fid);
       });
@@ -172,9 +136,6 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
         const id = e.target.id();
         const type = e.target.data('type');
         const childCount = (e.target.data('childCount') as number | undefined) ?? 0;
-        // Klick auf ein Departement mit Kindern: Drill-down ein/aus.
-        // Tap auf Endknoten (units, beteiligungen, center) toggelt nichts —
-        // dort öffnet nur das Detail-Panel.
         if (type === 'department' && childCount > 0) {
           const cur = expandedRef.current;
           const next = new Set(cur);
@@ -182,8 +143,6 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
           else next.add(id);
           setExpanded(next);
         }
-        // Highlight sofort anwenden und den nachfolgenden focusId-Effekt
-        // dazu bringen, das Viewport nicht neu zu zentrieren/zoomen.
         suppressFocusEffectRef.current = true;
         focusIdRef.current = id;
         applyFocusHighlight(cy, id);
@@ -198,14 +157,9 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
         }
       });
       cyRef.current = cy;
-      // Startansicht: etwas mehr Padding unten, damit die äusseren Knoten
-      // die Fusszeilen-Hinweise (Hover=... und Legend) nicht überdecken,
-      // und dann deutlich näher reinzoomen — die Labels auf den Departements-
-      // Knoten sind sonst unlesbar klein.
       cy.ready(() => {
         cy.fit(undefined, 40);
         cy.zoom({ level: cy.zoom() * 1.45, renderedPosition: { x: cy.width() / 2, y: cy.height() / 2 } });
-        // Bei Deep-Link via ?focus=... den Highlight direkt anwenden.
         const initialFocus = focusIdRef.current;
         if (initialFocus) applyFocusHighlight(cy, initialFocus);
       });
@@ -222,24 +176,16 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
-  // Layout-Wechsel
   useEffect(() => {
     cyRef.current?.layout(layoutOptions(layout, true)).run();
   }, [layout]);
 
-  // Drill-down-Sync: beim Auf-/Zuklappen Knoten und Kanten dem Soll-Zustand
-  // angleichen, danach Layout neu rechnen, ohne die Kamera zurückzusetzen
-  // (`fit: false`). Das frische Re-Position der Knoten ist nötig, damit neu
-  // hinzugefügte Units nicht alle bei (0,0) übereinander liegen.
   useEffect(() => {
     const cy = cyRef.current;
     if (!cy) return;
     const target = buildElements(data, expanded, locale);
     syncElements(cy, target);
     cy.layout({ ...layoutOptions(layout, true), fit: false } as LayoutOptions).run();
-    // Highlight nach Sync wiederherstellen — neu hinzugekommene Geschwister
-    // brauchen eventuell die `faded`-Klasse, der fokussierte Knoten wieder
-    // den Highlight-Rahmen.
     const fid = focusIdRef.current;
     if (fid) {
       const t = cy.getElementById(fid);
@@ -248,10 +194,6 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [expanded]);
 
-  // Auf URL-Fokus reagieren (Search → Sprung zu Knoten via Deep-Link).
-  // Wird bei User-Klicks übersprungen, da der Tap-Handler dort schon alles
-  // inkl. Highlight erledigt hat — ein zusätzlicher center/zoom-Animate
-  // würde sich wie das ungeliebte "Hineinfliegen" anfühlen.
   useEffect(() => {
     focusIdRef.current = focusId;
     if (suppressFocusEffectRef.current) {
@@ -264,18 +206,10 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
       cy.elements().removeClass('faded').removeClass('highlighted').removeClass('search-hit');
       return;
     }
-    // Wenn das Ziel hinter einem zugeklappten Departement liegt: erst Eltern
-    // aufklappen, dann macht der `[expanded]`-Effekt den Highlight nach Sync.
     const u = data.units.find((x) => x.id === focusId);
     const b = data.beteiligungen.find((x) => x.id === focusId);
     const parentToOpen = u?.parent ?? b?.verbunden;
     if (parentToOpen && !expanded.has(parentToOpen)) {
-      // Bewusst setState aus dem Effekt heraus: wir synchronisieren mit der
-      // externen URL-Quelle (`?focus=…`). Wenn das Ziel im aktuell zu-
-      // geklappten Zweig liegt, müssen wir dieses Eltern-Departement öffnen,
-      // bevor das Highlight gesetzt werden kann. Der nachfolgende
-      // `[expanded]`-Effekt rendert das Element und erledigt den Highlight.
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setExpanded((prev) => {
         const next = new Set(prev);
         next.add(parentToOpen);
@@ -293,11 +227,10 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
     <>
       <div
         ref={hostRef}
-        className="absolute top-14 inset-x-0 bottom-0 cy-host focus:outline-none"
-        aria-hidden="true" // Canvas ist für SR nicht lesbar, wir haben die Tabelle unten
+        className="absolute inset-0 cy-host focus:outline-none"
+        aria-hidden="true"
       />
       
-      {/* Screenreader Fallback Tabelle */}
       <div className="sr-only">
         <table>
           <caption>{t('GraphTable.caption')}</caption>
@@ -316,8 +249,8 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
                 <td>{n.name}</td>
                 <td>{t.has(`Type.${n.type}`) ? t(`Type.${n.type}`) : n.type}</td>
                 <td>{n.parent ?? '-'}</td>
-                <td>{n.budget?.aufwand != null ? n.budget.aufwand.toLocaleString('de-CH') : ''}</td>
-                <td>{n.fte?.schaetzung != null ? n.fte.schaetzung.toLocaleString('de-CH') : ''}</td>
+                <td suppressHydrationWarning>{n.budget?.aufwand != null ? n.budget.aufwand.toLocaleString('de-CH') : ''}</td>
+                <td suppressHydrationWarning>{n.fte?.schaetzung != null ? n.fte.schaetzung.toLocaleString('de-CH') : ''}</td>
               </tr>
             ))}
           </tbody>
@@ -338,17 +271,12 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
           cy.animate({ center: { eles: cy.getElementById('stadtrat') }, zoom: 1 }, { duration: 500 });
         }}
         onFit={() => cyRef.current?.fit(undefined, 40)}
-        // Drill-down-Steuerung — alle Departemente auf einmal öffnen oder
-        // zuklappen. `allExpanded` bestimmt das Label auf dem Toggle-Button.
         allExpanded={
           data.departments.length > 0 && expanded.size === data.departments.length
         }
         onExpandAll={() => setExpanded(new Set(data.departments.map((d) => d.id)))}
         onCollapseAll={() => {
           setExpanded(new Set());
-          // Wenn der Fokus auf einer Unter-Einheit lag, würde diese gleich
-          // unsichtbar — sonst zeigt das Detail-Panel weiter eine Einheit,
-          // die im Graphen gar nicht mehr existiert.
           const fid = focusIdRef.current;
           if (fid) {
             const stillVisible =
@@ -360,16 +288,12 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
         labelCollapseAll={tNav('collapseAll')}
         labelExportCSV={t('Export.csvButton')}
       />
-      <div className="fixed bottom-3 left-1/2 -translate-x-1/2 text-[11px] text-[var(--color-mute)] pointer-events-none z-[8] bg-[var(--color-panel)]/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow border border-[var(--color-line)] whitespace-nowrap max-w-[90vw] overflow-hidden text-ellipsis">
-        {t('Hint')}
-      </div>
     </>
   );
 }
 
 function Toolbar({
-  layout, onLayoutChange, onCenter, onFit,
-  allExpanded, onExpandAll, onCollapseAll, labelExpandAll, labelCollapseAll, onExportCSV, labelExportCSV
+  layout, onLayoutChange, onCenter, onFit, allExpanded, onExpandAll, onCollapseAll, labelExpandAll, labelCollapseAll, labelExportCSV, onExportCSV
 }: {
   layout: Layout;
   onLayoutChange: (l: Layout) => void;
@@ -404,10 +328,6 @@ function Toolbar({
                 aria-label="Diagramm auf Stadtrat zentrieren">Zentrieren</button>
         <button className={btn(false)} onClick={onFit}
                 aria-label="Alle Knoten ins Sichtfeld einpassen">Alles zeigen</button>
-        {/* Drill-down-Toggle: ein Button, der zwischen Auf-/Zuklappen
-            wechselt — abhängig davon, ob bereits alle Departemente offen
-            sind. Hält die Toolbar schmal und fühlt sich wie ein "Master-
-            Schalter" an. */}
         <button
           className={btn(false)}
           onClick={allExpanded ? onCollapseAll : onExpandAll}
@@ -426,19 +346,6 @@ function Toolbar({
   );
 }
 
-/* -------- Helpers -------- */
-
-/**
- * Erzeugt die Elementliste für Cytoscape unter Berücksichtigung der
- * Drill-down-Maske: Center und Departemente sind immer sichtbar; units,
- * staff, externe und beteiligungen erscheinen nur, wenn ihr Eltern-
- * Departement in `expanded` enthalten ist.
- *
- * Departement-Labels werden mit einem Chevron versehen, der den
- * Aufklapp-Status visualisiert (▾ offen, ▸ zu) plus eine Zahl der
- * verborgenen Kinder, wenn zugeklappt — so wissen Bürger:innen ohne Klick,
- * was hinter dem Knoten steckt.
- */
 function buildElements(d: StadtData, expanded: Set<string>, locale?: string): ElementDefinition[] {
   const nodes: ElementDefinition[] = [];
   const edges: ElementDefinition[] = [];
@@ -446,9 +353,6 @@ function buildElements(d: StadtData, expanded: Set<string>, locale?: string): El
 
   nodes.push({ data: { id: d.center.id, label: d.center.name, type: 'center', level: 0 } });
 
-  // Vorberechnen, wie viele Kinder jedes Departement hat — Units, Staff,
-  // Externe und Beteiligungen zusammen. Wird sowohl fürs Label als auch
-  // für die "Klick lohnt sich"-Logik im Tap-Handler genutzt.
   const childCount = new Map<string, number>();
   for (const u of d.units) {
     if (isLs && u.kind !== 'unit') continue;
@@ -471,7 +375,6 @@ function buildElements(d: StadtData, expanded: Set<string>, locale?: string): El
         id: dep.id, label, fullName: dep.name, abbr: dep.id,
         vorsteher: dep.vorsteher, type: 'department', level: 1,
         budget: dep.budget, fte: dep.fte, odz: dep.odz,
-        // Markierung für Tap-Handler und ggf. Style-Selektoren.
         childCount: n,
         expanded: isOpen,
       },
@@ -483,7 +386,6 @@ function buildElements(d: StadtData, expanded: Set<string>, locale?: string): El
     if (!expanded.has(u.parent)) continue;
     if (isLs && u.kind !== 'unit') continue;
     const lvl = u.kind === 'extern' ? 3 : 2;
-    // unit und staff gehen IN den Departements-Kasten (Compound Node), extern bleibt Satellit.
     const isCompound = u.kind !== 'extern';
     nodes.push({
       data: {
@@ -492,7 +394,6 @@ function buildElements(d: StadtData, expanded: Set<string>, locale?: string): El
         budget: u.budget, fte: u.fte, odz: u.odz, konflikt: u.konflikt,
       },
     });
-    // Nur für Externe (Satelliten) ziehen wir noch eine explizite Kante.
     if (!isCompound) {
       edges.push({ data: { id: `e-${u.parent}-${u.id}`, source: u.parent, target: u.id } });
     }
@@ -515,25 +416,15 @@ function buildElements(d: StadtData, expanded: Set<string>, locale?: string): El
   return [...nodes, ...edges];
 }
 
-/**
- * Bringt den Cytoscape-Graphen in Übereinstimmung mit der Soll-Elementliste.
- * Statt `cy.json({elements})` zu verwenden (würde alle Positionen verlieren),
- * fahren wir einen In-Place-Diff: bestehende Knoten behalten ihre Position,
- * neu hinzukommende werden vom anschliessend laufenden Layout positioniert,
- * verschwundene werden entfernt. Mutable Felder (z. B. das Departement-Label
- * mit Chevron) werden auf vorhandenen Knoten aktualisiert.
- */
 function syncElements(cy: Core, target: ElementDefinition[]): void {
   const targetById = new Map<string, ElementDefinition>();
   for (const el of target) {
     if (el.data?.id) targetById.set(el.data.id, el);
   }
   cy.batch(() => {
-    // 1) Entfernen, was nicht mehr gewünscht ist.
     cy.elements().forEach((ele) => {
       if (!targetById.has(ele.id())) ele.remove();
     });
-    // 2) Hinzufügen, was fehlt; Daten existierender Knoten/Kanten updaten.
     const toAdd: ElementDefinition[] = [];
     for (const [id, def] of targetById) {
       const existing = cy.getElementById(id);
@@ -551,7 +442,6 @@ function syncElements(cy: Core, target: ElementDefinition[]): void {
 
 function layoutOptions(name: Layout, animate: boolean): LayoutOptions {
   if (name === 'force') {
-    // fcose-spezifische Optionen (nicht in den Cytoscape-Core-Typen)
     return {
       name: 'fcose', quality: 'default', animate, animationDuration: 800,
       nodeRepulsion: 6000, idealEdgeLength: 60, gravity: 0.15, nestingFactor: 0.6, randomize: false,
@@ -561,18 +451,12 @@ function layoutOptions(name: Layout, animate: boolean): LayoutOptions {
     name: 'concentric',
     concentric: (n: NodeSingular) => 10 - (n.data('level') as number),
     levelWidth: () => 1,
-    // Engere Ringe + dichtere Knoten: die vorherigen 28/1.25 ließen die
-    // Ringe so weit auseinander, dass bei Start fast nur leere Fläche
-    // zu sehen war.
     minNodeSpacing: 14,
     spacingFactor: 0.75,
     avoidOverlap: true, animate, animationDuration: 600,
   };
 }
 
-// Cytoscape kann CSS-Variablen nicht direkt lesen (Canvas-Renderer); daher
-// lesen wir die Farben aus dem Stadt-Config direkt als Hex-Werte ein.
-// Tenant-Override: city.config.json → theme.
 const TC = city.theme;
 function getGraphStyle(locale?: string): cytoscape.StylesheetStyle[] {
   const isLs = locale === 'ls';

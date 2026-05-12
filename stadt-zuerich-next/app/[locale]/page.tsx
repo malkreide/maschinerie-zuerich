@@ -37,7 +37,7 @@ export default async function MaschineriePage({
 
   return (
     <>
-      <div className="hidden sm:block">
+      <div className="hidden sm:block relative h-[calc(100vh-56px)] mt-14 overflow-hidden">
         <Suspense fallback={null}>
           <GraphView data={data} locale={locale as Locale} />
           <DetailPanel data={data} relatedProzesse={relatedProzesse} />
