@@ -268,6 +268,10 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
         onCenter={() => {
           const cy = cyRef.current;
           if (!cy) return;
+          suppressFocusEffectRef.current = true;
+          focusIdRef.current = null;
+          cy.elements().removeClass('faded').removeClass('highlighted').removeClass('search-hit');
+          setFocus(null);
           cy.animate({ center: { eles: cy.getElementById('stadtrat') }, zoom: 1 }, { duration: 500 });
         }}
         onFit={() => cyRef.current?.fit(undefined, 40)}
