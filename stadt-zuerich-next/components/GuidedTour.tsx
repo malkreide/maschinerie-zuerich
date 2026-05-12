@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Joyride, STATUS, Step, EventData } from 'react-joyride';
 import { useTranslations } from 'next-intl';
 import { usePathname, useRouter } from '@/i18n/navigation';
+import { city } from '@/config/city.config';
 
 export default function GuidedTour() {
   const t = useTranslations('Onboarding');
@@ -70,7 +71,7 @@ export default function GuidedTour() {
           <p className="text-sm m-0 leading-relaxed text-[var(--color-ink)]">{t('step2Body')}</p>
         </div>
       ),
-      placement: 'center',
+      placement: 'auto',
     },
     {
       target: 'header nav',
@@ -90,6 +91,13 @@ export default function GuidedTour() {
       onEvent={handleJoyrideCallback}
       run={run}
       steps={steps}
+      continuous
+      options={{
+        primaryColor: city.theme.accent,
+        zIndex: 10000,
+        showProgress: true,
+        buttons: ['back', 'close', 'primary', 'skip'],
+      }}
       locale={{
         back: t('back'),
         close: t('done'),
