@@ -233,7 +233,7 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
     const target = cy.getElementById(focusId);
     if (!target || target.length === 0) return;
     applyFocusHighlight(cy, focusId);
-    cy.animate({ center: { eles: target }, zoom: 1.6 }, { duration: 500 });
+    cy.animate({ center: { eles: target }, zoom: 1.1 }, { duration: 500 });
   }, [focusId, data, expanded]);
 
   return (
