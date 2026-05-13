@@ -456,8 +456,8 @@ function layoutOptions(name: Layout, animate: boolean): LayoutOptions {
     name: 'concentric',
     concentric: (n: NodeSingular) => 10 - (n.data('level') as number),
     levelWidth: () => 1,
-    minNodeSpacing: 14,
-    spacingFactor: 0.75,
+    minNodeSpacing: 40,
+    spacingFactor: 1.1,
     avoidOverlap: true, animate, animationDuration: 600,
   };
 }
@@ -498,7 +498,7 @@ function getGraphStyle(locale?: string): cytoscape.StylesheetStyle[] {
     { selector: 'node[type = "beteiligung"]', style: {
         'background-color': TC.nodeType.beteiligung, 'shape': 'diamond', 'width': 18 * mul, 'height': 18 * mul } },
     { selector: 'edge', style: {
-        'width': 1 * mul, 'line-color': '#c8cdda', 'curve-style': 'bezier',
+        'width': 1 * mul, 'line-color': '#94a3b8', 'curve-style': 'bezier',
         'target-arrow-shape': 'none', 'opacity': 0.6 } },
     { selector: 'edge[?dashed]', style: { 'line-style': 'dashed', 'opacity': 0.45 } },
     { selector: '.faded',       style: { 'opacity': 0.35, 'text-opacity': 0.25 } },
