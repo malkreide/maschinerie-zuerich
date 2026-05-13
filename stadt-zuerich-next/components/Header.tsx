@@ -47,8 +47,14 @@ export default function Header({ dataStand }: { dataStand: DataStandInfo }) {
     <header className="fixed inset-x-0 top-0 h-14 z-10 flex items-center px-2 sm:px-4
                        bg-[var(--color-accent)] text-white overflow-hidden">
       <div className="flex items-center shrink-0 min-w-0">
-        <Brand className="mr-2 sm:mr-2.5 shrink-0" />
-        <h1 className="text-sm sm:text-base font-semibold m-0 hidden xs:block sm:block truncate">{t('title')}</h1>
+        <Link
+          href="/"
+          onClick={() => window.dispatchEvent(new Event('mog:graph:reset'))}
+          className="flex items-center no-underline text-white hover:opacity-85 transition-opacity"
+        >
+          <Brand className="mr-2 sm:mr-2.5 shrink-0" />
+          <h1 className="text-sm sm:text-base font-semibold m-0 hidden xs:block sm:block truncate">{t('title')}</h1>
+        </Link>
         <span className="ml-3 text-xs opacity-85 hidden sm:inline">{t('subtitle')}</span>
         {dataStand.jahr && (
           <span

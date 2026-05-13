@@ -165,11 +165,24 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
       });
     };
     
+    const handleReset = () => {
+      const cy = cyRef.current;
+      if (!cy) return;
+      setExpanded(new Set());
+      suppressFocusEffectRef.current = true;
+      focusIdRef.current = null;
+      cy.elements().removeClass('faded').removeClass('highlighted').removeClass('search-hit');
+      setFocus(null);
+      cy.animate({ center: { eles: cy.getElementById('stadtrat') }, zoom: 1 }, { duration: 500 });
+    };
+    window.addEventListener('mog:graph:reset', handleReset);
+    
     initCy();
     
     return () => {
       canceled = true;
       observer?.disconnect();
+      window.removeEventListener('mog:graph:reset', handleReset);
       cyRef.current?.destroy();
       cyRef.current = null;
     };
