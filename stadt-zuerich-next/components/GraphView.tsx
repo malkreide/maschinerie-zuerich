@@ -501,7 +501,7 @@ function getGraphStyle(locale?: string): cytoscape.StylesheetStyle[] {
         'width': 1 * mul, 'line-color': '#c8cdda', 'curve-style': 'bezier',
         'target-arrow-shape': 'none', 'opacity': 0.6 } },
     { selector: 'edge[?dashed]', style: { 'line-style': 'dashed', 'opacity': 0.45 } },
-    { selector: '.faded',       style: { 'opacity': 0.12, 'text-opacity': 0.1 } },
+    { selector: '.faded',       style: { 'opacity': 0.35, 'text-opacity': 0.25 } },
     { selector: '.highlighted', style: { 'border-width': 3 * mul, 'border-color': TC.accent, 'opacity': 1 } },
     { selector: '.search-hit',  style: { 'border-width': 4 * mul, 'border-color': TC.accent } },
     { selector: 'node[?konflikt]', style: {
