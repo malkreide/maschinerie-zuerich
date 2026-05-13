@@ -371,7 +371,7 @@ function buildElements(d: StadtData, expanded: Set<string>, locale?: string): El
   for (const dep of d.departments) {
     const n = childCount.get(dep.id) ?? 0;
     const isOpen = expanded.has(dep.id);
-    const label = dep.name;
+    const label = n > 0 ? `${dep.name}\n(${n})` : dep.name;
     nodes.push({
       data: {
         id: dep.id, label, fullName: dep.name, abbr: dep.id,
