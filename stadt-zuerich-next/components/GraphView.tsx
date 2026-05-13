@@ -158,8 +158,8 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
       });
       cyRef.current = cy;
       cy.ready(() => {
-        cy.fit(undefined, 40);
-        cy.zoom({ level: cy.zoom() * 1.45, renderedPosition: { x: cy.width() / 2, y: cy.height() / 2 } });
+        cy.fit(undefined, 60);
+        cy.zoom({ level: cy.zoom() * 1.1, renderedPosition: { x: cy.width() / 2, y: cy.height() / 2 } });
         const initialFocus = focusIdRef.current;
         if (initialFocus) applyFocusHighlight(cy, initialFocus);
       });
