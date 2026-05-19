@@ -7,12 +7,12 @@ import { usePathname, useRouter } from '@/i18n/navigation';
 import type { Core, ElementDefinition, LayoutOptions, NodeSingular } from 'cytoscape';
 import cytoscape from 'cytoscape';
 import fcose from 'cytoscape-fcose';
-import type { StadtData, Unit } from '@/types/stadt';
+import type { StadtData } from '@/types/stadt';
 import { city } from '@/config/city.config';
 
 try {
   cytoscape.use(fcose);
-} catch (e) {
+} catch {
   // Already registered
 }
 
@@ -48,6 +48,21 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
   const expandedRef = useRef<Set<string>>(initialExpanded);
   useEffect(() => { expandedRef.current = expanded; }, [expanded]);
 
+  // Derive the visible set: a focused node's parent department is always shown,
+  // without committing it to `expanded` state from inside an effect.
+  const expandedWithFocus = useMemo<Set<string>>(() => {
+    if (!focusId) return expanded;
+    const u = data.units.find((x) => x.id === focusId);
+    const b = data.beteiligungen.find((x) => x.id === focusId);
+    const parent = u?.parent ?? b?.verbunden;
+    if (parent && !expanded.has(parent)) {
+      const next = new Set(expanded);
+      next.add(parent);
+      return next;
+    }
+    return expanded;
+  }, [expanded, focusId, data]);
+
   const tableNodes = useMemo(() => {
     const isLs = locale === 'ls';
     const list: Array<{ id: string; name: string; type: string; parent: string | null; budget?: typeof data.departments[0]['budget']; fte?: typeof data.departments[0]['fte'] }> = [];
@@ -57,18 +72,18 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
       list.push({ id: d.id, name: d.name, type: 'department', parent: data.center.name, budget: d.budget, fte: d.fte });
     }
     for (const u of data.units) {
-      if (!expanded.has(u.parent)) continue;
+      if (!expandedWithFocus.has(u.parent)) continue;
       if (isLs && u.kind !== 'unit') continue;
       list.push({ id: u.id, name: u.name, type: u.kind, parent: depMap.get(u.parent) ?? u.parent, budget: u.budget, fte: u.fte });
     }
     if (!isLs) {
       for (const b of data.beteiligungen) {
-        if (!expanded.has(b.verbunden)) continue;
+        if (!expandedWithFocus.has(b.verbunden)) continue;
         list.push({ id: b.id, name: b.name, type: 'beteiligung', parent: depMap.get(b.verbunden) ?? b.verbunden, budget: b.budget, fte: b.fte });
       }
     }
     return list;
-  }, [data, expanded, locale]);
+  }, [data, expandedWithFocus, locale]);
 
   function setFocus(id: string | null) {
     const params = new URLSearchParams(searchParams.toString());
@@ -196,7 +211,7 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
   useEffect(() => {
     const cy = cyRef.current;
     if (!cy) return;
-    const target = buildElements(data, expanded, locale);
+    const target = buildElements(data, expandedWithFocus, locale);
     syncElements(cy, target);
     cy.layout({ ...layoutOptions(layout, true), fit: false } as LayoutOptions).run();
     const fid = focusIdRef.current;
@@ -205,7 +220,7 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
       if (t && t.length > 0) applyFocusHighlight(cy, fid);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [expanded]);
+  }, [expandedWithFocus]);
 
   useEffect(() => {
     focusIdRef.current = focusId;
@@ -219,22 +234,11 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
       cy.elements().removeClass('faded').removeClass('highlighted').removeClass('search-hit');
       return;
     }
-    const u = data.units.find((x) => x.id === focusId);
-    const b = data.beteiligungen.find((x) => x.id === focusId);
-    const parentToOpen = u?.parent ?? b?.verbunden;
-    if (parentToOpen && !expanded.has(parentToOpen)) {
-      setExpanded((prev) => {
-        const next = new Set(prev);
-        next.add(parentToOpen);
-        return next;
-      });
-      return;
-    }
     const target = cy.getElementById(focusId);
     if (!target || target.length === 0) return;
     applyFocusHighlight(cy, focusId);
     cy.animate({ center: { eles: target }, zoom: 1.1 }, { duration: 500 });
-  }, [focusId, data, expanded]);
+  }, [focusId]);
 
   return (
     <>
