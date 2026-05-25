@@ -16,7 +16,7 @@
 # package.json → engines.node >=20.20.2 bleibt absichtlich permissiv,
 # damit Downstream-Forks auch auf Node 20 bauen können.
 
-ARG NODE_VERSION=24-alpine
+ARG NODE_VERSION=24.16.0-alpine
 
 # ─── Stage 1: deps ──────────────────────────────────────────────────────────
 # Installiert nur die Abhängigkeiten. Eigener Stage, damit `npm ci` nur
