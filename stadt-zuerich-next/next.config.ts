@@ -20,6 +20,32 @@ const config: NextConfig = {
   // volle `node_modules/` (~500 MB) einbacken müssen.
   // Für Vercel/Netlify/etc. ist die Option harmlos (ignoriert).
   output: 'standalone',
+  async headers() {
+    return [
+      {
+        // Diese Header werden auf alle Routen der App angewendet
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'DENY',
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin',
+          },
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=31536000; includeSubDomains',
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default withNextIntl(config);

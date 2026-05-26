@@ -48,6 +48,11 @@ export default async function MaschineriePage({
         <BudgetSummary data={data} locale={locale as Locale} />
       </div>
       <div className="block sm:hidden">
+        <div className="bg-[var(--color-panel)] px-6 py-4 text-[13px] text-[var(--color-mute)] border-b border-[var(--color-line)]">
+          {locale === 'de' ? 'Hinweis: Auf grossen Bildschirmen steht hier eine interaktive Graph-Ansicht zur Verfügung.' : 
+           locale === 'en' ? 'Note: An interactive graph view is available on larger screens.' : 
+           'Hinweis: Interaktive Ansicht auf grösseren Bildschirmen.'}
+        </div>
         <ListView data={data} locale={locale as Locale} />
       </div>
     </>

@@ -7,6 +7,7 @@ import { useT } from '@/lib/i18n-client';
 import type { DataStandInfo } from '@/lib/data-meta';
 import Brand from './Brand';
 import LanguageSwitcher from './LanguageSwitcher';
+import { city } from '@/config/city.config';
 
 const ROUTES = [
   { href: '/',              key: 'graph' },
@@ -82,56 +83,70 @@ export default function Header({ dataStand }: { dataStand: DataStandInfo }) {
         )}
       </div>
       <span className="flex-1 min-w-2" />
-      <div className="flex items-center overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden pr-1 shrink-0 max-w-full">
-        <nav role="tablist" aria-label={tNav('graph')} className="flex gap-1 mr-1 sm:mr-3 shrink-0">
-          {ROUTES.map((r) => {
-            // Sub-Routen (z.B. /prozesse/zh/...) aktivieren den übergeordneten
-            // Tab, damit der Navigationszustand auch in der Detail-Seite stimmt.
-            const active =
-              pathname === r.href ||
-              (r.href !== '/' && pathname.startsWith(r.href + '/'));
-            return (
-              <Link
-                key={r.href}
-                href={r.href}
-                role="tab"
-                aria-selected={active}
-                prefetch
-                className={
-                  'px-2.5 sm:px-3.5 py-1.5 rounded-md text-xs border border-white/20 no-underline whitespace-nowrap ' +
-                  (active
-                    ? 'bg-white text-[var(--color-accent)] font-semibold '
-                    : 'bg-white/10 hover:bg-white/20 text-white ') +
-                  (r.key === 'list' ? 'hidden sm:block' : '')
-                }
+      <div className="relative flex items-center shrink-0 min-w-0 max-w-full">
+        <div className="flex items-center overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden pr-4 sm:pr-1 shrink-0 max-w-full">
+          <nav role="tablist" aria-label={tNav('graph')} className="flex gap-1 mr-1 sm:mr-3 shrink-0">
+            {city.parentOrganizationUrl && (
+              <a
+                href={city.parentOrganizationUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-2.5 sm:px-3.5 py-1.5 rounded-md text-xs border border-white/40 bg-white/20 hover:bg-white/30 text-white no-underline whitespace-nowrap flex items-center mr-2 shrink-0"
+                title={`Wechseln zu ${city.parentOrganizationId}`}
               >
-                {tNav(r.key)}
-              </Link>
-            );
-          })}
-        </nav>
-        <LanguageSwitcher />
-        <button
-          type="button"
-          aria-label={t('helpButton')}
-          title={t('helpButton')}
-          // CustomEvent statt globaler Store: Onboarding-Komponente lebt im
-          // selben Tree, hört im useEffect mit. Hält den Header schlank.
-          onClick={() => window.dispatchEvent(new Event('mog:onboarding:reopen'))}
-          className="ml-1 mr-1 px-2.5 py-1.5 rounded-md text-xs border border-white/20 bg-white/10 hover:bg-white/20 font-semibold shrink-0"
-        >
-          ?
-          <span className="sr-only">{t('helpButtonLabel')}</span>
-        </button>
-        <button
-          type="button"
-          aria-pressed={dark ?? false}
-          aria-label={dark ? tNav('darkOff') : tNav('darkOn')}
-          onClick={toggleTheme}
-          className="px-2.5 py-1.5 rounded-md text-xs border border-white/20 bg-white/10 hover:bg-white/20 shrink-0 whitespace-nowrap"
-        >
-          {dark === null ? tNav('darkLabelLoading') : dark ? tNav('darkLabelLight') : tNav('darkLabelDark')}
-        </button>
+                <span className="mr-1">↑</span> Übergeordnet
+              </a>
+            )}
+            {ROUTES.map((r) => {
+              // Sub-Routen (z.B. /prozesse/zh/...) aktivieren den übergeordneten
+              // Tab, damit der Navigationszustand auch in der Detail-Seite stimmt.
+              const active =
+                pathname === r.href ||
+                (r.href !== '/' && pathname.startsWith(r.href + '/'));
+              return (
+                <Link
+                  key={r.href}
+                  href={r.href}
+                  role="tab"
+                  aria-selected={active}
+                  prefetch
+                  className={
+                    'px-2.5 sm:px-3.5 py-1.5 rounded-md text-xs border border-white/20 no-underline whitespace-nowrap ' +
+                    (active
+                      ? 'bg-white text-[var(--color-accent)] font-semibold '
+                      : 'bg-white/10 hover:bg-white/20 text-white ') +
+                    (r.key === 'list' ? 'hidden sm:block' : '')
+                  }
+                >
+                  {tNav(r.key)}
+                </Link>
+              );
+            })}
+          </nav>
+          <LanguageSwitcher />
+          <button
+            type="button"
+            aria-label={t('helpButton')}
+            title={t('helpButton')}
+            // CustomEvent statt globaler Store: Onboarding-Komponente lebt im
+            // selben Tree, hört im useEffect mit. Hält den Header schlank.
+            onClick={() => window.dispatchEvent(new Event('mog:onboarding:reopen'))}
+            className="ml-1 mr-1 px-2.5 py-1.5 rounded-md text-xs border border-white/20 bg-white/10 hover:bg-white/20 font-semibold shrink-0"
+          >
+            ?
+            <span className="sr-only">{t('helpButtonLabel')}</span>
+          </button>
+          <button
+            type="button"
+            aria-pressed={dark ?? false}
+            aria-label={dark ? tNav('darkOff') : tNav('darkOn')}
+            onClick={toggleTheme}
+            className="px-2.5 py-1.5 rounded-md text-xs border border-white/20 bg-white/10 hover:bg-white/20 shrink-0 whitespace-nowrap"
+          >
+            {dark === null ? tNav('darkLabelLoading') : dark ? tNav('darkLabelLight') : tNav('darkLabelDark')}
+          </button>
+        </div>
+        <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-[var(--color-accent)] to-transparent sm:hidden" aria-hidden="true" />
       </div>
     </header>
   );

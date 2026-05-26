@@ -43,6 +43,12 @@ export interface Konflikt {
   rpkBezeichnung?: string;
 }
 
+export interface FederationLink {
+  targetId: string;
+  targetUrl: string; // URL of the external data.json or target UI
+  label: string;
+}
+
 export interface Department {
   id: DepartmentId;
   name: string;
@@ -51,6 +57,7 @@ export interface Department {
   budgetHistory?: Budget[];
   fte?: Fte;
   odz?: Odz;
+  federationLinks?: FederationLink[];
 }
 
 export interface Unit {
@@ -63,6 +70,7 @@ export interface Unit {
   fte?: Fte;
   odz?: Odz;
   konflikt?: Konflikt;
+  federationLinks?: FederationLink[];
 }
 
 export interface Beteiligung {
@@ -134,8 +142,19 @@ export interface GesamtstadtSummary {
   hinweis?: string;
 }
 
+export interface OrganizationMeta {
+  id: string;
+  name: string;
+  type: 'city' | 'canton' | 'federal' | 'other';
+  parentOrganizationId?: string;
+  parentOrganizationUrl?: string;
+  logoUrl?: string;
+  primaryColor?: string;
+}
+
 export interface StadtData {
   _meta: DataMeta;
+  organization?: OrganizationMeta; // Added to support federation
   center: Center;
   departments: Department[];
   units: Unit[];

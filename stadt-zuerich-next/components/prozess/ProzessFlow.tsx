@@ -84,7 +84,7 @@ export default function ProzessFlow(props: ProzessFlowProps) {
 
 function ProzessFlowInner({ titel, schritte, kanten, akteure, layout, colorMode = 'light', goToUnitLabelTemplate }: ProzessFlowProps) {
   const nodes = useMemo<Node<ProzessNodeData>[]>(() => {
-    return schritte.map((s) => {
+    const processNodes: Node<ProzessNodeData>[] = schritte.map((s) => {
       const ln = layout.nodes.find((n) => n.id === s.id);
       return {
         id: s.id,
@@ -101,7 +101,32 @@ function ProzessFlowInner({ titel, schritte, kanten, akteure, layout, colorMode 
         draggable: false,
       };
     });
-  }, [schritte, layout.nodes]);
+
+    // Unsichtbare Boundary-Nodes einfügen, damit 'fitView' den linken Rand
+    // für die Swimlane-Labels und den unteren Rand für die Controls freihält.
+    processNodes.push(
+      {
+        id: 'boundary-tl',
+        type: 'start',
+        position: { x: 0, y: 0 },
+        data: { label: '', typ: 'start' as SchrittTyp, akteurLabel: '' },
+        style: { opacity: 0, pointerEvents: 'none' },
+        selectable: false,
+        draggable: false,
+      },
+      {
+        id: 'boundary-br',
+        type: 'start',
+        position: { x: layout.width, y: layout.height + 60 },
+        data: { label: '', typ: 'start' as SchrittTyp, akteurLabel: '' },
+        style: { opacity: 0, pointerEvents: 'none' },
+        selectable: false,
+        draggable: false,
+      }
+    );
+
+    return processNodes;
+  }, [schritte, layout]);
 
   const edges = useMemo<Edge[]>(() => {
     return kanten.map((k) => ({
@@ -147,7 +172,7 @@ function ProzessFlowInner({ titel, schritte, kanten, akteure, layout, colorMode 
         proOptions={{ hideAttribution: false }}
       >
         <Background gap={24} />
-        <Controls showInteractive={false} />
+        <Controls showInteractive={false} position="bottom-right" className="sm:mb-0 mb-4" />
         <MiniMap pannable zoomable ariaLabel="Übersichtskarte" />
       </ReactFlow>
     </div>
@@ -207,7 +232,7 @@ function SwimlaneOverlay({
               borderColor: 'var(--color-line)',
             }}
           >
-            <div className="absolute left-2 top-2 text-[11px] font-semibold uppercase tracking-wider text-[var(--color-mute)] max-w-[140px] leading-tight">
+            <div className="absolute left-2 top-2 text-[9px] sm:text-[11px] font-semibold uppercase tracking-wider text-[var(--color-mute)] max-w-[80px] sm:max-w-[140px] leading-tight break-words">
               {inner}
             </div>
           </div>

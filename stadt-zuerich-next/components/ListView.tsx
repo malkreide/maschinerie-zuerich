@@ -13,6 +13,7 @@ import {
 } from '@/lib/budget-context';
 import { city } from '@/config/city.config';
 import ListExportButton from './ListExportButton';
+import ListFocusSync from './ListFocusSync';
 
 type TFn = ReturnType<typeof getT>;
 
@@ -78,6 +79,8 @@ export default function ListView({ data, locale }: { data: StadtData; locale: Lo
           </div>
         </details>
       )}
+      
+      <ListFocusSync data={data} />
     </main>
   );
 }
@@ -102,7 +105,7 @@ function DepDetail({
   const hasAnyBudget =
     dep.budget?.aufwand != null || units.some((u) => u.budget?.aufwand != null);
   return (
-    <details className="dep">
+    <details className="dep" id={`dep-${dep.id}`}>
       <summary>
         {dep.name}{' '}
         <span className="text-[var(--color-mute)] text-[13px]">({extras.join(', ')})</span>
@@ -154,7 +157,7 @@ function UnitDetail({
   if (unit.budget?.aufwand) extras.push(Math.round(unit.budget.aufwand / 1e6) + ' Mio');
   if (unit.fte?.schaetzung) extras.push(fmtNumber(unit.fte.schaetzung) + ' FTE');
   return (
-    <details className="unit">
+    <details className="unit" id={`unit-${unit.id}`}>
       <summary>
         {unit.name}
         {extras.length > 0 && (
@@ -182,7 +185,7 @@ function BetDetail({
   population: number | undefined;
 }) {
   return (
-    <details className="unit">
+    <details className="unit" id={`bet-${b.id}`}>
       <summary>{b.name}</summary>
       <Meta
         beteiligung={b}

@@ -40,7 +40,7 @@ const NODE_W = 200;
 const NODE_H = 80;
 const LANE_H = 140;     // vertikaler Abstand Swimlane zu Swimlane
 const LANE_PADDING_TOP = 30;
-const LANE_LABEL_WIDTH = 160;
+const LANE_LABEL_WIDTH = 220;
 
 /** Berechnet Positionen für alle Schritte. Swimlane-Reihenfolge = Reihenfolge
  *  in Prozess.akteure (das ist bewusst – Autor:in bestimmt das Layout-Ranking). */

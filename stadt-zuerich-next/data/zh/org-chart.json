@@ -42,7 +42,7 @@
     {
       "id": "PRD",
       "name": "Präsidialdepartement",
-      "vorsteher": "Stadtpräsident:in",
+      "vorsteher": "Raphael Golta",
       "budget": {
         "jahr": 2025,
         "typ": "RECHNUNG",
@@ -69,7 +69,7 @@
     {
       "id": "FD",
       "name": "Finanzdepartement",
-      "vorsteher": "Stadtrat / Stadträtin",
+      "vorsteher": "Daniel Leupi",
       "budget": {
         "jahr": 2025,
         "typ": "RECHNUNG",
@@ -96,7 +96,7 @@
     {
       "id": "SD",
       "name": "Sozialdepartement",
-      "vorsteher": "Stadtrat / Stadträtin",
+      "vorsteher": "Céline Widmer",
       "budget": {
         "jahr": 2025,
         "typ": "RECHNUNG",
@@ -123,7 +123,7 @@
     {
       "id": "GUD",
       "name": "Gesundheits- und Umweltdepartement",
-      "vorsteher": "Stadtrat / Stadträtin",
+      "vorsteher": "Andreas Hauri",
       "budget": {
         "jahr": 2025,
         "typ": "RECHNUNG",
@@ -150,7 +150,7 @@
     {
       "id": "TED",
       "name": "Tiefbau- und Entsorgungsdepartement",
-      "vorsteher": "Stadtrat / Stadträtin",
+      "vorsteher": "Simone Brander",
       "budget": {
         "jahr": 2025,
         "typ": "RECHNUNG",
@@ -177,7 +177,7 @@
     {
       "id": "HBD",
       "name": "Hochbaudepartement",
-      "vorsteher": "Stadtrat / Stadträtin",
+      "vorsteher": "Tobias Langenegger",
       "budget": {
         "jahr": 2025,
         "typ": "RECHNUNG",
@@ -204,7 +204,7 @@
     {
       "id": "SiD",
       "name": "Sicherheitsdepartement",
-      "vorsteher": "Stadtrat / Stadträtin",
+      "vorsteher": "Karin Rykart",
       "budget": {
         "jahr": 2025,
         "typ": "RECHNUNG",
@@ -231,7 +231,7 @@
     {
       "id": "SSD",
       "name": "Schul- und Sportdepartement",
-      "vorsteher": "Stadtrat / Stadträtin",
+      "vorsteher": "Balthasar Glättli",
       "budget": {
         "jahr": 2025,
         "typ": "RECHNUNG",
@@ -258,7 +258,7 @@
     {
       "id": "DIB",
       "name": "Departement der Industriellen Betriebe",
-      "vorsteher": "Stadtrat / Stadträtin",
+      "vorsteher": "Michael Baumer",
       "budget": {
         "jahr": 2025,
         "typ": "RECHNUNG",

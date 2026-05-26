@@ -24,6 +24,12 @@ export interface CityConfig {
   /** Kürzere Form ohne "Stadt/City/…"-Präfix, für Fliesstext wie
    *  "in {shortName}". */
   shortName: Record<Locale, string>;
+  /** Typ der Organisation in der Föderation */
+  type: 'city' | 'canton' | 'federal' | 'other';
+  /** Föderation: Übergeordnete Organisation (z.B. Kanton) */
+  parentOrganizationId?: string;
+  /** Föderation: URL zur Instanz der übergeordneten Organisation */
+  parentOrganizationUrl?: string;
   /** Offizielle Domain der Stadt (ohne Protokoll/Pfad). */
   domain: string;
   /** Ständige Wohnbevölkerung der Stadt — Basis für die Pro-Kopf-Anzeigen
@@ -115,6 +121,17 @@ export function externalSearchUrl(query: string): string {
   return city.externalSearchUrlTemplate.replace('{q}', encodeURIComponent(query));
 }
 
+/** 
+ * Defense in Depth: Sanitizer für CSS-Farbwerte.
+ * Verhindert XSS durch Entfernen gefährlicher Zeichen (wie <, >, ", ', ;, {}, usw.)
+ * und erlaubt nur Zeichen, die für legitime CSS-Farbwerte (Hex, RGB, HSL, var) benötigt werden.
+ */
+function sanitizeColor(value: string): string {
+  if (typeof value !== 'string') return '';
+  // Erlaube nur Alphanumerisch, #, Komma, Punkt, Prozent, Klammern, Bindestrich und Leerzeichen.
+  return value.replace(/[^a-zA-Z0-9#,\.% \(\)\-]/g, '').trim();
+}
+
 /** Baut den `<style>`-Inhalt mit den theme-CSS-Variablen, die das Layout
  *  als Inline-Stylesheet in den `<head>` setzt. Damit gelten die Stadt-
  *  Farben noch vor dem ersten Paint — kein Flash-of-Wrong-Brand. */
@@ -122,15 +139,15 @@ export function themeCssVars(): string {
   const t = city.theme;
   return [
     `:root {`,
-    `  --color-accent: ${t.accent};`,
-    `  --color-node-stadtpraesidium: ${t.nodeType.stadtpraesidium};`,
-    `  --color-node-stadtrat: ${t.nodeType.stadtrat};`,
-    `  --color-node-department: ${t.nodeType.department};`,
-    `  --color-node-unit: ${t.nodeType.unit};`,
-    `  --color-node-staff: ${t.nodeType.staff};`,
-    `  --color-node-extern: ${t.nodeType.extern};`,
-    `  --color-node-beteiligung: ${t.nodeType.beteiligung};`,
-    `  --color-konflikt: ${t.konflikt};`,
+    `  --color-accent: ${sanitizeColor(t.accent)};`,
+    `  --color-node-stadtpraesidium: ${sanitizeColor(t.nodeType.stadtpraesidium)};`,
+    `  --color-node-stadtrat: ${sanitizeColor(t.nodeType.stadtrat)};`,
+    `  --color-node-department: ${sanitizeColor(t.nodeType.department)};`,
+    `  --color-node-unit: ${sanitizeColor(t.nodeType.unit)};`,
+    `  --color-node-staff: ${sanitizeColor(t.nodeType.staff)};`,
+    `  --color-node-extern: ${sanitizeColor(t.nodeType.extern)};`,
+    `  --color-node-beteiligung: ${sanitizeColor(t.nodeType.beteiligung)};`,
+    `  --color-konflikt: ${sanitizeColor(t.konflikt)};`,
     `}`,
   ].join('\n');
 }

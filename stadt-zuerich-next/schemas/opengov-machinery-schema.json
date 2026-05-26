@@ -1,0 +1,125 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/malkreide/maschinerie-zuerich/main/stadt-zuerich-next/schemas/opengov-machinery-schema.json",
+  "title": "OpenGov-Machinery-Schema",
+  "description": "Portables Schema zur Beschreibung der Organisationsstruktur von öffentlichen Verwaltungen. Erlaubt föderierte Verknüpfungen zu anderen Instanzen.",
+  "type": "object",
+  "required": ["_meta", "organization", "center", "departments", "units"],
+  "properties": {
+    "_meta": {
+      "type": "object",
+      "required": ["schemaVersion", "stand"],
+      "properties": {
+        "schemaVersion": { "type": "number" },
+        "stand": { "type": "string", "format": "date-time" },
+        "quellen": { "type": "array", "items": { "type": "string" } },
+        "hinweise": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "organization": {
+      "type": "object",
+      "required": ["id", "name", "type"],
+      "properties": {
+        "id": { "type": "string", "description": "Global eindeutige ID, z.B. 'ch.zuerich.stadt'" },
+        "name": { "type": "string" },
+        "type": { "type": "string", "enum": ["city", "canton", "federal", "other"] },
+        "parentOrganizationId": { "type": "string", "description": "ID der übergeordneten Organisation (z.B. Kanton für eine Stadt)" },
+        "parentOrganizationUrl": { "type": "string", "format": "uri", "description": "URL der data.json der übergeordneten Organisation" },
+        "logoUrl": { "type": "string", "format": "uri" },
+        "primaryColor": { "type": "string" }
+      }
+    },
+    "center": {
+      "type": "object",
+      "required": ["id", "name", "type"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "type": { "type": "string", "enum": ["center"] },
+        "note": { "type": "string" }
+      }
+    },
+    "departments": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/Department" }
+    },
+    "units": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/Unit" }
+    },
+    "beteiligungen": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/Beteiligung" }
+    }
+  },
+  "definitions": {
+    "Budget": {
+      "type": "object",
+      "required": ["jahr", "typ", "aufwand", "ertrag", "nettoaufwand"],
+      "properties": {
+        "jahr": { "type": "number" },
+        "typ": { "type": "string" },
+        "aufwand": { "type": "number" },
+        "ertrag": { "type": "number" },
+        "nettoaufwand": { "type": "number" }
+      }
+    },
+    "Fte": {
+      "type": "object",
+      "required": ["schaetzung"],
+      "properties": {
+        "schaetzung": { "type": "number" },
+        "einheit": { "type": "string" }
+      }
+    },
+    "FederationLink": {
+      "type": "object",
+      "required": ["targetId", "targetUrl", "label"],
+      "properties": {
+        "targetId": { "type": "string" },
+        "targetUrl": { "type": "string", "format": "uri", "description": "URL des externen data.json oder UI" },
+        "label": { "type": "string" }
+      }
+    },
+    "Department": {
+      "type": "object",
+      "required": ["id", "name", "vorsteher"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "vorsteher": { "type": "string" },
+        "budget": { "$ref": "#/definitions/Budget" },
+        "fte": { "$ref": "#/definitions/Fte" },
+        "federationLinks": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/FederationLink" }
+        }
+      }
+    },
+    "Unit": {
+      "type": "object",
+      "required": ["id", "parent", "name", "kind"],
+      "properties": {
+        "id": { "type": "string" },
+        "parent": { "type": "string" },
+        "name": { "type": "string" },
+        "kind": { "type": "string", "enum": ["unit", "staff", "extern"] },
+        "budget": { "$ref": "#/definitions/Budget" },
+        "fte": { "$ref": "#/definitions/Fte" },
+        "federationLinks": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/FederationLink" }
+        }
+      }
+    },
+    "Beteiligung": {
+      "type": "object",
+      "required": ["id", "name", "verbunden"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "verbunden": { "type": "string" }
+      }
+    }
+  }
+}

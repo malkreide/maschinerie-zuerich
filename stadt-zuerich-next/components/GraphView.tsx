@@ -131,8 +131,8 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
         elements,
         style: getGraphStyle(locale),
         layout: layoutOptions('radial', false),
-        wheelSensitivity: 1,
-        minZoom: 0.2,
+        wheelSensitivity: 0.2,
+        minZoom: 0.15,
         maxZoom: 4,
       });
 
@@ -213,12 +213,23 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
     if (!cy) return;
     const target = buildElements(data, expandedWithFocus, locale);
     syncElements(cy, target);
-    cy.layout({ ...layoutOptions(layout, true), fit: false } as LayoutOptions).run();
+    const layoutConfig = cy.layout({ ...layoutOptions(layout, true), fit: false } as LayoutOptions);
+    
     const fid = focusIdRef.current;
-    if (fid) {
+    if (fid && !suppressFocusEffectRef.current) {
+      cy.one('layoutstop', () => {
+        const t = cy.getElementById(fid);
+        if (t && t.length > 0) {
+          applyFocusHighlight(cy, fid);
+          cy.animate({ center: { eles: t }, zoom: 1.5 }, { duration: 600 });
+        }
+      });
+    } else if (fid) {
       const t = cy.getElementById(fid);
       if (t && t.length > 0) applyFocusHighlight(cy, fid);
     }
+    
+    layoutConfig.run();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [expandedWithFocus]);
 
@@ -234,11 +245,26 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
       cy.elements().removeClass('faded').removeClass('highlighted').removeClass('search-hit');
       return;
     }
+    const u = data.units.find((x) => x.id === focusId);
+    const b = data.beteiligungen.find((x) => x.id === focusId);
+    const parentToOpen = u?.parent ?? b?.verbunden;
+    if (parentToOpen && !expandedRef.current.has(parentToOpen)) {
+      setExpanded((prev) => {
+        const next = new Set(prev);
+        next.add(parentToOpen);
+        return next;
+      });
+      // Die Zentrierung übernimmt das 'layoutstop' Event im [expanded] Hook
+      return;
+    }
     const target = cy.getElementById(focusId);
     if (!target || target.length === 0) return;
+    
     applyFocusHighlight(cy, focusId);
-    cy.animate({ center: { eles: target }, zoom: 1.1 }, { duration: 500 });
-  }, [focusId]);
+    cy.stop(true, true);
+    cy.animate({ center: { eles: target }, zoom: 1.5 }, { duration: 600 });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [focusId, data]);
 
   return (
     <>
@@ -347,7 +373,7 @@ function Toolbar({
       <div role="group" aria-label="Ansicht"
            className="flex gap-1.5 bg-[var(--color-panel)] p-1.5 rounded-lg shadow">
         <button className={btn(false)} onClick={onCenter}
-                aria-label="Diagramm auf Stadtrat zentrieren">Zentrieren</button>
+                aria-label="Auswahl aufheben und Ansicht zurücksetzen">↻ Zurücksetzen</button>
         <button className={btn(false)} onClick={onFit}
                 aria-label="Alle Knoten ins Sichtfeld einpassen">Alles zeigen</button>
         <button
@@ -463,15 +489,15 @@ function layoutOptions(name: Layout, animate: boolean): LayoutOptions {
   if (name === 'force') {
     return {
       name: 'fcose', quality: 'default', animate, animationDuration: 800,
-      nodeRepulsion: 6000, idealEdgeLength: 60, gravity: 0.15, nestingFactor: 0.6, randomize: false,
+      nodeRepulsion: 15000, idealEdgeLength: 100, gravity: 0.1, nestingFactor: 0.6, randomize: false,
     } as unknown as LayoutOptions;
   }
   return {
     name: 'concentric',
     concentric: (n: NodeSingular) => 10 - (n.data('level') as number),
     levelWidth: () => 1,
-    minNodeSpacing: 40,
-    spacingFactor: 1.1,
+    minNodeSpacing: 80,
+    spacingFactor: 1.5,
     avoidOverlap: true, animate, animationDuration: 600,
   };
 }

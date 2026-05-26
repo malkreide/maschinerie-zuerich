@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, Fragment } from 'react';
 import { useTranslations } from 'next-intl';
 import { hierarchy, treemap, type HierarchyRectangularNode } from 'd3-hierarchy';
 import { scaleOrdinal } from 'd3-scale';
@@ -41,6 +41,7 @@ export default function TreemapView({
   const [tooltip, setTooltip] = useState<{
     x: number; y: number; node: Datum; total: number;
   } | null>(null);
+  const [mobileSelected, setMobileSelected] = useState<{ node: Datum; total: number } | null>(null);
   const [size, setSize] = useState({ w: 0, h: 0 });
 
   useEffect(() => {
@@ -119,6 +120,39 @@ export default function TreemapView({
           })}
         </p>
       )}
+      <div className="sr-only">
+        <table>
+          <caption>{t('ariaLabel')}</caption>
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Aufwand (CHF)</th>
+              <th scope="col">Nettoaufwand (CHF)</th>
+              <th scope="col">FTE</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tree.children?.map(dep => (
+              <Fragment key={dep.id}>
+                <tr>
+                  <td><strong>{dep.name}</strong></td>
+                  <td suppressHydrationWarning>{dep.value != null ? dep.value.toLocaleString('de-CH') : ''}</td>
+                  <td suppressHydrationWarning>{dep.netto != null ? dep.netto.toLocaleString('de-CH') : ''}</td>
+                  <td suppressHydrationWarning>{dep.fte != null ? dep.fte.toLocaleString('de-CH') : ''}</td>
+                </tr>
+                {dep.children?.map(unit => (
+                  <tr key={unit.id}>
+                    <td>↳ {unit.name}</td>
+                    <td suppressHydrationWarning>{unit.value != null ? unit.value.toLocaleString('de-CH') : ''}</td>
+                    <td suppressHydrationWarning>{unit.netto != null ? unit.netto.toLocaleString('de-CH') : ''}</td>
+                    <td suppressHydrationWarning>{unit.fte != null ? unit.fte.toLocaleString('de-CH') : ''}</td>
+                  </tr>
+                ))}
+              </Fragment>
+            ))}
+          </tbody>
+        </table>
+      </div>
       <div ref={hostRef} className="relative w-full h-[calc(100%-70px)]">
         <svg
           id="treemap-svg"
@@ -126,7 +160,7 @@ export default function TreemapView({
           height={size.h}
           onClick={(e) => { if (e.target === e.currentTarget) setFocus(null); }}
         >
-          {root && renderTree(root, colorOf, !focus, setFocus, setTooltip)}
+          {root && renderTree(root, colorOf, !focus, setFocus, setTooltip, setMobileSelected)}
           {focus && (
             <g style={{ cursor: 'pointer' }} onClick={() => setFocus(null)}>
               <rect x={0} y={0} width={200} height={24} fill="rgba(20,30,60,.78)" />
@@ -169,6 +203,52 @@ export default function TreemapView({
           </div>
         )}
       </div>
+
+      {/* Mobile Bottom Sheet Drawer */}
+      {mobileSelected && (
+        <div className="sm:hidden fixed inset-0 z-[200] flex flex-col justify-end bg-black/40 backdrop-blur-sm transition-opacity"
+             onClick={() => setMobileSelected(null)}>
+          <div className="bg-[var(--color-bg)] rounded-t-2xl p-5 shadow-2xl transform transition-transform"
+               onClick={(e) => e.stopPropagation()}>
+            <div className="flex justify-between items-start mb-3">
+              <h3 className="text-lg font-semibold m-0 leading-tight pr-4">{mobileSelected.node.name}</h3>
+              <button onClick={() => setMobileSelected(null)} className="p-2 -mr-2 -mt-2 text-[var(--color-mute)]" aria-label="Schliessen">
+                ✕
+              </button>
+            </div>
+            
+            <div className="flex flex-col gap-2 mb-6 text-sm">
+              <Row k={t('tooltipExpense')} v={`${fmtNumber(mobileSelected.node.value)} CHF`} />
+              {(() => {
+                const pc = perCapitaCHF(mobileSelected.node.value, population);
+                return pc ? <Row k={t('tooltipPerCapita')} v={`≈ ${pc}`} /> : null;
+              })()}
+              {mobileSelected.node.netto != null && <Row k={t('tooltipNet')} v={`${fmtNumber(mobileSelected.node.netto)} CHF`} />}
+              {mobileSelected.node.netto != null && (() => {
+                const pc = perCapitaCHF(mobileSelected.node.netto, population);
+                return pc ? <Row k={t('tooltipPerCapitaNet')} v={`≈ ${pc}`} /> : null;
+              })()}
+              {mobileSelected.node.fte != null && <Row k={t('tooltipFte')} v={fmtNumber(mobileSelected.node.fte)} />}
+              <Row k={t('tooltipShare')} v={`${(((mobileSelected.node.value ?? 0) / mobileSelected.total) * 100).toFixed(1)} %`} />
+              {(() => {
+                const sh = budgetSharePercent(mobileSelected.node.value, cityTotalAufwand);
+                return sh ? <Row k={t('tooltipShareTotal')} v={`${sh} %`} /> : null;
+              })()}
+              {mobileSelected.node.konflikt && <div className="mt-2 text-[var(--color-konflikt)] text-[13px]">{t('conflictNote')}</div>}
+            </div>
+            
+            <button
+              onClick={() => {
+                if (mobileSelected.node.depId) setFocus(mobileSelected.node.depId);
+                setMobileSelected(null);
+              }}
+              className="w-full bg-[var(--color-accent)] text-white font-semibold py-3 rounded-xl flex justify-center items-center shadow-md active:scale-[0.98] transition-transform"
+            >
+              Departement öffnen
+            </button>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
@@ -230,14 +310,26 @@ function renderTree(
   colorOf: (key: string) => string,
   showHeaders: boolean,
   onDepClick: (id: string) => void,
-  setTooltip: (t: { x: number; y: number; node: Datum; total: number } | null) => void
+  setTooltip: (t: { x: number; y: number; node: Datum; total: number } | null) => void,
+  setMobileSelected: (t: { node: Datum; total: number } | null) => void
 ) {
   const total = root.value ?? 1;
   return (
     <>
       {showHeaders && root.children?.map((d) => (
         <g key={d.data.id} style={{ cursor: 'pointer' }}
-           onClick={() => d.data.id && onDepClick(d.data.id)}>
+           tabIndex={0}
+           role="button"
+           aria-label={`Departement ${d.data.name} öffnen`}
+           onKeyDown={(e) => {
+             if (e.key === 'Enter' || e.key === ' ') {
+               e.preventDefault();
+               if (d.data.id) onDepClick(d.data.id);
+             }
+           }}
+           onClick={() => d.data.id && onDepClick(d.data.id)}
+           className="focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-[var(--color-accent)]"
+        >
           <rect x={d.x0} y={d.y0} width={d.x1 - d.x0} height={22}
                 fill={colorOf(d.data.id ?? '')} opacity={1} />
           <text x={d.x0 + 6} y={d.y0 + 15} className="dep-label">
@@ -247,19 +339,21 @@ function renderTree(
       ))}
       {root.leaves().map((d, i) => (
         <Leaf key={d.data.id ?? `${d.x0}-${d.y0}-${i}`} d={d} colorOf={colorOf}
-              total={total} setTooltip={setTooltip} />
+              total={total} setTooltip={setTooltip} onDepClick={onDepClick} setMobileSelected={setMobileSelected} />
       ))}
     </>
   );
 }
 
 function Leaf({
-  d, colorOf, total, setTooltip,
+  d, colorOf, total, setTooltip, onDepClick, setMobileSelected,
 }: {
   d: HierarchyRectangularNode<Datum>;
   colorOf: (key: string) => string;
   total: number;
   setTooltip: (t: { x: number; y: number; node: Datum; total: number } | null) => void;
+  onDepClick: (id: string) => void;
+  setMobileSelected: (t: { node: Datum; total: number } | null) => void;
 }) {
   const w = d.x1 - d.x0;
   const h = d.y1 - d.y0;
@@ -270,17 +364,35 @@ function Leaf({
   const name = d.data.name.length > maxChars ? d.data.name.slice(0, maxChars) + '…' : d.data.name;
   return (
     <g
+      tabIndex={0}
+      role="button"
+      aria-label={`${name} öffnen`}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          if (d.data.depId) onDepClick(d.data.depId);
+        }
+      }}
       onMouseMove={(e) => setTooltip({ x: e.clientX, y: e.clientY, node: d.data, total })}
       onMouseLeave={() => setTooltip(null)}
+      onClick={() => {
+        if (window.innerWidth < 640) {
+          setMobileSelected({ node: d.data, total });
+        } else {
+          d.data.depId && onDepClick(d.data.depId);
+        }
+      }}
+      style={{ cursor: 'pointer' }}
+      className="focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-[var(--color-accent)]"
     >
       <rect x={d.x0} y={d.y0} width={w} height={h} fill={color} opacity={0.65} />
       {d.data.konflikt && w > 10 && h > 10 && (
         <rect x={d.x0} y={d.y0} width={w} height={h} fill="none"
               stroke="var(--color-konflikt)" strokeWidth={2} strokeDasharray="4 3" pointerEvents="none" />
       )}
-      {showName && <text x={d.x0 + 5} y={d.y0 + 14}>{name}</text>}
+      {showName && <text x={d.x0 + 5} y={d.y0 + 14} fill="#1a1f2e" fontWeight="500">{name}</text>}
       {showName && showValue && (
-        <text x={d.x0 + 5} y={d.y0 + 28} fontSize={10} opacity={0.85}>
+        <text x={d.x0 + 5} y={d.y0 + 28} fontSize={10} fill="#1a1f2e" opacity={0.85}>
           {fmtMio(d.value ?? 0)}
         </text>
       )}

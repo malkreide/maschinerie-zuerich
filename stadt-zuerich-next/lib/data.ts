@@ -14,6 +14,18 @@ export async function loadStadtData(): Promise<StadtData> {
   const lebPath  = path.join(root, city.lebenslagenPath);
 
   const data = JSON.parse(await fs.readFile(dataPath, 'utf-8')) as StadtData;
+
+  // Föderations-Metadaten zur Laufzeit anreichern
+  data.organization = {
+    id: city.id,
+    name: city.name.de, // Default name fallback
+    type: city.type,
+    parentOrganizationId: city.parentOrganizationId,
+    parentOrganizationUrl: city.parentOrganizationUrl,
+    logoUrl: city.brand?.logoPath,
+    primaryColor: city.theme.accent,
+  };
+
   try {
     const leb = JSON.parse(await fs.readFile(lebPath, 'utf-8')) as { lebenslagen: Lebenslage[] };
     data.lebenslagen = leb.lebenslagen;
