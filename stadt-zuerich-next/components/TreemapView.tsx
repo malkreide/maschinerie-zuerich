@@ -379,7 +379,9 @@ function Leaf({
         if (window.innerWidth < 640) {
           setMobileSelected({ node: d.data, total });
         } else {
-          d.data.depId && onDepClick(d.data.depId);
+          if (d.data.depId) {
+            onDepClick(d.data.depId);
+          }
         }
       }}
       style={{ cursor: 'pointer' }}

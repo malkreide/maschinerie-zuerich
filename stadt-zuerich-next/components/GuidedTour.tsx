@@ -1,4 +1,3 @@
-// @ts-nocheck
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -93,6 +92,7 @@ export default function GuidedTour() {
       run={run}
       steps={steps}
       continuous
+      // @ts-expect-error: disableOverlayClose is not correctly typed in react-joyride
       disableOverlayClose={true}
       disableCloseOnEsc={true}
       showProgress={true}

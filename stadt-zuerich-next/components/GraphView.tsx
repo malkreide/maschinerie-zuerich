@@ -263,7 +263,6 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
     applyFocusHighlight(cy, focusId);
     cy.stop(true, true);
     cy.animate({ center: { eles: target }, zoom: 1.5 }, { duration: 600 });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [focusId, data]);
 
   return (
