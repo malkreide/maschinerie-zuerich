@@ -13,6 +13,8 @@ const ROUTES = [
   { href: '/',              key: 'graph' },
   { href: '/steuerfranken', key: 'tax' },
   { href: '/simulator',     key: 'simulator' },
+  { href: '/quartier',      key: 'quartier' },
+  { href: '/territory',     key: 'territory' },
   { href: '/prozesse',      key: 'prozesse' },
   { href: '/liste',         key: 'list' },
 ] as const;

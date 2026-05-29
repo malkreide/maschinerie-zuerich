@@ -120,6 +120,11 @@ export default function TreemapView({
           })}
         </p>
       )}
+      {!isEmpty && !focus && (
+        <p className="text-[11px] text-[var(--color-mute)] mb-2 max-w-[80ch]">
+          {t('committeeNote')}
+        </p>
+      )}
       <div className="sr-only">
         <table>
           <caption>{t('ariaLabel')}</caption>

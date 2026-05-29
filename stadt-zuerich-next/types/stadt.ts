@@ -3,7 +3,7 @@
 // Budget-/Rechnungs-PDFs (manuelle Anreicherung).
 
 export type DepartmentId = string;
-export type UnitKind = 'unit' | 'staff' | 'extern';
+export type UnitKind = 'unit' | 'staff' | 'extern' | 'committee';
 
 export interface Budget {
   jahr: number;
@@ -43,6 +43,11 @@ export interface Konflikt {
   rpkBezeichnung?: string;
 }
 
+export interface KlimaImpact {
+  co2Score?: number; // -100 (gut, netto-positiv) bis +100 (hoher Ausstoss)
+  budgetShare?: number; // Anteil Klima-Investitionen 0-1
+}
+
 export interface FederationLink {
   targetId: string;
   targetUrl: string; // URL of the external data.json or target UI
@@ -57,6 +62,7 @@ export interface Department {
   budgetHistory?: Budget[];
   fte?: Fte;
   odz?: Odz;
+  klima?: KlimaImpact;
   federationLinks?: FederationLink[];
 }
 
@@ -70,6 +76,7 @@ export interface Unit {
   fte?: Fte;
   odz?: Odz;
   konflikt?: Konflikt;
+  klima?: KlimaImpact;
   federationLinks?: FederationLink[];
 }
 

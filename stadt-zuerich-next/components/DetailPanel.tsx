@@ -13,6 +13,7 @@ import {
   budgetSharePercent,
 } from '@/lib/budget-context';
 import { city, externalSearchUrl } from '@/config/city.config';
+import ParlamentsGeschaefte from './ParlamentsGeschaefte';
 
 type T = ReturnType<typeof useTranslations<'Detail'>>;
 
@@ -100,6 +101,7 @@ export default function DetailPanel({
   }
   if (item.budget) rows.push(...budgetRows(item.budget, t, totalAufwand, totalNetto, population, item.budgetHistory));
   if (item.fte)    rows.push(...fteRows(item.fte, t));
+  if ('diversity' in item && item.diversity) rows.push(...diversityRows(item.diversity as { womenInManagement: number; menInManagement: number }, t));
   if (item.odz)    rows.push({ k: t('ogdKey'), v: `${item.odz.kurzname} · key ${item.odz.key}` });
   if ('konflikt' in item && item.konflikt) {
     rows.push({
@@ -141,6 +143,7 @@ export default function DetailPanel({
         relatedProzesse={relatedProzesse}
         t={t}
       />
+      <ParlamentsGeschaefte departmentName={item.name} />
       <div className="mt-2.5">
         <a
           href={item.odz?.kurzname ? externalSearchUrl(item.name) : city.homepageUrl}
@@ -291,4 +294,12 @@ function fteRows(f: Fte, t: T): Row[] {
       </span>
     ),
   }];
+}
+
+function diversityRows(d: { womenInManagement: number; menInManagement: number }, t: T): Row[] {
+  return [
+    { k: <span title={t('detailDiversityDesc')}>{t('detailDiversity')}</span>, v: '' },
+    { k: `  ↳ ${t('detailDiversityWomen')}`, v: <span className="text-[#d946ef] font-semibold">{d.womenInManagement} %</span> },
+    { k: `  ↳ ${t('detailDiversityMen')}`, v: <span className="text-[#0ea5e9] font-semibold">{d.menInManagement} %</span> },
+  ];
 }

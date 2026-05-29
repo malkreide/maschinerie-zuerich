@@ -9,6 +9,7 @@ import cytoscape from 'cytoscape';
 import fcose from 'cytoscape-fcose';
 import type { StadtData } from '@/types/stadt';
 import { city } from '@/config/city.config';
+import LiveClimateWidget from './LiveClimateWidget';
 
 try {
   cytoscape.use(fcose);
@@ -29,6 +30,9 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
   const hostRef = useRef<HTMLDivElement>(null);
   const cyRef = useRef<Core | null>(null);
   const [layout, setLayout] = useState<Layout>('radial');
+  const [klimaModus, setKlimaModus] = useState(false);
+  const [diversityModus, setDiversityModus] = useState(false);
+  const [gudBudgetDelta, setGudBudgetDelta] = useState(0);
 
   const initialExpanded = useMemo<Set<string>>(() => {
     const set = new Set<string>();
@@ -48,8 +52,6 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
   const expandedRef = useRef<Set<string>>(initialExpanded);
   useEffect(() => { expandedRef.current = expanded; }, [expanded]);
 
-  // Derive the visible set: a focused node's parent department is always shown,
-  // without committing it to `expanded` state from inside an effect.
   const expandedWithFocus = useMemo<Set<string>>(() => {
     if (!focusId) return expanded;
     const u = data.units.find((x) => x.id === focusId);
@@ -129,7 +131,7 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
       const cy = cytoscape({
         container: hostRef.current,
         elements,
-        style: getGraphStyle(locale),
+        style: getGraphStyle(locale, klimaModus, gudBudgetDelta, diversityModus),
         layout: layoutOptions('radial', false),
         wheelSensitivity: 0.2,
         minZoom: 0.15,
@@ -211,6 +213,12 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
   useEffect(() => {
     const cy = cyRef.current;
     if (!cy) return;
+    cy.style(getGraphStyle(locale, klimaModus, gudBudgetDelta, diversityModus));
+  }, [klimaModus, locale, gudBudgetDelta, diversityModus]);
+
+  useEffect(() => {
+    const cy = cyRef.current;
+    if (!cy) return;
     const target = buildElements(data, expandedWithFocus, locale);
     syncElements(cy, target);
     const layoutConfig = cy.layout({ ...layoutOptions(layout, true), fit: false } as LayoutOptions);
@@ -254,7 +262,6 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
         next.add(parentToOpen);
         return next;
       });
-      // Die Zentrierung übernimmt das 'layoutstop' Event im [expanded] Hook
       return;
     }
     const target = cy.getElementById(focusId);
@@ -334,13 +341,29 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
         labelExpandAll={tNav('expandAll')}
         labelCollapseAll={tNav('collapseAll')}
         labelExportCSV={t('Export.csvButton')}
+        klimaModus={klimaModus}
+        onChangeKlimaModus={setKlimaModus}
+        labelKlimaToggle={tNav('climateToggle')}
+        titleKlimaToggle={tNav('climateToggleTitle')}
+        diversityModus={diversityModus}
+        onChangeDiversityModus={setDiversityModus}
+        labelDiversityToggle={tNav('diversityToggle')}
+        titleDiversityToggle={tNav('diversityToggleTitle')}
       />
+      {klimaModus && (
+        <LiveClimateWidget 
+          gudBudgetDelta={gudBudgetDelta} 
+          onGudBudgetDeltaChange={setGudBudgetDelta} 
+        />
+      )}
     </>
   );
 }
 
 function Toolbar({
-  layout, onLayoutChange, onCenter, onFit, allExpanded, onExpandAll, onCollapseAll, labelExpandAll, labelCollapseAll, labelExportCSV, onExportCSV
+  layout, onLayoutChange, onCenter, onFit, allExpanded, onExpandAll, onCollapseAll, labelExpandAll, labelCollapseAll, labelExportCSV, onExportCSV,
+  klimaModus, onChangeKlimaModus, labelKlimaToggle, titleKlimaToggle,
+  diversityModus, onChangeDiversityModus, labelDiversityToggle, titleDiversityToggle
 }: {
   layout: Layout;
   onLayoutChange: (l: Layout) => void;
@@ -353,6 +376,14 @@ function Toolbar({
   labelCollapseAll: string;
   labelExportCSV: string;
   onExportCSV: () => void;
+  klimaModus?: boolean;
+  onChangeKlimaModus?: (k: boolean) => void;
+  labelKlimaToggle?: string;
+  titleKlimaToggle?: string;
+  diversityModus?: boolean;
+  onChangeDiversityModus?: (d: boolean) => void;
+  labelDiversityToggle?: string;
+  titleDiversityToggle?: string;
 }) {
   const btn = (active: boolean) =>
     'px-2.5 py-1.5 text-xs rounded border ' +
@@ -384,6 +415,39 @@ function Toolbar({
           {allExpanded ? labelCollapseAll : labelExpandAll}
         </button>
       </div>
+      
+      {onChangeKlimaModus && (
+        <div role="group" aria-label="Klima" className="flex gap-1.5 bg-[var(--color-panel)] p-1.5 rounded-lg shadow mt-2">
+          <button 
+            className={btn(klimaModus ?? false)} 
+            onClick={() => {
+              if (klimaModus && onChangeDiversityModus) onChangeDiversityModus(false); // mutually exclusive
+              onChangeKlimaModus(!(klimaModus ?? false));
+            }}
+            aria-pressed={klimaModus ?? false}
+            title={titleKlimaToggle}
+          >
+            {labelKlimaToggle}
+          </button>
+        </div>
+      )}
+
+      {onChangeDiversityModus && (
+        <div role="group" aria-label="Diversity" className="flex gap-1.5 bg-[var(--color-panel)] p-1.5 rounded-lg shadow mt-2">
+          <button 
+            className={btn(diversityModus ?? false)} 
+            onClick={() => {
+              if (!diversityModus && onChangeKlimaModus) onChangeKlimaModus(false); // mutually exclusive
+              onChangeDiversityModus(!(diversityModus ?? false));
+            }}
+            aria-pressed={diversityModus ?? false}
+            title={titleDiversityToggle}
+          >
+            {labelDiversityToggle}
+          </button>
+        </div>
+      )}
+
       <div role="group" aria-label="Export" className="flex gap-1.5 bg-[var(--color-panel)] p-1.5 rounded-lg shadow mt-2">
         <button className={btn(false)} onClick={onExportCSV} aria-label={labelExportCSV}>
           {labelExportCSV}
@@ -421,6 +485,8 @@ function buildElements(d: StadtData, expanded: Set<string>, locale?: string): El
         budget: dep.budget, fte: dep.fte, odz: dep.odz,
         childCount: n,
         expanded: isOpen,
+        klima: (dep as unknown as Record<string, unknown>).klima,
+        diversity: (dep as unknown as Record<string, unknown>).diversity,
       },
     });
     edges.push({ data: { id: `e-${d.center.id}-${dep.id}`, source: d.center.id, target: dep.id } });
@@ -436,6 +502,8 @@ function buildElements(d: StadtData, expanded: Set<string>, locale?: string): El
         id: u.id, label: u.name, type: u.kind, level: lvl, parentDep: u.parent,
         parent: isCompound ? u.parent : undefined,
         budget: u.budget, fte: u.fte, odz: u.odz, konflikt: u.konflikt,
+        klima: (u as unknown as Record<string, unknown>).klima,
+        diversity: (u as unknown as Record<string, unknown>).diversity,
       },
     });
     if (!isCompound) {
@@ -450,6 +518,8 @@ function buildElements(d: StadtData, expanded: Set<string>, locale?: string): El
       data: {
         id: b.id, label: b.name, type: 'beteiligung', level: 4, parentDep: b.verbunden,
         budget: b.budget, fte: b.fte, odz: b.odz,
+        klima: (b as unknown as Record<string, unknown>).klima,
+        diversity: (b as unknown as Record<string, unknown>).diversity,
       },
     });
     edges.push({
@@ -487,39 +557,47 @@ function syncElements(cy: Core, target: ElementDefinition[]): void {
 function layoutOptions(name: Layout, animate: boolean): LayoutOptions {
   if (name === 'force') {
     return {
-      name: 'fcose', quality: 'default', animate, animationDuration: 800,
-      nodeRepulsion: 15000, idealEdgeLength: 100, gravity: 0.1, nestingFactor: 0.6, randomize: false,
+      name: 'fcose', quality: 'proof', animate, animationDuration: 800,
+      nodeDimensionsIncludeLabels: true,
+      nodeRepulsion: 400000, idealEdgeLength: 150, gravity: 0.05, nestingFactor: 0.6, randomize: true,
+      fit: true, padding: 60,
     } as unknown as LayoutOptions;
   }
   return {
     name: 'concentric',
     concentric: (n: NodeSingular) => 10 - (n.data('level') as number),
     levelWidth: () => 1,
-    minNodeSpacing: 80,
-    spacingFactor: 1.5,
+    minNodeSpacing: 50,
+    spacingFactor: 1.1,
+    fit: true, padding: 60,
     avoidOverlap: true, animate, animationDuration: 600,
   };
 }
 
 const TC = city.theme;
-function getGraphStyle(locale?: string): cytoscape.StylesheetStyle[] {
+function getGraphStyle(locale?: string, klimaModus?: boolean, gudBudgetDelta: number = 0, diversityModus?: boolean): cytoscape.StylesheetStyle[] {
   const isLs = locale === 'ls';
   const mul = isLs ? 1.5 : 1;
-  return [
+  const gudScale = 1 + (gudBudgetDelta / 100);
+
+  const styles: cytoscape.StylesheetStyle[] = [
     { selector: 'node', style: {
         'label': 'data(label)', 'font-size': 9 * mul,
-        'text-valign': 'center', 'text-halign': 'center',
+        'text-valign': 'bottom', 'text-halign': 'center',
+        'text-margin-y': 4 * mul,
         'color': '#1a1f2e', 'text-outline-color': '#fff', 'text-outline-width': 2 * mul,
         'border-width': 1 * mul, 'border-color': 'rgba(0,0,0,.2)', 'width': 18 * mul, 'height': 18 * mul } },
     { selector: 'node[type = "center"]', style: {
         'background-color': TC.nodeType.stadtpraesidium, 'shape': 'ellipse',
         'width': 70 * mul, 'height': 70 * mul, 'font-size': 13 * mul, 'color': '#fff',
+        'text-valign': 'center', 'text-margin-y': 0,
         'text-outline-color': TC.nodeType.stadtpraesidium } },
     { selector: 'node[type = "department"]', style: {
         'background-color': TC.nodeType.department, 'shape': 'round-rectangle',
-        'width': 130 * mul, 'height': 54 * mul, 'font-size': 10 * mul, 'font-weight': 'bold',
+        'width': 140 * mul, 'height': 60 * mul, 'font-size': 12 * mul, 'font-weight': 'bold',
         'color': '#fff', 'text-outline-color': TC.nodeType.department,
-        'text-wrap': 'wrap', 'text-max-width': String(120 * mul), 'padding': String(4 * mul) } },
+        'text-valign': 'center', 'text-margin-y': 0,
+        'text-wrap': 'wrap', 'text-max-width': String(130 * mul), 'padding': String(4 * mul) } },
     { selector: 'node[type = "department"]:parent', style: {
         'background-color': 'rgba(255, 255, 255, 0.65)',
         'border-width': 2 * mul, 'border-color': TC.nodeType.department,
@@ -546,4 +624,66 @@ function getGraphStyle(locale?: string): cytoscape.StylesheetStyle[] {
     { selector: 'node[?konflikt]', style: {
         'border-width': 2.5 * mul, 'border-color': TC.konflikt, 'border-style': 'dashed' } },
   ];
+
+  if (klimaModus) {
+    styles.push({
+      selector: 'node[type="department"], node[type="unit"], node[type="staff"]',
+      style: {
+        'background-color': (ele: NodeSingular) => {
+          const klima = ele.data('klima');
+          if (klima && klima.co2Score > 50) return '#ef4444'; // red-500
+          if (klima && klima.co2Score > 20) return '#eab308'; // yellow-500
+          return '#22c55e'; // green-500
+        },
+        'border-width': 4 * mul,
+        'border-color': '#cbd5e1'
+      } as cytoscape.Css.Node
+    });
+
+    if (gudBudgetDelta !== 0) {
+      styles.push({
+        selector: 'node[id="GUD"], node[parentDep="GUD"], node[parent="GUD"]',
+        style: {
+          'width': (ele: NodeSingular) => {
+             const baseW = ele.data('type') === 'department' ? 130 : 22;
+             return baseW * mul * gudScale;
+          },
+          'height': (ele: NodeSingular) => {
+             const baseH = ele.data('type') === 'department' ? 54 : 16;
+             return baseH * mul * gudScale;
+          },
+          'font-size': (ele: NodeSingular) => {
+             const baseFS = ele.data('type') === 'department' ? 10 : 9;
+             return baseFS * mul * Math.max(0.5, Math.min(gudScale, 1.5));
+          },
+          'border-width': 4 * mul,
+          'border-color': gudBudgetDelta > 0 ? '#ef4444' : '#22c55e', 
+          'transition-property': 'width, height, font-size, border-color',
+          'transition-duration': 300
+        } as cytoscape.Css.Node
+      });
+    }
+  }
+
+  if (diversityModus) {
+    styles.push({
+      selector: 'node[type="department"], node[type="unit"]',
+      style: {
+        'pie-size': '100%',
+        'pie-1-background-color': '#d946ef', // fuchsia-500 (women)
+        'pie-1-background-size': (ele: NodeSingular) => {
+           const div = ele.data('diversity');
+           return div ? div.womenInManagement : 0;
+        },
+        'pie-2-background-color': '#0ea5e9', // sky-500 (men)
+        'pie-2-background-size': (ele: NodeSingular) => {
+           const div = ele.data('diversity');
+           return div ? div.menInManagement : 0;
+        },
+        'background-opacity': 0 // hide original solid color
+      } as cytoscape.Css.Node
+    });
+  }
+
+  return styles;
 }

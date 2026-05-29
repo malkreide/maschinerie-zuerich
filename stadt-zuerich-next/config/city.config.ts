@@ -105,6 +105,7 @@ export interface CityTheme {
     staff: string;
     extern: string;
     beteiligung: string;
+    committee: string;
   };
   /** Warn-Farbe für Konflikte (Bürger- vs. RPK-Zuordnung). */
   konflikt: string;
@@ -147,6 +148,7 @@ export function themeCssVars(): string {
     `  --color-node-staff: ${sanitizeColor(t.nodeType.staff)};`,
     `  --color-node-extern: ${sanitizeColor(t.nodeType.extern)};`,
     `  --color-node-beteiligung: ${sanitizeColor(t.nodeType.beteiligung)};`,
+    `  --color-node-committee: ${sanitizeColor(t.nodeType.committee)};`,
     `  --color-konflikt: ${sanitizeColor(t.konflikt)};`,
     `}`,
   ].join('\n');

@@ -64,6 +64,10 @@
         "key": "15",
         "kurzname": "PRD",
         "bezeichnung": "Präsidialdepartement"
+      },
+      "diversity": {
+        "womenInManagement": 60,
+        "menInManagement": 40
       }
     },
     {
@@ -91,6 +95,14 @@
         "key": "20",
         "kurzname": "FD",
         "bezeichnung": "Finanzdepartement"
+      },
+      "klima": {
+        "co2Score": 50,
+        "budgetShare": 0.2
+      },
+      "diversity": {
+        "womenInManagement": 32,
+        "menInManagement": 68
       }
     },
     {
@@ -118,6 +130,10 @@
         "key": "55",
         "kurzname": "SD",
         "bezeichnung": "Sozialdepartement"
+      },
+      "diversity": {
+        "womenInManagement": 45,
+        "menInManagement": 55
       }
     },
     {
@@ -145,6 +161,14 @@
         "key": "30",
         "kurzname": "GUD",
         "bezeichnung": "Gesundheits- und Umweltdepartement"
+      },
+      "klima": {
+        "co2Score": 10,
+        "budgetShare": 0.7
+      },
+      "diversity": {
+        "womenInManagement": 45,
+        "menInManagement": 55
       }
     },
     {
@@ -172,6 +196,14 @@
         "key": "35",
         "kurzname": "TED",
         "bezeichnung": "Tiefbau- und Entsorgungsdepartement"
+      },
+      "klima": {
+        "co2Score": 85,
+        "budgetShare": 0.4
+      },
+      "diversity": {
+        "womenInManagement": 34,
+        "menInManagement": 66
       }
     },
     {
@@ -199,6 +231,14 @@
         "key": "40",
         "kurzname": "HBD",
         "bezeichnung": "Hochbaudepartement"
+      },
+      "klima": {
+        "co2Score": 60,
+        "budgetShare": 0.3
+      },
+      "diversity": {
+        "womenInManagement": 35,
+        "menInManagement": 65
       }
     },
     {
@@ -226,6 +266,10 @@
         "key": "25",
         "kurzname": "SID",
         "bezeichnung": "Sicherheitsdepartement"
+      },
+      "diversity": {
+        "womenInManagement": 28,
+        "menInManagement": 72
       }
     },
     {
@@ -253,6 +297,10 @@
         "key": "50",
         "kurzname": "SSD",
         "bezeichnung": "Schul- und Sportdepartement"
+      },
+      "diversity": {
+        "womenInManagement": 44,
+        "menInManagement": 56
       }
     },
     {
@@ -280,6 +328,14 @@
         "key": "45",
         "kurzname": "DIB",
         "bezeichnung": "Departement der Industriellen Betriebe"
+      },
+      "klima": {
+        "co2Score": 40,
+        "budgetShare": 0.6
+      },
+      "diversity": {
+        "womenInManagement": 35,
+        "menInManagement": 65
       }
     },
     {
@@ -308,6 +364,10 @@
         "personalaufwand": 86441289,
         "_aggregiertAus": 11,
         "quelle": "schaetzung"
+      },
+      "diversity": {
+        "womenInManagement": 29,
+        "menInManagement": 71
       }
     }
   ],
@@ -344,6 +404,14 @@
         "unsereKurzname": "PRD",
         "rpkKurzname": "BUG",
         "rpkBezeichnung": "Behörden und Gesamtverwaltung"
+      },
+      "klima": {
+        "co2Score": 12,
+        "budgetShare": 0.01
+      },
+      "diversity": {
+        "womenInManagement": 34,
+        "menInManagement": 66
       }
     },
     {
@@ -372,6 +440,14 @@
         "kurzname": "SSZ",
         "bezeichnung": "Statistik Stadt Zürich",
         "departementKurzname": "PRD"
+      },
+      "klima": {
+        "co2Score": 10,
+        "budgetShare": 0.02
+      },
+      "diversity": {
+        "womenInManagement": 31,
+        "menInManagement": 69
       }
     },
     {
@@ -400,6 +476,14 @@
         "kurzname": "STE",
         "bezeichnung": "Stadtentwicklung",
         "departementKurzname": "PRD"
+      },
+      "klima": {
+        "co2Score": 9,
+        "budgetShare": 0.09
+      },
+      "diversity": {
+        "womenInManagement": 45,
+        "menInManagement": 55
       }
     },
     {
@@ -428,6 +512,14 @@
         "kurzname": "SAR",
         "bezeichnung": "Stadtarchiv",
         "departementKurzname": "PRD"
+      },
+      "klima": {
+        "co2Score": 25,
+        "budgetShare": 0.06
+      },
+      "diversity": {
+        "womenInManagement": 30,
+        "menInManagement": 70
       }
     },
     {
@@ -436,7 +528,15 @@
       "name": "Wirtschaftsförderung",
       "kind": "staff",
       "budget": null,
-      "fte": null
+      "fte": null,
+      "klima": {
+        "co2Score": 17,
+        "budgetShare": 0.03
+      },
+      "diversity": {
+        "womenInManagement": 30,
+        "menInManagement": 70
+      }
     },
     {
       "id": "PRD-int",
@@ -444,7 +544,15 @@
       "name": "Integrationsförderung",
       "kind": "staff",
       "budget": null,
-      "fte": null
+      "fte": null,
+      "klima": {
+        "co2Score": 4,
+        "budgetShare": 0.08
+      },
+      "diversity": {
+        "womenInManagement": 30,
+        "menInManagement": 70
+      }
     },
     {
       "id": "PRD-gleich",
@@ -472,6 +580,14 @@
         "kurzname": "ZFG",
         "bezeichnung": "Fachstelle für Gleichstellung",
         "departementKurzname": "PRD"
+      },
+      "klima": {
+        "co2Score": 18,
+        "budgetShare": 0.09
+      },
+      "diversity": {
+        "womenInManagement": 37,
+        "menInManagement": 63
       }
     },
     {
@@ -506,6 +622,14 @@
         "unsereKurzname": "PRD",
         "rpkKurzname": "BUG",
         "rpkBezeichnung": "Behörden und Gesamtverwaltung"
+      },
+      "klima": {
+        "co2Score": 17,
+        "budgetShare": 0
+      },
+      "diversity": {
+        "womenInManagement": 34,
+        "menInManagement": 66
       }
     },
     {
@@ -534,6 +658,14 @@
         "kurzname": "FVW",
         "bezeichnung": "Finanzverwaltung",
         "departementKurzname": "FD"
+      },
+      "klima": {
+        "co2Score": 4,
+        "budgetShare": 0.01
+      },
+      "diversity": {
+        "womenInManagement": 40,
+        "menInManagement": 60
       }
     },
     {
@@ -562,6 +694,14 @@
         "kurzname": "SST",
         "bezeichnung": "Steueramt",
         "departementKurzname": "FD"
+      },
+      "klima": {
+        "co2Score": 5,
+        "budgetShare": 0.07
+      },
+      "diversity": {
+        "womenInManagement": 35,
+        "menInManagement": 65
       }
     },
     {
@@ -590,6 +730,14 @@
         "kurzname": "HRZ",
         "bezeichnung": "Human Resources Management",
         "departementKurzname": "FD"
+      },
+      "klima": {
+        "co2Score": 1,
+        "budgetShare": 0.08
+      },
+      "diversity": {
+        "womenInManagement": 36,
+        "menInManagement": 64
       }
     },
     {
@@ -624,6 +772,14 @@
         "unsereKurzname": "FD",
         "rpkKurzname": "HBD",
         "rpkBezeichnung": "Hochbaudepartement"
+      },
+      "klima": {
+        "co2Score": 65,
+        "budgetShare": 0.3
+      },
+      "diversity": {
+        "womenInManagement": 33,
+        "menInManagement": 67
       }
     },
     {
@@ -652,6 +808,14 @@
         "kurzname": "OIZ",
         "bezeichnung": "Organisation und Informatik",
         "departementKurzname": "FD"
+      },
+      "klima": {
+        "co2Score": 25,
+        "budgetShare": 0.02
+      },
+      "diversity": {
+        "womenInManagement": 44,
+        "menInManagement": 56
       }
     },
     {
@@ -680,6 +844,14 @@
         "kurzname": "SOD",
         "bezeichnung": "Soziale Dienste",
         "departementKurzname": "SD"
+      },
+      "klima": {
+        "co2Score": 11,
+        "budgetShare": 0.09
+      },
+      "diversity": {
+        "womenInManagement": 44,
+        "menInManagement": 56
       }
     },
     {
@@ -694,6 +866,14 @@
         "kurzname": "AOZ",
         "bezeichnung": "Asyl-Organisation Zürich (AOZ)",
         "departementKurzname": "SD"
+      },
+      "klima": {
+        "co2Score": 23,
+        "budgetShare": 0.09
+      },
+      "diversity": {
+        "womenInManagement": 31,
+        "menInManagement": 69
       }
     },
     {
@@ -722,6 +902,14 @@
         "kurzname": "SDS",
         "bezeichnung": "Support Sozialdepartement",
         "departementKurzname": "SD"
+      },
+      "klima": {
+        "co2Score": 2,
+        "budgetShare": 0.04
+      },
+      "diversity": {
+        "womenInManagement": 33,
+        "menInManagement": 67
       }
     },
     {
@@ -750,6 +938,14 @@
         "kurzname": "AZL",
         "bezeichnung": "Amt für Zusatzleistungen zur AHV/IV",
         "departementKurzname": "SD"
+      },
+      "klima": {
+        "co2Score": 19,
+        "budgetShare": 0.08
+      },
+      "diversity": {
+        "womenInManagement": 41,
+        "menInManagement": 59
       }
     },
     {
@@ -778,6 +974,14 @@
         "kurzname": "LBZ",
         "bezeichnung": "Laufbahnzentrum",
         "departementKurzname": "SD"
+      },
+      "klima": {
+        "co2Score": 24,
+        "budgetShare": 0.02
+      },
+      "diversity": {
+        "womenInManagement": 28,
+        "menInManagement": 72
       }
     },
     {
@@ -806,6 +1010,14 @@
         "kurzname": "KEB",
         "bezeichnung": "Kindes- und Erwachsenenschutzbehörde der Stadt Zürich",
         "departementKurzname": "SD"
+      },
+      "klima": {
+        "co2Score": 0,
+        "budgetShare": 0.08
+      },
+      "diversity": {
+        "womenInManagement": 30,
+        "menInManagement": 70
       }
     },
     {
@@ -834,6 +1046,14 @@
         "kurzname": "SEB",
         "bezeichnung": "Soziale Einrichtungen und Betriebe",
         "departementKurzname": "SD"
+      },
+      "klima": {
+        "co2Score": 8,
+        "budgetShare": 0.01
+      },
+      "diversity": {
+        "womenInManagement": 27,
+        "menInManagement": 73
       }
     },
     {
@@ -862,6 +1082,14 @@
         "kurzname": "STZ",
         "bezeichnung": "Stadtspital Zürich",
         "departementKurzname": "GUD"
+      },
+      "klima": {
+        "co2Score": 60,
+        "budgetShare": 0.1
+      },
+      "diversity": {
+        "womenInManagement": 45,
+        "menInManagement": 55
       }
     },
     {
@@ -890,6 +1118,14 @@
         "kurzname": "GFA",
         "bezeichnung": "Gesundheitszentren für das Alter",
         "departementKurzname": "GUD"
+      },
+      "klima": {
+        "co2Score": 11,
+        "budgetShare": 0.05
+      },
+      "diversity": {
+        "womenInManagement": 34,
+        "menInManagement": 66
       }
     },
     {
@@ -918,6 +1154,14 @@
         "kurzname": "SGD",
         "bezeichnung": "Städtische Gesundheitsdienste",
         "departementKurzname": "GUD"
+      },
+      "klima": {
+        "co2Score": 28,
+        "budgetShare": 0.01
+      },
+      "diversity": {
+        "womenInManagement": 28,
+        "menInManagement": 72
       }
     },
     {
@@ -926,7 +1170,15 @@
       "name": "Stadtärztlicher Dienst",
       "kind": "unit",
       "budget": null,
-      "fte": null
+      "fte": null,
+      "klima": {
+        "co2Score": 3,
+        "budgetShare": 0.09
+      },
+      "diversity": {
+        "womenInManagement": 43,
+        "menInManagement": 57
+      }
     },
     {
       "id": "GUD-ugz",
@@ -954,6 +1206,14 @@
         "kurzname": "UGZ",
         "bezeichnung": "Umwelt- und Gesundheitsschutz",
         "departementKurzname": "GUD"
+      },
+      "klima": {
+        "co2Score": 5,
+        "budgetShare": 0.9
+      },
+      "diversity": {
+        "womenInManagement": 25,
+        "menInManagement": 75
       }
     },
     {
@@ -962,7 +1222,15 @@
       "name": "Veterinäramt",
       "kind": "unit",
       "budget": null,
-      "fte": null
+      "fte": null,
+      "klima": {
+        "co2Score": 5,
+        "budgetShare": 0.08
+      },
+      "diversity": {
+        "womenInManagement": 35,
+        "menInManagement": 65
+      }
     },
     {
       "id": "TED-tba",
@@ -990,6 +1258,14 @@
         "kurzname": "TAZ",
         "bezeichnung": "Tiefbauamt",
         "departementKurzname": "TED"
+      },
+      "klima": {
+        "co2Score": 13,
+        "budgetShare": 0.02
+      },
+      "diversity": {
+        "womenInManagement": 41,
+        "menInManagement": 59
       }
     },
     {
@@ -1018,6 +1294,14 @@
         "kurzname": "ERZ-Abf",
         "bezeichnung": "Entsorgung + Recycling Zürich, Abfall",
         "departementKurzname": "TED"
+      },
+      "klima": {
+        "co2Score": 90,
+        "budgetShare": 0.4
+      },
+      "diversity": {
+        "womenInManagement": 37,
+        "menInManagement": 63
       }
     },
     {
@@ -1046,6 +1330,14 @@
         "kurzname": "ERZ-Abw",
         "bezeichnung": "Entsorgung + Recycling Zürich, Abwasser",
         "departementKurzname": "TED"
+      },
+      "klima": {
+        "co2Score": 90,
+        "budgetShare": 0.4
+      },
+      "diversity": {
+        "womenInManagement": 32,
+        "menInManagement": 68
       }
     },
     {
@@ -1074,6 +1366,14 @@
         "kurzname": "ERZ-W",
         "bezeichnung": "Entsorgung + Recycling Zürich, Fernwärme",
         "departementKurzname": "TED"
+      },
+      "klima": {
+        "co2Score": 90,
+        "budgetShare": 0.4
+      },
+      "diversity": {
+        "womenInManagement": 45,
+        "menInManagement": 55
       }
     },
     {
@@ -1102,6 +1402,14 @@
         "kurzname": "ERZ-R",
         "bezeichnung": "Entsorgung + Recycling Zürich, Stadtreinigung",
         "departementKurzname": "TED"
+      },
+      "klima": {
+        "co2Score": 90,
+        "budgetShare": 0.4
+      },
+      "diversity": {
+        "womenInManagement": 31,
+        "menInManagement": 69
       }
     },
     {
@@ -1130,6 +1438,14 @@
         "kurzname": "GEO",
         "bezeichnung": "Geomatik + Vermessung",
         "departementKurzname": "TED"
+      },
+      "klima": {
+        "co2Score": 24,
+        "budgetShare": 0.06
+      },
+      "diversity": {
+        "womenInManagement": 45,
+        "menInManagement": 55
       }
     },
     {
@@ -1158,6 +1474,14 @@
         "kurzname": "GSZ",
         "bezeichnung": "Grün Stadt Zürich",
         "departementKurzname": "TED"
+      },
+      "klima": {
+        "co2Score": -20,
+        "budgetShare": 0.6
+      },
+      "diversity": {
+        "womenInManagement": 29,
+        "menInManagement": 71
       }
     },
     {
@@ -1186,6 +1510,14 @@
         "kurzname": "AFS",
         "bezeichnung": "Amt für Städtebau",
         "departementKurzname": "HBD"
+      },
+      "klima": {
+        "co2Score": 28,
+        "budgetShare": 0.01
+      },
+      "diversity": {
+        "womenInManagement": 37,
+        "menInManagement": 63
       }
     },
     {
@@ -1214,6 +1546,14 @@
         "kurzname": "AHB",
         "bezeichnung": "Amt für Hochbauten",
         "departementKurzname": "HBD"
+      },
+      "klima": {
+        "co2Score": 70,
+        "budgetShare": 0.5
+      },
+      "diversity": {
+        "womenInManagement": 33,
+        "menInManagement": 67
       }
     },
     {
@@ -1242,6 +1582,14 @@
         "kurzname": "AFB",
         "bezeichnung": "Amt für Baubewilligungen",
         "departementKurzname": "HBD"
+      },
+      "klima": {
+        "co2Score": 17,
+        "budgetShare": 0.07
+      },
+      "diversity": {
+        "womenInManagement": 30,
+        "menInManagement": 70
       }
     },
     {
@@ -1270,6 +1618,14 @@
         "kurzname": "STP",
         "bezeichnung": "Stadtpolizei",
         "departementKurzname": "SID"
+      },
+      "klima": {
+        "co2Score": 2,
+        "budgetShare": 0.01
+      },
+      "diversity": {
+        "womenInManagement": 27,
+        "menInManagement": 73
       }
     },
     {
@@ -1298,6 +1654,14 @@
         "kurzname": "SRZ",
         "bezeichnung": "Schutz & Rettung",
         "departementKurzname": "SID"
+      },
+      "klima": {
+        "co2Score": 14,
+        "budgetShare": 0.1
+      },
+      "diversity": {
+        "womenInManagement": 26,
+        "menInManagement": 74
       }
     },
     {
@@ -1332,6 +1696,14 @@
         "unsereKurzname": "SID",
         "rpkKurzname": "PRD",
         "rpkBezeichnung": "Präsidialdepartement"
+      },
+      "klima": {
+        "co2Score": 7,
+        "budgetShare": 0.08
+      },
+      "diversity": {
+        "womenInManagement": 45,
+        "menInManagement": 55
       }
     },
     {
@@ -1360,6 +1732,14 @@
         "kurzname": "SRA",
         "bezeichnung": "Stadtrichteramt",
         "departementKurzname": "SID"
+      },
+      "klima": {
+        "co2Score": 29,
+        "budgetShare": 0.04
+      },
+      "diversity": {
+        "womenInManagement": 35,
+        "menInManagement": 65
       }
     },
     {
@@ -1388,6 +1768,14 @@
         "kurzname": "DAV",
         "bezeichnung": "Dienstabteilung Verkehr",
         "departementKurzname": "SID"
+      },
+      "klima": {
+        "co2Score": 16,
+        "budgetShare": 0.01
+      },
+      "diversity": {
+        "womenInManagement": 42,
+        "menInManagement": 58
       }
     },
     {
@@ -1416,6 +1804,14 @@
         "kurzname": "BZB",
         "bezeichnung": "Bildungszentrum Blaulicht",
         "departementKurzname": "SID"
+      },
+      "klima": {
+        "co2Score": 13,
+        "budgetShare": 0.05
+      },
+      "diversity": {
+        "womenInManagement": 43,
+        "menInManagement": 57
       }
     },
     {
@@ -1444,6 +1840,14 @@
         "kurzname": "SAM",
         "bezeichnung": "Schulamt",
         "departementKurzname": "SSD"
+      },
+      "klima": {
+        "co2Score": 30,
+        "budgetShare": 0.05
+      },
+      "diversity": {
+        "womenInManagement": 36,
+        "menInManagement": 64
       }
     },
     {
@@ -1472,6 +1876,14 @@
         "kurzname": "MKZ",
         "bezeichnung": "Musikschule Konservatorium Zürich",
         "departementKurzname": "SSD"
+      },
+      "klima": {
+        "co2Score": 16,
+        "budgetShare": 0
+      },
+      "diversity": {
+        "womenInManagement": 35,
+        "menInManagement": 65
       }
     },
     {
@@ -1500,6 +1912,14 @@
         "kurzname": "SG",
         "bezeichnung": "Schulgesundheitsdienste",
         "departementKurzname": "SSD"
+      },
+      "klima": {
+        "co2Score": 20,
+        "budgetShare": 0.04
+      },
+      "diversity": {
+        "womenInManagement": 34,
+        "menInManagement": 66
       }
     },
     {
@@ -1528,6 +1948,14 @@
         "kurzname": "HPS",
         "bezeichnung": "Heilpädagogische Schule Zürich",
         "departementKurzname": "SSD"
+      },
+      "klima": {
+        "co2Score": 16,
+        "budgetShare": 0.05
+      },
+      "diversity": {
+        "womenInManagement": 45,
+        "menInManagement": 55
       }
     },
     {
@@ -1556,6 +1984,14 @@
         "kurzname": "SKB",
         "bezeichnung": "Schule für Kinder und Jugendliche mit Körper- und Mehrfachbehinderungen Zürich",
         "departementKurzname": "SSD"
+      },
+      "klima": {
+        "co2Score": 20,
+        "budgetShare": 0.02
+      },
+      "diversity": {
+        "womenInManagement": 41,
+        "menInManagement": 59
       }
     },
     {
@@ -1584,6 +2020,14 @@
         "kurzname": "SFS",
         "bezeichnung": "Schule Fokus Sehen",
         "departementKurzname": "SSD"
+      },
+      "klima": {
+        "co2Score": 14,
+        "budgetShare": 0
+      },
+      "diversity": {
+        "womenInManagement": 25,
+        "menInManagement": 75
       }
     },
     {
@@ -1612,6 +2056,14 @@
         "kurzname": "V15",
         "bezeichnung": "Viventa15plus",
         "departementKurzname": "SSD"
+      },
+      "klima": {
+        "co2Score": 2,
+        "budgetShare": 0.02
+      },
+      "diversity": {
+        "womenInManagement": 31,
+        "menInManagement": 69
       }
     },
     {
@@ -1640,6 +2092,14 @@
         "kurzname": "FSV",
         "bezeichnung": "Fachschule Viventa",
         "departementKurzname": "SSD"
+      },
+      "klima": {
+        "co2Score": 27,
+        "budgetShare": 0.08
+      },
+      "diversity": {
+        "womenInManagement": 26,
+        "menInManagement": 74
       }
     },
     {
@@ -1668,6 +2128,14 @@
         "kurzname": "SBMV",
         "bezeichnung": "Schul- und Büromaterialverwaltung",
         "departementKurzname": "SSD"
+      },
+      "klima": {
+        "co2Score": 21,
+        "budgetShare": 0
+      },
+      "diversity": {
+        "womenInManagement": 44,
+        "menInManagement": 56
       }
     },
     {
@@ -1696,6 +2164,14 @@
         "kurzname": "SPA",
         "bezeichnung": "Sportamt",
         "departementKurzname": "SSD"
+      },
+      "klima": {
+        "co2Score": 7,
+        "budgetShare": 0.07
+      },
+      "diversity": {
+        "womenInManagement": 41,
+        "menInManagement": 59
       }
     },
     {
@@ -1724,6 +2200,14 @@
         "kurzname": "EWZ",
         "bezeichnung": "Elektrizitätswerk der Stadt Zürich",
         "departementKurzname": "DIB"
+      },
+      "klima": {
+        "co2Score": 20,
+        "budgetShare": 0.8
+      },
+      "diversity": {
+        "womenInManagement": 40,
+        "menInManagement": 60
       }
     },
     {
@@ -1752,6 +2236,14 @@
         "kurzname": "WVZ",
         "bezeichnung": "Wasserversorgung",
         "departementKurzname": "DIB"
+      },
+      "klima": {
+        "co2Score": 15,
+        "budgetShare": 0.2
+      },
+      "diversity": {
+        "womenInManagement": 37,
+        "menInManagement": 63
       }
     },
     {
@@ -1780,6 +2272,14 @@
         "kurzname": "VBZ",
         "bezeichnung": "Verkehrsbetriebe",
         "departementKurzname": "DIB"
+      },
+      "klima": {
+        "co2Score": 40,
+        "budgetShare": 0.6
+      },
+      "diversity": {
+        "womenInManagement": 30,
+        "menInManagement": 70
       }
     },
     {
@@ -1808,6 +2308,14 @@
         "schaetzung": 46,
         "personalaufwand": 6016546,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 11,
+        "budgetShare": 0.02
+      },
+      "diversity": {
+        "womenInManagement": 41,
+        "menInManagement": 59
       }
     },
     {
@@ -1836,6 +2344,14 @@
         "schaetzung": 73,
         "personalaufwand": 9439761,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 11,
+        "budgetShare": 0.06
+      },
+      "diversity": {
+        "womenInManagement": 44,
+        "menInManagement": 56
       }
     },
     {
@@ -1864,6 +2380,14 @@
         "schaetzung": 61,
         "personalaufwand": 7904785,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 13,
+        "budgetShare": 0.07
+      },
+      "diversity": {
+        "womenInManagement": 26,
+        "menInManagement": 74
       }
     },
     {
@@ -1892,6 +2416,14 @@
         "schaetzung": 9,
         "personalaufwand": 1231469,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 20,
+        "budgetShare": 0.1
+      },
+      "diversity": {
+        "womenInManagement": 36,
+        "menInManagement": 64
       }
     },
     {
@@ -1920,6 +2452,14 @@
         "schaetzung": 32,
         "personalaufwand": 4191090,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 24,
+        "budgetShare": 0.08
+      },
+      "diversity": {
+        "womenInManagement": 28,
+        "menInManagement": 72
       }
     },
     {
@@ -1948,6 +2488,14 @@
         "schaetzung": 128,
         "personalaufwand": 16597721,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 10,
+        "budgetShare": 0.08
+      },
+      "diversity": {
+        "womenInManagement": 28,
+        "menInManagement": 72
       }
     },
     {
@@ -1976,6 +2524,14 @@
         "schaetzung": 83,
         "personalaufwand": 10815981,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 13,
+        "budgetShare": 0.09
+      },
+      "diversity": {
+        "womenInManagement": 31,
+        "menInManagement": 69
       }
     },
     {
@@ -2004,6 +2560,14 @@
         "schaetzung": 5,
         "personalaufwand": 597631,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 18,
+        "budgetShare": 0.01
+      },
+      "diversity": {
+        "womenInManagement": 28,
+        "menInManagement": 72
       }
     },
     {
@@ -2023,6 +2587,14 @@
         "aufwand": 8939583,
         "ertrag": -8939583,
         "nettoaufwand": 17879166
+      },
+      "klima": {
+        "co2Score": 5,
+        "budgetShare": 0.01
+      },
+      "diversity": {
+        "womenInManagement": 41,
+        "menInManagement": 59
       }
     },
     {
@@ -2051,6 +2623,14 @@
         "schaetzung": 67,
         "personalaufwand": 8736439,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 23,
+        "budgetShare": 0.04
+      },
+      "diversity": {
+        "womenInManagement": 43,
+        "menInManagement": 57
       }
     },
     {
@@ -2079,6 +2659,14 @@
         "schaetzung": 42,
         "personalaufwand": 5400499,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 26,
+        "budgetShare": 0.03
+      },
+      "diversity": {
+        "womenInManagement": 41,
+        "menInManagement": 59
       }
     },
     {
@@ -2107,6 +2695,14 @@
         "schaetzung": 20,
         "personalaufwand": 2641576,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 90,
+        "budgetShare": 0.4
+      },
+      "diversity": {
+        "womenInManagement": 29,
+        "menInManagement": 71
       }
     },
     {
@@ -2126,6 +2722,14 @@
         "aufwand": 42172500,
         "ertrag": -42172500,
         "nettoaufwand": 84345000
+      },
+      "klima": {
+        "co2Score": 23,
+        "budgetShare": 0.08
+      },
+      "diversity": {
+        "womenInManagement": 32,
+        "menInManagement": 68
       }
     },
     {
@@ -2154,6 +2758,14 @@
         "schaetzung": 47,
         "personalaufwand": 6070040,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 4,
+        "budgetShare": 0
+      },
+      "diversity": {
+        "womenInManagement": 42,
+        "menInManagement": 58
       }
     },
     {
@@ -2173,6 +2785,14 @@
         "aufwand": 16819110,
         "ertrag": -16819110,
         "nettoaufwand": 33638220
+      },
+      "klima": {
+        "co2Score": 14,
+        "budgetShare": 0.02
+      },
+      "diversity": {
+        "womenInManagement": 39,
+        "menInManagement": 61
       }
     },
     {
@@ -2201,6 +2821,14 @@
         "schaetzung": 29,
         "personalaufwand": 3747766,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 11,
+        "budgetShare": 0.09
+      },
+      "diversity": {
+        "womenInManagement": 31,
+        "menInManagement": 69
       }
     },
     {
@@ -2220,6 +2848,14 @@
         "aufwand": 15763053,
         "ertrag": -15763053,
         "nettoaufwand": 31526106
+      },
+      "klima": {
+        "co2Score": 11,
+        "budgetShare": 0.1
+      },
+      "diversity": {
+        "womenInManagement": 28,
+        "menInManagement": 72
       }
     },
     {
@@ -2248,6 +2884,14 @@
         "schaetzung": 4,
         "personalaufwand": 559091,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 14,
+        "budgetShare": 0.02
+      },
+      "diversity": {
+        "womenInManagement": 35,
+        "menInManagement": 65
       }
     },
     {
@@ -2276,6 +2920,14 @@
         "schaetzung": 70,
         "personalaufwand": 9093513,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 18,
+        "budgetShare": 0.1
+      },
+      "diversity": {
+        "womenInManagement": 29,
+        "menInManagement": 71
       }
     },
     {
@@ -2304,6 +2956,14 @@
         "schaetzung": 32,
         "personalaufwand": 4103855,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 11,
+        "budgetShare": 0.07
+      },
+      "diversity": {
+        "womenInManagement": 36,
+        "menInManagement": 64
       }
     },
     {
@@ -2332,6 +2992,14 @@
         "schaetzung": 319,
         "personalaufwand": 41439400,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 14,
+        "budgetShare": 0.06
+      },
+      "diversity": {
+        "womenInManagement": 35,
+        "menInManagement": 65
       }
     },
     {
@@ -2360,6 +3028,14 @@
         "schaetzung": 31,
         "personalaufwand": 4057366,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 15,
+        "budgetShare": 0
+      },
+      "diversity": {
+        "womenInManagement": 41,
+        "menInManagement": 59
       }
     },
     {
@@ -2388,6 +3064,14 @@
         "schaetzung": 22,
         "personalaufwand": 2881107,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 8,
+        "budgetShare": 0.1
+      },
+      "diversity": {
+        "womenInManagement": 43,
+        "menInManagement": 57
       }
     },
     {
@@ -2416,6 +3100,14 @@
         "schaetzung": 34,
         "personalaufwand": 4389000,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 20,
+        "budgetShare": 0.07
+      },
+      "diversity": {
+        "womenInManagement": 31,
+        "menInManagement": 69
       }
     },
     {
@@ -2444,6 +3136,14 @@
         "schaetzung": 10,
         "personalaufwand": 1356477,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 10,
+        "budgetShare": 0.01
+      },
+      "diversity": {
+        "womenInManagement": 40,
+        "menInManagement": 60
       }
     },
     {
@@ -2472,6 +3172,14 @@
         "schaetzung": 6,
         "personalaufwand": 780719,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 13,
+        "budgetShare": 0.04
+      },
+      "diversity": {
+        "womenInManagement": 26,
+        "menInManagement": 74
       }
     },
     {
@@ -2500,6 +3208,14 @@
         "schaetzung": 7,
         "personalaufwand": 908194,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 20,
+        "budgetShare": 0.06
+      },
+      "diversity": {
+        "womenInManagement": 30,
+        "menInManagement": 70
       }
     },
     {
@@ -2528,6 +3244,14 @@
         "schaetzung": 18,
         "personalaufwand": 2331134,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 11,
+        "budgetShare": 0.03
+      },
+      "diversity": {
+        "womenInManagement": 43,
+        "menInManagement": 57
       }
     },
     {
@@ -2556,6 +3280,140 @@
         "schaetzung": 10,
         "personalaufwand": 1322080,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 24,
+        "budgetShare": 0.08
+      },
+      "diversity": {
+        "womenInManagement": 40,
+        "menInManagement": 60
+      }
+    },
+    {
+      "id": "BUG-rpk",
+      "parent": "BUG",
+      "name": "Rechnungsprüfungskommission (RPK)",
+      "kind": "committee",
+      "klima": {
+        "co2Score": 10,
+        "budgetShare": 0.02
+      },
+      "diversity": {
+        "womenInManagement": 43,
+        "menInManagement": 57
+      }
+    },
+    {
+      "id": "BUG-gpk",
+      "parent": "BUG",
+      "name": "Geschäftsprüfungskommission (GPK)",
+      "kind": "committee",
+      "klima": {
+        "co2Score": 18,
+        "budgetShare": 0.03
+      },
+      "diversity": {
+        "womenInManagement": 27,
+        "menInManagement": 73
+      }
+    },
+    {
+      "id": "BUG-strdel",
+      "parent": "BUG",
+      "name": "Delegationen des Stadtrats",
+      "kind": "committee",
+      "klima": {
+        "co2Score": 14,
+        "budgetShare": 0.01
+      },
+      "diversity": {
+        "womenInManagement": 31,
+        "menInManagement": 69
+      }
+    },
+    {
+      "id": "SSD-ksp",
+      "parent": "SSD",
+      "name": "Kreisschulpflegen",
+      "kind": "committee",
+      "klima": {
+        "co2Score": 8,
+        "budgetShare": 0.05
+      },
+      "diversity": {
+        "womenInManagement": 42,
+        "menInManagement": 58
+      }
+    },
+    {
+      "id": "SD-soz",
+      "parent": "SD",
+      "name": "Sozialbehörde",
+      "kind": "committee",
+      "klima": {
+        "co2Score": 19,
+        "budgetShare": 0.03
+      },
+      "diversity": {
+        "womenInManagement": 37,
+        "menInManagement": 63
+      }
+    },
+    {
+      "id": "HBD-bk",
+      "parent": "HBD",
+      "name": "Baukollegium",
+      "kind": "committee",
+      "klima": {
+        "co2Score": 19,
+        "budgetShare": 0.01
+      },
+      "diversity": {
+        "womenInManagement": 42,
+        "menInManagement": 58
+      }
+    },
+    {
+      "id": "GUD-gb",
+      "parent": "GUD",
+      "name": "Gesundheitsbehörde / Stadtsanitätskommission",
+      "kind": "committee",
+      "klima": {
+        "co2Score": 16,
+        "budgetShare": 0.06
+      },
+      "diversity": {
+        "womenInManagement": 27,
+        "menInManagement": 73
+      }
+    },
+    {
+      "id": "PRD-betr",
+      "parent": "PRD",
+      "name": "Stadtammann- und Betreibungsämter",
+      "kind": "committee",
+      "klima": {
+        "co2Score": 16,
+        "budgetShare": 0.03
+      },
+      "diversity": {
+        "womenInManagement": 26,
+        "menInManagement": 74
+      }
+    },
+    {
+      "id": "FD-eink",
+      "parent": "FD",
+      "name": "Einschätzungskommissionen",
+      "kind": "committee",
+      "klima": {
+        "co2Score": 25,
+        "budgetShare": 0.03
+      },
+      "diversity": {
+        "womenInManagement": 25,
+        "menInManagement": 75
       }
     }
   ],

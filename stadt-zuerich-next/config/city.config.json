@@ -50,7 +50,8 @@
       "unit": "#3b6ea5",
       "staff": "#8b5cf6",
       "extern": "#16a085",
-      "beteiligung": "#f1c40f"
+      "beteiligung": "#f1c40f",
+      "committee": "#34495e"
     },
     "konflikt": "#e67e22",
     "departmentPalette": [

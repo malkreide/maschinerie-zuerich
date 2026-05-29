@@ -37,6 +37,7 @@ function LegendContent({ t, c }: { t: ReturnType<typeof getT>; c: typeof city.th
       <Heading mt>{t('headingUnits')}</Heading>
       <Row color={c.unit} sq>{t('dienstabteilung')}</Row>
       <Row color={c.staff} sq>{t('stab')}</Row>
+      <Row color={c.committee} hex>{t('committee')}</Row>
 
       <Heading mt>{t('headingExtern')}</Heading>
       <Row color={c.extern} dia>{t('verselbst')}</Row>
@@ -57,14 +58,20 @@ function Heading({ children, mt }: { children: React.ReactNode; mt?: boolean }) 
 }
 
 function Row({
-  color, sq, dia, round, dashed, dashColor, children,
+  color, sq, dia, round, hex, dashed, dashColor, children,
 }: {
-  color?: string; sq?: boolean; dia?: boolean; round?: boolean; dashed?: boolean;
+  color?: string; sq?: boolean; dia?: boolean; round?: boolean; hex?: boolean; dashed?: boolean;
   dashColor?: string;
   children: React.ReactNode;
 }) {
   const style: React.CSSProperties = dashed
     ? { background: 'transparent', border: `2px dashed ${dashColor ?? 'currentColor'}`, width: 14, height: 14, borderRadius: 3 }
+    : hex
+    ? {
+        background: color,
+        width: 14, height: 14,
+        clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+      }
     : {
         background: color,
         width: dia ? 11 : 14,

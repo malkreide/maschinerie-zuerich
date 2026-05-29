@@ -41,7 +41,9 @@
     "skipToList": "Zur textuellen Übersicht (für Screenreader)",
     "language": "Sprache",
     "expandAll": "Alle ausklappen",
-    "collapseAll": "Alle einklappen"
+    "collapseAll": "Alle einklappen",
+    "diversityToggle": "👥 Diversity & Kader (Mitarbeitende)",
+    "diversityToggleTitle": "Zeigt den Geschlechteranteil im Kader pro Organisationseinheit als Ringdiagramm"
   },
   "Search": {
     "label": "Stelle oder Anliegen suchen",
@@ -125,7 +127,11 @@
     "perCapitaTitle": "Aufwand pro Kopf — Aufwand geteilt durch ständige Wohnbevölkerung der Stadt",
     "budgetShareLabel": "Anteil Gesamtbudget",
     "budgetShareValue": "{percent} %",
-    "budgetShareTitle": "Anteil dieser Position am gesamten städtischen Aufwand"
+    "budgetShareTitle": "Anteil dieser Position am gesamten städtischen Aufwand",
+    "detailDiversity": "Diversity & Kader",
+    "detailDiversityDesc": "Frauen- und Männeranteil im Kader",
+    "detailDiversityWomen": "Frauen",
+    "detailDiversityMen": "Männer"
   },
   "Legend": {
     "headingTop": "Stadtrat & Departemente",
