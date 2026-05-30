@@ -566,10 +566,10 @@ function layoutOptions(name: Layout, animate: boolean): LayoutOptions {
     } as unknown as LayoutOptions;
   }
   return {
-    name: 'concentric',
-    concentric: (n: NodeSingular) => 10 - (n.data('level') as number),
-    levelWidth: () => 1,
-    minNodeSpacing: 50,
+    name: 'breadthfirst',
+    circle: true,
+    roots: '[type = "center"]',
+    nodeDimensionsIncludeLabels: true,
     spacingFactor: 1.1,
     fit: true, padding: 60,
     avoidOverlap: true, animate, animationDuration: 600,
