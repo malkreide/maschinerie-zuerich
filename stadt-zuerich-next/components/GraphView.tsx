@@ -127,7 +127,7 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
         return;
       }
 
-      const elements = buildElements(data, expandedRef.current, locale);
+      const elements = buildElements(data, expandedRef.current, locale, layout);
       const cy = cytoscape({
         container: hostRef.current,
         elements,
@@ -206,9 +206,7 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
-  useEffect(() => {
-    cyRef.current?.layout(layoutOptions(layout, true)).run();
-  }, [layout]);
+
 
   useEffect(() => {
     const cy = cyRef.current;
@@ -219,7 +217,7 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
   useEffect(() => {
     const cy = cyRef.current;
     if (!cy) return;
-    const target = buildElements(data, expandedWithFocus, locale);
+    const target = buildElements(data, expandedWithFocus, locale, layout);
     syncElements(cy, target);
     const layoutConfig = cy.layout({ ...layoutOptions(layout, true), fit: false } as LayoutOptions);
     
@@ -239,7 +237,7 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
     
     layoutConfig.run();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [expandedWithFocus]);
+  }, [expandedWithFocus, layout]);
 
   useEffect(() => {
     focusIdRef.current = focusId;
@@ -457,7 +455,7 @@ function Toolbar({
   );
 }
 
-function buildElements(d: StadtData, expanded: Set<string>, locale?: string): ElementDefinition[] {
+function buildElements(d: StadtData, expanded: Set<string>, locale: string | undefined, layout: Layout): ElementDefinition[] {
   const nodes: ElementDefinition[] = [];
   const edges: ElementDefinition[] = [];
   const isLs = locale === 'ls';
@@ -496,7 +494,7 @@ function buildElements(d: StadtData, expanded: Set<string>, locale?: string): El
     if (!expanded.has(u.parent)) continue;
     if (isLs && u.kind !== 'unit') continue;
     const lvl = u.kind === 'extern' ? 3 : 2;
-    const isCompound = u.kind !== 'extern';
+    const isCompound = u.kind !== 'extern' && layout === 'force';
     nodes.push({
       data: {
         id: u.id, label: u.name, type: u.kind, level: lvl, parentDep: u.parent,
@@ -545,8 +543,12 @@ function syncElements(cy: Core, target: ElementDefinition[]): void {
       if (existing.length === 0) {
         toAdd.push(def);
       } else if (def.data) {
+        const oldParent = existing.isNode() ? existing.data('parent') : undefined;
         for (const key of Object.keys(def.data)) {
           existing.data(key, (def.data as Record<string, unknown>)[key]);
+        }
+        if (existing.isNode() && def.data.parent !== oldParent) {
+          existing.move({ parent: def.data.parent || null });
         }
       }
     }
