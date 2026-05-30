@@ -573,7 +573,7 @@ function layoutOptions(name: Layout, animate: boolean): LayoutOptions {
     spacingFactor: 1.1,
     fit: true, padding: 60,
     avoidOverlap: true, animate, animationDuration: 600,
-  };
+  } as unknown as LayoutOptions;
 }
 
 const TC = city.theme;
