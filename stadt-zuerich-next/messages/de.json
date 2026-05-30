@@ -42,6 +42,8 @@
     "language": "Sprache",
     "expandAll": "Alle ausklappen",
     "collapseAll": "Alle einklappen",
+    "climateToggle": "🌡️ Klimabudget-Indikator",
+    "climateToggleTitle": "Zeigt eine Live-Indikation der klimatischen Auswirkungen",
     "diversityToggle": "👥 Diversity & Kader (Mitarbeitende)",
     "diversityToggleTitle": "Zeigt den Geschlechteranteil im Kader pro Organisationseinheit als Ringdiagramm"
   },

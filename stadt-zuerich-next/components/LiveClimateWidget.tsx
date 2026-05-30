@@ -28,7 +28,9 @@ export default function LiveClimateWidget({
     fetch('https://tecdottir.herokuapp.com/measurements/mythenquai')
       .then(res => res.json())
       .then(res => {
-        if (res.result && res.result.values) {
+        if (res.result && Array.isArray(res.result) && res.result[0] && res.result[0].values) {
+          setData(res.result[0]);
+        } else if (res.result && res.result.values) {
           setData(res.result);
         } else {
           throw new Error('Invalid format');
@@ -63,15 +65,15 @@ export default function LiveClimateWidget({
       <p className="text-[11px] text-[var(--color-mute)] mb-2">
         Live-Daten (Mythenquai) der Wasserschutzpolizei als Indikator.
       </p>
-      {data && (
+      {data && data.values && (
         <div className="grid grid-cols-2 gap-2 text-xs mb-3">
           <div className="bg-[var(--color-bg)] p-2 rounded-lg text-center">
             <div className="text-[var(--color-mute)] mb-1">Wasser</div>
-            <div className="font-bold text-[var(--color-accent)]">{data.values.water_temperature.value} {data.values.water_temperature.unit}</div>
+            <div className="font-bold text-[var(--color-accent)]">{data.values.water_temperature?.value ?? '-'} {data.values.water_temperature?.unit ?? '°C'}</div>
           </div>
           <div className="bg-[var(--color-bg)] p-2 rounded-lg text-center">
             <div className="text-[var(--color-mute)] mb-1">Luft</div>
-            <div className="font-bold text-orange-500">{data.values.air_temperature.value} {data.values.air_temperature.unit}</div>
+            <div className="font-bold text-[var(--color-ink)]">{data.values.air_temperature?.value ?? '-'} {data.values.air_temperature?.unit ?? '°C'}</div>
           </div>
         </div>
       )}

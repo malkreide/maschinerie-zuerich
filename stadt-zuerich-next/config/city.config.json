@@ -42,21 +42,21 @@
     }
   },
   "theme": {
-    "accent": "#0f05a0",
+    "accent": "#0F05A0",
     "nodeType": {
-      "stadtpraesidium": "#0f05a0",
-      "stadtrat": "#0028a5",
-      "department": "#0070b4",
-      "unit": "#005c8a",
-      "staff": "#64748b",
-      "extern": "#94a3b8",
-      "beteiligung": "#0f766e",
-      "committee": "#334155"
+      "stadtpraesidium": "#0F05A0",
+      "stadtrat": "#070250",
+      "department": "#1485BD",
+      "unit": "#116091",
+      "staff": "#737373",
+      "extern": "#646464",
+      "beteiligung": "#0E7574",
+      "committee": "#4D4D4D"
     },
-    "konflikt": "#dc2626",
+    "konflikt": "#c00d23",
     "departmentPalette": [
-      "#0070b4", "#0f766e", "#059669", "#d97706", "#c026d3",
-      "#4f46e5", "#be123c", "#4338ca", "#0369a1"
+      "#0F05A0", "#1485BD", "#0E7574", "#116091", "#084645",
+      "#070250", "#0C4F71", "#23355B", "#3b5998"
     ]
   }
 }
