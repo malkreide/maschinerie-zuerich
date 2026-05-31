@@ -168,9 +168,13 @@ export default function TreemapView({
         >
           {root && renderTree(root, colorOf, !focus, setFocus, setTooltip, setMobileSelected)}
           {focus && (
-            <g style={{ cursor: 'pointer' }} onClick={() => setFocus(null)}>
-              <rect x={0} y={0} width={200} height={24} fill="rgba(20,30,60,.78)" />
-              <text x={10} y={16} fill="white" fontSize={12}>{t('back')}</text>
+            <g style={{ cursor: 'pointer' }} onClick={() => setFocus(null)}
+               role="button" tabIndex={0} aria-label={t('back')}
+               onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setFocus(null); }}
+               className="focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-[var(--color-accent)]"
+            >
+              <rect x={0} y={0} width={180} height={26} fill="var(--color-ink)" rx={4} />
+              <text x={12} y={17} fill="white" fontSize={12} fontWeight="500">{t('back')}</text>
             </g>
           )}
         </svg>
@@ -308,7 +312,7 @@ function computeLayout(data: Datum, w: number, h: number, isFocus: boolean) {
   const root = hierarchy<Datum>(data)
     .sum((d) => d.value ?? 0)
     .sort((a, b) => (b.value ?? 0) - (a.value ?? 0));
-  treemap<Datum>().size([w, h]).paddingTop(isFocus ? 0 : 22).paddingInner(2).round(true)(root);
+  treemap<Datum>().size([w, h]).paddingTop(isFocus ? 36 : 22).paddingInner(2).round(true)(root);
   return root as HierarchyRectangularNode<Datum>;
 }
 
