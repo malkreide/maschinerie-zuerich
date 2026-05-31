@@ -20,6 +20,7 @@ type Datum = {
   konflikt?: boolean;
   isFocus?: boolean;
   children?: Datum[];
+  kurz?: string;
 };
 
 // Departement-Palette kommt aus der Stadt-Konfiguration — andere Städte
@@ -282,6 +283,7 @@ function buildHierarchy(
       .filter((u: Unit) => u.parent === dep.id && (u.budget?.aufwand ?? 0) > 0)
       .map((u: Unit) => ({
         name: u.name, id: u.id, depId: dep.id,
+        kurz: u.odz?.kurzname,
         value: u.budget!.aufwand,
         netto: u.budget?.nettoaufwand,
         fte: u.fte?.schaetzung,
@@ -363,15 +365,49 @@ function Leaf({
   const w = d.x1 - d.x0;
   const h = d.y1 - d.y0;
   const color = colorOf(d.data.depId ?? '');
-  const showName = w > 35 && h > 16;
-  const showValue = h > 28 && w > 45;
-  const maxChars = Math.max(0, Math.floor(w / 6.0) - 1);
-  const name = d.data.name.length > maxChars ? d.data.name.slice(0, maxChars) + '…' : d.data.name;
+
+  const kurz = d.data.kurz || d.data.name.substring(0, 4);
+  const budgetStr = fmtMio(d.value ?? 0);
+
+  let line1 = '';
+  let line2 = '';
+
+  const nameWidth = d.data.name.length * 6.0 + 10;
+  const kurzWidth = kurz.length * 6.5 + 10;
+  const combinedFullWidth = (d.data.name.length + budgetStr.length + 3) * 6.0 + 10;
+  const combinedKurzWidth = (kurz.length + budgetStr.length + 3) * 6.0 + 10;
+
+  if (h >= 30) {
+    if (w >= nameWidth) {
+      line1 = d.data.name;
+      line2 = budgetStr;
+    } else if (w >= kurzWidth) {
+      line1 = kurz;
+      line2 = budgetStr;
+    } else if (w >= 30) {
+      const maxChars = Math.max(0, Math.floor((w - 10) / 6.0));
+      line1 = maxChars > 1 ? d.data.name.slice(0, maxChars) + '…' : '';
+    }
+  } else if (h >= 16) {
+    if (w >= combinedFullWidth) {
+      line1 = `${d.data.name} · ${budgetStr}`;
+    } else if (w >= nameWidth) {
+      line1 = d.data.name;
+    } else if (w >= combinedKurzWidth) {
+      line1 = `${kurz} · ${budgetStr}`;
+    } else if (w >= kurzWidth) {
+      line1 = kurz;
+    } else if (w >= 30) {
+      const maxChars = Math.max(0, Math.floor((w - 10) / 6.0));
+      line1 = maxChars > 1 ? d.data.name.slice(0, maxChars) + '…' : '';
+    }
+  }
+
   return (
     <g
       tabIndex={0}
       role="button"
-      aria-label={`${name} öffnen`}
+      aria-label={`${d.data.name} öffnen`}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
@@ -397,10 +433,10 @@ function Leaf({
         <rect x={d.x0} y={d.y0} width={w} height={h} fill="none"
               stroke="var(--color-konflikt)" strokeWidth={2} strokeDasharray="4 3" pointerEvents="none" />
       )}
-      {showName && <text x={d.x0 + 5} y={d.y0 + 14} fill="#1a1f2e" fontWeight="500">{name}</text>}
-      {showName && showValue && (
+      {line1 && <text x={d.x0 + 5} y={d.y0 + 14} fill="#1a1f2e" fontWeight="500">{line1}</text>}
+      {line2 && (
         <text x={d.x0 + 5} y={d.y0 + 28} fontSize={10} fill="#1a1f2e" opacity={0.85}>
-          {fmtMio(d.value ?? 0)}
+          {line2}
         </text>
       )}
     </g>
