@@ -139,7 +139,8 @@
     "stab": "Stato maggiore / trasversale",
     "verselbst": "Azienda autonoma",
     "beteiligung": "Partecipazione / fondazione",
-    "konflikt": "Assegnazione cittadini ≠ RPK"
+    "konflikt": "Assegnazione cittadini ≠ RPK",
+    "committee": "Comitato / Commissione"
   },
   "Hint": "Hover = esplorare · Clic = selezionare · Rotella = zoom · La ricerca conosce anche le pratiche",
   "Simulator": {
@@ -205,5 +206,18 @@
   },
   "Export": {
     "csvButton": "Esporta la vista attuale in CSV"
+  },
+  "RIS": {
+    "heading": "Affari parlamentari",
+    "viewAll": "Vedi tutti gli affari →",
+    "loading": "Caricamento in corso...",
+    "error": "Errore durante il caricamento.",
+    "noData": "Nessun affare recente trovato."
+  },
+  "Quartier": {
+    "title": "Distribuzione spaziale",
+    "intro": "Questo prototipo delinea come i servizi (qui: distribuzione fittizia) sono dislocati nell'area urbana di Zurigo.",
+    "selectLabel": "Dipartimento:",
+    "budgetShare": "Quota: {share} %"
   }
 }

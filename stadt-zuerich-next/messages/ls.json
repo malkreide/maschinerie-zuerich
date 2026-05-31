@@ -139,7 +139,8 @@
     "stab": "Hilfs-Stelle",
     "verselbst": "Eigene Firma der Stadt",
     "beteiligung": "Stiftung oder Beteiligung",
-    "konflikt": "Hier passt etwas nicht zusammen."
+    "konflikt": "Hier passt etwas nicht zusammen.",
+    "committee": "Ausschuss / Kommission"
   },
   "Hint": "Mit der Maus über die Bilder fahren · Klicken: auswählen · Mit dem Rad gross machen · Sie können auch nach Wörtern suchen",
   "Simulator": {
@@ -205,5 +206,18 @@
   },
   "Export": {
     "csvButton": "Alles als CSV-Liste herunter-laden"
+  },
+  "RIS": {
+    "heading": "Entscheidungen im Parlament",
+    "viewAll": "Alle Entscheidungen ansehen →",
+    "loading": "Wird geladen...",
+    "error": "Laden hat nicht geklappt.",
+    "noData": "Es gibt gerade keine neuen Entscheidungen."
+  },
+  "Quartier": {
+    "title": "Verteilung in der Stadt",
+    "intro": "Hier sieht man auf der Karte, wo ein Amt für Sie arbeitet. (Achtung: Dies ist nur ein Beispiel.)",
+    "selectLabel": "Amt auswählen:",
+    "budgetShare": "{share} % vom Ganzen"
   }
 }

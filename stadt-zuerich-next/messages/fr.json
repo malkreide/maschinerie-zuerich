@@ -139,7 +139,8 @@
     "stab": "État-major / transversal",
     "verselbst": "Entreprise autonome",
     "beteiligung": "Participation / fondation",
-    "konflikt": "Affectation citoyenne ≠ RPK"
+    "konflikt": "Affectation citoyenne ≠ RPK",
+    "committee": "Comité / Commission"
   },
   "Hint": "Survol = explorer · Clic = sélectionner · Molette = zoomer · La recherche connaît aussi les démarches",
   "Simulator": {
@@ -205,5 +206,18 @@
   },
   "Export": {
     "csvButton": "Exporter la vue actuelle au format CSV"
+  },
+  "RIS": {
+    "heading": "Affaires parlementaires",
+    "viewAll": "Voir toutes les affaires →",
+    "loading": "Chargement des affaires...",
+    "error": "Erreur lors du chargement des affaires.",
+    "noData": "Aucune affaire récente trouvée."
+  },
+  "Quartier": {
+    "title": "Répartition spatiale",
+    "intro": "Ce prototype esquisse la manière dont les services (ici : répartition fictive) sont localisés dans l'espace urbain de Zurich.",
+    "selectLabel": "Département :",
+    "budgetShare": "Part : {share} %"
   }
 }

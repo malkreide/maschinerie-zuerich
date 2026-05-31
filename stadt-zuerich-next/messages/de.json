@@ -147,7 +147,8 @@
     "stab": "Stab / Querschnitt",
     "verselbst": "Verselbständigter Betrieb",
     "beteiligung": "Beteiligung / Stiftung",
-    "konflikt": "Bürger-/RPK-Zuordnung divergiert"
+    "konflikt": "Bürger-/RPK-Zuordnung divergiert",
+    "committee": "Ausschuss / Kommission"
   },
   "Hint": "Hover = erkunden · Klick = auswählen · Scroll = zoomen · Suche kennt auch Anliegen",
   "Simulator": {
@@ -221,5 +222,18 @@
   },
   "Export": {
     "csvButton": "Aktuelle Ansicht als CSV exportieren"
+  },
+  "RIS": {
+    "heading": "Parlamentarische Geschäfte",
+    "viewAll": "Alle Geschäfte anzeigen →",
+    "loading": "Geschäfte werden geladen...",
+    "error": "Fehler beim Laden der Geschäfte.",
+    "noData": "Keine aktuellen Geschäfte gefunden."
+  },
+  "Quartier": {
+    "title": "Verteilung im Raum",
+    "intro": "Dieser Prototyp skizziert, wie Dienstleistungen (hier: fiktive Verteilung) im Stadtgebiet Zürichs verortet sind.",
+    "selectLabel": "Amt:",
+    "budgetShare": "{share} % Anteil"
   }
 }

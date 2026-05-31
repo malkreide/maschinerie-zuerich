@@ -139,7 +139,8 @@
     "stab": "Staff / cross-cutting",
     "verselbst": "Independent operation",
     "beteiligung": "Holding / foundation",
-    "konflikt": "Citizen vs. RPK assignment differs"
+    "konflikt": "Citizen/Audit assignment diverges",
+    "committee": "Committee / Commission"
   },
   "Hint": "Hover = explore · Click = select · Scroll = zoom · Search also knows concerns",
   "Simulator": {
@@ -205,5 +206,18 @@
   },
   "Export": {
     "csvButton": "Export current view as CSV"
+  },
+  "RIS": {
+    "heading": "Parliamentary Business",
+    "viewAll": "View all business →",
+    "loading": "Loading business...",
+    "error": "Error loading business.",
+    "noData": "No recent business found."
+  },
+  "Quartier": {
+    "title": "Spatial Distribution",
+    "intro": "This prototype outlines how services (here: fictional distribution) are located in the urban area of Zurich.",
+    "selectLabel": "Department:",
+    "budgetShare": "{share} % share"
   }
 }
