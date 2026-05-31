@@ -219,7 +219,7 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
     if (!cy) return;
     const target = buildElements(data, expandedWithFocus, locale, layout);
     syncElements(cy, target);
-    const layoutConfig = cy.layout({ ...layoutOptions(layout, true), fit: false } as LayoutOptions);
+    const layoutConfig = cy.layout({ ...layoutOptions(layout, true), fit: true } as LayoutOptions);
     
     const fid = focusIdRef.current;
     if (fid && !suppressFocusEffectRef.current) {
@@ -460,7 +460,7 @@ function buildElements(d: StadtData, expanded: Set<string>, locale: string | und
   const edges: ElementDefinition[] = [];
   const isLs = locale === 'ls';
 
-  nodes.push({ data: { id: d.center.id, label: d.center.name, type: 'center', level: 0 } });
+  nodes.push({ data: { id: d.center.id, label: d.center.name, type: 'center', level: 0, color: TC.nodeType.stadtpraesidium } });
 
   const childCount = new Map<string, number>();
   for (const u of d.units) {
@@ -472,10 +472,16 @@ function buildElements(d: StadtData, expanded: Set<string>, locale: string | und
     childCount.set(b.verbunden, (childCount.get(b.verbunden) ?? 0) + 1);
   }
 
-  for (const dep of d.departments) {
+  const depColors = new Map<string, string>();
+
+  for (let i = 0; i < d.departments.length; i++) {
+    const dep = d.departments[i];
     const n = childCount.get(dep.id) ?? 0;
     const isOpen = expanded.has(dep.id);
     const label = n > 0 ? `${dep.name}\n(${n})` : dep.name;
+    const color = TC.departmentPalette[i % TC.departmentPalette.length];
+    depColors.set(dep.id, color);
+
     nodes.push({
       data: {
         id: dep.id, label, fullName: dep.name, abbr: dep.id,
@@ -485,9 +491,10 @@ function buildElements(d: StadtData, expanded: Set<string>, locale: string | und
         expanded: isOpen,
         klima: (dep as unknown as Record<string, unknown>).klima,
         diversity: (dep as unknown as Record<string, unknown>).diversity,
+        color
       },
     });
-    edges.push({ data: { id: `e-${d.center.id}-${dep.id}`, source: d.center.id, target: dep.id } });
+    edges.push({ data: { id: `e-${d.center.id}-${dep.id}`, source: d.center.id, target: dep.id, color } });
   }
 
   for (const u of d.units) {
@@ -495,6 +502,7 @@ function buildElements(d: StadtData, expanded: Set<string>, locale: string | und
     if (isLs && u.kind !== 'unit') continue;
     const lvl = u.kind === 'extern' ? 3 : 2;
     const isCompound = u.kind !== 'extern' && layout === 'force';
+    const color = depColors.get(u.parent) ?? TC.nodeType.unit;
     nodes.push({
       data: {
         id: u.id, label: u.name, type: u.kind, level: lvl, parentDep: u.parent,
@@ -502,26 +510,29 @@ function buildElements(d: StadtData, expanded: Set<string>, locale: string | und
         budget: u.budget, fte: u.fte, odz: u.odz, konflikt: u.konflikt,
         klima: (u as unknown as Record<string, unknown>).klima,
         diversity: (u as unknown as Record<string, unknown>).diversity,
+        color
       },
     });
     if (!isCompound) {
-      edges.push({ data: { id: `e-${u.parent}-${u.id}`, source: u.parent, target: u.id } });
+      edges.push({ data: { id: `e-${u.parent}-${u.id}`, source: u.parent, target: u.id, color } });
     }
   }
 
   for (const b of d.beteiligungen) {
     if (isLs) continue;
     if (!expanded.has(b.verbunden)) continue;
+    const color = depColors.get(b.verbunden) ?? TC.nodeType.beteiligung;
     nodes.push({
       data: {
         id: b.id, label: b.name, type: 'beteiligung', level: 4, parentDep: b.verbunden,
         budget: b.budget, fte: b.fte, odz: b.odz,
         klima: (b as unknown as Record<string, unknown>).klima,
         diversity: (b as unknown as Record<string, unknown>).diversity,
+        color
       },
     });
     edges.push({
-      data: { id: `e-${b.verbunden}-${b.id}`, source: b.verbunden, target: b.id, dashed: true },
+      data: { id: `e-${b.verbunden}-${b.id}`, source: b.verbunden, target: b.id, dashed: true, color },
     });
   }
 
@@ -590,34 +601,34 @@ function getGraphStyle(locale?: string, klimaModus?: boolean, gudBudgetDelta: nu
         'color': '#1a1f2e', 'text-outline-color': '#fff', 'text-outline-width': 2 * mul,
         'border-width': 1 * mul, 'border-color': 'rgba(0,0,0,.2)', 'width': 18 * mul, 'height': 18 * mul } },
     { selector: 'node[type = "center"]', style: {
-        'background-color': TC.nodeType.stadtpraesidium, 'shape': 'ellipse',
+        'background-color': 'data(color)', 'shape': 'ellipse',
         'width': 70 * mul, 'height': 70 * mul, 'font-size': 13 * mul, 'color': '#fff',
         'text-valign': 'center', 'text-margin-y': 0,
-        'text-outline-color': TC.nodeType.stadtpraesidium } },
+        'text-outline-color': 'data(color)' } },
     { selector: 'node[type = "department"]', style: {
-        'background-color': TC.nodeType.department, 'shape': 'round-rectangle',
+        'background-color': 'data(color)', 'shape': 'round-rectangle',
         'width': 140 * mul, 'height': 60 * mul, 'font-size': 12 * mul, 'font-weight': 'bold',
-        'color': '#fff', 'text-outline-color': TC.nodeType.department,
+        'color': '#fff', 'text-outline-color': 'data(color)',
         'text-valign': 'center', 'text-margin-y': 0,
         'text-wrap': 'wrap', 'text-max-width': String(130 * mul), 'padding': String(4 * mul) } },
     { selector: 'node[type = "department"]:parent', style: {
         'background-color': 'rgba(255, 255, 255, 0.65)',
-        'border-width': 2 * mul, 'border-color': TC.nodeType.department,
+        'border-width': 2 * mul, 'border-color': 'data(color)',
         'shape': 'round-rectangle', 'padding': String(16 * mul),
         'text-valign': 'top', 'text-halign': 'center',
-        'color': TC.nodeType.department, 'text-outline-width': 0,
+        'color': 'data(color)', 'text-outline-width': 0,
         'font-size': 11 * mul, 'text-margin-y': -8 * mul,
     } },
     { selector: 'node[type = "unit"]', style: {
-        'background-color': TC.nodeType.unit, 'shape': 'round-rectangle', 'width': 22 * mul, 'height': 16 * mul } },
+        'background-color': 'data(color)', 'shape': 'round-rectangle', 'width': 22 * mul, 'height': 16 * mul } },
     { selector: 'node[type = "staff"]', style: {
-        'background-color': TC.nodeType.staff, 'shape': 'round-rectangle', 'width': 22 * mul, 'height': 16 * mul } },
+        'background-color': 'data(color)', 'shape': 'round-rectangle', 'width': 22 * mul, 'height': 16 * mul } },
     { selector: 'node[type = "extern"]', style: {
-        'background-color': TC.nodeType.extern, 'shape': 'diamond', 'width': 22 * mul, 'height': 22 * mul } },
+        'background-color': 'data(color)', 'shape': 'diamond', 'width': 22 * mul, 'height': 22 * mul } },
     { selector: 'node[type = "beteiligung"]', style: {
-        'background-color': TC.nodeType.beteiligung, 'shape': 'diamond', 'width': 18 * mul, 'height': 18 * mul } },
+        'background-color': 'data(color)', 'shape': 'diamond', 'width': 18 * mul, 'height': 18 * mul } },
     { selector: 'edge', style: {
-        'width': 1 * mul, 'line-color': '#94a3b8', 'curve-style': 'bezier',
+        'width': 1 * mul, 'line-color': 'data(color)', 'curve-style': 'bezier',
         'target-arrow-shape': 'none', 'opacity': 0.6 } },
     { selector: 'edge[?dashed]', style: { 'line-style': 'dashed', 'opacity': 0.45 } },
     { selector: '.faded',       style: { 'opacity': 0.6, 'text-opacity': 0.8 } },
