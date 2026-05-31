@@ -435,7 +435,8 @@ function Leaf({
       <rect x={d.x0} y={d.y0} width={w} height={h} fill={color} opacity={0.65} />
       {d.data.konflikt && w > 10 && h > 10 && (
         <rect x={d.x0} y={d.y0} width={w} height={h} fill="none"
-              stroke="var(--color-konflikt)" strokeWidth={2} strokeDasharray="4 3" pointerEvents="none" />
+              style={{ stroke: 'var(--color-konflikt)', strokeWidth: 2 }} 
+              strokeDasharray="4 3" pointerEvents="none" />
       )}
       {line1 && <text x={d.x0 + 5} y={d.y0 + 14} fill="#1a1f2e" fontWeight="500">{line1}</text>}
       {line2 && (
