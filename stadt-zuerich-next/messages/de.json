@@ -88,7 +88,8 @@
     "emptyBody": "Für kein Amt sind Aufwände erfasst. Schauen Sie stattdessen in die {listLink} oder probieren Sie die {searchLink}.",
     "emptyListLink": "Liste der Ämter",
     "emptySearchLink": "Anliegen-Suche",
-    "hiddenDepartments": "{count, plural, one {# Departement ist} other {# Departemente sind}} nicht sichtbar — für diese sind keine Budgetdaten hinterlegt: {names}."
+    "hiddenDepartments": "{count, plural, one {# Departement ist} other {# Departemente sind}} nicht sichtbar — für diese sind keine Budgetdaten hinterlegt: {names}.",
+    "committeeNote": "Tipp: Gestrichelte Linien markieren Ämter, bei denen die parlamentarische Aufsicht (RPK) von der organisatorischen Zuordnung abweicht."
   },
   "List": {
     "title": "Verwaltung der {cityName} – Hierarchische Übersicht",

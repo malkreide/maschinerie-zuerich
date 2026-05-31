@@ -84,7 +84,8 @@
     "emptyBody": "No office has recorded expenses yet. Try the {listLink} instead, or use the {searchLink}.",
     "emptyListLink": "list of offices",
     "emptySearchLink": "concern search",
-    "hiddenDepartments": "{count, plural, one {# department is} other {# departments are}} not shown — no budget data available for: {names}."
+    "hiddenDepartments": "{count, plural, one {# department is} other {# departments are}} not shown — no budget data available for: {names}.",
+    "committeeNote": "Tip: Dashed lines indicate departments where the parliamentary audit committee differs from the organizational assignment."
   },
   "List": {
     "title": "{cityName} administration – hierarchical overview",

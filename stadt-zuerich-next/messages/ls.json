@@ -84,7 +84,8 @@
     "emptyBody": "Für keine Stelle gibt es Zahlen. Schauen Sie in die {listLink}. Oder nutzen Sie die {searchLink}.",
     "emptyListLink": "Liste der Stellen",
     "emptySearchLink": "Suche",
-    "hiddenDepartments": "{count, plural, one {# Bereich wird} other {# Bereiche werden}} nicht gezeigt. Dafür gibt es keine Zahlen: {names}."
+    "hiddenDepartments": "{count, plural, one {# Bereich wird} other {# Bereiche werden}} nicht gezeigt. Dafür gibt es keine Zahlen: {names}.",
+    "committeeNote": "Hinweis: Ein gestrichelter Rahmen bedeutet, dass die Aufsicht durch die Politik hier anders geregelt ist."
   },
   "List": {
     "title": "Die Stadt-Verwaltung in einer Liste",

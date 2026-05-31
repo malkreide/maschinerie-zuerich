@@ -84,7 +84,8 @@
     "emptyBody": "Nessun ufficio ha registrato spese. Prova invece con {listLink} o usa la {searchLink}.",
     "emptyListLink": "l'elenco degli uffici",
     "emptySearchLink": "ricerca pratiche",
-    "hiddenDepartments": "{count, plural, one {# dipartimento non è mostrato} other {# dipartimenti non sono mostrati}} — nessun dato di budget per: {names}."
+    "hiddenDepartments": "{count, plural, one {# dipartimento non è mostrato} other {# dipartimenti non sono mostrati}} — nessun dato di budget per: {names}.",
+    "committeeNote": "Suggerimento: Le linee tratteggiate indicano i dipartimenti in cui la commissione di controllo parlamentare differisce dall'assegnazione organizzativa."
   },
   "List": {
     "title": "Amministrazione della {cityName} – panoramica gerarchica",

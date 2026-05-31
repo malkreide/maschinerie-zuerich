@@ -84,7 +84,8 @@
     "emptyBody": "Aucun service n'a encore enregistré de charges. Essayez plutôt la {listLink}, ou utilisez la {searchLink}.",
     "emptyListLink": "liste des services",
     "emptySearchLink": "recherche de démarches",
-    "hiddenDepartments": "{count, plural, one {# département n'est} other {# départements ne sont}} pas affiché{count, plural, one {} other {s}} — aucune donnée budgétaire pour : {names}."
+    "hiddenDepartments": "{count, plural, one {# département n'est pas visible} other {# départements ne sont pas visibles}} — aucune donnée budgétaire pour : {names}.",
+    "committeeNote": "Astuce : Les lignes pointillées indiquent les services dont la commission de contrôle parlementaire diffère du rattachement organisationnel."
   },
   "List": {
     "title": "Administration de la {cityName} – aperçu hiérarchique",
