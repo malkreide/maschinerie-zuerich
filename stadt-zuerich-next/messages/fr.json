@@ -33,6 +33,8 @@
     "simulator": "Simulateur",
     "list": "Liste",
     "prozesse": "Procédures",
+    "quartier": "Arrondissements",
+    "territory": "Emplacements",
     "darkOn": "Activer le thème sombre",
     "darkOff": "Activer le thème clair",
     "darkLabelLight": "☼ Clair",

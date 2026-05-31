@@ -33,6 +33,8 @@
     "simulator": "Simulator",
     "list": "List",
     "prozesse": "Processes",
+    "quartier": "City Districts",
+    "territory": "Locations",
     "darkOn": "Activate dark theme",
     "darkOff": "Activate light theme",
     "darkLabelLight": "☼ Light",
