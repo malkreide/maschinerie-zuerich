@@ -363,9 +363,9 @@ function Leaf({
   const w = d.x1 - d.x0;
   const h = d.y1 - d.y0;
   const color = colorOf(d.data.depId ?? '');
-  const showName = w > 60 && h > 18;
-  const showValue = h > 32;
-  const maxChars = Math.max(0, Math.floor(w / 6.5) - 1);
+  const showName = w > 35 && h > 16;
+  const showValue = h > 28 && w > 45;
+  const maxChars = Math.max(0, Math.floor(w / 6.0) - 1);
   const name = d.data.name.length > maxChars ? d.data.name.slice(0, maxChars) + '…' : d.data.name;
   return (
     <g
@@ -409,7 +409,8 @@ function Leaf({
 
 function labelDep(d: HierarchyRectangularNode<Datum>, value: number) {
   const w = d.x1 - d.x0;
-  if (w < 60) return '';
-  if (w < 220) return d.data.id ?? '';
+  if (w < 30) return '';
+  if (w < 80) return d.data.id ?? '';
+  if (w < 220) return `${d.data.id} · ${fmtMio(value)}`;
   return `${d.data.name} · ${fmtMio(value)}`;
 }
