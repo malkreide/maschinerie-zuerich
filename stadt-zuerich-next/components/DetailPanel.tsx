@@ -14,6 +14,7 @@ import {
 } from '@/lib/budget-context';
 import { city, externalSearchUrl } from '@/config/city.config';
 import ParlamentsGeschaefte from './ParlamentsGeschaefte';
+import MicroFeedback from './MicroFeedback';
 
 type T = ReturnType<typeof useTranslations<'Detail'>>;
 
@@ -153,6 +154,7 @@ export default function DetailPanel({
           {city.domain} ↗
         </a>
       </div>
+      <MicroFeedback contextId={item.id} contextName={item.name} />
     </aside>
   );
 }
