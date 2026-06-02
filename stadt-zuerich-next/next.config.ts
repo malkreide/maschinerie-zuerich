@@ -23,16 +23,12 @@ const config: NextConfig = {
   async headers() {
     return [
       {
-        // Diese Header werden auf alle Routen der App angewendet
+        // Basis-Sicherheits-Header für alle Routen
         source: '/(.*)',
         headers: [
           {
             key: 'X-Content-Type-Options',
             value: 'nosniff',
-          },
-          {
-            key: 'X-Frame-Options',
-            value: 'DENY',
           },
           {
             key: 'Referrer-Policy',
@@ -41,6 +37,16 @@ const config: NextConfig = {
           {
             key: 'Strict-Transport-Security',
             value: 'max-age=31536000; includeSubDomains',
+          },
+        ],
+      },
+      {
+        // X-Frame-Options: DENY für alle Routen AUSSER solche mit "embed" im Pfad
+        source: '/((?!.*embed).*)',
+        headers: [
+          {
+            key: 'X-Frame-Options',
+            value: 'DENY',
           },
         ],
       },

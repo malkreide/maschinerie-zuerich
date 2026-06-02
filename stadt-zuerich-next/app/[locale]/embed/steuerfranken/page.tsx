@@ -14,10 +14,10 @@ export async function generateMetadata({
   if (!hasLocale(routing.locales, locale)) return {};
   const tApp = getT(locale as Locale, 'App');
   const t    = getT(locale as Locale, 'Treemap');
-  return { title: `${t('title')} · ${tApp('title')}` };
+  return { title: `${t('title')} (Embed) · ${tApp('title')}` };
 }
 
-export default async function SteuerfrankenPage({
+export default async function SteuerfrankenEmbedPage({
   params,
 }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
