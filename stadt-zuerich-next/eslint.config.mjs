@@ -17,6 +17,7 @@ const config = [
       'node_modules/**',
       'data/raw/**',
       'scripts/**',       // ETL-Skripte sind Node-CLI, nicht Teil der App
+      'fetch_colors.js',  // Einmaliger Node-CLI-Helfer (Farben scrapen), nicht Teil der App
       '*.tsbuildinfo',
       'next-env.d.ts',
     ],
