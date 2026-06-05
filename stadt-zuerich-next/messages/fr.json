@@ -59,6 +59,19 @@
     "openFullSearch": "Ouvrir la recherche complète →",
     "missNote": "Les termes de recherche anonymes sans résultat nous aident à repérer les sujets manquants. Nous n'enregistrons aucune donnée personnelle."
   },
+  "Zielgruppen": {
+    "filterLabel": "Filtrer par public",
+    "all": "Tous",
+    "einwohner": "Habitant·e",
+    "unternehmen": "Entreprise",
+    "familie": "Famille",
+    "alter": "Seniors",
+    "schule": "École",
+    "migration": "Migration",
+    "mobilitaet": "Mobilité",
+    "wohnen": "Logement",
+    "gesundheit": "Santé"
+  },
   "Anliegen": {
     "title": "Chercher une démarche",
     "intro": "Cherchez des termes comme « inscrire chien », « passeport », « aide sociale » ou « électricité ». Cette page fonctionne sans JavaScript — elle est la version de secours de la recherche en direct en haut à gauche.",

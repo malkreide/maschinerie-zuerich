@@ -59,6 +59,19 @@
     "openFullSearch": "Open full search →",
     "missNote": "Anonymous search terms without results help us spot missing topics. We don't store any personal data."
   },
+  "Zielgruppen": {
+    "filterLabel": "Filter by audience",
+    "all": "All",
+    "einwohner": "Resident",
+    "unternehmen": "Business",
+    "familie": "Family",
+    "alter": "Older age",
+    "schule": "School",
+    "migration": "Migration",
+    "mobilitaet": "Mobility",
+    "wohnen": "Housing",
+    "gesundheit": "Health"
+  },
   "Anliegen": {
     "title": "Search citizen concerns",
     "intro": "Search for terms like «register dog», «passport», «social aid» or «electricity». This page works without JavaScript — it is the fallback for the live search at the top left.",

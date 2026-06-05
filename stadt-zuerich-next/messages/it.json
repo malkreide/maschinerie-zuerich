@@ -59,6 +59,19 @@
     "openFullSearch": "Apri ricerca completa →",
     "missNote": "I termini di ricerca anonimi senza risultati ci aiutano a individuare temi mancanti. Non memorizziamo dati personali."
   },
+  "Zielgruppen": {
+    "filterLabel": "Filtra per pubblico",
+    "all": "Tutti",
+    "einwohner": "Residente",
+    "unternehmen": "Impresa",
+    "familie": "Famiglia",
+    "alter": "Anziani",
+    "schule": "Scuola",
+    "migration": "Migrazione",
+    "mobilitaet": "Mobilità",
+    "wohnen": "Abitare",
+    "gesundheit": "Salute"
+  },
   "Anliegen": {
     "title": "Cerca pratiche cittadine",
     "intro": "Cerca termini come « registrare cane », « passaporto », « assistenza sociale » o « elettricità ». Questa pagina funziona senza JavaScript — è la versione di riserva della ricerca live in alto a sinistra.",

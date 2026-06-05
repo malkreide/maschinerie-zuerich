@@ -59,6 +59,19 @@
     "openFullSearch": "Alle Treffer zeigen →",
     "missNote": "Sie finden nichts? Wir merken uns nur das Such-Wort. Ohne Ihren Namen. So sehen wir, was fehlt."
   },
+  "Zielgruppen": {
+    "filterLabel": "Wählen Sie eine Gruppe",
+    "all": "Alle",
+    "einwohner": "Menschen in Zürich",
+    "unternehmen": "Firmen",
+    "familie": "Familie",
+    "alter": "Alte Menschen",
+    "schule": "Schule",
+    "migration": "Neu in der Schweiz",
+    "mobilitaet": "Unterwegs",
+    "wohnen": "Wohnen",
+    "gesundheit": "Gesundheit"
+  },
   "Anliegen": {
     "title": "Was wollen Sie tun?",
     "intro": "Hier können Sie etwas suchen. Zum Beispiel: «Hund anmelden». Oder: «Pass». Diese Seite geht auch ohne JavaScript. Sie ist die einfache Version von der Suche oben links.",

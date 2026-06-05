@@ -63,6 +63,19 @@
     "openFullSearch": "Vollständige Suche öffnen →",
     "missNote": "Anonyme Suchbegriffe ohne Treffer helfen uns, fehlende Anliegen zu erkennen. Wir speichern keine persönlichen Daten."
   },
+  "Zielgruppen": {
+    "filterLabel": "Nach Zielgruppe filtern",
+    "all": "Alle",
+    "einwohner": "Einwohner*in",
+    "unternehmen": "Unternehmen",
+    "familie": "Familie",
+    "alter": "Alter",
+    "schule": "Schule",
+    "migration": "Migration",
+    "mobilitaet": "Mobilität",
+    "wohnen": "Wohnen",
+    "gesundheit": "Gesundheit"
+  },
   "Anliegen": {
     "title": "Anliegen suchen",
     "intro": "Suche nach Begriffen wie «Hund anmelden», «Pass», «Sozialhilfe» oder «Strom». Diese Seite funktioniert auch ohne JavaScript — sie ist die Fallback-Variante der Live-Suche oben links.",

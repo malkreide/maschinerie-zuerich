@@ -16,6 +16,9 @@
     {
       "id": "hund-anmelden",
       "zustaendig": "FD-st",
+      "zielgruppen": [
+        "einwohner"
+      ],
       "i18n": {
         "de": {
           "frage": "Hund anmelden / Hundesteuer",
@@ -67,6 +70,9 @@
     {
       "id": "pass-id",
       "zustaendig": "SiD-bev",
+      "zielgruppen": [
+        "einwohner"
+      ],
       "i18n": {
         "de": {
           "frage": "Pass oder Identitätskarte beantragen",
@@ -123,6 +129,10 @@
     {
       "id": "umzug-melden",
       "zustaendig": "SiD-bev",
+      "zielgruppen": [
+        "einwohner",
+        "wohnen"
+      ],
       "i18n": {
         "de": {
           "frage": "Umzug an- oder abmelden",
@@ -185,6 +195,10 @@
     {
       "id": "heiraten",
       "zustaendig": "SiD-bev",
+      "zielgruppen": [
+        "einwohner",
+        "familie"
+      ],
       "i18n": {
         "de": {
           "frage": "Heiraten / Zivilstandsamt",
@@ -246,6 +260,10 @@
     {
       "id": "schule-anmelden",
       "zustaendig": "SSD-schule",
+      "zielgruppen": [
+        "familie",
+        "schule"
+      ],
       "i18n": {
         "de": {
           "frage": "Kind in der Schule anmelden",
@@ -309,6 +327,10 @@
     {
       "id": "kita-platz",
       "zustaendig": "SSD-schule",
+      "zielgruppen": [
+        "familie",
+        "schule"
+      ],
       "i18n": {
         "de": {
           "frage": "Kita- oder Hortplatz suchen",
@@ -368,6 +390,10 @@
     {
       "id": "musikschule",
       "zustaendig": "SSD-mkz",
+      "zielgruppen": [
+        "familie",
+        "schule"
+      ],
       "i18n": {
         "de": {
           "frage": "Kind in Musikschule anmelden",
@@ -428,6 +454,10 @@
     {
       "id": "sportplatz",
       "zustaendig": "SSD-sport",
+      "zielgruppen": [
+        "einwohner",
+        "familie"
+      ],
       "i18n": {
         "de": {
           "frage": "Sportanlage, Hallenbad, Schwimmbad",
@@ -492,6 +522,9 @@
     {
       "id": "sozialhilfe",
       "zustaendig": "SD-soz",
+      "zielgruppen": [
+        "einwohner"
+      ],
       "i18n": {
         "de": {
           "frage": "Sozialhilfe beantragen",
@@ -554,6 +587,9 @@
     {
       "id": "ahv-zusatz",
       "zustaendig": "SD-azl",
+      "zielgruppen": [
+        "alter"
+      ],
       "i18n": {
         "de": {
           "frage": "Zusatzleistungen zur AHV/IV",
@@ -618,6 +654,9 @@
     {
       "id": "kesb",
       "zustaendig": "SD-keb",
+      "zielgruppen": [
+        "familie"
+      ],
       "i18n": {
         "de": {
           "frage": "Kindes-/Erwachsenenschutz, Beistandschaft, Adoption",
@@ -682,6 +721,9 @@
     {
       "id": "asyl",
       "zustaendig": "SD-aoz",
+      "zielgruppen": [
+        "migration"
+      ],
       "i18n": {
         "de": {
           "frage": "Asylsuchende, Aufnahme, Integration",
@@ -742,6 +784,9 @@
     {
       "id": "berufslehre",
       "zustaendig": "SD-lbz",
+      "zielgruppen": [
+        "schule"
+      ],
       "i18n": {
         "de": {
           "frage": "Lehrstelle suchen, Berufsberatung",
@@ -804,6 +849,10 @@
     {
       "id": "baugesuch",
       "zustaendig": "HBD-bb",
+      "zielgruppen": [
+        "wohnen",
+        "unternehmen"
+      ],
       "i18n": {
         "de": {
           "frage": "Baugesuch einreichen / Baubewilligung",
@@ -867,6 +916,9 @@
     {
       "id": "stadtwohnung",
       "zustaendig": "FD-imm",
+      "zielgruppen": [
+        "wohnen"
+      ],
       "i18n": {
         "de": {
           "frage": "Städtische Wohnung suchen",
@@ -927,6 +979,10 @@
     {
       "id": "steuern",
       "zustaendig": "FD-st",
+      "zielgruppen": [
+        "einwohner",
+        "unternehmen"
+      ],
       "i18n": {
         "de": {
           "frage": "Steuern bezahlen / Steuererklärung",
@@ -985,6 +1041,10 @@
     {
       "id": "strom",
       "zustaendig": "DIB-ewz",
+      "zielgruppen": [
+        "einwohner",
+        "wohnen"
+      ],
       "i18n": {
         "de": {
           "frage": "Strom anmelden, Stromanbieter",
@@ -1041,6 +1101,10 @@
     {
       "id": "wasser",
       "zustaendig": "DIB-wv",
+      "zielgruppen": [
+        "einwohner",
+        "wohnen"
+      ],
       "i18n": {
         "de": {
           "frage": "Wasseranschluss, Trinkwasserqualität",
@@ -1095,6 +1159,10 @@
     {
       "id": "abfall",
       "zustaendig": "TED-erz-abf",
+      "zielgruppen": [
+        "einwohner",
+        "wohnen"
+      ],
       "i18n": {
         "de": {
           "frage": "Abfallkalender, Sperrgut, Recycling",
@@ -1165,6 +1233,9 @@
     {
       "id": "stadtreinigung",
       "zustaendig": "TED-erz-r",
+      "zielgruppen": [
+        "einwohner"
+      ],
       "i18n": {
         "de": {
           "frage": "Strassenreinigung, Schneeräumung",
@@ -1228,6 +1299,10 @@
     {
       "id": "öv",
       "zustaendig": "DIB-vbz",
+      "zielgruppen": [
+        "einwohner",
+        "mobilitaet"
+      ],
       "i18n": {
         "de": {
           "frage": "Tram, Bus, ÖV-Abos",
@@ -1295,6 +1370,10 @@
     {
       "id": "pflegeheim",
       "zustaendig": "GUD-pflege",
+      "zielgruppen": [
+        "alter",
+        "gesundheit"
+      ],
       "i18n": {
         "de": {
           "frage": "Pflegeheim, Spitex, Altersbetreuung",
@@ -1360,6 +1439,9 @@
     {
       "id": "spital",
       "zustaendig": "GUD-spital",
+      "zielgruppen": [
+        "gesundheit"
+      ],
       "i18n": {
         "de": {
           "frage": "Spitalbehandlung",
@@ -1419,6 +1501,11 @@
     {
       "id": "schul-arzt",
       "zustaendig": "SSD-sg",
+      "zielgruppen": [
+        "schule",
+        "gesundheit",
+        "familie"
+      ],
       "i18n": {
         "de": {
           "frage": "Schulärztliche Untersuchung, Schulgesundheit",
@@ -1474,6 +1561,10 @@
     {
       "id": "umwelt",
       "zustaendig": "GUD-ugz",
+      "zielgruppen": [
+        "einwohner",
+        "unternehmen"
+      ],
       "i18n": {
         "de": {
           "frage": "Lärm, Luftqualität, Lebensmittelkontrolle",
@@ -1539,6 +1630,9 @@
     {
       "id": "polizei",
       "zustaendig": "SiD-stapo",
+      "zielgruppen": [
+        "einwohner"
+      ],
       "i18n": {
         "de": {
           "frage": "Polizei, Anzeige erstatten",
@@ -1598,6 +1692,9 @@
     {
       "id": "feuerwehr",
       "zustaendig": "SiD-srz",
+      "zielgruppen": [
+        "einwohner"
+      ],
       "i18n": {
         "de": {
           "frage": "Feuerwehr, Sanität, Notfall",
@@ -1659,6 +1756,9 @@
     {
       "id": "parkbusse",
       "zustaendig": "SiD-richt",
+      "zielgruppen": [
+        "mobilitaet"
+      ],
       "i18n": {
         "de": {
           "frage": "Parkbusse / Strafmandat",
@@ -1716,6 +1816,10 @@
     {
       "id": "parkplatz",
       "zustaendig": "SiD-dav",
+      "zielgruppen": [
+        "mobilitaet",
+        "wohnen"
+      ],
       "i18n": {
         "de": {
           "frage": "Parkkarte, blaue Zone, Parkplätze",
@@ -1776,6 +1880,10 @@
     {
       "id": "betreibung",
       "zustaendig": "PRD-stab",
+      "zielgruppen": [
+        "einwohner",
+        "unternehmen"
+      ],
       "i18n": {
         "de": {
           "frage": "Betreibung einleiten, Auszug Betreibungsregister",
@@ -1833,6 +1941,9 @@
     {
       "id": "stadtarchiv",
       "zustaendig": "PRD-arch",
+      "zielgruppen": [
+        "einwohner"
+      ],
       "i18n": {
         "de": {
           "frage": "Historische Akten, Familienforschung",
@@ -1893,6 +2004,10 @@
     {
       "id": "statistik",
       "zustaendig": "PRD-stat",
+      "zielgruppen": [
+        "einwohner",
+        "unternehmen"
+      ],
       "i18n": {
         "de": {
           "frage": "Bevölkerungszahlen, Statistik-Daten",
