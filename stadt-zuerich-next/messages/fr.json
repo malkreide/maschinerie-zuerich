@@ -56,7 +56,8 @@
     "noMatchesTitle": "Aucune suggestion rapide pour „{query}\"",
     "noMatchesHint": "Vouliez-vous dire :",
     "popularFallback": "Démarches courantes",
-    "openFullSearch": "Ouvrir la recherche complète →"
+    "openFullSearch": "Ouvrir la recherche complète →",
+    "missNote": "Les termes de recherche anonymes sans résultat nous aident à repérer les sujets manquants. Nous n'enregistrons aucune donnée personnelle."
   },
   "Anliegen": {
     "title": "Chercher une démarche",

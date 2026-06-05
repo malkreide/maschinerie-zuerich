@@ -56,7 +56,8 @@
     "noMatchesTitle": "Keine Vorschläge für „{query}\"",
     "noMatchesHint": "Meinten Sie vielleicht das?",
     "popularFallback": "Das suchen viele Leute",
-    "openFullSearch": "Alle Treffer zeigen →"
+    "openFullSearch": "Alle Treffer zeigen →",
+    "missNote": "Sie finden nichts? Wir merken uns nur das Such-Wort. Ohne Ihren Namen. So sehen wir, was fehlt."
   },
   "Anliegen": {
     "title": "Was wollen Sie tun?",

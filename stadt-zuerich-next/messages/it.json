@@ -56,7 +56,8 @@
     "noMatchesTitle": "Nessun suggerimento rapido per „{query}\"",
     "noMatchesHint": "Forse intendevi:",
     "popularFallback": "Pratiche frequenti",
-    "openFullSearch": "Apri ricerca completa →"
+    "openFullSearch": "Apri ricerca completa →",
+    "missNote": "I termini di ricerca anonimi senza risultati ci aiutano a individuare temi mancanti. Non memorizziamo dati personali."
   },
   "Anliegen": {
     "title": "Cerca pratiche cittadine",

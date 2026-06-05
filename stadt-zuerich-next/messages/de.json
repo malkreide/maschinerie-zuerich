@@ -60,7 +60,8 @@
     "noMatchesTitle": "Keine schnellen Vorschläge für „{query}\"",
     "noMatchesHint": "Meintest du vielleicht einen dieser Begriffe?",
     "popularFallback": "Häufige Anliegen",
-    "openFullSearch": "Vollständige Suche öffnen →"
+    "openFullSearch": "Vollständige Suche öffnen →",
+    "missNote": "Anonyme Suchbegriffe ohne Treffer helfen uns, fehlende Anliegen zu erkennen. Wir speichern keine persönlichen Daten."
   },
   "Anliegen": {
     "title": "Anliegen suchen",

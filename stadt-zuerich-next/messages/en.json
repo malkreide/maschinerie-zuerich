@@ -56,7 +56,8 @@
     "noMatchesTitle": "No quick matches for „{query}\"",
     "noMatchesHint": "Did you mean one of these?",
     "popularFallback": "Common concerns",
-    "openFullSearch": "Open full search →"
+    "openFullSearch": "Open full search →",
+    "missNote": "Anonymous search terms without results help us spot missing topics. We don't store any personal data."
   },
   "Anliegen": {
     "title": "Search citizen concerns",
