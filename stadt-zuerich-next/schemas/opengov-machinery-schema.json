@@ -4,14 +4,16 @@
   "title": "OpenGov-Machinery-Schema",
   "description": "Portables Schema zur Beschreibung der Organisationsstruktur von öffentlichen Verwaltungen. Erlaubt föderierte Verknüpfungen zu anderen Instanzen.",
   "type": "object",
-  "required": ["_meta", "organization", "center", "departments", "units"],
+  "required": ["_meta", "center", "departments", "units"],
   "properties": {
     "_meta": {
       "type": "object",
       "required": ["schemaVersion", "stand"],
       "properties": {
         "schemaVersion": { "type": "number" },
-        "stand": { "type": "string", "format": "date-time" },
+        "stand": { "type": "string", "format": "date", "description": "Datenstand (ISO-Datum, z.B. 2026-04-20). Die Stadt-/Jahresangabe für Budget steht in budgetStand." },
+        "budgetStand": { "type": "string" },
+        "license": { "type": "string", "description": "Lizenz der Daten, z.B. 'CC-BY 4.0'." },
         "quellen": { "type": "array", "items": { "type": "string" } },
         "hinweise": { "type": "array", "items": { "type": "string" } }
       }
@@ -88,8 +90,8 @@
         "id": { "type": "string" },
         "name": { "type": "string" },
         "vorsteher": { "type": "string" },
-        "budget": { "$ref": "#/definitions/Budget" },
-        "fte": { "$ref": "#/definitions/Fte" },
+        "budget": { "oneOf": [{ "type": "null" }, { "$ref": "#/definitions/Budget" }] },
+        "fte": { "oneOf": [{ "type": "null" }, { "$ref": "#/definitions/Fte" }] },
         "federationLinks": {
           "type": "array",
           "items": { "$ref": "#/definitions/FederationLink" }
@@ -103,9 +105,9 @@
         "id": { "type": "string" },
         "parent": { "type": "string" },
         "name": { "type": "string" },
-        "kind": { "type": "string", "enum": ["unit", "staff", "extern"] },
-        "budget": { "$ref": "#/definitions/Budget" },
-        "fte": { "$ref": "#/definitions/Fte" },
+        "kind": { "type": "string", "enum": ["unit", "staff", "extern", "committee"] },
+        "budget": { "oneOf": [{ "type": "null" }, { "$ref": "#/definitions/Budget" }] },
+        "fte": { "oneOf": [{ "type": "null" }, { "$ref": "#/definitions/Fte" }] },
         "federationLinks": {
           "type": "array",
           "items": { "$ref": "#/definitions/FederationLink" }

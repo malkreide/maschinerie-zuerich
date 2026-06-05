@@ -59,8 +59,8 @@ jobs:
             console.log('✓ Alle ' + l.lebenslagen.length + ' Lebenslagen haben i18n.de und gültige zustaendig (' + ids.size + ' bekannte IDs in org-chart)');
           "
 
-  prozesse-validation:
-    name: OpenGov-Process-Schema validieren
+  schema-validation:
+    name: OpenGov-Schemas validieren (Org-Chart + Prozesse)
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -73,6 +73,10 @@ jobs:
           cache: npm
           cache-dependency-path: stadt-zuerich-next/package-lock.json
       - run: npm ci
+      - name: org-chart.json gegen opengov-machinery-schema.json validieren
+        run: npm run validate:org
+        env:
+          NO_COLOR: '1'
       - name: Schema + semantic validation für data/prozesse/**/*.json
         run: npm run validate:prozesse
         env:
