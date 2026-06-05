@@ -50,62 +50,13 @@ export async function GET(request: Request) {
       }
     }
   } catch (error) {
-    console.error("RIS API Fetch Fehler, nutze Fallback:", error);
+    console.error("RIS API Fetch Fehler:", error);
   }
 
-  // FALLBACK: Wenn die echte API nicht antwortet, keine Treffer hat, oder CORS/Timeout greift,
-  // liefern wir hochwertige, realistische Mock-Daten zurück, damit der Prototyp funktioniert.
-  return NextResponse.json(generateMockBusiness(departmentName));
-}
-
-function generateMockBusiness(dept: string) {
-  // Generiert basierend auf dem Abteilungsnamen realistische fiktive Geschäfte
-  const lowerDept = dept.toLowerCase();
-  const year = new Date().getFullYear();
-  
-  const type1 = "Postulat";
-  const type2 = "Motion";
-  let title1 = `Überprüfung der Prozesse im Bereich ${dept}`;
-  let title2 = `Zusätzliche Ressourcen für ${dept}`;
-  
-  if (lowerDept.includes('tiefbau') || lowerDept.includes('erz')) {
-    title1 = "Ausbau von Tempo 30 auf Hauptverkehrsachsen";
-    title2 = "Lärmsanierung Strassenbeläge";
-  } else if (lowerDept.includes('umwelt') || lowerDept.includes('gesundheit')) {
-    title1 = "Massnahmenplan Hitzeminderung in der Innenstadt";
-    title2 = "Förderung von Biodiversität auf städtischen Dächern";
-  } else if (lowerDept.includes('schul')) {
-    title1 = "Einführung flächendeckender Tagesschulen";
-    title2 = "Sanierung von Schulhausbauten beschleunigen";
-  } else if (lowerDept.includes('ewz')) {
-    title1 = "Ausbau Photovoltaik auf städtischen Gebäuden";
-    title2 = "Förderprogramm Wärmepumpen";
-  } else if (lowerDept.includes('sozial')) {
-    title1 = "Erhöhung der wirtschaftlichen Basishilfe";
-    title2 = "Unterstützungsangebote für Alleinerziehende";
-  }
-
-  return [
-    {
-      id: `${year}-101`,
-      titel: title1,
-      geschaeftsart: type1,
-      datum: `${year}-05-12`,
-      link: "https://www.gemeinderat-zuerich.ch/geschaefte"
-    },
-    {
-      id: `${year}-084`,
-      titel: title2,
-      geschaeftsart: type2,
-      datum: `${year}-03-24`,
-      link: "https://www.gemeinderat-zuerich.ch/geschaefte"
-    },
-    {
-      id: `${year}-042`,
-      titel: `Schriftliche Anfrage betreffend Budget ${dept}`,
-      geschaeftsart: "Schriftliche Anfrage",
-      datum: `${year}-02-10`,
-      link: "https://www.gemeinderat-zuerich.ch/geschaefte"
-    }
-  ];
+  // Kein Fallback auf fiktive Geschäfte: Wenn die echte API nicht antwortet,
+  // keine Treffer hat oder CORS/Timeout greift, geben wir bewusst eine leere
+  // Liste zurück. Das Frontend zeigt dann "keine Daten" plus einen Link zur
+  // offiziellen Geschäfts-Suche. Erfundene parlamentarische Geschäfte dürfen
+  // niemals wie offizielle Stadtinformation wirken.
+  return NextResponse.json([]);
 }

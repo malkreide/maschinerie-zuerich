@@ -2,6 +2,7 @@
   "_meta": {
     "schemaVersion": 1,
     "stand": "2026-04-20",
+    "license": "CC-BY 4.0 (abgeleitete/aggregierte Daten); Originalquellen siehe quellen[]",
     "quellen": [
       "https://www.stadt-zuerich.ch/ – Organigramm und Departementsseiten",
       "Geschäftsbericht Stadt Zürich – Aufwand pro Dienstabteilung",

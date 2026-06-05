@@ -33,7 +33,7 @@ installieren:
 [![Use this template](https://img.shields.io/badge/Use%20this%20template-2ea44f?logo=github)](https://github.com/malkreide/maschinerie-zuerich/generate)
 
 - **Vercel** — Fork + Live-Preview unter eigener Subdomain, Build in ~2 Min.
-- **Codespaces** — fertige Dev-Umgebung im Browser (Node 20 vorinstalliert,
+- **Codespaces** — fertige Dev-Umgebung im Browser (Node 24 vorinstalliert,
   Port 3000 automatisch weitergeleitet). Nach dem Start einfach
   `cd stadt-zuerich-next && npm run dev`.
 - **Use this template** — neues Repo mit der Maschinerie als Basis,
@@ -44,7 +44,8 @@ Oder lokal:
 
 ## Quickstart
 
-Node ≥ 20.20.2 vorausgesetzt. Die aktuelle Datenbasis (Organigramm,
+Node ≥ 24.16.0 vorausgesetzt (siehe `package.json` → `engines`; CI und
+Docker laufen auf derselben Version). Die aktuelle Datenbasis (Organigramm,
 Budget, FTE, Lebenslagen) liegt bereits im Repo unter `data/zh/` —
 die App startet also ohne vorheriges ETL:
 
@@ -202,7 +203,7 @@ gleiche Fuzzy-Suche, aber mit deinen Daten.
 - **Cytoscape.js** + cytoscape-fcose (radialer + force-directed Graph)
 - **D3** (`d3-hierarchy`, `d3-scale` — nur die benötigten Module)
 - **Fuse.js 7** — Fuzzy-Suche mit Synonym-Cluster-Expansion
-- ETL-Skripte aus `scripts/` (Node 20+, stdlib-only)
+- ETL-Skripte aus `scripts/` (Node 24+, stdlib-only)
 
 ## Architektur
 

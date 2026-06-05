@@ -1,5 +1,11 @@
 import { NextResponse } from 'next/server';
 
+// ACHTUNG: Diese Route erzeugt ZUFÄLLIGE Demo-Standorte, keine echten
+// Verwaltungsdaten. Sie ist als Platzhalter markiert (_meta.demo) und muss
+// vor einem produktiven Einsatz durch echte ODZ-Geodaten ersetzt werden
+// (Schulen, Recyclingstellen, Spielplätze etc. aus data.stadt-zuerich.ch).
+// Bis dahin zeigt das Frontend ein "Demodaten"-Badge.
+
 // Koordinaten Raum Zürich
 // Lat: ~47.35 bis 47.41, Lng: ~8.48 bis 8.58
 function getRandomZrhCoord() {
@@ -41,6 +47,12 @@ export async function GET(request: Request) {
 
   return NextResponse.json({
     type: 'FeatureCollection',
+    _meta: {
+      demo: true,
+      hinweis:
+        'Demodaten: zufällig generierte Standorte, keine echten Verwaltungsstandorte. ' +
+        'Vor Produktiveinsatz durch ODZ-Geodaten ersetzen.',
+    },
     features
   });
 }

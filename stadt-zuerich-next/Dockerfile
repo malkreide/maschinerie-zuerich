@@ -12,9 +12,9 @@
 # sonst löst der npm-Resolver unterschiedliche Peer-Dep-Versionen auf
 # und `npm ci` bricht ab mit "Missing: X from lock file".
 #
-# Aktuell: Node 24-alpine (matcht CI + lokales Dev-Setup).
-# package.json → engines.node >=20.20.2 bleibt absichtlich permissiv,
-# damit Downstream-Forks auch auf Node 20 bauen können.
+# Aktuell: Node 24-alpine (matcht CI, devcontainer und package.json →
+# engines.node >=24.16.0). Alle vier Stellen müssen übereinstimmen, sonst
+# löst der npm-Resolver unterschiedliche Peer-Dep-Versionen auf.
 
 ARG NODE_VERSION=24.16.0-alpine
 
