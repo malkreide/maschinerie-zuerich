@@ -50,13 +50,24 @@ jobs:
               ...d.units.map(u => u.id),
               ...(d.beteiligungen ?? []).map(b => b.id),
             ].filter(Boolean));
+            const LOCALES = ['de','en','fr','it','ls'];
             const problems = [];
             for (const e of l.lebenslagen) {
               if (!ids.has(e.zustaendig)) problems.push(e.id + ': unbekannte zustaendig ' + e.zustaendig);
               if (!e.i18n?.de?.frage || !Array.isArray(e.i18n?.de?.stichworte)) problems.push(e.id + ': fehlt i18n.de.frage oder .stichworte');
+              // Jede VORHANDENE (non-null) Locale muss vollständig sein —
+              // verhindert kaputte Teilübersetzungen. Fehlt eine Locale ganz
+              // (null/undefined), ist das ok: die Suche fällt auf de zurück.
+              for (const loc of LOCALES) {
+                const c = e.i18n?.[loc];
+                if (c == null) continue;
+                if (typeof c.frage !== 'string' || !c.frage.trim()) problems.push(e.id + '.' + loc + ': frage fehlt/leer');
+                if (!Array.isArray(c.stichworte) || c.stichworte.length === 0) problems.push(e.id + '.' + loc + ': stichworte fehlen/leer');
+              }
             }
             if (problems.length) { console.error('Probleme:\n  ' + problems.join('\n  ')); process.exit(1); }
-            console.log('✓ Alle ' + l.lebenslagen.length + ' Lebenslagen haben i18n.de und gültige zustaendig (' + ids.size + ' bekannte IDs in org-chart)');
+            const counts = LOCALES.map(loc => loc + ':' + l.lebenslagen.filter(e => e.i18n?.[loc] != null).length).join(' ');
+            console.log('✓ Alle ' + l.lebenslagen.length + ' Lebenslagen valide; Locale-Abdeckung ' + counts + ' (' + ids.size + ' bekannte IDs in org-chart)');
           "
 
   schema-validation:
