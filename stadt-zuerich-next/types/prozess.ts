@@ -91,6 +91,40 @@ export interface Quelle {
   abgerufen?: string;
 }
 
+export type OnlineReifegrad = 'offline' | 'teil-digital' | 'digital' | 'end-to-end';
+
+export type Medienbruch =
+  | 'drucken'
+  | 'post'
+  | 'persoenliches-erscheinen'
+  | 'separate-zahlung'
+  | 'erneute-dateneingabe'
+  | 'unterschrift-handschriftlich';
+
+export type ProzessStatus =
+  | 'beobachtet'
+  | 'validiert'
+  | 'vorgeschlagen'
+  | 'in-umsetzung'
+  | 'umgesetzt';
+
+export interface WirkungKpi {
+  label: I18nString;
+  wert?: string;
+}
+
+/** Digitale Reife & Vereinfachungspotenzial eines Prozesses (optional). */
+export interface Reife {
+  onlineReifegrad?: OnlineReifegrad;
+  medienbrueche?: Medienbruch[];
+  onceOnlyPotenzial?: I18nString;
+  nutzergruppen?: I18nString[];
+  painPoints?: I18nString[];
+  improvementIdeas?: I18nString[];
+  status?: ProzessStatus;
+  wirkungKpi?: WirkungKpi[];
+}
+
 export interface Prozess {
   id: string;
   version: string;
@@ -102,6 +136,7 @@ export interface Prozess {
   akteure: Akteur[];
   schritte: Schritt[];
   flow: FlowKante[];
+  reife?: Reife;
   meta?: {
     erstellt?: string;
     aktualisiert?: string;

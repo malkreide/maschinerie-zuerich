@@ -92,6 +92,7 @@
         }
       }
     },
+    "reife": { "$ref": "#/definitions/Reife" },
     "meta": {
       "type": "object",
       "properties": {
@@ -103,6 +104,46 @@
     }
   },
   "definitions": {
+    "Reife": {
+      "type": "object",
+      "description": "Digitale Reife & Vereinfachungspotenzial des Prozesses (optional). Macht sichtbar, wo Medienbrüche liegen, welche Daten der Verwaltung schon vorliegen (Once-Only) und welche Verbesserungen vorgeschlagen sind. Strategie-Anker: Prozesse konsequent digital denken und vereinfachen.",
+      "properties": {
+        "onlineReifegrad": {
+          "type": "string",
+          "enum": ["offline", "teil-digital", "digital", "end-to-end"],
+          "description": "offline = kein Onlineweg; teil-digital = Teile online, Medienbrüche bleiben; digital = überwiegend online; end-to-end = vollständig digital ohne Medienbruch."
+        },
+        "medienbrueche": {
+          "type": "array",
+          "description": "Konkrete Brüche im sonst digitalen Ablauf.",
+          "items": {
+            "type": "string",
+            "enum": ["drucken", "post", "persoenliches-erscheinen", "separate-zahlung", "erneute-dateneingabe", "unterschrift-handschriftlich"]
+          }
+        },
+        "onceOnlyPotenzial": { "$ref": "#/definitions/i18nString" },
+        "nutzergruppen": { "type": "array", "items": { "$ref": "#/definitions/i18nString" } },
+        "painPoints": { "type": "array", "items": { "$ref": "#/definitions/i18nString" } },
+        "improvementIdeas": { "type": "array", "items": { "$ref": "#/definitions/i18nString" } },
+        "status": {
+          "type": "string",
+          "enum": ["beobachtet", "validiert", "vorgeschlagen", "in-umsetzung", "umgesetzt"],
+          "description": "Bearbeitungsstand der Vereinfachung."
+        },
+        "wirkungKpi": {
+          "type": "array",
+          "description": "Messgrössen für Wirkung/Effizienz (z.B. Durchlaufzeit, Arbeitsschritte, Dokumente).",
+          "items": {
+            "type": "object",
+            "required": ["label"],
+            "properties": {
+              "label": { "$ref": "#/definitions/i18nString" },
+              "wert": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
     "i18nString": {
       "oneOf": [
         { "type": "string", "description": "Einsprachig (Kurzform): Fallback-Sprache = defaultLocale der App." },

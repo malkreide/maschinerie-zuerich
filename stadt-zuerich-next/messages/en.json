@@ -211,6 +211,36 @@
     "sourcesHeading": "Sources",
     "retrieved": "retrieved {date}",
     "goToUnit": "Go to unit: {name}",
+    "reifeHeading": "Digital maturity & simplification",
+    "reifegradLabel": "Online maturity",
+    "medienbruecheHeading": "Media breaks",
+    "onceOnlyHeading": "Data already on file (once-only)",
+    "nutzergruppenHeading": "User groups",
+    "painPointsHeading": "Pain points",
+    "improvementsHeading": "Improvement ideas",
+    "kpiHeading": "Impact & metrics",
+    "statusLabel": "Status",
+    "reifegrad": {
+      "offline": "Offline",
+      "teil-digital": "Partly digital",
+      "digital": "Digital",
+      "end-to-end": "Fully digital"
+    },
+    "medienbruch": {
+      "drucken": "Printing",
+      "post": "Postal mail",
+      "persoenliches-erscheinen": "In-person visit",
+      "separate-zahlung": "Separate payment",
+      "erneute-dateneingabe": "Re-entering data",
+      "unterschrift-handschriftlich": "Handwritten signature"
+    },
+    "status": {
+      "beobachtet": "Observed",
+      "validiert": "Validated",
+      "vorgeschlagen": "Proposed",
+      "in-umsetzung": "In progress",
+      "umgesetzt": "Done"
+    },
     "schrittTyp": {
       "start": "Start",
       "input": "Input",

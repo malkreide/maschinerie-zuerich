@@ -5,7 +5,7 @@
 
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
-import type { Prozess, Schritt } from '@/types/prozess';
+import type { Prozess, Schritt, OnlineReifegrad, ProzessStatus } from '@/types/prozess';
 
 const PROZESSE_ROOT_SEGMENTS = ['data', 'prozesse'] as const;
 
@@ -16,6 +16,8 @@ export interface ProzessIndexEntry {
   titel: Prozess['titel'];
   kurzbeschreibung?: Prozess['kurzbeschreibung'];
   version: string;
+  onlineReifegrad?: OnlineReifegrad; // aus reife.onlineReifegrad, für Index-Badge
+  status?: ProzessStatus;
 }
 
 function prozessRoot(): string {
@@ -57,6 +59,8 @@ export async function listProzesse(): Promise<ProzessIndexEntry[]> {
           titel: p.titel,
           kurzbeschreibung: p.kurzbeschreibung,
           version: p.version,
+          onlineReifegrad: p.reife?.onlineReifegrad,
+          status: p.reife?.status,
         });
       } catch (err) {
         console.warn(`[prozesse] cannot read ${city}/${file}:`, err);

@@ -298,9 +298,34 @@
     { "von": "einsprache-moeglich", "nach": "ende-abgelehnt", "bedingung": "nein" },
     { "von": "rekurs", "nach": "berechtigt", "label": { "de": "Neubeurteilung", "en": "re-evaluation" } }
   ],
+  "reife": {
+    "onlineReifegrad": "digital",
+    "medienbrueche": ["erneute-dateneingabe", "separate-zahlung"],
+    "onceOnlyPotenzial": {
+      "de": "Wohnsitz (Einwohnerregister) und Halterschaft (Fahrzeugregister) liegen der Verwaltung bereits vor — bei vollständiger Verknüpfung könnten Nachweise automatisch geprüft statt hochgeladen werden.",
+      "en": "Residence (population register) and vehicle holdership (vehicle register) are already held by the administration — full linking could verify eligibility automatically instead of requiring uploads.",
+      "ls": "Die Stadt weiss schon, wo Sie wohnen. Und dass das Auto Ihnen gehört. Diese Angaben könnte das Amt selbst prüfen."
+    },
+    "nutzergruppen": [
+      { "de": "Anwohner:innen mit Auto", "en": "Residents with a car", "ls": "Menschen mit Auto in einer blauen Zone" }
+    ],
+    "painPoints": [
+      { "de": "Fahrzeugausweis und Wohnsitznachweis müssen manuell hochgeladen werden, obwohl die Daten vorliegen.", "en": "Vehicle registration and proof of residence must be uploaded manually although the data exists.", "ls": "Sie müssen Papiere hochladen, die das Amt schon hat." },
+      { "de": "Zahlung erfolgt separat per Rechnung — kein direkter Online-Abschluss.", "en": "Payment happens separately by invoice — no direct online completion.", "ls": "Sie zahlen erst später mit einer Rechnung." }
+    ],
+    "improvementIdeas": [
+      { "de": "Automatischer Abgleich mit Einwohner- und Fahrzeugregister (Once-Only) statt Upload.", "en": "Automatic matching against population and vehicle registers (once-only) instead of upload.", "ls": "Das Amt prüft selbst, ohne dass Sie Papiere schicken." },
+      { "de": "Direkte Online-Zahlung am Ende des Antrags.", "en": "Direct online payment at the end of the application.", "ls": "Sie zahlen gleich online." }
+    ],
+    "status": "beobachtet",
+    "wirkungKpi": [
+      { "label": { "de": "Durchlaufzeit bis Aktivierung", "en": "Lead time to activation", "ls": "Zeit, bis die Karte gilt" }, "wert": "1–10 Arbeitstage" },
+      { "label": { "de": "Online-Anteil", "en": "Share online", "ls": "Wie viel geht online" }, "wert": "Antrag online, Zahlung separat" }
+    ]
+  },
   "meta": {
     "erstellt": "2026-04-24",
-    "aktualisiert": "2026-04-24",
+    "aktualisiert": "2026-06-05",
     "maintainer": "malkreide",
     "lizenz": "CC-BY-4.0"
   }

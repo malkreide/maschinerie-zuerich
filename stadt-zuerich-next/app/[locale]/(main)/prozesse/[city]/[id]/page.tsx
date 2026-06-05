@@ -164,6 +164,7 @@ export default async function ProzessDetailPage({
 
   const titel = resolveI18n(prozess.titel, lebLoc);
   const kurz  = resolveI18n(prozess.kurzbeschreibung, lebLoc);
+  const reife = prozess.reife;
 
   // schema.org/GovernmentService als JSON-LD für Suchmaschinen. Absolute
   // URL aus NEXT_PUBLIC_SITE_URL (gleiche Konvention wie sitemap.ts), damit
@@ -210,6 +211,88 @@ export default async function ProzessDetailPage({
           goToUnitLabelTemplate={t('goToUnit', { name: '{name}' })}
         />
       </div>
+
+      {reife && (
+        <section
+          aria-labelledby="reife-heading"
+          className="max-w-[80ch] mb-6 bg-[var(--color-panel)] border border-[var(--color-line)] rounded-lg p-4"
+        >
+          <div className="flex flex-wrap items-center gap-2 mb-3">
+            <h3 id="reife-heading" className="text-base font-semibold m-0">{t('reifeHeading')}</h3>
+            {reife.onlineReifegrad && (
+              <span className="text-[11px] px-2 py-0.5 rounded-full border border-[var(--color-line)] bg-[var(--color-bg)]">
+                {t('reifegradLabel')}: <strong>{t(`reifegrad.${reife.onlineReifegrad}`)}</strong>
+              </span>
+            )}
+            {reife.status && (
+              <span className="text-[11px] px-2 py-0.5 rounded-full border border-[var(--color-line)] bg-[var(--color-bg)]">
+                {t('statusLabel')}: {t(`status.${reife.status}`)}
+              </span>
+            )}
+          </div>
+
+          {reife.medienbrueche && reife.medienbrueche.length > 0 && (
+            <div className="mb-3">
+              <h4 className="text-[11px] uppercase tracking-wider text-[var(--color-mute)] mb-1">{t('medienbruecheHeading')}</h4>
+              <ul className="flex flex-wrap gap-1.5 list-none m-0 p-0">
+                {reife.medienbrueche.map((m) => (
+                  <li key={m} className="text-[12px] px-2 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-200">
+                    {t(`medienbruch.${m}`)}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {reife.onceOnlyPotenzial && (
+            <div className="mb-3">
+              <h4 className="text-[11px] uppercase tracking-wider text-[var(--color-mute)] mb-1">{t('onceOnlyHeading')}</h4>
+              <p className="text-sm text-[var(--color-ink)] m-0">{resolveI18n(reife.onceOnlyPotenzial, lebLoc)}</p>
+            </div>
+          )}
+
+          {reife.painPoints && reife.painPoints.length > 0 && (
+            <div className="mb-3">
+              <h4 className="text-[11px] uppercase tracking-wider text-[var(--color-mute)] mb-1">{t('painPointsHeading')}</h4>
+              <ul className="list-disc list-inside text-sm text-[var(--color-mute)] space-y-1 m-0">
+                {reife.painPoints.map((p, i) => <li key={i}>{resolveI18n(p, lebLoc)}</li>)}
+              </ul>
+            </div>
+          )}
+
+          {reife.improvementIdeas && reife.improvementIdeas.length > 0 && (
+            <div className="mb-3">
+              <h4 className="text-[11px] uppercase tracking-wider text-[var(--color-mute)] mb-1">{t('improvementsHeading')}</h4>
+              <ul className="list-disc list-inside text-sm text-[var(--color-ink)] space-y-1 m-0">
+                {reife.improvementIdeas.map((p, i) => <li key={i}>{resolveI18n(p, lebLoc)}</li>)}
+              </ul>
+            </div>
+          )}
+
+          {reife.wirkungKpi && reife.wirkungKpi.length > 0 && (
+            <div className="mb-3">
+              <h4 className="text-[11px] uppercase tracking-wider text-[var(--color-mute)] mb-1">{t('kpiHeading')}</h4>
+              <ul className="text-sm space-y-1 list-none m-0 p-0">
+                {reife.wirkungKpi.map((k, i) => (
+                  <li key={i}>
+                    <span className="font-medium">{resolveI18n(k.label, lebLoc)}</span>
+                    {k.wert && <span className="text-[var(--color-mute)]">: {k.wert}</span>}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {reife.nutzergruppen && reife.nutzergruppen.length > 0 && (
+            <div>
+              <h4 className="text-[11px] uppercase tracking-wider text-[var(--color-mute)] mb-1">{t('nutzergruppenHeading')}</h4>
+              <p className="text-sm text-[var(--color-mute)] m-0">
+                {reife.nutzergruppen.map((n) => resolveI18n(n, lebLoc)).join(' · ')}
+              </p>
+            </div>
+          )}
+        </section>
+      )}
 
       {/* Textueller Fallback + a11y — immer sichtbar, damit Screenreader
           und Kopien per "Print" den vollen Inhalt bekommen. */}

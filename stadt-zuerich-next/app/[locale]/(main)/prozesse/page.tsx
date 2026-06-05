@@ -75,8 +75,13 @@ export default async function ProzesseIndex({
                       {resolveI18n(e.kurzbeschreibung, lebLocale)}
                     </p>
                   )}
-                  <div className="text-[11px] text-[var(--color-mute)] mt-2">
-                    v{e.version}
+                  <div className="text-[11px] text-[var(--color-mute)] mt-2 flex flex-wrap items-center gap-2">
+                    <span>v{e.version}</span>
+                    {e.onlineReifegrad && (
+                      <span className="px-2 py-0.5 rounded-full border border-[var(--color-line)] bg-[var(--color-bg)]">
+                        {t('reifegradLabel')}: {t(`reifegrad.${e.onlineReifegrad}`)}
+                      </span>
+                    )}
                   </div>
                 </Link>
               </li>
