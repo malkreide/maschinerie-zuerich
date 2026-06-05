@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 import { hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
 import QuartierMap from '@/components/QuartierMap';
+import DataQualityBadge from '@/components/DataQualityBadge';
 import { loadStadtData } from '@/lib/data';
 import { routing } from '@/i18n/routing';
 import fs from 'fs';
@@ -41,9 +42,15 @@ export default async function QuartierPage({
     <main className="absolute top-14 inset-x-0 bottom-0 p-4 pb-10 overflow-hidden flex flex-col bg-[var(--color-bg)]">
       <div className="max-w-4xl mx-auto w-full flex-1 flex flex-col">
         <h2 className="text-xl font-bold mb-2 text-[var(--color-ink)]">{t('title')}</h2>
-        <p className="text-[13px] text-[var(--color-mute)] mb-4 max-w-2xl">
+        <p className="text-[13px] text-[var(--color-mute)] mb-2 max-w-2xl">
           {t('intro')}
         </p>
+        <div className="mb-4">
+          <DataQualityBadge
+            status="demo"
+            hinweis="Illustrative Verteilungswerte pro Kreis – keine echten Budgetzahlen. Vor Produktiveinsatz durch reale Quartierdaten ersetzen."
+          />
+        </div>
 
         <div className="flex-1 bg-[var(--color-panel)] rounded-xl border border-[var(--color-line)] shadow-sm overflow-hidden flex flex-col relative">
           {geoJson ? (

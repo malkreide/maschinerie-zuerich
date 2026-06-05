@@ -7,6 +7,7 @@ import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility
 import 'leaflet-defaulticon-compatibility';
 import { useTranslations } from 'next-intl';
 import { useRouter } from '@/i18n/navigation';
+import DataQualityBadge from '@/components/DataQualityBadge';
 
 type GeoFeature = {
   type: string;
@@ -37,8 +38,14 @@ export default function TerritoryMap() {
       {/* Control Panel overlay */}
       <div className="absolute top-4 right-4 z-[400] bg-white dark:bg-[var(--color-panel)] p-4 rounded-xl shadow-xl border border-[var(--color-line)] w-72">
         <h2 className="text-sm font-semibold mb-2">{t('title')}</h2>
-        <p className="text-xs text-[var(--color-mute)] mb-4">{t('intro')}</p>
-        
+        <p className="text-xs text-[var(--color-mute)] mb-2">{t('intro')}</p>
+        <div className="mb-4">
+          <DataQualityBadge
+            status="demo"
+            hinweis="Zufällig generierte Standorte – keine echten Verwaltungsdaten. Vor Produktiveinsatz durch ODZ-Geodaten ersetzen."
+          />
+        </div>
+
         <div className="space-y-2">
           <label className="flex items-center gap-2 text-sm cursor-pointer">
             <input 

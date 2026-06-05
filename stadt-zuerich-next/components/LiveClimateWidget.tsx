@@ -19,6 +19,7 @@ export default function LiveClimateWidget({
 }) {
   const [data, setData] = useState<WaterData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   // Das Basisbudget für das GUD gemäss org-chart.json (Nettoaufwand ca. 2.6 Mia)
   const GUD_BASE_BUDGET_MIO = 2637;
@@ -37,14 +38,10 @@ export default function LiveClimateWidget({
         }
       })
       .catch(() => {
-        // Fallback dummy data if API is down or blocked by CORS
-        setData({
-          timestamp: new Date().toISOString(),
-          values: {
-            water_temperature: { value: 16.5, unit: '°C' },
-            air_temperature: { value: 18.2, unit: '°C' },
-          }
-        });
+        // Kein erfundener Fallback-Messwert: Wenn die Live-API nicht
+        // erreichbar ist (Down/CORS), zeigen wir das ehrlich an, statt
+        // Dummywerte wie echte Messungen wirken zu lassen.
+        setError(true);
       })
       .finally(() => {
         setLoading(false);
@@ -75,6 +72,11 @@ export default function LiveClimateWidget({
             <div className="text-[var(--color-mute)] mb-1">Luft</div>
             <div className="font-bold text-[var(--color-ink)]">{data.values.air_temperature?.value ?? '-'} {data.values.air_temperature?.unit ?? '°C'}</div>
           </div>
+        </div>
+      )}
+      {error && (
+        <div className="text-[11px] text-[var(--color-mute)] bg-[var(--color-bg)] rounded-lg p-2 mb-3">
+          Live-Messwerte (Mythenquai) momentan nicht verfügbar.
         </div>
       )}
       

@@ -61,6 +61,19 @@ export default function ParlamentsGeschaefte({ departmentName }: { departmentNam
     );
   }
 
+  const officialSearchLink = (
+    <div className="mt-2 text-right">
+      <a
+        href={`https://www.gemeinderat-zuerich.ch/geschaefte?q=${encodeURIComponent(departmentName)}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-[10px] text-[var(--color-accent)] hover:underline"
+      >
+        {t('viewAll')}
+      </a>
+    </div>
+  );
+
   if (error) {
     return (
       <div className="mt-4 pt-3 border-t border-[var(--color-line)]">
@@ -68,6 +81,7 @@ export default function ParlamentsGeschaefte({ departmentName }: { departmentNam
           {t('heading')}
         </h4>
         <div className="text-red-500 text-xs">{t('error')}</div>
+        {officialSearchLink}
       </div>
     );
   }
@@ -79,6 +93,7 @@ export default function ParlamentsGeschaefte({ departmentName }: { departmentNam
           {t('heading')}
         </h4>
         <div className="text-[var(--color-mute)] text-xs">{t('noData')}</div>
+        {officialSearchLink}
       </div>
     );
   }
@@ -108,16 +123,7 @@ export default function ParlamentsGeschaefte({ departmentName }: { departmentNam
           </li>
         ))}
       </ul>
-      <div className="mt-2 text-right">
-        <a 
-          href={`https://www.gemeinderat-zuerich.ch/geschaefte?q=${encodeURIComponent(departmentName)}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-[10px] text-[var(--color-accent)] hover:underline"
-        >
-          {t('viewAll')}
-        </a>
-      </div>
+      {officialSearchLink}
     </div>
   );
 }
