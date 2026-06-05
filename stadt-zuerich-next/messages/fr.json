@@ -56,7 +56,21 @@
     "noMatchesTitle": "Aucune suggestion rapide pour „{query}\"",
     "noMatchesHint": "Vouliez-vous dire :",
     "popularFallback": "Démarches courantes",
-    "openFullSearch": "Ouvrir la recherche complète →"
+    "openFullSearch": "Ouvrir la recherche complète →",
+    "missNote": "Les termes de recherche anonymes sans résultat nous aident à repérer les sujets manquants. Nous n'enregistrons aucune donnée personnelle."
+  },
+  "Zielgruppen": {
+    "filterLabel": "Filtrer par public",
+    "all": "Tous",
+    "einwohner": "Habitant·e",
+    "unternehmen": "Entreprise",
+    "familie": "Famille",
+    "alter": "Seniors",
+    "schule": "École",
+    "migration": "Migration",
+    "mobilitaet": "Mobilité",
+    "wohnen": "Logement",
+    "gesundheit": "Santé"
   },
   "Anliegen": {
     "title": "Chercher une démarche",

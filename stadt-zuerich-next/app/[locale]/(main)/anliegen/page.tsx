@@ -11,7 +11,8 @@ import { routing, type Locale } from '@/i18n/routing';
 import { loadStadtData } from '@/lib/data';
 import { searchLebenslagen, resolveContent } from '@/lib/search';
 import { getT } from '@/lib/i18n-server';
-import type { Department, Unit, Beteiligung, StadtData, LebenslageLocale } from '@/types/stadt';
+import { ZIELGRUPPEN } from '@/types/stadt';
+import type { Department, Unit, Beteiligung, StadtData, LebenslageLocale, Zielgruppe, Lebenslage } from '@/types/stadt';
 
 export async function generateMetadata({
   params,
@@ -27,17 +28,28 @@ export default async function AnliegenPage({
   params, searchParams,
 }: {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<{ q?: string }>;
+  searchParams: Promise<{ q?: string; zg?: string }>;
 }) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
 
-  const { q = '' } = await searchParams;
+  const { q = '', zg: zgRaw } = await searchParams;
   const data = await loadStadtData();
   const lebLocale = locale as LebenslageLocale;
-  const matches = q.trim() ? searchLebenslagen(q, data.lebenslagen ?? [], lebLocale) : [];
+  const allLeb = data.lebenslagen ?? [];
+
+  // Aktiver Zielgruppen-Filter (nur gültige Taxonomie-Werte zählen).
+  const zg = (ZIELGRUPPEN as readonly string[]).includes(zgRaw ?? '')
+    ? (zgRaw as Zielgruppe)
+    : undefined;
+  const inZg = (l: Lebenslage) => !zg || (l.zielgruppen?.includes(zg) ?? false);
+
+  const matches = (q.trim() ? searchLebenslagen(q, allLeb, lebLocale) : []).filter(inZg);
+  // Browse-/Fallback-Liste: bei aktivem Filter die ganze Zielgruppe, sonst Top-8.
+  const browse = allLeb.filter(inZg).slice(0, zg ? 50 : 8);
   const t       = getT(locale as Locale, 'Anliegen');
   const tSearch = getT(locale as Locale, 'Search');
+  const tZg     = getT(locale as Locale, 'Zielgruppen');
 
   const formAction = `/${locale}/anliegen`;
 
@@ -68,10 +80,32 @@ export default async function AnliegenPage({
         </button>
       </form>
 
+      {allLeb.length > 0 && (
+        <nav aria-label={tZg('filterLabel')} className="mb-6 flex flex-wrap gap-2 max-w-[70ch]">
+          <Link
+            href={{ pathname: '/anliegen', query: q ? { q } : {} }}
+            aria-current={!zg ? 'true' : undefined}
+            className={chipClass(!zg)}
+          >
+            {tZg('all')}
+          </Link>
+          {ZIELGRUPPEN.map((tag) => (
+            <Link
+              key={tag}
+              href={{ pathname: '/anliegen', query: q ? { q, zg: tag } : { zg: tag } }}
+              aria-current={zg === tag ? 'true' : undefined}
+              className={chipClass(zg === tag)}
+            >
+              {tZg(tag)}
+            </Link>
+          ))}
+        </nav>
+      )}
+
       {q && matches.length === 0 && (
         <>
           <p className="text-[var(--color-mute)] max-w-[70ch] mb-4">{t('noResults', { query: q })}</p>
-          {data.lebenslagen && data.lebenslagen.length > 0 && (
+          {browse.length > 0 && (
             <section aria-labelledby="noresults-fallback-heading" className="max-w-[70ch]">
               <h3
                 id="noresults-fallback-heading"
@@ -80,13 +114,14 @@ export default async function AnliegenPage({
                 {t('noResultsFallbackHeading')}
               </h3>
               <ul className="grid gap-2 list-none m-0 p-0">
-                {data.lebenslagen.slice(0, 8).map((l) => {
+                {browse.map((l) => {
                   const c = resolveContent(l, lebLocale);
                   if (!c) return null;
+                  const term = c.stichworte[0] ?? c.frage;
                   return (
                     <li key={l.id}>
                       <Link
-                        href={{ pathname: '/anliegen', query: { q: c.stichworte[0] ?? c.frage } }}
+                        href={{ pathname: '/anliegen', query: zg ? { q: term, zg } : { q: term } }}
                         className="block px-3 py-2 bg-[var(--color-panel)] border border-[var(--color-line)] rounded text-[var(--color-ink)] no-underline hover:bg-[var(--color-bg)] text-sm"
                       >
                         {c.frage}
@@ -129,20 +164,21 @@ export default async function AnliegenPage({
         </>
       )}
 
-      {!q && data.lebenslagen && data.lebenslagen.length > 0 && (
+      {!q && browse.length > 0 && (
         <section aria-labelledby="popular-heading" className="max-w-[70ch]">
           <h3 id="popular-heading"
               className="text-sm font-semibold uppercase tracking-wider text-[var(--color-mute)] mb-3">
-            {t('popularHeading')}
+            {zg ? tZg(zg) : t('popularHeading')}
           </h3>
           <ul className="grid gap-2 list-none m-0 p-0">
-            {data.lebenslagen.slice(0, 8).map((l) => {
+            {browse.map((l) => {
               const c = resolveContent(l, lebLocale);
               if (!c) return null;
+              const term = c.stichworte[0] ?? c.frage;
               return (
                 <li key={l.id}>
                   <Link
-                    href={{ pathname: '/anliegen', query: { q: c.stichworte[0] ?? c.frage } }}
+                    href={{ pathname: '/anliegen', query: zg ? { q: term, zg } : { q: term } }}
                     className="block px-3 py-2 bg-[var(--color-panel)] border border-[var(--color-line)] rounded text-[var(--color-ink)] no-underline hover:bg-[var(--color-bg)] text-sm"
                   >
                     {c.frage}
@@ -155,6 +191,16 @@ export default async function AnliegenPage({
       )}
     </main>
   );
+}
+
+// Tailwind-Klassen für die Zielgruppen-Filter-Chips.
+function chipClass(active: boolean): string {
+  return [
+    'inline-block px-3 py-1 rounded-full text-[13px] no-underline border transition-colors',
+    active
+      ? 'bg-[var(--color-accent)] text-white border-[var(--color-accent)]'
+      : 'bg-[var(--color-panel)] text-[var(--color-ink)] border-[var(--color-line)] hover:bg-[var(--color-bg)]',
+  ].join(' ');
 }
 
 function findItem(data: StadtData, id: string): Department | Unit | Beteiligung | null {

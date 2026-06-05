@@ -56,7 +56,21 @@
     "noMatchesTitle": "Nessun suggerimento rapido per „{query}\"",
     "noMatchesHint": "Forse intendevi:",
     "popularFallback": "Pratiche frequenti",
-    "openFullSearch": "Apri ricerca completa →"
+    "openFullSearch": "Apri ricerca completa →",
+    "missNote": "I termini di ricerca anonimi senza risultati ci aiutano a individuare temi mancanti. Non memorizziamo dati personali."
+  },
+  "Zielgruppen": {
+    "filterLabel": "Filtra per pubblico",
+    "all": "Tutti",
+    "einwohner": "Residente",
+    "unternehmen": "Impresa",
+    "familie": "Famiglia",
+    "alter": "Anziani",
+    "schule": "Scuola",
+    "migration": "Migrazione",
+    "mobilitaet": "Mobilità",
+    "wohnen": "Abitare",
+    "gesundheit": "Salute"
   },
   "Anliegen": {
     "title": "Cerca pratiche cittadine",

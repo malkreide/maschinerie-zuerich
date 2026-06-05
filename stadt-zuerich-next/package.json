@@ -19,7 +19,8 @@
     "validate:prozesse": "node scripts/validate-prozesse.mjs",
     "migrate:schema:v2": "node scripts/migrate-prozesse-schema-v2.mjs",
     "scaffold:city": "node scripts/scaffold-city.mjs",
-    "probe:search": "node scripts/probe-search.mjs"
+    "probe:search": "node scripts/probe-search.mjs",
+    "probe:search-miss": "node scripts/probe-search-miss.mjs"
   },
   "dependencies": {
     "@types/d3-geo": "^3.1.0",

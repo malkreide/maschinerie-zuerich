@@ -51,10 +51,16 @@ jobs:
               ...(d.beteiligungen ?? []).map(b => b.id),
             ].filter(Boolean));
             const LOCALES = ['de','en','fr','it','ls'];
+            const ZIELGRUPPEN = new Set(['einwohner','unternehmen','familie','alter','schule','migration','mobilitaet','wohnen','gesundheit']);
             const problems = [];
             for (const e of l.lebenslagen) {
               if (!ids.has(e.zustaendig)) problems.push(e.id + ': unbekannte zustaendig ' + e.zustaendig);
               if (!e.i18n?.de?.frage || !Array.isArray(e.i18n?.de?.stichworte)) problems.push(e.id + ': fehlt i18n.de.frage oder .stichworte');
+              // zielgruppen (optional) müssen aus der bekannten Taxonomie stammen.
+              if (e.zielgruppen !== undefined) {
+                if (!Array.isArray(e.zielgruppen) || e.zielgruppen.length === 0) problems.push(e.id + ': zielgruppen muss ein nicht-leeres Array sein');
+                else for (const z of e.zielgruppen) if (!ZIELGRUPPEN.has(z)) problems.push(e.id + ': unbekannte zielgruppe ' + z);
+              }
               // Jede VORHANDENE (non-null) Locale muss vollständig sein —
               // verhindert kaputte Teilübersetzungen. Fehlt eine Locale ganz
               // (null/undefined), ist das ok: die Suche fällt auf de zurück.

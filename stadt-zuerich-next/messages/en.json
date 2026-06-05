@@ -56,7 +56,21 @@
     "noMatchesTitle": "No quick matches for „{query}\"",
     "noMatchesHint": "Did you mean one of these?",
     "popularFallback": "Common concerns",
-    "openFullSearch": "Open full search →"
+    "openFullSearch": "Open full search →",
+    "missNote": "Anonymous search terms without results help us spot missing topics. We don't store any personal data."
+  },
+  "Zielgruppen": {
+    "filterLabel": "Filter by audience",
+    "all": "All",
+    "einwohner": "Resident",
+    "unternehmen": "Business",
+    "familie": "Family",
+    "alter": "Older age",
+    "schule": "School",
+    "migration": "Migration",
+    "mobilitaet": "Mobility",
+    "wohnen": "Housing",
+    "gesundheit": "Health"
   },
   "Anliegen": {
     "title": "Search citizen concerns",

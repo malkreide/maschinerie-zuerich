@@ -107,9 +107,27 @@ export interface LebenslageContent {
 
 export type LebenslageLocale = 'de' | 'en' | 'fr' | 'it' | 'ls';
 
+// Zielgruppen-Taxonomie für die Lebenslagen-Filterung. Bewusst klein und
+// stabil gehalten; die Labels pro Locale liegen im Messages-Namespace
+// "Zielgruppen". Wird in der CI gegen die Daten validiert.
+export const ZIELGRUPPEN = [
+  'einwohner',
+  'unternehmen',
+  'familie',
+  'alter',
+  'schule',
+  'migration',
+  'mobilitaet',
+  'wohnen',
+  'gesundheit',
+] as const;
+
+export type Zielgruppe = (typeof ZIELGRUPPEN)[number];
+
 export interface Lebenslage {
   id: string;
   zustaendig: string;            // unit-id oder dep-id
+  zielgruppen?: Zielgruppe[];    // optionale Tags für die Filterung
   i18n: Partial<Record<LebenslageLocale, LebenslageContent | null>>;
 }
 
