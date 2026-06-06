@@ -80,6 +80,34 @@ export interface Unit {
   federationLinks?: FederationLink[];
 }
 
+// Klassifikation öffentlicher Beteiligungen (Transparenz / Open Data).
+// Kategorial gehalten — bewusst keine exakten Eigentumsanteile, die offline
+// nicht verlässlich belegbar wären. In der CI gegen das Schema validiert.
+export const BETEILIGUNG_RECHTSFORMEN = [
+  'ag',
+  'stiftung',
+  'genossenschaft',
+  'oeffentlich-rechtlich',
+  'verein',
+] as const;
+export type BeteiligungRechtsform = (typeof BETEILIGUNG_RECHTSFORMEN)[number];
+
+// strategisch = öffentlicher Auftrag/Steuerungsinteresse; finanziell = primär Kapitalanlage.
+export const BETEILIGUNGS_ARTEN = ['strategisch', 'finanziell'] as const;
+export type BeteiligungsArt = (typeof BETEILIGUNGS_ARTEN)[number];
+
+export const BETEILIGUNG_SEKTOREN = [
+  'energie',
+  'verkehr',
+  'finanzen',
+  'wohnen',
+  'kultur',
+  'soziales',
+  'freizeit',
+  'gesundheit',
+] as const;
+export type BeteiligungSektor = (typeof BETEILIGUNG_SEKTOREN)[number];
+
 export interface Beteiligung {
   id: string;
   name: string;
@@ -88,6 +116,13 @@ export interface Beteiligung {
   budgetHistory?: Budget[];
   fte?: Fte;
   odz?: Odz;
+  // Klassifikation (optional, additiv):
+  rechtsform?: BeteiligungRechtsform;
+  beteiligungsart?: BeteiligungsArt;
+  sektor?: BeteiligungSektor;
+  zweck?: string;       // Kurzbeschreibung des Zwecks (de)
+  quelle?: string;      // Beleg-URL (z. B. Beteiligungsbericht)
+  stand?: string;       // Datenstand (Jahr oder ISO-Datum)
 }
 
 export interface Center {

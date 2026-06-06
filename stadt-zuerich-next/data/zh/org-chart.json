@@ -3424,60 +3424,120 @@
       "name": "Energie 360°",
       "verbunden": "DIB",
       "budget": null,
-      "fte": null
+      "fte": null,
+      "rechtsform": "ag",
+      "beteiligungsart": "strategisch",
+      "sektor": "energie",
+      "zweck": "Energieversorgung (Gas, Wärme/Kälte, erneuerbare Energien) für Stadt und Region.",
+      "quelle": "https://www.stadt-zuerich.ch/fd/de/index/finanzen/beteiligungen.html",
+      "stand": "2025"
     },
     {
       "id": "B-flughafen",
       "name": "Flughafen Zürich AG (Beteiligung)",
       "verbunden": "PRD",
       "budget": null,
-      "fte": null
+      "fte": null,
+      "rechtsform": "ag",
+      "beteiligungsart": "finanziell",
+      "sektor": "verkehr",
+      "zweck": "Bau und Betrieb des Flughafens Zürich; Stadt hält einen Minderheitsanteil.",
+      "quelle": "https://www.stadt-zuerich.ch/fd/de/index/finanzen/beteiligungen.html",
+      "stand": "2025"
     },
     {
       "id": "B-zkb",
       "name": "Zürcher Kantonalbank (Beteiligung Stadt)",
       "verbunden": "FD",
       "budget": null,
-      "fte": null
+      "fte": null,
+      "rechtsform": "oeffentlich-rechtlich",
+      "beteiligungsart": "finanziell",
+      "sektor": "finanzen",
+      "zweck": "Kantonale Universalbank mit Leistungsauftrag (Staatsgarantie des Kantons).",
+      "quelle": "https://www.stadt-zuerich.ch/fd/de/index/finanzen/beteiligungen.html",
+      "stand": "2025"
     },
     {
       "id": "B-zoo",
       "name": "Zoo Zürich AG (Beteiligung)",
       "verbunden": "PRD",
       "budget": null,
-      "fte": null
+      "fte": null,
+      "rechtsform": "ag",
+      "beteiligungsart": "strategisch",
+      "sektor": "freizeit",
+      "zweck": "Wissenschaftlich geführter Zoo mit Bildungs-, Natur- und Artenschutzauftrag.",
+      "quelle": "https://www.stadt-zuerich.ch/fd/de/index/finanzen/beteiligungen.html",
+      "stand": "2025"
     },
     {
       "id": "B-okj",
       "name": "OJA Offene Jugendarbeit Zürich",
       "verbunden": "SD",
       "budget": null,
-      "fte": null
+      "fte": null,
+      "rechtsform": "verein",
+      "beteiligungsart": "strategisch",
+      "sektor": "soziales",
+      "zweck": "Offene Kinder- und Jugendarbeit in Quartieren im Auftrag der Stadt.",
+      "quelle": "https://www.stadt-zuerich.ch/fd/de/index/finanzen/beteiligungen.html",
+      "stand": "2025"
     },
     {
       "id": "B-saw",
       "name": "Stiftung Alterswohnungen der Stadt Zürich",
-      "verbunden": "GUD"
+      "verbunden": "GUD",
+      "rechtsform": "stiftung",
+      "beteiligungsart": "strategisch",
+      "sektor": "wohnen",
+      "zweck": "Bau und Bewirtschaftung preisgünstiger Alterswohnungen.",
+      "quelle": "https://www.stadt-zuerich.ch/fd/de/index/finanzen/beteiligungen.html",
+      "stand": "2025"
     },
     {
       "id": "B-pwg",
       "name": "Stiftung PWG (preisgünstige Wohn- und Gewerberäume)",
-      "verbunden": "FD"
+      "verbunden": "FD",
+      "rechtsform": "stiftung",
+      "beteiligungsart": "strategisch",
+      "sektor": "wohnen",
+      "zweck": "Erhalt und Vermehrung preisgünstiger Wohn- und Gewerberäume.",
+      "quelle": "https://www.stadt-zuerich.ch/fd/de/index/finanzen/beteiligungen.html",
+      "stand": "2025"
     },
     {
       "id": "B-sew",
       "name": "Stiftung Einfach Wohnen",
-      "verbunden": "FD"
+      "verbunden": "FD",
+      "rechtsform": "stiftung",
+      "beteiligungsart": "strategisch",
+      "sektor": "wohnen",
+      "zweck": "Bereitstellung von gemeinnützigem, preisgünstigem Wohnraum.",
+      "quelle": "https://www.stadt-zuerich.ch/fd/de/index/finanzen/beteiligungen.html",
+      "stand": "2025"
     },
     {
       "id": "B-skf",
       "name": "Stiftung Wohnungen für kinderreiche Familien",
-      "verbunden": "FD"
+      "verbunden": "FD",
+      "rechtsform": "stiftung",
+      "beteiligungsart": "strategisch",
+      "sektor": "wohnen",
+      "zweck": "Preisgünstiger Wohnraum für kinderreiche Familien.",
+      "quelle": "https://www.stadt-zuerich.ch/fd/de/index/finanzen/beteiligungen.html",
+      "stand": "2025"
     },
     {
       "id": "B-kszh",
       "name": "Kongresshaus-Stiftung",
-      "verbunden": "FD"
+      "verbunden": "FD",
+      "rechtsform": "stiftung",
+      "beteiligungsart": "strategisch",
+      "sektor": "kultur",
+      "zweck": "Betrieb und Erhalt von Kongresshaus und Tonhalle Zürich.",
+      "quelle": "https://www.stadt-zuerich.ch/fd/de/index/finanzen/beteiligungen.html",
+      "stand": "2025"
     }
   ]
 }
