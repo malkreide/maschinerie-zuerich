@@ -99,6 +99,24 @@ Für Production-Deploys (Vercel/Netlify/eigener Server) ist Docker
 optional — `output: 'standalone'` in `next.config.ts` funktioniert
 überall.
 
+## Offene API
+
+Lesende Open-Government-Endpunkte (JSON, kein Auth, CORS offen):
+
+| Endpunkt | Inhalt |
+|---|---|
+| `GET /api/v1` | Discovery-Index (Version, Lizenz, Verweise) |
+| `GET /api/v1/org` | Organisationsstruktur (OpenGov-Machinery-Schema) |
+| `GET /api/v1/prozesse` | Index der Verwaltungsprozesse (OpenGov-Process-Schema) |
+
+Antworten tragen Version, Lizenz und Schema-Verweis in HTTP-Headern
+(`X-Api-Version`, `X-Data-License`, `Link rel=describedby`) sowie
+`Cache-Control` + `ETag` (bedingte Requests via `If-None-Match` → `304`).
+
+- **OpenAPI 3.1:** [`/openapi.json`](public/openapi.json)
+- **Datenkatalog** (Datensätze, Quellen, Lizenz, Aktualisierung): [`/data-catalog.json`](public/data-catalog.json)
+- Lizenz der Daten: **CC-BY-4.0** · CI prüft beide via `npm run validate:catalog`.
+
 ## White-Label — ein Code, viele Städte
 
 Die Maschinerie ist als **Referenz-Implementierung für Zürich** gebaut,
