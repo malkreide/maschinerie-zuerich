@@ -536,6 +536,9 @@
       "zielgruppen": [
         "einwohner"
       ],
+      "prozesse": [
+        "zh/sozialhilfe-erstantrag"
+      ],
       "i18n": {
         "de": {
           "frage": "Sozialhilfe beantragen",
