@@ -35,8 +35,24 @@ export interface Count<T extends string> {
   count: number;
 }
 
+export interface KlimaDept {
+  id: string;
+  name: string;
+  co2Score: number;
+  budgetShare: number;
+}
+
+export interface KlimaAggregat {
+  abgedeckt: number;
+  total: number;
+  departments: KlimaDept[]; // nach co2Score absteigend
+  hotspots: number; // co2Score >= 60
+  avgBudgetSharePct: number;
+}
+
 export interface WirkungReport {
   prozesseCount: number;
+  klima: KlimaAggregat | null;
   reifegrad: Count<OnlineReifegrad>[];
   status: Count<ProzessStatus>[];
   medienbruecheGesamt: number;
@@ -90,6 +106,31 @@ export async function buildWirkungReport(): Promise<WirkungReport> {
   komplexitaet.sort((a, b) => b.schritte - a.schritte || a.id.localeCompare(b.id));
 
   const data = await loadStadtData();
+
+  // Klima-Aggregat je Departement (verknüpft mit dem Netto-Null-Stadtziel).
+  // co2Score ist eine indikative Schätzung — Provenance: geschätzt.
+  const depts = data.departments ?? [];
+  const withK = depts.filter((d) => d.klima && typeof d.klima.co2Score === 'number');
+  const klima: KlimaAggregat | null =
+    withK.length === 0
+      ? null
+      : {
+          abgedeckt: withK.length,
+          total: depts.length,
+          departments: withK
+            .map((d) => ({
+              id: d.id,
+              name: d.name,
+              co2Score: d.klima!.co2Score ?? 0,
+              budgetShare: d.klima!.budgetShare ?? 0,
+            }))
+            .sort((a, b) => b.co2Score - a.co2Score),
+          hotspots: withK.filter((d) => (d.klima!.co2Score ?? 0) >= 60).length,
+          avgBudgetSharePct: Math.round(
+            (withK.reduce((s, d) => s + (d.klima!.budgetShare ?? 0), 0) / withK.length) * 100,
+          ),
+        };
+
   const lebenslagen = data.lebenslagen ?? [];
   const lebenslagenTotal = lebenslagen.length;
   const lebenslagenMitProzess = lebenslagen.filter((l) => (l.prozesse?.length ?? 0) > 0).length;
@@ -102,6 +143,7 @@ export async function buildWirkungReport(): Promise<WirkungReport> {
 
   return {
     prozesseCount: prozesse.length,
+    klima,
     reifegrad: REIFEGRAD_ORDER.map((key) => ({ key, count: reifegradCounts[key] ?? 0 })),
     status: STATUS_ORDER.map((key) => ({ key, count: statusCounts[key] ?? 0 })),
     medienbruecheGesamt,

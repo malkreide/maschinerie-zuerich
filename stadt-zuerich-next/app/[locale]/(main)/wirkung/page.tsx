@@ -12,6 +12,7 @@ import { getT } from '@/lib/i18n-server';
 import { buildWirkungReport } from '@/lib/wirkung';
 import { resolveI18n, type ProzessLocale } from '@/types/prozess';
 import DataQualityBadge from '@/components/DataQualityBadge';
+import { city } from '@/config/city.config';
 
 export async function generateMetadata({
   params,
@@ -148,6 +149,40 @@ export default async function WirkungPage({
           ))}
         </section>
       </div>
+
+      {/* Klima & Stadtziel (Netto-Null) */}
+      {r.klima && city.klimaziel && (
+        <section aria-labelledby="klima-h" className="mt-10 max-w-[80ch]">
+          <h3 id="klima-h" className={sectionH}>{t('klimaHeading')}</h3>
+          <div className="rounded-lg border border-[var(--color-line)] bg-[var(--color-panel)] p-3 mb-3">
+            <div className="font-semibold text-[var(--color-ink)]">
+              {city.klimaziel.name[loc]} · {t('klimaZielBis', { jahr: city.klimaziel.jahr })}
+            </div>
+            <p className="text-[13px] text-[var(--color-mute)] m-0 mt-1">
+              {city.klimaziel.beschreibung[loc]}{' '}
+              <a
+                href={city.klimaziel.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[var(--color-accent)] no-underline hover:underline"
+              >
+                {city.domain} ↗
+              </a>
+            </p>
+          </div>
+          <div className="mb-4">
+            <DataQualityBadge status="geschaetzt" hinweis={t('klimaProvenance')} />
+          </div>
+          <div className="grid grid-cols-2 gap-3 mb-5">
+            <Kpi value={`${r.klima.hotspots}/${r.klima.abgedeckt}`} label={t('klimaHotspots')} />
+            <Kpi value={`${r.klima.avgBudgetSharePct}%`} label={t('klimaInvest')} />
+          </div>
+          <h4 className="text-[13px] font-medium text-[var(--color-ink)] mb-1">{t('klimaCo2Heading')}</h4>
+          {r.klima.departments.map((d) => (
+            <Bar key={d.id} label={d.name} value={d.co2Score} max={100} color="#dc2626" />
+          ))}
+        </section>
+      )}
 
       {/* Prozesskomplexität */}
       <section aria-labelledby="komplex-h" className="mt-10 max-w-[80ch]">

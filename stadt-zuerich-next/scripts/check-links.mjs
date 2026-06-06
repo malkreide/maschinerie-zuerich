@@ -21,6 +21,7 @@ async function listFiles() {
     'public/data-catalog.json',
     'public/openapi.json',
     'config/geo-layers.json',
+    'config/city.config.json',
     'data/zh/org-chart.json',
     'schemas/opengov-machinery-schema.json',
     'schemas/opengov-process-schema.json',
