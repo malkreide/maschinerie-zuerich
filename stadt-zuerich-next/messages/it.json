@@ -107,6 +107,23 @@
     "unavailable": "La roadmap non è al momento disponibile.",
     "viewOnGithub": "Vedi su GitHub →"
   },
+  "Explorer": {
+    "regionLabel": "Cerca nell'amministrazione",
+    "intro": "Cerca un ufficio o sfoglia i dipartimenti. Tocca una voce per i dettagli.",
+    "searchLabel": "Cerca ufficio o dipartimento",
+    "searchPlaceholder": "es. ufficio imposte, scuola, VBZ …",
+    "resultsCount": "{count, plural, one {# risultato} other {# risultati}} per «{query}»",
+    "noResults": "Nessun risultato. Prova un altro termine.",
+    "department": "Dipartimento",
+    "beteiligung": "Partecipazione",
+    "beteiligungenHeading": "Partecipazioni",
+    "vorsteher": "Direzione",
+    "id": "Sigla",
+    "budget": "Spese",
+    "netExpense": "Spesa netta",
+    "fte": "Posti (ETP)",
+    "relatedProcesses": "Procedure correlate"
+  },
   "Anliegen": {
     "title": "Cerca pratiche cittadine",
     "intro": "Cerca termini come « registrare cane », « passaporto », « assistenza sociale » o « elettricità ». Questa pagina funziona senza JavaScript — è la versione di riserva della ricerca live in alto a sinistra.",

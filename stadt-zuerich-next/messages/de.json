@@ -111,6 +111,23 @@
     "unavailable": "Die Roadmap ist momentan nicht abrufbar.",
     "viewOnGithub": "Auf GitHub ansehen →"
   },
+  "Explorer": {
+    "regionLabel": "Verwaltung durchsuchen",
+    "intro": "Suchen Sie eine Stelle oder blättern Sie durch die Departemente. Tippen Sie auf einen Eintrag für Details.",
+    "searchLabel": "Stelle oder Departement suchen",
+    "searchPlaceholder": "z. B. Steueramt, Schule, VBZ …",
+    "resultsCount": "{count, plural, one {# Treffer} other {# Treffer}} für „{query}\"",
+    "noResults": "Keine Treffer. Versuchen Sie einen anderen Begriff.",
+    "department": "Departement",
+    "beteiligung": "Beteiligung",
+    "beteiligungenHeading": "Beteiligungen",
+    "vorsteher": "Leitung",
+    "id": "Kürzel",
+    "budget": "Aufwand",
+    "netExpense": "Nettoaufwand",
+    "fte": "Stellen (FTE)",
+    "relatedProcesses": "Verwandte Prozesse"
+  },
   "Anliegen": {
     "title": "Anliegen suchen",
     "intro": "Suche nach Begriffen wie «Hund anmelden», «Pass», «Sozialhilfe» oder «Strom». Diese Seite funktioniert auch ohne JavaScript — sie ist die Fallback-Variante der Live-Suche oben links.",
