@@ -107,6 +107,23 @@
     "unavailable": "Die Liste ist gerade nicht da.",
     "viewOnGithub": "Auf GitHub ansehen →"
   },
+  "Explorer": {
+    "regionLabel": "Verwaltung suchen",
+    "intro": "Suchen Sie eine Stelle. Oder schauen Sie bei den Departementen. Tippen Sie auf einen Eintrag. Dann sehen Sie mehr.",
+    "searchLabel": "Stelle oder Departement suchen",
+    "searchPlaceholder": "zum Beispiel: Steueramt, Schule, VBZ",
+    "resultsCount": "{count, plural, one {# Treffer} other {# Treffer}} für „{query}\"",
+    "noResults": "Nichts gefunden. Bitte ein anderes Wort versuchen.",
+    "department": "Departement",
+    "beteiligung": "Beteiligung",
+    "beteiligungenHeading": "Beteiligungen",
+    "vorsteher": "Leitung",
+    "id": "Kürzel",
+    "budget": "Ausgaben",
+    "netExpense": "Netto-Ausgaben",
+    "fte": "Stellen",
+    "relatedProcesses": "Passende Abläufe"
+  },
   "Anliegen": {
     "title": "Was wollen Sie tun?",
     "intro": "Hier können Sie etwas suchen. Zum Beispiel: «Hund anmelden». Oder: «Pass». Diese Seite geht auch ohne JavaScript. Sie ist die einfache Version von der Suche oben links.",

@@ -18,6 +18,10 @@ const BLOCKING_IMPACTS = new Set(['serious', 'critical']);
 // sind AA-konform; die Treemap nutzt ein Label-Band für sicheren Kontrast.
 const ADVISORY_RULES = new Set<string>([]);
 
+function isBlocking(v: Result): boolean {
+  return BLOCKING_IMPACTS.has(v.impact ?? '') && !ADVISORY_RULES.has(v.id);
+}
+
 // Locale-präfixierte Routen (localePrefix: 'always'). '/' redirectet auf '/de'.
 const ROUTES = [
   '/de',
@@ -53,8 +57,6 @@ for (const route of ROUTES) {
       .exclude('.react-flow__attribution')
       .analyze();
 
-    const isBlocking = (v: Result) =>
-      BLOCKING_IMPACTS.has(v.impact ?? '') && !ADVISORY_RULES.has(v.id);
     const blocking = results.violations.filter(isBlocking);
     const advisory = results.violations.filter((v) => !isBlocking(v));
 
@@ -69,3 +71,21 @@ for (const route of ROUTES) {
     expect(blocking, `${blocking.length} serious/critical a11y-Verstösse auf ${route}`).toEqual([]);
   });
 }
+
+// Mobile-Viewport: deckt den MobileExplorer auf der Hauptseite ab (auf Desktop
+// ist er per sm:hidden ausgeblendet und würde von axe nicht gesehen).
+test.describe('mobile viewport', () => {
+  test.use({ viewport: { width: 390, height: 844 } });
+
+  test('a11y: /de (Mobile-Explorer)', async ({ page }) => {
+    await page.goto('/de');
+    await page.locator('[role="region"]').first().waitFor({ state: 'attached', timeout: 15_000 });
+    const results = await new AxeBuilder({ page })
+      .withTags(WCAG_TAGS)
+      .exclude('.react-flow__attribution')
+      .analyze();
+    const blocking = results.violations.filter(isBlocking);
+    if (blocking.length) console.log(summarize('/de (mobile)', blocking));
+    expect(blocking, `${blocking.length} serious/critical a11y-Verstösse auf /de (mobile)`).toEqual([]);
+  });
+});

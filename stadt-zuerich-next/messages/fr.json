@@ -107,6 +107,23 @@
     "unavailable": "La feuille de route est actuellement indisponible.",
     "viewOnGithub": "Voir sur GitHub →"
   },
+  "Explorer": {
+    "regionLabel": "Rechercher dans l'administration",
+    "intro": "Cherchez un service ou parcourez les départements. Touchez une entrée pour les détails.",
+    "searchLabel": "Rechercher un service ou département",
+    "searchPlaceholder": "p. ex. office des impôts, école, VBZ …",
+    "resultsCount": "{count, plural, one {# résultat} other {# résultats}} pour « {query} »",
+    "noResults": "Aucun résultat. Essayez un autre terme.",
+    "department": "Département",
+    "beteiligung": "Participation",
+    "beteiligungenHeading": "Participations",
+    "vorsteher": "Direction",
+    "id": "Code",
+    "budget": "Charges",
+    "netExpense": "Charges nettes",
+    "fte": "Postes (EPT)",
+    "relatedProcesses": "Procédures liées"
+  },
   "Anliegen": {
     "title": "Chercher une démarche",
     "intro": "Cherchez des termes comme « inscrire chien », « passeport », « aide sociale » ou « électricité ». Cette page fonctionne sans JavaScript — elle est la version de secours de la recherche en direct en haut à gauche.",

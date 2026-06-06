@@ -107,6 +107,23 @@
     "unavailable": "The roadmap is currently unavailable.",
     "viewOnGithub": "View on GitHub →"
   },
+  "Explorer": {
+    "regionLabel": "Search the administration",
+    "intro": "Search for an office or browse the departments. Tap an entry for details.",
+    "searchLabel": "Search office or department",
+    "searchPlaceholder": "e.g. tax office, school, VBZ …",
+    "resultsCount": "{count, plural, one {# result} other {# results}} for “{query}”",
+    "noResults": "No results. Try a different term.",
+    "department": "Department",
+    "beteiligung": "Holding",
+    "beteiligungenHeading": "Holdings",
+    "vorsteher": "Lead",
+    "id": "Code",
+    "budget": "Expense",
+    "netExpense": "Net expense",
+    "fte": "Positions (FTE)",
+    "relatedProcesses": "Related processes"
+  },
   "Anliegen": {
     "title": "Search citizen concerns",
     "intro": "Search for terms like «register dog», «passport», «social aid» or «electricity». This page works without JavaScript — it is the fallback for the live search at the top left.",
