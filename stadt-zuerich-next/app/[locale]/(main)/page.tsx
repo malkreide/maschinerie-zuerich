@@ -3,6 +3,7 @@ import { hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { loadStadtData } from '@/lib/data';
 import { buildEinheitProzesseMap } from '@/lib/prozesse';
+import { getT } from '@/lib/i18n-server';
 import { routing, type Locale } from '@/i18n/routing';
 import { resolveI18n, type ProzessLocale } from '@/types/prozess';
 import GraphView from '@/components/GraphView';
@@ -35,8 +36,13 @@ export default async function MaschineriePage({
     }));
   }
 
+  const tNav = getT(locale as Locale, 'Nav');
+
   return (
-    <>
+    // Ein gemeinsames <main>-Landmark für beide (per CSS exklusive) Ansichten:
+    // Desktop-Graph bzw. Mobile-Explorer. Gibt der Hauptseite den fehlenden
+    // Haupt-Landmark (a11y) und einen stabilen Anker.
+    <main aria-label={tNav('graph')}>
       <div className="hidden sm:block relative h-[calc(100vh-56px)] mt-14 overflow-hidden">
         <Suspense fallback={null}>
           <GraphView data={data} locale={locale as Locale} />
@@ -50,6 +56,6 @@ export default async function MaschineriePage({
       <div className="block sm:hidden">
         <MobileExplorer data={data} relatedProzesse={relatedProzesse} />
       </div>
-    </>
+    </main>
   );
 }
