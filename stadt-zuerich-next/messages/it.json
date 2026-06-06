@@ -72,6 +72,26 @@
     "wohnen": "Abitare",
     "gesundheit": "Salute"
   },
+  "Feedback": {
+    "question": "Questa informazione è stata utile?",
+    "yes": "Sì, utile",
+    "no": "No, non molto",
+    "thanks": "Grazie per il tuo riscontro!",
+    "formIntro": "Qual era il problema?",
+    "category": {
+      "zustaendigkeit": "Competenza sbagliata",
+      "unklar": "Informazione poco chiara",
+      "umstaendlich": "Procedura troppo complicata",
+      "veraltet": "Dati non aggiornati",
+      "barriere": "Barriera di accessibilità",
+      "vorschlag": "Suggerimento"
+    },
+    "commentLabel": "Commento (facoltativo)",
+    "commentPlaceholder": "Facoltativo: descrivi brevemente — senza dati personali.",
+    "privacy": "Non inserire dati personali. Non memorizziamo nomi, e-mail o indirizzi IP; e-mail e numeri lunghi vengono rimossi automaticamente.",
+    "skip": "Invia senza dettagli",
+    "submit": "Invia"
+  },
   "Anliegen": {
     "title": "Cerca pratiche cittadine",
     "intro": "Cerca termini come « registrare cane », « passaporto », « assistenza sociale » o « elettricità ». Questa pagina funziona senza JavaScript — è la versione di riserva della ricerca live in alto a sinistra.",

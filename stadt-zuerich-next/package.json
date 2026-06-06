@@ -21,6 +21,7 @@
     "scaffold:city": "node scripts/scaffold-city.mjs",
     "probe:search": "node scripts/probe-search.mjs",
     "probe:search-miss": "node scripts/probe-search-miss.mjs",
+    "probe:feedback": "node scripts/probe-feedback.mjs",
     "test:a11y": "playwright test"
   },
   "dependencies": {

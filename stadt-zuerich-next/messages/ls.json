@@ -72,6 +72,26 @@
     "wohnen": "Wohnen",
     "gesundheit": "Gesundheit"
   },
+  "Feedback": {
+    "question": "War diese Info hilfreich?",
+    "yes": "Ja",
+    "no": "Nein",
+    "thanks": "Danke für Ihre Rückmeldung!",
+    "formIntro": "Was war das Problem?",
+    "category": {
+      "zustaendigkeit": "Falsche Stelle",
+      "unklar": "Info ist unklar",
+      "umstaendlich": "Zu kompliziert",
+      "veraltet": "Info ist alt",
+      "barriere": "Hürde oder Barriere",
+      "vorschlag": "Ich habe eine Idee"
+    },
+    "commentLabel": "Kommentar (freiwillig)",
+    "commentPlaceholder": "Freiwillig: kurz schreiben. Bitte keinen Namen.",
+    "privacy": "Bitte schreiben Sie keine persönlichen Daten. Wir speichern keinen Namen, keine E-Mail und keine IP-Adresse.",
+    "skip": "Ohne Text senden",
+    "submit": "Senden"
+  },
   "Anliegen": {
     "title": "Was wollen Sie tun?",
     "intro": "Hier können Sie etwas suchen. Zum Beispiel: «Hund anmelden». Oder: «Pass». Diese Seite geht auch ohne JavaScript. Sie ist die einfache Version von der Suche oben links.",
