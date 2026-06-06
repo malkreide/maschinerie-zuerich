@@ -76,6 +76,26 @@
     "wohnen": "Wohnen",
     "gesundheit": "Gesundheit"
   },
+  "Feedback": {
+    "question": "War diese Information hilfreich?",
+    "yes": "Ja, hilfreich",
+    "no": "Nein, eher nicht",
+    "thanks": "Danke für Ihr Feedback!",
+    "formIntro": "Was war das Problem?",
+    "category": {
+      "zustaendigkeit": "Zuständigkeit falsch",
+      "unklar": "Information unklar",
+      "umstaendlich": "Prozess umständlich",
+      "veraltet": "Daten veraltet",
+      "barriere": "Barriere",
+      "vorschlag": "Verbesserungsvorschlag"
+    },
+    "commentLabel": "Kommentar (optional)",
+    "commentPlaceholder": "Optional: kurz beschreiben – ohne persönliche Daten.",
+    "privacy": "Bitte keine persönlichen Daten eingeben. Wir speichern keine Namen, E-Mail- oder IP-Adressen; E-Mails und längere Zahlen werden automatisch entfernt.",
+    "skip": "Ohne Angabe senden",
+    "submit": "Absenden"
+  },
   "Anliegen": {
     "title": "Anliegen suchen",
     "intro": "Suche nach Begriffen wie «Hund anmelden», «Pass», «Sozialhilfe» oder «Strom». Diese Seite funktioniert auch ohne JavaScript — sie ist die Fallback-Variante der Live-Suche oben links.",

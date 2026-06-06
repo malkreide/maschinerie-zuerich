@@ -72,6 +72,26 @@
     "wohnen": "Logement",
     "gesundheit": "Santé"
   },
+  "Feedback": {
+    "question": "Cette information était-elle utile ?",
+    "yes": "Oui, utile",
+    "no": "Non, pas vraiment",
+    "thanks": "Merci pour votre retour !",
+    "formIntro": "Quel était le problème ?",
+    "category": {
+      "zustaendigkeit": "Mauvaise compétence",
+      "unklar": "Information peu claire",
+      "umstaendlich": "Démarche trop compliquée",
+      "veraltet": "Données obsolètes",
+      "barriere": "Obstacle d'accessibilité",
+      "vorschlag": "Suggestion"
+    },
+    "commentLabel": "Commentaire (facultatif)",
+    "commentPlaceholder": "Facultatif : décrivez brièvement — sans données personnelles.",
+    "privacy": "Merci de ne pas saisir de données personnelles. Nous n'enregistrons ni noms, ni e-mails, ni adresses IP ; les e-mails et longs numéros sont supprimés automatiquement.",
+    "skip": "Envoyer sans détails",
+    "submit": "Envoyer"
+  },
   "Anliegen": {
     "title": "Chercher une démarche",
     "intro": "Cherchez des termes comme « inscrire chien », « passeport », « aide sociale » ou « électricité ». Cette page fonctionne sans JavaScript — elle est la version de secours de la recherche en direct en haut à gauche.",

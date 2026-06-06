@@ -72,6 +72,26 @@
     "wohnen": "Housing",
     "gesundheit": "Health"
   },
+  "Feedback": {
+    "question": "Was this information helpful?",
+    "yes": "Yes, helpful",
+    "no": "No, not really",
+    "thanks": "Thanks for your feedback!",
+    "formIntro": "What was the problem?",
+    "category": {
+      "zustaendigkeit": "Wrong responsibility",
+      "unklar": "Information unclear",
+      "umstaendlich": "Process too cumbersome",
+      "veraltet": "Data outdated",
+      "barriere": "Accessibility barrier",
+      "vorschlag": "Suggestion"
+    },
+    "commentLabel": "Comment (optional)",
+    "commentPlaceholder": "Optional: briefly describe — no personal data.",
+    "privacy": "Please don't enter personal data. We don't store names, email or IP addresses; emails and longer numbers are removed automatically.",
+    "skip": "Send without details",
+    "submit": "Send"
+  },
   "Anliegen": {
     "title": "Search citizen concerns",
     "intro": "Search for terms like «register dog», «passport», «social aid» or «electricity». This page works without JavaScript — it is the fallback for the live search at the top left.",
