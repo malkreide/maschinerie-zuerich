@@ -336,9 +336,13 @@
     "noData": "Keine aktuellen Geschäfte gefunden."
   },
   "Quartier": {
-    "title": "Verteilung im Raum",
-    "intro": "Dieser Prototyp skizziert, wie Dienstleistungen (hier: fiktive Verteilung) im Stadtgebiet Zürichs verortet sind.",
-    "selectLabel": "Amt:",
-    "budgetShare": "{share} % Anteil"
+    "title": "Verteilung im Stadtgebiet",
+    "intro": "Kennzahlen je Stadtkreis: Fläche aus der Stadtkreis-Geometrie und Anzahl öffentlicher Standorte (Open Data Zürich). Die Datenqualität steht im Badge.",
+    "selectLabel": "Kennzahl:",
+    "metricArea": "Fläche",
+    "unitLocations": "Standorte",
+    "tooltipValue": "{value} {unit}",
+    "noData": "Für diese Kennzahl liegen noch keine Standortdaten vor — mit `npm run data:fetch-geo` laden.",
+    "noGeo": "Stadtkreis-Geometrie nicht verfügbar."
   }
 }

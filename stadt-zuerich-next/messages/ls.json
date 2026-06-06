@@ -321,8 +321,12 @@
   },
   "Quartier": {
     "title": "Verteilung in der Stadt",
-    "intro": "Hier sieht man auf der Karte, wo ein Amt für Sie arbeitet. (Achtung: Dies ist nur ein Beispiel.)",
-    "selectLabel": "Amt auswählen:",
-    "budgetShare": "{share} % vom Ganzen"
+    "intro": "Die Karte zeigt für jeden Stadt-Kreis Zahlen: die Fläche und die Anzahl Orte (zum Beispiel Spielplätze). Wie gut die Daten sind, steht im Badge.",
+    "selectLabel": "Zahl auswählen:",
+    "metricArea": "Fläche",
+    "unitLocations": "Orte",
+    "tooltipValue": "{value} {unit}",
+    "noData": "Für diese Zahl gibt es noch keine Orts-Daten. Laden Sie sie mit `npm run data:fetch-geo`.",
+    "noGeo": "Die Karten-Daten fehlen."
   }
 }

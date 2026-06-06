@@ -321,8 +321,12 @@
   },
   "Quartier": {
     "title": "Distribuzione spaziale",
-    "intro": "Questo prototipo delinea come i servizi (qui: distribuzione fittizia) sono dislocati nell'area urbana di Zurigo.",
-    "selectLabel": "Dipartimento:",
-    "budgetShare": "Quota: {share} %"
+    "intro": "Cifre per circondario: superficie dalla geometria dei circondari e numero di strutture pubbliche (Open Data Zürich). La qualità dei dati è indicata nel badge.",
+    "selectLabel": "Indicatore:",
+    "metricArea": "Superficie",
+    "unitLocations": "strutture",
+    "tooltipValue": "{value} {unit}",
+    "noData": "Nessun dato sulle strutture per questo indicatore — caricalo con `npm run data:fetch-geo`.",
+    "noGeo": "Geometria dei circondari non disponibile."
   }
 }

@@ -321,8 +321,12 @@
   },
   "Quartier": {
     "title": "Répartition spatiale",
-    "intro": "Ce prototype esquisse la manière dont les services (ici : répartition fictive) sont localisés dans l'espace urbain de Zurich.",
-    "selectLabel": "Département :",
-    "budgetShare": "Part : {share} %"
+    "intro": "Chiffres par arrondissement : surface depuis la géométrie des arrondissements et nombre d'équipements publics (Open Data Zürich). La qualité des données est indiquée dans le badge.",
+    "selectLabel": "Indicateur :",
+    "metricArea": "Surface",
+    "unitLocations": "équipements",
+    "tooltipValue": "{value} {unit}",
+    "noData": "Pas encore de données d'équipements pour cet indicateur — chargez-les avec `npm run data:fetch-geo`.",
+    "noGeo": "Géométrie des arrondissements indisponible."
   }
 }
