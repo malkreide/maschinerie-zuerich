@@ -55,6 +55,17 @@ export interface CityConfig {
   /** Pfad zur Lebenslagen-/Anliegen-JSON (Bürger-Anliegen → Unit-Mapping).
    *  Konvention: 'data/<id>/lebenslagen.json'. */
   lebenslagenPath: string;
+  /** Optionales städtisches Klimaziel (z. B. Netto-Null 2040). Verknüpft die
+   *  klima-Werte der Einheiten (org-chart) mit dem offiziellen Strategieziel.
+   *  Weggelassen = keine Klima-Sektion im Wirkungs-Dashboard. */
+  klimaziel?: {
+    name: Record<Locale, string>;
+    /** Zieljahr (z. B. 2040). */
+    jahr: number;
+    /** Link zur offiziellen Klimastrategie der Stadt. */
+    url: string;
+    beschreibung: Record<Locale, string>;
+  };
   /** Optionales Brand-Glyph für den Header. Weggelassen = nur Text im
    *  Header (Default-Layout). Für Zürich verwenden wir bewusst ein
    *  abstraktes Org-Graph-Icon, NICHT das offizielle Wappen — das wäre

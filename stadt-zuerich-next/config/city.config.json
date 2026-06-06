@@ -25,6 +25,24 @@
   "homepageUrl": "https://www.stadt-zuerich.ch/",
   "orgChartPath": "data/zh/org-chart.json",
   "lebenslagenPath": "data/zh/lebenslagen.json",
+  "klimaziel": {
+    "name": {
+      "de": "Netto-Null 2040",
+      "en": "Net zero 2040",
+      "fr": "Zéro net 2040",
+      "it": "Zero netto 2040",
+      "ls": "Kein schädliches CO₂ mehr ab 2040"
+    },
+    "jahr": 2040,
+    "url": "https://www.stadt-zuerich.ch/de/umwelt-und-energie/klimaschutz.html",
+    "beschreibung": {
+      "de": "Die Stadt Zürich will bis 2040 netto keine Treibhausgase mehr ausstossen — das Ziel ist in der Gemeindeordnung verankert.",
+      "en": "The City of Zurich aims for net-zero greenhouse gas emissions by 2040 — anchored in the municipal code.",
+      "fr": "La Ville de Zurich vise zéro émission nette de gaz à effet de serre d'ici 2040 — inscrit dans le règlement communal.",
+      "it": "La Città di Zurigo punta a zero emissioni nette di gas serra entro il 2040 — sancito nel regolamento comunale.",
+      "ls": "Die Stadt Zürich will ab dem Jahr 2040 kein schädliches CO₂ mehr in die Luft geben."
+    }
+  },
   "brand": {
     "logoPath": "/brand/zh-logo.svg",
     "logoAlt": {
