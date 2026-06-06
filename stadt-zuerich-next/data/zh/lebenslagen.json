@@ -21,6 +21,9 @@
       "zielgruppen": [
         "einwohner"
       ],
+      "prozesse": [
+        "zh/hund-anmelden"
+      ],
       "i18n": {
         "de": {
           "frage": "Hund anmelden / Hundesteuer",
@@ -134,6 +137,9 @@
       "zielgruppen": [
         "einwohner",
         "wohnen"
+      ],
+      "prozesse": [
+        "zh/umzug-melden"
       ],
       "i18n": {
         "de": {
