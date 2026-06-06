@@ -6,10 +6,43 @@
 //  - Kategorie wird gegen eine feste Whitelist geprüft.
 //  - Honeypot-Feld ('website') gegen Bots: gefüllt → still verwerfen.
 //  - Best-effort Rate-Limit pro Prozess gegen Spam.
-//  - Zielsenke ist optional FEEDBACK_WEBHOOK_URL; sonst lokales Log.
+//  - Zielsenken (alle optional, schichtbar):
+//    * FEEDBACK_GITHUB_TOKEN + FEEDBACK_GITHUB_REPO → aktionables Feedback
+//      wird als GitHub-Issue mit Auto-Labels in den Backlog gestellt.
+//    * FEEDBACK_WEBHOOK_URL → Rohdatensatz an einen Webhook.
+//    * sonst lokales Log.
 
 import { NextResponse } from 'next/server';
 import { sanitizeFeedbackComment, isFeedbackCategory } from '@/lib/feedback';
+import { buildFeedbackIssue, isActionable, type FeedbackRecord } from '@/lib/feedback-issue';
+
+// Erstellt aus aktionablem Feedback ein GitHub-Issue (opt-in via Env). Ohne
+// Token/Repo passiert nichts — Preview-Deployments und CI erzeugen also keine
+// Issues. Fehler werden geloggt, brechen die Antwort aber nicht ab.
+async function createBacklogIssue(record: FeedbackRecord): Promise<void> {
+  const token = process.env.FEEDBACK_GITHUB_TOKEN;
+  const repo = process.env.FEEDBACK_GITHUB_REPO; // Form: "owner/name"
+  if (!token || !repo || !isActionable(record)) return;
+
+  const { title, body, labels } = buildFeedbackIssue(record);
+  try {
+    const res = await fetch(`https://api.github.com/repos/${repo}/issues`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/vnd.github+json',
+        'Content-Type': 'application/json',
+        'User-Agent': 'maschinerie-zuerich-feedback',
+      },
+      body: JSON.stringify({ title, body, labels }),
+    });
+    if (!res.ok) {
+      console.error('[feedback] GitHub-Issue fehlgeschlagen:', res.status, await res.text().catch(() => ''));
+    }
+  } catch (err) {
+    console.error('[feedback] GitHub-Issue Fehler:', err);
+  }
+}
 
 const WINDOW_MS = 60_000;
 const MAX_PER_WINDOW = 60;
@@ -54,7 +87,10 @@ export async function POST(request: Request) {
     }
 
     // Bewusst KEINE IP/User-Agent/Session.
-    const record = { helpful, category, comment, contextId, locale, ts: new Date().toISOString() };
+    const record: FeedbackRecord = { helpful, category, comment, contextId, locale, ts: new Date().toISOString() };
+
+    // Backlog-Pipeline: aktionables Feedback → GitHub-Issue (opt-in).
+    await createBacklogIssue(record);
 
     const webhookUrl = process.env.FEEDBACK_WEBHOOK_URL;
     if (webhookUrl) {
