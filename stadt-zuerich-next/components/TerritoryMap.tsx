@@ -20,12 +20,18 @@ export default function TerritoryMap() {
   const router = useRouter();
   const [activeLayer, setActiveLayer] = useState<'schools' | 'recycling' | 'playgrounds'>('schools');
   const [features, setFeatures] = useState<GeoFeature[]>([]);
+  // Provenance der aktuell geladenen Layer (steuert das Datenqualitäts-Badge).
+  const [meta, setMeta] = useState<{ demo: boolean; attribution?: string; stand?: string }>({ demo: true });
 
   useEffect(() => {
     fetch(`/api/geo?layer=${activeLayer}`)
       .then(res => res.json())
       .then(data => {
         if (data && data.features) setFeatures(data.features);
+        if (data && data._meta) {
+          const stand = data._meta.sources?.find?.((s: { stand?: string }) => s.stand)?.stand;
+          setMeta({ demo: Boolean(data._meta.demo), attribution: data._meta.attribution, stand });
+        }
       });
   }, [activeLayer]);
 
@@ -40,10 +46,19 @@ export default function TerritoryMap() {
         <h2 className="text-sm font-semibold mb-2">{t('title')}</h2>
         <p className="text-xs text-[var(--color-mute)] mb-2">{t('intro')}</p>
         <div className="mb-4">
-          <DataQualityBadge
-            status="demo"
-            hinweis="Zufällig generierte Standorte – keine echten Verwaltungsdaten. Vor Produktiveinsatz durch ODZ-Geodaten ersetzen."
-          />
+          {meta.demo ? (
+            <DataQualityBadge
+              status="demo"
+              hinweis="Zufällig generierte Standorte – keine echten Verwaltungsdaten. Mit `npm run data:fetch-geo` durch ODZ-Geodaten ersetzen."
+            />
+          ) : (
+            <DataQualityBadge
+              status="publiziert"
+              quelle={meta.attribution ?? 'Open Data Zürich'}
+              stand={meta.stand}
+              hinweis="Echte Standortdaten aus Open Data Zürich."
+            />
+          )}
         </div>
 
         <div className="space-y-2">

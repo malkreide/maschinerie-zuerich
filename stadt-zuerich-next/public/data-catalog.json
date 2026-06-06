@@ -65,6 +65,26 @@
       "qualityWarnings": [
         "en/fr/it/ls sind erstbefüllt (aus de abgeleitet); Native-Speaker-/Fachreview willkommen."
       ]
+    },
+    {
+      "id": "geo-standorte",
+      "title": "Geo-Standorte (Schulen, Sammelstellen, Spielplätze)",
+      "description": "Punkt-Layer für die Territory-Karte. Liefert echte Standorte aus committe-baren Open-Data-Zürich-Snapshots (data/geo/zh/<layer>.geojson, erzeugt via 'npm run data:fetch-geo'). Fehlt ein Snapshot, fällt der Layer auf zufällige Demo-Punkte zurück (im Response über _meta.demo gekennzeichnet).",
+      "endpoint": "/api/geo",
+      "formats": ["application/geo+json"],
+      "schema": null,
+      "license": "CC-BY",
+      "refresh": "npm run data:fetch-geo (ODZ-Hosts müssen erreichbar sein)",
+      "sources": [
+        "Open Data Zürich – Schul- und Sportanlagen",
+        "Open Data Zürich – Sammelstellen",
+        "Open Data Zürich – Spielplätze"
+      ],
+      "qualityWarnings": [
+        "Ohne erzeugten Snapshot liefert /api/geo zufällige Demo-Punkte (_meta.demo=true).",
+        "Quell-URLs/typenames in config/geo-layers.json sind als verifiziert:false markiert und vor dem ersten Abruf zu prüfen.",
+        "ODZ-WFS liefert teils LV95 (EPSG:2056); Reprojektion auf WGS84 ggf. nötig."
+      ]
     }
   ]
 }
