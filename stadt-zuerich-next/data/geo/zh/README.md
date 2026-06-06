@@ -34,3 +34,12 @@ Layer das GeoJSON von Open Data Zürich, normalisiert es und schreibt hierher
   Liefert ein Dienst dennoch LV95 (EPSG:2056), warnt das Skript bei
   LV95-artigen Koordinaten; dann Reprojektion ergänzen.
 - Lizenz der Quelldaten: **CC-BY**, Attribution „Open Data Zürich, Stadt Zürich".
+
+## Stadtkreis-Ansicht (`/quartier`)
+
+Die Quartier-Ansicht berechnet Fläche und Standort-Zahlen je Stadtkreis aus
+`public/data/stadtkreise.geojson`. Diese Datei enthält aktuell **Platzhalter-
+Rechtecke** — die Ansicht erkennt das automatisch und zeigt ein „Demodaten"-
+Badge. Für echte Werte die Datei durch die amtlichen Grenzen ersetzen:
+[data.stadt-zuerich.ch/dataset/stadtkreise](https://data.stadt-zuerich.ch/dataset/stadtkreise)
+(GeoJSON, WGS84). Danach werden Fläche und Standort-Zählung ohne Code-Änderung real.

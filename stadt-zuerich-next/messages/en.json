@@ -321,8 +321,12 @@
   },
   "Quartier": {
     "title": "Spatial Distribution",
-    "intro": "This prototype outlines how services (here: fictional distribution) are located in the urban area of Zurich.",
-    "selectLabel": "Department:",
-    "budgetShare": "{share} % share"
+    "intro": "Figures per city district: area from the district geometry and the number of public facilities (Open Data Zürich). Data quality is shown in the badge.",
+    "selectLabel": "Metric:",
+    "metricArea": "Area",
+    "unitLocations": "facilities",
+    "tooltipValue": "{value} {unit}",
+    "noData": "No facility data yet for this metric — load it with `npm run data:fetch-geo`.",
+    "noGeo": "District geometry not available."
   }
 }
