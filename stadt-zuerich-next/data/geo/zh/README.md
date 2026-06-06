@@ -26,9 +26,11 @@ Layer das GeoJSON von Open Data Zürich, normalisiert es und schreibt hierher
 - Die Stadt-Zürich-Hosts (`data`/`ogd`/`gis.stadt-zuerich.ch`) müssen für den
   Abruf netzwerkseitig erreichbar sein (Allowlist). In abgeschotteten CI-/
   Sandbox-Umgebungen schlägt der Abruf bewusst fehl.
-- `geojsonUrl`/`typename` in der Config sind als Best-Effort hinterlegt
-  (`verifiziert: false`) — vor dem ersten echten Abruf gegen die jeweilige
-  Dataset-Seite (`datasetUrl`) prüfen.
-- ODZ-WFS liefert teils LV95 (EPSG:2056); GeoJSON verlangt WGS84. Das Skript
-  warnt bei LV95-artigen Koordinaten — ggf. Reprojektion ergänzen.
+- Die `datasetUrl`-Slugs sind verifiziert; der `typename` in `geojsonUrl` ist
+  eine Annahme (`verifiziert: false`). Den exakten Layernamen aus der
+  `capabilitiesUrl` (WFS `GetCapabilities`) übernehmen und `verifiziert: true`
+  setzen.
+- Die `geojsonUrl` enthält bereits `srsName=EPSG:4326` → Antwort in WGS84.
+  Liefert ein Dienst dennoch LV95 (EPSG:2056), warnt das Skript bei
+  LV95-artigen Koordinaten; dann Reprojektion ergänzen.
 - Lizenz der Quelldaten: **CC-BY**, Attribution „Open Data Zürich, Stadt Zürich".
