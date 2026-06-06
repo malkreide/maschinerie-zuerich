@@ -38,6 +38,10 @@
   "exclude": [
     "node_modules",
     ".next",
-    "data/raw"
+    "data/raw",
+    "tests",
+    "playwright.config.ts",
+    "playwright-report",
+    "test-results"
   ]
 }

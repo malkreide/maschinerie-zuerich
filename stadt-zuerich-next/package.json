@@ -20,7 +20,8 @@
     "migrate:schema:v2": "node scripts/migrate-prozesse-schema-v2.mjs",
     "scaffold:city": "node scripts/scaffold-city.mjs",
     "probe:search": "node scripts/probe-search.mjs",
-    "probe:search-miss": "node scripts/probe-search-miss.mjs"
+    "probe:search-miss": "node scripts/probe-search-miss.mjs",
+    "test:a11y": "playwright test"
   },
   "dependencies": {
     "@types/d3-geo": "^3.1.0",
@@ -45,7 +46,9 @@
     "react-leaflet": "^5.0.0"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.11.3",
     "@eslint/eslintrc": "^3.3.5",
+    "@playwright/test": "^1.60.0",
     "@tailwindcss/postcss": "^4.3.0",
     "@types/cytoscape": "^3.31.0",
     "@types/d3-hierarchy": "^3.1.7",

@@ -18,6 +18,10 @@ const config = [
       'data/raw/**',
       'scripts/**',       // ETL-Skripte sind Node-CLI, nicht Teil der App
       'fetch_colors.js',  // Einmaliger Node-CLI-Helfer (Farben scrapen), nicht Teil der App
+      'tests/**',         // Playwright-E2E/a11y — eigene Toolchain, nicht Teil der App
+      'playwright.config.ts',
+      'playwright-report/**',
+      'test-results/**',
       '*.tsbuildinfo',
       'next-env.d.ts',
     ],
