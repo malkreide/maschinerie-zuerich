@@ -33,6 +33,7 @@
     "simulator": "Simulatore",
     "list": "Elenco",
     "prozesse": "Procedure",
+    "roadmap": "Roadmap",
     "quartier": "Circondari",
     "territory": "Sedi",
     "darkOn": "Attivare il tema scuro",
@@ -91,6 +92,20 @@
     "privacy": "Non inserire dati personali. Non memorizziamo nomi, e-mail o indirizzi IP; e-mail e numeri lunghi vengono rimossi automaticamente.",
     "skip": "Invia senza dettagli",
     "submit": "Invia"
+  },
+  "Roadmap": {
+    "title": "Roadmap",
+    "intro": "Cosa accade a riscontri e suggerimenti — per stato, dalle issue pubbliche su GitHub. Senza nomi né dati personali.",
+    "status": {
+      "eingegangen": "Ricevuto",
+      "geprueft": "Esaminato",
+      "in-umsetzung": "In corso",
+      "umgesetzt": "Realizzato"
+    },
+    "empty": "Ancora nessuna voce pubblica.",
+    "columnEmpty": "Niente qui.",
+    "unavailable": "La roadmap non è al momento disponibile.",
+    "viewOnGithub": "Vedi su GitHub →"
   },
   "Anliegen": {
     "title": "Cerca pratiche cittadine",

@@ -33,6 +33,7 @@
     "simulator": "Simulator",
     "list": "Liste",
     "prozesse": "Prozesse",
+    "roadmap": "Roadmap",
     "quartier": "Stadtkreise",
     "territory": "Standorte",
     "darkOn": "Dunkles Theme aktivieren",
@@ -95,6 +96,20 @@
     "privacy": "Bitte keine persönlichen Daten eingeben. Wir speichern keine Namen, E-Mail- oder IP-Adressen; E-Mails und längere Zahlen werden automatisch entfernt.",
     "skip": "Ohne Angabe senden",
     "submit": "Absenden"
+  },
+  "Roadmap": {
+    "title": "Roadmap",
+    "intro": "Was aus Rückmeldungen und Vorschlägen wird – statusbasiert aus den öffentlichen GitHub-Issues. Ohne Namen oder persönliche Daten.",
+    "status": {
+      "eingegangen": "Eingegangen",
+      "geprueft": "Geprüft",
+      "in-umsetzung": "In Umsetzung",
+      "umgesetzt": "Umgesetzt"
+    },
+    "empty": "Noch keine öffentlichen Einträge.",
+    "columnEmpty": "Nichts hier.",
+    "unavailable": "Die Roadmap ist momentan nicht abrufbar.",
+    "viewOnGithub": "Auf GitHub ansehen →"
   },
   "Anliegen": {
     "title": "Anliegen suchen",

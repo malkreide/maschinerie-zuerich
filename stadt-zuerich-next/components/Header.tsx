@@ -15,6 +15,7 @@ const ROUTES = [
   { href: '/simulator',     key: 'simulator' },
   { href: '/territory',     key: 'territory' },
   { href: '/prozesse',      key: 'prozesse' },
+  { href: '/roadmap',       key: 'roadmap' },
   { href: '/liste',         key: 'list' },
 ] as const;
 

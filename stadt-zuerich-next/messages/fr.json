@@ -33,6 +33,7 @@
     "simulator": "Simulateur",
     "list": "Liste",
     "prozesse": "Procédures",
+    "roadmap": "Feuille de route",
     "quartier": "Arrondissements",
     "territory": "Emplacements",
     "darkOn": "Activer le thème sombre",
@@ -91,6 +92,20 @@
     "privacy": "Merci de ne pas saisir de données personnelles. Nous n'enregistrons ni noms, ni e-mails, ni adresses IP ; les e-mails et longs numéros sont supprimés automatiquement.",
     "skip": "Envoyer sans détails",
     "submit": "Envoyer"
+  },
+  "Roadmap": {
+    "title": "Feuille de route",
+    "intro": "Ce que deviennent les retours et suggestions — par statut, depuis les issues publiques GitHub. Sans noms ni données personnelles.",
+    "status": {
+      "eingegangen": "Reçu",
+      "geprueft": "Examiné",
+      "in-umsetzung": "En cours",
+      "umgesetzt": "Réalisé"
+    },
+    "empty": "Aucune entrée publique pour l'instant.",
+    "columnEmpty": "Rien ici.",
+    "unavailable": "La feuille de route est actuellement indisponible.",
+    "viewOnGithub": "Voir sur GitHub →"
   },
   "Anliegen": {
     "title": "Chercher une démarche",
