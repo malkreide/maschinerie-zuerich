@@ -9,10 +9,12 @@
     "Daten (Badge 'publiziert'); fehlt er, fällt die Route auf Demo-Punkte zurück",
     "(Badge 'Demodaten').",
     "",
-    "WICHTIG: geojsonUrl/typename sind als Best-Effort hinterlegt und mit",
-    "verifiziert:false markiert — vor dem ersten echten Abruf gegen die",
-    "Dataset-Seite (datasetUrl) prüfen. Die Stadt-Zürich-Hosts müssen dafür",
-    "netzwerkseitig erreichbar sein (Allowlist)."
+    "Die datasetUrl-Slugs sind verifiziert. Die geojsonUrl nutzt den WFS-Dienst",
+    "(GetFeature, outputFormat=application/json, srsName=EPSG:4326 → WGS84). Der",
+    "'typename' ist eine Best-Effort-Annahme (verifiziert:false) — vor dem ersten",
+    "echten Abruf den exakten Layernamen aus capabilitiesUrl (GetCapabilities)",
+    "übernehmen und verifiziert auf true setzen. Voraussetzung: ogd/data/gis.",
+    "stadt-zuerich.ch netzwerkseitig erreichbar (Allowlist)."
   ],
   "city": "zh",
   "license": "CC-BY",
@@ -20,42 +22,45 @@
   "layers": [
     {
       "id": "schools",
-      "label": "Schulhäuser",
+      "label": "Schulanlagen",
       "department": "SSD",
-      "namePrefix": "Schulhaus",
+      "namePrefix": "Schulanlage",
       "demoCount": 40,
       "source": {
-        "title": "Schul- und Sportanlagen der Stadt Zürich",
-        "datasetUrl": "https://data.stadt-zuerich.ch/dataset/geo_schul-_und_sportanlagen",
-        "geojsonUrl": "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/Schul-_und_Sportanlagen?service=WFS&version=1.1.0&request=GetFeature&outputFormat=application/json&typename=poi_schule_view",
+        "title": "Schulanlagen der Stadt Zürich",
+        "datasetUrl": "https://data.stadt-zuerich.ch/dataset/geo_schulanlagen",
+        "geojsonUrl": "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/Schulanlagen?service=WFS&version=1.1.0&request=GetFeature&outputFormat=application/json&srsName=EPSG:4326&typename=schulanlagen",
+        "capabilitiesUrl": "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/Schulanlagen?service=WFS&version=1.1.0&request=GetCapabilities",
         "nameField": "name",
         "verifiziert": false
       }
     },
     {
       "id": "recycling",
-      "label": "Entsorgung / Sammelstellen",
+      "label": "Entsorgung (Kehrichtcontainer im öffentlichen Raum)",
       "department": "TED",
-      "namePrefix": "Entsorgungsstelle",
+      "namePrefix": "Sammelstelle",
       "demoCount": 30,
       "source": {
-        "title": "Sammelstellen / Wertstoffsammlung der Stadt Zürich",
-        "datasetUrl": "https://data.stadt-zuerich.ch/dataset/geo_sammelstelle",
-        "geojsonUrl": "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/Sammelstelle?service=WFS&version=1.1.0&request=GetFeature&outputFormat=application/json&typename=poi_sammelstelle_view",
+        "title": "ERZ Kehrichtcontainer im öffentlichen Raum",
+        "datasetUrl": "https://data.stadt-zuerich.ch/dataset/geo_erz_kehrichtcontainer_im_oeffentlichen_raum",
+        "geojsonUrl": "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/ERZ_Kehrichtcontainer_im_oeffentlichen_Raum?service=WFS&version=1.1.0&request=GetFeature&outputFormat=application/json&srsName=EPSG:4326&typename=erz_kehrichtcontainer_im_oeffentlichen_raum",
+        "capabilitiesUrl": "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/ERZ_Kehrichtcontainer_im_oeffentlichen_Raum?service=WFS&version=1.1.0&request=GetCapabilities",
         "nameField": "name",
         "verifiziert": false
       }
     },
     {
       "id": "playgrounds",
-      "label": "Spielplätze",
+      "label": "Öffentliche Spielplätze",
       "department": "TED",
       "namePrefix": "Spielplatz",
       "demoCount": 60,
       "source": {
-        "title": "Spielplätze der Stadt Zürich",
-        "datasetUrl": "https://data.stadt-zuerich.ch/dataset/geo_spielplaetze",
-        "geojsonUrl": "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/Spielplaetze?service=WFS&version=1.1.0&request=GetFeature&outputFormat=application/json&typename=poi_spielplatz_view",
+        "title": "POI öffentliche Spielplätze der Stadt Zürich",
+        "datasetUrl": "https://data.stadt-zuerich.ch/dataset/geo_poi_oeffentliche_spielplaetze",
+        "geojsonUrl": "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/POI_oeffentliche_Spielplaetze?service=WFS&version=1.1.0&request=GetFeature&outputFormat=application/json&srsName=EPSG:4326&typename=poi_oeffentliche_spielplaetze",
+        "capabilitiesUrl": "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/POI_oeffentliche_Spielplaetze?service=WFS&version=1.1.0&request=GetCapabilities",
         "nameField": "name",
         "verifiziert": false
       }
