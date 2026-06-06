@@ -17,6 +17,7 @@
     "data:fetch:force": "node scripts/build-data.mjs --force",
     "validate:org": "node scripts/validate-org-chart.mjs",
     "validate:prozesse": "node scripts/validate-prozesse.mjs",
+    "validate:catalog": "node scripts/validate-catalog.mjs",
     "migrate:schema:v2": "node scripts/migrate-prozesse-schema-v2.mjs",
     "scaffold:city": "node scripts/scaffold-city.mjs",
     "probe:search": "node scripts/probe-search.mjs",

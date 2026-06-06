@@ -1,0 +1,136 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Maschinerie der Stadt Zürich – Open API",
+    "version": "1.0.0",
+    "summary": "Offene Lesedaten zur Verwaltungsstruktur und zu Verwaltungsprozessen.",
+    "description": "Open-Government-Daten als JSON. Alle Endpunkte sind lesend (GET), benötigen keine Authentifizierung und erlauben Cross-Origin-Zugriff (CORS offen, da reine Lesedaten ohne Schutzbedarf). Antworten tragen Version, Lizenz und einen Schema-Verweis in HTTP-Headern (X-Api-Version, X-Data-License, Link rel=describedby) sowie Cache-Control + ETag (bedingte Requests via If-None-Match → 304). Datensätze und Quellen siehe /data-catalog.json.",
+    "license": { "name": "CC-BY-4.0", "url": "https://creativecommons.org/licenses/by/4.0/" },
+    "contact": { "name": "Maschinerie der Stadt Zürich", "url": "https://github.com/malkreide/maschinerie-zuerich" }
+  },
+  "servers": [
+    { "url": "https://maschinerie-zuerich.vercel.app", "description": "Produktion" },
+    { "url": "/", "description": "Relativ (gleiche Origin)" }
+  ],
+  "externalDocs": {
+    "description": "Datenkatalog (Datensätze, Quellen, Lizenz, Aktualisierung)",
+    "url": "/data-catalog.json"
+  },
+  "tags": [
+    { "name": "discovery" },
+    { "name": "organisation" },
+    { "name": "prozesse" }
+  ],
+  "paths": {
+    "/api/v1": {
+      "get": {
+        "tags": ["discovery"],
+        "summary": "API-Index",
+        "description": "Discovery-Dokument mit Version, Lizenz und Verweisen auf OpenAPI-Spec und Datenkatalog.",
+        "responses": {
+          "200": {
+            "description": "API-Index",
+            "headers": { "$ref": "#/components/headers/StandardSet" },
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ApiIndex" } } }
+          }
+        }
+      }
+    },
+    "/api/v1/org": {
+      "get": {
+        "tags": ["organisation"],
+        "summary": "Organisationsstruktur",
+        "description": "Departemente, Einheiten und Beteiligungen nach dem OpenGov-Machinery-Schema. Vollständiges JSON-Schema: https://raw.githubusercontent.com/malkreide/maschinerie-zuerich/main/stadt-zuerich-next/schemas/opengov-machinery-schema.json",
+        "responses": {
+          "200": {
+            "description": "Organisationsdaten (OpenGov-Machinery-Schema)",
+            "headers": { "$ref": "#/components/headers/StandardSet" },
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "https://raw.githubusercontent.com/malkreide/maschinerie-zuerich/main/stadt-zuerich-next/schemas/opengov-machinery-schema.json" }
+              }
+            }
+          },
+          "304": { "description": "Nicht verändert (ETag passt zu If-None-Match)" },
+          "500": { "$ref": "#/components/responses/ServerError" }
+        }
+      }
+    },
+    "/api/v1/prozesse": {
+      "get": {
+        "tags": ["prozesse"],
+        "summary": "Prozess-Index",
+        "description": "Liste aller modellierten Verwaltungsprozesse (Kurzform). Die Detailmodelle folgen dem OpenGov-Process-Schema: https://raw.githubusercontent.com/malkreide/maschinerie-zuerich/main/stadt-zuerich-next/schemas/opengov-process-schema.json",
+        "responses": {
+          "200": {
+            "description": "Liste der Prozesse",
+            "headers": { "$ref": "#/components/headers/StandardSet" },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/ProzessIndexEntry" }
+                }
+              }
+            }
+          },
+          "304": { "description": "Nicht verändert (ETag passt zu If-None-Match)" },
+          "500": { "$ref": "#/components/responses/ServerError" }
+        }
+      }
+    }
+  },
+  "components": {
+    "headers": {
+      "StandardSet": {
+        "description": "Standard-Header aller Endpunkte (Version, Lizenz, Schema-Link, Caching).",
+        "schema": { "type": "string" }
+      }
+    },
+    "responses": {
+      "ServerError": {
+        "description": "Interner Fehler",
+        "content": { "application/json": { "schema": { "type": "object", "properties": { "error": { "type": "string" } } } } }
+      }
+    },
+    "schemas": {
+      "ApiIndex": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "version": { "type": "string" },
+          "license": { "type": "string" },
+          "attribution": { "type": "string" },
+          "documentation": {
+            "type": "object",
+            "properties": {
+              "openapi": { "type": "string" },
+              "dataCatalog": { "type": "string" }
+            }
+          },
+          "endpoints": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": { "path": { "type": "string" }, "description": { "type": "string" } }
+            }
+          }
+        }
+      },
+      "ProzessIndexEntry": {
+        "type": "object",
+        "required": ["id", "city", "slug", "titel", "version"],
+        "properties": {
+          "id": { "type": "string" },
+          "city": { "type": "string" },
+          "slug": { "type": "string" },
+          "titel": { "description": "i18n-String oder Objekt mit Locale-Schlüsseln" },
+          "kurzbeschreibung": { "description": "i18n-String oder Objekt mit Locale-Schlüsseln" },
+          "version": { "type": "string" },
+          "onlineReifegrad": { "type": "string", "enum": ["offline", "teil-digital", "digital", "end-to-end"] },
+          "status": { "type": "string", "enum": ["beobachtet", "validiert", "vorgeschlagen", "in-umsetzung", "umgesetzt"] }
+        }
+      }
+    }
+  }
+}

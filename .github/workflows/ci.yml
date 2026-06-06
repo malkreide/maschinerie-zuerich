@@ -98,6 +98,8 @@ jobs:
         run: npm run validate:prozesse
         env:
           NO_COLOR: '1'
+      - name: OpenAPI + Datenkatalog validieren
+        run: npm run validate:catalog
 
   a11y:
     name: Accessibility (Playwright + axe-core)
