@@ -138,7 +138,12 @@
         },
         "zweck": { "type": "string", "description": "Kurzbeschreibung des öffentlichen Zwecks (de)." },
         "quelle": { "type": "string", "description": "Beleg-URL (z. B. Beteiligungsbericht)." },
-        "stand": { "type": "string", "description": "Datenstand (Jahr oder ISO-Datum)." }
+        "stand": { "type": "string", "description": "Datenstand (Jahr oder ISO-Datum)." },
+        "provenance": {
+          "type": "string",
+          "enum": ["publiziert", "aggregiert", "geschaetzt", "manuell", "api", "pdf", "demo"],
+          "description": "Maschinenlesbare Datenherkunft."
+        }
       }
     }
   }

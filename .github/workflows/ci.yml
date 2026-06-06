@@ -108,6 +108,8 @@ jobs:
           NO_COLOR: '1'
       - name: OpenAPI + Datenkatalog validieren
         run: npm run validate:catalog
+      - name: Links in den Daten prüfen (strukturell)
+        run: npm run check:links
 
   a11y:
     name: Accessibility (Playwright + axe-core)

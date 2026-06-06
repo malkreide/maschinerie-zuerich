@@ -108,6 +108,20 @@ export const BETEILIGUNG_SEKTOREN = [
 ] as const;
 export type BeteiligungSektor = (typeof BETEILIGUNG_SEKTOREN)[number];
 
+// Maschinenlesbares Provenance-Vokabular (deckungsgleich mit dem Datenkatalog
+// und der DataQualityBadge-Taxonomie). Macht die Datenherkunft pro Datensatz
+// auswertbar.
+export const PROVENANCE = [
+  'publiziert',
+  'aggregiert',
+  'geschaetzt',
+  'manuell',
+  'api',
+  'pdf',
+  'demo',
+] as const;
+export type Provenance = (typeof PROVENANCE)[number];
+
 export interface Beteiligung {
   id: string;
   name: string;
@@ -123,6 +137,7 @@ export interface Beteiligung {
   zweck?: string;       // Kurzbeschreibung des Zwecks (de)
   quelle?: string;      // Beleg-URL (z. B. Beteiligungsbericht)
   stand?: string;       // Datenstand (Jahr oder ISO-Datum)
+  provenance?: Provenance; // maschinenlesbare Datenherkunft
 }
 
 export interface Center {
