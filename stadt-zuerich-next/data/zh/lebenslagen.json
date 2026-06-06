@@ -339,6 +339,9 @@
         "familie",
         "schule"
       ],
+      "prozesse": [
+        "zh/kita-platz"
+      ],
       "i18n": {
         "de": {
           "frage": "Kita- oder Hortplatz suchen",

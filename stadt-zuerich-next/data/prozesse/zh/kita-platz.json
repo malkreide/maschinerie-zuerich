@@ -1,0 +1,326 @@
+{
+  "$schema": "../../../schemas/opengov-process-schema.json",
+  "id": "kita-platz",
+  "version": "0.1.0",
+  "city": "zh",
+  "titel": {
+    "de": "Kita-Platz & Betreuungsgutschein",
+    "en": "Daycare place & childcare subsidy voucher",
+    "fr": "Place en crèche & bon de garde",
+    "it": "Posto all'asilo nido & buono per la custodia",
+    "ls": "Kita-Platz und Betreuungs-Gutschein"
+  },
+  "kurzbeschreibung": {
+    "de": "Eltern in der Stadt Zürich suchen einen Platz in einer Kindertagesstätte und beantragen beim Schulamt einen einkommensabhängigen Betreuungsgutschein, der den Elternbeitrag senkt. Der Gutschein wird direkt an die Kita ausbezahlt.",
+    "en": "Parents in the City of Zurich find a daycare place and apply to the school office for an income-based childcare voucher that lowers their contribution. The subsidy is paid directly to the daycare centre.",
+    "ls": "Sie brauchen einen Platz für Ihr Kind in einer Kita? Sie suchen zuerst einen Platz. Dann können Sie beim Schul-Amt einen Gutschein beantragen. Der Gutschein macht die Kita günstiger. Wie viel Sie bekommen, hängt von Ihrem Lohn ab."
+  },
+  "rechtsgrundlagen": [
+    { "bezeichnung": "Verordnung über die familien- und schulergänzende Kinderbetreuung der Stadt Zürich", "url": "https://www.stadt-zuerich.ch/ssd/de/index/kinderbetreuung/betreuungsgutscheine.html" },
+    { "bezeichnung": "Kinderbetreuungsgesetz des Kantons Zürich (KibeG)", "url": "https://www.zh.ch/de/familie/kinderbetreuung.html" }
+  ],
+  "quellen": [
+    {
+      "id": "q-stz-bg",
+      "titel": "Stadt Zürich – Betreuungsgutscheine",
+      "url": "https://www.stadt-zuerich.ch/ssd/de/index/kinderbetreuung/betreuungsgutscheine.html",
+      "abgerufen": "2026-06-06"
+    },
+    {
+      "id": "q-stz-kita",
+      "titel": "Stadt Zürich – Kinderbetreuung / Kitas finden",
+      "url": "https://www.stadt-zuerich.ch/ssd/de/index/kinderbetreuung.html",
+      "abgerufen": "2026-06-06"
+    }
+  ],
+  "akteure": [
+    {
+      "id": "eltern",
+      "label": {
+        "de": "Eltern / Erziehungsberechtigte",
+        "en": "Parents / legal guardians",
+        "fr": "Parents / représentants légaux",
+        "it": "Genitori / tutori legali",
+        "ls": "Sie (die Eltern)"
+      },
+      "typ": "antragsteller"
+    },
+    {
+      "id": "kita",
+      "label": {
+        "de": "Kindertagesstätte (subventioniert)",
+        "en": "Daycare centre (subsidised)",
+        "ls": "Die Kita"
+      },
+      "typ": "dritte"
+    },
+    {
+      "id": "schulamt",
+      "label": {
+        "de": "Schulamt der Stadt Zürich, Betreuungsgutscheine",
+        "en": "School Office of the City of Zurich, childcare vouchers",
+        "ls": "Das Schul-Amt der Stadt"
+      },
+      "typ": "behoerde",
+      "einheit_ref": "SSD-schule"
+    },
+    {
+      "id": "bezirksrat",
+      "label": {
+        "de": "Bezirksrat Zürich (Rekursinstanz)",
+        "en": "District council (appeals body)",
+        "ls": "Eine Stelle vom Kanton für Beschwerden"
+      },
+      "typ": "gericht"
+    }
+  ],
+  "schritte": [
+    {
+      "id": "start",
+      "typ": "start",
+      "akteur": "eltern",
+      "label": {
+        "de": "Betreuungsbedarf für das Kind",
+        "en": "Childcare needed",
+        "ls": "Sie brauchen einen Betreuungs-Platz"
+      }
+    },
+    {
+      "id": "kita-suchen",
+      "typ": "input",
+      "akteur": "eltern",
+      "label": {
+        "de": "Freien Kita-Platz suchen",
+        "en": "Find an available daycare place",
+        "ls": "Einen freien Platz in einer Kita suchen"
+      },
+      "beschreibung": {
+        "de": "Eltern suchen selbst einen Platz in einer subventionierten Kita. Nur Plätze in subventionierten Einrichtungen sind gutscheinberechtigt.",
+        "en": "Parents look for a place in a subsidised daycare centre themselves. Only places in subsidised facilities qualify for a voucher.",
+        "ls": "Sie suchen selbst eine Kita. Nur bestimmte Kitas bekommen einen Gutschein."
+      },
+      "dauer_est": { "min": 1, "max": 12, "einheit": "monate", "typ": "durchlauf" },
+      "quelle": "q-stz-kita"
+    },
+    {
+      "id": "platz-frei",
+      "typ": "entscheidung",
+      "akteur": "eltern",
+      "label": {
+        "de": "Platz frei?",
+        "en": "Place available?",
+        "ls": "Ist ein Platz frei?"
+      }
+    },
+    {
+      "id": "warteliste",
+      "typ": "warten",
+      "akteur": "kita",
+      "label": {
+        "de": "Auf Warteliste bleiben",
+        "en": "Stay on the waiting list",
+        "ls": "Sie warten auf einen Platz"
+      },
+      "beschreibung": {
+        "de": "In vielen Quartieren übersteigt die Nachfrage das Angebot — Wartezeiten von mehreren Monaten sind häufig.",
+        "en": "In many neighbourhoods demand exceeds supply — waiting times of several months are common."
+      },
+      "dauer_est": { "min": 1, "max": 12, "einheit": "monate", "typ": "durchlauf" }
+    },
+    {
+      "id": "betreuungsvertrag",
+      "typ": "input",
+      "akteur": "eltern",
+      "label": {
+        "de": "Betreuungsvertrag mit der Kita abschliessen",
+        "en": "Sign a care contract with the daycare centre",
+        "ls": "Sie machen einen Vertrag mit der Kita"
+      },
+      "dauer_est": { "min": 1, "max": 10, "einheit": "kalendertage", "typ": "durchlauf" },
+      "kosten_chf": {
+        "anmerkung": {
+          "de": "Der volle Kita-Tarif ist einkommensunabhängig hoch; der Betreuungsgutschein senkt den effektiven Elternbeitrag je nach Einkommen und Beschäftigungsgrad.",
+          "en": "The full daycare tariff is high; the voucher reduces the effective parental contribution depending on income and employment level."
+        }
+      }
+    },
+    {
+      "id": "gutschein-antrag",
+      "typ": "input",
+      "akteur": "eltern",
+      "label": {
+        "de": "Betreuungsgutschein online beantragen",
+        "en": "Apply for the childcare voucher online",
+        "ls": "Den Gutschein im Internet beantragen"
+      },
+      "beschreibung": {
+        "de": "Antrag beim Schulamt mit Nachweis von Einkommen und Beschäftigungs-/Ausbildungssituation beider Elternteile.",
+        "en": "Application to the school office with proof of income and the employment/education situation of both parents.",
+        "ls": "Sie zeigen, wie viel Sie verdienen und wie viel Sie arbeiten."
+      },
+      "dauer_est": { "min": 30, "max": 60, "einheit": "minuten", "typ": "durchlauf" },
+      "unterlagen": [
+        { "label": { "de": "Betreuungsvertrag der Kita", "en": "Daycare care contract" }, "pflicht": true },
+        { "label": { "de": "Einkommensnachweis (Lohnausweis / Steuerunterlagen)", "en": "Proof of income (salary statement / tax documents)" }, "pflicht": true },
+        { "label": { "de": "Nachweis Erwerbstätigkeit oder Ausbildung beider Eltern", "en": "Proof of employment or education of both parents" }, "pflicht": true }
+      ],
+      "quelle": "q-stz-bg"
+    },
+    {
+      "id": "pruefung",
+      "typ": "prozess",
+      "akteur": "schulamt",
+      "label": {
+        "de": "Anspruch und Einkommen prüfen",
+        "en": "Assess eligibility and income"
+      },
+      "beschreibung": {
+        "de": "Das Schulamt prüft Wohnsitz, Erwerbs-/Ausbildungspensum und das massgebende Einkommen.",
+        "en": "The school office checks residence, employment/education level and the relevant income."
+      },
+      "dauer_est": { "min": 2, "max": 6, "einheit": "wochen", "typ": "bearbeitung" }
+    },
+    {
+      "id": "anspruch",
+      "typ": "entscheidung",
+      "akteur": "schulamt",
+      "label": {
+        "de": "Anspruchsberechtigt?",
+        "en": "Eligible?",
+        "ls": "Haben Sie Anspruch?"
+      }
+    },
+    {
+      "id": "bemessung",
+      "typ": "prozess",
+      "akteur": "schulamt",
+      "label": {
+        "de": "Gutscheinhöhe nach Einkommen bemessen",
+        "en": "Calculate voucher amount based on income",
+        "ls": "Das Amt rechnet aus, wie hoch der Gutschein ist"
+      },
+      "beschreibung": {
+        "de": "Die Höhe richtet sich nach massgebendem Einkommen, Beschäftigungsgrad und Betreuungsumfang.",
+        "en": "The amount depends on relevant income, employment level and care volume."
+      },
+      "dauer_est": { "min": 1, "max": 5, "einheit": "arbeitstage", "typ": "bearbeitung" }
+    },
+    {
+      "id": "verfuegung",
+      "typ": "prozess",
+      "akteur": "schulamt",
+      "label": {
+        "de": "Gutschein verfügen, Subvention an Kita",
+        "en": "Issue voucher decision, subsidy to daycare",
+        "ls": "Sie bekommen den Gutschein. Das Geld geht an die Kita."
+      },
+      "beschreibung": {
+        "de": "Der Gutschein wird verfügt und in der Regel direkt der Kita gutgeschrieben, sodass sich der Elternbeitrag entsprechend reduziert.",
+        "en": "The voucher is granted and usually credited directly to the daycare centre, reducing the parental contribution accordingly."
+      },
+      "dauer_est": { "min": 1, "max": 5, "einheit": "arbeitstage", "typ": "bearbeitung" }
+    },
+    {
+      "id": "ende-bewilligt",
+      "typ": "ende",
+      "akteur": "eltern",
+      "label": {
+        "de": "Betreuungsgutschein bewilligt",
+        "en": "Childcare voucher granted",
+        "ls": "Fertig: Sie haben den Gutschein"
+      }
+    },
+    {
+      "id": "ablehnung",
+      "typ": "prozess",
+      "akteur": "schulamt",
+      "label": {
+        "de": "Antrag ablehnen (mit Begründung)",
+        "en": "Reject application (with reasons)",
+        "ls": "Das Amt sagt: Nein. Und schreibt warum."
+      }
+    },
+    {
+      "id": "einsprache",
+      "typ": "entscheidung",
+      "akteur": "eltern",
+      "label": {
+        "de": "Rekurs einreichen?",
+        "en": "File an appeal?",
+        "ls": "Wollen Sie sich beschweren?"
+      }
+    },
+    {
+      "id": "rekurs",
+      "typ": "prozess",
+      "akteur": "bezirksrat",
+      "label": {
+        "de": "Rekurs beim Bezirksrat",
+        "en": "Appeal to the district council",
+        "ls": "Beschwerde bei der Kantonsstelle"
+      },
+      "dauer_est": { "min": 2, "max": 9, "einheit": "monate", "typ": "durchlauf" }
+    },
+    {
+      "id": "ende-abgelehnt",
+      "typ": "ende",
+      "akteur": "eltern",
+      "label": {
+        "de": "Antrag rechtskräftig abgelehnt",
+        "en": "Application rejected (final)",
+        "ls": "Sie bekommen keinen Gutschein"
+      }
+    }
+  ],
+  "flow": [
+    { "von": "start", "nach": "kita-suchen" },
+    { "von": "kita-suchen", "nach": "platz-frei" },
+    { "von": "platz-frei", "nach": "betreuungsvertrag", "bedingung": "ja", "label": { "de": "Platz frei", "en": "place available" } },
+    { "von": "platz-frei", "nach": "warteliste", "bedingung": "nein", "label": { "de": "kein Platz", "en": "no place" } },
+    { "von": "warteliste", "nach": "kita-suchen" },
+    { "von": "betreuungsvertrag", "nach": "gutschein-antrag" },
+    { "von": "gutschein-antrag", "nach": "pruefung" },
+    { "von": "pruefung", "nach": "anspruch" },
+    { "von": "anspruch", "nach": "bemessung", "bedingung": "ja" },
+    { "von": "anspruch", "nach": "ablehnung", "bedingung": "nein" },
+    { "von": "bemessung", "nach": "verfuegung" },
+    { "von": "verfuegung", "nach": "ende-bewilligt" },
+    { "von": "ablehnung", "nach": "einsprache" },
+    { "von": "einsprache", "nach": "rekurs", "bedingung": "ja" },
+    { "von": "einsprache", "nach": "ende-abgelehnt", "bedingung": "nein" },
+    { "von": "rekurs", "nach": "anspruch", "label": { "de": "Neubeurteilung", "en": "re-evaluation" } }
+  ],
+  "reife": {
+    "onlineReifegrad": "teil-digital",
+    "medienbrueche": ["erneute-dateneingabe"],
+    "onceOnlyPotenzial": {
+      "de": "Das massgebende Einkommen liegt dem Steueramt bereits vor. Bei einer Registerverknüpfung müsste es nicht erneut belegt werden, und der Gutschein könnte jährlich automatisch neu bemessen werden.",
+      "en": "The relevant income is already held by the tax office. With register linkage it would not need to be re-submitted, and the voucher could be re-assessed automatically each year.",
+      "ls": "Das Steuer-Amt kennt Ihren Lohn schon. Diese Angabe müssten Sie nicht jedes Jahr neu schicken."
+    },
+    "nutzergruppen": [
+      { "de": "Erwerbstätige Eltern mit kleinen Kindern", "en": "Working parents with young children", "ls": "Eltern, die arbeiten und kleine Kinder haben" },
+      { "de": "Eltern in Ausbildung", "en": "Parents in education", "ls": "Eltern, die eine Ausbildung machen" },
+      { "de": "Alleinerziehende", "en": "Single parents", "ls": "Eltern, die alleine erziehen" }
+    ],
+    "painPoints": [
+      { "de": "Die Platzsuche liegt vollständig bei den Eltern; in vielen Quartieren gibt es lange Wartelisten.", "en": "Finding a place is entirely up to the parents; many neighbourhoods have long waiting lists.", "ls": "Sie müssen selbst eine Kita suchen. Oft müssen Sie lange warten." },
+      { "de": "Einkommens- und Erwerbsnachweise müssen jährlich neu eingereicht werden.", "en": "Income and employment proofs must be re-submitted every year.", "ls": "Sie müssen jedes Jahr wieder Papiere schicken." }
+    ],
+    "improvementIdeas": [
+      { "de": "Zentrale Platzvermittlung statt individueller Suche.", "en": "Central placement service instead of individual search.", "ls": "Eine Stelle, die für alle einen Platz sucht." },
+      { "de": "Automatische jährliche Neubemessung über die Verknüpfung mit den Steuerdaten (Once-Only).", "en": "Automatic annual re-assessment via linkage with tax data (once-only).", "ls": "Der Gutschein wird jedes Jahr automatisch neu berechnet." }
+    ],
+    "status": "beobachtet",
+    "wirkungKpi": [
+      { "label": { "de": "Bearbeitungszeit Gutschein", "en": "Voucher processing time", "ls": "Wie lange das Amt braucht" }, "wert": "2–6 Wochen" },
+      { "label": { "de": "Online-Anteil", "en": "Share online", "ls": "Wie viel geht online" }, "wert": "Gutschein-Antrag online, Platzsuche und Vertrag offline" }
+    ]
+  },
+  "meta": {
+    "erstellt": "2026-06-06",
+    "aktualisiert": "2026-06-06",
+    "maintainer": "malkreide",
+    "lizenz": "CC-BY-4.0"
+  }
+}
