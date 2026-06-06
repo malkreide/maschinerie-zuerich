@@ -438,11 +438,33 @@ function Leaf({
               style={{ stroke: 'var(--color-konflikt)', strokeWidth: 2 }} 
               strokeDasharray="4 3" pointerEvents="none" />
       )}
-      {line1 && <text x={d.x0 + 5} y={d.y0 + 14} fill="#1a1f2e" fontWeight="500">{line1}</text>}
-      {line2 && (
-        <text x={d.x0 + 5} y={d.y0 + 28} fontSize={10} fill="#1a1f2e" opacity={0.85}>
-          {line2}
-        </text>
+      {(line1 || line2) && (
+        <>
+          {/* Kontrast-sicheres Label-Band: dezenter Streifen in Panel-Farbe
+              hinter der Beschriftung, Text in --color-ink. Garantiert hohen
+              Kontrast (≥12:1) unabhängig von der Departements-Farbe und passt
+              sich Hell/Dunkel an. Verhindert den WCAG-1.4.3-Verstoss, den
+              dunkler Text direkt auf den mittel-dunklen Rects auslöste. */}
+          <rect
+            x={d.x0}
+            y={d.y0 + 2}
+            width={w}
+            height={Math.min(line2 ? 30 : 18, Math.max(0, h - 2))}
+            fill="var(--color-panel)"
+            opacity={0.9}
+            pointerEvents="none"
+          />
+          {line1 && (
+            <text x={d.x0 + 5} y={d.y0 + 14} fill="var(--color-ink)" fontWeight="600" fontSize={12}>
+              {line1}
+            </text>
+          )}
+          {line2 && (
+            <text x={d.x0 + 5} y={d.y0 + 27} fontSize={10} fill="var(--color-ink)">
+              {line2}
+            </text>
+          )}
+        </>
       )}
     </g>
   );

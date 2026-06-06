@@ -13,11 +13,10 @@ import type { Result } from 'axe-core';
 const WCAG_TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'];
 const BLOCKING_IMPACTS = new Set(['serious', 'critical']);
 
-// Regeln, die vorerst NUR berichtet (nicht blockiert) werden. color-contrast
-// hängt am Theme (--color-mute zu hell auf hellem Grund) und braucht visuelle
-// Iteration in einem eigenen Theming-PR — bis dahin advisory, damit das Gate
-// die strukturellen a11y-Probleme (Rollen, Namen, ARIA) durchsetzen kann.
-const ADVISORY_RULES = new Set(['color-contrast']);
+// Regeln, die vorerst NUR berichtet (nicht blockiert) werden. Aktuell leer:
+// color-contrast ist seit dem Theming-/Treemap-Fix blockierend. Die App-Tokens
+// sind AA-konform; die Treemap nutzt ein Label-Band für sicheren Kontrast.
+const ADVISORY_RULES = new Set<string>([]);
 
 // Locale-präfixierte Routen (localePrefix: 'always'). '/' redirectet auf '/de'.
 const ROUTES = [
