@@ -2,12 +2,15 @@ import { Suspense } from 'react';
 import { hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { loadStadtData } from '@/lib/data';
-import { buildEinheitProzesseMap } from '@/lib/prozesse';
+import { buildEinheitProzesseMap, buildProzessEinheitenMap } from '@/lib/prozesse';
+import { buildEinheitLebenslagenMap } from '@/lib/lebenslage-graph';
+import { resolveContent } from '@/lib/search';
 import { getT } from '@/lib/i18n-server';
 import { routing, type Locale } from '@/i18n/routing';
 import { resolveI18n, type ProzessLocale } from '@/types/prozess';
+import type { LebenslageLocale } from '@/types/stadt';
 import GraphView from '@/components/GraphView';
-import DetailPanel, { type RelatedProzess } from '@/components/DetailPanel';
+import DetailPanel, { type RelatedProzess, type RelatedLebenslage } from '@/components/DetailPanel';
 import Legend from '@/components/Legend';
 import BudgetSummary from '@/components/BudgetSummary';
 import MobileExplorer from '@/components/MobileExplorer';
@@ -23,9 +26,10 @@ export default async function MaschineriePage({
   // Der Reverse-Index lebt im Server-Component; wir lösen titel hier schon
   // mit dem aktiven Locale auf, damit DetailPanel (Client) keine eigene
   // resolveI18n-Auflösung braucht.
-  const [data, einheitProzesseMap] = await Promise.all([
+  const [data, einheitProzesseMap, prozessEinheiten] = await Promise.all([
     loadStadtData(),
     buildEinheitProzesseMap(),
+    buildProzessEinheitenMap(),
   ]);
   const relatedProzesse: Record<string, RelatedProzess[]> = {};
   for (const [einheitId, entries] of Object.entries(einheitProzesseMap)) {
@@ -34,6 +38,17 @@ export default async function MaschineriePage({
       city: e.city,
       titel: resolveI18n(e.titel, lebLoc),
     }));
+  }
+
+  // N:M-Reverse: Einheit → betreffende Lebenslagen (zuständig oder über ein
+  // verlinktes Verfahren beteiligt). titel/term server-seitig aufgelöst.
+  const einheitLebenslagen = buildEinheitLebenslagenMap(data.lebenslagen ?? [], prozessEinheiten);
+  const relatedLebenslagen: Record<string, RelatedLebenslage[]> = {};
+  for (const [einheitId, list] of Object.entries(einheitLebenslagen)) {
+    relatedLebenslagen[einheitId] = list.map((l) => {
+      const c = resolveContent(l, lebLoc as unknown as LebenslageLocale);
+      return { id: l.id, frage: c?.frage ?? l.id, term: c?.stichworte?.[0] ?? c?.frage ?? l.id };
+    });
   }
 
   const tNav = getT(locale as Locale, 'Nav');
@@ -46,7 +61,7 @@ export default async function MaschineriePage({
       <div className="hidden sm:block relative h-[calc(100vh-56px)] mt-14 overflow-hidden">
         <Suspense fallback={null}>
           <GraphView data={data} locale={locale as Locale} />
-          <DetailPanel data={data} relatedProzesse={relatedProzesse} />
+          <DetailPanel data={data} relatedProzesse={relatedProzesse} relatedLebenslagen={relatedLebenslagen} />
         </Suspense>
         <Legend locale={locale as Locale} />
         {/* Pro-Kopf-Banner über dem Graphen — gibt der Visualisierung sofort

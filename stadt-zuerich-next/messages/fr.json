@@ -156,7 +156,8 @@
     "resultsCount": "{count, plural, one {# résultat} other {# résultats}} pour „{query}\"",
     "popularHeading": "Démarches courantes",
     "placeholder": "p. ex. inscrire chien, passeport, aide sociale…",
-    "relatedProcess": "Voir la démarche"
+    "relatedProcess": "Voir la démarche",
+    "weitereStellen": "Autres services impliqués"
   },
   "Treemap": {
     "title": "Où va mon franc d'impôt ?",
@@ -218,6 +219,7 @@
     "fteUnitPublished": "{value} {einheit} (publié)",
     "fteEstimateText": "~{value} (estimation : charges de personnel ÷ {amount} CHF)",
     "relatedProzesseHeading": "Impliqué dans les démarches suivantes",
+    "relatedLebenslagenHeading": "Démarches qui mènent ici",
     "perCapitaLabel": "Par habitant·e",
     "perCapitaValue": "≈ {value}",
     "perCapitaTitle": "Charges par habitant·e — charges divisées par la population résidente de la ville",

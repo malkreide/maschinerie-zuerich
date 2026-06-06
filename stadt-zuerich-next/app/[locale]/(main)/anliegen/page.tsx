@@ -10,7 +10,8 @@ import { notFound } from 'next/navigation';
 import { routing, type Locale } from '@/i18n/routing';
 import { loadStadtData } from '@/lib/data';
 import { searchLebenslagen, resolveContent } from '@/lib/search';
-import { buildProzessSlugMap } from '@/lib/prozesse';
+import { buildProzessSlugMap, buildProzessEinheitenMap } from '@/lib/prozesse';
+import { involvedUnits } from '@/lib/lebenslage-graph';
 import { resolveI18n, type ProzessLocale } from '@/types/prozess';
 import { getT } from '@/lib/i18n-server';
 import { ZIELGRUPPEN } from '@/types/stadt';
@@ -41,6 +42,8 @@ export default async function AnliegenPage({
   const allLeb = data.lebenslagen ?? [];
   // Auflösungstabelle für die explizite Lebenslage→Verfahren-Verknüpfung.
   const prozessMap = await buildProzessSlugMap();
+  // N:M: alle an einer Lebenslage beteiligten Einheiten (über die Verfahren).
+  const prozessEinheiten = await buildProzessEinheitenMap();
 
   // Aktiver Zielgruppen-Filter (nur gültige Taxonomie-Werte zählen).
   const zg = (ZIELGRUPPEN as readonly string[]).includes(zgRaw ?? '')
@@ -151,6 +154,12 @@ export default async function AnliegenPage({
               const linkedProz = (l.prozesse ?? [])
                 .map((slug) => prozessMap[slug])
                 .filter((p): p is NonNullable<typeof p> => Boolean(p));
+              // Weitere beteiligte Stellen (aus den verlinkten Verfahren),
+              // ohne die bereits angezeigte primär zuständige Stelle.
+              const weitereStellen = involvedUnits(l, prozessEinheiten)
+                .filter((u) => u !== l.zustaendig)
+                .map((u) => ({ id: u, item: findItem(data, u) }))
+                .filter((x) => x.item);
               return (
                 <li key={l.id} className="bg-[var(--color-panel)] rounded-lg shadow border border-[var(--color-line)]">
                   <Link
@@ -175,6 +184,20 @@ export default async function AnliegenPage({
                         >
                           <span aria-hidden>⚙</span>
                           {t('relatedProcess')}: {resolveI18n(pe.titel, locale as ProzessLocale)}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                  {weitereStellen.length > 0 && (
+                    <div className="px-4 pb-3 flex flex-wrap items-center gap-2">
+                      <span className="text-[12px] text-[var(--color-mute)]">{t('weitereStellen')}:</span>
+                      {weitereStellen.map(({ id, item: u }) => (
+                        <Link
+                          key={id}
+                          href={{ pathname: '/', query: { focus: id } }}
+                          className="inline-block text-[12px] px-2 py-1 rounded-full border border-[var(--color-line)] bg-[var(--color-bg)] text-[var(--color-ink)] no-underline hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors"
+                        >
+                          {u!.name}
                         </Link>
                       ))}
                     </div>

@@ -156,7 +156,8 @@
     "resultsCount": "{count, plural, one {# Treffer} other {# Treffer}} für „{query}\"",
     "popularHeading": "Das suchen viele Leute",
     "placeholder": "Schreiben Sie hier ein Wort",
-    "relatedProcess": "So geht es Schritt für Schritt"
+    "relatedProcess": "So geht es Schritt für Schritt",
+    "weitereStellen": "Weitere Stellen sind dabei"
   },
   "Treemap": {
     "title": "Wofür gibt die Stadt Geld aus?",
@@ -223,7 +224,8 @@
     "fteUnitFallback": "Stellen",
     "fteUnitPublished": "{value} {einheit} (sichere Zahl)",
     "fteEstimateText": "Etwa {value} Stellen (Schätzung: Lohn geteilt durch {amount} Franken)",
-    "relatedProzesseHeading": "Diese Stelle hilft bei diesen Abläufen"
+    "relatedProzesseHeading": "Diese Stelle hilft bei diesen Abläufen",
+    "relatedLebenslagenHeading": "Diese Anliegen passen zu dieser Stelle"
   },
   "Legend": {
     "headingTop": "Die Chefs der Stadt",

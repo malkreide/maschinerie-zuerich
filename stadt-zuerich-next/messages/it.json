@@ -156,7 +156,8 @@
     "resultsCount": "{count, plural, one {# risultato} other {# risultati}} per „{query}\"",
     "popularHeading": "Pratiche frequenti",
     "placeholder": "p. es. registrare cane, passaporto, assistenza sociale…",
-    "relatedProcess": "Vedi la procedura"
+    "relatedProcess": "Vedi la procedura",
+    "weitereStellen": "Altri uffici coinvolti"
   },
   "Treemap": {
     "title": "Dove va il mio franco fiscale?",
@@ -223,7 +224,8 @@
     "fteUnitFallback": "ETP",
     "fteUnitPublished": "{value} {einheit} (pubblicato)",
     "fteEstimateText": "~{value} (stima: spese del personale ÷ {amount} CHF)",
-    "relatedProzesseHeading": "Coinvolta nelle seguenti procedure"
+    "relatedProzesseHeading": "Coinvolta nelle seguenti procedure",
+    "relatedLebenslagenHeading": "Esigenze che portano qui"
   },
   "Legend": {
     "headingTop": "Consiglio municipale e dipartimenti",

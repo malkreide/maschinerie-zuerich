@@ -156,7 +156,8 @@
     "resultsCount": "{count, plural, one {# result} other {# results}} for „{query}\"",
     "popularHeading": "Common concerns",
     "placeholder": "e.g. register dog, passport, social aid…",
-    "relatedProcess": "View process"
+    "relatedProcess": "View process",
+    "weitereStellen": "Other offices involved"
   },
   "Treemap": {
     "title": "Where does my tax franc go?",
@@ -218,6 +219,7 @@
     "fteUnitPublished": "{value} {einheit} (published)",
     "fteEstimateText": "~{value} (estimate: personnel expense ÷ {amount} CHF)",
     "relatedProzesseHeading": "Involved in the following procedures",
+    "relatedLebenslagenHeading": "Concerns that lead here",
     "perCapitaLabel": "Per resident",
     "perCapitaValue": "≈ {value}",
     "perCapitaTitle": "Expense per capita — expense divided by the city's resident population",
