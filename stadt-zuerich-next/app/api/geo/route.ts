@@ -1,58 +1,116 @@
 import { NextResponse } from 'next/server';
+import { promises as fs } from 'node:fs';
+import path from 'node:path';
+import geoConfig from '@/config/geo-layers.json';
 
-// ACHTUNG: Diese Route erzeugt ZUFÄLLIGE Demo-Standorte, keine echten
-// Verwaltungsdaten. Sie ist als Platzhalter markiert (_meta.demo) und muss
-// vor einem produktiven Einsatz durch echte ODZ-Geodaten ersetzt werden
-// (Schulen, Recyclingstellen, Spielplätze etc. aus data.stadt-zuerich.ch).
-// Bis dahin zeigt das Frontend ein "Demodaten"-Badge.
+// Liefert die Geo-Layer der Territory-Ansicht als GeoJSON.
+//
+// Bevorzugt echte ODZ-Snapshots aus data/geo/<city>/<id>.geojson (erzeugt via
+// `npm run data:fetch-geo`). Fehlt ein Snapshot, fällt der Layer auf zufällige
+// Demo-Punkte zurück. `_meta.demo` ist nur dann true, wenn mindestens ein
+// ausgelieferter Layer Demodaten enthält — das Frontend zeigt entsprechend
+// das "Demodaten"- oder "Publiziert"-Badge.
 
-// Koordinaten Raum Zürich
-// Lat: ~47.35 bis 47.41, Lng: ~8.48 bis 8.58
-function getRandomZrhCoord() {
+type Layer = {
+  id: string;
+  department: string;
+  namePrefix: string;
+  demoCount: number;
+  label: string;
+  source?: { title?: string; datasetUrl?: string };
+};
+
+const CFG = geoConfig as unknown as {
+  city: string;
+  license: string;
+  attribution: string;
+  layers: Layer[];
+};
+
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type',
+};
+
+type Feature = {
+  type: 'Feature';
+  geometry: { type: 'Point'; coordinates: [number, number] };
+  properties: { id: string; name: string; department: string };
+};
+
+function randomZrhCoord(): [number, number] {
   const lat = 47.35 + Math.random() * 0.06;
   const lng = 8.48 + Math.random() * 0.1;
-  return [lng, lat]; // GeoJSON expects [longitude, latitude]
+  return [lng, lat];
 }
 
-function generateFeatures(count: number, type: string, namePrefix: string, department: string) {
-  return Array.from({ length: count }).map((_, i) => ({
+function demoFeatures(layer: Layer): Feature[] {
+  return Array.from({ length: layer.demoCount }).map((_, i) => ({
     type: 'Feature',
-    geometry: {
-      type: 'Point',
-      coordinates: getRandomZrhCoord()
-    },
-    properties: {
-      id: `${type}-${i}`,
-      name: `${namePrefix} ${i + 1}`,
-      department: department
-    }
+    geometry: { type: 'Point', coordinates: randomZrhCoord() },
+    properties: { id: `${layer.id}-${i}`, name: `${layer.namePrefix} ${i + 1}`, department: layer.department },
   }));
+}
+
+async function loadSnapshot(
+  layerId: string,
+): Promise<{ features: Feature[]; meta: Record<string, unknown> } | null> {
+  const file = path.join(process.cwd(), 'data/geo', CFG.city, `${layerId}.geojson`);
+  try {
+    const raw = await fs.readFile(file, 'utf-8');
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed.features)) return null;
+    return { features: parsed.features as Feature[], meta: parsed._meta ?? {} };
+  } catch {
+    return null;
+  }
 }
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const layer = searchParams.get('layer');
+  const requested = searchParams.get('layer');
+  const layers = requested ? CFG.layers.filter((l) => l.id === requested) : CFG.layers;
 
-  let features: ReturnType<typeof generateFeatures> = [];
+  let features: Feature[] = [];
+  let anyDemo = false;
+  const sources: Array<Record<string, unknown>> = [];
 
-  if (layer === 'schools' || !layer) {
-    features = features.concat(generateFeatures(40, 'school', 'Schulhaus', 'SSD'));
-  }
-  if (layer === 'recycling' || !layer) {
-    features = features.concat(generateFeatures(30, 'recycling', 'Entsorgungsstelle', 'TED'));
-  }
-  if (layer === 'playgrounds' || !layer) {
-    features = features.concat(generateFeatures(60, 'playground', 'Spielplatz', 'GUD'));
+  for (const layer of layers) {
+    const snap = await loadSnapshot(layer.id);
+    if (snap) {
+      features = features.concat(snap.features);
+      sources.push({ layer: layer.id, ...snap.meta });
+    } else {
+      features = features.concat(demoFeatures(layer));
+      anyDemo = true;
+      sources.push({
+        layer: layer.id,
+        demo: true,
+        datasetUrl: layer.source?.datasetUrl ?? null,
+        hinweis: 'Kein ODZ-Snapshot vorhanden — Demodaten. Mit `npm run data:fetch-geo` aktualisieren.',
+      });
+    }
   }
 
-  return NextResponse.json({
-    type: 'FeatureCollection',
-    _meta: {
-      demo: true,
-      hinweis:
-        'Demodaten: zufällig generierte Standorte, keine echten Verwaltungsstandorte. ' +
-        'Vor Produktiveinsatz durch ODZ-Geodaten ersetzen.',
+  return NextResponse.json(
+    {
+      type: 'FeatureCollection',
+      _meta: {
+        demo: anyDemo,
+        license: CFG.license,
+        attribution: CFG.attribution,
+        hinweis: anyDemo
+          ? 'Mindestens ein Layer zeigt zufällige Demodaten, keine echten Verwaltungsstandorte. Vor Produktiveinsatz ODZ-Snapshot erzeugen.'
+          : 'Echte Standortdaten aus Open Data Zürich.',
+        sources,
+      },
+      features,
     },
-    features
-  });
+    { status: 200, headers: corsHeaders },
+  );
+}
+
+export async function OPTIONS() {
+  return new Response(null, { status: 204, headers: corsHeaders });
 }

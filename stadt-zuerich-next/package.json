@@ -15,6 +15,7 @@
     "typecheck": "tsc --noEmit",
     "data:fetch": "node scripts/build-data.mjs",
     "data:fetch:force": "node scripts/build-data.mjs --force",
+    "data:fetch-geo": "node scripts/fetch-geo.mjs",
     "validate:org": "node scripts/validate-org-chart.mjs",
     "validate:prozesse": "node scripts/validate-prozesse.mjs",
     "validate:catalog": "node scripts/validate-catalog.mjs",

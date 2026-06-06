@@ -1,0 +1,64 @@
+{
+  "_doc": [
+    "Single Source of Truth für die Geo-Layer der Territory-Ansicht.",
+    "Genutzt von scripts/fetch-geo.mjs (ETL) und app/api/geo/route.ts (Auslieferung).",
+    "",
+    "Ablauf: 'npm run data:fetch-geo' lädt je Layer das GeoJSON von Open Data",
+    "Zürich, normalisiert es und schreibt einen committe-baren Snapshot nach",
+    "data/geo/<city>/<id>.geojson. Liegt ein Snapshot vor, liefert /api/geo echte",
+    "Daten (Badge 'publiziert'); fehlt er, fällt die Route auf Demo-Punkte zurück",
+    "(Badge 'Demodaten').",
+    "",
+    "WICHTIG: geojsonUrl/typename sind als Best-Effort hinterlegt und mit",
+    "verifiziert:false markiert — vor dem ersten echten Abruf gegen die",
+    "Dataset-Seite (datasetUrl) prüfen. Die Stadt-Zürich-Hosts müssen dafür",
+    "netzwerkseitig erreichbar sein (Allowlist)."
+  ],
+  "city": "zh",
+  "license": "CC-BY",
+  "attribution": "Open Data Zürich, Stadt Zürich",
+  "layers": [
+    {
+      "id": "schools",
+      "label": "Schulhäuser",
+      "department": "SSD",
+      "namePrefix": "Schulhaus",
+      "demoCount": 40,
+      "source": {
+        "title": "Schul- und Sportanlagen der Stadt Zürich",
+        "datasetUrl": "https://data.stadt-zuerich.ch/dataset/geo_schul-_und_sportanlagen",
+        "geojsonUrl": "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/Schul-_und_Sportanlagen?service=WFS&version=1.1.0&request=GetFeature&outputFormat=application/json&typename=poi_schule_view",
+        "nameField": "name",
+        "verifiziert": false
+      }
+    },
+    {
+      "id": "recycling",
+      "label": "Entsorgung / Sammelstellen",
+      "department": "TED",
+      "namePrefix": "Entsorgungsstelle",
+      "demoCount": 30,
+      "source": {
+        "title": "Sammelstellen / Wertstoffsammlung der Stadt Zürich",
+        "datasetUrl": "https://data.stadt-zuerich.ch/dataset/geo_sammelstelle",
+        "geojsonUrl": "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/Sammelstelle?service=WFS&version=1.1.0&request=GetFeature&outputFormat=application/json&typename=poi_sammelstelle_view",
+        "nameField": "name",
+        "verifiziert": false
+      }
+    },
+    {
+      "id": "playgrounds",
+      "label": "Spielplätze",
+      "department": "TED",
+      "namePrefix": "Spielplatz",
+      "demoCount": 60,
+      "source": {
+        "title": "Spielplätze der Stadt Zürich",
+        "datasetUrl": "https://data.stadt-zuerich.ch/dataset/geo_spielplaetze",
+        "geojsonUrl": "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/Spielplaetze?service=WFS&version=1.1.0&request=GetFeature&outputFormat=application/json&typename=poi_spielplatz_view",
+        "nameField": "name",
+        "verifiziert": false
+      }
+    }
+  ]
+}
