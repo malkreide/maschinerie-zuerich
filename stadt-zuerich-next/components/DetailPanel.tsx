@@ -18,6 +18,31 @@ import MicroFeedback from './MicroFeedback';
 
 type T = ReturnType<typeof useTranslations<'Detail'>>;
 
+// Deutsche Anzeige-Labels für die Beteiligungs-Klassifikation. Der Org-Chart-
+// Inhalt (Namen, Departemente) ist durchgängig deutsch; nur die Zeilen-Labels
+// werden via i18n übersetzt — gleiche Konvention wie beim restlichen Panel.
+const RECHTSFORM_DE: Record<string, string> = {
+  ag: 'AG',
+  stiftung: 'Stiftung',
+  genossenschaft: 'Genossenschaft',
+  'oeffentlich-rechtlich': 'Öffentlich-rechtlich',
+  verein: 'Verein',
+};
+const BETEILIGUNGSART_DE: Record<string, string> = {
+  strategisch: 'Strategisch',
+  finanziell: 'Finanziell',
+};
+const SEKTOR_DE: Record<string, string> = {
+  energie: 'Energie',
+  verkehr: 'Verkehr',
+  finanzen: 'Finanzen',
+  wohnen: 'Wohnen',
+  kultur: 'Kultur',
+  soziales: 'Soziales',
+  freizeit: 'Freizeit',
+  gesundheit: 'Gesundheit',
+};
+
 /** Vorberechnetes, server-seitig aufgelöstes Prozess-Bündel pro Einheit.
  *  Bewusst mit bereits resolvtem titel: DetailPanel ist client-seitig,
  *  i18n-Auflösung passiert im Server-Component (page.tsx). */
@@ -104,6 +129,12 @@ export default function DetailPanel({
   if (item.fte)    rows.push(...fteRows(item.fte, t));
   if ('diversity' in item && item.diversity) rows.push(...diversityRows(item.diversity as { womenInManagement: number; menInManagement: number }, t));
   if (item.odz)    rows.push({ k: t('ogdKey'), v: `${item.odz.kurzname} · key ${item.odz.key}` });
+  if ('verbunden' in item) {
+    const b = item as Beteiligung;
+    if (b.rechtsform)      rows.push({ k: t('rechtsform'), v: RECHTSFORM_DE[b.rechtsform] ?? b.rechtsform });
+    if (b.beteiligungsart) rows.push({ k: t('beteiligungsart'), v: BETEILIGUNGSART_DE[b.beteiligungsart] ?? b.beteiligungsart });
+    if (b.sektor)          rows.push({ k: t('sektor'), v: SEKTOR_DE[b.sektor] ?? b.sektor });
+  }
   if ('konflikt' in item && item.konflikt) {
     rows.push({
       k: <span className="text-[var(--color-konflikt)]">{t('conflictLabel')}</span>,
@@ -139,6 +170,24 @@ export default function DetailPanel({
           <span className="text-right">{r.v}</span>
         </div>
       ))}
+      {'verbunden' in item && (item as Beteiligung).zweck && (
+        <p className="mt-2 mb-0 text-[var(--color-mute)] text-[12px] leading-snug">
+          {(item as Beteiligung).zweck}
+          {(item as Beteiligung).quelle && (
+            <>
+              {' · '}
+              <a
+                href={(item as Beteiligung).quelle}
+                target="_blank"
+                rel="noopener"
+                className="text-[var(--color-accent)] no-underline hover:underline"
+              >
+                {t('participationSource')} ↗
+              </a>
+            </>
+          )}
+        </p>
+      )}
       <RelatedProzesseSection
         selectedId={selectedId}
         relatedProzesse={relatedProzesse}

@@ -120,7 +120,25 @@
       "properties": {
         "id": { "type": "string" },
         "name": { "type": "string" },
-        "verbunden": { "type": "string" }
+        "verbunden": { "type": "string" },
+        "rechtsform": {
+          "type": "string",
+          "enum": ["ag", "stiftung", "genossenschaft", "oeffentlich-rechtlich", "verein"],
+          "description": "Rechtsform der Beteiligung."
+        },
+        "beteiligungsart": {
+          "type": "string",
+          "enum": ["strategisch", "finanziell"],
+          "description": "strategisch = öffentlicher Auftrag/Steuerungsinteresse; finanziell = primär Kapitalanlage."
+        },
+        "sektor": {
+          "type": "string",
+          "enum": ["energie", "verkehr", "finanzen", "wohnen", "kultur", "soziales", "freizeit", "gesundheit"],
+          "description": "Aufgabenbereich der Beteiligung."
+        },
+        "zweck": { "type": "string", "description": "Kurzbeschreibung des öffentlichen Zwecks (de)." },
+        "quelle": { "type": "string", "description": "Beleg-URL (z. B. Beteiligungsbericht)." },
+        "stand": { "type": "string", "description": "Datenstand (Jahr oder ISO-Datum)." }
       }
     }
   }
