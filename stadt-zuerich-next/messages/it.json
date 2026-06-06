@@ -211,6 +211,36 @@
     "sourcesHeading": "Fonti",
     "retrieved": "consultato il {date}",
     "goToUnit": "All'unità: {name}",
+    "reifeHeading": "Maturità digitale e semplificazione",
+    "reifegradLabel": "Maturità online",
+    "medienbruecheHeading": "Rotture di mezzo",
+    "onceOnlyHeading": "Dati già disponibili (once-only)",
+    "nutzergruppenHeading": "Gruppi di utenti",
+    "painPointsHeading": "Punti critici",
+    "improvementsHeading": "Idee di miglioramento",
+    "kpiHeading": "Impatto e indicatori",
+    "statusLabel": "Stato",
+    "reifegrad": {
+      "offline": "Offline",
+      "teil-digital": "Parzialmente digitale",
+      "digital": "Digitale",
+      "end-to-end": "Completamente digitale"
+    },
+    "medienbruch": {
+      "drucken": "Stampa",
+      "post": "Invio postale",
+      "persoenliches-erscheinen": "Presenza di persona",
+      "separate-zahlung": "Pagamento separato",
+      "erneute-dateneingabe": "Reinserimento dati",
+      "unterschrift-handschriftlich": "Firma autografa"
+    },
+    "status": {
+      "beobachtet": "Osservato",
+      "validiert": "Validato",
+      "vorgeschlagen": "Proposto",
+      "in-umsetzung": "In corso",
+      "umgesetzt": "Realizzato"
+    },
     "schrittTyp": {
       "start": "Inizio",
       "input": "Ingresso",

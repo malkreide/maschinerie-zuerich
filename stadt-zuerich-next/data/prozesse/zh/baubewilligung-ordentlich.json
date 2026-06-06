@@ -230,9 +230,34 @@
     { "von": "rekurs-moeglich", "nach": "ende-abgelehnt", "bedingung": "nein" },
     { "von": "rekurs", "nach": "entscheid", "label": { "de": "Neubeurteilung", "en": "re-evaluation" } }
   ],
+  "reife": {
+    "onlineReifegrad": "teil-digital",
+    "medienbrueche": ["drucken", "post", "unterschrift-handschriftlich", "separate-zahlung"],
+    "onceOnlyPotenzial": {
+      "de": "Grundbuch-, Kataster- und Zonendaten liegen Stadt und Kanton bereits vor; sie könnten Pläne und Nachweise teilweise vorbefüllen statt sie erneut einzufordern.",
+      "en": "Land register, cadastre and zoning data are already held by city and canton; they could pre-fill parts of plans and evidence instead of being requested again.",
+      "ls": "Stadt und Kanton kennen das Grundstück schon. Diese Angaben müssten Sie nicht neu liefern."
+    },
+    "nutzergruppen": [
+      { "de": "Bauherrschaften, Architektur- und Planungsbüros", "en": "Applicants, architecture and planning firms", "ls": "Menschen und Firmen, die bauen wollen" }
+    ],
+    "painPoints": [
+      { "de": "Pläne werden weiterhin in mehrfacher Papierausfertigung verlangt.", "en": "Plans are still required in multiple paper copies.", "ls": "Sie müssen Pläne mehrmals auf Papier abgeben." },
+      { "de": "Lange Durchlaufzeit durch öffentliche Auflage, Einsprachen und Rechtsmittel.", "en": "Long lead time due to public notice, objections and appeals.", "ls": "Das Verfahren dauert lange." }
+    ],
+    "improvementIdeas": [
+      { "de": "Durchgängiges eBaugesuch ohne Papierpläne (digitale Einreichung Kanton ZH ausbauen).", "en": "End-to-end eBaugesuch without paper plans (expand the canton's digital submission).", "ls": "Alles online einreichen, ohne Papier." },
+      { "de": "Once-Only: Kataster- und Zonendaten automatisch vorbefüllen.", "en": "Once-only: pre-fill cadastre and zoning data automatically.", "ls": "Das Amt füllt bekannte Angaben selbst aus." }
+    ],
+    "status": "beobachtet",
+    "wirkungKpi": [
+      { "label": { "de": "Durchlaufzeit (ordentliches Verfahren)", "en": "Lead time (ordinary procedure)", "ls": "Wie lange es dauert" }, "wert": "ca. 3–12 Monate" },
+      { "label": { "de": "Papier-Planausfertigungen", "en": "Paper plan copies", "ls": "Pläne auf Papier" }, "wert": "mehrfach" }
+    ]
+  },
   "meta": {
     "erstellt": "2026-04-24",
-    "aktualisiert": "2026-04-24",
+    "aktualisiert": "2026-06-05",
     "maintainer": "malkreide",
     "lizenz": "CC-BY-4.0"
   }

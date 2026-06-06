@@ -211,6 +211,36 @@
     "sourcesHeading": "Woher sind die Informationen?",
     "retrieved": "geholt am {date}",
     "goToUnit": "Zu dieser Stelle: {name}",
+    "reifeHeading": "Wie digital ist das? Was kann besser werden?",
+    "reifegradLabel": "Wie viel geht online?",
+    "medienbruecheHeading": "Das geht nicht digital",
+    "onceOnlyHeading": "Das Amt weiss es schon",
+    "nutzergruppenHeading": "Für wen ist das?",
+    "painPointsHeading": "Das ist schwierig",
+    "improvementsHeading": "So wird es besser",
+    "kpiHeading": "Zahlen dazu",
+    "statusLabel": "Stand",
+    "reifegrad": {
+      "offline": "Nur auf Papier",
+      "teil-digital": "Teils online",
+      "digital": "Meistens online",
+      "end-to-end": "Ganz online"
+    },
+    "medienbruch": {
+      "drucken": "Sie müssen etwas drucken",
+      "post": "Sie müssen etwas per Post schicken",
+      "persoenliches-erscheinen": "Sie müssen hingehen",
+      "separate-zahlung": "Sie zahlen extra",
+      "erneute-dateneingabe": "Sie tippen Daten noch einmal",
+      "unterschrift-handschriftlich": "Sie müssen mit der Hand unterschreiben"
+    },
+    "status": {
+      "beobachtet": "Wird beobachtet",
+      "validiert": "Geprüft",
+      "vorgeschlagen": "Vorgeschlagen",
+      "in-umsetzung": "Wird gemacht",
+      "umgesetzt": "Fertig"
+    },
     "schrittTyp": {
       "start": "Start",
       "input": "Sie geben etwas ab",

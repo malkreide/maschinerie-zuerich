@@ -211,6 +211,36 @@
     "sourcesHeading": "Sources",
     "retrieved": "consulté le {date}",
     "goToUnit": "Vers l'unité : {name}",
+    "reifeHeading": "Maturité numérique & simplification",
+    "reifegradLabel": "Maturité en ligne",
+    "medienbruecheHeading": "Ruptures de média",
+    "onceOnlyHeading": "Données déjà disponibles (once-only)",
+    "nutzergruppenHeading": "Groupes d'usagers",
+    "painPointsHeading": "Points de friction",
+    "improvementsHeading": "Pistes d'amélioration",
+    "kpiHeading": "Impact & indicateurs",
+    "statusLabel": "Statut",
+    "reifegrad": {
+      "offline": "Hors ligne",
+      "teil-digital": "Partiellement numérique",
+      "digital": "Numérique",
+      "end-to-end": "Entièrement numérique"
+    },
+    "medienbruch": {
+      "drucken": "Impression",
+      "post": "Envoi postal",
+      "persoenliches-erscheinen": "Présence en personne",
+      "separate-zahlung": "Paiement séparé",
+      "erneute-dateneingabe": "Ressaisie des données",
+      "unterschrift-handschriftlich": "Signature manuscrite"
+    },
+    "status": {
+      "beobachtet": "Observé",
+      "validiert": "Validé",
+      "vorgeschlagen": "Proposé",
+      "in-umsetzung": "En cours",
+      "umgesetzt": "Réalisé"
+    },
     "schrittTyp": {
       "start": "Début",
       "input": "Entrée",

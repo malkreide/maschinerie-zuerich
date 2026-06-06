@@ -219,6 +219,36 @@
     "sourcesHeading": "Quellen",
     "retrieved": "abgerufen {date}",
     "goToUnit": "Zur Einheit: {name}",
+    "reifeHeading": "Digitale Reife & Vereinfachung",
+    "reifegradLabel": "Online-Reifegrad",
+    "medienbruecheHeading": "Medienbrüche",
+    "onceOnlyHeading": "Daten liegen bereits vor (Once-Only)",
+    "nutzergruppenHeading": "Nutzergruppen",
+    "painPointsHeading": "Wo es hakt",
+    "improvementsHeading": "Verbesserungsideen",
+    "kpiHeading": "Wirkung & Kennzahlen",
+    "statusLabel": "Status",
+    "reifegrad": {
+      "offline": "Offline",
+      "teil-digital": "Teil-digital",
+      "digital": "Digital",
+      "end-to-end": "Durchgängig digital"
+    },
+    "medienbruch": {
+      "drucken": "Ausdrucken",
+      "post": "Postversand",
+      "persoenliches-erscheinen": "Persönliches Erscheinen",
+      "separate-zahlung": "Separate Zahlung",
+      "erneute-dateneingabe": "Erneute Dateneingabe",
+      "unterschrift-handschriftlich": "Handschriftliche Unterschrift"
+    },
+    "status": {
+      "beobachtet": "Beobachtet",
+      "validiert": "Validiert",
+      "vorgeschlagen": "Vorgeschlagen",
+      "in-umsetzung": "In Umsetzung",
+      "umgesetzt": "Umgesetzt"
+    },
     "schrittTyp": {
       "start": "Start",
       "input": "Eingabe",
