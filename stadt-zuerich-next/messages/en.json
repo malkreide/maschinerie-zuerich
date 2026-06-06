@@ -131,7 +131,8 @@
     "noResultsFallbackHeading": "What others commonly look for",
     "resultsCount": "{count, plural, one {# result} other {# results}} for „{query}\"",
     "popularHeading": "Common concerns",
-    "placeholder": "e.g. register dog, passport, social aid…"
+    "placeholder": "e.g. register dog, passport, social aid…",
+    "relatedProcess": "View process"
   },
   "Treemap": {
     "title": "Where does my tax franc go?",
@@ -258,6 +259,7 @@
     "intro": "Typed flowcharts following the OpenGov-Process-Schema. Each process shows steps, involved actors and estimated durations — so residents can see what a procedure actually entails.",
     "empty": "No processes yet.",
     "city": "City {city}",
+    "relatedLebenslagenHeading": "Common concerns that lead here",
     "stepsHeading": "Steps (textual)",
     "legalHeading": "Legal basis",
     "sourcesHeading": "Sources",

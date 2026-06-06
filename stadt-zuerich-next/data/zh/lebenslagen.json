@@ -2,6 +2,8 @@
   "_doc": [
     "Lebenslagen-Mapping: Bürger-Anliegen → zuständige Dienstabteilung.",
     "Pro Eintrag: id, zustaendig (Unit-ID), i18n (lokalisierter Content).",
+    "Optional prozesse[]: Slugs '<city>/<id>' modellierter Verfahren",
+    "(z. B. 'zh/anwohnerparkkarte'). CI prüft die Referenzen gegen data/prozesse/**.",
     "",
     "i18n-Schema pro Locale: { frage, stichworte[], antwort? }.",
     "Fehlt ein Locale (null), fällt die Suche automatisch auf de zurück.",
@@ -852,6 +854,9 @@
       "zielgruppen": [
         "wohnen",
         "unternehmen"
+      ],
+      "prozesse": [
+        "zh/baubewilligung-ordentlich"
       ],
       "i18n": {
         "de": {
@@ -1819,6 +1824,9 @@
       "zielgruppen": [
         "mobilitaet",
         "wohnen"
+      ],
+      "prozesse": [
+        "zh/anwohnerparkkarte"
       ],
       "i18n": {
         "de": {

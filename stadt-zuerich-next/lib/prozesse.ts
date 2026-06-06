@@ -123,6 +123,19 @@ export function validateProzess(p: Prozess): string[] {
   return errs;
 }
 
+/**
+ * slug ("<city>/<id>") → ProzessIndexEntry. Auflösungstabelle für die
+ * explizite Lebenslage→Prozess-Verknüpfung (lebenslage.prozesse[]).
+ * Unbekannte Slugs erscheinen nicht in der Map und werden vom Aufrufer
+ * still übersprungen — die referentielle Integrität sichert die CI.
+ */
+export async function buildProzessSlugMap(): Promise<Record<string, ProzessIndexEntry>> {
+  const entries = await listProzesse();
+  const map: Record<string, ProzessIndexEntry> = {};
+  for (const e of entries) map[e.slug] = e;
+  return map;
+}
+
 /** Für generateStaticParams in app/[locale]/prozesse/[city]/[id]/page.tsx */
 export async function listProzessParams(): Promise<Array<{ city: string; id: string }>> {
   const entries = await listProzesse();

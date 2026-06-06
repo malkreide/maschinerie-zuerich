@@ -135,7 +135,8 @@
     "noResultsFallbackHeading": "Das suchen andere häufig",
     "resultsCount": "{count, plural, one {# Treffer} other {# Treffer}} für „{query}\"",
     "popularHeading": "Häufige Anliegen",
-    "placeholder": "z. B. Hund anmelden, Pass, Sozialhilfe…"
+    "placeholder": "z. B. Hund anmelden, Pass, Sozialhilfe…",
+    "relatedProcess": "Verfahren ansehen"
   },
   "Treemap": {
     "title": "Wohin geht mein Steuerfranken?",
@@ -266,6 +267,7 @@
     "intro": "Typisierte Ablaufdiagramme nach dem OpenGov-Process-Schema. Jeder Prozess zeigt Schritte, beteiligte Stellen und geschätzte Dauern — damit die Bevölkerung sieht, was ein Verfahren wirklich umfasst.",
     "empty": "Noch keine Prozesse erfasst.",
     "city": "Stadt {city}",
+    "relatedLebenslagenHeading": "Häufige Anliegen, die hierher führen",
     "stepsHeading": "Schritte (textuell)",
     "legalHeading": "Rechtsgrundlagen",
     "sourcesHeading": "Quellen",

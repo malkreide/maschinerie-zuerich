@@ -131,7 +131,8 @@
     "noResultsFallbackHeading": "Ce que d'autres recherchent souvent",
     "resultsCount": "{count, plural, one {# résultat} other {# résultats}} pour „{query}\"",
     "popularHeading": "Démarches courantes",
-    "placeholder": "p. ex. inscrire chien, passeport, aide sociale…"
+    "placeholder": "p. ex. inscrire chien, passeport, aide sociale…",
+    "relatedProcess": "Voir la démarche"
   },
   "Treemap": {
     "title": "Où va mon franc d'impôt ?",
@@ -258,6 +259,7 @@
     "intro": "Organigrammes typés selon l'OpenGov-Process-Schema. Chaque procédure montre les étapes, les acteurs impliqués et les durées estimées — afin que la population comprenne ce qu'une démarche implique réellement.",
     "empty": "Aucune procédure enregistrée pour l'instant.",
     "city": "Ville de {city}",
+    "relatedLebenslagenHeading": "Démarches courantes menant ici",
     "stepsHeading": "Étapes (texte)",
     "legalHeading": "Bases légales",
     "sourcesHeading": "Sources",

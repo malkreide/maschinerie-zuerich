@@ -131,7 +131,8 @@
     "noResultsFallbackHeading": "Das suchen viele Leute",
     "resultsCount": "{count, plural, one {# Treffer} other {# Treffer}} für „{query}\"",
     "popularHeading": "Das suchen viele Leute",
-    "placeholder": "Schreiben Sie hier ein Wort"
+    "placeholder": "Schreiben Sie hier ein Wort",
+    "relatedProcess": "So geht es Schritt für Schritt"
   },
   "Treemap": {
     "title": "Wofür gibt die Stadt Geld aus?",
@@ -258,6 +259,7 @@
     "intro": "Hier sehen Sie: So läuft ein Antrag ab. Zum Beispiel: Wenn Sie ein Haus bauen wollen. Sie sehen jeden Schritt. Sie sehen: Wer macht was. Sie sehen: Wie lange dauert es.",
     "empty": "Noch keine Abläufe.",
     "city": "Stadt {city}",
+    "relatedLebenslagenHeading": "Diese Anliegen passen dazu",
     "stepsHeading": "Die Schritte",
     "legalHeading": "Gesetze",
     "sourcesHeading": "Woher sind die Informationen?",

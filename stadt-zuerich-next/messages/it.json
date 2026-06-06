@@ -131,7 +131,8 @@
     "noResultsFallbackHeading": "Cosa cercano spesso gli altri",
     "resultsCount": "{count, plural, one {# risultato} other {# risultati}} per „{query}\"",
     "popularHeading": "Pratiche frequenti",
-    "placeholder": "p. es. registrare cane, passaporto, assistenza sociale…"
+    "placeholder": "p. es. registrare cane, passaporto, assistenza sociale…",
+    "relatedProcess": "Vedi la procedura"
   },
   "Treemap": {
     "title": "Dove va il mio franco fiscale?",
@@ -258,6 +259,7 @@
     "intro": "Diagrammi tipizzati secondo l'OpenGov-Process-Schema. Ogni procedura mostra le fasi, gli attori coinvolti e le durate stimate — così la popolazione capisce cosa comporta davvero una pratica.",
     "empty": "Nessuna procedura ancora registrata.",
     "city": "Città di {city}",
+    "relatedLebenslagenHeading": "Esigenze comuni che portano qui",
     "stepsHeading": "Fasi (testo)",
     "legalHeading": "Basi legali",
     "sourcesHeading": "Fonti",
