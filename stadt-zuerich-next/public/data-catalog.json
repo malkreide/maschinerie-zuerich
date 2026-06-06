@@ -7,9 +7,19 @@
   "homepage": "https://maschinerie-zuerich.vercel.app",
   "repository": "https://github.com/malkreide/maschinerie-zuerich",
   "api": { "version": "1", "base": "/api/v1", "openapi": "/openapi.json" },
+  "provenanceVocabulary": {
+    "publiziert": "Direkt aus einer offiziellen Publikation/Quelle übernommen.",
+    "aggregiert": "Aus mehreren echten Quellen zusammengeführt.",
+    "geschaetzt": "Aus echten Quellen abgeleitet/geschätzt.",
+    "manuell": "Manuell modelliert/erfasst (z. B. aus Merkblättern).",
+    "api": "Per API abgerufen.",
+    "pdf": "Aus PDF-Dokumenten extrahiert.",
+    "demo": "Illustrative Platzhalterdaten, keine echte Stadtinformation."
+  },
   "datasets": [
     {
       "id": "org-chart",
+      "provenance": "aggregiert",
       "title": "Organisationsstruktur",
       "description": "Departemente, Dienstabteilungen/Einheiten und Beteiligungen der Stadt Zürich inkl. Budget- und FTE-Angaben.",
       "endpoint": "/api/v1/org",
@@ -35,6 +45,7 @@
     },
     {
       "id": "prozesse",
+      "provenance": "manuell",
       "title": "Verwaltungsprozesse",
       "description": "Modellierte Behördengänge nach dem OpenGov-Process-Schema (Schritte, Akteure, Dauern, Medienbrüche, digitale Reife). Der Index-Endpunkt liefert die Kurzform; Detailmodelle liegen pro Prozess im Repository.",
       "endpoint": "/api/v1/prozesse",
@@ -53,6 +64,7 @@
     },
     {
       "id": "lebenslagen",
+      "provenance": "manuell",
       "title": "Lebenslagen",
       "description": "Mapping von Alltagsanliegen auf zuständige Stellen, mehrsprachig (de/en/fr/it + Leichte Sprache) und nach Zielgruppen getaggt. In der App integriert (Suche, /anliegen); aktuell kein eigener öffentlicher API-Endpunkt.",
       "endpoint": null,
@@ -68,6 +80,7 @@
     },
     {
       "id": "geo-standorte",
+      "provenance": "publiziert",
       "title": "Geo-Standorte (Schulen, Sammelstellen, Spielplätze)",
       "description": "Punkt-Layer für die Territory-Karte. Liefert echte Standorte aus committe-baren Open-Data-Zürich-Snapshots (data/geo/zh/<layer>.geojson, erzeugt via 'npm run data:fetch-geo'). Fehlt ein Snapshot, fällt der Layer auf zufällige Demo-Punkte zurück (im Response über _meta.demo gekennzeichnet).",
       "endpoint": "/api/geo",

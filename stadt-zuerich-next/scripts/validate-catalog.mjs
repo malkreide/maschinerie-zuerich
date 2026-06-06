@@ -45,6 +45,7 @@ if (openapi) {
 }
 
 if (catalog) {
+  const vocab = Object.keys(catalog.provenanceVocabulary ?? {});
   if (!Array.isArray(catalog.datasets) || catalog.datasets.length === 0) {
     problems.push('data-catalog.json: datasets fehlt/leer');
   } else {
@@ -53,6 +54,8 @@ if (catalog) {
       if (!d.id) problems.push(`${tag}: id fehlt`);
       if (!d.title) problems.push(`${tag}: title fehlt`);
       if (!d.license) problems.push(`${tag}: license fehlt`);
+      if (!d.provenance) problems.push(`${tag}: provenance fehlt`);
+      else if (!vocab.includes(d.provenance)) problems.push(`${tag}: unbekannte provenance '${d.provenance}'`);
       if (d.schemaPath && !(await exists(d.schemaPath))) {
         problems.push(`${tag}: schemaPath '${d.schemaPath}' existiert nicht`);
       }
@@ -60,6 +63,9 @@ if (catalog) {
   }
   if (catalog.api?.openapi !== '/openapi.json') {
     problems.push("data-catalog.json: api.openapi sollte '/openapi.json' sein");
+  }
+  if (!catalog.provenanceVocabulary || typeof catalog.provenanceVocabulary !== 'object') {
+    problems.push('data-catalog.json: provenanceVocabulary fehlt');
   }
 }
 
