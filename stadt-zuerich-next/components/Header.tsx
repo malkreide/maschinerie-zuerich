@@ -86,7 +86,7 @@ export default function Header({ dataStand }: { dataStand: DataStandInfo }) {
       <span className="flex-1 min-w-2" />
       <div className="relative flex items-center shrink-0 min-w-0 max-w-full">
         <div className="flex items-center overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden pr-4 sm:pr-1 shrink-0 max-w-full">
-          <nav role="tablist" aria-label={tNav('graph')} className="flex gap-1 mr-1 sm:mr-3 shrink-0">
+          <nav aria-label={tNav('graph')} className="flex gap-1 mr-1 sm:mr-3 shrink-0">
             {city.parentOrganizationUrl && (
               <a
                 href={city.parentOrganizationUrl}
@@ -100,7 +100,7 @@ export default function Header({ dataStand }: { dataStand: DataStandInfo }) {
             )}
             {ROUTES.map((r) => {
               // Sub-Routen (z.B. /prozesse/zh/...) aktivieren den übergeordneten
-              // Tab, damit der Navigationszustand auch in der Detail-Seite stimmt.
+              // Link, damit der Navigationszustand auch in der Detail-Seite stimmt.
               const active =
                 pathname === r.href ||
                 (r.href !== '/' && pathname.startsWith(r.href + '/'));
@@ -108,8 +108,7 @@ export default function Header({ dataStand }: { dataStand: DataStandInfo }) {
                 <Link
                   key={r.href}
                   href={r.href}
-                  role="tab"
-                  aria-selected={active}
+                  aria-current={active ? 'page' : undefined}
                   prefetch
                   className={
                     'px-2.5 sm:px-3.5 py-1.5 rounded-md text-xs border border-white/20 no-underline whitespace-nowrap ' +
