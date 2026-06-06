@@ -1,0 +1,302 @@
+{
+  "$schema": "../../../schemas/opengov-process-schema.json",
+  "id": "veranstaltung-bewilligung",
+  "version": "0.1.0",
+  "city": "zh",
+  "titel": {
+    "de": "Veranstaltung bewilligen (Nutzung öffentlicher Grund)",
+    "en": "Event permit (use of public ground)",
+    "fr": "Autorisation de manifestation (usage du domaine public)",
+    "it": "Autorizzazione per eventi (uso del suolo pubblico)",
+    "ls": "Fest oder Veranstaltung anmelden (Bewilligung)"
+  },
+  "kurzbeschreibung": {
+    "de": "Wer in der Stadt Zürich eine Veranstaltung auf öffentlichem Grund durchführt (Fest, Markt, Strassenfest, Boulevardgastronomie, Demo), braucht eine Bewilligung der Stadtpolizei. Je nach Vorhaben werden Fachstellen (Lärm, Verkehr, Entsorgung, Ausschank) einbezogen.",
+    "en": "Anyone holding an event on public ground in the City of Zurich (festival, market, street party, outdoor catering, demonstration) needs a permit from the city police. Depending on the plan, specialist offices (noise, traffic, waste, alcohol) are involved.",
+    "ls": "Sie wollen ein Fest auf der Strasse oder einem Platz machen? Dann brauchen Sie eine Bewilligung von der Stadt-Polizei. Andere Ämter prüfen mit: Lärm, Verkehr, Abfall, Getränke."
+  },
+  "rechtsgrundlagen": [
+    { "bezeichnung": "Vorschriften über die Benützung des öffentlichen Grundes der Stadt Zürich", "url": "https://www.stadt-zuerich.ch/pd/de/index/stadtpolizei_zuerich/bewilligungen.html" },
+    { "bezeichnung": "Gastgewerbegesetz des Kantons Zürich (für Ausschank/Patente)", "url": "https://www.zh.ch/de/wirtschaft-arbeit/gastgewerbe.html" }
+  ],
+  "quellen": [
+    {
+      "id": "q-stz-bewilligungen",
+      "titel": "Stadtpolizei Zürich – Bewilligungen",
+      "url": "https://www.stadt-zuerich.ch/pd/de/index/stadtpolizei_zuerich/bewilligungen.html",
+      "abgerufen": "2026-06-06"
+    }
+  ],
+  "akteure": [
+    {
+      "id": "veranstalter",
+      "label": {
+        "de": "Veranstalter:in",
+        "en": "Event organiser",
+        "fr": "Organisateur",
+        "it": "Organizzatore",
+        "ls": "Sie (Sie machen das Fest)"
+      },
+      "typ": "antragsteller"
+    },
+    {
+      "id": "stapo-bew",
+      "label": {
+        "de": "Stadtpolizei Zürich, Bewilligungen",
+        "en": "Zurich City Police, permits office",
+        "ls": "Die Stadt-Polizei (Bewilligungen)"
+      },
+      "typ": "behoerde",
+      "einheit_ref": "SiD-stapo"
+    },
+    {
+      "id": "fachstellen",
+      "label": {
+        "de": "Fachstellen (Lärm, Verkehr, Entsorgung, Ausschank)",
+        "en": "Specialist offices (noise, traffic, waste, alcohol)",
+        "ls": "Andere Ämter (Lärm, Verkehr, Abfall, Getränke)"
+      },
+      "typ": "fachstelle"
+    },
+    {
+      "id": "statthalter",
+      "label": {
+        "de": "Statthalteramt (Rekursinstanz)",
+        "en": "District governor's office (appeals)",
+        "ls": "Eine Stelle vom Kanton für Beschwerden"
+      },
+      "typ": "gericht"
+    }
+  ],
+  "schritte": [
+    {
+      "id": "start",
+      "typ": "start",
+      "akteur": "veranstalter",
+      "label": {
+        "de": "Veranstaltung auf öffentlichem Grund geplant",
+        "en": "Event on public ground planned",
+        "ls": "Sie planen ein Fest auf der Strasse"
+      }
+    },
+    {
+      "id": "frist",
+      "typ": "input",
+      "akteur": "veranstalter",
+      "label": {
+        "de": "Vorlauffrist beachten (rechtzeitig einreichen)",
+        "en": "Mind the lead time (apply early)",
+        "ls": "Wichtig: Früh genug anmelden"
+      },
+      "beschreibung": {
+        "de": "Gesuche müssen je nach Grösse mehrere Wochen im Voraus eingereicht werden (Grossanlässe deutlich früher).",
+        "en": "Depending on size, applications must be submitted several weeks in advance (large events much earlier).",
+        "ls": "Melden Sie das Fest früh an. Grosse Feste brauchen mehr Zeit."
+      },
+      "dauer_est": { "min": 30, "max": 120, "einheit": "kalendertage", "typ": "durchlauf" },
+      "quelle": "q-stz-bewilligungen"
+    },
+    {
+      "id": "gesuch",
+      "typ": "input",
+      "akteur": "veranstalter",
+      "label": {
+        "de": "Gesuch online einreichen",
+        "en": "Submit application online",
+        "ls": "Sie füllen das Gesuch im Internet aus"
+      },
+      "beschreibung": {
+        "de": "Angaben zu Ort, Datum, erwarteter Teilnehmerzahl, Aufbau, Lärm/Musik, Ausschank und Entsorgung.",
+        "en": "Details on location, date, expected attendance, setup, noise/music, alcohol and waste.",
+        "ls": "Wo, wann, wie viele Leute, Musik, Getränke, Abfall."
+      },
+      "dauer_est": { "min": 30, "max": 90, "einheit": "minuten", "typ": "durchlauf" },
+      "unterlagen": [
+        { "label": { "de": "Situationsplan / Aufbauplan", "en": "Site/setup plan" }, "pflicht": true },
+        { "label": { "de": "Programm und Zeitplan", "en": "Programme and schedule" }, "pflicht": true },
+        { "label": { "de": "Bei Ausschank: Angaben zum Getränkeangebot", "en": "For alcohol service: details of the offering" }, "pflicht": false }
+      ],
+      "quelle": "q-stz-bewilligungen"
+    },
+    {
+      "id": "pruefung",
+      "typ": "prozess",
+      "akteur": "stapo-bew",
+      "label": {
+        "de": "Gesuch prüfen, Fachstellen einholen",
+        "en": "Review application, consult specialist offices"
+      },
+      "dauer_est": { "min": 1, "max": 6, "einheit": "wochen", "typ": "bearbeitung" }
+    },
+    {
+      "id": "mitberichte",
+      "typ": "prozess",
+      "akteur": "fachstellen",
+      "label": {
+        "de": "Fachstellen-Mitberichte (Lärm, Verkehr, Entsorgung, Ausschank)",
+        "en": "Specialist reports (noise, traffic, waste, alcohol)",
+        "ls": "Andere Ämter prüfen mit"
+      },
+      "dauer_est": { "min": 1, "max": 4, "einheit": "wochen", "typ": "bearbeitung" }
+    },
+    {
+      "id": "vollstaendig",
+      "typ": "entscheidung",
+      "akteur": "stapo-bew",
+      "label": {
+        "de": "Unterlagen vollständig / Auflagen klar?",
+        "en": "Documents complete / conditions clear?",
+        "ls": "Sind alle Angaben da?"
+      }
+    },
+    {
+      "id": "nachfordern",
+      "typ": "loop",
+      "akteur": "veranstalter",
+      "label": {
+        "de": "Unterlagen oder Anpassungen nachreichen",
+        "en": "Submit missing documents or adjustments",
+        "ls": "Fehlendes nachreichen"
+      },
+      "dauer_est": { "min": 1, "max": 14, "einheit": "kalendertage", "typ": "durchlauf" }
+    },
+    {
+      "id": "entscheid",
+      "typ": "entscheidung",
+      "akteur": "stapo-bew",
+      "label": {
+        "de": "Bewilligt?",
+        "en": "Approved?",
+        "ls": "Bekommen Sie die Bewilligung?"
+      }
+    },
+    {
+      "id": "verfuegung",
+      "typ": "prozess",
+      "akteur": "stapo-bew",
+      "label": {
+        "de": "Bewilligung mit Auflagen verfügen",
+        "en": "Issue permit with conditions",
+        "ls": "Sie bekommen die Bewilligung mit Regeln"
+      },
+      "beschreibung": {
+        "de": "Bewilligung mit Auflagen (Lärmzeiten, Sicherheit, Reinigung, Verkehr) und Gebühr.",
+        "en": "Permit with conditions (noise hours, safety, cleaning, traffic) and fee."
+      },
+      "dauer_est": { "min": 1, "max": 5, "einheit": "arbeitstage", "typ": "bearbeitung" }
+    },
+    {
+      "id": "gebuehr",
+      "typ": "input",
+      "akteur": "veranstalter",
+      "label": {
+        "de": "Gebühr bezahlen",
+        "en": "Pay the fee",
+        "ls": "Sie zahlen die Gebühr"
+      },
+      "dauer_est": { "min": 1, "max": 20, "einheit": "kalendertage", "typ": "durchlauf" }
+    },
+    {
+      "id": "ende-bewilligt",
+      "typ": "ende",
+      "akteur": "veranstalter",
+      "label": {
+        "de": "Veranstaltung bewilligt",
+        "en": "Event approved",
+        "ls": "Fertig: Das Fest ist erlaubt"
+      }
+    },
+    {
+      "id": "ablehnung",
+      "typ": "prozess",
+      "akteur": "stapo-bew",
+      "label": {
+        "de": "Gesuch ablehnen (mit Begründung)",
+        "en": "Reject application (with reasons)",
+        "ls": "Die Stadt-Polizei sagt: Nein. Und schreibt warum."
+      }
+    },
+    {
+      "id": "einsprache",
+      "typ": "entscheidung",
+      "akteur": "veranstalter",
+      "label": {
+        "de": "Rekurs einreichen?",
+        "en": "File an appeal?",
+        "ls": "Wollen Sie sich beschweren?"
+      }
+    },
+    {
+      "id": "rekurs",
+      "typ": "prozess",
+      "akteur": "statthalter",
+      "label": {
+        "de": "Rekurs beim Statthalteramt",
+        "en": "Appeal to the district governor",
+        "ls": "Beschwerde bei der Kantonsstelle"
+      },
+      "dauer_est": { "min": 1, "max": 6, "einheit": "monate", "typ": "durchlauf" }
+    },
+    {
+      "id": "ende-abgelehnt",
+      "typ": "ende",
+      "akteur": "veranstalter",
+      "label": {
+        "de": "Gesuch rechtskräftig abgelehnt",
+        "en": "Application rejected (final)",
+        "ls": "Das Fest ist nicht erlaubt"
+      }
+    }
+  ],
+  "flow": [
+    { "von": "start", "nach": "frist" },
+    { "von": "frist", "nach": "gesuch" },
+    { "von": "gesuch", "nach": "pruefung" },
+    { "von": "pruefung", "nach": "mitberichte" },
+    { "von": "mitberichte", "nach": "vollstaendig" },
+    { "von": "vollstaendig", "nach": "nachfordern", "bedingung": "nein", "label": { "de": "unvollständig", "en": "incomplete" } },
+    { "von": "nachfordern", "nach": "pruefung" },
+    { "von": "vollstaendig", "nach": "entscheid", "bedingung": "ja", "label": { "de": "vollständig", "en": "complete" } },
+    { "von": "entscheid", "nach": "verfuegung", "bedingung": "ja" },
+    { "von": "entscheid", "nach": "ablehnung", "bedingung": "nein" },
+    { "von": "verfuegung", "nach": "gebuehr" },
+    { "von": "gebuehr", "nach": "ende-bewilligt" },
+    { "von": "ablehnung", "nach": "einsprache" },
+    { "von": "einsprache", "nach": "rekurs", "bedingung": "ja" },
+    { "von": "einsprache", "nach": "ende-abgelehnt", "bedingung": "nein" },
+    { "von": "rekurs", "nach": "entscheid", "label": { "de": "Neubeurteilung", "en": "re-evaluation" } }
+  ],
+  "reife": {
+    "onlineReifegrad": "teil-digital",
+    "medienbrueche": ["separate-zahlung", "erneute-dateneingabe"],
+    "onceOnlyPotenzial": {
+      "de": "Veranstalter-Stammdaten und wiederkehrende Anlässe könnten gespeichert werden, sodass Folgegesuche nicht alles neu erfassen müssen.",
+      "en": "Organiser master data and recurring events could be stored so that follow-up applications need not re-enter everything.",
+      "ls": "Wenn Sie öfter ein Fest machen, müssten Sie die Angaben nicht jedes Mal neu schreiben."
+    },
+    "nutzergruppen": [
+      { "de": "Vereine und Quartierorganisationen", "en": "Associations and neighbourhood groups", "ls": "Vereine und Quartier-Gruppen" },
+      { "de": "Gewerbe / Gastronomie", "en": "Businesses / catering", "ls": "Geschäfte und Restaurants" },
+      { "de": "Private Veranstalter:innen", "en": "Private organisers", "ls": "Einzelne Menschen, die ein Fest machen" }
+    ],
+    "painPoints": [
+      { "de": "Mehrere Fachstellen müssen koordiniert werden; lange Vorlaufzeit.", "en": "Several specialist offices must be coordinated; long lead time.", "ls": "Viele Ämter prüfen mit. Das dauert." },
+      { "de": "Zahlung erfolgt separat per Rechnung.", "en": "Payment happens separately by invoice.", "ls": "Sie zahlen erst später mit einer Rechnung." }
+    ],
+    "improvementIdeas": [
+      { "de": "Ein-Fenster-Gesuch, das alle Fachstellen automatisch einbezieht.", "en": "One-window application that automatically involves all specialist offices.", "ls": "Ein Antrag für alle Ämter auf einmal." },
+      { "de": "Wiederkehrende-Anlass-Profil mit vorbefüllten Angaben.", "en": "Recurring-event profile with pre-filled data.", "ls": "Ein gespeichertes Profil für Feste, die Sie öfter machen." }
+    ],
+    "status": "beobachtet",
+    "wirkungKpi": [
+      { "label": { "de": "Empfohlene Vorlaufzeit", "en": "Recommended lead time", "ls": "Wie früh anmelden" }, "wert": "ab ~30 Tagen, Grossanlässe deutlich früher" },
+      { "label": { "de": "Online-Anteil", "en": "Share online", "ls": "Wie viel geht online" }, "wert": "Gesuch online, Zahlung separat" }
+    ]
+  },
+  "meta": {
+    "erstellt": "2026-06-06",
+    "aktualisiert": "2026-06-06",
+    "maintainer": "malkreide",
+    "lizenz": "CC-BY-4.0"
+  }
+}
