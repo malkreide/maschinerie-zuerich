@@ -1,0 +1,315 @@
+{
+  "$schema": "../../../schemas/opengov-process-schema.json",
+  "id": "sozialhilfe-erstantrag",
+  "version": "0.1.0",
+  "city": "zh",
+  "titel": {
+    "de": "Sozialhilfe beantragen (Erstantrag)",
+    "en": "Apply for social assistance (first application)",
+    "fr": "Demander l'aide sociale (première demande)",
+    "it": "Richiedere l'aiuto sociale (prima domanda)",
+    "ls": "Sozial-Hilfe beantragen"
+  },
+  "kurzbeschreibung": {
+    "de": "Wer den eigenen Lebensunterhalt nicht aus eigenen Mitteln decken kann, kann bei den Sozialen Diensten der Stadt Zürich wirtschaftliche Sozialhilfe beantragen. Zuständig ist das Sozialzentrum des Wohnquartiers. Höhe und Anspruch richten sich nach den SKOS-Richtlinien und dem kantonalen Sozialhilfegesetz.",
+    "en": "People who cannot cover their living costs from their own means can apply for social assistance at the City of Zurich's Social Services. The social centre of one's residential district is responsible. Amount and entitlement follow the SKOS guidelines and the cantonal social assistance act.",
+    "ls": "Sie haben zu wenig Geld zum Leben? Dann können Sie Sozial-Hilfe beantragen. Das machen die Sozialen Dienste der Stadt. Sie gehen zum Sozial-Zentrum in Ihrem Quartier. Dort wird geprüft, ob Sie Hilfe bekommen und wie viel."
+  },
+  "rechtsgrundlagen": [
+    { "bezeichnung": "Sozialhilfegesetz des Kantons Zürich (SHG)", "url": "https://www.zh.ch/de/soziales/sozialhilfe.html" },
+    { "bezeichnung": "SKOS-Richtlinien (Schweizerische Konferenz für Sozialhilfe)", "url": "https://skos.ch/skos-richtlinien" },
+    { "bezeichnung": "Bundesverfassung Art. 12 (Recht auf Hilfe in Notlagen)", "url": "https://www.fedlex.admin.ch/eli/cc/1999/404/de" }
+  ],
+  "quellen": [
+    {
+      "id": "q-stz-sozialhilfe",
+      "titel": "Stadt Zürich – Soziale Dienste / wirtschaftliche Hilfe",
+      "url": "https://www.stadt-zuerich.ch/sd/de/index/ueber_das_departement/organisation/soziale_dienste.html",
+      "abgerufen": "2026-06-06"
+    },
+    {
+      "id": "q-zh-shg",
+      "titel": "Kanton Zürich – Sozialhilfe (Anspruch und Verfahren)",
+      "url": "https://www.zh.ch/de/soziales/sozialhilfe.html",
+      "abgerufen": "2026-06-06"
+    }
+  ],
+  "akteure": [
+    {
+      "id": "person",
+      "label": {
+        "de": "Hilfesuchende Person",
+        "en": "Person seeking assistance",
+        "fr": "Personne demandant de l'aide",
+        "it": "Persona che chiede aiuto",
+        "ls": "Sie (Sie brauchen Hilfe)"
+      },
+      "typ": "antragsteller"
+    },
+    {
+      "id": "sozialzentrum",
+      "label": {
+        "de": "Soziale Dienste – Sozialzentrum des Wohnquartiers",
+        "en": "Social Services – social centre of the residential district",
+        "ls": "Das Sozial-Zentrum in Ihrem Quartier"
+      },
+      "typ": "behoerde",
+      "einheit_ref": "SD-soz"
+    },
+    {
+      "id": "bezirksrat",
+      "label": {
+        "de": "Bezirksrat Zürich (Rekursinstanz)",
+        "en": "District council (appeals body)",
+        "ls": "Eine Stelle vom Kanton für Beschwerden"
+      },
+      "typ": "gericht"
+    }
+  ],
+  "schritte": [
+    {
+      "id": "start",
+      "typ": "start",
+      "akteur": "person",
+      "label": {
+        "de": "Lebensunterhalt nicht gedeckt",
+        "en": "Living costs not covered",
+        "ls": "Ihr Geld reicht nicht zum Leben"
+      }
+    },
+    {
+      "id": "anmeldung",
+      "typ": "input",
+      "akteur": "person",
+      "label": {
+        "de": "Beim Sozialzentrum anmelden (Termin)",
+        "en": "Register at the social centre (appointment)",
+        "ls": "Sie melden sich beim Sozial-Zentrum und bekommen einen Termin"
+      },
+      "beschreibung": {
+        "de": "Anmeldung beim für das Wohnquartier zuständigen Sozialzentrum, telefonisch oder vor Ort. Die Anmeldung ist weitgehend noch nicht digital.",
+        "en": "Registration at the social centre responsible for the residential district, by phone or in person. Largely not yet digital.",
+        "ls": "Sie rufen an oder gehen hin. Das geht noch nicht im Internet."
+      },
+      "dauer_est": { "min": 1, "max": 10, "einheit": "kalendertage", "typ": "durchlauf" },
+      "quelle": "q-stz-sozialhilfe"
+    },
+    {
+      "id": "erstgespraech",
+      "typ": "prozess",
+      "akteur": "sozialzentrum",
+      "label": {
+        "de": "Erstgespräch / Abklärung der Situation",
+        "en": "Intake interview / situation assessment",
+        "ls": "Ein Gespräch über Ihre Lage"
+      },
+      "beschreibung": {
+        "de": "Persönliches Gespräch: Klärung der Notlage, vorrangiger Ansprüche (z. B. Arbeitslosen-, IV-, Ergänzungsleistungen) und des weiteren Vorgehens.",
+        "en": "In-person interview: clarifying the situation, priority entitlements (e.g. unemployment, disability, supplementary benefits) and next steps."
+      },
+      "dauer_est": { "min": 30, "max": 90, "einheit": "minuten", "typ": "durchlauf" }
+    },
+    {
+      "id": "unterlagen",
+      "typ": "input",
+      "akteur": "person",
+      "label": {
+        "de": "Unterlagen und Belege einreichen",
+        "en": "Submit documents and evidence",
+        "ls": "Sie bringen viele Papiere"
+      },
+      "beschreibung": {
+        "de": "Umfangreiche Nachweise zu Einkommen, Vermögen, Wohnkosten und Familiensituation. Häufig in Papierform.",
+        "en": "Extensive proof of income, assets, housing costs and family situation — frequently on paper.",
+        "ls": "Sie zeigen, wie viel Geld Sie haben und ausgeben. Das sind viele Papiere."
+      },
+      "dauer_est": { "min": 1, "max": 14, "einheit": "kalendertage", "typ": "durchlauf" },
+      "unterlagen": [
+        { "label": { "de": "Ausweis und Wohnsitznachweis", "en": "ID and proof of residence" }, "pflicht": true },
+        { "label": { "de": "Mietvertrag und Nebenkostenabrechnung", "en": "Tenancy agreement and utility statement" }, "pflicht": true },
+        { "label": { "de": "Kontoauszüge der letzten Monate", "en": "Recent bank statements" }, "pflicht": true },
+        { "label": { "de": "Nachweise zu Einkommen / vorrangigen Leistungen", "en": "Proof of income / priority benefits" }, "pflicht": true },
+        { "label": { "de": "Krankenkassen-Police", "en": "Health insurance policy" }, "pflicht": false }
+      ],
+      "quelle": "q-zh-shg"
+    },
+    {
+      "id": "pruefung",
+      "typ": "prozess",
+      "akteur": "sozialzentrum",
+      "label": {
+        "de": "Anspruch und Unterstützungsbudget prüfen",
+        "en": "Assess entitlement and support budget"
+      },
+      "beschreibung": {
+        "de": "Das Sozialzentrum prüft die Bedürftigkeit und berechnet das Unterstützungsbudget nach SKOS-Richtlinien (Grundbedarf, Wohnkosten, medizinische Grundversorgung).",
+        "en": "The social centre checks neediness and calculates the support budget according to SKOS guidelines (basic needs, housing costs, basic medical care)."
+      },
+      "dauer_est": { "min": 1, "max": 4, "einheit": "wochen", "typ": "bearbeitung" }
+    },
+    {
+      "id": "vollstaendig",
+      "typ": "entscheidung",
+      "akteur": "sozialzentrum",
+      "label": {
+        "de": "Unterlagen vollständig?",
+        "en": "Documents complete?",
+        "ls": "Sind alle Papiere da?"
+      }
+    },
+    {
+      "id": "nachreichen",
+      "typ": "loop",
+      "akteur": "person",
+      "label": {
+        "de": "Fehlende Unterlagen nachreichen",
+        "en": "Submit missing documents",
+        "ls": "Fehlendes nachreichen"
+      },
+      "dauer_est": { "min": 1, "max": 14, "einheit": "kalendertage", "typ": "durchlauf" }
+    },
+    {
+      "id": "anspruch",
+      "typ": "entscheidung",
+      "akteur": "sozialzentrum",
+      "label": {
+        "de": "Anspruchsberechtigt?",
+        "en": "Entitled?",
+        "ls": "Haben Sie Anspruch auf Hilfe?"
+      }
+    },
+    {
+      "id": "verfuegung",
+      "typ": "prozess",
+      "akteur": "sozialzentrum",
+      "label": {
+        "de": "Unterstützung verfügen (Höhe und Auflagen)",
+        "en": "Grant support (amount and conditions)",
+        "ls": "Das Amt entscheidet: Sie bekommen Hilfe"
+      },
+      "beschreibung": {
+        "de": "Schriftliche Verfügung über die laufende Unterstützung, allfällige Auflagen (z. B. Stellensuche) und die Mitwirkungspflichten.",
+        "en": "Written decision on the ongoing support, any conditions (e.g. job search) and the duties to cooperate."
+      },
+      "dauer_est": { "min": 1, "max": 5, "einheit": "arbeitstage", "typ": "bearbeitung" }
+    },
+    {
+      "id": "auszahlung",
+      "typ": "prozess",
+      "akteur": "sozialzentrum",
+      "label": {
+        "de": "Monatliche Auszahlung und Begleitung",
+        "en": "Monthly payment and case support",
+        "ls": "Sie bekommen jeden Monat Geld und Begleitung"
+      },
+      "beschreibung": {
+        "de": "Laufende Auszahlung der wirtschaftlichen Hilfe; persönliche Beratung und periodische Überprüfung der Situation.",
+        "en": "Ongoing payment of economic assistance; personal counselling and periodic review of the situation."
+      },
+      "dauer_est": { "min": 1, "max": 1, "einheit": "monate", "typ": "durchlauf" }
+    },
+    {
+      "id": "ende-bewilligt",
+      "typ": "ende",
+      "akteur": "person",
+      "label": {
+        "de": "Sozialhilfe läuft",
+        "en": "Social assistance in place",
+        "ls": "Fertig: Sie bekommen Sozial-Hilfe"
+      }
+    },
+    {
+      "id": "ablehnung",
+      "typ": "prozess",
+      "akteur": "sozialzentrum",
+      "label": {
+        "de": "Antrag ablehnen (mit Begründung)",
+        "en": "Reject application (with reasons)",
+        "ls": "Das Amt sagt: Nein. Und schreibt warum."
+      }
+    },
+    {
+      "id": "einsprache",
+      "typ": "entscheidung",
+      "akteur": "person",
+      "label": {
+        "de": "Rekurs einreichen?",
+        "en": "File an appeal?",
+        "ls": "Wollen Sie sich beschweren?"
+      }
+    },
+    {
+      "id": "rekurs",
+      "typ": "prozess",
+      "akteur": "bezirksrat",
+      "label": {
+        "de": "Rekurs beim Bezirksrat",
+        "en": "Appeal to the district council",
+        "ls": "Beschwerde bei der Kantonsstelle"
+      },
+      "dauer_est": { "min": 1, "max": 6, "einheit": "monate", "typ": "durchlauf" }
+    },
+    {
+      "id": "ende-abgelehnt",
+      "typ": "ende",
+      "akteur": "person",
+      "label": {
+        "de": "Antrag rechtskräftig abgelehnt",
+        "en": "Application rejected (final)",
+        "ls": "Sie bekommen keine Sozial-Hilfe"
+      }
+    }
+  ],
+  "flow": [
+    { "von": "start", "nach": "anmeldung" },
+    { "von": "anmeldung", "nach": "erstgespraech" },
+    { "von": "erstgespraech", "nach": "unterlagen" },
+    { "von": "unterlagen", "nach": "pruefung" },
+    { "von": "pruefung", "nach": "vollstaendig" },
+    { "von": "vollstaendig", "nach": "nachreichen", "bedingung": "nein", "label": { "de": "unvollständig", "en": "incomplete" } },
+    { "von": "nachreichen", "nach": "pruefung" },
+    { "von": "vollstaendig", "nach": "anspruch", "bedingung": "ja", "label": { "de": "vollständig", "en": "complete" } },
+    { "von": "anspruch", "nach": "verfuegung", "bedingung": "ja" },
+    { "von": "anspruch", "nach": "ablehnung", "bedingung": "nein" },
+    { "von": "verfuegung", "nach": "auszahlung" },
+    { "von": "auszahlung", "nach": "ende-bewilligt" },
+    { "von": "ablehnung", "nach": "einsprache" },
+    { "von": "einsprache", "nach": "rekurs", "bedingung": "ja" },
+    { "von": "einsprache", "nach": "ende-abgelehnt", "bedingung": "nein" },
+    { "von": "rekurs", "nach": "anspruch", "label": { "de": "Neubeurteilung", "en": "re-evaluation" } }
+  ],
+  "reife": {
+    "onlineReifegrad": "offline",
+    "medienbrueche": ["persoenliches-erscheinen", "drucken", "erneute-dateneingabe"],
+    "onceOnlyPotenzial": {
+      "de": "Einkommens-, Vermögens- und Mietdaten liegen teils bei anderen Stellen vor (Steueramt, Ausgleichskasse). Aus Datenschutz- und Verhältnismässigkeitsgründen ist eine Automatisierung hier heikel, könnte aber die mehrfache Belegerhebung reduzieren.",
+      "en": "Income, asset and rent data are partly held by other bodies (tax office, compensation fund). Automation is sensitive here for data-protection reasons, but could reduce repeated evidence gathering.",
+      "ls": "Manche Angaben hat die Stadt schon. Aber bei der Sozial-Hilfe muss man dabei besonders auf den Datenschutz achten."
+    },
+    "nutzergruppen": [
+      { "de": "Menschen in finanzieller Notlage", "en": "People in financial hardship", "ls": "Menschen mit zu wenig Geld" },
+      { "de": "Working Poor / Aufstockende", "en": "Working poor / income top-up cases", "ls": "Menschen, die arbeiten und trotzdem zu wenig Geld haben" },
+      { "de": "Personen nach Aussteuerung", "en": "People after unemployment benefits end", "ls": "Menschen ohne Arbeitslosen-Geld" }
+    ],
+    "painPoints": [
+      { "de": "Anmeldung und Gespräche erfordern persönliches Erscheinen; kein durchgängiger Online-Weg.", "en": "Registration and interviews require appearing in person; no end-to-end online path.", "ls": "Sie müssen persönlich hingehen. Online geht es nicht." },
+      { "de": "Sehr umfangreiche Belegpflicht, oft in Papierform.", "en": "Very extensive documentation duties, often on paper.", "ls": "Sie müssen sehr viele Papiere bringen." },
+      { "de": "Hürde und Stigmatisierung halten Berechtigte teils von der Beantragung ab.", "en": "Barriers and stigma sometimes deter eligible people from applying.", "ls": "Manche Menschen trauen sich nicht, Hilfe zu holen." }
+    ],
+    "improvementIdeas": [
+      { "de": "Digitale Erstanmeldung und sicherer Dokument-Upload als Ergänzung zum persönlichen Gespräch.", "en": "Digital initial registration and secure document upload to complement the in-person interview.", "ls": "Eine erste Anmeldung im Internet, zusätzlich zum Gespräch." },
+      { "de": "Klare, mehrsprachige Übersicht über benötigte Unterlagen vorab.", "en": "Clear multilingual overview of required documents in advance.", "ls": "Vorher klar sagen, welche Papiere man braucht — in mehreren Sprachen." }
+    ],
+    "status": "beobachtet",
+    "wirkungKpi": [
+      { "label": { "de": "Zeit bis erste Auszahlung", "en": "Time to first payment", "ls": "Wie lange bis zum ersten Geld" }, "wert": "wenige Wochen (situationsabhängig)" },
+      { "label": { "de": "Online-Anteil", "en": "Share online", "ls": "Wie viel geht online" }, "wert": "kein durchgängiger Online-Weg" }
+    ]
+  },
+  "meta": {
+    "erstellt": "2026-06-06",
+    "aktualisiert": "2026-06-06",
+    "maintainer": "malkreide",
+    "lizenz": "CC-BY-4.0"
+  }
+}
