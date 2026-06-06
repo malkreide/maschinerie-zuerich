@@ -10,6 +10,8 @@ import { notFound } from 'next/navigation';
 import { routing, type Locale } from '@/i18n/routing';
 import { loadStadtData } from '@/lib/data';
 import { searchLebenslagen, resolveContent } from '@/lib/search';
+import { buildProzessSlugMap } from '@/lib/prozesse';
+import { resolveI18n, type ProzessLocale } from '@/types/prozess';
 import { getT } from '@/lib/i18n-server';
 import { ZIELGRUPPEN } from '@/types/stadt';
 import type { Department, Unit, Beteiligung, StadtData, LebenslageLocale, Zielgruppe, Lebenslage } from '@/types/stadt';
@@ -37,6 +39,8 @@ export default async function AnliegenPage({
   const data = await loadStadtData();
   const lebLocale = locale as LebenslageLocale;
   const allLeb = data.lebenslagen ?? [];
+  // Auflösungstabelle für die explizite Lebenslage→Verfahren-Verknüpfung.
+  const prozessMap = await buildProzessSlugMap();
 
   // Aktiver Zielgruppen-Filter (nur gültige Taxonomie-Werte zählen).
   const zg = (ZIELGRUPPEN as readonly string[]).includes(zgRaw ?? '')
@@ -143,11 +147,15 @@ export default async function AnliegenPage({
           <ul className="grid gap-3 max-w-[70ch] list-none m-0 p-0">
             {matches.map((l) => {
               const item = findItem(data, l.zustaendig);
+              // Explizit verknüpfte, tatsächlich vorhandene Verfahren.
+              const linkedProz = (l.prozesse ?? [])
+                .map((slug) => prozessMap[slug])
+                .filter((p): p is NonNullable<typeof p> => Boolean(p));
               return (
                 <li key={l.id} className="bg-[var(--color-panel)] rounded-lg shadow border border-[var(--color-line)]">
                   <Link
                     href={{ pathname: '/', query: { focus: l.zustaendig } }}
-                    className="block p-4 no-underline text-[var(--color-ink)] hover:bg-[var(--color-bg)] rounded-lg"
+                    className="block p-4 no-underline text-[var(--color-ink)] hover:bg-[var(--color-bg)] rounded-t-lg"
                   >
                     <div className="font-semibold text-base mb-1">{l.frage}</div>
                     {l.antwort && (
@@ -157,6 +165,20 @@ export default async function AnliegenPage({
                       → {item?.name ?? l.zustaendig}
                     </div>
                   </Link>
+                  {linkedProz.length > 0 && (
+                    <div className="px-4 pb-3 flex flex-wrap gap-2">
+                      {linkedProz.map((pe) => (
+                        <Link
+                          key={pe.slug}
+                          href={{ pathname: `/prozesse/${pe.city}/${pe.id}` }}
+                          className="inline-flex items-center gap-1 text-[12px] px-2 py-1 rounded-full border border-[var(--color-accent)] text-[var(--color-accent)] no-underline hover:bg-[var(--color-accent)] hover:text-white transition-colors"
+                        >
+                          <span aria-hidden>⚙</span>
+                          {t('relatedProcess')}: {resolveI18n(pe.titel, locale as ProzessLocale)}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
                 </li>
               );
             })}

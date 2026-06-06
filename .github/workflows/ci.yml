@@ -61,6 +61,14 @@ jobs:
                 if (!Array.isArray(e.zielgruppen) || e.zielgruppen.length === 0) problems.push(e.id + ': zielgruppen muss ein nicht-leeres Array sein');
                 else for (const z of e.zielgruppen) if (!ZIELGRUPPEN.has(z)) problems.push(e.id + ': unbekannte zielgruppe ' + z);
               }
+              // Explizite Prozess-Verknüpfungen müssen auf vorhandene Verfahren zeigen.
+              if (e.prozesse !== undefined) {
+                if (!Array.isArray(e.prozesse)) problems.push(e.id + ': prozesse muss ein Array sein');
+                else for (const slug of e.prozesse) {
+                  if (!/^[a-z0-9-]+\/[a-z0-9-]+$/.test(slug)) { problems.push(e.id + ': ungueltiger prozess-slug ' + slug); continue; }
+                  if (!require('fs').existsSync('stadt-zuerich-next/data/prozesse/' + slug + '.json')) problems.push(e.id + ': prozess-referenz ohne Datei: ' + slug);
+                }
+              }
               // Jede VORHANDENE (non-null) Locale muss vollständig sein —
               // verhindert kaputte Teilübersetzungen. Fehlt eine Locale ganz
               // (null/undefined), ist das ok: die Suche fällt auf de zurück.

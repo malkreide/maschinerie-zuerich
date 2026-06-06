@@ -15,11 +15,12 @@ import { routing, type Locale } from '@/i18n/routing';
 import { getT } from '@/lib/i18n-server';
 import { loadProzess, listProzessParams } from '@/lib/prozesse';
 import { loadStadtData } from '@/lib/data';
+import { resolveContent } from '@/lib/search';
 import { city as cityConfig } from '@/config/city.config';
 import { layoutProzess } from '@/lib/prozess-layout';
 import { prozessToJsonLd } from '@/lib/prozess-jsonld';
 import { resolveI18n, type ProzessLocale, type Dauer } from '@/types/prozess';
-import type { Department, Unit, Beteiligung, StadtData } from '@/types/stadt';
+import type { Department, Unit, Beteiligung, StadtData, LebenslageLocale, Lebenslage, LebenslageContent } from '@/types/stadt';
 import ProzessFlow, {
   type ProzessFlowSchritt,
   type ProzessFlowKante,
@@ -103,6 +104,14 @@ export default async function ProzessDetailPage({
   // können einheit_ref gegen das Org-Chart auflösen. Prozesse anderer
   // Städte (falls irgendwann mitverwaltet) behalten plain-Text-Swimlanes.
   const stadtData = city === cityConfig.id ? await loadStadtData() : null;
+
+  // Reverse der expliziten Verknüpfung: Welche Lebenslagen führen zu diesem
+  // Verfahren? (lebenslage.prozesse[] enthält den Slug "<city>/<id>".)
+  const prozessSlug = `${city}/${id}`;
+  const relatedLebenslagen = (stadtData?.lebenslagen ?? [])
+    .filter((l) => l.prozesse?.includes(prozessSlug))
+    .map((l) => ({ l, c: resolveContent(l, lebLoc as unknown as LebenslageLocale) }))
+    .filter((x): x is { l: Lebenslage; c: LebenslageContent } => x.c != null);
 
   // Akteur-ID → { label, einheitHref?, einheitName? }-Map
   const akteurInfo = new Map<string, { label: string; einheitHref?: string; einheitName?: string }>();
@@ -200,6 +209,28 @@ export default async function ProzessDetailPage({
 
       <h2 id="prozess-heading" className="text-lg font-semibold mb-1">{titel}</h2>
       {kurz && <p className="text-[13px] text-[var(--color-mute)] mb-4 max-w-[80ch]">{kurz}</p>}
+
+      {relatedLebenslagen.length > 0 && (
+        <section aria-labelledby="related-anliegen-heading" className="max-w-[80ch] mb-5">
+          <h3
+            id="related-anliegen-heading"
+            className="text-[11px] uppercase tracking-wider text-[var(--color-mute)] mb-2"
+          >
+            {t('relatedLebenslagenHeading')}
+          </h3>
+          <div className="flex flex-wrap gap-2">
+            {relatedLebenslagen.map(({ l, c }) => (
+              <Link
+                key={l.id}
+                href={{ pathname: '/anliegen', query: { q: c.stichworte[0] ?? c.frage } }}
+                className="inline-flex items-center gap-1 text-[12px] px-2 py-1 rounded-full border border-[var(--color-line)] bg-[var(--color-panel)] text-[var(--color-ink)] no-underline hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors"
+              >
+                {c.frage}
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       <div className="mb-6">
         <ProzessFlow
