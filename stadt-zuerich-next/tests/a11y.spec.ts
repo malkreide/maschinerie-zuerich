@@ -1,0 +1,59 @@
+import { test, expect } from '@playwright/test';
+import AxeBuilder from '@axe-core/playwright';
+import type { Result } from 'axe-core';
+
+// Accessibility-Smoke-Tests als Release-Gate (Strategie: Barrierefreiheit ist
+// Grundbedingung, kein Feature). Wir prüfen die Hauptseiten mit axe-core gegen
+// WCAG 2.0/2.1 A + AA.
+//
+// Gate-Schwelle: 'serious' + 'critical' lassen den Test scheitern. 'moderate'
+// und 'minor' werden nur geloggt — so ist der Gate von Anfang an durchsetzbar
+// und kann später verschärft werden, ohne dass das Repo daran erstickt.
+
+const WCAG_TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'];
+const BLOCKING_IMPACTS = new Set(['serious', 'critical']);
+
+// Locale-präfixierte Routen (localePrefix: 'always'). '/' redirectet auf '/de'.
+const ROUTES = [
+  '/de',
+  '/de/liste',
+  '/de/anliegen',
+  '/de/steuerfranken',
+  '/de/prozesse',
+  '/de/prozesse/zh/anwohnerparkkarte',
+];
+
+function summarize(route: string, violations: Result[]): string {
+  const lines = [`a11y-Verstösse auf ${route}:`];
+  for (const v of violations) {
+    lines.push(`  [${v.impact}] ${v.id}: ${v.help}`);
+    lines.push(`    → ${v.helpUrl}`);
+    for (const node of v.nodes.slice(0, 5)) {
+      lines.push(`    • ${node.target.join(' ')}`);
+    }
+  }
+  return lines.join('\n');
+}
+
+for (const route of ROUTES) {
+  test(`a11y: ${route}`, async ({ page }) => {
+    await page.goto(route);
+    // Auf den Haupt-Landmark warten, damit Client-Komponenten gerendert sind.
+    await page.locator('main').first().waitFor({ state: 'attached', timeout: 15_000 });
+
+    const results = await new AxeBuilder({ page }).withTags(WCAG_TAGS).analyze();
+
+    const blocking = results.violations.filter((v) => BLOCKING_IMPACTS.has(v.impact ?? ''));
+    const advisory = results.violations.filter((v) => !BLOCKING_IMPACTS.has(v.impact ?? ''));
+
+    if (advisory.length) {
+      console.log(`ℹ︎ ${route}: ${advisory.length} nicht-blockierende Hinweise (moderate/minor): ` +
+        advisory.map((v) => v.id).join(', '));
+    }
+    if (blocking.length) {
+      console.log(summarize(route, blocking));
+    }
+
+    expect(blocking, `${blocking.length} serious/critical a11y-Verstösse auf ${route}`).toEqual([]);
+  });
+}
