@@ -33,6 +33,7 @@
     "simulator": "Simulator",
     "list": "List",
     "prozesse": "Processes",
+    "roadmap": "Roadmap",
     "quartier": "City Districts",
     "territory": "Locations",
     "darkOn": "Activate dark theme",
@@ -91,6 +92,20 @@
     "privacy": "Please don't enter personal data. We don't store names, email or IP addresses; emails and longer numbers are removed automatically.",
     "skip": "Send without details",
     "submit": "Send"
+  },
+  "Roadmap": {
+    "title": "Roadmap",
+    "intro": "What happens to feedback and suggestions — by status, from the public GitHub issues. No names or personal data.",
+    "status": {
+      "eingegangen": "Received",
+      "geprueft": "Reviewed",
+      "in-umsetzung": "In progress",
+      "umgesetzt": "Done"
+    },
+    "empty": "No public entries yet.",
+    "columnEmpty": "Nothing here.",
+    "unavailable": "The roadmap is currently unavailable.",
+    "viewOnGithub": "View on GitHub →"
   },
   "Anliegen": {
     "title": "Search citizen concerns",

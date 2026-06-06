@@ -23,6 +23,7 @@
     "probe:search-miss": "node scripts/probe-search-miss.mjs",
     "probe:feedback": "node scripts/probe-feedback.mjs",
     "probe:feedback-issue": "node scripts/probe-feedback-issue.mjs",
+    "probe:roadmap": "node scripts/probe-roadmap.mjs",
     "test:a11y": "playwright test"
   },
   "dependencies": {

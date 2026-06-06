@@ -33,6 +33,7 @@
     "simulator": "Geld-Spiel",
     "list": "Liste",
     "prozesse": "Abläufe",
+    "roadmap": "Verbesserungen",
     "quartier": "Stadtteile",
     "territory": "Orte",
     "darkOn": "Dunkles Bild einschalten",
@@ -91,6 +92,20 @@
     "privacy": "Bitte schreiben Sie keine persönlichen Daten. Wir speichern keinen Namen, keine E-Mail und keine IP-Adresse.",
     "skip": "Ohne Text senden",
     "submit": "Senden"
+  },
+  "Roadmap": {
+    "title": "Was wir verbessern",
+    "intro": "Hier sehen Sie, was aus Rückmeldungen wird. Geordnet nach Stand. Ohne Namen. Die Daten kommen von GitHub.",
+    "status": {
+      "eingegangen": "Neu",
+      "geprueft": "Geprüft",
+      "in-umsetzung": "Wird gemacht",
+      "umgesetzt": "Fertig"
+    },
+    "empty": "Noch nichts da.",
+    "columnEmpty": "Hier ist nichts.",
+    "unavailable": "Die Liste ist gerade nicht da.",
+    "viewOnGithub": "Auf GitHub ansehen →"
   },
   "Anliegen": {
     "title": "Was wollen Sie tun?",

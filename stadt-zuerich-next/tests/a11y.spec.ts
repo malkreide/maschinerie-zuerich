@@ -26,6 +26,7 @@ const ROUTES = [
   '/de/steuerfranken',
   '/de/prozesse',
   '/de/prozesse/zh/anwohnerparkkarte',
+  '/de/roadmap',
 ];
 
 function summarize(route: string, violations: Result[]): string {
