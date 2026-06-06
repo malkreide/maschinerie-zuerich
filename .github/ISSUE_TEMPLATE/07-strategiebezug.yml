@@ -1,0 +1,91 @@
+name: "🎯 Strategiebezug"
+description: "Ein Anliegen mit einem Ziel/einer Empfehlung der Strategieanalyse verknüpfen — macht Issues als Roadmap-Input zitierbar."
+title: "[Strategie]: "
+labels: ["strategiebezug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Vom Anliegen zur Roadmap
+
+        Dieses Template verknüpft ein konkretes Anliegen mit der
+        **Strategieanalyse** und der öffentlichen **Roadmap**
+        (`/roadmap` in der App). So wird sichtbar, auf welches Ziel ein
+        Issue einzahlt — und das Projekt bleibt nachvollziehbar an der
+        Strategie ausgerichtet.
+
+        Für reine App-Bugs, Prozessvorschläge oder fehlende Lebenslagen
+        gibt es passendere Templates — wähle dieses nur, wenn der
+        **Strategie- bzw. Roadmap-Bezug** im Vordergrund steht.
+
+  - type: dropdown
+    id: bereich
+    attributes:
+      label: Strategie-Bereich
+      description: Worauf zahlt das Anliegen primär ein?
+      options:
+        - "Datenintegrität (Schema, Provenienz, keine Mockdaten)"
+        - "Lebenslagen & Suche (Mehrsprachigkeit, Zielgruppen)"
+        - "Prozesse (digitale Reife, Vereinfachung)"
+        - "Barrierefreiheit (a11y)"
+        - "Open Data (APIs, Datenkatalog, Geodaten, Beteiligungen)"
+        - "Beteiligung (Feedback, Mitwirkung, Roadmap)"
+        - "Governance (Prozesse, Labels, Templates)"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: prioritaet
+    attributes:
+      label: Eingeschätzte Priorität
+      description: Grobe Einordnung — das Triage kann sie anpassen.
+      options:
+        - "P0 – Datenintegrität / Blocker"
+        - "P1 – Kernnutzen"
+        - "P2 – Ausbau"
+        - "unklar"
+    validations:
+      required: true
+
+  - type: input
+    id: roadmap
+    attributes:
+      label: Bezug zur Roadmap / Strategieanalyse
+      description: Welcher Punkt? Wenn möglich Titel oder Link (z. B. /roadmap, ein bestehendes Issue, ein Abschnitt der Analyse).
+      placeholder: "z. B. 'Phase 3.2 – weitere Verfahren modellieren' oder '#69 Öffentliche Roadmap'"
+    validations:
+      required: false
+
+  - type: textarea
+    id: beobachtung
+    attributes:
+      label: Beobachtung / Lücke
+      description: Was fehlt oder weicht vom Strategieziel ab? So konkret wie möglich.
+      placeholder: |
+        Beispiel:
+        "Die Strategie fordert durchgängige Mehrsprachigkeit, aber die
+         Prozess-Detailseiten haben für mehrere Schritte kein FR/IT."
+    validations:
+      required: true
+
+  - type: textarea
+    id: wirkung
+    attributes:
+      label: Vorschlag & erwartete Wirkung
+      description: Was sollte geschehen, und welchen Nutzen bringt es bezogen auf das Strategieziel?
+      placeholder: |
+        Beispiel:
+        "FR/IT für die Schritt-Labels ergänzen → erfüllt das Mehrsprachig-
+         keitsziel und macht die Prozesse für mehr Einwohner:innen nutzbar."
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: konsens
+    attributes:
+      label: Bestätigungen
+      options:
+        - label: Ich verstehe, dass dieses Issue **öffentlich** dokumentiert wird.
+          required: true
+        - label: Der Strategie-/Roadmap-Bezug steht im Vordergrund (kein reiner App-Bug).
+          required: true

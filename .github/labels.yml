@@ -1,0 +1,79 @@
+# Versioniertes Label-Set des Repos — Single Source of Truth.
+#
+# Wird vom Workflow .github/workflows/labels.yml nach GitHub synchronisiert
+# (nur anlegen/aktualisieren, nie löschen). So bleiben Labels reproduzierbar
+# und nachvollziehbar statt manuell gepflegt.
+#
+# Drei Gruppen:
+#   prio:*       — Priorität gemäss Strategieanalyse (P0 = Blocker/Integrität)
+#   strategie:*  — Strategie-Bereich, auf den ein Issue einzahlt
+#   (funktional) — bestehende Arbeits-Labels der Issue-Templates
+
+# ─── Priorität (Strategieanalyse) ───────────────────────────────────────────
+- name: "prio:P0"
+  color: "b60205"
+  description: "Priorität 0 – Datenintegrität / Blocker"
+- name: "prio:P1"
+  color: "d93f0b"
+  description: "Priorität 1 – Kernnutzen (Lebenslagen, Suche, a11y)"
+- name: "prio:P2"
+  color: "fbca04"
+  description: "Priorität 2 – Ausbau (Open Data, Beteiligung)"
+
+# ─── Strategie-Bereiche ─────────────────────────────────────────────────────
+- name: "strategiebezug"
+  color: "5319e7"
+  description: "Bezieht sich auf ein Ziel/Empfehlung der Strategieanalyse (siehe Roadmap)"
+- name: "strategie:datenintegritaet"
+  color: "1d76db"
+  description: "Datenqualität, Schema, Provenienz, keine unmarkierten Mockdaten"
+- name: "strategie:lebenslagen"
+  color: "1d76db"
+  description: "Lebenslagen, Suche, Mehrsprachigkeit, Zielgruppen"
+- name: "strategie:prozesse"
+  color: "1d76db"
+  description: "Verwaltungsprozesse, digitale Reife, Vereinfachung"
+- name: "strategie:barrierefreiheit"
+  color: "1d76db"
+  description: "Accessibility / a11y-Gate"
+- name: "strategie:open-data"
+  color: "1d76db"
+  description: "Offene APIs, Datenkatalog, Geodaten, Beteiligungen"
+- name: "strategie:beteiligung"
+  color: "1d76db"
+  description: "Feedback, Mitwirkung, öffentliche Roadmap"
+- name: "strategie:governance"
+  color: "1d76db"
+  description: "Prozesse, Labels, Templates, Beitrags-Governance"
+
+# ─── Funktionale Arbeits-Labels (von den Issue-Templates verwendet) ─────────
+- name: "bug"
+  color: "d73a4a"
+  description: "Fehlfunktion in der App"
+- name: "enhancement"
+  color: "a2eeef"
+  description: "Verbesserung / neues Feature"
+- name: "app"
+  color: "c5def5"
+  description: "Web-App / Frontend"
+- name: "daten"
+  color: "0e8a16"
+  description: "Daten (Org-Chart, Lebenslagen, Prozesse)"
+- name: "verwaltung"
+  color: "0e8a16"
+  description: "Inhaltlich zur Verwaltungslogik"
+- name: "logik-bug"
+  color: "e11d21"
+  description: "Falsch abgebildete Verwaltungslogik"
+- name: "vereinfachung"
+  color: "0e8a16"
+  description: "Vorschlag zur Prozessvereinfachung"
+- name: "lebenslage"
+  color: "0e8a16"
+  description: "Lebenslagen-Mapping"
+- name: "zustaendigkeit"
+  color: "fbca04"
+  description: "Zuständigkeit / Behörden-Zuordnung"
+- name: "good first issue"
+  color: "7057ff"
+  description: "Guter Einstieg für neue Mitwirkende"

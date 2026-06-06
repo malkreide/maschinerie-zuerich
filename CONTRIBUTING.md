@@ -45,8 +45,18 @@ allerdings der offizielle Kanal der richtige — das Issue-Repo ist für
 | **Leichte-Sprache-Review** | Issue mit Kommentar zu einer konkreten Datei in `messages/ls.json` |
 | 🐛 **App-Bug** (technischer Fehler) | Issue via Template "Technischer App-Bug" |
 | ✨ **App-Feature** | Issue via Template "Feature-Idee" |
+| 🎯 **Strategiebezug** (Anliegen mit Roadmap-Ziel verknüpfen) | Issue via Template "Strategiebezug" |
 | 📊 **Daten-Pflege** (nach Wahlen, Reorganisationen) | PR gegen [`scripts/mapping/institution-mapping.json`](stadt-zuerich-next/scripts/mapping/institution-mapping.json) + ggf. `data/zh/org-chart.json` |
 | 🏙️ **Adaption für andere Stadt** | Fork + `npm run scaffold:city <id> "<name>"` — Details in [PORTING.md](stadt-zuerich-next/PORTING.md) |
+
+### Strategie-Labels
+
+Damit Issues an der Strategieanalyse und der öffentlichen [Roadmap](stadt-zuerich-next/app/[locale]/(main)/roadmap) ausgerichtet bleiben, gibt es ein
+versioniertes Label-Set ([`.github/labels.yml`](.github/labels.yml), synchronisiert per Workflow):
+
+- **`prio:P0` / `prio:P1` / `prio:P2`** — Priorität (P0 = Datenintegrität/Blocker).
+- **`strategie:*`** — Bereich (datenintegritaet, lebenslagen, prozesse, barrierefreiheit, open-data, beteiligung, governance).
+- **`strategiebezug`** — wird vom Template „Strategiebezug" automatisch gesetzt.
 
 ## Entwicklungs-Setup
 
