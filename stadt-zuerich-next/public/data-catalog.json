@@ -29,7 +29,8 @@
       "qualityWarnings": [
         "Strukturdaten sind prototypisch – vor Go-Live mit aktuellem Organigramm abgleichen.",
         "FTE-Werte sind primär Schätzungen; nur einzelne Einheiten haben publizierte Werte.",
-        "Beteiligungen tragen aktuell keine Budget-/FTE-Werte."
+        "Beteiligungen tragen aktuell keine Budget-/FTE-Werte.",
+        "Beteiligungen sind kategorial klassifiziert (Rechtsform, Beteiligungsart, Sektor, Zweck); exakte Eigentumsanteile sind bewusst nicht erfasst."
       ]
     },
     {
