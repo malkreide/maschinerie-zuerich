@@ -160,7 +160,8 @@
     "resultsCount": "{count, plural, one {# Treffer} other {# Treffer}} für „{query}\"",
     "popularHeading": "Häufige Anliegen",
     "placeholder": "z. B. Hund anmelden, Pass, Sozialhilfe…",
-    "relatedProcess": "Verfahren ansehen"
+    "relatedProcess": "Verfahren ansehen",
+    "weitereStellen": "Weitere beteiligte Stellen"
   },
   "Treemap": {
     "title": "Wohin geht mein Steuerfranken?",
@@ -222,6 +223,7 @@
     "fteUnitPublished": "{value} {einheit} (publiziert)",
     "fteEstimateText": "~{value} (Schätzung: Personalaufwand ÷ {amount} CHF)",
     "relatedProzesseHeading": "An folgenden Verfahren beteiligt",
+    "relatedLebenslagenHeading": "Anliegen, die hierher führen",
     "perCapitaLabel": "Pro Einwohner",
     "perCapitaValue": "≈ {value}",
     "perCapitaTitle": "Aufwand pro Kopf — Aufwand geteilt durch ständige Wohnbevölkerung der Stadt",

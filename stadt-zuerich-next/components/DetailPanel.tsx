@@ -52,6 +52,14 @@ export interface RelatedProzess {
   titel: string;
 }
 
+/** Vorberechnete Lebenslage-Referenz pro Einheit (N:M-Reverse). `term` ist der
+ *  Suchbegriff für den Sprung in die Anliegen-Suche. */
+export interface RelatedLebenslage {
+  id: string;
+  frage: string;
+  term: string;
+}
+
 type BudgetNumericalKeys = 'aufwand' | 'ertrag' | 'nettoaufwand';
 
 function Sparkline({ data, dataKey }: { data?: Budget[]; dataKey: BudgetNumericalKeys }) {
@@ -83,9 +91,11 @@ function Sparkline({ data, dataKey }: { data?: Budget[]; dataKey: BudgetNumerica
 export default function DetailPanel({
   data,
   relatedProzesse,
+  relatedLebenslagen,
 }: {
   data: StadtData;
   relatedProzesse?: Record<string, RelatedProzess[]>;
+  relatedLebenslagen?: Record<string, RelatedLebenslage[]>;
 }) {
   const t = useTranslations('Detail');
   const tType = useTranslations('Type');
@@ -193,6 +203,11 @@ export default function DetailPanel({
         relatedProzesse={relatedProzesse}
         t={t}
       />
+      <RelatedLebenslagenSection
+        selectedId={selectedId}
+        relatedLebenslagen={relatedLebenslagen}
+        t={t}
+      />
       <ParlamentsGeschaefte departmentName={item.name} />
       <div className="mt-2.5">
         <a
@@ -235,6 +250,41 @@ function RelatedProzesseSection({
               className="text-[var(--color-accent)] no-underline hover:underline"
             >
               {p.titel} →
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+/** N:M-Reverse: Anliegen/Lebenslagen, die diese Einheit betreffen — direkt
+ *  (zuständig) oder über ein verlinktes Verfahren. Link führt in die
+ *  Anliegen-Suche. */
+function RelatedLebenslagenSection({
+  selectedId,
+  relatedLebenslagen,
+  t,
+}: {
+  selectedId: string;
+  relatedLebenslagen?: Record<string, RelatedLebenslage[]>;
+  t: T;
+}) {
+  const list = relatedLebenslagen?.[selectedId];
+  if (!list || list.length === 0) return null;
+  return (
+    <div className="mt-3 pt-2.5 border-t border-[var(--color-line)]">
+      <div className="text-[var(--color-mute)] text-[11px] uppercase tracking-wider mb-1.5">
+        {t('relatedLebenslagenHeading')}
+      </div>
+      <ul className="space-y-1">
+        {list.map((l) => (
+          <li key={l.id}>
+            <Link
+              href={{ pathname: '/anliegen', query: { q: l.term } }}
+              className="text-[var(--color-accent)] no-underline hover:underline"
+            >
+              {l.frage} →
             </Link>
           </li>
         ))}

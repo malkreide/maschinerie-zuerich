@@ -136,6 +136,39 @@ export async function buildProzessSlugMap(): Promise<Record<string, ProzessIndex
   return map;
 }
 
+/**
+ * slug ("<city>/<id>") → Liste der beteiligten Org-Einheiten (akteure[].einheit_ref).
+ * Grundlage für die N:M-Brücke Lebenslage ↔ Prozess ↔ Einheit(en): über die
+ * verlinkten Prozesse einer Lebenslage lassen sich alle beteiligten Stellen
+ * ableiten, nicht nur die primär zuständige.
+ */
+export async function buildProzessEinheitenMap(): Promise<Record<string, string[]>> {
+  const root = prozessRoot();
+  let cities: string[];
+  try { cities = await fs.readdir(root); } catch { return {}; }
+  const map: Record<string, string[]> = {};
+  for (const city of cities) {
+    const cityDir = path.join(root, city);
+    const st = await fs.stat(cityDir).catch(() => null);
+    if (!st?.isDirectory()) continue;
+    for (const file of await fs.readdir(cityDir)) {
+      if (!file.endsWith('.json')) continue;
+      try {
+        const raw = await fs.readFile(path.join(cityDir, file), 'utf-8');
+        const p = JSON.parse(raw) as Prozess;
+        if (validateProzess(p).length > 0) continue;
+        const units = Array.from(
+          new Set((p.akteure ?? []).map((a) => a.einheit_ref).filter((x): x is string => Boolean(x))),
+        );
+        map[`${p.city}/${p.id}`] = units;
+      } catch {
+        // skip file silently
+      }
+    }
+  }
+  return map;
+}
+
 /** Für generateStaticParams in app/[locale]/prozesse/[city]/[id]/page.tsx */
 export async function listProzessParams(): Promise<Array<{ city: string; id: string }>> {
   const entries = await listProzesse();
