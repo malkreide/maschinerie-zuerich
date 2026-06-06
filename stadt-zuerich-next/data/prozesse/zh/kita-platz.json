@@ -11,9 +11,9 @@
     "ls": "Kita-Platz und Betreuungs-Gutschein"
   },
   "kurzbeschreibung": {
-    "de": "Eltern in der Stadt Zürich suchen einen Platz in einer Kindertagesstätte und beantragen beim Schulamt einen einkommensabhängigen Betreuungsgutschein, der den Elternbeitrag senkt. Der Gutschein wird direkt an die Kita ausbezahlt.",
-    "en": "Parents in the City of Zurich find a daycare place and apply to the school office for an income-based childcare voucher that lowers their contribution. The subsidy is paid directly to the daycare centre.",
-    "ls": "Sie brauchen einen Platz für Ihr Kind in einer Kita? Sie suchen zuerst einen Platz. Dann können Sie beim Schul-Amt einen Gutschein beantragen. Der Gutschein macht die Kita günstiger. Wie viel Sie bekommen, hängt von Ihrem Lohn ab."
+    "de": "Eltern in der Stadt Zürich suchen einen Platz in einer Kindertagesstätte und beantragen einen einkommensabhängigen Betreuungsbeitrag, der den Elternbeitrag senkt. Die Zuständigkeit ist geteilt: Der einkommensabhängige Beitragsfaktor wird über das Schul- und Sportdepartement (Schulamt) bestimmt, die Finanzierung und Auszahlung der Subvention an die Kita läuft über das Sozialdepartement.",
+    "en": "Parents in the City of Zurich find a daycare place and apply for an income-based childcare subsidy that lowers their contribution. Responsibility is split: the income-based contribution factor is determined via the School and Sports Department (school office), while financing and payment of the subsidy to the daycare centre runs through the Social Welfare Department.",
+    "ls": "Sie brauchen einen Platz für Ihr Kind in einer Kita? Sie suchen zuerst einen Platz. Dann beantragen Sie einen Beitrag. Das macht die Kita günstiger. Wie viel Sie bekommen, hängt von Ihrem Lohn ab. Zwei Stellen sind dafür zuständig: das Schul-Amt für die Berechnung und das Sozial-Departement für das Geld an die Kita."
   },
   "rechtsgrundlagen": [
     { "bezeichnung": "Verordnung über die familien- und schulergänzende Kinderbetreuung der Stadt Zürich", "url": "https://www.stadt-zuerich.ch/ssd/de/index/kinderbetreuung/betreuungsgutscheine.html" },
@@ -30,6 +30,18 @@
       "id": "q-stz-kita",
       "titel": "Stadt Zürich – Kinderbetreuung / Kitas finden",
       "url": "https://www.stadt-zuerich.ch/ssd/de/index/kinderbetreuung.html",
+      "abgerufen": "2026-06-06"
+    },
+    {
+      "id": "q-stz-betreuungskosten",
+      "titel": "Stadt Zürich – Betreuungskosten und Subventionen (Beitragsfaktor)",
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/betreuungskosten-und-subventionen.html",
+      "abgerufen": "2026-06-06"
+    },
+    {
+      "id": "q-stz-kitafin",
+      "titel": "Stadt Zürich – Subventionen für Kitas (Finanzierung/Auszahlung)",
+      "url": "https://www.stadt-zuerich.ch/de/stadtleben/wirtschaft-und-gewerbe/fuer-kitas/subventionen.html",
       "abgerufen": "2026-06-06"
     }
   ],
@@ -57,12 +69,22 @@
     {
       "id": "schulamt",
       "label": {
-        "de": "Schulamt der Stadt Zürich, Betreuungsgutscheine",
-        "en": "School Office of the City of Zurich, childcare vouchers",
-        "ls": "Das Schul-Amt der Stadt"
+        "de": "Schulamt (Schul- und Sportdepartement) – Beitragsfaktor",
+        "en": "School Office (School and Sports Dept.) – contribution factor",
+        "ls": "Das Schul-Amt (es berechnet den Beitrag)"
       },
       "typ": "behoerde",
       "einheit_ref": "SSD-schule"
+    },
+    {
+      "id": "sozialdept",
+      "label": {
+        "de": "Sozialdepartement – Kita-Finanzierung und Subventionsauszahlung",
+        "en": "Social Welfare Department – daycare financing and subsidy payment",
+        "ls": "Das Sozial-Departement (es zahlt das Geld an die Kita)"
+      },
+      "typ": "behoerde",
+      "einheit_ref": "SD"
     },
     {
       "id": "bezirksrat",
@@ -210,15 +232,32 @@
       "typ": "prozess",
       "akteur": "schulamt",
       "label": {
-        "de": "Gutschein verfügen, Subvention an Kita",
-        "en": "Issue voucher decision, subsidy to daycare",
-        "ls": "Sie bekommen den Gutschein. Das Geld geht an die Kita."
+        "de": "Beitragsfaktor verfügen (Entscheid an Eltern)",
+        "en": "Issue contribution-factor decision (to parents)",
+        "ls": "Das Schul-Amt entscheidet, wie hoch der Beitrag ist"
       },
       "beschreibung": {
-        "de": "Der Gutschein wird verfügt und in der Regel direkt der Kita gutgeschrieben, sodass sich der Elternbeitrag entsprechend reduziert.",
-        "en": "The voucher is granted and usually credited directly to the daycare centre, reducing the parental contribution accordingly."
+        "de": "Das Schulamt verfügt den einkommensabhängigen Beitragsfaktor. Dieser bestimmt, wie stark der Elternbeitrag subventioniert wird.",
+        "en": "The school office grants the income-based contribution factor, which determines how much the parental contribution is subsidised."
       },
-      "dauer_est": { "min": 1, "max": 5, "einheit": "arbeitstage", "typ": "bearbeitung" }
+      "dauer_est": { "min": 1, "max": 5, "einheit": "arbeitstage", "typ": "bearbeitung" },
+      "quelle": "q-stz-betreuungskosten"
+    },
+    {
+      "id": "finanzierung",
+      "typ": "prozess",
+      "akteur": "sozialdept",
+      "label": {
+        "de": "Subvention finanzieren und an Kita auszahlen",
+        "en": "Finance and pay the subsidy to the daycare centre",
+        "ls": "Das Sozial-Departement zahlt das Geld an die Kita"
+      },
+      "beschreibung": {
+        "de": "Auf Basis des verfügten Beitragsfaktors finanziert das Sozialdepartement die Subvention und richtet sie der Kita aus, sodass sich der von den Eltern zu zahlende Beitrag reduziert.",
+        "en": "Based on the granted contribution factor, the Social Welfare Department finances the subsidy and pays it to the daycare centre, reducing the amount the parents pay."
+      },
+      "dauer_est": { "min": 1, "max": 4, "einheit": "wochen", "typ": "bearbeitung" },
+      "quelle": "q-stz-kitafin"
     },
     {
       "id": "ende-bewilligt",
@@ -284,7 +323,8 @@
     { "von": "anspruch", "nach": "bemessung", "bedingung": "ja" },
     { "von": "anspruch", "nach": "ablehnung", "bedingung": "nein" },
     { "von": "bemessung", "nach": "verfuegung" },
-    { "von": "verfuegung", "nach": "ende-bewilligt" },
+    { "von": "verfuegung", "nach": "finanzierung" },
+    { "von": "finanzierung", "nach": "ende-bewilligt" },
     { "von": "ablehnung", "nach": "einsprache" },
     { "von": "einsprache", "nach": "rekurs", "bedingung": "ja" },
     { "von": "einsprache", "nach": "ende-abgelehnt", "bedingung": "nein" },
@@ -305,9 +345,11 @@
     ],
     "painPoints": [
       { "de": "Die Platzsuche liegt vollständig bei den Eltern; in vielen Quartieren gibt es lange Wartelisten.", "en": "Finding a place is entirely up to the parents; many neighbourhoods have long waiting lists.", "ls": "Sie müssen selbst eine Kita suchen. Oft müssen Sie lange warten." },
-      { "de": "Einkommens- und Erwerbsnachweise müssen jährlich neu eingereicht werden.", "en": "Income and employment proofs must be re-submitted every year.", "ls": "Sie müssen jedes Jahr wieder Papiere schicken." }
+      { "de": "Einkommens- und Erwerbsnachweise müssen jährlich neu eingereicht werden.", "en": "Income and employment proofs must be re-submitted every year.", "ls": "Sie müssen jedes Jahr wieder Papiere schicken." },
+      { "de": "Geteilte Zuständigkeit: Beitragsfaktor beim Schulamt, Finanzierung/Auszahlung beim Sozialdepartement — für Eltern wenig transparent.", "en": "Split responsibility: contribution factor at the school office, financing/payment at the social welfare department — opaque for parents.", "ls": "Zwei Stellen sind zuständig. Das ist für Eltern verwirrend." }
     ],
     "improvementIdeas": [
+      { "de": "Eine gemeinsame Anlaufstelle für Beitragsfaktor und Kita-Finanzierung.", "en": "A single point of contact for contribution factor and daycare financing.", "ls": "Nur eine Stelle für alles rund um den Kita-Beitrag." },
       { "de": "Zentrale Platzvermittlung statt individueller Suche.", "en": "Central placement service instead of individual search.", "ls": "Eine Stelle, die für alle einen Platz sucht." },
       { "de": "Automatische jährliche Neubemessung über die Verknüpfung mit den Steuerdaten (Once-Only).", "en": "Automatic annual re-assessment via linkage with tax data (once-only).", "ls": "Der Gutschein wird jedes Jahr automatisch neu berechnet." }
     ],
