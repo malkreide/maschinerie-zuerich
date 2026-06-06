@@ -2083,6 +2083,131 @@
           "antwort": "Sie suchen Zahlen über die Stadt? Zum Beispiel: Wie viele Menschen wohnen hier? Das macht Statistik Stadt Zürich."
         }
       }
+    },
+    {
+      "id": "fundsache",
+      "zustaendig": "SiD-stapo",
+      "zielgruppen": [
+        "einwohner"
+      ],
+      "prozesse": [
+        "zh/fundsache-verlust"
+      ],
+      "i18n": {
+        "de": {
+          "frage": "Etwas verloren oder gefunden (Fundbüro)",
+          "stichworte": [
+            "fundbüro",
+            "verloren",
+            "gefunden",
+            "fundsache",
+            "verlust"
+          ],
+          "antwort": "Verlust- und Fundmeldungen laufen beim Fundbüro der Stadtpolizei."
+        },
+        "en": {
+          "frage": "Lost or found something (lost property)",
+          "stichworte": [
+            "lost property",
+            "lost",
+            "found",
+            "lost and found"
+          ],
+          "antwort": "Lost and found is handled by the city police's lost property office."
+        },
+        "fr": {
+          "frage": "Objet perdu ou trouvé (objets trouvés)",
+          "stichworte": [
+            "objets trouvés",
+            "perdu",
+            "trouvé"
+          ],
+          "antwort": "Les objets perdus et trouvés relèvent du bureau des objets trouvés de la police municipale."
+        },
+        "it": {
+          "frage": "Oggetto perso o trovato (oggetti smarriti)",
+          "stichworte": [
+            "oggetti smarriti",
+            "perso",
+            "trovato"
+          ],
+          "antwort": "Gli oggetti smarriti e trovati sono gestiti dall'ufficio oggetti smarriti della polizia municipale."
+        },
+        "ls": {
+          "frage": "Etwas verloren oder gefunden",
+          "stichworte": [
+            "fund-büro",
+            "verloren",
+            "gefunden"
+          ],
+          "antwort": "Sie haben etwas verloren oder gefunden? Das macht das Fund-Büro der Stadt-Polizei."
+        }
+      }
+    },
+    {
+      "id": "veranstaltung",
+      "zustaendig": "SiD-stapo",
+      "zielgruppen": [
+        "einwohner",
+        "unternehmen"
+      ],
+      "prozesse": [
+        "zh/veranstaltung-bewilligung"
+      ],
+      "i18n": {
+        "de": {
+          "frage": "Fest oder Veranstaltung bewilligen",
+          "stichworte": [
+            "veranstaltung",
+            "fest",
+            "bewilligung",
+            "strassenfest",
+            "markt",
+            "boulevard"
+          ],
+          "antwort": "Bewilligungen für Veranstaltungen auf öffentlichem Grund erteilt die Stadtpolizei."
+        },
+        "en": {
+          "frage": "Event permit (public ground)",
+          "stichworte": [
+            "event",
+            "festival",
+            "permit",
+            "street party",
+            "market"
+          ],
+          "antwort": "Permits for events on public ground are issued by the city police."
+        },
+        "fr": {
+          "frage": "Autorisation de manifestation",
+          "stichworte": [
+            "manifestation",
+            "fête",
+            "autorisation",
+            "marché"
+          ],
+          "antwort": "Les autorisations de manifestation sur le domaine public sont délivrées par la police municipale."
+        },
+        "it": {
+          "frage": "Autorizzazione per eventi",
+          "stichworte": [
+            "evento",
+            "festa",
+            "autorizzazione",
+            "mercato"
+          ],
+          "antwort": "Le autorizzazioni per eventi sul suolo pubblico sono rilasciate dalla polizia municipale."
+        },
+        "ls": {
+          "frage": "Fest oder Veranstaltung anmelden",
+          "stichworte": [
+            "fest",
+            "veranstaltung",
+            "bewilligung"
+          ],
+          "antwort": "Sie wollen ein Fest machen? Auf der Strasse oder einem Platz? Die Stadt-Polizei gibt die Bewilligung."
+        }
+      }
     }
   ]
 }
