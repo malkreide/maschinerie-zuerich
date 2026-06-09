@@ -57,11 +57,16 @@ async function resolveGeojsonUrl(src) {
   if (!res.ok) throw new Error(`CKAN HTTP ${res.status}`);
   const j = await res.json();
   const resources = j?.result?.resources ?? [];
-  const isFile = (r) => /\.json(\?|$)/i.test(r.url || '') && !/\b(wfs|wms|wmts)\b/i.test(r.url || '');
+  // Auswahl primär über das CKAN-'format' (GeoJSON) — NICHT über die Datei-
+  // Endung: ODZ-Download-URLs enden auf '?format=<code>', nicht auf '.json'.
+  // WFS/WMS-Services werden ausgeschlossen (liefern LV95 bzw. kein GeoJSON).
+  const notService = (r) =>
+    !/\b(wfs|wms|wmts)\b/i.test(r.url || '') && !/\b(wfs|wms|wmts)\b/i.test(r.format || '');
   const pick =
-    resources.find((r) => /geojson/i.test(r.format || '') && isFile(r)) ??
-    resources.find((r) => isFile(r) && /geojson|json/i.test(r.format || '')) ??
-    resources.find((r) => isFile(r));
+    resources.find((r) => /geojson/i.test(r.format || '') && notService(r)) ??
+    resources.find((r) => /geojson/i.test(r.url || '') && notService(r)) ??
+    resources.find((r) => /\bjson\b/i.test(r.format || '') && notService(r)) ??
+    resources.find((r) => /\.json(\?|$)/i.test(r.url || '') && notService(r));
   if (!pick) throw new Error('keine GeoJSON-Ressource im CKAN-Datensatz gefunden');
   return pick.url;
 }
