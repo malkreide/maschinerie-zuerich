@@ -1,0 +1,5549 @@
+{
+  "type": "FeatureCollection",
+  "_meta": {
+    "demo": false,
+    "layer": "schools",
+    "quelle": "Schulanlagen der Stadt Zürich",
+    "datasetUrl": "https://data.stadt-zuerich.ch/dataset/geo_schulanlagen",
+    "lizenz": "CC-BY",
+    "attribution": "Open Data Zürich, Stadt Zürich",
+    "stand": "2026-06-09"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.501846,
+          47.398238
+        ]
+      },
+      "properties": {
+        "id": "schools-0",
+        "name": "Limmatgut",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.493909,
+          47.375529
+        ]
+      },
+      "properties": {
+        "id": "schools-1",
+        "name": "Ginsterstrasse 25",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.492338,
+          47.372807
+        ]
+      },
+      "properties": {
+        "id": "schools-2",
+        "name": "Altweg 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.492338,
+          47.372807
+        ]
+      },
+      "properties": {
+        "id": "schools-3",
+        "name": "Altweg 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.507972,
+          47.396545
+        ]
+      },
+      "properties": {
+        "id": "schools-4",
+        "name": "Ackersteinstrasse",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.504301,
+          47.396255
+        ]
+      },
+      "properties": {
+        "id": "schools-5",
+        "name": "Am Wasser",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.552967,
+          47.403984
+        ]
+      },
+      "properties": {
+        "id": "schools-6",
+        "name": "Friedheim",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.572319,
+          47.40689
+        ]
+      },
+      "properties": {
+        "id": "schools-7",
+        "name": "Auhof",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.568893,
+          47.413581
+        ]
+      },
+      "properties": {
+        "id": "schools-8",
+        "name": "Auwiesenstrasse",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.569882,
+          47.414835
+        ]
+      },
+      "properties": {
+        "id": "schools-9",
+        "name": "Auzelg",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.512948,
+          47.357527
+        ]
+      },
+      "properties": {
+        "id": "schools-10",
+        "name": "Hegianwandweg 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.573559,
+          47.349366
+        ]
+      },
+      "properties": {
+        "id": "schools-11",
+        "name": "Im Walder",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.501312,
+          47.40195
+        ]
+      },
+      "properties": {
+        "id": "schools-12",
+        "name": "Bläsi 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.54196,
+          47.431499
+        ]
+      },
+      "properties": {
+        "id": "schools-13",
+        "name": "Caspar Wüst I",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.537106,
+          47.427581
+        ]
+      },
+      "properties": {
+        "id": "schools-14",
+        "name": "Schönauring I",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.521741,
+          47.410731
+        ]
+      },
+      "properties": {
+        "id": "schools-15",
+        "name": "Althoos II",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.548556,
+          47.426689
+        ]
+      },
+      "properties": {
+        "id": "schools-16",
+        "name": "Frohbühl II",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.542058,
+          47.422922
+        ]
+      },
+      "properties": {
+        "id": "schools-17",
+        "name": "Seebacher I",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.560999,
+          47.371991
+        ]
+      },
+      "properties": {
+        "id": "schools-18",
+        "name": "Bungertwies 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.473316,
+          47.388587
+        ]
+      },
+      "properties": {
+        "id": "schools-19",
+        "name": "Chriesiweg 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.473316,
+          47.388587
+        ]
+      },
+      "properties": {
+        "id": "schools-20",
+        "name": "Chriesiweg 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.510695,
+          47.419309
+        ]
+      },
+      "properties": {
+        "id": "schools-21",
+        "name": "Riedenhalden II",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.480533,
+          47.388586
+        ]
+      },
+      "properties": {
+        "id": "schools-22",
+        "name": "Studerhaus 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.526624,
+          47.34011
+        ]
+      },
+      "properties": {
+        "id": "schools-23",
+        "name": "Farenweg 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.528748,
+          47.33567
+        ]
+      },
+      "properties": {
+        "id": "schools-24",
+        "name": "Moos 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.558899,
+          47.376042
+        ]
+      },
+      "properties": {
+        "id": "schools-25",
+        "name": "Fluntern 1 (Wald)",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.552103,
+          47.380687
+        ]
+      },
+      "properties": {
+        "id": "schools-26",
+        "name": "Hochstrasse 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.509739,
+          47.354232
+        ]
+      },
+      "properties": {
+        "id": "schools-27",
+        "name": "Frauentalweg 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.50022,
+          47.362041
+        ]
+      },
+      "properties": {
+        "id": "schools-28",
+        "name": "Friesenberghalde",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.504942,
+          47.358629
+        ]
+      },
+      "properties": {
+        "id": "schools-29",
+        "name": "Rossweidli 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.504679,
+          47.363031
+        ]
+      },
+      "properties": {
+        "id": "schools-30",
+        "name": "Schweighof 296",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.531146,
+          47.360067
+        ]
+      },
+      "properties": {
+        "id": "schools-31",
+        "name": "Grütli 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.526899,
+          47.357394
+        ]
+      },
+      "properties": {
+        "id": "schools-32",
+        "name": "Waffenplatzstrasse",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.488234,
+          47.40803
+        ]
+      },
+      "properties": {
+        "id": "schools-33",
+        "name": "Wildenweg 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.488432,
+          47.396526
+        ]
+      },
+      "properties": {
+        "id": "schools-34",
+        "name": "Grünau 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.488432,
+          47.396526
+        ]
+      },
+      "properties": {
+        "id": "schools-35",
+        "name": "Grünau 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.545333,
+          47.407233
+        ]
+      },
+      "properties": {
+        "id": "schools-36",
+        "name": "Halde C1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.54712,
+          47.405961
+        ]
+      },
+      "properties": {
+        "id": "schools-37",
+        "name": "Oerlikoner",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.478754,
+          47.413186
+        ]
+      },
+      "properties": {
+        "id": "schools-38",
+        "name": "Giblenstrasse 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.512136,
+          47.382652
+        ]
+      },
+      "properties": {
+        "id": "schools-39",
+        "name": "Gugolz",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.534695,
+          47.425444
+        ]
+      },
+      "properties": {
+        "id": "schools-40",
+        "name": "Schwandenwiesen I",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.519312,
+          47.367771
+        ]
+      },
+      "properties": {
+        "id": "schools-41",
+        "name": "Aegerten 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.512665,
+          47.373595
+        ]
+      },
+      "properties": {
+        "id": "schools-42",
+        "name": "Aemtler A",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.509739,
+          47.354232
+        ]
+      },
+      "properties": {
+        "id": "schools-43",
+        "name": "Frauentalweg 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.526624,
+          47.34011
+        ]
+      },
+      "properties": {
+        "id": "schools-44",
+        "name": "Farenweg 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.502924,
+          47.379714
+        ]
+      },
+      "properties": {
+        "id": "schools-45",
+        "name": "Letzigraben 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.486398,
+          47.385958
+        ]
+      },
+      "properties": {
+        "id": "schools-46",
+        "name": "Altstetter 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.488416,
+          47.383929
+        ]
+      },
+      "properties": {
+        "id": "schools-47",
+        "name": "Luggwegstrasse 118",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.532877,
+          47.338456
+        ]
+      },
+      "properties": {
+        "id": "schools-48",
+        "name": "Honeggerweg 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.545992,
+          47.372607
+        ]
+      },
+      "properties": {
+        "id": "schools-49",
+        "name": "Neumarkt",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.569471,
+          47.35967
+        ]
+      },
+      "properties": {
+        "id": "schools-50",
+        "name": "Hirslanden 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.486398,
+          47.385958
+        ]
+      },
+      "properties": {
+        "id": "schools-51",
+        "name": "Altstetter 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.583841,
+          47.40545
+        ]
+      },
+      "properties": {
+        "id": "schools-52",
+        "name": "Am Luchsgraben",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.549259,
+          47.416763
+        ]
+      },
+      "properties": {
+        "id": "schools-53",
+        "name": "Kosaken I",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.587988,
+          47.403268
+        ]
+      },
+      "properties": {
+        "id": "schools-54",
+        "name": "Grosswiesen II",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.525496,
+          47.378926
+        ]
+      },
+      "properties": {
+        "id": "schools-55",
+        "name": "Brauer 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.499819,
+          47.419258
+        ]
+      },
+      "properties": {
+        "id": "schools-56",
+        "name": "Hungerberg",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.503808,
+          47.41937
+        ]
+      },
+      "properties": {
+        "id": "schools-57",
+        "name": "Holderbach I",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.525394,
+          47.413666
+        ]
+      },
+      "properties": {
+        "id": "schools-58",
+        "name": "Holzmatt",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.533966,
+          47.395021
+        ]
+      },
+      "properties": {
+        "id": "schools-59",
+        "name": "Vrenelisgärtli 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.526281,
+          47.353285
+        ]
+      },
+      "properties": {
+        "id": "schools-60",
+        "name": "Rieterstrasse",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.527131,
+          47.346886
+        ]
+      },
+      "properties": {
+        "id": "schools-61",
+        "name": "Tannenrauch 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.542036,
+          47.395448
+        ]
+      },
+      "properties": {
+        "id": "schools-62",
+        "name": "Stüssistrasse",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.536447,
+          47.395821
+        ]
+      },
+      "properties": {
+        "id": "schools-63",
+        "name": "Zeppelinstrasse",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.532566,
+          47.333317
+        ]
+      },
+      "properties": {
+        "id": "schools-64",
+        "name": "Neubühl 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.525998,
+          47.393144
+        ]
+      },
+      "properties": {
+        "id": "schools-65",
+        "name": "Habsburgstrasse",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.528083,
+          47.392285
+        ]
+      },
+      "properties": {
+        "id": "schools-66",
+        "name": "Landenbergstrasse",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.578522,
+          47.400443
+        ]
+      },
+      "properties": {
+        "id": "schools-67",
+        "name": "Probstei I",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.578088,
+          47.403797
+        ]
+      },
+      "properties": {
+        "id": "schools-68",
+        "name": "Altwiesenstrasse",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.511166,
+          47.414727
+        ]
+      },
+      "properties": {
+        "id": "schools-69",
+        "name": "Bergacker II",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.510695,
+          47.419309
+        ]
+      },
+      "properties": {
+        "id": "schools-70",
+        "name": "Riedenhalden I",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.488043,
+          47.401288
+        ]
+      },
+      "properties": {
+        "id": "schools-71",
+        "name": "Winzerhalde 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.559092,
+          47.355907
+        ]
+      },
+      "properties": {
+        "id": "schools-72",
+        "name": "Münchhalde 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.480994,
+          47.414438
+        ]
+      },
+      "properties": {
+        "id": "schools-73",
+        "name": "Geeringstrasse 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.478754,
+          47.413186
+        ]
+      },
+      "properties": {
+        "id": "schools-74",
+        "name": "Giblenstrasse 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.524871,
+          47.378195
+        ]
+      },
+      "properties": {
+        "id": "schools-75",
+        "name": "Hohl 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.49114,
+          47.387673
+        ]
+      },
+      "properties": {
+        "id": "schools-76",
+        "name": "Kappeli 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.501312,
+          47.40195
+        ]
+      },
+      "properties": {
+        "id": "schools-77",
+        "name": "Bläsi 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.535216,
+          47.370155
+        ]
+      },
+      "properties": {
+        "id": "schools-78",
+        "name": "Schanzengraben 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.517502,
+          47.414041
+        ]
+      },
+      "properties": {
+        "id": "schools-79",
+        "name": "Obsthalden",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.511166,
+          47.414727
+        ]
+      },
+      "properties": {
+        "id": "schools-80",
+        "name": "Bergacker I",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.547665,
+          47.386203
+        ]
+      },
+      "properties": {
+        "id": "schools-81",
+        "name": "Ottikerweg 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.514668,
+          47.379315
+        ]
+      },
+      "properties": {
+        "id": "schools-82",
+        "name": "Bullingerhof 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.534695,
+          47.425444
+        ]
+      },
+      "properties": {
+        "id": "schools-83",
+        "name": "Schwandenwiesen II",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.503808,
+          47.41937
+        ]
+      },
+      "properties": {
+        "id": "schools-84",
+        "name": "Holderbach II",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.516826,
+          47.327041
+        ]
+      },
+      "properties": {
+        "id": "schools-85",
+        "name": "Sihlweid 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.49212,
+          47.368148
+        ]
+      },
+      "properties": {
+        "id": "schools-86",
+        "name": "Goldacker 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.49212,
+          47.368148
+        ]
+      },
+      "properties": {
+        "id": "schools-87",
+        "name": "Goldacker 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.543936,
+          47.388369
+        ]
+      },
+      "properties": {
+        "id": "schools-88",
+        "name": "Scheuchzerstrasse 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.482303,
+          47.380529
+        ]
+      },
+      "properties": {
+        "id": "schools-89",
+        "name": "Untermoos 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.531942,
+          47.416334
+        ]
+      },
+      "properties": {
+        "id": "schools-90",
+        "name": "Neunbrunnen Alpha",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.521514,
+          47.414844
+        ]
+      },
+      "properties": {
+        "id": "schools-91",
+        "name": "Hürstholz",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.558729,
+          47.366568
+        ]
+      },
+      "properties": {
+        "id": "schools-92",
+        "name": "Freiestrasse 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.560362,
+          47.368991
+        ]
+      },
+      "properties": {
+        "id": "schools-93",
+        "name": "Ilgen 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.560039,
+          47.370273
+        ]
+      },
+      "properties": {
+        "id": "schools-94",
+        "name": "Sennhauserweg 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.560039,
+          47.370273
+        ]
+      },
+      "properties": {
+        "id": "schools-95",
+        "name": "Sennhauserweg 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.540182,
+          47.415643
+        ]
+      },
+      "properties": {
+        "id": "schools-96",
+        "name": "Im Birch I",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.549303,
+          47.381989
+        ]
+      },
+      "properties": {
+        "id": "schools-97",
+        "name": "Hutten Pavillon 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.481764,
+          47.389783
+        ]
+      },
+      "properties": {
+        "id": "schools-98",
+        "name": "Im Herrlig 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.481764,
+          47.389783
+        ]
+      },
+      "properties": {
+        "id": "schools-99",
+        "name": "Im Herrlig 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.47911,
+          47.392124
+        ]
+      },
+      "properties": {
+        "id": "schools-100",
+        "name": "Im Herrlig 3",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.514111,
+          47.423141
+        ]
+      },
+      "properties": {
+        "id": "schools-101",
+        "name": "Reckenholz I",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.532877,
+          47.338456
+        ]
+      },
+      "properties": {
+        "id": "schools-102",
+        "name": "Honeggerweg 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.487195,
+          47.396357
+        ]
+      },
+      "properties": {
+        "id": "schools-103",
+        "name": "Grünau 4",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.540182,
+          47.415643
+        ]
+      },
+      "properties": {
+        "id": "schools-104",
+        "name": "Im Birch II",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.534967,
+          47.342397
+        ]
+      },
+      "properties": {
+        "id": "schools-105",
+        "name": "Wettstein",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.4883,
+          47.374165
+        ]
+      },
+      "properties": {
+        "id": "schools-106",
+        "name": "In der Ey 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.4883,
+          47.374165
+        ]
+      },
+      "properties": {
+        "id": "schools-107",
+        "name": "In der Ey 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.487188,
+          47.374037
+        ]
+      },
+      "properties": {
+        "id": "schools-108",
+        "name": "In der Ey 3",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.521741,
+          47.410731
+        ]
+      },
+      "properties": {
+        "id": "schools-109",
+        "name": "Althoos I",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.49114,
+          47.387673
+        ]
+      },
+      "properties": {
+        "id": "schools-110",
+        "name": "Kappeli 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.561735,
+          47.356453
+        ]
+      },
+      "properties": {
+        "id": "schools-111",
+        "name": "Kartaus",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.546795,
+          47.430006
+        ]
+      },
+      "properties": {
+        "id": "schools-112",
+        "name": "Eichrain I",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.551086,
+          47.425486
+        ]
+      },
+      "properties": {
+        "id": "schools-113",
+        "name": "Kolbenacker I",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.54979,
+          47.427818
+        ]
+      },
+      "properties": {
+        "id": "schools-114",
+        "name": "Stiglen",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.555668,
+          47.406609
+        ]
+      },
+      "properties": {
+        "id": "schools-115",
+        "name": "Apfelbaum I",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.553032,
+          47.407111
+        ]
+      },
+      "properties": {
+        "id": "schools-116",
+        "name": "Salvator II",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.532468,
+          47.412281
+        ]
+      },
+      "properties": {
+        "id": "schools-117",
+        "name": "Regina-Kägi-Hof II",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.504073,
+          47.36585
+        ]
+      },
+      "properties": {
+        "id": "schools-118",
+        "name": "Döltschiweg 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.509741,
+          47.369277
+        ]
+      },
+      "properties": {
+        "id": "schools-119",
+        "name": "Höfliweg 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.500102,
+          47.367028
+        ]
+      },
+      "properties": {
+        "id": "schools-120",
+        "name": "Unterer Schweighof",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.584273,
+          47.360823
+        ]
+      },
+      "properties": {
+        "id": "schools-121",
+        "name": "Buchholz 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.600892,
+          47.354628
+        ]
+      },
+      "properties": {
+        "id": "schools-122",
+        "name": "Steinacker 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.600892,
+          47.354628
+        ]
+      },
+      "properties": {
+        "id": "schools-123",
+        "name": "Steinacker 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.581218,
+          47.359335
+        ]
+      },
+      "properties": {
+        "id": "schools-124",
+        "name": "Witikonerstrasse",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.517024,
+          47.333536
+        ]
+      },
+      "properties": {
+        "id": "schools-125",
+        "name": "Bruderwies 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.516002,
+          47.32871
+        ]
+      },
+      "properties": {
+        "id": "schools-126",
+        "name": "Hüslibach",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.51384,
+          47.332073
+        ]
+      },
+      "properties": {
+        "id": "schools-127",
+        "name": "Maneggpromenade",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.518155,
+          47.336737
+        ]
+      },
+      "properties": {
+        "id": "schools-128",
+        "name": "Zwirnerstrasse",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.540182,
+          47.415643
+        ]
+      },
+      "properties": {
+        "id": "schools-129",
+        "name": "Im Birch III",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.531557,
+          47.390011
+        ]
+      },
+      "properties": {
+        "id": "schools-130",
+        "name": "Lettenstrasse",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.514111,
+          47.423141
+        ]
+      },
+      "properties": {
+        "id": "schools-131",
+        "name": "Reckenholz II",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.474254,
+          47.391097
+        ]
+      },
+      "properties": {
+        "id": "schools-132",
+        "name": "Dachslernstrasse",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.469765,
+          47.388131
+        ]
+      },
+      "properties": {
+        "id": "schools-133",
+        "name": "Im Talbächli 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.504073,
+          47.36585
+        ]
+      },
+      "properties": {
+        "id": "schools-134",
+        "name": "Döltschiweg 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.527131,
+          47.346886
+        ]
+      },
+      "properties": {
+        "id": "schools-135",
+        "name": "Tannenrauch 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.53404,
+          47.400324
+        ]
+      },
+      "properties": {
+        "id": "schools-136",
+        "name": "Brunnenhof 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.549303,
+          47.381989
+        ]
+      },
+      "properties": {
+        "id": "schools-137",
+        "name": "Hutten Pavillon 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.547665,
+          47.386203
+        ]
+      },
+      "properties": {
+        "id": "schools-138",
+        "name": "Ottikerweg 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.499683,
+          47.404123
+        ]
+      },
+      "properties": {
+        "id": "schools-139",
+        "name": "Vogtsrain 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.596142,
+          47.36121
+        ]
+      },
+      "properties": {
+        "id": "schools-140",
+        "name": "Looren 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.588279,
+          47.399037
+        ]
+      },
+      "properties": {
+        "id": "schools-141",
+        "name": "Mattenhof 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.565422,
+          47.381637
+        ]
+      },
+      "properties": {
+        "id": "schools-142",
+        "name": "Heubeeribüel 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.536672,
+          47.409362
+        ]
+      },
+      "properties": {
+        "id": "schools-143",
+        "name": "Holunderhof I",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.49614,
+          47.386376
+        ]
+      },
+      "properties": {
+        "id": "schools-144",
+        "name": "Kappeli 3",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.483248,
+          47.385454
+        ]
+      },
+      "properties": {
+        "id": "schools-145",
+        "name": "Eugen Huber-Strasse",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.596142,
+          47.36121
+        ]
+      },
+      "properties": {
+        "id": "schools-146",
+        "name": "Looren 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.553032,
+          47.407111
+        ]
+      },
+      "properties": {
+        "id": "schools-147",
+        "name": "Salvator I",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.568944,
+          47.408726
+        ]
+      },
+      "properties": {
+        "id": "schools-148",
+        "name": "Luegislandstrasse",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.537106,
+          47.427581
+        ]
+      },
+      "properties": {
+        "id": "schools-149",
+        "name": "Schönauring II",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.585466,
+          47.404534
+        ]
+      },
+      "properties": {
+        "id": "schools-150",
+        "name": "Luchswiesen",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.515241,
+          47.364357
+        ]
+      },
+      "properties": {
+        "id": "schools-151",
+        "name": "Talwiesen",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.533184,
+          47.393515
+        ]
+      },
+      "properties": {
+        "id": "schools-152",
+        "name": "Rütschistrasse",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.577467,
+          47.354323
+        ]
+      },
+      "properties": {
+        "id": "schools-153",
+        "name": "Balgrist 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.560999,
+          47.371991
+        ]
+      },
+      "properties": {
+        "id": "schools-154",
+        "name": "Bungertwies 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.488234,
+          47.40803
+        ]
+      },
+      "properties": {
+        "id": "schools-155",
+        "name": "Wildenweg 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.543936,
+          47.388369
+        ]
+      },
+      "properties": {
+        "id": "schools-156",
+        "name": "Scheuchzerstrasse 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.54697,
+          47.422772
+        ]
+      },
+      "properties": {
+        "id": "schools-157",
+        "name": "Katzenbach II",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.52276,
+          47.394581
+        ]
+      },
+      "properties": {
+        "id": "schools-158",
+        "name": "Dorfstrasse",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.497027,
+          47.380254
+        ]
+      },
+      "properties": {
+        "id": "schools-159",
+        "name": "Utogrund 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.497027,
+          47.380254
+        ]
+      },
+      "properties": {
+        "id": "schools-160",
+        "name": "Utogrund 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.49633,
+          47.382888
+        ]
+      },
+      "properties": {
+        "id": "schools-161",
+        "name": "Flüelastrasse",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.54196,
+          47.431499
+        ]
+      },
+      "properties": {
+        "id": "schools-162",
+        "name": "Caspar Wüst II",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.520623,
+          47.394255
+        ]
+      },
+      "properties": {
+        "id": "schools-163",
+        "name": "Hönggerstrasse 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.517667,
+          47.397804
+        ]
+      },
+      "properties": {
+        "id": "schools-164",
+        "name": "Waidfussweg 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.517667,
+          47.397804
+        ]
+      },
+      "properties": {
+        "id": "schools-165",
+        "name": "Waidfussweg 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.515998,
+          47.358931
+        ]
+      },
+      "properties": {
+        "id": "schools-166",
+        "name": "Laubegg",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.512948,
+          47.357527
+        ]
+      },
+      "properties": {
+        "id": "schools-167",
+        "name": "Hegianwandweg 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.539292,
+          47.402061
+        ]
+      },
+      "properties": {
+        "id": "schools-168",
+        "name": "Allenmoos Schulhaus 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.539292,
+          47.402061
+        ]
+      },
+      "properties": {
+        "id": "schools-169",
+        "name": "Allenmoos Schulhaus 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.53404,
+          47.400324
+        ]
+      },
+      "properties": {
+        "id": "schools-170",
+        "name": "Brunnenhof 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.488835,
+          47.404463
+        ]
+      },
+      "properties": {
+        "id": "schools-171",
+        "name": "Pünten 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.499683,
+          47.404123
+        ]
+      },
+      "properties": {
+        "id": "schools-172",
+        "name": "Vogtsrain 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.499667,
+          47.367449
+        ]
+      },
+      "properties": {
+        "id": "schools-173",
+        "name": "Birmensdorferstrasse",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.586658,
+          47.356727
+        ]
+      },
+      "properties": {
+        "id": "schools-174",
+        "name": "Langmatt l",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.521711,
+          47.363082
+        ]
+      },
+      "properties": {
+        "id": "schools-175",
+        "name": "Aegerten 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.486543,
+          47.376129
+        ]
+      },
+      "properties": {
+        "id": "schools-176",
+        "name": "In der Ey 4",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.54697,
+          47.422772
+        ]
+      },
+      "properties": {
+        "id": "schools-177",
+        "name": "Katzenbach I",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.545333,
+          47.407233
+        ]
+      },
+      "properties": {
+        "id": "schools-178",
+        "name": "Halde C2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.481316,
+          47.38183
+        ]
+      },
+      "properties": {
+        "id": "schools-179",
+        "name": "Wickenweg",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.510065,
+          47.381401
+        ]
+      },
+      "properties": {
+        "id": "schools-180",
+        "name": "Hardau Zentrum",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.504977,
+          47.372946
+        ]
+      },
+      "properties": {
+        "id": "schools-181",
+        "name": "Gutstrasse 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.519718,
+          47.379821
+        ]
+      },
+      "properties": {
+        "id": "schools-182",
+        "name": "Erismannhof 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.567173,
+          47.404455
+        ]
+      },
+      "properties": {
+        "id": "schools-183",
+        "name": "Ahorn",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.584273,
+          47.360823
+        ]
+      },
+      "properties": {
+        "id": "schools-184",
+        "name": "Buchholz 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.559003,
+          47.361335
+        ]
+      },
+      "properties": {
+        "id": "schools-185",
+        "name": "Neumünster",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.541014,
+          47.385424
+        ]
+      },
+      "properties": {
+        "id": "schools-186",
+        "name": "Beckenhof",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.544178,
+          47.390999
+        ]
+      },
+      "properties": {
+        "id": "schools-187",
+        "name": "Zanggerweg 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.496889,
+          47.401861
+        ]
+      },
+      "properties": {
+        "id": "schools-188",
+        "name": "Am Wettingertobel",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.531146,
+          47.360067
+        ]
+      },
+      "properties": {
+        "id": "schools-189",
+        "name": "Grütli 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.517269,
+          47.367488
+        ]
+      },
+      "properties": {
+        "id": "schools-190",
+        "name": "Meiliweg",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.537341,
+          47.422854
+        ]
+      },
+      "properties": {
+        "id": "schools-191",
+        "name": "Himmeri-Heumatt I",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.498492,
+          47.420287
+        ]
+      },
+      "properties": {
+        "id": "schools-192",
+        "name": "Furttal",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.495676,
+          47.423812
+        ]
+      },
+      "properties": {
+        "id": "schools-193",
+        "name": "Holzerhurd",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.532221,
+          47.415793
+        ]
+      },
+      "properties": {
+        "id": "schools-194",
+        "name": "Arnikahof",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.511755,
+          47.422537
+        ]
+      },
+      "properties": {
+        "id": "schools-195",
+        "name": "Isengrind I",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.511755,
+          47.422537
+        ]
+      },
+      "properties": {
+        "id": "schools-196",
+        "name": "Isengrind II",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.529564,
+          47.410506
+        ]
+      },
+      "properties": {
+        "id": "schools-197",
+        "name": "Kügeliloo",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.487195,
+          47.396357
+        ]
+      },
+      "properties": {
+        "id": "schools-198",
+        "name": "Grünau 3",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.524111,
+          47.37892
+        ]
+      },
+      "properties": {
+        "id": "schools-199",
+        "name": "Hellmi 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.586992,
+          47.404435
+        ]
+      },
+      "properties": {
+        "id": "schools-200",
+        "name": "Hirzenbach",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.544178,
+          47.390999
+        ]
+      },
+      "properties": {
+        "id": "schools-201",
+        "name": "Zanggerweg 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.504706,
+          47.371794
+        ]
+      },
+      "properties": {
+        "id": "schools-202",
+        "name": "Gut 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.520355,
+          47.368511
+        ]
+      },
+      "properties": {
+        "id": "schools-203",
+        "name": "Aegerten 3",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.495925,
+          47.389128
+        ]
+      },
+      "properties": {
+        "id": "schools-204",
+        "name": "Kappeli 10",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.527755,
+          47.33806
+        ]
+      },
+      "properties": {
+        "id": "schools-205",
+        "name": "Entlisberg Pavillon",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.48677,
+          47.37261
+        ]
+      },
+      "properties": {
+        "id": "schools-206",
+        "name": "Triemli 5",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.488975,
+          47.379462
+        ]
+      },
+      "properties": {
+        "id": "schools-207",
+        "name": "Freilager 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.555609,
+          47.357203
+        ]
+      },
+      "properties": {
+        "id": "schools-208",
+        "name": "Seefeld 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.473196,
+          47.388113
+        ]
+      },
+      "properties": {
+        "id": "schools-209",
+        "name": "Loogarten 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.5229,
+          47.388919
+        ]
+      },
+      "properties": {
+        "id": "schools-210",
+        "name": "Schütze B",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.542058,
+          47.422922
+        ]
+      },
+      "properties": {
+        "id": "schools-211",
+        "name": "Seebacher II",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.518983,
+          47.341504
+        ]
+      },
+      "properties": {
+        "id": "schools-212",
+        "name": "Spulenweg 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.554918,
+          47.404972
+        ]
+      },
+      "properties": {
+        "id": "schools-213",
+        "name": "Apfelbaum III",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.531976,
+          47.402266
+        ]
+      },
+      "properties": {
+        "id": "schools-214",
+        "name": "Guggachpark 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.536389,
+          47.387163
+        ]
+      },
+      "properties": {
+        "id": "schools-215",
+        "name": "Kronenwiese 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.592317,
+          47.399218
+        ]
+      },
+      "properties": {
+        "id": "schools-216",
+        "name": "Mattenhof 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.51658,
+          47.374007
+        ]
+      },
+      "properties": {
+        "id": "schools-217",
+        "name": "Wiedikon 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.520623,
+          47.394255
+        ]
+      },
+      "properties": {
+        "id": "schools-218",
+        "name": "Hönggerstrasse 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.553508,
+          47.3825
+        ]
+      },
+      "properties": {
+        "id": "schools-219",
+        "name": "Hadlaub",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.54626,
+          47.385195
+        ]
+      },
+      "properties": {
+        "id": "schools-220",
+        "name": "Stapferstrasse",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.520171,
+          47.340638
+        ]
+      },
+      "properties": {
+        "id": "schools-221",
+        "name": "Allmend 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.500813,
+          47.373329
+        ]
+      },
+      "properties": {
+        "id": "schools-222",
+        "name": "Langgrüt 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.516098,
+          47.324611
+        ]
+      },
+      "properties": {
+        "id": "schools-223",
+        "name": "Vista Verde 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.560362,
+          47.368991
+        ]
+      },
+      "properties": {
+        "id": "schools-224",
+        "name": "Ilgen 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.528582,
+          47.345673
+        ]
+      },
+      "properties": {
+        "id": "schools-225",
+        "name": "Mööslistrasse",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.511869,
+          47.383766
+        ]
+      },
+      "properties": {
+        "id": "schools-226",
+        "name": "Egli",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.518945,
+          47.337783
+        ]
+      },
+      "properties": {
+        "id": "schools-227",
+        "name": "An der Sihl 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.504129,
+          47.42305
+        ]
+      },
+      "properties": {
+        "id": "schools-228",
+        "name": "Blumenfeld II",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.558327,
+          47.416922
+        ]
+      },
+      "properties": {
+        "id": "schools-229",
+        "name": "Riedgraben II",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.580727,
+          47.407594
+        ]
+      },
+      "properties": {
+        "id": "schools-230",
+        "name": "Roswiesen 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.513973,
+          47.389636
+        ]
+      },
+      "properties": {
+        "id": "schools-231",
+        "name": "West Park 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.492933,
+          47.372323
+        ]
+      },
+      "properties": {
+        "id": "schools-232",
+        "name": "Altweg 4",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.507938,
+          47.393453
+        ]
+      },
+      "properties": {
+        "id": "schools-233",
+        "name": "Kraftwerk",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.489096,
+          47.377933
+        ]
+      },
+      "properties": {
+        "id": "schools-234",
+        "name": "Freilager 3",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.48677,
+          47.37261
+        ]
+      },
+      "properties": {
+        "id": "schools-235",
+        "name": "Triemli 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.492935,
+          47.386203
+        ]
+      },
+      "properties": {
+        "id": "schools-236",
+        "name": "Kappeli 6",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.479574,
+          47.383927
+        ]
+      },
+      "properties": {
+        "id": "schools-237",
+        "name": "Untermoos 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.495925,
+          47.389128
+        ]
+      },
+      "properties": {
+        "id": "schools-238",
+        "name": "Kappeli 11",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.508208,
+          47.422846
+        ]
+      },
+      "properties": {
+        "id": "schools-239",
+        "name": "Zehntenhaus II",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.518983,
+          47.341504
+        ]
+      },
+      "properties": {
+        "id": "schools-240",
+        "name": "Spulenweg 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.501357,
+          47.425028
+        ]
+      },
+      "properties": {
+        "id": "schools-241",
+        "name": "Ruggächer II",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.508998,
+          47.390819
+        ]
+      },
+      "properties": {
+        "id": "schools-242",
+        "name": "Hardturmpark",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.558899,
+          47.376042
+        ]
+      },
+      "properties": {
+        "id": "schools-243",
+        "name": "Fluntern 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.562651,
+          47.407541
+        ]
+      },
+      "properties": {
+        "id": "schools-244",
+        "name": "Schörlistrasse",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.497649,
+          47.403214
+        ]
+      },
+      "properties": {
+        "id": "schools-245",
+        "name": "Regensdorferstrasse",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.500813,
+          47.373329
+        ]
+      },
+      "properties": {
+        "id": "schools-246",
+        "name": "Langgrüt 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.540182,
+          47.415643
+        ]
+      },
+      "properties": {
+        "id": "schools-247",
+        "name": "Im Birch IV",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.501357,
+          47.425028
+        ]
+      },
+      "properties": {
+        "id": "schools-248",
+        "name": "Ruggächer I",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.571076,
+          47.402872
+        ]
+      },
+      "properties": {
+        "id": "schools-249",
+        "name": "Heinrich Bosshardt",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.492935,
+          47.386203
+        ]
+      },
+      "properties": {
+        "id": "schools-250",
+        "name": "Kappeli 4",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.5229,
+          47.388919
+        ]
+      },
+      "properties": {
+        "id": "schools-251",
+        "name": "Schütze 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.534898,
+          47.388786
+        ]
+      },
+      "properties": {
+        "id": "schools-252",
+        "name": "Imfeldstrasse",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.518945,
+          47.337783
+        ]
+      },
+      "properties": {
+        "id": "schools-253",
+        "name": "An der Sihl 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.569471,
+          47.35967
+        ]
+      },
+      "properties": {
+        "id": "schools-254",
+        "name": "Hirslanden 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.539292,
+          47.402061
+        ]
+      },
+      "properties": {
+        "id": "schools-255",
+        "name": "Allenmoos Schulhaus 3",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.482303,
+          47.380529
+        ]
+      },
+      "properties": {
+        "id": "schools-256",
+        "name": "Untermoos 7",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.51658,
+          47.374007
+        ]
+      },
+      "properties": {
+        "id": "schools-257",
+        "name": "Wiedikon 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.520171,
+          47.340638
+        ]
+      },
+      "properties": {
+        "id": "schools-258",
+        "name": "Allmend 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.532566,
+          47.333317
+        ]
+      },
+      "properties": {
+        "id": "schools-259",
+        "name": "Neubühl 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.562782,
+          47.407856
+        ]
+      },
+      "properties": {
+        "id": "schools-260",
+        "name": "Saatlen",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.473196,
+          47.388113
+        ]
+      },
+      "properties": {
+        "id": "schools-261",
+        "name": "Loogarten 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.540182,
+          47.415643
+        ]
+      },
+      "properties": {
+        "id": "schools-262",
+        "name": "Im Birch V",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.508008,
+          47.359915
+        ]
+      },
+      "properties": {
+        "id": "schools-263",
+        "name": "Friesenbergzentrum",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.527971,
+          47.37031
+        ]
+      },
+      "properties": {
+        "id": "schools-264",
+        "name": "Schöntal",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.506843,
+          47.383097
+        ]
+      },
+      "properties": {
+        "id": "schools-265",
+        "name": "Herdern",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.522096,
+          47.412655
+        ]
+      },
+      "properties": {
+        "id": "schools-266",
+        "name": "Eigengrund II",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.528054,
+          47.396974
+        ]
+      },
+      "properties": {
+        "id": "schools-267",
+        "name": "Wibichstrasse",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.560999,
+          47.371991
+        ]
+      },
+      "properties": {
+        "id": "schools-268",
+        "name": "Bungertwies 3",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.483935,
+          47.405568
+        ]
+      },
+      "properties": {
+        "id": "schools-269",
+        "name": "Bombach 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.529753,
+          47.360508
+        ]
+      },
+      "properties": {
+        "id": "schools-270",
+        "name": "Gabler",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.509827,
+          47.372534
+        ]
+      },
+      "properties": {
+        "id": "schools-271",
+        "name": "Goldbrunnen",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.489257,
+          47.379695
+        ]
+      },
+      "properties": {
+        "id": "schools-272",
+        "name": "Untermoos 6",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.492935,
+          47.386203
+        ]
+      },
+      "properties": {
+        "id": "schools-273",
+        "name": "Kappeli 7",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.533966,
+          47.395021
+        ]
+      },
+      "properties": {
+        "id": "schools-274",
+        "name": "Vrenelisgärtli 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.524871,
+          47.378195
+        ]
+      },
+      "properties": {
+        "id": "schools-275",
+        "name": "Hohl 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.528111,
+          47.367282
+        ]
+      },
+      "properties": {
+        "id": "schools-276",
+        "name": "Brandschenke",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.555609,
+          47.357203
+        ]
+      },
+      "properties": {
+        "id": "schools-277",
+        "name": "Seefeld 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.53217,
+          47.407478
+        ]
+      },
+      "properties": {
+        "id": "schools-278",
+        "name": "Künzli",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.589567,
+          47.360303
+        ]
+      },
+      "properties": {
+        "id": "schools-279",
+        "name": "Lehfrauenweg 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.520355,
+          47.368511
+        ]
+      },
+      "properties": {
+        "id": "schools-280",
+        "name": "Aegerten 4",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.498035,
+          47.37131
+        ]
+      },
+      "properties": {
+        "id": "schools-281",
+        "name": "Altweg 3",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.536389,
+          47.387163
+        ]
+      },
+      "properties": {
+        "id": "schools-282",
+        "name": "Kronenwiese 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.55171,
+          47.415764
+        ]
+      },
+      "properties": {
+        "id": "schools-283",
+        "name": "Nordstern III",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.559092,
+          47.355907
+        ]
+      },
+      "properties": {
+        "id": "schools-284",
+        "name": "Münchhalde 3",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.52633,
+          47.348019
+        ]
+      },
+      "properties": {
+        "id": "schools-285",
+        "name": "Manegg 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.511177,
+          47.418013
+        ]
+      },
+      "properties": {
+        "id": "schools-286",
+        "name": "Waidmatt I",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.508208,
+          47.422846
+        ]
+      },
+      "properties": {
+        "id": "schools-287",
+        "name": "Zehntenhaus I",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.500677,
+          47.40078
+        ]
+      },
+      "properties": {
+        "id": "schools-288",
+        "name": "Meierhofplatz",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.5448,
+          47.428229
+        ]
+      },
+      "properties": {
+        "id": "schools-289",
+        "name": "Leimgrübel",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.530034,
+          47.386163
+        ]
+      },
+      "properties": {
+        "id": "schools-290",
+        "name": "Kornhaus",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.566667,
+          47.412314
+        ]
+      },
+      "properties": {
+        "id": "schools-291",
+        "name": "Am Glattbogen",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.541633,
+          47.388124
+        ]
+      },
+      "properties": {
+        "id": "schools-292",
+        "name": "Turner",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.525496,
+          47.378926
+        ]
+      },
+      "properties": {
+        "id": "schools-293",
+        "name": "Brauer 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.492935,
+          47.386203
+        ]
+      },
+      "properties": {
+        "id": "schools-294",
+        "name": "Kappeli 8",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.482303,
+          47.380529
+        ]
+      },
+      "properties": {
+        "id": "schools-295",
+        "name": "Untermoos 4",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.529259,
+          47.341676
+        ]
+      },
+      "properties": {
+        "id": "schools-296",
+        "name": "Rain",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.56074,
+          47.413703
+        ]
+      },
+      "properties": {
+        "id": "schools-297",
+        "name": "Leutschenbach II",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.576914,
+          47.4015
+        ]
+      },
+      "properties": {
+        "id": "schools-298",
+        "name": "Probstei II (Pavillon 3)",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.530436,
+          47.394282
+        ]
+      },
+      "properties": {
+        "id": "schools-299",
+        "name": "Nordbrücke",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.55363,
+          47.425063
+        ]
+      },
+      "properties": {
+        "id": "schools-300",
+        "name": "Ettenfeld I",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.501867,
+          47.386858
+        ]
+      },
+      "properties": {
+        "id": "schools-301",
+        "name": "Kappeli 9",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.50829,
+          47.371226
+        ]
+      },
+      "properties": {
+        "id": "schools-302",
+        "name": "Leonhard Ragaz",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.555668,
+          47.406609
+        ]
+      },
+      "properties": {
+        "id": "schools-303",
+        "name": "Apfelbaum II",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.58139,
+          47.407313
+        ]
+      },
+      "properties": {
+        "id": "schools-304",
+        "name": "Roswiesen 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.524933,
+          47.338842
+        ]
+      },
+      "properties": {
+        "id": "schools-305",
+        "name": "Lettenholz",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.558327,
+          47.416922
+        ]
+      },
+      "properties": {
+        "id": "schools-306",
+        "name": "Riedgraben III",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.559092,
+          47.355907
+        ]
+      },
+      "properties": {
+        "id": "schools-307",
+        "name": "Münchhalde 4",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.469765,
+          47.388131
+        ]
+      },
+      "properties": {
+        "id": "schools-308",
+        "name": "Im Talbächli 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.512615,
+          47.412123
+        ]
+      },
+      "properties": {
+        "id": "schools-309",
+        "name": "Glaubten",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.52633,
+          47.348019
+        ]
+      },
+      "properties": {
+        "id": "schools-310",
+        "name": "Manegg 4",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.531146,
+          47.360067
+        ]
+      },
+      "properties": {
+        "id": "schools-311",
+        "name": "Grütli 3",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.538178,
+          47.395188
+        ]
+      },
+      "properties": {
+        "id": "schools-312",
+        "name": "Birkenhof",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.48789,
+          47.40439
+        ]
+      },
+      "properties": {
+        "id": "schools-313",
+        "name": "Pünten 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.558327,
+          47.416922
+        ]
+      },
+      "properties": {
+        "id": "schools-314",
+        "name": "Riedgraben IV",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.536672,
+          47.409362
+        ]
+      },
+      "properties": {
+        "id": "schools-315",
+        "name": "Holunderhof II",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.489257,
+          47.379695
+        ]
+      },
+      "properties": {
+        "id": "schools-316",
+        "name": "Untermoos 5",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.589567,
+          47.360303
+        ]
+      },
+      "properties": {
+        "id": "schools-317",
+        "name": "Lehfrauenweg 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.487801,
+          47.401429
+        ]
+      },
+      "properties": {
+        "id": "schools-318",
+        "name": "Winzerhalde 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.553754,
+          47.362603
+        ]
+      },
+      "properties": {
+        "id": "schools-319",
+        "name": "Mühlebach 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.559092,
+          47.355907
+        ]
+      },
+      "properties": {
+        "id": "schools-320",
+        "name": "Münchhalde 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.502974,
+          47.380419
+        ]
+      },
+      "properties": {
+        "id": "schools-321",
+        "name": "Heiligfeld",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.488975,
+          47.379462
+        ]
+      },
+      "properties": {
+        "id": "schools-322",
+        "name": "Freilager 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.530865,
+          47.381281
+        ]
+      },
+      "properties": {
+        "id": "schools-323",
+        "name": "Zollstrasse",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.553754,
+          47.362603
+        ]
+      },
+      "properties": {
+        "id": "schools-324",
+        "name": "Mühlebach 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.534347,
+          47.383532
+        ]
+      },
+      "properties": {
+        "id": "schools-325",
+        "name": "Limmat C 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.537106,
+          47.427581
+        ]
+      },
+      "properties": {
+        "id": "schools-326",
+        "name": "Schönauring III",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.473316,
+          47.388587
+        ]
+      },
+      "properties": {
+        "id": "schools-327",
+        "name": "Chriesiweg 3",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.496605,
+          47.369828
+        ]
+      },
+      "properties": {
+        "id": "schools-328",
+        "name": "Wydäcker 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.502924,
+          47.379714
+        ]
+      },
+      "properties": {
+        "id": "schools-329",
+        "name": "Letzigraben 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.514668,
+          47.379315
+        ]
+      },
+      "properties": {
+        "id": "schools-330",
+        "name": "Bullingerhof 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.546379,
+          47.406775
+        ]
+      },
+      "properties": {
+        "id": "schools-331",
+        "name": "Halde A2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.595675,
+          47.360983
+        ]
+      },
+      "properties": {
+        "id": "schools-332",
+        "name": "Looren 3",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.532799,
+          47.404445
+        ]
+      },
+      "properties": {
+        "id": "schools-333",
+        "name": "Nordheim",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.489096,
+          47.377933
+        ]
+      },
+      "properties": {
+        "id": "schools-334",
+        "name": "Freilager 4",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.487542,
+          47.390373
+        ]
+      },
+      "properties": {
+        "id": "schools-335",
+        "name": "Kappeli 5",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.504129,
+          47.42305
+        ]
+      },
+      "properties": {
+        "id": "schools-336",
+        "name": "Blumenfeld I",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.528582,
+          47.345673
+        ]
+      },
+      "properties": {
+        "id": "schools-337",
+        "name": "Waldkindergarten Manegg",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.480533,
+          47.388586
+        ]
+      },
+      "properties": {
+        "id": "schools-338",
+        "name": "Studerhaus 3",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.514668,
+          47.379315
+        ]
+      },
+      "properties": {
+        "id": "schools-339",
+        "name": "Bullingerhof 3",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.535504,
+          47.418646
+        ]
+      },
+      "properties": {
+        "id": "schools-340",
+        "name": "Himmeri-Staudenbühl",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.496605,
+          47.369828
+        ]
+      },
+      "properties": {
+        "id": "schools-341",
+        "name": "Wydäcker 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.53478,
+          47.389346
+        ]
+      },
+      "properties": {
+        "id": "schools-342",
+        "name": "Nordstrasse 103",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.486646,
+          47.382391
+        ]
+      },
+      "properties": {
+        "id": "schools-343",
+        "name": "Untermoos 3",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.5229,
+          47.388919
+        ]
+      },
+      "properties": {
+        "id": "schools-344",
+        "name": "Schütze C",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.55171,
+          47.415764
+        ]
+      },
+      "properties": {
+        "id": "schools-345",
+        "name": "Nordstern II",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.553352,
+          47.424788
+        ]
+      },
+      "properties": {
+        "id": "schools-346",
+        "name": "Ettenfeld II",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.565206,
+          47.362231
+        ]
+      },
+      "properties": {
+        "id": "schools-347",
+        "name": "Hofacker",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.546278,
+          47.428112
+        ]
+      },
+      "properties": {
+        "id": "schools-348",
+        "name": "Eichrain II",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.481455,
+          47.406197
+        ]
+      },
+      "properties": {
+        "id": "schools-349",
+        "name": "Frankental",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.480533,
+          47.388586
+        ]
+      },
+      "properties": {
+        "id": "schools-350",
+        "name": "Studerhaus 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.546379,
+          47.406775
+        ]
+      },
+      "properties": {
+        "id": "schools-351",
+        "name": "Halde A1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.531976,
+          47.402266
+        ]
+      },
+      "properties": {
+        "id": "schools-352",
+        "name": "Guggachpark 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.533945,
+          47.401957
+        ]
+      },
+      "properties": {
+        "id": "schools-353",
+        "name": "Guggach SEW",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.546278,
+          47.428112
+        ]
+      },
+      "properties": {
+        "id": "schools-354",
+        "name": "Eichrain III",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.558327,
+          47.416922
+        ]
+      },
+      "properties": {
+        "id": "schools-355",
+        "name": "Riedgraben I",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.51125,
+          47.364526
+        ]
+      },
+      "properties": {
+        "id": "schools-356",
+        "name": "Sieber",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.512596,
+          47.375422
+        ]
+      },
+      "properties": {
+        "id": "schools-357",
+        "name": "Fritschi 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.518819,
+          47.336413
+        ]
+      },
+      "properties": {
+        "id": "schools-358",
+        "name": "Sihlbogen 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.547665,
+          47.386203
+        ]
+      },
+      "properties": {
+        "id": "schools-359",
+        "name": "Ottikerweg 3",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.504706,
+          47.371794
+        ]
+      },
+      "properties": {
+        "id": "schools-360",
+        "name": "Im Gut",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.55171,
+          47.415764
+        ]
+      },
+      "properties": {
+        "id": "schools-361",
+        "name": "Nordstern I",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.532981,
+          47.342996
+        ]
+      },
+      "properties": {
+        "id": "schools-362",
+        "name": "Kilchberg",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.564926,
+          47.378174
+        ]
+      },
+      "properties": {
+        "id": "schools-363",
+        "name": "Krähbühl",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.504236,
+          47.373714
+        ]
+      },
+      "properties": {
+        "id": "schools-364",
+        "name": "Gutstrasse 2",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.483935,
+          47.405568
+        ]
+      },
+      "properties": {
+        "id": "schools-365",
+        "name": "Bombach 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.513973,
+          47.389636
+        ]
+      },
+      "properties": {
+        "id": "schools-366",
+        "name": "West Park 1",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.522096,
+          47.412655
+        ]
+      },
+      "properties": {
+        "id": "schools-367",
+        "name": "Eigengrund  I",
+        "department": "SSD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.511846,
+          47.366344
+        ]
+      },
+      "properties": {
+        "id": "schools-368",
+        "name": "Tiergarten",
+        "department": "SSD"
+      }
+    }
+  ]
+}
