@@ -17,6 +17,7 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { XMLParser } from 'fast-xml-parser';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '..');
@@ -44,31 +45,40 @@ function datasetIdFromUrl(u) {
   return m ? m[1] : null;
 }
 
-// Ermittelt die echte GeoJSON-Datei-URL. Reihenfolge:
-//  1) expliziter Direkt-Link (source.geojsonUrl, wenn er auf .json zeigt)
-//  2) Auflösung über die CKAN-API von data.stadt-zuerich.ch (package_show) —
-//     bevorzugt eine echte .json-Datei (WGS84), keine WFS/WMS-Services.
-async function resolveGeojsonUrl(src) {
-  if (src.geojsonUrl && /\.json(\?|$)/i.test(src.geojsonUrl)) return src.geojsonUrl;
+// Ermittelt Kandidaten-URLs für das echte GeoJSON. Hintergrund: Die ODZ-
+// 'geodaten/download'-Links sind eine SPA (liefern HTML); echtes GeoJSON kommt
+// nur über den WFS-Dienst — und der korrekte typeName ist der Geometrie-VIEW
+// (z. B. POI_SPIELPLATZ_VIEW), nicht der Service-Name.
+// Reihenfolge:
+//  1) expliziter Override (source.geojsonUrl) — verbatim
+//  2) CKAN → WFS-Endpunkt → GetCapabilities → FeatureType-Name → GetFeature
+//     als GeoJSON; mehrere outputFormat-Kandidaten, da ODZ-WFS variiert.
+async function resolveCandidateUrls(src) {
+  if (src.geojsonUrl) return [src.geojsonUrl];
   const id = datasetIdFromUrl(src.datasetUrl);
-  if (!id) return src.geojsonUrl ?? null;
+  if (!id) throw new Error('keine datasetUrl konfiguriert');
   const api = `https://data.stadt-zuerich.ch/api/3/action/package_show?id=${encodeURIComponent(id)}`;
-  const res = await fetch(api, { headers: { Accept: 'application/json' } });
-  if (!res.ok) throw new Error(`CKAN HTTP ${res.status}`);
-  const j = await res.json();
-  const resources = j?.result?.resources ?? [];
-  // Auswahl primär über das CKAN-'format' (GeoJSON) — NICHT über die Datei-
-  // Endung: ODZ-Download-URLs enden auf '?format=<code>', nicht auf '.json'.
-  // WFS/WMS-Services werden ausgeschlossen (liefern LV95 bzw. kein GeoJSON).
-  const notService = (r) =>
-    !/\b(wfs|wms|wmts)\b/i.test(r.url || '') && !/\b(wfs|wms|wmts)\b/i.test(r.format || '');
-  const pick =
-    resources.find((r) => /geojson/i.test(r.format || '') && notService(r)) ??
-    resources.find((r) => /geojson/i.test(r.url || '') && notService(r)) ??
-    resources.find((r) => /\bjson\b/i.test(r.format || '') && notService(r)) ??
-    resources.find((r) => /\.json(\?|$)/i.test(r.url || '') && notService(r));
-  if (!pick) throw new Error('keine GeoJSON-Ressource im CKAN-Datensatz gefunden');
-  return pick.url;
+  const pkg = await (await fetch(api, { headers: { Accept: 'application/json' } })).json();
+  const resources = pkg?.result?.resources ?? [];
+  const wfsRes = resources.find((r) => /wfs/i.test(r.format || '') || /\/wfs\//i.test(r.url || ''));
+  if (!wfsRes?.url) throw new Error('keine WFS-Ressource im CKAN-Datensatz');
+  const wfsBase = wfsRes.url.split('?')[0];
+
+  const capsXml = await (await fetch(`${wfsBase}?service=WFS&version=1.1.0&request=GetCapabilities`)).text();
+  const caps = new XMLParser({ ignoreAttributes: false, removeNSPrefix: true }).parse(capsXml);
+  let fts = caps?.WFS_Capabilities?.FeatureTypeList?.FeatureType ?? [];
+  if (!Array.isArray(fts)) fts = [fts];
+  const names = fts.map((f) => String(f?.Name ?? '')).filter(Boolean);
+  // Geometrie-Layer bevorzugen (ODZ-Views enden auf _VIEW; _ATT = nur Sachdaten).
+  const typeName = names.find((n) => /_view$/i.test(n)) ?? names[0];
+  if (!typeName) throw new Error('keine FeatureType im WFS-GetCapabilities');
+
+  // ODZ-GeoJSON ist WGS84; outputFormat-Schreibweise variiert je Dienst.
+  const formats = ['GeoJSON', 'application/json', 'geojson', 'json'];
+  return formats.map(
+    (of) =>
+      `${wfsBase}?service=WFS&version=1.1.0&request=GetFeature&typename=${encodeURIComponent(typeName)}&outputFormat=${encodeURIComponent(of)}`,
+  );
 }
 
 async function fetchLayer(layer) {
@@ -80,13 +90,24 @@ async function fetchLayer(layer) {
   let raw;
   let url;
   try {
-    url = await resolveGeojsonUrl(src);
-    if (!url) throw new Error('keine GeoJSON-URL ermittelbar');
-    const res = await fetch(url, { headers: { Accept: 'application/json' } });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const text = await res.text();
-    if (text.trimStart().startsWith('<')) throw new Error('HTML statt JSON erhalten — falsche URL/Ressource');
-    raw = JSON.parse(text);
+    const candidates = await resolveCandidateUrls(src);
+    for (const u of candidates) {
+      try {
+        const res = await fetch(u, { headers: { Accept: 'application/json' } });
+        if (!res.ok) continue;
+        const text = await res.text();
+        if (text.trimStart().startsWith('<')) continue; // HTML/XML-Ausnahme → nächster Kandidat
+        const parsed = JSON.parse(text);
+        if (parsed && Array.isArray(parsed.features)) {
+          raw = parsed;
+          url = u;
+          break;
+        }
+      } catch {
+        // nächster Kandidat
+      }
+    }
+    if (!raw) throw new Error('kein Kandidat lieferte eine GeoJSON-FeatureCollection');
   } catch (err) {
     console.error(`✗ ${layer.id}: Abruf fehlgeschlagen — ${err.message}`);
     return false;
