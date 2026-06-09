@@ -45,16 +45,31 @@ function datasetIdFromUrl(u) {
   return m ? m[1] : null;
 }
 
-// Ermittelt Kandidaten-URLs für das echte GeoJSON. Hintergrund: Die ODZ-
-// 'geodaten/download'-Links sind eine SPA (liefern HTML); echtes GeoJSON kommt
-// nur über den WFS-Dienst — und der korrekte typeName ist der Geometrie-VIEW
-// (z. B. POI_SPIELPLATZ_VIEW), nicht der Service-Name.
-// Reihenfolge:
-//  1) expliziter Override (source.geojsonUrl) — verbatim
-//  2) CKAN → WFS-Endpunkt → GetCapabilities → FeatureType-Name → GetFeature
-//     als GeoJSON; mehrere outputFormat-Kandidaten, da ODZ-WFS variiert.
-async function resolveCandidateUrls(src) {
-  if (src.geojsonUrl) return [src.geojsonUrl];
+// Liefert die erste URL aus der Liste, die eine echte GeoJSON-FeatureCollection
+// zurückgibt (probiert outputFormat-Varianten durch). HTML/XML-Fehlerseiten
+// werden übersprungen.
+async function fetchFirstFeatureCollection(urls) {
+  for (const u of urls) {
+    try {
+      const res = await fetch(u, { headers: { Accept: 'application/json' } });
+      if (!res.ok) continue;
+      const text = await res.text();
+      if (text.trimStart().startsWith('<')) continue;
+      const parsed = JSON.parse(text);
+      if (parsed && Array.isArray(parsed.features)) return { fc: parsed, url: u };
+    } catch {
+      // nächste URL
+    }
+  }
+  return null;
+}
+
+// Ermittelt WFS-Basis, alle Geometrie-typeNames und outputFormat-Kandidaten.
+// Hintergrund: Die ODZ-'geodaten/download'-Links sind eine SPA (liefern HTML);
+// echtes GeoJSON kommt nur über den WFS. Manche Datensätze (z. B. Schulanlagen)
+// haben MEHRERE Geometrie-Views (Kindergarten, Hort, Volksschule …) — die
+// werden alle kombiniert. typeName/outputFormat stammen aus GetCapabilities.
+async function resolveWfs(src) {
   const id = datasetIdFromUrl(src.datasetUrl);
   if (!id) throw new Error('keine datasetUrl konfiguriert');
   const api = `https://data.stadt-zuerich.ch/api/3/action/package_show?id=${encodeURIComponent(id)}`;
@@ -69,9 +84,10 @@ async function resolveCandidateUrls(src) {
   let fts = caps?.WFS_Capabilities?.FeatureTypeList?.FeatureType ?? [];
   if (!Array.isArray(fts)) fts = [fts];
   const names = fts.map((f) => String(f?.Name ?? '')).filter(Boolean);
-  // Geometrie-Layer bevorzugen (ODZ-Views enden auf _VIEW; _ATT = nur Sachdaten).
-  const typeName = names.find((n) => /_view$/i.test(n)) ?? names[0];
-  if (!typeName) throw new Error('keine FeatureType im WFS-GetCapabilities');
+  // Alle Geometrie-Views (enden auf _view) kombinieren; sonst den ersten Typ.
+  const views = names.filter((n) => /_view$/i.test(n));
+  const typeNames = views.length ? views : names.slice(0, 1);
+  if (!typeNames.length) throw new Error('keine FeatureType im WFS-GetCapabilities');
 
   // Unterstützte JSON-Ausgabeformate direkt aus den Capabilities lesen — ODZ
   // nutzt 'application/vnd.geo+json'. Plus Fallback-Schreibweisen anderer Dienste.
@@ -81,10 +97,7 @@ async function resolveCandidateUrls(src) {
   const formats = [
     ...new Set([...fromCaps, 'application/vnd.geo+json', 'application/json', 'GeoJSON', 'geojson']),
   ];
-  return formats.map(
-    (of) =>
-      `${wfsBase}?service=WFS&version=1.1.0&request=GetFeature&typename=${encodeURIComponent(typeName)}&outputFormat=${encodeURIComponent(of)}`,
-  );
+  return { wfsBase, typeNames, formats };
 }
 
 async function fetchLayer(layer) {
@@ -93,34 +106,35 @@ async function fetchLayer(layer) {
     console.warn(`- ${layer.id}: weder datasetUrl noch geojsonUrl konfiguriert → übersprungen`);
     return false;
   }
-  let raw;
-  let url;
+  let inFeatures = [];
+  const usedSources = [];
   try {
-    const candidates = await resolveCandidateUrls(src);
-    for (const u of candidates) {
-      try {
-        const res = await fetch(u, { headers: { Accept: 'application/json' } });
-        if (!res.ok) continue;
-        const text = await res.text();
-        if (text.trimStart().startsWith('<')) continue; // HTML/XML-Ausnahme → nächster Kandidat
-        const parsed = JSON.parse(text);
-        if (parsed && Array.isArray(parsed.features)) {
-          raw = parsed;
-          url = u;
-          break;
+    if (src.geojsonUrl) {
+      const hit = await fetchFirstFeatureCollection([src.geojsonUrl]);
+      if (!hit) throw new Error('geojsonUrl-Override lieferte keine FeatureCollection');
+      inFeatures = hit.fc.features;
+      usedSources.push(src.geojsonUrl);
+    } else {
+      const { wfsBase, typeNames, formats } = await resolveWfs(src);
+      for (const tn of typeNames) {
+        const urls = formats.map(
+          (of) =>
+            `${wfsBase}?service=WFS&version=1.1.0&request=GetFeature&typename=${encodeURIComponent(tn)}&outputFormat=${encodeURIComponent(of)}`,
+        );
+        const hit = await fetchFirstFeatureCollection(urls);
+        if (hit) {
+          inFeatures = inFeatures.concat(hit.fc.features);
+          usedSources.push(tn);
         }
-      } catch {
-        // nächster Kandidat
       }
+      if (!inFeatures.length) throw new Error('kein typeName lieferte Features');
     }
-    if (!raw) throw new Error('kein Kandidat lieferte eine GeoJSON-FeatureCollection');
   } catch (err) {
     console.error(`✗ ${layer.id}: Abruf fehlgeschlagen — ${err.message}`);
     return false;
   }
-  console.log(`  ↳ ${layer.id}: Quelle ${url}`);
+  console.log(`  ↳ ${layer.id}: ${usedSources.length} Quelle(n) — ${usedSources.join(', ')}`);
 
-  const inFeatures = Array.isArray(raw.features) ? raw.features : [];
   let crsWarned = false;
   const features = [];
   for (let i = 0; i < inFeatures.length; i++) {
