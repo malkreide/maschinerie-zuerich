@@ -38,8 +38,17 @@ Layer das GeoJSON von Open Data Zürich, normalisiert es und schreibt hierher
 ## Stadtkreis-Ansicht (`/quartier`)
 
 Die Quartier-Ansicht berechnet Fläche und Standort-Zahlen je Stadtkreis aus
-`public/data/stadtkreise.geojson`. Diese Datei enthält aktuell **Platzhalter-
-Rechtecke** — die Ansicht erkennt das automatisch und zeigt ein „Demodaten"-
-Badge. Für echte Werte die Datei durch die amtlichen Grenzen ersetzen:
-[data.stadt-zuerich.ch/dataset/stadtkreise](https://data.stadt-zuerich.ch/dataset/stadtkreise)
-(GeoJSON, WGS84). Danach werden Fläche und Standort-Zählung ohne Code-Änderung real.
+`public/data/stadtkreise.geojson`. Enthält die Datei noch **Platzhalter-
+Rechtecke**, erkennt die Ansicht das automatisch und zeigt ein „Demodaten"-Badge.
+
+Echte Grenzen holen:
+
+```bash
+npm run data:fetch-stadtkreise
+```
+
+Das Skript (`scripts/fetch-stadtkreise.mjs`) lädt die amtlichen Stadtkreis-
+Polygone via WFS aus [`geo_stadtkreise`](https://data.stadt-zuerich.ch/dataset/geo_stadtkreise),
+mappt die Properties auf `kname`/`knr` und schreibt `public/data/stadtkreise.geojson`.
+Danach werden Fläche und Standort-Zählung ohne Code-Änderung real (Badge wechselt
+auf „aggregiert"). Voraussetzung wie bei `data:fetch-geo`: ODZ-Hosts erreichbar.
