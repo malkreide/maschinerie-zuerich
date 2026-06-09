@@ -39,24 +39,54 @@ function looksLikeLV95([x, y]) {
   return Math.abs(x) > 180 || Math.abs(y) > 90; // WGS84 liegt in diesen Grenzen
 }
 
+function datasetIdFromUrl(u) {
+  const m = /\/dataset\/([^/?#]+)/.exec(u || '');
+  return m ? m[1] : null;
+}
+
+// Ermittelt die echte GeoJSON-Datei-URL. Reihenfolge:
+//  1) expliziter Direkt-Link (source.geojsonUrl, wenn er auf .json zeigt)
+//  2) Auflösung über die CKAN-API von data.stadt-zuerich.ch (package_show) —
+//     bevorzugt eine echte .json-Datei (WGS84), keine WFS/WMS-Services.
+async function resolveGeojsonUrl(src) {
+  if (src.geojsonUrl && /\.json(\?|$)/i.test(src.geojsonUrl)) return src.geojsonUrl;
+  const id = datasetIdFromUrl(src.datasetUrl);
+  if (!id) return src.geojsonUrl ?? null;
+  const api = `https://data.stadt-zuerich.ch/api/3/action/package_show?id=${encodeURIComponent(id)}`;
+  const res = await fetch(api, { headers: { Accept: 'application/json' } });
+  if (!res.ok) throw new Error(`CKAN HTTP ${res.status}`);
+  const j = await res.json();
+  const resources = j?.result?.resources ?? [];
+  const isFile = (r) => /\.json(\?|$)/i.test(r.url || '') && !/\b(wfs|wms|wmts)\b/i.test(r.url || '');
+  const pick =
+    resources.find((r) => /geojson/i.test(r.format || '') && isFile(r)) ??
+    resources.find((r) => isFile(r) && /geojson|json/i.test(r.format || '')) ??
+    resources.find((r) => isFile(r));
+  if (!pick) throw new Error('keine GeoJSON-Ressource im CKAN-Datensatz gefunden');
+  return pick.url;
+}
+
 async function fetchLayer(layer) {
   const src = layer.source ?? {};
-  if (!src.geojsonUrl) {
-    console.warn(`- ${layer.id}: keine geojsonUrl konfiguriert → übersprungen (siehe ${src.datasetUrl ?? 'config'})`);
+  if (!src.datasetUrl && !src.geojsonUrl) {
+    console.warn(`- ${layer.id}: weder datasetUrl noch geojsonUrl konfiguriert → übersprungen`);
     return false;
-  }
-  if (src.verifiziert === false) {
-    console.warn(`  ⚠ ${layer.id}: source.verifiziert=false — URL/typename ggf. gegen ${src.datasetUrl} prüfen.`);
   }
   let raw;
+  let url;
   try {
-    const res = await fetch(src.geojsonUrl, { headers: { Accept: 'application/json' } });
+    url = await resolveGeojsonUrl(src);
+    if (!url) throw new Error('keine GeoJSON-URL ermittelbar');
+    const res = await fetch(url, { headers: { Accept: 'application/json' } });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    raw = await res.json();
+    const text = await res.text();
+    if (text.trimStart().startsWith('<')) throw new Error('HTML statt JSON erhalten — falsche URL/Ressource');
+    raw = JSON.parse(text);
   } catch (err) {
-    console.error(`✗ ${layer.id}: Abruf fehlgeschlagen — ${err.message}. (Allowlist/Netzwerk?)`);
+    console.error(`✗ ${layer.id}: Abruf fehlgeschlagen — ${err.message}`);
     return false;
   }
+  console.log(`  ↳ ${layer.id}: Quelle ${url}`);
 
   const inFeatures = Array.isArray(raw.features) ? raw.features : [];
   let crsWarned = false;
