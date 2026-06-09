@@ -9,12 +9,12 @@
     "Daten (Badge 'publiziert'); fehlt er, fällt die Route auf Demo-Punkte zurück",
     "(Badge 'Demodaten').",
     "",
-    "Die datasetUrl-Slugs sind verifiziert. Die geojsonUrl nutzt den direkten",
-    "GeoJSON-Download (WGS84) der Stadt Zürich: /geodaten/download/<Name>?format=<code>.",
-    "Der format-Code ist PRO DATENSATZ unterschiedlich (z. B. 10007/10006/10009);",
-    "die WGS84-GeoJSON-URL steht auf der jeweiligen datasetUrl-Seite. Voraussetzung:",
-    "www.stadt-zuerich.ch erreichbar (lokal i. d. R. problemlos; in abgeschotteten",
-    "CI-/Sandbox-Umgebungen blockiert die Allowlist den Abruf)."
+    "fetch-geo.mjs ermittelt die echte GeoJSON-Datei automatisch über die",
+    "CKAN-API von data.stadt-zuerich.ch (package_show) aus der datasetUrl — kein",
+    "manuelles URL-/typename-Raten. Optional kann source.geojsonUrl einen direkten",
+    ".json-Link erzwingen. Voraussetzung: data.stadt-zuerich.ch erreichbar (lokal",
+    "i. d. R. problemlos; in abgeschotteten CI-/Sandbox-Umgebungen blockiert die",
+    "Allowlist den Abruf)."
   ],
   "city": "zh",
   "license": "CC-BY",
@@ -29,10 +29,7 @@
       "source": {
         "title": "Schulanlagen der Stadt Zürich",
         "datasetUrl": "https://data.stadt-zuerich.ch/dataset/geo_schulanlagen",
-        "geojsonUrl": "https://www.stadt-zuerich.ch/geodaten/download/Schulanlagen?format=10007",
-        "capabilitiesUrl": "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/Schulanlagen?service=WFS&version=1.1.0&request=GetCapabilities",
-        "nameField": "name",
-        "verifiziert": false
+        "nameField": "name"
       }
     },
     {
@@ -44,10 +41,7 @@
       "source": {
         "title": "ERZ Kehrichtcontainer im öffentlichen Raum",
         "datasetUrl": "https://data.stadt-zuerich.ch/dataset/geo_erz_kehrichtcontainer_im_oeffentlichen_raum",
-        "geojsonUrl": "https://www.stadt-zuerich.ch/geodaten/download/ERZ_Kehrichtcontainer_im_oeffentlichen_Raum?format=10006",
-        "capabilitiesUrl": "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/ERZ_Kehrichtcontainer_im_oeffentlichen_Raum?service=WFS&version=1.1.0&request=GetCapabilities",
-        "nameField": "name",
-        "verifiziert": false
+        "nameField": "name"
       }
     },
     {
@@ -59,10 +53,7 @@
       "source": {
         "title": "POI öffentliche Spielplätze der Stadt Zürich",
         "datasetUrl": "https://data.stadt-zuerich.ch/dataset/geo_poi_oeffentliche_spielplaetze",
-        "geojsonUrl": "https://www.stadt-zuerich.ch/geodaten/download/POI_oeffentliche_Spielplaetze?format=10009",
-        "capabilitiesUrl": "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/POI_oeffentliche_Spielplaetze?service=WFS&version=1.1.0&request=GetCapabilities",
-        "nameField": "name",
-        "verifiziert": false
+        "nameField": "name"
       }
     }
   ]
