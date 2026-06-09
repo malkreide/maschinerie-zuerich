@@ -73,8 +73,14 @@ async function resolveCandidateUrls(src) {
   const typeName = names.find((n) => /_view$/i.test(n)) ?? names[0];
   if (!typeName) throw new Error('keine FeatureType im WFS-GetCapabilities');
 
-  // ODZ-GeoJSON ist WGS84; outputFormat-Schreibweise variiert je Dienst.
-  const formats = ['GeoJSON', 'application/json', 'geojson', 'json'];
+  // Unterstützte JSON-Ausgabeformate direkt aus den Capabilities lesen — ODZ
+  // nutzt 'application/vnd.geo+json'. Plus Fallback-Schreibweisen anderer Dienste.
+  const fromCaps = [...capsXml.matchAll(/<(?:\w+:)?Value>([^<]*json[^<]*)<\/(?:\w+:)?Value>/gi)].map(
+    (m) => m[1].trim(),
+  );
+  const formats = [
+    ...new Set([...fromCaps, 'application/vnd.geo+json', 'application/json', 'GeoJSON', 'geojson']),
+  ];
   return formats.map(
     (of) =>
       `${wfsBase}?service=WFS&version=1.1.0&request=GetFeature&typename=${encodeURIComponent(typeName)}&outputFormat=${encodeURIComponent(of)}`,
