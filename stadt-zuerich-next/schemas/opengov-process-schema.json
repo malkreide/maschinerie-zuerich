@@ -2,9 +2,9 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://raw.githubusercontent.com/malkreide/maschinerie-zuerich/main/stadt-zuerich-next/schemas/opengov-process-schema.json",
   "title": "OpenGov-Process-Schema",
-  "description": "Portables Schema zur Beschreibung von Verwaltungsprozessen (Antragsverfahren, Bewilligungen, Meldungen). Zielpublikum: Bevölkerung + Behörden + Forschung. Ein Prozess = gerichteter Graph aus typisierten Schritten mit klaren Akteuren und geschätzten Dauern.",
+  "description": "Portables Schema zur Beschreibung von Verwaltungsprozessen (Antragsverfahren, Bewilligungen, Meldungen). Zielpublikum: Bevölkerung + Behörden + Forschung. Ein Prozess = gerichteter Graph aus typisierten Schritten mit klaren Akteuren. Generation 2 — Kardinalregel: bindende Werte (Fristen, Gebühren) erscheinen NUR als Referenz (Label + Deep-Link + wörtliches Zitat), nie als Klartext-Zahl in Labels. Kanonische Fassung: docs/process-data-contract.md im Repo-Root.",
   "type": "object",
-  "required": ["id", "version", "city", "titel", "akteure", "schritte", "flow"],
+  "required": ["id", "version", "city", "titel", "lebenslage_ref", "zielgruppe", "quellen", "akteure", "schritte", "flow"],
   "properties": {
     "id": {
       "type": "string",
@@ -23,6 +23,25 @@
     },
     "titel": { "$ref": "#/definitions/i18nString" },
     "kurzbeschreibung": { "$ref": "#/definitions/i18nString" },
+    "lebenslage_ref": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "ID der Lebenslage in data/<city>/lebenslagen.json, die zu diesem Prozess führt. CI prüft Existenz und Rückverlinkung (lebenslage.prozesse[] enthält '<city>/<id>')."
+    },
+    "zielgruppe": {
+      "type": "string",
+      "enum": ["bevoelkerung", "wirtschaft", "behoerden"],
+      "description": "Primäre Zielgruppe nach eCH-0073."
+    },
+    "voraussetzungen": {
+      "type": "array",
+      "description": "Voraussetzungen, bevor der Prozess startet. Kardinalregel-Lint gilt.",
+      "items": { "$ref": "#/definitions/i18nString" }
+    },
+    "disclaimer_key": {
+      "type": "string",
+      "description": "i18n-Key des Inoffiziell-Hinweises. Default: 'Prozesse.disclaimer'."
+    },
     "rechtsgrundlagen": {
       "type": "array",
       "items": {
@@ -36,10 +55,11 @@
     },
     "quellen": {
       "type": "array",
-      "description": "Belegquellen (Merkblätter, Gesetze, Behördenseiten). Jeder Schritt kann per 'quelle'-Feld auf diese Liste referenzieren.",
+      "minItems": 1,
+      "description": "Belegquellen (Merkblätter, Gesetze, Behördenseiten). Jeder Schritt kann per 'quelle'-Feld auf diese Liste referenzieren. url + abgerufen sind Pflicht — sie speisen den sichtbaren Quell-Link + Abrufdatum pro Prozess.",
       "items": {
         "type": "object",
-        "required": ["id", "titel"],
+        "required": ["id", "titel", "url", "abgerufen"],
         "properties": {
           "id": { "type": "string" },
           "titel": { "type": "string" },
@@ -47,6 +67,11 @@
           "abgerufen": { "type": "string", "format": "date" }
         }
       }
+    },
+    "referenzen": {
+      "type": "array",
+      "description": "Bindende Werte (Fristen, Gebühren, Steuern, Rekursfristen) — NUR hier, als Label + Deep-Link + wörtliches Zitat. Nie als Klartext-Zahl in Schritt-Labels (Kardinalregel).",
+      "items": { "$ref": "#/definitions/Referenz" }
     },
     "akteure": {
       "type": "array",
@@ -161,21 +186,23 @@
         }
       ]
     },
-    "Dauer": {
+    "Referenz": {
       "type": "object",
-      "description": "Zeitschätzung für einen Schritt. Min/max in Arbeitstagen oder Stunden. 'typ' regelt, ob es eine Bearbeitungsdauer (amtsseitig) oder eine Durchlaufzeit (wall clock) ist.",
-      "required": ["min", "max", "einheit"],
+      "description": "Ein bindender Wert als Verweis: Label OHNE die Zahl als behaupteten Fakt, Deep-Link auf die exakte Stelle, wörtliche Belegstelle (Grounding-Gate). status 'unverifiziert' erlaubt ein leeres zitat (CI-Warnung) — für Altbestand und Arbeitsstände.",
+      "required": ["id", "label", "url", "abgerufen"],
       "properties": {
-        "min": { "type": "number", "minimum": 0 },
-        "max": { "type": "number", "minimum": 0 },
-        "einheit": { "type": "string", "enum": ["minuten", "stunden", "arbeitstage", "kalendertage", "wochen", "monate"] },
-        "typ": { "type": "string", "enum": ["bearbeitung", "durchlauf"], "default": "durchlauf" },
-        "anmerkung": { "$ref": "#/definitions/i18nString" }
+        "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "label": { "$ref": "#/definitions/i18nString" },
+        "url": { "type": "string", "format": "uri" },
+        "zitat": { "type": "string", "description": "Wörtliche Belegstelle von der verlinkten Seite. Pflicht (nicht-leer) bei status 'verifiziert'." },
+        "status": { "type": "string", "enum": ["verifiziert", "unverifiziert"], "default": "verifiziert" },
+        "abgerufen": { "type": "string", "format": "date" }
       }
     },
     "Schritt": {
       "type": "object",
       "required": ["id", "typ", "akteur", "label"],
+      "additionalProperties": false,
       "properties": {
         "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
         "typ": {
@@ -189,14 +216,10 @@
         },
         "label": { "$ref": "#/definitions/i18nString" },
         "beschreibung": { "$ref": "#/definitions/i18nString" },
-        "dauer_est": { "$ref": "#/definitions/Dauer" },
-        "kosten_chf": {
-          "type": "object",
-          "properties": {
-            "min": { "type": "number", "minimum": 0 },
-            "max": { "type": "number", "minimum": 0 },
-            "anmerkung": { "$ref": "#/definitions/i18nString" }
-          }
+        "referenzen": {
+          "type": "array",
+          "description": "IDs aus der Prozess-Liste 'referenzen' — bindende Werte (Fristen/Gebühren), die diesen Schritt betreffen.",
+          "items": { "type": "string" }
         },
         "unterlagen": {
           "type": "array",
