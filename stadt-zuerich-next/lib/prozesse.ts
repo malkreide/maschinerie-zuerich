@@ -5,16 +5,19 @@
 
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
-import type { Prozess, Schritt, OnlineReifegrad, ProzessStatus } from '@/types/prozess';
+import { dependsOnId, type Prozess, type OnlineReifegrad, type ProzessStatus } from '@/types/prozess';
 
 const PROZESSE_ROOT_SEGMENTS = ['data', 'prozesse'] as const;
 
+// Stabile Index-Projektion für Konsumenten (DetailPanel, Anliegen, Sitemap):
+// Feldnamen bleiben deutsch, auch wenn der Datenvertrag englische Feldnamen
+// nutzt — das Mapping passiert genau hier.
 export interface ProzessIndexEntry {
   id: string;
   city: string;
   slug: string; // city/id, URL-safe
-  titel: Prozess['titel'];
-  kurzbeschreibung?: Prozess['kurzbeschreibung'];
+  titel: Prozess['title'];
+  kurzbeschreibung?: Prozess['description'];
   version: string;
   onlineReifegrad?: OnlineReifegrad; // aus reife.onlineReifegrad, für Index-Badge
   status?: ProzessStatus;
@@ -56,9 +59,9 @@ export async function listProzesse(): Promise<ProzessIndexEntry[]> {
           id: p.id,
           city: p.city,
           slug: `${p.city}/${p.id}`,
-          titel: p.titel,
-          kurzbeschreibung: p.kurzbeschreibung,
-          version: p.version,
+          titel: p.title,
+          kurzbeschreibung: p.description,
+          version: p.schema_version,
           onlineReifegrad: p.reife?.onlineReifegrad,
           status: p.reife?.status,
         });
@@ -95,30 +98,26 @@ export async function loadProzess(city: string, id: string): Promise<Prozess | n
 }
 
 /** Minimale strukturelle Validierung — genug, um kaputte Graphen (tote Referenzen)
- *  vom Rendering fernzuhalten. Volle JSON-Schema-Validierung läuft im CI
- *  via ajv, nicht zur Render-Zeit (Performance). */
+ *  vom Rendering fernzuhalten. Volle Vertrags-Validierung läuft im CI
+ *  via ajv (validate:prozesse), nicht zur Render-Zeit (Performance). */
 export function validateProzess(p: Prozess): string[] {
   const errs: string[] = [];
-  if (!p.id || !p.version || !p.city) errs.push('missing id/version/city');
-  if (!Array.isArray(p.akteure) || p.akteure.length === 0) errs.push('akteure missing');
-  if (!Array.isArray(p.schritte) || p.schritte.length === 0) errs.push('schritte missing');
-  if (!Array.isArray(p.flow)) errs.push('flow missing');
+  if (!p.id || !p.schema_version || !p.city) errs.push('missing id/schema_version/city');
+  if (!Array.isArray(p.steps) || p.steps.length === 0) errs.push('steps missing');
   if (errs.length) return errs;
 
-  const akteurIds = new Set(p.akteure.map((a) => a.id));
-  const schrittIds = new Set(p.schritte.map((s) => s.id));
+  const actorIds = p.actors ? new Set(p.actors.map((a) => a.id)) : null;
+  const stepIds = new Set(p.steps.map((s) => s.step_id));
 
-  for (const s of p.schritte) {
-    if (!akteurIds.has(s.akteur)) errs.push(`schritt ${s.id} references unknown akteur ${s.akteur}`);
-  }
-  for (const f of p.flow) {
-    if (!schrittIds.has(f.von)) errs.push(`flow ${f.von}->${f.nach}: unknown 'von'`);
-    if (!schrittIds.has(f.nach)) errs.push(`flow ${f.von}->${f.nach}: unknown 'nach'`);
+  for (const s of p.steps) {
+    if (actorIds && !actorIds.has(s.actor)) errs.push(`step ${s.step_id} references unknown actor ${s.actor}`);
+    for (const d of s.depends_on ?? []) {
+      if (!stepIds.has(dependsOnId(d))) errs.push(`step ${s.step_id}: depends_on ${dependsOnId(d)} unknown`);
+    }
   }
 
-  // Warnung (nicht Fehler): genau ein Start-Knoten empfohlen.
-  const starts = p.schritte.filter((s: Schritt) => s.typ === 'start');
-  if (starts.length === 0) errs.push('no start node');
+  // Mindestens ein Start-Schritt (leeres depends_on).
+  if (!p.steps.some((s) => (s.depends_on ?? []).length === 0)) errs.push('no start step');
 
   return errs;
 }
@@ -137,7 +136,7 @@ export async function buildProzessSlugMap(): Promise<Record<string, ProzessIndex
 }
 
 /**
- * slug ("<city>/<id>") → Liste der beteiligten Org-Einheiten (akteure[].einheit_ref).
+ * slug ("<city>/<id>") → Liste der beteiligten Org-Einheiten (actors[].einheit_ref).
  * Grundlage für die N:M-Brücke Lebenslage ↔ Prozess ↔ Einheit(en): über die
  * verlinkten Prozesse einer Lebenslage lassen sich alle beteiligten Stellen
  * ableiten, nicht nur die primär zuständige.
@@ -158,7 +157,7 @@ export async function buildProzessEinheitenMap(): Promise<Record<string, string[
         const p = JSON.parse(raw) as Prozess;
         if (validateProzess(p).length > 0) continue;
         const units = Array.from(
-          new Set((p.akteure ?? []).map((a) => a.einheit_ref).filter((x): x is string => Boolean(x))),
+          new Set((p.actors ?? []).map((a) => a.einheit_ref).filter((x): x is string => Boolean(x))),
         );
         map[`${p.city}/${p.id}`] = units;
       } catch {
@@ -202,11 +201,11 @@ export async function buildEinheitProzesseMap(): Promise<Record<string, ProzessI
           id: p.id,
           city: p.city,
           slug: `${p.city}/${p.id}`,
-          titel: p.titel,
-          kurzbeschreibung: p.kurzbeschreibung,
-          version: p.version,
+          titel: p.title,
+          kurzbeschreibung: p.description,
+          version: p.schema_version,
         };
-        for (const a of p.akteure ?? []) {
+        for (const a of p.actors ?? []) {
           if (!a.einheit_ref) continue;
           const bucket = map[a.einheit_ref] ??= [];
           if (!bucket.some((e) => e.id === entry.id && e.city === entry.city)) {
@@ -227,7 +226,7 @@ export async function buildEinheitProzesseMap(): Promise<Record<string, ProzessI
 
 /**
  * Reverse-Lookup für die Org-Chart-Brücke: gibt alle Prozesse zurück,
- * die eine gegebene Einheit referenzieren (über akteure[].einheit_ref).
+ * die eine gegebene Einheit referenzieren (über actors[].einheit_ref).
  * Wird im DetailPanel der Hauptansicht verwendet, um "Diese Stelle ist
  * an folgenden Verfahren beteiligt" anzuzeigen.
  *
@@ -257,14 +256,14 @@ export async function findProzesseForEinheit(einheitId: string): Promise<Prozess
         const raw = await fs.readFile(path.join(cityDir, file), 'utf-8');
         const p = JSON.parse(raw) as Prozess;
         if (validateProzess(p).length > 0) continue;
-        if ((p.akteure ?? []).some((a) => a.einheit_ref === einheitId)) {
+        if ((p.actors ?? []).some((a) => a.einheit_ref === einheitId)) {
           matches.push({
             id: p.id,
             city: p.city,
             slug: `${p.city}/${p.id}`,
-            titel: p.titel,
-            kurzbeschreibung: p.kurzbeschreibung,
-            version: p.version,
+            titel: p.title,
+            kurzbeschreibung: p.description,
+            version: p.schema_version,
           });
         }
       } catch {

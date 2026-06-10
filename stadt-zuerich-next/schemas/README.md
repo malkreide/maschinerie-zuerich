@@ -41,20 +41,20 @@ Prüft zwei Stufen:
 1. **Formale Validierung** via [ajv](https://ajv.js.org/) gegen das
    JSON-Schema (Typen, Enums, Pflichtfelder, `format: uri/date`).
 2. **Semantische Validierung** (Referenz- und Graph-Konsistenz):
-   - `schritt.akteur` muss in `akteure[].id` existieren
-   - `flow.von` / `flow.nach` müssen in `schritte[].id` existieren, kein Selbstbezug
-   - `schritt.quelle` muss in `quellen[].id` existieren
-   - `schritt.referenzen` müssen in `referenzen[].id` existieren; IDs eindeutig
-   - Grounding-Gate: Referenz mit `status: "verifiziert"` braucht ein
-     nicht-leeres `zitat` (Fehler); `unverifiziert` ohne Zitat → Warnung
-   - Azyklisch bis auf Rücksprünge: ohne die Kanten aus `typ: "loop"`-Schritten
-     muss der Graph ein DAG sein
+   - `id == lebenslage_ref` (Vertrag); Dateiname = `<id>.json`
+   - `step_id` eindeutig; `depends_on` verweist nur auf existierende
+     `step_id`s; kein Selbstbezug; mindestens ein Start-Schritt
+     (leeres `depends_on`); Graph über `depends_on` ist azyklisch (DAG)
+   - `loops_back_to` nur an `type: "loop"`-Schritten (Rendering-Hinweis,
+     fliesst nicht in den DAG-Check ein)
+   - `reference_id` eindeutig; `reference_ids` verweisen auf existierende
+     `references`; `steps[].actor` referenziert `actors[].id`
+   - Grounding-Gate: Reference mit `status: "verifiziert"` braucht ein
+     nicht-leeres `source_quote` (Fehler); `unverifiziert` ohne Zitat → Warnung
    - Kardinalregel-Lint: Zahl + bindende Einheit (CHF, Fr., Franken, %,
      Tag(e), Woche(n), Monat(e), Jahr(e)) in gerenderten Texten → Fehler
    - `lebenslage_ref` existiert in den Lebenslagen der Stadt und verlinkt zurück
-   - `ende`-Knoten dürfen keine ausgehenden Kanten haben
-   - Unerreichbare Knoten / fehlender Start → Warnung (kein Fehler)
-   - Entscheidungsknoten mit <2 Ausgängen oder ohne `bedingung`-Label → Warnung
+   - Unerreichbare Schritte → Warnung (kein Fehler)
 
 Der Validator läuft auch in CI als eigener Job `prozesse-validation`
 (siehe `.github/workflows/ci.yml`).
@@ -63,44 +63,41 @@ Der Validator läuft auch in CI als eigener Job `prozesse-validation`
 
 ```jsonc
 {
-  "id": "baubewilligung-ordentlich",        // [a-z0-9-]+
-  "version": "2.0.0",                        // SemVer; MAJOR = Schema-Generation
-  "city": "zh",                              // ISO-ähnliche Kennung
-  "titel": {                                 // i18n-String: string oder Objekt
-    "de": "...",  "en": "...",  "ls": "..."
-  },
+  "schema_version": "0.1.0",                 // SemVer der Vertragsversion
+  "id": "baugesuch",                         // [a-z0-9-]+, == lebenslage_ref
   "lebenslage_ref": "baugesuch",             // ID in data/<city>/lebenslagen.json
-  "zielgruppe": "bevoelkerung",              // eCH-0073: bevoelkerung|wirtschaft|behoerden
-  "quellen": [
-    { "id": "q-x", "titel": "...", "url": "https://…", "abgerufen": "2026-06-10" }
+  "city": "zh",                              // Erweiterung: Kennung, Slug <city>/<id>
+  "title": { "de": "...", "en": "...", "ls": "..." },  // i18n; de Pflicht
+  "target_audience": "bevoelkerung",         // eCH-0073: bevoelkerung|wirtschaft|behoerden
+  "preconditions": [ { "de": "..." } ],
+  "source_url": "https://…",                 // primäre amtliche Quelle
+  "retrieved_at": "2026-06-10",
+  "disclaimer_key": "Prozesse.disclaimer",
+  "references": [                            // bindende Werte NUR hier (Kardinalregel)
+    { "reference_id": 1, "label": { "de": "Gebühr für …" },  // ohne Zahl!
+      "source_url": "https://…", "source_quote": "wörtliche Belegstelle",
+      "status": "verifiziert", "retrieved_at": "2026-06-10" }
   ],
-  "referenzen": [                            // bindende Werte NUR hier (Kardinalregel)
-    { "id": "r-gebuehr", "label": { "de": "Gebühr für …" },  // ohne Zahl!
-      "url": "https://…", "zitat": "wörtliche Belegstelle",
-      "status": "verifiziert", "abgerufen": "2026-06-10" }
+  "actors": [                                // Erweiterung: Swimlanes + Org-Chart-Brücke
+    { "id": "bauherr", "label": {...}, "type": "antragsteller" },
+    { "id": "amt",     "label": {...}, "type": "behoerde", "einheit_ref": "u-afb" }
   ],
-  "akteure": [
-    { "id": "bauherr", "label": {...}, "typ": "antragsteller" },
-    { "id": "amt",     "label": {...}, "typ": "behoerde", "einheit_ref": "u-afb" }
-  ],
-  "schritte": [
-    { "id": "start", "typ": "start", "akteur": "bauherr", "label": {...} },
-    { "id": "...",   "typ": "input|prozess|entscheidung|loop|warten|ende",
-                     "akteur": "...", "label": {...},
-                     "referenzen": ["r-gebuehr"] }
-  ],
-  "flow": [
-    { "von": "start", "nach": "..." },
-    { "von": "entscheidung-x", "nach": "...", "bedingung": "ja" }
+  "steps": [
+    { "step_id": 1, "actor": "bauherr", "label": {...}, "depends_on": [],
+      "type": "start" },
+    { "step_id": 2, "actor": "amt", "label": {...},
+      "depends_on": [ 1, { "step_id": 1, "condition": { "de": "ja" } } ],
+      "reference_ids": [1],
+      "type": "input|prozess|entscheidung|loop|warten|ende" }
   ]
 }
 ```
 
 ## Neuen Prozess anlegen
 
-1. Neue Datei `data/prozesse/<city>/<prozess-id>.json` erzeugen.
-   `city` = Stadt-/Gemeindekennung (`zh`, `be`, `basel`, …); `<prozess-id>`
-   eindeutig innerhalb der Stadt.
+1. Neue Datei `data/prozesse/<city>/<id>.json` erzeugen.
+   `city` = Stadt-/Gemeindekennung (`zh`, `be`, `basel`, …); `<id>` =
+   `lebenslage_ref` der zugehörigen Lebenslage (Vertrag: `id == lebenslage_ref`).
 2. Als erste Zeile `"$schema": "../../../schemas/opengov-process-schema.json"`
    eintragen — dann erkennt VS Code / WebStorm das Schema automatisch.
 3. `npm run validate:prozesse` ausführen bis alles grün.
@@ -133,10 +130,15 @@ Breaking Changes am Schema → MAJOR-Bump + Migrations-Skript.
 8. `npm run typecheck && npm run build`.
 9. Commit mit `chore(schema): bump to v<N>`.
 
-### Die v2-Migration
+### Bisherige Migrationen
 
-`scripts/migrate-prozesse-schema-v2.mjs` wurde für die Generation 2
-ausgeführt (Kardinalregel: `dauer_est` entfernt, `kosten_chf` → Referenzen
-mit `status: "unverifiziert"`, neue Pflichtfelder `lebenslage_ref` /
-`zielgruppe`). Für künftige Migrationen die Datei nach
-`migrate-prozesse-schema-v<N>.mjs` kopieren und die Checkliste oben abarbeiten.
+- `scripts/migrate-prozesse-schema-v2.mjs` — Generation 1 → 2 (Kardinalregel:
+  `dauer_est` entfernt, `kosten_chf` → Referenzen mit `status:
+  "unverifiziert"`).
+- `scripts/migrate-prozesse-contract.mjs` — Generation 2 → kanonischer
+  Vertrag (englische Feldnamen, Integer-IDs, `flow` → `depends_on` +
+  `loops_back_to`, `id == lebenslage_ref` inkl. Datei-Umbenennung). Läuft
+  bewusst nicht über `_migrate-lib.mjs`, weil das Versionsfeld selbst
+  umbenannt wird.
+
+Für künftige Migrationen die Checkliste oben abarbeiten.

@@ -29,7 +29,7 @@ const ROUTES = [
   '/de/anliegen',
   '/de/steuerfranken',
   '/de/prozesse',
-  '/de/prozesse/zh/anwohnerparkkarte',
+  '/de/prozesse/zh/parkplatz',
   '/de/roadmap',
 ];
 

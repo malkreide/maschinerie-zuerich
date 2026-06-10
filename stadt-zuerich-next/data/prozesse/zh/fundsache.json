@@ -1,39 +1,39 @@
 {
   "$schema": "../../../schemas/opengov-process-schema.json",
-  "id": "fundsache-verlust",
-  "version": "2.0.0",
+  "schema_version": "0.1.0",
+  "id": "fundsache",
+  "lebenslage_ref": "fundsache",
   "city": "zh",
-  "titel": {
+  "title": {
     "de": "Fundsache melden / Verlust suchen (Fundbüro)",
     "en": "Report a found item / search for a lost item (lost property office)",
     "fr": "Annoncer un objet trouvé / chercher un objet perdu",
     "it": "Segnalare un oggetto trovato / cercare un oggetto smarrito",
     "ls": "Etwas gefunden oder verloren (Fund-Büro)"
   },
-  "kurzbeschreibung": {
+  "description": {
     "de": "Wer in der Stadt Zürich etwas findet, meldet oder übergibt es dem Fundbüro der Stadtpolizei; wer etwas verloren hat, stellt einen Suchauftrag. Gefundene Gegenstände werden erfasst und für eine gesetzliche Frist aufbewahrt.",
     "en": "Anyone who finds something in the City of Zurich reports or hands it to the city police's lost property office; anyone who has lost something files a search request. Found items are recorded and kept for a statutory period.",
     "ls": "Sie haben etwas gefunden? Bringen Sie es zum Fund-Büro der Stadt-Polizei. Sie haben etwas verloren? Melden Sie es. Das Fund-Büro schaut, ob Ihre Sache da ist."
   },
-  "rechtsgrundlagen": [
+  "target_audience": "bevoelkerung",
+  "source_url": "https://www.stadt-zuerich.ch/pd/de/index/stadtpolizei_zuerich/dienstleistungen/fundbuero.html",
+  "retrieved_at": "2026-06-06",
+  "disclaimer_key": "Prozesse.disclaimer",
+  "references": [
     {
-      "bezeichnung": "Obligationenrecht (OR) Art. 720–722 (Fund)",
-      "url": "https://www.fedlex.admin.ch/eli/cc/27/317_321_377/de"
-    },
-    {
-      "bezeichnung": "Stadtpolizei Zürich – Fundbüro",
-      "url": "https://www.stadt-zuerich.ch/pd/de/index/stadtpolizei_zuerich/dienstleistungen/fundbuero.html"
+      "reference_id": 1,
+      "label": {
+        "de": "Allfällige Bearbeitungsgebühr und Finderlohn (OR Art. 722)",
+        "en": "Possible handling fee and finder's reward (Art. 722 Swiss Code of Obligations)"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/pd/de/index/stadtpolizei_zuerich/dienstleistungen/fundbuero.html",
+      "source_quote": "",
+      "status": "unverifiziert",
+      "retrieved_at": "2026-06-06"
     }
   ],
-  "quellen": [
-    {
-      "id": "q-stz-fundbuero",
-      "titel": "Stadt Zürich – Fundbüro der Stadtpolizei",
-      "url": "https://www.stadt-zuerich.ch/pd/de/index/stadtpolizei_zuerich/dienstleistungen/fundbuero.html",
-      "abgerufen": "2026-06-06"
-    }
-  ],
-  "akteure": [
+  "actors": [
     {
       "id": "person",
       "label": {
@@ -43,7 +43,7 @@
         "it": "Persona che ha trovato o smarrito un oggetto",
         "ls": "Sie"
       },
-      "typ": "antragsteller"
+      "type": "antragsteller"
     },
     {
       "id": "fundbuero",
@@ -52,208 +52,224 @@
         "en": "Lost property office of the Zurich City Police",
         "ls": "Das Fund-Büro der Stadt-Polizei"
       },
-      "typ": "behoerde",
+      "type": "behoerde",
       "einheit_ref": "SiD-stapo"
     }
   ],
-  "schritte": [
+  "steps": [
     {
-      "id": "start",
-      "typ": "start",
-      "akteur": "person",
+      "step_id": 1,
+      "actor": "person",
       "label": {
         "de": "Gegenstand gefunden oder verloren",
         "en": "Item found or lost",
         "ls": "Sie haben etwas gefunden oder verloren"
-      }
+      },
+      "depends_on": [],
+      "type": "start"
     },
     {
-      "id": "fall",
-      "typ": "entscheidung",
-      "akteur": "person",
+      "step_id": 2,
+      "actor": "person",
       "label": {
         "de": "Gefunden oder verloren?",
         "en": "Found or lost?",
         "ls": "Gefunden oder verloren?"
-      }
+      },
+      "depends_on": [
+        1
+      ],
+      "type": "entscheidung"
     },
     {
-      "id": "fund-abgeben",
-      "typ": "input",
-      "akteur": "person",
+      "step_id": 3,
+      "actor": "person",
       "label": {
         "de": "Fundsache melden oder abgeben",
         "en": "Report or hand in the found item",
         "ls": "Sie bringen die Sache zum Fund-Büro"
       },
-      "beschreibung": {
+      "depends_on": [
+        {
+          "step_id": 2,
+          "condition": {
+            "de": "gefunden",
+            "en": "found"
+          }
+        }
+      ],
+      "type": "input",
+      "description": {
         "de": "Fundsache online melden und/oder beim Fundbüro abgeben. Wertgegenstände möglichst rasch übergeben.",
         "en": "Report the found item online and/or hand it in at the lost property office; valuables as soon as possible."
       },
-      "quelle": "q-stz-fundbuero"
+      "source_id": "q-stz-fundbuero"
     },
     {
-      "id": "erfassen",
-      "typ": "prozess",
-      "akteur": "fundbuero",
+      "step_id": 4,
+      "actor": "fundbuero",
       "label": {
         "de": "Fund erfassen und aufbewahren",
         "en": "Record and store the found item",
         "ls": "Das Fund-Büro nimmt die Sache auf"
-      }
+      },
+      "depends_on": [
+        3
+      ],
+      "type": "prozess"
     },
     {
-      "id": "ende-fund",
-      "typ": "ende",
-      "akteur": "person",
+      "step_id": 5,
+      "actor": "person",
       "label": {
         "de": "Fund gemeldet (ggf. Finderlohn-Anspruch)",
         "en": "Found item reported (possible finder's reward)",
         "ls": "Fertig: Die Sache ist gemeldet"
-      }
+      },
+      "depends_on": [
+        4
+      ],
+      "type": "ende"
     },
     {
-      "id": "verlust-melden",
-      "typ": "input",
-      "akteur": "person",
+      "step_id": 6,
+      "actor": "person",
       "label": {
         "de": "Verlust melden (Suchauftrag)",
         "en": "Report the loss (search request)",
         "ls": "Sie melden den Verlust"
       },
-      "beschreibung": {
+      "depends_on": [
+        {
+          "step_id": 2,
+          "condition": {
+            "de": "verloren",
+            "en": "lost"
+          }
+        }
+      ],
+      "type": "input",
+      "description": {
         "de": "Online-Verlustmeldung mit Beschreibung des Gegenstands, Verlustort und -datum.",
         "en": "Online loss report with a description of the item, place and date of loss."
       },
-      "quelle": "q-stz-fundbuero"
+      "source_id": "q-stz-fundbuero"
     },
     {
-      "id": "abgleich",
-      "typ": "prozess",
-      "akteur": "fundbuero",
+      "step_id": 7,
+      "actor": "fundbuero",
       "label": {
         "de": "Mit Fundbestand abgleichen",
         "en": "Match against the found-items inventory"
-      }
+      },
+      "depends_on": [
+        6
+      ],
+      "type": "prozess"
     },
     {
-      "id": "treffer",
-      "typ": "entscheidung",
-      "akteur": "fundbuero",
+      "step_id": 8,
+      "actor": "fundbuero",
       "label": {
         "de": "Gegenstand vorhanden?",
         "en": "Item available?",
         "ls": "Ist die Sache da?"
-      }
+      },
+      "depends_on": [
+        7
+      ],
+      "type": "entscheidung"
     },
     {
-      "id": "abholen",
-      "typ": "input",
-      "akteur": "person",
+      "step_id": 9,
+      "actor": "person",
       "label": {
         "de": "Gegen Ausweis abholen",
         "en": "Collect against ID",
         "ls": "Sie holen die Sache mit Ausweis ab"
       },
-      "beschreibung": {
+      "depends_on": [
+        {
+          "step_id": 8,
+          "condition": {
+            "de": "ja"
+          }
+        }
+      ],
+      "reference_ids": [
+        1
+      ],
+      "type": "input",
+      "description": {
         "de": "Abholung gegen Identitätsnachweis; allfällige Aufbewahrungs-/Bearbeitungsgebühr und Finderlohn nach OR.",
         "en": "Collection against proof of identity; any storage/handling fee and finder's reward under the Code of Obligations."
-      },
-      "referenzen": [
-        "r-gebuehr-finderlohn"
-      ]
+      }
     },
     {
-      "id": "ende-zurueck",
-      "typ": "ende",
-      "akteur": "person",
+      "step_id": 10,
+      "actor": "person",
       "label": {
         "de": "Gegenstand zurückerhalten",
         "en": "Item returned",
         "ls": "Fertig: Sie haben Ihre Sache zurück"
-      }
+      },
+      "depends_on": [
+        9
+      ],
+      "type": "ende"
     },
     {
-      "id": "aufbewahrung",
-      "typ": "warten",
-      "akteur": "fundbuero",
+      "step_id": 11,
+      "actor": "fundbuero",
       "label": {
         "de": "Suchauftrag bleibt aktiv (Aufbewahrungsfrist)",
         "en": "Search request stays active (storage period)",
         "ls": "Das Fund-Büro sucht weiter"
       },
-      "beschreibung": {
+      "depends_on": [
+        {
+          "step_id": 8,
+          "condition": {
+            "de": "nein"
+          }
+        }
+      ],
+      "type": "warten",
+      "description": {
         "de": "Fundsachen werden eine gesetzliche Frist aufbewahrt; meldet sich ein passender Fund, wird die Person benachrichtigt.",
         "en": "Found items are kept for a statutory period; if a matching item appears, the person is notified."
       }
     },
     {
-      "id": "ende-offen",
-      "typ": "ende",
-      "akteur": "person",
+      "step_id": 12,
+      "actor": "person",
       "label": {
         "de": "Noch kein Treffer",
         "en": "No match yet",
         "ls": "Noch nichts gefunden"
-      }
+      },
+      "depends_on": [
+        11
+      ],
+      "type": "ende"
     }
   ],
-  "flow": [
+  "legal_basis": [
     {
-      "von": "start",
-      "nach": "fall"
+      "label": "Obligationenrecht (OR) Art. 720–722 (Fund)",
+      "url": "https://www.fedlex.admin.ch/eli/cc/27/317_321_377/de"
     },
     {
-      "von": "fall",
-      "nach": "fund-abgeben",
-      "bedingung": "gefunden",
-      "label": {
-        "de": "gefunden",
-        "en": "found"
-      }
-    },
+      "label": "Stadtpolizei Zürich – Fundbüro",
+      "url": "https://www.stadt-zuerich.ch/pd/de/index/stadtpolizei_zuerich/dienstleistungen/fundbuero.html"
+    }
+  ],
+  "sources": [
     {
-      "von": "fall",
-      "nach": "verlust-melden",
-      "bedingung": "verloren",
-      "label": {
-        "de": "verloren",
-        "en": "lost"
-      }
-    },
-    {
-      "von": "fund-abgeben",
-      "nach": "erfassen"
-    },
-    {
-      "von": "erfassen",
-      "nach": "ende-fund"
-    },
-    {
-      "von": "verlust-melden",
-      "nach": "abgleich"
-    },
-    {
-      "von": "abgleich",
-      "nach": "treffer"
-    },
-    {
-      "von": "treffer",
-      "nach": "abholen",
-      "bedingung": "ja"
-    },
-    {
-      "von": "treffer",
-      "nach": "aufbewahrung",
-      "bedingung": "nein"
-    },
-    {
-      "von": "abholen",
-      "nach": "ende-zurueck"
-    },
-    {
-      "von": "aufbewahrung",
-      "nach": "ende-offen"
+      "id": "q-stz-fundbuero",
+      "title": "Stadt Zürich – Fundbüro der Stadtpolizei",
+      "url": "https://www.stadt-zuerich.ch/pd/de/index/stadtpolizei_zuerich/dienstleistungen/fundbuero.html",
+      "retrieved_at": "2026-06-06"
     }
   ],
   "reife": {
@@ -309,20 +325,5 @@
     "aktualisiert": "2026-06-10",
     "maintainer": "malkreide",
     "lizenz": "CC-BY-4.0"
-  },
-  "lebenslage_ref": "fundsache",
-  "zielgruppe": "bevoelkerung",
-  "referenzen": [
-    {
-      "id": "r-gebuehr-finderlohn",
-      "label": {
-        "de": "Allfällige Bearbeitungsgebühr und Finderlohn (OR Art. 722)",
-        "en": "Possible handling fee and finder's reward (Art. 722 Swiss Code of Obligations)"
-      },
-      "url": "https://www.stadt-zuerich.ch/pd/de/index/stadtpolizei_zuerich/dienstleistungen/fundbuero.html",
-      "zitat": "",
-      "status": "unverifiziert",
-      "abgerufen": "2026-06-06"
-    }
-  ]
+  }
 }

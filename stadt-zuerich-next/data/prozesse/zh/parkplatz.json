@@ -1,49 +1,50 @@
 {
   "$schema": "../../../schemas/opengov-process-schema.json",
-  "id": "anwohnerparkkarte",
-  "version": "2.0.0",
+  "schema_version": "0.1.0",
+  "id": "parkplatz",
+  "lebenslage_ref": "parkplatz",
   "city": "zh",
-  "titel": {
+  "title": {
     "de": "Anwohnerparkkarte (blaue Zone)",
     "en": "Resident parking permit (blue zone)",
     "fr": "Carte de stationnement pour riverains (zone bleue)",
     "it": "Carta di parcheggio per residenti (zona blu)",
     "ls": "Park-Karte für deine Strasse (blaue Zone)"
   },
-  "kurzbeschreibung": {
+  "description": {
     "de": "Ablauf für den Bezug einer Anwohnerparkkarte in der Stadt Zürich. Berechtigt zum Dauerparkieren in der eigenen blauen Zone. Seit 2023 rein digital: das Kontrollschild wird im System hinterlegt, es gibt keine physische Karte mehr.",
     "en": "Process for obtaining a resident parking permit in the City of Zurich. Grants permanent parking rights within one's own blue zone. Fully digital since 2023 — the licence plate is registered in the control system, no physical badge.",
     "ls": "Du wohnst in einer blauen Zone. Du hast ein Auto. Dann kannst du eine Park-Karte kaufen. Damit darfst du in deiner Strasse parkieren, so lange du willst. Die Karte ist digital. Die Polizei liest dein Kennzeichen."
   },
-  "rechtsgrundlagen": [
+  "target_audience": "bevoelkerung",
+  "source_url": "https://www.stadt-zuerich.ch/pd/de/index/dav/parkkarten.html",
+  "retrieved_at": "2026-04-24",
+  "disclaimer_key": "Prozesse.disclaimer",
+  "references": [
     {
-      "bezeichnung": "Verkehrsreglement der Stadt Zürich (VRSZ)",
-      "url": "https://www.stadt-zuerich.ch/pd/de/index/das_departement/organisation/dienstabteilungen/dav.html"
+      "reference_id": 1,
+      "label": {
+        "de": "Jahresgebühr der Anwohnerparkkarte (tarifabhängig nach Fahrzeug, anteilig bei kürzerer Dauer)",
+        "en": "Annual fee for the resident parking permit (tariff depends on vehicle; pro-rated)"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/pd/de/index/dav/parkkarten.html",
+      "source_quote": "",
+      "status": "unverifiziert",
+      "retrieved_at": "2026-04-24"
     },
     {
-      "bezeichnung": "SVG Art. 3 (Strassenverkehrsgesetz)",
-      "url": "https://www.fedlex.admin.ch/eli/cc/1959/679_705_725/de"
-    },
-    {
-      "bezeichnung": "Signalisationsverordnung SSV Art. 48",
-      "url": "https://www.fedlex.admin.ch/eli/cc/1979/1961_1961_1961/de"
+      "reference_id": 2,
+      "label": {
+        "de": "Gültigkeitsdauer der Anwohnerparkkarte",
+        "en": "Validity period of the resident parking permit"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/pd/de/index/dav/parkkarten.html",
+      "source_quote": "",
+      "status": "unverifiziert",
+      "retrieved_at": "2026-06-10"
     }
   ],
-  "quellen": [
-    {
-      "id": "q-stz-parkkarten",
-      "titel": "Stadt Zürich – Parkkarten-Angebote",
-      "url": "https://www.stadt-zuerich.ch/pd/de/index/dav/parkkarten.html",
-      "abgerufen": "2026-04-24"
-    },
-    {
-      "id": "q-stz-online",
-      "titel": "Stadt Zürich – Parkkarten-Online-Portal",
-      "url": "https://www.stadt-zuerich.ch/pd/de/index/dav/parkkarten/anwohnerparkkarten.html",
-      "abgerufen": "2026-04-24"
-    }
-  ],
-  "akteure": [
+  "actors": [
     {
       "id": "halter",
       "label": {
@@ -53,7 +54,7 @@
         "it": "Detentore del veicolo (residente)",
         "ls": "Du (du wohnst hier und hast ein Auto)"
       },
-      "typ": "antragsteller"
+      "type": "antragsteller"
     },
     {
       "id": "dav",
@@ -62,7 +63,7 @@
         "en": "Traffic Services Division (DAV), permit office",
         "ls": "Das Verkehrs-Amt der Stadt"
       },
-      "typ": "behoerde",
+      "type": "behoerde",
       "einheit_ref": "SiD-dav"
     },
     {
@@ -72,7 +73,7 @@
         "en": "Zurich City Police (enforcement)",
         "ls": "Die Stadt-Polizei"
       },
-      "typ": "behoerde",
+      "type": "behoerde",
       "einheit_ref": "SiD-stapo"
     },
     {
@@ -82,306 +83,330 @@
         "en": "District governor's office (appeals)",
         "ls": "Eine Stelle vom Kanton für Beschwerden"
       },
-      "typ": "gericht"
+      "type": "gericht"
     }
   ],
-  "schritte": [
+  "steps": [
     {
-      "id": "start",
-      "typ": "start",
-      "akteur": "halter",
+      "step_id": 1,
+      "actor": "halter",
       "label": {
         "de": "Wohnsitz in blauer Zone + Auto",
         "en": "Residence in blue zone + vehicle",
         "ls": "Du wohnst in einer blauen Zone und hast ein Auto"
-      }
+      },
+      "depends_on": [],
+      "type": "start"
     },
     {
-      "id": "voraussetzungen-pruefen",
-      "typ": "input",
-      "akteur": "halter",
+      "step_id": 2,
+      "actor": "halter",
       "label": {
         "de": "Voraussetzungen selbst prüfen",
         "en": "Self-check eligibility",
         "ls": "Du schaust: Passt das für dich?"
       },
-      "beschreibung": {
+      "depends_on": [
+        1
+      ],
+      "type": "input",
+      "description": {
         "de": "Hauptwohnsitz in der blauen Zone (Meldebestätigung); Halter:in oder Dauernutzer:in des Fahrzeugs; Fahrzeug muss zugelassen sein.",
         "en": "Main residence in the blue zone, vehicle holder or permanent user, vehicle registered with licence plate.",
         "ls": "Du brauchst: Deine Wohn-Adresse in der blauen Zone. Du bist Besitzer vom Auto. Das Auto hat ein Kontrollschild."
       },
-      "quelle": "q-stz-parkkarten"
+      "source_id": "q-stz-parkkarten"
     },
     {
-      "id": "antrag-stellen",
-      "typ": "input",
-      "akteur": "halter",
+      "step_id": 3,
+      "actor": "halter",
       "label": {
         "de": "Antrag online stellen",
         "en": "Submit application online",
         "ls": "Du füllst das Formular im Internet aus"
       },
-      "beschreibung": {
+      "depends_on": [
+        2
+      ],
+      "type": "input",
+      "description": {
         "de": "Über das Online-Portal der Dienstabteilung Verkehr. Papiereingabe weiterhin möglich, dauert aber länger.",
         "en": "Via the DAV online portal. Paper submission still possible but slower."
       },
-      "unterlagen": [
+      "documents": [
         {
           "label": {
             "de": "Kopie Fahrzeugausweis",
             "en": "Copy of vehicle registration"
           },
-          "pflicht": true
+          "required": true
         },
         {
           "label": {
             "de": "Meldebestätigung / Wohnsitznachweis",
             "en": "Proof of residence"
           },
-          "pflicht": true
+          "required": true
         },
         {
           "label": {
             "de": "Bei Firmenfahrzeug: Bestätigung des Dauernutzungsrechts",
             "en": "For company cars: permanent-use confirmation"
           },
-          "pflicht": false
+          "required": false
         }
       ],
-      "quelle": "q-stz-online"
+      "source_id": "q-stz-online"
     },
     {
-      "id": "pruefung",
-      "typ": "prozess",
-      "akteur": "dav",
+      "step_id": 4,
+      "actor": "dav",
       "label": {
         "de": "Antrag prüfen (Wohnsitz, Halterschaft, Zone)",
         "en": "Check application (residence, holdership, zone)"
       },
-      "beschreibung": {
+      "depends_on": [
+        3
+      ],
+      "type": "prozess",
+      "description": {
         "de": "Die DAV gleicht die Angaben mit dem Einwohnerregister und dem Fahrzeugregister ab. Bei klaren Fällen vollautomatisiert."
       }
     },
     {
-      "id": "vollstaendig",
-      "typ": "entscheidung",
-      "akteur": "dav",
+      "step_id": 5,
+      "actor": "dav",
       "label": {
         "de": "Unterlagen vollständig?",
         "en": "Application complete?",
         "ls": "Sind alle Angaben da?"
-      }
+      },
+      "depends_on": [
+        4
+      ],
+      "type": "entscheidung"
     },
     {
-      "id": "nachfrist",
-      "typ": "loop",
-      "akteur": "halter",
+      "step_id": 6,
+      "actor": "halter",
       "label": {
         "de": "Fehlende Unterlagen nachliefern",
         "en": "Submit missing documents",
         "ls": "Fehlendes nachreichen"
-      }
+      },
+      "depends_on": [
+        {
+          "step_id": 5,
+          "condition": {
+            "de": "unvollständig",
+            "en": "incomplete"
+          }
+        }
+      ],
+      "type": "loop",
+      "loops_back_to": [
+        4
+      ]
     },
     {
-      "id": "berechtigt",
-      "typ": "entscheidung",
-      "akteur": "dav",
+      "step_id": 7,
+      "actor": "dav",
       "label": {
         "de": "Berechtigt?",
         "en": "Entitled?",
         "ls": "Darfst du die Karte bekommen?"
-      }
+      },
+      "depends_on": [
+        {
+          "step_id": 5,
+          "condition": {
+            "de": "vollständig",
+            "en": "complete"
+          }
+        }
+      ],
+      "type": "entscheidung"
     },
     {
-      "id": "rechnung",
-      "typ": "prozess",
-      "akteur": "dav",
+      "step_id": 8,
+      "actor": "dav",
       "label": {
         "de": "Rechnung zustellen",
         "en": "Issue invoice",
         "ls": "Du bekommst eine Rechnung"
       },
-      "referenzen": [
-        "r-jahresgebuehr"
-      ]
+      "depends_on": [
+        {
+          "step_id": 7,
+          "condition": {
+            "de": "ja"
+          }
+        }
+      ],
+      "reference_ids": [
+        1
+      ],
+      "type": "prozess"
     },
     {
-      "id": "bezahlen",
-      "typ": "input",
-      "akteur": "halter",
+      "step_id": 9,
+      "actor": "halter",
       "label": {
         "de": "Rechnung bezahlen",
         "en": "Pay invoice",
         "ls": "Du zahlst die Rechnung"
-      }
+      },
+      "depends_on": [
+        8
+      ],
+      "type": "input"
     },
     {
-      "id": "aktivierung",
-      "typ": "prozess",
-      "akteur": "dav",
+      "step_id": 10,
+      "actor": "dav",
       "label": {
         "de": "Kennzeichen im Parkkartensystem aktivieren",
         "en": "Activate licence plate in permit system",
         "ls": "Dein Kontrollschild kommt in den Computer"
       },
-      "beschreibung": {
+      "depends_on": [
+        9
+      ],
+      "type": "prozess",
+      "description": {
         "de": "Ab Aktivierung ist das Fahrzeug in der registrierten Zone dauerparkberechtigt. Kontrollen erfolgen durch Kennzeichen-Abgleich mit dem System.",
         "en": "Once activated, the vehicle is permanently authorised in the registered zone; enforcement is done via plate matching."
       }
     },
     {
-      "id": "ablehnung",
-      "typ": "prozess",
-      "akteur": "dav",
+      "step_id": 11,
+      "actor": "dav",
       "label": {
         "de": "Antrag ablehnen (mit Begründung)",
         "en": "Reject application (with reasons)",
         "ls": "Das Amt sagt: Nein. Und schreibt warum."
-      }
+      },
+      "depends_on": [
+        {
+          "step_id": 7,
+          "condition": {
+            "de": "nein"
+          }
+        }
+      ],
+      "type": "prozess"
     },
     {
-      "id": "einsprache-moeglich",
-      "typ": "entscheidung",
-      "akteur": "halter",
+      "step_id": 12,
+      "actor": "halter",
       "label": {
         "de": "Rekurs einreichen?",
         "en": "File appeal?",
         "ls": "Willst du dich beschweren?"
-      }
+      },
+      "depends_on": [
+        11
+      ],
+      "type": "entscheidung"
     },
     {
-      "id": "rekurs",
-      "typ": "loop",
-      "akteur": "statthalter",
+      "step_id": 13,
+      "actor": "statthalter",
       "label": {
         "de": "Rekurs beim Statthalteramt",
         "en": "Appeal to district governor",
         "ls": "Beschwerde bei der Kantonsstelle"
-      }
+      },
+      "depends_on": [
+        {
+          "step_id": 12,
+          "condition": {
+            "de": "ja"
+          }
+        }
+      ],
+      "type": "loop",
+      "loops_back_to": [
+        7
+      ]
     },
     {
-      "id": "kontrolle",
-      "typ": "warten",
-      "akteur": "stapo",
+      "step_id": 14,
+      "actor": "stapo",
       "label": {
         "de": "Laufende Kontrolle durch Stadtpolizei",
         "en": "Ongoing police enforcement",
         "ls": "Die Polizei schaut immer wieder, ob dein Auto eingetragen ist"
       },
-      "beschreibung": {
+      "depends_on": [
+        10
+      ],
+      "type": "warten",
+      "description": {
         "de": "Über Kennzeichen-Scanner. Keine separate Handlung der Halter:in nötig — die Parkberechtigung gilt einfach."
       }
     },
     {
-      "id": "ende-aktiv",
-      "typ": "ende",
-      "akteur": "halter",
+      "step_id": 15,
+      "actor": "halter",
       "label": {
         "de": "Parkkarte aktiv",
         "en": "Permit active",
         "ls": "Ihre Park-Karte funktioniert jetzt."
       },
-      "referenzen": [
-        "r-gueltigkeitsdauer"
-      ]
+      "depends_on": [
+        14
+      ],
+      "reference_ids": [
+        2
+      ],
+      "type": "ende"
     },
     {
-      "id": "ende-abgelehnt",
-      "typ": "ende",
-      "akteur": "halter",
+      "step_id": 16,
+      "actor": "halter",
       "label": {
         "de": "Antrag rechtskräftig abgelehnt",
         "en": "Application rejected (final)",
         "ls": "Du bekommst keine Park-Karte"
-      }
+      },
+      "depends_on": [
+        {
+          "step_id": 12,
+          "condition": {
+            "de": "nein"
+          }
+        }
+      ],
+      "type": "ende"
     }
   ],
-  "flow": [
+  "legal_basis": [
     {
-      "von": "start",
-      "nach": "voraussetzungen-pruefen"
+      "label": "Verkehrsreglement der Stadt Zürich (VRSZ)",
+      "url": "https://www.stadt-zuerich.ch/pd/de/index/das_departement/organisation/dienstabteilungen/dav.html"
     },
     {
-      "von": "voraussetzungen-pruefen",
-      "nach": "antrag-stellen"
+      "label": "SVG Art. 3 (Strassenverkehrsgesetz)",
+      "url": "https://www.fedlex.admin.ch/eli/cc/1959/679_705_725/de"
     },
     {
-      "von": "antrag-stellen",
-      "nach": "pruefung"
+      "label": "Signalisationsverordnung SSV Art. 48",
+      "url": "https://www.fedlex.admin.ch/eli/cc/1979/1961_1961_1961/de"
+    }
+  ],
+  "sources": [
+    {
+      "id": "q-stz-parkkarten",
+      "title": "Stadt Zürich – Parkkarten-Angebote",
+      "url": "https://www.stadt-zuerich.ch/pd/de/index/dav/parkkarten.html",
+      "retrieved_at": "2026-04-24"
     },
     {
-      "von": "pruefung",
-      "nach": "vollstaendig"
-    },
-    {
-      "von": "vollstaendig",
-      "nach": "nachfrist",
-      "bedingung": "nein",
-      "label": {
-        "de": "unvollständig",
-        "en": "incomplete"
-      }
-    },
-    {
-      "von": "nachfrist",
-      "nach": "pruefung"
-    },
-    {
-      "von": "vollstaendig",
-      "nach": "berechtigt",
-      "bedingung": "ja",
-      "label": {
-        "de": "vollständig",
-        "en": "complete"
-      }
-    },
-    {
-      "von": "berechtigt",
-      "nach": "rechnung",
-      "bedingung": "ja"
-    },
-    {
-      "von": "berechtigt",
-      "nach": "ablehnung",
-      "bedingung": "nein"
-    },
-    {
-      "von": "rechnung",
-      "nach": "bezahlen"
-    },
-    {
-      "von": "bezahlen",
-      "nach": "aktivierung"
-    },
-    {
-      "von": "aktivierung",
-      "nach": "kontrolle"
-    },
-    {
-      "von": "kontrolle",
-      "nach": "ende-aktiv"
-    },
-    {
-      "von": "ablehnung",
-      "nach": "einsprache-moeglich"
-    },
-    {
-      "von": "einsprache-moeglich",
-      "nach": "rekurs",
-      "bedingung": "ja"
-    },
-    {
-      "von": "einsprache-moeglich",
-      "nach": "ende-abgelehnt",
-      "bedingung": "nein"
-    },
-    {
-      "von": "rekurs",
-      "nach": "berechtigt",
-      "label": {
-        "de": "Neubeurteilung",
-        "en": "re-evaluation"
-      }
+      "id": "q-stz-online",
+      "title": "Stadt Zürich – Parkkarten-Online-Portal",
+      "url": "https://www.stadt-zuerich.ch/pd/de/index/dav/parkkarten/anwohnerparkkarten.html",
+      "retrieved_at": "2026-04-24"
     }
   ],
   "reife": {
@@ -443,31 +468,5 @@
     "aktualisiert": "2026-06-10",
     "maintainer": "malkreide",
     "lizenz": "CC-BY-4.0"
-  },
-  "lebenslage_ref": "parkplatz",
-  "zielgruppe": "bevoelkerung",
-  "referenzen": [
-    {
-      "id": "r-jahresgebuehr",
-      "label": {
-        "de": "Jahresgebühr der Anwohnerparkkarte (tarifabhängig nach Fahrzeug, anteilig bei kürzerer Dauer)",
-        "en": "Annual fee for the resident parking permit (tariff depends on vehicle; pro-rated)"
-      },
-      "url": "https://www.stadt-zuerich.ch/pd/de/index/dav/parkkarten.html",
-      "zitat": "",
-      "status": "unverifiziert",
-      "abgerufen": "2026-04-24"
-    },
-    {
-      "id": "r-gueltigkeitsdauer",
-      "label": {
-        "de": "Gültigkeitsdauer der Anwohnerparkkarte",
-        "en": "Validity period of the resident parking permit"
-      },
-      "url": "https://www.stadt-zuerich.ch/pd/de/index/dav/parkkarten.html",
-      "zitat": "",
-      "status": "unverifiziert",
-      "abgerufen": "2026-06-10"
-    }
-  ]
+  }
 }
