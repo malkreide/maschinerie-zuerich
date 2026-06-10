@@ -1,6 +1,12 @@
-// Typen zur OpenGov-Process-Schema (siehe /schemas/opengov-process-schema.json).
+// Typen zur OpenGov-Process-Schema, Generation 2 (siehe
+// /schemas/opengov-process-schema.json; kanonische Fassung:
+// docs/process-data-contract.md im Repo-Root).
 // Halte diese Datei synchron mit dem JSON-Schema — die Source of Truth fürs Tooling
 // ist das JSON-Schema, diese Typen sind ein bequemer TS-Mirror.
+//
+// Kardinalregel: bindende Werte (Fristen, Gebühren) leben NUR in Referenz
+// (Label + Deep-Link + wörtliches Zitat) — es gibt bewusst keine Felder für
+// Dauern oder Kosten als Zahl.
 
 export type ProzessLocale = 'de' | 'en' | 'fr' | 'it' | 'ls';
 
@@ -24,20 +30,18 @@ export type AkteurTyp =
   | 'gericht'
   | 'dritte';
 
-export type DauerEinheit =
-  | 'minuten'
-  | 'stunden'
-  | 'arbeitstage'
-  | 'kalendertage'
-  | 'wochen'
-  | 'monate';
+export type Zielgruppe = 'bevoelkerung' | 'wirtschaft' | 'behoerden';
 
-export interface Dauer {
-  min: number;
-  max: number;
-  einheit: DauerEinheit;
-  typ?: 'bearbeitung' | 'durchlauf';
-  anmerkung?: I18nString;
+export interface Referenz {
+  id: string;
+  /** Ohne die Zahl als behaupteten Fakt — die steht nur im Zitat. */
+  label: I18nString;
+  /** Deep-Link auf die exakte Stelle der amtlichen Quelle. */
+  url: string;
+  /** Wörtliche Belegstelle. Pflicht (nicht-leer) bei status 'verifiziert'. */
+  zitat?: string;
+  status?: 'verifiziert' | 'unverifiziert';
+  abgerufen: string;
 }
 
 export interface Unterlage {
@@ -61,12 +65,8 @@ export interface Schritt {
   akteur: string;
   label: I18nString;
   beschreibung?: I18nString;
-  dauer_est?: Dauer;
-  kosten_chf?: {
-    min?: number;
-    max?: number;
-    anmerkung?: I18nString;
-  };
+  /** IDs aus Prozess.referenzen — bindende Werte dieses Schritts. */
+  referenzen?: string[];
   unterlagen?: Unterlage[];
   quelle?: string;
 }
@@ -87,8 +87,8 @@ export interface Rechtsgrundlage {
 export interface Quelle {
   id: string;
   titel: string;
-  url?: string;
-  abgerufen?: string;
+  url: string;
+  abgerufen: string;
 }
 
 export type OnlineReifegrad = 'offline' | 'teil-digital' | 'digital' | 'end-to-end';
@@ -131,12 +131,20 @@ export interface Prozess {
   city: string;
   titel: I18nString;
   kurzbeschreibung?: I18nString;
+  /** ID der Lebenslage in data/<city>/lebenslagen.json. */
+  lebenslage_ref: string;
+  /** Primäre Zielgruppe nach eCH-0073. */
+  zielgruppe: Zielgruppe;
+  voraussetzungen?: I18nString[];
   rechtsgrundlagen?: Rechtsgrundlage[];
-  quellen?: Quelle[];
+  quellen: Quelle[];
+  referenzen?: Referenz[];
   akteure: Akteur[];
   schritte: Schritt[];
   flow: FlowKante[];
   reife?: Reife;
+  /** i18n-Key des Inoffiziell-Hinweises. Default: 'Prozesse.disclaimer'. */
+  disclaimer_key?: string;
   meta?: {
     erstellt?: string;
     aktualisiert?: string;

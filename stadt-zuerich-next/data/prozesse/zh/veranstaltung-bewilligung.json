@@ -1,7 +1,7 @@
 {
   "$schema": "../../../schemas/opengov-process-schema.json",
   "id": "veranstaltung-bewilligung",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "city": "zh",
   "titel": {
     "de": "Veranstaltung bewilligen (Nutzung öffentlicher Grund)",
@@ -16,8 +16,14 @@
     "ls": "Sie wollen ein Fest auf der Strasse oder einem Platz machen? Dann brauchen Sie eine Bewilligung von der Stadt-Polizei. Andere Ämter prüfen mit: Lärm, Verkehr, Abfall, Getränke."
   },
   "rechtsgrundlagen": [
-    { "bezeichnung": "Vorschriften über die Benützung des öffentlichen Grundes der Stadt Zürich", "url": "https://www.stadt-zuerich.ch/pd/de/index/stadtpolizei_zuerich/bewilligungen.html" },
-    { "bezeichnung": "Gastgewerbegesetz des Kantons Zürich (für Ausschank/Patente)", "url": "https://www.zh.ch/de/wirtschaft-arbeit/gastgewerbe.html" }
+    {
+      "bezeichnung": "Vorschriften über die Benützung des öffentlichen Grundes der Stadt Zürich",
+      "url": "https://www.stadt-zuerich.ch/pd/de/index/stadtpolizei_zuerich/bewilligungen.html"
+    },
+    {
+      "bezeichnung": "Gastgewerbegesetz des Kantons Zürich (für Ausschank/Patente)",
+      "url": "https://www.zh.ch/de/wirtschaft-arbeit/gastgewerbe.html"
+    }
   ],
   "quellen": [
     {
@@ -93,8 +99,10 @@
         "en": "Depending on size, applications must be submitted several weeks in advance (large events much earlier).",
         "ls": "Melden Sie das Fest früh an. Grosse Feste brauchen mehr Zeit."
       },
-      "dauer_est": { "min": 30, "max": 120, "einheit": "kalendertage", "typ": "durchlauf" },
-      "quelle": "q-stz-bewilligungen"
+      "quelle": "q-stz-bewilligungen",
+      "referenzen": [
+        "r-vorlaufzeit"
+      ]
     },
     {
       "id": "gesuch",
@@ -110,11 +118,28 @@
         "en": "Details on location, date, expected attendance, setup, noise/music, alcohol and waste.",
         "ls": "Wo, wann, wie viele Leute, Musik, Getränke, Abfall."
       },
-      "dauer_est": { "min": 30, "max": 90, "einheit": "minuten", "typ": "durchlauf" },
       "unterlagen": [
-        { "label": { "de": "Situationsplan / Aufbauplan", "en": "Site/setup plan" }, "pflicht": true },
-        { "label": { "de": "Programm und Zeitplan", "en": "Programme and schedule" }, "pflicht": true },
-        { "label": { "de": "Bei Ausschank: Angaben zum Getränkeangebot", "en": "For alcohol service: details of the offering" }, "pflicht": false }
+        {
+          "label": {
+            "de": "Situationsplan / Aufbauplan",
+            "en": "Site/setup plan"
+          },
+          "pflicht": true
+        },
+        {
+          "label": {
+            "de": "Programm und Zeitplan",
+            "en": "Programme and schedule"
+          },
+          "pflicht": true
+        },
+        {
+          "label": {
+            "de": "Bei Ausschank: Angaben zum Getränkeangebot",
+            "en": "For alcohol service: details of the offering"
+          },
+          "pflicht": false
+        }
       ],
       "quelle": "q-stz-bewilligungen"
     },
@@ -125,8 +150,7 @@
       "label": {
         "de": "Gesuch prüfen, Fachstellen einholen",
         "en": "Review application, consult specialist offices"
-      },
-      "dauer_est": { "min": 1, "max": 6, "einheit": "wochen", "typ": "bearbeitung" }
+      }
     },
     {
       "id": "mitberichte",
@@ -136,8 +160,7 @@
         "de": "Fachstellen-Mitberichte (Lärm, Verkehr, Entsorgung, Ausschank)",
         "en": "Specialist reports (noise, traffic, waste, alcohol)",
         "ls": "Andere Ämter prüfen mit"
-      },
-      "dauer_est": { "min": 1, "max": 4, "einheit": "wochen", "typ": "bearbeitung" }
+      }
     },
     {
       "id": "vollstaendig",
@@ -157,8 +180,7 @@
         "de": "Unterlagen oder Anpassungen nachreichen",
         "en": "Submit missing documents or adjustments",
         "ls": "Fehlendes nachreichen"
-      },
-      "dauer_est": { "min": 1, "max": 14, "einheit": "kalendertage", "typ": "durchlauf" }
+      }
     },
     {
       "id": "entscheid",
@@ -182,8 +204,7 @@
       "beschreibung": {
         "de": "Bewilligung mit Auflagen (Lärmzeiten, Sicherheit, Reinigung, Verkehr) und Gebühr.",
         "en": "Permit with conditions (noise hours, safety, cleaning, traffic) and fee."
-      },
-      "dauer_est": { "min": 1, "max": 5, "einheit": "arbeitstage", "typ": "bearbeitung" }
+      }
     },
     {
       "id": "gebuehr",
@@ -193,8 +214,7 @@
         "de": "Gebühr bezahlen",
         "en": "Pay the fee",
         "ls": "Sie zahlen die Gebühr"
-      },
-      "dauer_est": { "min": 1, "max": 20, "einheit": "kalendertage", "typ": "durchlauf" }
+      }
     },
     {
       "id": "ende-bewilligt",
@@ -228,14 +248,13 @@
     },
     {
       "id": "rekurs",
-      "typ": "prozess",
+      "typ": "loop",
       "akteur": "statthalter",
       "label": {
         "de": "Rekurs beim Statthalteramt",
         "en": "Appeal to the district governor",
         "ls": "Beschwerde bei der Kantonsstelle"
-      },
-      "dauer_est": { "min": 1, "max": 6, "einheit": "monate", "typ": "durchlauf" }
+      }
     },
     {
       "id": "ende-abgelehnt",
@@ -249,54 +268,172 @@
     }
   ],
   "flow": [
-    { "von": "start", "nach": "frist" },
-    { "von": "frist", "nach": "gesuch" },
-    { "von": "gesuch", "nach": "pruefung" },
-    { "von": "pruefung", "nach": "mitberichte" },
-    { "von": "mitberichte", "nach": "vollstaendig" },
-    { "von": "vollstaendig", "nach": "nachfordern", "bedingung": "nein", "label": { "de": "unvollständig", "en": "incomplete" } },
-    { "von": "nachfordern", "nach": "pruefung" },
-    { "von": "vollstaendig", "nach": "entscheid", "bedingung": "ja", "label": { "de": "vollständig", "en": "complete" } },
-    { "von": "entscheid", "nach": "verfuegung", "bedingung": "ja" },
-    { "von": "entscheid", "nach": "ablehnung", "bedingung": "nein" },
-    { "von": "verfuegung", "nach": "gebuehr" },
-    { "von": "gebuehr", "nach": "ende-bewilligt" },
-    { "von": "ablehnung", "nach": "einsprache" },
-    { "von": "einsprache", "nach": "rekurs", "bedingung": "ja" },
-    { "von": "einsprache", "nach": "ende-abgelehnt", "bedingung": "nein" },
-    { "von": "rekurs", "nach": "entscheid", "label": { "de": "Neubeurteilung", "en": "re-evaluation" } }
+    {
+      "von": "start",
+      "nach": "frist"
+    },
+    {
+      "von": "frist",
+      "nach": "gesuch"
+    },
+    {
+      "von": "gesuch",
+      "nach": "pruefung"
+    },
+    {
+      "von": "pruefung",
+      "nach": "mitberichte"
+    },
+    {
+      "von": "mitberichte",
+      "nach": "vollstaendig"
+    },
+    {
+      "von": "vollstaendig",
+      "nach": "nachfordern",
+      "bedingung": "nein",
+      "label": {
+        "de": "unvollständig",
+        "en": "incomplete"
+      }
+    },
+    {
+      "von": "nachfordern",
+      "nach": "pruefung"
+    },
+    {
+      "von": "vollstaendig",
+      "nach": "entscheid",
+      "bedingung": "ja",
+      "label": {
+        "de": "vollständig",
+        "en": "complete"
+      }
+    },
+    {
+      "von": "entscheid",
+      "nach": "verfuegung",
+      "bedingung": "ja"
+    },
+    {
+      "von": "entscheid",
+      "nach": "ablehnung",
+      "bedingung": "nein"
+    },
+    {
+      "von": "verfuegung",
+      "nach": "gebuehr"
+    },
+    {
+      "von": "gebuehr",
+      "nach": "ende-bewilligt"
+    },
+    {
+      "von": "ablehnung",
+      "nach": "einsprache"
+    },
+    {
+      "von": "einsprache",
+      "nach": "rekurs",
+      "bedingung": "ja"
+    },
+    {
+      "von": "einsprache",
+      "nach": "ende-abgelehnt",
+      "bedingung": "nein"
+    },
+    {
+      "von": "rekurs",
+      "nach": "entscheid",
+      "label": {
+        "de": "Neubeurteilung",
+        "en": "re-evaluation"
+      }
+    }
   ],
   "reife": {
     "onlineReifegrad": "teil-digital",
-    "medienbrueche": ["separate-zahlung", "erneute-dateneingabe"],
+    "medienbrueche": [
+      "separate-zahlung",
+      "erneute-dateneingabe"
+    ],
     "onceOnlyPotenzial": {
       "de": "Veranstalter-Stammdaten und wiederkehrende Anlässe könnten gespeichert werden, sodass Folgegesuche nicht alles neu erfassen müssen.",
       "en": "Organiser master data and recurring events could be stored so that follow-up applications need not re-enter everything.",
       "ls": "Wenn Sie öfter ein Fest machen, müssten Sie die Angaben nicht jedes Mal neu schreiben."
     },
     "nutzergruppen": [
-      { "de": "Vereine und Quartierorganisationen", "en": "Associations and neighbourhood groups", "ls": "Vereine und Quartier-Gruppen" },
-      { "de": "Gewerbe / Gastronomie", "en": "Businesses / catering", "ls": "Geschäfte und Restaurants" },
-      { "de": "Private Veranstalter:innen", "en": "Private organisers", "ls": "Einzelne Menschen, die ein Fest machen" }
+      {
+        "de": "Vereine und Quartierorganisationen",
+        "en": "Associations and neighbourhood groups",
+        "ls": "Vereine und Quartier-Gruppen"
+      },
+      {
+        "de": "Gewerbe / Gastronomie",
+        "en": "Businesses / catering",
+        "ls": "Geschäfte und Restaurants"
+      },
+      {
+        "de": "Private Veranstalter:innen",
+        "en": "Private organisers",
+        "ls": "Einzelne Menschen, die ein Fest machen"
+      }
     ],
     "painPoints": [
-      { "de": "Mehrere Fachstellen müssen koordiniert werden; lange Vorlaufzeit.", "en": "Several specialist offices must be coordinated; long lead time.", "ls": "Viele Ämter prüfen mit. Das dauert." },
-      { "de": "Zahlung erfolgt separat per Rechnung.", "en": "Payment happens separately by invoice.", "ls": "Sie zahlen erst später mit einer Rechnung." }
+      {
+        "de": "Mehrere Fachstellen müssen koordiniert werden; lange Vorlaufzeit.",
+        "en": "Several specialist offices must be coordinated; long lead time.",
+        "ls": "Viele Ämter prüfen mit. Das dauert."
+      },
+      {
+        "de": "Zahlung erfolgt separat per Rechnung.",
+        "en": "Payment happens separately by invoice.",
+        "ls": "Sie zahlen erst später mit einer Rechnung."
+      }
     ],
     "improvementIdeas": [
-      { "de": "Ein-Fenster-Gesuch, das alle Fachstellen automatisch einbezieht.", "en": "One-window application that automatically involves all specialist offices.", "ls": "Ein Antrag für alle Ämter auf einmal." },
-      { "de": "Wiederkehrende-Anlass-Profil mit vorbefüllten Angaben.", "en": "Recurring-event profile with pre-filled data.", "ls": "Ein gespeichertes Profil für Feste, die Sie öfter machen." }
+      {
+        "de": "Ein-Fenster-Gesuch, das alle Fachstellen automatisch einbezieht.",
+        "en": "One-window application that automatically involves all specialist offices.",
+        "ls": "Ein Antrag für alle Ämter auf einmal."
+      },
+      {
+        "de": "Wiederkehrende-Anlass-Profil mit vorbefüllten Angaben.",
+        "en": "Recurring-event profile with pre-filled data.",
+        "ls": "Ein gespeichertes Profil für Feste, die Sie öfter machen."
+      }
     ],
     "status": "beobachtet",
     "wirkungKpi": [
-      { "label": { "de": "Empfohlene Vorlaufzeit", "en": "Recommended lead time", "ls": "Wie früh anmelden" }, "wert": "ab ~30 Tagen, Grossanlässe deutlich früher" },
-      { "label": { "de": "Online-Anteil", "en": "Share online", "ls": "Wie viel geht online" }, "wert": "Gesuch online, Zahlung separat" }
+      {
+        "label": {
+          "de": "Online-Anteil",
+          "en": "Share online",
+          "ls": "Wie viel geht online"
+        },
+        "wert": "Gesuch online, Zahlung separat"
+      }
     ]
   },
   "meta": {
     "erstellt": "2026-06-06",
-    "aktualisiert": "2026-06-06",
+    "aktualisiert": "2026-06-10",
     "maintainer": "malkreide",
     "lizenz": "CC-BY-4.0"
-  }
+  },
+  "lebenslage_ref": "veranstaltung",
+  "zielgruppe": "bevoelkerung",
+  "referenzen": [
+    {
+      "id": "r-vorlaufzeit",
+      "label": {
+        "de": "Empfohlene Vorlaufzeit für Bewilligungsgesuche (je nach Anlassgrösse)",
+        "en": "Recommended lead time for permit applications (depends on event size)"
+      },
+      "url": "https://www.stadt-zuerich.ch/pd/de/index/stadtpolizei_zuerich/bewilligungen.html",
+      "zitat": "",
+      "status": "unverifiziert",
+      "abgerufen": "2026-06-10"
+    }
+  ]
 }

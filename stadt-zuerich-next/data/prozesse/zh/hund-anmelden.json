@@ -1,7 +1,7 @@
 {
   "$schema": "../../../schemas/opengov-process-schema.json",
   "id": "hund-anmelden",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "city": "zh",
   "titel": {
     "de": "Hund anmelden / Hundesteuer",
@@ -16,9 +16,18 @@
     "ls": "Sie haben einen Hund? Dann müssen Sie den Hund anmelden. Zuerst beim Tierarzt (Chip und Datenbank). Dann bei der Stadt. Jedes Jahr zahlen Sie eine Steuer für den Hund."
   },
   "rechtsgrundlagen": [
-    { "bezeichnung": "Tierseuchengesetz (TSG) / Hundeverordnung (AMICUS)", "url": "https://www.fedlex.admin.ch/eli/cc/1966/89_91_97/de" },
-    { "bezeichnung": "Hundegesetz des Kantons Zürich (HuG)", "url": "https://www.zh.ch/de/tiere-natur-landschaft/tiere/hunde.html" },
-    { "bezeichnung": "Verordnung über die Hundesteuer der Stadt Zürich", "url": "https://www.stadt-zuerich.ch/fd/de/index/steuern/hundesteuer.html" }
+    {
+      "bezeichnung": "Tierseuchengesetz (TSG) / Hundeverordnung (AMICUS)",
+      "url": "https://www.fedlex.admin.ch/eli/cc/1966/89_91_97/de"
+    },
+    {
+      "bezeichnung": "Hundegesetz des Kantons Zürich (HuG)",
+      "url": "https://www.zh.ch/de/tiere-natur-landschaft/tiere/hunde.html"
+    },
+    {
+      "bezeichnung": "Verordnung über die Hundesteuer der Stadt Zürich",
+      "url": "https://www.stadt-zuerich.ch/fd/de/index/steuern/hundesteuer.html"
+    }
   ],
   "quellen": [
     {
@@ -101,16 +110,10 @@
         "en": "Every dog must be microchipped and registered to its owner in the national AMICUS database; done by the veterinary practice.",
         "ls": "Der Hund bekommt einen kleinen Chip. Damit ist er in der Datenbank."
       },
-      "dauer_est": { "min": 1, "max": 1, "einheit": "stunden", "typ": "durchlauf" },
-      "kosten_chf": {
-        "min": 60,
-        "max": 120,
-        "anmerkung": {
-          "de": "Tierarztkosten für Mikrochip und AMICUS-Erfassung (Richtwert).",
-          "en": "Vet cost for microchip and AMICUS registration (approximate)."
-        }
-      },
-      "quelle": "q-amicus"
+      "quelle": "q-amicus",
+      "referenzen": [
+        "r-tierarztkosten-chip"
+      ]
     },
     {
       "id": "anmelden",
@@ -126,12 +129,26 @@
         "en": "Registration with the tax office's dog registry — online or by form. On moving in or acquiring a dog, within the cantonal deadline.",
         "ls": "Sie melden den Hund beim Steuer-Amt. Das geht im Internet oder mit einem Formular."
       },
-      "dauer_est": { "min": 10, "max": 20, "einheit": "minuten", "typ": "durchlauf" },
       "unterlagen": [
-        { "label": { "de": "AMICUS-Nummer / Heimtierausweis", "en": "AMICUS number / pet passport" }, "pflicht": true },
-        { "label": { "de": "Haftpflichtversicherungs-Nachweis", "en": "Liability insurance proof" }, "pflicht": false }
+        {
+          "label": {
+            "de": "AMICUS-Nummer / Heimtierausweis",
+            "en": "AMICUS number / pet passport"
+          },
+          "pflicht": true
+        },
+        {
+          "label": {
+            "de": "Haftpflichtversicherungs-Nachweis",
+            "en": "Liability insurance proof"
+          },
+          "pflicht": false
+        }
       ],
-      "quelle": "q-stz-hund"
+      "quelle": "q-stz-hund",
+      "referenzen": [
+        "r-anmeldefrist"
+      ]
     },
     {
       "id": "pruefung",
@@ -144,8 +161,7 @@
       "beschreibung": {
         "de": "Das Steueramt übernimmt die Hundedaten weitgehend aus AMICUS und legt das Steuerdossier an.",
         "en": "The tax office largely imports the dog's data from AMICUS and sets up the tax record."
-      },
-      "dauer_est": { "min": 1, "max": 5, "einheit": "arbeitstage", "typ": "bearbeitung" }
+      }
     },
     {
       "id": "veranlagung",
@@ -156,16 +172,10 @@
         "en": "Assess dog tax and issue invoice",
         "ls": "Sie bekommen eine Rechnung für die Hunde-Steuer"
       },
-      "dauer_est": { "min": 1, "max": 10, "einheit": "arbeitstage", "typ": "bearbeitung" },
-      "kosten_chf": {
-        "min": 175,
-        "max": 175,
-        "anmerkung": {
-          "de": "Jährliche Hundesteuer der Stadt Zürich (Richtwert; bei unterjähriger Anmeldung anteilig).",
-          "en": "Annual dog tax of the City of Zurich (approximate; pro-rated for part-year registration)."
-        }
-      },
-      "quelle": "q-stz-hund"
+      "quelle": "q-stz-hund",
+      "referenzen": [
+        "r-hundesteuer"
+      ]
     },
     {
       "id": "bezahlen",
@@ -176,7 +186,9 @@
         "en": "Pay the dog tax",
         "ls": "Sie zahlen die Rechnung"
       },
-      "dauer_est": { "min": 1, "max": 30, "einheit": "kalendertage", "typ": "durchlauf" }
+      "referenzen": [
+        "r-hundesteuer"
+      ]
     },
     {
       "id": "ende",
@@ -190,44 +202,152 @@
     }
   ],
   "flow": [
-    { "von": "start", "nach": "amicus-check" },
-    { "von": "amicus-check", "nach": "chippen", "bedingung": "nein", "label": { "de": "noch nicht registriert", "en": "not yet registered" } },
-    { "von": "amicus-check", "nach": "anmelden", "bedingung": "ja", "label": { "de": "bereits in AMICUS", "en": "already in AMICUS" } },
-    { "von": "chippen", "nach": "anmelden" },
-    { "von": "anmelden", "nach": "pruefung" },
-    { "von": "pruefung", "nach": "veranlagung" },
-    { "von": "veranlagung", "nach": "bezahlen" },
-    { "von": "bezahlen", "nach": "ende" }
+    {
+      "von": "start",
+      "nach": "amicus-check"
+    },
+    {
+      "von": "amicus-check",
+      "nach": "chippen",
+      "bedingung": "nein",
+      "label": {
+        "de": "noch nicht registriert",
+        "en": "not yet registered"
+      }
+    },
+    {
+      "von": "amicus-check",
+      "nach": "anmelden",
+      "bedingung": "ja",
+      "label": {
+        "de": "bereits in AMICUS",
+        "en": "already in AMICUS"
+      }
+    },
+    {
+      "von": "chippen",
+      "nach": "anmelden"
+    },
+    {
+      "von": "anmelden",
+      "nach": "pruefung"
+    },
+    {
+      "von": "pruefung",
+      "nach": "veranlagung"
+    },
+    {
+      "von": "veranlagung",
+      "nach": "bezahlen"
+    },
+    {
+      "von": "bezahlen",
+      "nach": "ende"
+    }
   ],
   "reife": {
     "onlineReifegrad": "digital",
-    "medienbrueche": ["separate-zahlung"],
+    "medienbrueche": [
+      "separate-zahlung"
+    ],
     "onceOnlyPotenzial": {
       "de": "Die Hundedaten liegen national in AMICUS vor und werden vom Steueramt übernommen. Ein automatischer Abgleich zwischen AMICUS und Einwohnerregister könnte die Anmeldung bei Zuzug ganz auslösen.",
       "en": "Dog data is held nationally in AMICUS and imported by the tax office. Automatic matching between AMICUS and the residents' register could trigger registration on moving in.",
       "ls": "Der Hund ist schon in der Datenbank AMICUS. Die Stadt nimmt diese Angaben."
     },
     "nutzergruppen": [
-      { "de": "Neue Hundehalter:innen", "en": "New dog owners", "ls": "Menschen mit einem neuen Hund" },
-      { "de": "Zuziehende mit Hund", "en": "People moving in with a dog", "ls": "Menschen, die mit Hund nach Zürich ziehen" }
+      {
+        "de": "Neue Hundehalter:innen",
+        "en": "New dog owners",
+        "ls": "Menschen mit einem neuen Hund"
+      },
+      {
+        "de": "Zuziehende mit Hund",
+        "en": "People moving in with a dog",
+        "ls": "Menschen, die mit Hund nach Zürich ziehen"
+      }
     ],
     "painPoints": [
-      { "de": "Steuerzahlung erfolgt separat per Rechnung statt direkt online.", "en": "Tax payment happens separately by invoice instead of directly online.", "ls": "Sie zahlen erst später mit einer Rechnung." }
+      {
+        "de": "Steuerzahlung erfolgt separat per Rechnung statt direkt online.",
+        "en": "Tax payment happens separately by invoice instead of directly online.",
+        "ls": "Sie zahlen erst später mit einer Rechnung."
+      }
     ],
     "improvementIdeas": [
-      { "de": "Automatische Anmeldung bei Zuzug über die Verknüpfung AMICUS ↔ Einwohnerregister.", "en": "Automatic registration on moving in via AMICUS ↔ residents' register linkage.", "ls": "Die Anmeldung passiert automatisch, wenn Sie umziehen." },
-      { "de": "Online-Zahlung direkt im Anmeldeschritt.", "en": "Online payment directly within the registration step.", "ls": "Sie zahlen gleich online." }
+      {
+        "de": "Automatische Anmeldung bei Zuzug über die Verknüpfung AMICUS ↔ Einwohnerregister.",
+        "en": "Automatic registration on moving in via AMICUS ↔ residents' register linkage.",
+        "ls": "Die Anmeldung passiert automatisch, wenn Sie umziehen."
+      },
+      {
+        "de": "Online-Zahlung direkt im Anmeldeschritt.",
+        "en": "Online payment directly within the registration step.",
+        "ls": "Sie zahlen gleich online."
+      }
     ],
     "status": "beobachtet",
     "wirkungKpi": [
-      { "label": { "de": "Jährliche Hundesteuer", "en": "Annual dog tax", "ls": "Steuer pro Jahr" }, "wert": "CHF 175 (Richtwert)" },
-      { "label": { "de": "Online-Anteil", "en": "Share online", "ls": "Wie viel geht online" }, "wert": "Anmeldung online, Zahlung separat" }
+      {
+        "label": {
+          "de": "Online-Anteil",
+          "en": "Share online",
+          "ls": "Wie viel geht online"
+        },
+        "wert": "Anmeldung online, Zahlung separat"
+      }
     ]
   },
   "meta": {
     "erstellt": "2026-06-06",
-    "aktualisiert": "2026-06-06",
+    "aktualisiert": "2026-06-10",
     "maintainer": "malkreide",
     "lizenz": "CC-BY-4.0"
-  }
+  },
+  "lebenslage_ref": "hund-anmelden",
+  "zielgruppe": "bevoelkerung",
+  "referenzen": [
+    {
+      "id": "r-tierarztkosten-chip",
+      "label": {
+        "de": "Tierarztkosten für Mikrochip und AMICUS-Erfassung",
+        "en": "Veterinary costs for microchip and AMICUS registration",
+        "ls": "Was der Chip beim Tierarzt kostet"
+      },
+      "url": "https://www.amicus.ch/",
+      "zitat": "",
+      "status": "unverifiziert",
+      "abgerufen": "2026-06-06"
+    },
+    {
+      "id": "r-hundesteuer",
+      "label": {
+        "de": "Höhe der jährlichen Hundesteuer der Stadt Zürich",
+        "en": "Amount of the City of Zurich's annual dog tax",
+        "ls": "Wie viel Hunde-Steuer Sie zahlen"
+      },
+      "url": "https://www.stadt-zuerich.ch/fd/de/index/steuern/hundesteuer.html",
+      "zitat": "",
+      "status": "unverifiziert",
+      "abgerufen": "2026-06-06"
+    },
+    {
+      "id": "r-anmeldefrist",
+      "label": {
+        "de": "Frist für die Anmeldung bei Zuzug oder Neuanschaffung (kantonale Vorgabe)",
+        "en": "Deadline for registering after moving in or acquiring a dog (cantonal rule)",
+        "ls": "Wie schnell Sie den Hund anmelden müssen"
+      },
+      "url": "https://www.zh.ch/de/tiere-natur-landschaft/tiere/hunde.html",
+      "zitat": "",
+      "status": "unverifiziert",
+      "abgerufen": "2026-06-10"
+    }
+  ],
+  "voraussetzungen": [
+    {
+      "de": "Sie wohnen in der Stadt Zürich und halten einen Hund.",
+      "ls": "Sie wohnen in Zürich. Sie haben einen Hund."
+    }
+  ]
 }

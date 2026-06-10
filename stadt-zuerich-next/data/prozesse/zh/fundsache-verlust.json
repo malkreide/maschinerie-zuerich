@@ -1,7 +1,7 @@
 {
   "$schema": "../../../schemas/opengov-process-schema.json",
   "id": "fundsache-verlust",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "city": "zh",
   "titel": {
     "de": "Fundsache melden / Verlust suchen (Fundbüro)",
@@ -16,8 +16,14 @@
     "ls": "Sie haben etwas gefunden? Bringen Sie es zum Fund-Büro der Stadt-Polizei. Sie haben etwas verloren? Melden Sie es. Das Fund-Büro schaut, ob Ihre Sache da ist."
   },
   "rechtsgrundlagen": [
-    { "bezeichnung": "Obligationenrecht (OR) Art. 720–722 (Fund)", "url": "https://www.fedlex.admin.ch/eli/cc/27/317_321_377/de" },
-    { "bezeichnung": "Stadtpolizei Zürich – Fundbüro", "url": "https://www.stadt-zuerich.ch/pd/de/index/stadtpolizei_zuerich/dienstleistungen/fundbuero.html" }
+    {
+      "bezeichnung": "Obligationenrecht (OR) Art. 720–722 (Fund)",
+      "url": "https://www.fedlex.admin.ch/eli/cc/27/317_321_377/de"
+    },
+    {
+      "bezeichnung": "Stadtpolizei Zürich – Fundbüro",
+      "url": "https://www.stadt-zuerich.ch/pd/de/index/stadtpolizei_zuerich/dienstleistungen/fundbuero.html"
+    }
   ],
   "quellen": [
     {
@@ -84,7 +90,6 @@
         "de": "Fundsache online melden und/oder beim Fundbüro abgeben. Wertgegenstände möglichst rasch übergeben.",
         "en": "Report the found item online and/or hand it in at the lost property office; valuables as soon as possible."
       },
-      "dauer_est": { "min": 10, "max": 30, "einheit": "minuten", "typ": "durchlauf" },
       "quelle": "q-stz-fundbuero"
     },
     {
@@ -95,8 +100,7 @@
         "de": "Fund erfassen und aufbewahren",
         "en": "Record and store the found item",
         "ls": "Das Fund-Büro nimmt die Sache auf"
-      },
-      "dauer_est": { "min": 1, "max": 3, "einheit": "arbeitstage", "typ": "bearbeitung" }
+      }
     },
     {
       "id": "ende-fund",
@@ -121,7 +125,6 @@
         "de": "Online-Verlustmeldung mit Beschreibung des Gegenstands, Verlustort und -datum.",
         "en": "Online loss report with a description of the item, place and date of loss."
       },
-      "dauer_est": { "min": 10, "max": 20, "einheit": "minuten", "typ": "durchlauf" },
       "quelle": "q-stz-fundbuero"
     },
     {
@@ -131,8 +134,7 @@
       "label": {
         "de": "Mit Fundbestand abgleichen",
         "en": "Match against the found-items inventory"
-      },
-      "dauer_est": { "min": 1, "max": 5, "einheit": "arbeitstage", "typ": "bearbeitung" }
+      }
     },
     {
       "id": "treffer",
@@ -157,13 +159,9 @@
         "de": "Abholung gegen Identitätsnachweis; allfällige Aufbewahrungs-/Bearbeitungsgebühr und Finderlohn nach OR.",
         "en": "Collection against proof of identity; any storage/handling fee and finder's reward under the Code of Obligations."
       },
-      "dauer_est": { "min": 15, "max": 30, "einheit": "minuten", "typ": "durchlauf" },
-      "kosten_chf": {
-        "anmerkung": {
-          "de": "Mögliche Bearbeitungsgebühr; Finderlohn nach OR Art. 722, je nach Wert des Gegenstands.",
-          "en": "Possible handling fee; finder's reward under Art. 722 CO depending on the item's value."
-        }
-      }
+      "referenzen": [
+        "r-gebuehr-finderlohn"
+      ]
     },
     {
       "id": "ende-zurueck",
@@ -187,8 +185,7 @@
       "beschreibung": {
         "de": "Fundsachen werden eine gesetzliche Frist aufbewahrt; meldet sich ein passender Fund, wird die Person benachrichtigt.",
         "en": "Found items are kept for a statutory period; if a matching item appears, the person is notified."
-      },
-      "dauer_est": { "min": 1, "max": 5, "einheit": "monate", "typ": "durchlauf" }
+      }
     },
     {
       "id": "ende-offen",
@@ -202,45 +199,130 @@
     }
   ],
   "flow": [
-    { "von": "start", "nach": "fall" },
-    { "von": "fall", "nach": "fund-abgeben", "bedingung": "gefunden", "label": { "de": "gefunden", "en": "found" } },
-    { "von": "fall", "nach": "verlust-melden", "bedingung": "verloren", "label": { "de": "verloren", "en": "lost" } },
-    { "von": "fund-abgeben", "nach": "erfassen" },
-    { "von": "erfassen", "nach": "ende-fund" },
-    { "von": "verlust-melden", "nach": "abgleich" },
-    { "von": "abgleich", "nach": "treffer" },
-    { "von": "treffer", "nach": "abholen", "bedingung": "ja" },
-    { "von": "treffer", "nach": "aufbewahrung", "bedingung": "nein" },
-    { "von": "abholen", "nach": "ende-zurueck" },
-    { "von": "aufbewahrung", "nach": "ende-offen" }
+    {
+      "von": "start",
+      "nach": "fall"
+    },
+    {
+      "von": "fall",
+      "nach": "fund-abgeben",
+      "bedingung": "gefunden",
+      "label": {
+        "de": "gefunden",
+        "en": "found"
+      }
+    },
+    {
+      "von": "fall",
+      "nach": "verlust-melden",
+      "bedingung": "verloren",
+      "label": {
+        "de": "verloren",
+        "en": "lost"
+      }
+    },
+    {
+      "von": "fund-abgeben",
+      "nach": "erfassen"
+    },
+    {
+      "von": "erfassen",
+      "nach": "ende-fund"
+    },
+    {
+      "von": "verlust-melden",
+      "nach": "abgleich"
+    },
+    {
+      "von": "abgleich",
+      "nach": "treffer"
+    },
+    {
+      "von": "treffer",
+      "nach": "abholen",
+      "bedingung": "ja"
+    },
+    {
+      "von": "treffer",
+      "nach": "aufbewahrung",
+      "bedingung": "nein"
+    },
+    {
+      "von": "abholen",
+      "nach": "ende-zurueck"
+    },
+    {
+      "von": "aufbewahrung",
+      "nach": "ende-offen"
+    }
   ],
   "reife": {
     "onlineReifegrad": "digital",
-    "medienbrueche": ["persoenliches-erscheinen"],
+    "medienbrueche": [
+      "persoenliches-erscheinen"
+    ],
     "onceOnlyPotenzial": {
       "de": "Verlust- und Fundmeldungen könnten regional (über Gemeindegrenzen) abgeglichen werden, statt nur lokal — viele Gegenstände wandern über Stadtgrenzen.",
       "en": "Loss and found reports could be matched regionally across municipal borders instead of only locally — many items travel across city boundaries.",
       "ls": "Verlorene Sachen wandern oft über die Stadt-Grenze. Ein Abgleich über mehrere Orte würde helfen."
     },
     "nutzergruppen": [
-      { "de": "Personen, die etwas verloren haben", "en": "People who lost something", "ls": "Menschen, die etwas verloren haben" },
-      { "de": "Ehrliche Finder:innen", "en": "Honest finders", "ls": "Menschen, die etwas gefunden haben" }
+      {
+        "de": "Personen, die etwas verloren haben",
+        "en": "People who lost something",
+        "ls": "Menschen, die etwas verloren haben"
+      },
+      {
+        "de": "Ehrliche Finder:innen",
+        "en": "Honest finders",
+        "ls": "Menschen, die etwas gefunden haben"
+      }
     ],
     "painPoints": [
-      { "de": "Abholung erfordert persönliches Erscheinen am Fundbüro.", "en": "Collection requires appearing in person at the office.", "ls": "Zum Abholen müssen Sie persönlich hingehen." }
+      {
+        "de": "Abholung erfordert persönliches Erscheinen am Fundbüro.",
+        "en": "Collection requires appearing in person at the office.",
+        "ls": "Zum Abholen müssen Sie persönlich hingehen."
+      }
     ],
     "improvementIdeas": [
-      { "de": "Regionaler/kantonaler Fund-Verlust-Abgleich statt nur stadtintern.", "en": "Regional/cantonal match of lost and found instead of city-only.", "ls": "Ein gemeinsames Fund-Büro für die ganze Region." }
+      {
+        "de": "Regionaler/kantonaler Fund-Verlust-Abgleich statt nur stadtintern.",
+        "en": "Regional/cantonal match of lost and found instead of city-only.",
+        "ls": "Ein gemeinsames Fund-Büro für die ganze Region."
+      }
     ],
     "status": "beobachtet",
     "wirkungKpi": [
-      { "label": { "de": "Online-Anteil der Meldung", "en": "Share of reporting online", "ls": "Wie viel geht online" }, "wert": "Meldung online, Abholung vor Ort" }
+      {
+        "label": {
+          "de": "Online-Anteil der Meldung",
+          "en": "Share of reporting online",
+          "ls": "Wie viel geht online"
+        },
+        "wert": "Meldung online, Abholung vor Ort"
+      }
     ]
   },
   "meta": {
     "erstellt": "2026-06-06",
-    "aktualisiert": "2026-06-06",
+    "aktualisiert": "2026-06-10",
     "maintainer": "malkreide",
     "lizenz": "CC-BY-4.0"
-  }
+  },
+  "lebenslage_ref": "fundsache",
+  "zielgruppe": "bevoelkerung",
+  "referenzen": [
+    {
+      "id": "r-gebuehr-finderlohn",
+      "label": {
+        "de": "Allfällige Bearbeitungsgebühr und Finderlohn (OR Art. 722)",
+        "en": "Possible handling fee and finder's reward (Art. 722 Swiss Code of Obligations)"
+      },
+      "url": "https://www.stadt-zuerich.ch/pd/de/index/stadtpolizei_zuerich/dienstleistungen/fundbuero.html",
+      "zitat": "",
+      "status": "unverifiziert",
+      "abgerufen": "2026-06-06"
+    }
+  ]
 }

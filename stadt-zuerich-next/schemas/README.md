@@ -4,6 +4,11 @@ Portables JSON-Schema (Draft-07) zur Beschreibung von Verwaltungsprozessen.
 Jede Datei in `../data/prozesse/<city>/*.json` wird gegen
 [`opengov-process-schema.json`](./opengov-process-schema.json) validiert.
 
+**Kanonische Vertragsfassung:** [`docs/process-data-contract.md`](../../docs/process-data-contract.md)
+im Repo-Root — dort stehen Kardinalregel, Validierungsregeln und die
+Abbildung auf den (nicht-kanonischen) tessera-Entwurf. Bei Konflikt gilt
+der Vertrag.
+
 ## Stabile URL (für andere Städte / externe Tools)
 
 Das Schema liegt unter einer raw-fetchbaren URL — identisch mit dem `$id`
@@ -37,8 +42,16 @@ Prüft zwei Stufen:
    JSON-Schema (Typen, Enums, Pflichtfelder, `format: uri/date`).
 2. **Semantische Validierung** (Referenz- und Graph-Konsistenz):
    - `schritt.akteur` muss in `akteure[].id` existieren
-   - `flow.von` / `flow.nach` müssen in `schritte[].id` existieren
+   - `flow.von` / `flow.nach` müssen in `schritte[].id` existieren, kein Selbstbezug
    - `schritt.quelle` muss in `quellen[].id` existieren
+   - `schritt.referenzen` müssen in `referenzen[].id` existieren; IDs eindeutig
+   - Grounding-Gate: Referenz mit `status: "verifiziert"` braucht ein
+     nicht-leeres `zitat` (Fehler); `unverifiziert` ohne Zitat → Warnung
+   - Azyklisch bis auf Rücksprünge: ohne die Kanten aus `typ: "loop"`-Schritten
+     muss der Graph ein DAG sein
+   - Kardinalregel-Lint: Zahl + bindende Einheit (CHF, Fr., Franken, %,
+     Tag(e), Woche(n), Monat(e), Jahr(e)) in gerenderten Texten → Fehler
+   - `lebenslage_ref` existiert in den Lebenslagen der Stadt und verlinkt zurück
    - `ende`-Knoten dürfen keine ausgehenden Kanten haben
    - Unerreichbare Knoten / fehlender Start → Warnung (kein Fehler)
    - Entscheidungsknoten mit <2 Ausgängen oder ohne `bedingung`-Label → Warnung
@@ -51,11 +64,21 @@ Der Validator läuft auch in CI als eigener Job `prozesse-validation`
 ```jsonc
 {
   "id": "baubewilligung-ordentlich",        // [a-z0-9-]+
-  "version": "0.1.0",                        // SemVer
+  "version": "2.0.0",                        // SemVer; MAJOR = Schema-Generation
   "city": "zh",                              // ISO-ähnliche Kennung
   "titel": {                                 // i18n-String: string oder Objekt
     "de": "...",  "en": "...",  "ls": "..."
   },
+  "lebenslage_ref": "baugesuch",             // ID in data/<city>/lebenslagen.json
+  "zielgruppe": "bevoelkerung",              // eCH-0073: bevoelkerung|wirtschaft|behoerden
+  "quellen": [
+    { "id": "q-x", "titel": "...", "url": "https://…", "abgerufen": "2026-06-10" }
+  ],
+  "referenzen": [                            // bindende Werte NUR hier (Kardinalregel)
+    { "id": "r-gebuehr", "label": { "de": "Gebühr für …" },  // ohne Zahl!
+      "url": "https://…", "zitat": "wörtliche Belegstelle",
+      "status": "verifiziert", "abgerufen": "2026-06-10" }
+  ],
   "akteure": [
     { "id": "bauherr", "label": {...}, "typ": "antragsteller" },
     { "id": "amt",     "label": {...}, "typ": "behoerde", "einheit_ref": "u-afb" }
@@ -64,7 +87,7 @@ Der Validator läuft auch in CI als eigener Job `prozesse-validation`
     { "id": "start", "typ": "start", "akteur": "bauherr", "label": {...} },
     { "id": "...",   "typ": "input|prozess|entscheidung|loop|warten|ende",
                      "akteur": "...", "label": {...},
-                     "dauer_est": { "min": 4, "max": 12, "einheit": "wochen" } }
+                     "referenzen": ["r-gebuehr"] }
   ],
   "flow": [
     { "von": "start", "nach": "..." },
@@ -110,10 +133,10 @@ Breaking Changes am Schema → MAJOR-Bump + Migrations-Skript.
 8. `npm run typecheck && npm run build`.
 9. Commit mit `chore(schema): bump to v<N>`.
 
-### Das v2-Template
+### Die v2-Migration
 
-`scripts/migrate-prozesse-schema-v2.mjs` existiert bereits — als dormantes
-Template mit 5 kommentierten Beispiel-Patterns (Feld umbenennen, Default
-setzen, Enum splitten, Datums-Format konvertieren, Block hinzufügen). Bis
-das Schema wirklich v2 braucht, steht `fromVersion: '1.'` — passt auf keine
-heutige Datei, Script ist ein No-Op.
+`scripts/migrate-prozesse-schema-v2.mjs` wurde für die Generation 2
+ausgeführt (Kardinalregel: `dauer_est` entfernt, `kosten_chf` → Referenzen
+mit `status: "unverifiziert"`, neue Pflichtfelder `lebenslage_ref` /
+`zielgruppe`). Für künftige Migrationen die Datei nach
+`migrate-prozesse-schema-v<N>.mjs` kopieren und die Checkliste oben abarbeiten.

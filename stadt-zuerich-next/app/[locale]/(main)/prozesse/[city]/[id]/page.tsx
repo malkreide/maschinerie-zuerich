@@ -19,7 +19,7 @@ import { resolveContent } from '@/lib/search';
 import { city as cityConfig } from '@/config/city.config';
 import { layoutProzess } from '@/lib/prozess-layout';
 import { prozessToJsonLd } from '@/lib/prozess-jsonld';
-import { resolveI18n, type ProzessLocale, type Dauer } from '@/types/prozess';
+import { resolveI18n, type ProzessLocale, type Referenz } from '@/types/prozess';
 import type { Department, Unit, Beteiligung, StadtData, LebenslageLocale, Lebenslage, LebenslageContent } from '@/types/stadt';
 import ProzessFlow, {
   type ProzessFlowSchritt,
@@ -64,25 +64,12 @@ export async function generateMetadata({
   return { title: `${titel} · ${tApp('title')}`, description: desc };
 }
 
-function formatDauer(d: Dauer | undefined, locale: Locale): string | undefined {
-  if (!d) return undefined;
-  const einheit: Record<Dauer['einheit'], Record<string, string>> = {
-    minuten:     { de: 'Min', en: 'min', fr: 'min', it: 'min', ls: 'Minuten' },
-    stunden:     { de: 'Std', en: 'h', fr: 'h', it: 'h', ls: 'Stunden' },
-    arbeitstage: { de: 'Arbeitstage', en: 'business days', fr: 'jours ouvrés', it: 'giorni lavorativi', ls: 'Arbeits-Tage' },
-    kalendertage:{ de: 'Tage', en: 'days', fr: 'jours', it: 'giorni', ls: 'Tage' },
-    wochen:      { de: 'Wochen', en: 'weeks', fr: 'semaines', it: 'settimane', ls: 'Wochen' },
-    monate:      { de: 'Monate', en: 'months', fr: 'mois', it: 'mesi', ls: 'Monate' },
-  };
-  const unit = einheit[d.einheit][locale] ?? einheit[d.einheit].de;
-  if (d.min === d.max) return `${d.min} ${unit}`;
-  return `${d.min}–${d.max} ${unit}`;
-}
-
-function formatKosten(k: { min?: number; max?: number } | undefined): string | undefined {
-  if (!k || (k.min === undefined && k.max === undefined)) return undefined;
-  if (k.min === k.max) return `${k.min?.toLocaleString('de-CH')}`;
-  return `${k.min?.toLocaleString('de-CH') ?? '?'}–${k.max?.toLocaleString('de-CH') ?? '?'}`;
+/** Hat der i18n-String eine eigene Fassung in dieser Locale? (Fallback auf
+ *  'de' zählt nicht — dann zeigen wir den "Übersetzung ausstehend"-Hinweis.) */
+function hasOwnLocale(s: Parameters<typeof resolveI18n>[0], locale: ProzessLocale): boolean {
+  if (s === undefined) return true;
+  if (typeof s === 'string') return locale === 'de';
+  return Boolean(s[locale]);
 }
 
 export default async function ProzessDetailPage({
@@ -134,6 +121,18 @@ export default async function ProzessDetailPage({
     akteurInfo.set(a.id, { label });
   }
 
+  // Referenz-Map: bindende Werte (Fristen, Gebühren) hängen als Link an
+  // Schritten — nie als gerenderte Zahl (Kardinalregel,
+  // docs/process-data-contract.md).
+  const referenzById = new Map<string, Referenz>(
+    (prozess.referenzen ?? []).map((r) => [r.id, r]),
+  );
+  const resolveReferenzen = (ids: string[] | undefined) =>
+    (ids ?? [])
+      .map((refId) => referenzById.get(refId))
+      .filter((r): r is Referenz => r !== undefined)
+      .map((r) => ({ label: resolveI18n(r.label, lebLoc), url: r.url }));
+
   const schritte: ProzessFlowSchritt[] = prozess.schritte.map((s) => {
     const info = akteurInfo.get(s.akteur);
     return {
@@ -142,8 +141,7 @@ export default async function ProzessDetailPage({
       akteurId: s.akteur,
       label: resolveI18n(s.label, lebLoc),
       beschreibung: s.beschreibung ? resolveI18n(s.beschreibung, lebLoc) : undefined,
-      dauer: formatDauer(s.dauer_est, loc),
-      kosten: formatKosten(s.kosten_chf),
+      referenzen: resolveReferenzen(s.referenzen),
       akteurLabel: info?.label ?? s.akteur,
       akteurEinheitHref: info?.einheitHref,
       akteurEinheitName: info?.einheitName,
@@ -174,6 +172,17 @@ export default async function ProzessDetailPage({
   const titel = resolveI18n(prozess.titel, lebLoc);
   const kurz  = resolveI18n(prozess.kurzbeschreibung, lebLoc);
   const reife = prozess.reife;
+
+  // "Übersetzung ausstehend": Locale ohne eigene Titel-Fassung fällt auf
+  // Deutsch zurück — sichtbar gekennzeichnet, nicht maschinell übersetzt.
+  const translationPending = loc !== 'de' && !hasOwnLocale(prozess.titel, lebLoc);
+
+  // Inoffiziell-Hinweis: Key aus dem Datensatz (Default 'Prozesse.disclaimer').
+  // Wir unterstützen nur das Prozesse-Namespace — andere Namespaces wären
+  // hier ohnehin nicht geladen.
+  const disclaimerKey = (prozess.disclaimer_key ?? 'Prozesse.disclaimer').replace(/^Prozesse\./, '');
+
+  const voraussetzungen = (prozess.voraussetzungen ?? []).map((v) => resolveI18n(v, lebLoc));
 
   // schema.org/GovernmentService als JSON-LD für Suchmaschinen. Absolute
   // URL aus NEXT_PUBLIC_SITE_URL (gleiche Konvention wie sitemap.ts), damit
@@ -209,6 +218,52 @@ export default async function ProzessDetailPage({
 
       <h2 id="prozess-heading" className="text-lg font-semibold mb-1">{titel}</h2>
       {kurz && <p className="text-[13px] text-[var(--color-mute)] mb-4 max-w-[80ch]">{kurz}</p>}
+
+      {translationPending && (
+        <p
+          role="note"
+          className="max-w-[80ch] mb-3 text-[13px] px-3 py-2 rounded border border-[var(--color-line)] bg-[var(--color-panel)] text-[var(--color-mute)]"
+        >
+          {t('translationPending')}
+        </p>
+      )}
+
+      {/* Inoffiziell-Hinweis: pro Prozess sichtbar, mit Quell-Link + Abrufdatum
+          der primären Quelle (vollständige Liste unten unter Quellen). */}
+      <aside
+        role="note"
+        aria-label={t('disclaimer')}
+        className="max-w-[80ch] mb-4 text-[13px] px-3 py-2 rounded border border-amber-200 bg-amber-50 text-amber-900"
+      >
+        {t(disclaimerKey)}{' '}
+        {prozess.quellen[0] && (
+          <a
+            href={prozess.quellen[0].url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline"
+          >
+            {prozess.quellen[0].titel}
+          </a>
+        )}
+        {prozess.quellen[0] && (
+          <span> ({t('retrieved', { date: prozess.quellen[0].abgerufen })})</span>
+        )}
+      </aside>
+
+      {voraussetzungen.length > 0 && (
+        <section aria-labelledby="voraussetzungen-heading" className="max-w-[80ch] mb-4">
+          <h3
+            id="voraussetzungen-heading"
+            className="text-[11px] uppercase tracking-wider text-[var(--color-mute)] mb-2"
+          >
+            {t('voraussetzungenHeading')}
+          </h3>
+          <ul className="list-disc list-inside text-sm text-[var(--color-ink)] space-y-1 m-0">
+            {voraussetzungen.map((v, i) => <li key={i}>{v}</li>)}
+          </ul>
+        </section>
+      )}
 
       {relatedLebenslagen.length > 0 && (
         <section aria-labelledby="related-anliegen-heading" className="max-w-[80ch] mb-5">
@@ -356,16 +411,59 @@ export default async function ProzessDetailPage({
               {s.beschreibung && (
                 <p className="mt-1 text-[var(--color-mute)]">{s.beschreibung}</p>
               )}
-              {(s.dauer || s.kosten) && (
-                <div className="mt-1 text-[12px] text-[var(--color-mute)] flex gap-3 flex-wrap">
-                  {s.dauer && <span>⏱ {s.dauer}</span>}
-                  {s.kosten && <span>CHF {s.kosten}</span>}
+              {s.referenzen && s.referenzen.length > 0 && (
+                <div className="mt-1 text-[12px] flex gap-3 flex-wrap">
+                  {s.referenzen.map((r) => (
+                    <a
+                      key={r.url + r.label}
+                      href={r.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[var(--color-accent)] underline decoration-dotted hover:decoration-solid"
+                    >
+                      {r.label} ↗
+                    </a>
+                  ))}
                 </div>
               )}
             </li>
           ))}
         </ol>
       </section>
+
+      {prozess.referenzen && prozess.referenzen.length > 0 && (
+        <section aria-labelledby="referenzen-heading" className="max-w-[80ch] mt-6">
+          <h3 id="referenzen-heading" className="text-base font-semibold mb-1">{t('referenzenHeading')}</h3>
+          <p className="text-[12px] text-[var(--color-mute)] mb-2">{t('referenzenHint')}</p>
+          <ul className="list-disc list-inside text-sm space-y-1">
+            {prozess.referenzen.map((r) => (
+              <li key={r.id}>
+                <a
+                  href={r.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline"
+                >
+                  {resolveI18n(r.label, lebLoc)}
+                </a>
+                <span className="ml-2 text-[11px] text-[var(--color-mute)]">
+                  ({t('retrieved', { date: r.abgerufen })})
+                </span>
+                {r.status === 'unverifiziert' && (
+                  <span className="ml-2 text-[11px] px-1.5 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-200">
+                    {t('referenzUnverifiziert')}
+                  </span>
+                )}
+                {r.zitat && (
+                  <blockquote className="ml-5 mt-0.5 text-[12px] text-[var(--color-mute)] border-l-2 border-[var(--color-line)] pl-2">
+                    «{r.zitat}»
+                  </blockquote>
+                )}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       {prozess.rechtsgrundlagen && prozess.rechtsgrundlagen.length > 0 && (
         <section aria-labelledby="legal-heading" className="max-w-[80ch] mt-6">

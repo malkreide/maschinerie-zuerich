@@ -292,7 +292,7 @@
   },
   "Prozesse": {
     "title": "Procedure amministrative",
-    "intro": "Diagrammi tipizzati secondo l'OpenGov-Process-Schema. Ogni procedura mostra le fasi, gli attori coinvolti e le durate stimate — così la popolazione capisce cosa comporta davvero una pratica.",
+    "intro": "Diagrammi tipizzati secondo l’OpenGov-Process-Schema. Ogni procedura mostra le fasi e gli attori coinvolti — così la popolazione capisce cosa comporta davvero una pratica.",
     "empty": "Nessuna procedura ancora registrata.",
     "city": "Città di {city}",
     "relatedLebenslagenHeading": "Esigenze comuni che portano qui",
@@ -339,7 +339,13 @@
       "loop": "Ritorno",
       "warten": "Attesa",
       "ende": "Fine"
-    }
+    },
+    "disclaimer": "Übersetzung ausstehend — Inoffizielle, vereinfachte Darstellung — keine amtliche Auskunft. Massgeblich sind allein die verlinkten Quellen der Stadt Zürich (siehe Quellen mit Abrufdatum).",
+    "voraussetzungenHeading": "Übersetzung ausstehend — Voraussetzungen",
+    "referenzenHeading": "Übersetzung ausstehend — Verbindliche Werte (Fristen & Gebühren)",
+    "referenzenHint": "Übersetzung ausstehend — Verbindliche Zahlen stehen bewusst nicht im Diagramm — sie gelten nur so, wie sie in der amtlichen Quelle stehen. Jeder Eintrag verlinkt auf die exakte Stelle.",
+    "referenzUnverifiziert": "Übersetzung ausstehend — Belegstelle noch nicht wörtlich übernommen",
+    "translationPending": "Traduzione in sospeso — contenuto visualizzato in tedesco."
   },
   "Export": {
     "csvButton": "Esporta la vista attuale in CSV"

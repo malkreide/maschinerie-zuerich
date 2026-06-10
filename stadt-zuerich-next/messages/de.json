@@ -300,7 +300,7 @@
   },
   "Prozesse": {
     "title": "Verwaltungsprozesse",
-    "intro": "Typisierte Ablaufdiagramme nach dem OpenGov-Process-Schema. Jeder Prozess zeigt Schritte, beteiligte Stellen und geschätzte Dauern — damit die Bevölkerung sieht, was ein Verfahren wirklich umfasst.",
+    "intro": "Typisierte Ablaufdiagramme nach dem OpenGov-Process-Schema. Jeder Prozess zeigt Schritte und beteiligte Stellen; verbindliche Werte (Fristen, Gebühren) sind als Links auf die amtlichen Quellen hinterlegt — damit die Bevölkerung sieht, was ein Verfahren wirklich umfasst.",
     "empty": "Noch keine Prozesse erfasst.",
     "city": "Stadt {city}",
     "relatedLebenslagenHeading": "Häufige Anliegen, die hierher führen",
@@ -347,7 +347,13 @@
       "loop": "Rücksprung",
       "warten": "Wartezeit",
       "ende": "Ende"
-    }
+    },
+    "disclaimer": "Inoffizielle, vereinfachte Darstellung — keine amtliche Auskunft. Massgeblich sind allein die verlinkten Quellen der Stadt Zürich (siehe Quellen mit Abrufdatum).",
+    "voraussetzungenHeading": "Voraussetzungen",
+    "referenzenHeading": "Verbindliche Werte (Fristen & Gebühren)",
+    "referenzenHint": "Verbindliche Zahlen stehen bewusst nicht im Diagramm — sie gelten nur so, wie sie in der amtlichen Quelle stehen. Jeder Eintrag verlinkt auf die exakte Stelle.",
+    "referenzUnverifiziert": "Belegstelle noch nicht wörtlich übernommen",
+    "translationPending": "Übersetzung ausstehend — Inhalte werden auf Deutsch angezeigt."
   },
   "GraphTable": {
     "caption": "Daten des Netzwerkgraphen (aktuell sichtbare Knoten)",

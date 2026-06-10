@@ -1,17 +1,24 @@
 #!/usr/bin/env node
-// Template-Migration: OpenGov-Process-Schema v1.x → v2.0.
+// Migration: OpenGov-Process-Schema Generation 1 (0.x) → Generation 2 (2.0.0).
 //
-// STATUS: PLATZHALTER. Das Schema ist aktuell auf v1 (erste Zeile von
-// baubewilligung-ordentlich.json: "version": "0.1.0"). Eine v2 wird es
-// erst geben, wenn wir eine breaking change am Schema einführen.
+// Kern der Generation 2 ist die Kardinalregel (docs/process-data-contract.md
+// im Repo-Root): bindende Werte (Fristen, Gebühren) erscheinen NUR als
+// Referenz (Label + Deep-Link + wörtliches Zitat), nie als Klartext-Zahl.
 //
-// Dann: die transform()-Funktion unten ausfüllen, npm-Script eintragen
-// (`migrate:schema:v2`), erst `npm run migrate:schema:v2` für Dry-Run,
-// dann `npm run migrate:schema:v2 -- --write`, dann `npm run validate:prozesse`,
-// dann Schema-Datei auf v2 anheben, commit.
+//   - 'dauer_est' entfällt ersatzlos — geschätzte Dauern waren unbelegte
+//     Behauptungen.
+//   - 'kosten_chf' wird zu einer Referenz mit status 'unverifiziert'
+//     (zitat leer, bis jemand die Belegstelle wörtlich von der Quelle
+//     übernimmt). Die Zahlen selbst werden NICHT übernommen — sie waren
+//     Richtwerte ohne wörtlichen Beleg.
+//   - 'reife.wirkungKpi'-Werte mit Zahl+Einheit werden entfernt (der
+//     Kardinalregel-Lint im Validator würde sie ablehnen).
+//   - Neue Pflichtfelder 'lebenslage_ref' und 'zielgruppe' kommen aus den
+//     Tabellen unten (Stand: data/zh/lebenslagen.json).
 //
-// Für spätere Migrationen: diese Datei kopieren nach
-// `migrate-prozesse-schema-v3.mjs` etc.
+// Die inhaltliche Kuratierung der Referenzen (sprechende Labels, Zuordnung
+// zu Schritten, zusätzliche Fristen-Referenzen) passiert von Hand NACH der
+// Migration — dieses Skript macht nur den mechanischen Teil.
 //
 // Usage:
 //   node scripts/migrate-prozesse-schema-v2.mjs          # Dry-Run
@@ -20,81 +27,82 @@
 
 import { runMigration } from './_migrate-lib.mjs';
 
-/**
- * Transformiert ein v1-Prozess-Objekt in ein v2-Prozess-Objekt.
- * Muss rein sein (keine I/O). `runMigration` setzt die neue version danach
- * selbst — wir sollen uns hier nicht um das Versionsfeld kümmern.
- *
- * @param {object} p  Prozess-Objekt (v1), bereits geklont — darf mutiert werden.
- * @param {{city: string, file: string}} ctx
- * @returns {object} Prozess-Objekt (v2).
- */
-function transform(p /*, ctx */) {
-  // -----------------------------------------------------------------------
-  // BEISPIEL-MIGRATIONEN (auskommentiert — hier echte Transformationen rein):
-  // -----------------------------------------------------------------------
+// Prozess-ID → Lebenslage-ID (Rückrichtung der bestehenden Verknüpfung
+// lebenslage.prozesse[] in data/zh/lebenslagen.json).
+const LEBENSLAGE_BY_PROZESS = {
+  'hund-anmelden': 'hund-anmelden',
+  'umzug-melden': 'umzug-melden',
+  'kita-platz': 'kita-platz',
+  'sozialhilfe-erstantrag': 'sozialhilfe',
+  'baubewilligung-ordentlich': 'baugesuch',
+  'anwohnerparkkarte': 'parkplatz',
+  'fundsache-verlust': 'fundsache',
+  'veranstaltung-bewilligung': 'veranstaltung',
+};
 
-  // BSP 1: Feld umbenennen — 'dauer_est' → 'dauer'
-  //
-  // for (const s of p.schritte ?? []) {
-  //   if (s.dauer_est !== undefined) {
-  //     s.dauer = s.dauer_est;
-  //     delete s.dauer_est;
-  //   }
-  // }
+// Primäre Zielgruppe nach eCH-0073. Alle heutigen Verfahren richten sich
+// primär an Privatpersonen; Verfahren mit gemischtem Publikum (Baugesuch,
+// Veranstaltungen) bleiben bei 'bevoelkerung' als primärer Zielgruppe.
+const ZIELGRUPPE_BY_PROZESS = {};
+const DEFAULT_ZIELGRUPPE = 'bevoelkerung';
 
-  // BSP 2: Neuer Pflicht-Default — 'meta.lizenz' wird default 'CC-BY-4.0'
-  //
-  // p.meta = p.meta ?? {};
-  // if (!p.meta.lizenz) p.meta.lizenz = 'CC-BY-4.0';
+// Kardinalregel-Heuristik für KPI-Werte: Zahl + bindende Einheit.
+// Muss zur Lint-Regel in validate-prozesse.mjs passen.
+const BINDING_VALUE_RE =
+  /(\d[\d'’.,\s–-]*\s*(CHF|Fr\.|Franken|%|Tag(e|en)?|Woche(n)?|Monat(e|en)?|Jahr(e|en)?|Arbeitstag(e|en)?|Kalendertag(e|en)?)\b)|((CHF|Fr\.)\s*\d)|(\d\s*%)/i;
 
-  // BSP 3: Enum-Wert splitten — 'behoerde' wird aufgeteilt in
-  //                             'behoerde-kommunal' | 'behoerde-kantonal' | 'behoerde-bund'
-  //
-  // const govLevelByAkteurId = {
-  //   'amt-baubewilligungen': 'behoerde-kommunal',
-  //   'hochbauamt':            'behoerde-kommunal',
-  //   'kanton':                'behoerde-kantonal',
-  // };
-  // for (const a of p.akteure ?? []) {
-  //   if (a.typ === 'behoerde') {
-  //     a.typ = govLevelByAkteurId[a.id] ?? 'behoerde-kommunal';
-  //   }
-  // }
+function transform(p) {
+  const lebenslageRef = LEBENSLAGE_BY_PROZESS[p.id];
+  if (!lebenslageRef) {
+    throw new Error(`no lebenslage_ref mapping for prozess '${p.id}' — extend LEBENSLAGE_BY_PROZESS`);
+  }
 
-  // BSP 4: Array-Felder umstrukturieren — 'quellen[].abgerufen' als ISO-Date
-  //        strikt erzwingen, Altformate ('01.04.2026') konvertieren.
-  //
-  // for (const q of p.quellen ?? []) {
-  //   if (typeof q.abgerufen === 'string' && /^\d{2}\.\d{2}\.\d{4}$/.test(q.abgerufen)) {
-  //     const [d, m, y] = q.abgerufen.split('.');
-  //     q.abgerufen = `${y}-${m}-${d}`;
-  //   }
-  // }
+  // Neue Pflichtfelder. Reihenfolge im Objekt ist für JSON egal — der
+  // Serializer schreibt Insertion-Order, neue Felder landen am Ende.
+  p.lebenslage_ref = lebenslageRef;
+  p.zielgruppe = ZIELGRUPPE_BY_PROZESS[p.id] ?? DEFAULT_ZIELGRUPPE;
 
-  // BSP 5: Neuer optionaler Block 'barrierefreiheit' mit Default — nur setzen,
-  //        wenn nicht schon vorhanden.
-  //
-  // if (!p.barrierefreiheit) {
-  //   p.barrierefreiheit = { rollstuhlgaengig: null, gebaerdensprache: null };
-  // }
+  const quellenById = new Map((p.quellen ?? []).map((q) => [q.id, q]));
+  p.referenzen = p.referenzen ?? [];
+
+  for (const s of p.schritte ?? []) {
+    delete s.dauer_est;
+
+    if (s.kosten_chf) {
+      const quelle = s.quelle ? quellenById.get(s.quelle) : (p.quellen ?? [])[0];
+      const anmerkung = s.kosten_chf.anmerkung;
+      const refId = `r-kosten-${s.id}`;
+      p.referenzen.push({
+        id: refId,
+        // Anmerkungstexte der Generation 1 enthalten teils Zahlen — die
+        // werden bei der Hand-Kuratierung durch zahlenfreie Labels ersetzt.
+        label: anmerkung ?? { de: 'Kosten' },
+        url: quelle?.url ?? '',
+        zitat: '',
+        status: 'unverifiziert',
+        abgerufen: quelle?.abgerufen ?? new Date().toISOString().slice(0, 10),
+      });
+      s.referenzen = [...(s.referenzen ?? []), refId];
+      delete s.kosten_chf;
+    }
+  }
+
+  if (p.referenzen.length === 0) delete p.referenzen;
+
+  // KPI-Werte mit bindender Zahl+Einheit fliegen raus (Kardinalregel).
+  if (p.reife?.wirkungKpi) {
+    p.reife.wirkungKpi = p.reife.wirkungKpi.filter(
+      (k) => !k.wert || !BINDING_VALUE_RE.test(k.wert),
+    );
+    if (p.reife.wirkungKpi.length === 0) delete p.reife.wirkungKpi;
+  }
 
   return p;
 }
 
 runMigration({
-  title: 'OpenGov-Process-Schema v1 → v2 (TEMPLATE — no-op until transform() is filled)',
-  // fromVersion='1.' matcht bewusst KEINE der heutigen 0.x-Dateien →
-  // Template bleibt dormant, verhindert versehentliches --write, das sonst
-  // einfach nur die Version auf 2.0.0 bumpen würde.
-  //
-  // Wenn das Schema tatsächlich auf v2 bumpt:
-  //   - fromVersion auf die Quell-MAJOR setzen (typisch '1.')
-  //   - transform() ausfüllen
-  //   - schemas/opengov-process-schema.json auf v2-Struktur heben
-  //   - `npm run migrate:schema:v2 -- --write`
-  //   - `npm run validate:prozesse` zur Bestätigung
-  fromVersion: '1.',
+  title: 'OpenGov-Process-Schema Generation 1 (0.x) → Generation 2 (Kardinalregel: Werte nur als Referenz)',
+  fromVersion: '0.',
   toVersion:   '2.0.0',
   transform,
 });

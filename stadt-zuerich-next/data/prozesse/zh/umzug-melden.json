@@ -1,7 +1,7 @@
 {
   "$schema": "../../../schemas/opengov-process-schema.json",
   "id": "umzug-melden",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "city": "zh",
   "titel": {
     "de": "Umzug / Adressänderung melden",
@@ -11,14 +11,23 @@
     "ls": "Umzug melden (neue Adresse)"
   },
   "kurzbeschreibung": {
-    "de": "Wer in die Stadt Zürich zieht oder innerhalb der Stadt umzieht, muss sich innert 14 Tagen beim Bevölkerungsamt an- bzw. ummelden. Für Schweizer:innen weitgehend online über eUmzugCH; für ausländische Staatsangehörige gelten Zusatzschritte.",
-    "en": "Anyone moving to or within the City of Zurich must register or update their address with the population office within 14 days. Largely online via eUmzugCH for Swiss citizens; foreign nationals have additional steps.",
-    "ls": "Sie ziehen in die Stadt Zürich? Oder Sie ziehen in eine neue Wohnung in der Stadt? Dann müssen Sie das melden. Sie haben dafür 14 Tage Zeit. Das macht das Bevölkerungs-Amt. Schweizerinnen und Schweizer können das im Internet machen."
+    "de": "Wer in die Stadt Zürich zieht oder innerhalb der Stadt umzieht, muss sich innert der gesetzlichen Meldefrist beim Bevölkerungsamt an- bzw. ummelden. Für Schweizer:innen weitgehend online über eUmzugCH; für ausländische Staatsangehörige gelten Zusatzschritte.",
+    "en": "Anyone moving to or within the City of Zurich must register or update their address with the population office within the statutory deadline. Largely online via eUmzugCH for Swiss citizens; foreign nationals have additional steps.",
+    "ls": "Sie ziehen in die Stadt Zürich? Oder Sie ziehen in eine neue Wohnung in der Stadt? Dann müssen Sie das melden. Melden Sie das schnell. Es gibt eine Frist. Das macht das Bevölkerungs-Amt. Schweizerinnen und Schweizer können das im Internet machen."
   },
   "rechtsgrundlagen": [
-    { "bezeichnung": "Registerharmonisierungsgesetz (RHG) Art. 11", "url": "https://www.fedlex.admin.ch/eli/cc/2006/828/de" },
-    { "bezeichnung": "Meldegesetz des Kantons Zürich (MeldeG)", "url": "https://www.zh.ch/de/migration-integration.html" },
-    { "bezeichnung": "Zivilgesetzbuch (ZGB) Art. 23 ff. (Wohnsitz)", "url": "https://www.fedlex.admin.ch/eli/cc/24/233_245_233/de" }
+    {
+      "bezeichnung": "Registerharmonisierungsgesetz (RHG) Art. 11",
+      "url": "https://www.fedlex.admin.ch/eli/cc/2006/828/de"
+    },
+    {
+      "bezeichnung": "Meldegesetz des Kantons Zürich (MeldeG)",
+      "url": "https://www.zh.ch/de/migration-integration.html"
+    },
+    {
+      "bezeichnung": "Zivilgesetzbuch (ZGB) Art. 23 ff. (Wohnsitz)",
+      "url": "https://www.fedlex.admin.ch/eli/cc/24/233_245_233/de"
+    }
   ],
   "quellen": [
     {
@@ -91,17 +100,19 @@
       "typ": "input",
       "akteur": "person",
       "label": {
-        "de": "Frist beachten: Meldung innert 14 Tagen",
-        "en": "Note the deadline: register within 14 days",
-        "ls": "Wichtig: Sie haben nur 14 Tage Zeit"
+        "de": "Meldefrist beachten",
+        "en": "Note the registration deadline",
+        "ls": "Wichtig: Melden Sie den Umzug schnell. Es gibt eine Frist."
       },
       "beschreibung": {
-        "de": "Die An-/Ummeldung muss innert 14 Tagen ab Einzug erfolgen. Verspätung kann gebührenpflichtig sein.",
-        "en": "Registration must happen within 14 days of moving in. Late notification may incur a fee.",
+        "de": "Die An-/Ummeldung muss innert der gesetzlichen Meldefrist ab Einzug erfolgen. Verspätung kann gebührenpflichtig sein.",
+        "en": "Registration must happen within the statutory deadline after moving in. Late notification may incur a fee.",
         "ls": "Melden Sie den Umzug schnell. Sonst kostet es vielleicht Geld."
       },
-      "dauer_est": { "min": 0, "max": 14, "einheit": "kalendertage", "typ": "durchlauf" },
-      "quelle": "q-stz-umzug"
+      "quelle": "q-stz-umzug",
+      "referenzen": [
+        "r-meldefrist"
+      ]
     },
     {
       "id": "weg",
@@ -127,11 +138,28 @@
         "en": "For Swiss citizens and settled residents without special cases. The previous municipality is informed of the departure automatically.",
         "ls": "Das geht am Computer. Ihre alte Gemeinde erfährt das automatisch."
       },
-      "dauer_est": { "min": 15, "max": 30, "einheit": "minuten", "typ": "durchlauf" },
       "unterlagen": [
-        { "label": { "de": "Mietvertrag oder Wohnungsnachweis", "en": "Tenancy agreement or proof of residence" }, "pflicht": true },
-        { "label": { "de": "Angaben zu allen umziehenden Haushaltsmitgliedern", "en": "Details of all household members moving" }, "pflicht": true },
-        { "label": { "de": "Krankenkassen-Police (Nachweis Versicherung)", "en": "Health insurance policy" }, "pflicht": false }
+        {
+          "label": {
+            "de": "Mietvertrag oder Wohnungsnachweis",
+            "en": "Tenancy agreement or proof of residence"
+          },
+          "pflicht": true
+        },
+        {
+          "label": {
+            "de": "Angaben zu allen umziehenden Haushaltsmitgliedern",
+            "en": "Details of all household members moving"
+          },
+          "pflicht": true
+        },
+        {
+          "label": {
+            "de": "Krankenkassen-Police (Nachweis Versicherung)",
+            "en": "Health insurance policy"
+          },
+          "pflicht": false
+        }
       ],
       "quelle": "q-eumzug"
     },
@@ -149,11 +177,28 @@
         "en": "Required e.g. for foreign nationals (ID documents, originals of place-of-origin papers if applicable).",
         "ls": "Manche Menschen müssen persönlich kommen. Zum Beispiel Menschen aus dem Ausland."
       },
-      "dauer_est": { "min": 30, "max": 60, "einheit": "minuten", "typ": "durchlauf" },
       "unterlagen": [
-        { "label": { "de": "Ausweis (ID/Pass)", "en": "Identity document (ID/passport)" }, "pflicht": true },
-        { "label": { "de": "Heimatschein / Heimatausweis (CH) bzw. Ausländerausweis", "en": "Place-of-origin certificate (CH) or foreigner's permit" }, "pflicht": true },
-        { "label": { "de": "Mietvertrag oder Wohnungsnachweis", "en": "Tenancy agreement or proof of residence" }, "pflicht": true }
+        {
+          "label": {
+            "de": "Ausweis (ID/Pass)",
+            "en": "Identity document (ID/passport)"
+          },
+          "pflicht": true
+        },
+        {
+          "label": {
+            "de": "Heimatschein / Heimatausweis (CH) bzw. Ausländerausweis",
+            "en": "Place-of-origin certificate (CH) or foreigner's permit"
+          },
+          "pflicht": true
+        },
+        {
+          "label": {
+            "de": "Mietvertrag oder Wohnungsnachweis",
+            "en": "Tenancy agreement or proof of residence"
+          },
+          "pflicht": true
+        }
       ],
       "quelle": "q-stz-umzug"
     },
@@ -168,8 +213,7 @@
       "beschreibung": {
         "de": "Das Bevölkerungsamt prüft die Angaben und gleicht sie mit dem kantonalen Personenregister ab.",
         "en": "The population office verifies the data and matches it against the cantonal person register."
-      },
-      "dauer_est": { "min": 1, "max": 10, "einheit": "arbeitstage", "typ": "bearbeitung" }
+      }
     },
     {
       "id": "vollstaendig",
@@ -189,8 +233,7 @@
         "de": "Fehlende Unterlagen nachreichen",
         "en": "Submit missing documents",
         "ls": "Fehlendes nachreichen"
-      },
-      "dauer_est": { "min": 1, "max": 14, "einheit": "kalendertage", "typ": "durchlauf" }
+      }
     },
     {
       "id": "auslaender",
@@ -214,8 +257,7 @@
       "beschreibung": {
         "de": "Bei Zuzug aus einer anderen Gemeinde/Land wird der Ausländerausweis auf die neue Adresse nachgeführt.",
         "en": "When moving from another municipality/country, the foreigner's permit is updated to the new address."
-      },
-      "dauer_est": { "min": 5, "max": 20, "einheit": "arbeitstage", "typ": "bearbeitung" }
+      }
     },
     {
       "id": "register-eintrag",
@@ -230,15 +272,9 @@
         "de": "Die neue Adresse wird im Einwohnerregister hinterlegt; bei Zuzug wird der Heimatschein abgelegt.",
         "en": "The new address is recorded in the residents' register; for new arrivals the place-of-origin certificate is deposited."
       },
-      "dauer_est": { "min": 1, "max": 5, "einheit": "arbeitstage", "typ": "bearbeitung" },
-      "kosten_chf": {
-        "min": 0,
-        "max": 0,
-        "anmerkung": {
-          "de": "Die An-/Ummeldung selbst ist für Schweizer:innen in der Regel kostenlos. Für ausländische Staatsangehörige können Gebühren für die Bewilligungsnachführung anfallen.",
-          "en": "Registration itself is usually free for Swiss citizens. Fees may apply to foreign nationals for updating the residence permit."
-        }
-      }
+      "referenzen": [
+        "r-meldegebuehren"
+      ]
     },
     {
       "id": "bestaetigung",
@@ -252,8 +288,7 @@
       "beschreibung": {
         "de": "Auf Wunsch als Wohnsitzbescheinigung — wird oft für Verträge, Schule oder Behördengänge gebraucht.",
         "en": "On request as a certificate of residence — often needed for contracts, schools or other administrative matters."
-      },
-      "dauer_est": { "min": 1, "max": 3, "einheit": "arbeitstage", "typ": "bearbeitung" }
+      }
     },
     {
       "id": "ende",
@@ -267,53 +302,190 @@
     }
   ],
   "flow": [
-    { "von": "start", "nach": "frist" },
-    { "von": "frist", "nach": "weg" },
-    { "von": "weg", "nach": "anmelden-online", "bedingung": "online", "label": { "de": "online (eUmzug)", "en": "online (eUmzug)" } },
-    { "von": "weg", "nach": "anmelden-schalter", "bedingung": "schalter", "label": { "de": "persönlich", "en": "in person" } },
-    { "von": "anmelden-online", "nach": "pruefung" },
-    { "von": "anmelden-schalter", "nach": "pruefung" },
-    { "von": "pruefung", "nach": "vollstaendig" },
-    { "von": "vollstaendig", "nach": "nachreichen", "bedingung": "nein", "label": { "de": "unvollständig", "en": "incomplete" } },
-    { "von": "nachreichen", "nach": "pruefung" },
-    { "von": "vollstaendig", "nach": "auslaender", "bedingung": "ja", "label": { "de": "vollständig", "en": "complete" } },
-    { "von": "auslaender", "nach": "migrationsmeldung", "bedingung": "ja" },
-    { "von": "auslaender", "nach": "register-eintrag", "bedingung": "nein" },
-    { "von": "migrationsmeldung", "nach": "register-eintrag" },
-    { "von": "register-eintrag", "nach": "bestaetigung" },
-    { "von": "bestaetigung", "nach": "ende" }
+    {
+      "von": "start",
+      "nach": "frist"
+    },
+    {
+      "von": "frist",
+      "nach": "weg"
+    },
+    {
+      "von": "weg",
+      "nach": "anmelden-online",
+      "bedingung": "online",
+      "label": {
+        "de": "online (eUmzug)",
+        "en": "online (eUmzug)"
+      }
+    },
+    {
+      "von": "weg",
+      "nach": "anmelden-schalter",
+      "bedingung": "schalter",
+      "label": {
+        "de": "persönlich",
+        "en": "in person"
+      }
+    },
+    {
+      "von": "anmelden-online",
+      "nach": "pruefung"
+    },
+    {
+      "von": "anmelden-schalter",
+      "nach": "pruefung"
+    },
+    {
+      "von": "pruefung",
+      "nach": "vollstaendig"
+    },
+    {
+      "von": "vollstaendig",
+      "nach": "nachreichen",
+      "bedingung": "nein",
+      "label": {
+        "de": "unvollständig",
+        "en": "incomplete"
+      }
+    },
+    {
+      "von": "nachreichen",
+      "nach": "pruefung"
+    },
+    {
+      "von": "vollstaendig",
+      "nach": "auslaender",
+      "bedingung": "ja",
+      "label": {
+        "de": "vollständig",
+        "en": "complete"
+      }
+    },
+    {
+      "von": "auslaender",
+      "nach": "migrationsmeldung",
+      "bedingung": "ja"
+    },
+    {
+      "von": "auslaender",
+      "nach": "register-eintrag",
+      "bedingung": "nein"
+    },
+    {
+      "von": "migrationsmeldung",
+      "nach": "register-eintrag"
+    },
+    {
+      "von": "register-eintrag",
+      "nach": "bestaetigung"
+    },
+    {
+      "von": "bestaetigung",
+      "nach": "ende"
+    }
   ],
   "reife": {
     "onlineReifegrad": "teil-digital",
-    "medienbrueche": ["persoenliches-erscheinen", "erneute-dateneingabe"],
+    "medienbrueche": [
+      "persoenliches-erscheinen",
+      "erneute-dateneingabe"
+    ],
     "onceOnlyPotenzial": {
       "de": "Die Wegzugsgemeinde kennt die meisten Personendaten bereits. Über eUmzugCH werden sie teilweise übernommen — bei vollständiger Registerverknüpfung müssten Mietvertrag und Personendaten nicht erneut erfasst werden.",
       "en": "The previous municipality already holds most personal data. eUmzugCH reuses some of it — full register linkage would avoid re-entering tenancy and personal data.",
       "ls": "Ihre alte Gemeinde hat viele Angaben schon. Diese müssten Sie nicht neu schreiben."
     },
     "nutzergruppen": [
-      { "de": "Zuziehende aus anderen Gemeinden", "en": "People moving in from other municipalities", "ls": "Menschen, die neu nach Zürich ziehen" },
-      { "de": "Personen mit Umzug innerhalb der Stadt", "en": "People moving within the city", "ls": "Menschen, die innerhalb von Zürich umziehen" },
-      { "de": "Ausländische Staatsangehörige", "en": "Foreign nationals", "ls": "Menschen aus dem Ausland" }
+      {
+        "de": "Zuziehende aus anderen Gemeinden",
+        "en": "People moving in from other municipalities",
+        "ls": "Menschen, die neu nach Zürich ziehen"
+      },
+      {
+        "de": "Personen mit Umzug innerhalb der Stadt",
+        "en": "People moving within the city",
+        "ls": "Menschen, die innerhalb von Zürich umziehen"
+      },
+      {
+        "de": "Ausländische Staatsangehörige",
+        "en": "Foreign nationals",
+        "ls": "Menschen aus dem Ausland"
+      }
     ],
     "painPoints": [
-      { "de": "Ausländische Staatsangehörige müssen oft persönlich am Schalter erscheinen.", "en": "Foreign nationals frequently have to appear in person at the counter.", "ls": "Menschen aus dem Ausland müssen oft persönlich kommen." },
-      { "de": "Mietvertrag und Personendaten werden erneut erfasst, obwohl Register existieren.", "en": "Tenancy and personal data are re-entered although registers exist.", "ls": "Sie müssen Angaben neu schreiben, die das Amt fast schon hat." }
+      {
+        "de": "Ausländische Staatsangehörige müssen oft persönlich am Schalter erscheinen.",
+        "en": "Foreign nationals frequently have to appear in person at the counter.",
+        "ls": "Menschen aus dem Ausland müssen oft persönlich kommen."
+      },
+      {
+        "de": "Mietvertrag und Personendaten werden erneut erfasst, obwohl Register existieren.",
+        "en": "Tenancy and personal data are re-entered although registers exist.",
+        "ls": "Sie müssen Angaben neu schreiben, die das Amt fast schon hat."
+      }
     ],
     "improvementIdeas": [
-      { "de": "Durchgängiger Online-Weg auch für Niederlassungsbewilligungen (ohne Schaltertermin).", "en": "End-to-end online path including residence permits (no counter appointment).", "ls": "Auch Menschen aus dem Ausland sollen alles online machen können." },
-      { "de": "Automatische Datenübernahme von der Wegzugsgemeinde (Once-Only).", "en": "Automatic data transfer from the previous municipality (once-only).", "ls": "Die Angaben kommen automatisch von der alten Gemeinde." }
+      {
+        "de": "Durchgängiger Online-Weg auch für Niederlassungsbewilligungen (ohne Schaltertermin).",
+        "en": "End-to-end online path including residence permits (no counter appointment).",
+        "ls": "Auch Menschen aus dem Ausland sollen alles online machen können."
+      },
+      {
+        "de": "Automatische Datenübernahme von der Wegzugsgemeinde (Once-Only).",
+        "en": "Automatic data transfer from the previous municipality (once-only).",
+        "ls": "Die Angaben kommen automatisch von der alten Gemeinde."
+      }
     ],
     "status": "beobachtet",
     "wirkungKpi": [
-      { "label": { "de": "Meldefrist", "en": "Registration deadline", "ls": "Wie schnell Sie melden müssen" }, "wert": "14 Kalendertage" },
-      { "label": { "de": "Online-Anteil", "en": "Share online", "ls": "Wie viel geht online" }, "wert": "online für CH-Bürger:innen, Schalter für viele Ausländer:innen" }
+      {
+        "label": {
+          "de": "Online-Anteil",
+          "en": "Share online",
+          "ls": "Wie viel geht online"
+        },
+        "wert": "online für CH-Bürger:innen, Schalter für viele Ausländer:innen"
+      }
     ]
   },
   "meta": {
     "erstellt": "2026-06-06",
-    "aktualisiert": "2026-06-06",
+    "aktualisiert": "2026-06-10",
     "maintainer": "malkreide",
     "lizenz": "CC-BY-4.0"
-  }
+  },
+  "lebenslage_ref": "umzug-melden",
+  "zielgruppe": "bevoelkerung",
+  "referenzen": [
+    {
+      "id": "r-meldegebuehren",
+      "label": {
+        "de": "Allfällige Gebühren bei der An-/Ummeldung (insb. Bewilligungsnachführung für ausländische Staatsangehörige)",
+        "en": "Possible fees for registration (esp. residence-permit updates for foreign nationals)"
+      },
+      "url": "https://www.stadt-zuerich.ch/pd/de/index/bevoelkerungsamt/anmeldung_zuzug.html",
+      "zitat": "",
+      "status": "unverifiziert",
+      "abgerufen": "2026-06-06"
+    },
+    {
+      "id": "r-meldefrist",
+      "label": {
+        "de": "Gesetzliche Meldefrist für die An-/Ummeldung nach Einzug",
+        "en": "Statutory deadline for registering after moving in",
+        "ls": "Wie viel Zeit Sie für die Meldung haben"
+      },
+      "url": "https://www.stadt-zuerich.ch/pd/de/index/bevoelkerungsamt/anmeldung_zuzug.html",
+      "zitat": "",
+      "status": "unverifiziert",
+      "abgerufen": "2026-06-10"
+    }
+  ],
+  "voraussetzungen": [
+    {
+      "de": "Sie ziehen neu in die Stadt Zürich oder innerhalb der Stadt um.",
+      "ls": "Sie ziehen nach Zürich. Oder Sie ziehen in Zürich um."
+    }
+  ]
 }
