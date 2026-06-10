@@ -27,10 +27,10 @@
         "de": "Gebühr für das Baugesuch (abhängig von der Bausumme)",
         "en": "Building-permit fee (depends on construction cost)"
       },
-      "source_url": "https://www.zh.ch/de/planen-bauen/baugesuche.html",
-      "source_quote": "",
-      "status": "unverifiziert",
-      "retrieved_at": "2026-04-24"
+      "source_url": "https://www.stadt-zuerich.ch/de/planen-und-bauen/baubewilligungen/bewilligungsprozess/fristen-und-gebuehren.html",
+      "source_quote": "Bauentscheide und Bauabnahmen sind kostenpflichtig. Die Höhe der Gebühr hängt bei Neubauten vom Bauvolumen und bei Umbauten von den Baukosten ab.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-10"
     }
   ],
   "actors": [
