@@ -1,7 +1,7 @@
 {
   "$schema": "../../../schemas/opengov-process-schema.json",
   "id": "anwohnerparkkarte",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "city": "zh",
   "titel": {
     "de": "Anwohnerparkkarte (blaue Zone)",
@@ -16,9 +16,18 @@
     "ls": "Du wohnst in einer blauen Zone. Du hast ein Auto. Dann kannst du eine Park-Karte kaufen. Damit darfst du in deiner Strasse parkieren, so lange du willst. Die Karte ist digital. Die Polizei liest dein Kennzeichen."
   },
   "rechtsgrundlagen": [
-    { "bezeichnung": "Verkehrsreglement der Stadt Zürich (VRSZ)", "url": "https://www.stadt-zuerich.ch/pd/de/index/das_departement/organisation/dienstabteilungen/dav.html" },
-    { "bezeichnung": "SVG Art. 3 (Strassenverkehrsgesetz)", "url": "https://www.fedlex.admin.ch/eli/cc/1959/679_705_725/de" },
-    { "bezeichnung": "Signalisationsverordnung SSV Art. 48", "url": "https://www.fedlex.admin.ch/eli/cc/1979/1961_1961_1961/de" }
+    {
+      "bezeichnung": "Verkehrsreglement der Stadt Zürich (VRSZ)",
+      "url": "https://www.stadt-zuerich.ch/pd/de/index/das_departement/organisation/dienstabteilungen/dav.html"
+    },
+    {
+      "bezeichnung": "SVG Art. 3 (Strassenverkehrsgesetz)",
+      "url": "https://www.fedlex.admin.ch/eli/cc/1959/679_705_725/de"
+    },
+    {
+      "bezeichnung": "Signalisationsverordnung SSV Art. 48",
+      "url": "https://www.fedlex.admin.ch/eli/cc/1979/1961_1961_1961/de"
+    }
   ],
   "quellen": [
     {
@@ -101,7 +110,6 @@
         "en": "Main residence in the blue zone, vehicle holder or permanent user, vehicle registered with licence plate.",
         "ls": "Du brauchst: Deine Wohn-Adresse in der blauen Zone. Du bist Besitzer vom Auto. Das Auto hat ein Kontrollschild."
       },
-      "dauer_est": { "min": 10, "max": 30, "einheit": "minuten", "typ": "durchlauf" },
       "quelle": "q-stz-parkkarten"
     },
     {
@@ -117,11 +125,28 @@
         "de": "Über das Online-Portal der Dienstabteilung Verkehr. Papiereingabe weiterhin möglich, dauert aber länger.",
         "en": "Via the DAV online portal. Paper submission still possible but slower."
       },
-      "dauer_est": { "min": 15, "max": 30, "einheit": "minuten", "typ": "durchlauf" },
       "unterlagen": [
-        { "label": { "de": "Kopie Fahrzeugausweis", "en": "Copy of vehicle registration" }, "pflicht": true },
-        { "label": { "de": "Meldebestätigung / Wohnsitznachweis", "en": "Proof of residence" }, "pflicht": true },
-        { "label": { "de": "Bei Firmenfahrzeug: Bestätigung des Dauernutzungsrechts", "en": "For company cars: permanent-use confirmation" }, "pflicht": false }
+        {
+          "label": {
+            "de": "Kopie Fahrzeugausweis",
+            "en": "Copy of vehicle registration"
+          },
+          "pflicht": true
+        },
+        {
+          "label": {
+            "de": "Meldebestätigung / Wohnsitznachweis",
+            "en": "Proof of residence"
+          },
+          "pflicht": true
+        },
+        {
+          "label": {
+            "de": "Bei Firmenfahrzeug: Bestätigung des Dauernutzungsrechts",
+            "en": "For company cars: permanent-use confirmation"
+          },
+          "pflicht": false
+        }
       ],
       "quelle": "q-stz-online"
     },
@@ -135,8 +160,7 @@
       },
       "beschreibung": {
         "de": "Die DAV gleicht die Angaben mit dem Einwohnerregister und dem Fahrzeugregister ab. Bei klaren Fällen vollautomatisiert."
-      },
-      "dauer_est": { "min": 1, "max": 10, "einheit": "arbeitstage", "typ": "bearbeitung" }
+      }
     },
     {
       "id": "vollstaendig",
@@ -156,8 +180,7 @@
         "de": "Fehlende Unterlagen nachliefern",
         "en": "Submit missing documents",
         "ls": "Fehlendes nachreichen"
-      },
-      "dauer_est": { "min": 1, "max": 14, "einheit": "kalendertage", "typ": "durchlauf" }
+      }
     },
     {
       "id": "berechtigt",
@@ -178,15 +201,9 @@
         "en": "Issue invoice",
         "ls": "Du bekommst eine Rechnung"
       },
-      "dauer_est": { "min": 1, "max": 5, "einheit": "arbeitstage", "typ": "bearbeitung" },
-      "kosten_chf": {
-        "min": 300,
-        "max": 780,
-        "anmerkung": {
-          "de": "Jahresgebühr. Seit 2024: CHF 300 für Standardfahrzeuge, höhere Tarife für schwere/grossflächige Fahrzeuge. Bei anteiliger Dauer entsprechend pro-rata.",
-          "en": "Annual fee. Since 2024: CHF 300 for standard vehicles, higher tariffs for heavy/oversized vehicles."
-        }
-      }
+      "referenzen": [
+        "r-jahresgebuehr"
+      ]
     },
     {
       "id": "bezahlen",
@@ -196,8 +213,7 @@
         "de": "Rechnung bezahlen",
         "en": "Pay invoice",
         "ls": "Du zahlst die Rechnung"
-      },
-      "dauer_est": { "min": 1, "max": 30, "einheit": "kalendertage", "typ": "durchlauf" }
+      }
     },
     {
       "id": "aktivierung",
@@ -211,8 +227,7 @@
       "beschreibung": {
         "de": "Ab Aktivierung ist das Fahrzeug in der registrierten Zone dauerparkberechtigt. Kontrollen erfolgen durch Kennzeichen-Abgleich mit dem System.",
         "en": "Once activated, the vehicle is permanently authorised in the registered zone; enforcement is done via plate matching."
-      },
-      "dauer_est": { "min": 1, "max": 2, "einheit": "arbeitstage", "typ": "bearbeitung" }
+      }
     },
     {
       "id": "ablehnung",
@@ -236,14 +251,13 @@
     },
     {
       "id": "rekurs",
-      "typ": "prozess",
+      "typ": "loop",
       "akteur": "statthalter",
       "label": {
         "de": "Rekurs beim Statthalteramt",
         "en": "Appeal to district governor",
         "ls": "Beschwerde bei der Kantonsstelle"
-      },
-      "dauer_est": { "min": 2, "max": 9, "einheit": "monate", "typ": "durchlauf" }
+      }
     },
     {
       "id": "kontrolle",
@@ -263,10 +277,13 @@
       "typ": "ende",
       "akteur": "halter",
       "label": {
-        "de": "Parkkarte aktiv (1 Jahr)",
-        "en": "Permit active (1 year)",
-        "ls": "Deine Park-Karte funktioniert jetzt. Ein Jahr lang."
-      }
+        "de": "Parkkarte aktiv",
+        "en": "Permit active",
+        "ls": "Ihre Park-Karte funktioniert jetzt."
+      },
+      "referenzen": [
+        "r-gueltigkeitsdauer"
+      ]
     },
     {
       "id": "ende-abgelehnt",
@@ -280,53 +297,177 @@
     }
   ],
   "flow": [
-    { "von": "start", "nach": "voraussetzungen-pruefen" },
-    { "von": "voraussetzungen-pruefen", "nach": "antrag-stellen" },
-    { "von": "antrag-stellen", "nach": "pruefung" },
-    { "von": "pruefung", "nach": "vollstaendig" },
-    { "von": "vollstaendig", "nach": "nachfrist", "bedingung": "nein", "label": { "de": "unvollständig", "en": "incomplete" } },
-    { "von": "nachfrist", "nach": "pruefung" },
-    { "von": "vollstaendig", "nach": "berechtigt", "bedingung": "ja", "label": { "de": "vollständig", "en": "complete" } },
-    { "von": "berechtigt", "nach": "rechnung", "bedingung": "ja" },
-    { "von": "berechtigt", "nach": "ablehnung", "bedingung": "nein" },
-    { "von": "rechnung", "nach": "bezahlen" },
-    { "von": "bezahlen", "nach": "aktivierung" },
-    { "von": "aktivierung", "nach": "kontrolle" },
-    { "von": "kontrolle", "nach": "ende-aktiv" },
-    { "von": "ablehnung", "nach": "einsprache-moeglich" },
-    { "von": "einsprache-moeglich", "nach": "rekurs", "bedingung": "ja" },
-    { "von": "einsprache-moeglich", "nach": "ende-abgelehnt", "bedingung": "nein" },
-    { "von": "rekurs", "nach": "berechtigt", "label": { "de": "Neubeurteilung", "en": "re-evaluation" } }
+    {
+      "von": "start",
+      "nach": "voraussetzungen-pruefen"
+    },
+    {
+      "von": "voraussetzungen-pruefen",
+      "nach": "antrag-stellen"
+    },
+    {
+      "von": "antrag-stellen",
+      "nach": "pruefung"
+    },
+    {
+      "von": "pruefung",
+      "nach": "vollstaendig"
+    },
+    {
+      "von": "vollstaendig",
+      "nach": "nachfrist",
+      "bedingung": "nein",
+      "label": {
+        "de": "unvollständig",
+        "en": "incomplete"
+      }
+    },
+    {
+      "von": "nachfrist",
+      "nach": "pruefung"
+    },
+    {
+      "von": "vollstaendig",
+      "nach": "berechtigt",
+      "bedingung": "ja",
+      "label": {
+        "de": "vollständig",
+        "en": "complete"
+      }
+    },
+    {
+      "von": "berechtigt",
+      "nach": "rechnung",
+      "bedingung": "ja"
+    },
+    {
+      "von": "berechtigt",
+      "nach": "ablehnung",
+      "bedingung": "nein"
+    },
+    {
+      "von": "rechnung",
+      "nach": "bezahlen"
+    },
+    {
+      "von": "bezahlen",
+      "nach": "aktivierung"
+    },
+    {
+      "von": "aktivierung",
+      "nach": "kontrolle"
+    },
+    {
+      "von": "kontrolle",
+      "nach": "ende-aktiv"
+    },
+    {
+      "von": "ablehnung",
+      "nach": "einsprache-moeglich"
+    },
+    {
+      "von": "einsprache-moeglich",
+      "nach": "rekurs",
+      "bedingung": "ja"
+    },
+    {
+      "von": "einsprache-moeglich",
+      "nach": "ende-abgelehnt",
+      "bedingung": "nein"
+    },
+    {
+      "von": "rekurs",
+      "nach": "berechtigt",
+      "label": {
+        "de": "Neubeurteilung",
+        "en": "re-evaluation"
+      }
+    }
   ],
   "reife": {
     "onlineReifegrad": "digital",
-    "medienbrueche": ["erneute-dateneingabe", "separate-zahlung"],
+    "medienbrueche": [
+      "erneute-dateneingabe",
+      "separate-zahlung"
+    ],
     "onceOnlyPotenzial": {
       "de": "Wohnsitz (Einwohnerregister) und Halterschaft (Fahrzeugregister) liegen der Verwaltung bereits vor — bei vollständiger Verknüpfung könnten Nachweise automatisch geprüft statt hochgeladen werden.",
       "en": "Residence (population register) and vehicle holdership (vehicle register) are already held by the administration — full linking could verify eligibility automatically instead of requiring uploads.",
       "ls": "Die Stadt weiss schon, wo Sie wohnen. Und dass das Auto Ihnen gehört. Diese Angaben könnte das Amt selbst prüfen."
     },
     "nutzergruppen": [
-      { "de": "Anwohner:innen mit Auto", "en": "Residents with a car", "ls": "Menschen mit Auto in einer blauen Zone" }
+      {
+        "de": "Anwohner:innen mit Auto",
+        "en": "Residents with a car",
+        "ls": "Menschen mit Auto in einer blauen Zone"
+      }
     ],
     "painPoints": [
-      { "de": "Fahrzeugausweis und Wohnsitznachweis müssen manuell hochgeladen werden, obwohl die Daten vorliegen.", "en": "Vehicle registration and proof of residence must be uploaded manually although the data exists.", "ls": "Sie müssen Papiere hochladen, die das Amt schon hat." },
-      { "de": "Zahlung erfolgt separat per Rechnung — kein direkter Online-Abschluss.", "en": "Payment happens separately by invoice — no direct online completion.", "ls": "Sie zahlen erst später mit einer Rechnung." }
+      {
+        "de": "Fahrzeugausweis und Wohnsitznachweis müssen manuell hochgeladen werden, obwohl die Daten vorliegen.",
+        "en": "Vehicle registration and proof of residence must be uploaded manually although the data exists.",
+        "ls": "Sie müssen Papiere hochladen, die das Amt schon hat."
+      },
+      {
+        "de": "Zahlung erfolgt separat per Rechnung — kein direkter Online-Abschluss.",
+        "en": "Payment happens separately by invoice — no direct online completion.",
+        "ls": "Sie zahlen erst später mit einer Rechnung."
+      }
     ],
     "improvementIdeas": [
-      { "de": "Automatischer Abgleich mit Einwohner- und Fahrzeugregister (Once-Only) statt Upload.", "en": "Automatic matching against population and vehicle registers (once-only) instead of upload.", "ls": "Das Amt prüft selbst, ohne dass Sie Papiere schicken." },
-      { "de": "Direkte Online-Zahlung am Ende des Antrags.", "en": "Direct online payment at the end of the application.", "ls": "Sie zahlen gleich online." }
+      {
+        "de": "Automatischer Abgleich mit Einwohner- und Fahrzeugregister (Once-Only) statt Upload.",
+        "en": "Automatic matching against population and vehicle registers (once-only) instead of upload.",
+        "ls": "Das Amt prüft selbst, ohne dass Sie Papiere schicken."
+      },
+      {
+        "de": "Direkte Online-Zahlung am Ende des Antrags.",
+        "en": "Direct online payment at the end of the application.",
+        "ls": "Sie zahlen gleich online."
+      }
     ],
     "status": "beobachtet",
     "wirkungKpi": [
-      { "label": { "de": "Durchlaufzeit bis Aktivierung", "en": "Lead time to activation", "ls": "Zeit, bis die Karte gilt" }, "wert": "1–10 Arbeitstage" },
-      { "label": { "de": "Online-Anteil", "en": "Share online", "ls": "Wie viel geht online" }, "wert": "Antrag online, Zahlung separat" }
+      {
+        "label": {
+          "de": "Online-Anteil",
+          "en": "Share online",
+          "ls": "Wie viel geht online"
+        },
+        "wert": "Antrag online, Zahlung separat"
+      }
     ]
   },
   "meta": {
     "erstellt": "2026-04-24",
-    "aktualisiert": "2026-06-05",
+    "aktualisiert": "2026-06-10",
     "maintainer": "malkreide",
     "lizenz": "CC-BY-4.0"
-  }
+  },
+  "lebenslage_ref": "parkplatz",
+  "zielgruppe": "bevoelkerung",
+  "referenzen": [
+    {
+      "id": "r-jahresgebuehr",
+      "label": {
+        "de": "Jahresgebühr der Anwohnerparkkarte (tarifabhängig nach Fahrzeug, anteilig bei kürzerer Dauer)",
+        "en": "Annual fee for the resident parking permit (tariff depends on vehicle; pro-rated)"
+      },
+      "url": "https://www.stadt-zuerich.ch/pd/de/index/dav/parkkarten.html",
+      "zitat": "",
+      "status": "unverifiziert",
+      "abgerufen": "2026-04-24"
+    },
+    {
+      "id": "r-gueltigkeitsdauer",
+      "label": {
+        "de": "Gültigkeitsdauer der Anwohnerparkkarte",
+        "en": "Validity period of the resident parking permit"
+      },
+      "url": "https://www.stadt-zuerich.ch/pd/de/index/dav/parkkarten.html",
+      "zitat": "",
+      "status": "unverifiziert",
+      "abgerufen": "2026-06-10"
+    }
+  ]
 }

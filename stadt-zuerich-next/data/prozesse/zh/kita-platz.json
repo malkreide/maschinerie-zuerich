@@ -1,7 +1,7 @@
 {
   "$schema": "../../../schemas/opengov-process-schema.json",
   "id": "kita-platz",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "city": "zh",
   "titel": {
     "de": "Kita-Platz & Betreuungsgutschein",
@@ -16,8 +16,14 @@
     "ls": "Sie brauchen einen Platz für Ihr Kind in einer Kita? Sie suchen zuerst einen Platz. Dann beantragen Sie einen Beitrag. Das macht die Kita günstiger. Wie viel Sie bekommen, hängt von Ihrem Lohn ab. Zwei Stellen sind dafür zuständig: das Schul-Amt für die Berechnung und das Sozial-Departement für das Geld an die Kita."
   },
   "rechtsgrundlagen": [
-    { "bezeichnung": "Verordnung über die familien- und schulergänzende Kinderbetreuung der Stadt Zürich", "url": "https://www.stadt-zuerich.ch/ssd/de/index/kinderbetreuung/betreuungsgutscheine.html" },
-    { "bezeichnung": "Kinderbetreuungsgesetz des Kantons Zürich (KibeG)", "url": "https://www.zh.ch/de/familie/kinderbetreuung.html" }
+    {
+      "bezeichnung": "Verordnung über die familien- und schulergänzende Kinderbetreuung der Stadt Zürich",
+      "url": "https://www.stadt-zuerich.ch/ssd/de/index/kinderbetreuung/betreuungsgutscheine.html"
+    },
+    {
+      "bezeichnung": "Kinderbetreuungsgesetz des Kantons Zürich (KibeG)",
+      "url": "https://www.zh.ch/de/familie/kinderbetreuung.html"
+    }
   ],
   "quellen": [
     {
@@ -121,7 +127,6 @@
         "en": "Parents look for a place in a subsidised daycare centre themselves. Only places in subsidised facilities qualify for a voucher.",
         "ls": "Sie suchen selbst eine Kita. Nur bestimmte Kitas bekommen einen Gutschein."
       },
-      "dauer_est": { "min": 1, "max": 12, "einheit": "monate", "typ": "durchlauf" },
       "quelle": "q-stz-kita"
     },
     {
@@ -136,7 +141,7 @@
     },
     {
       "id": "warteliste",
-      "typ": "warten",
+      "typ": "loop",
       "akteur": "kita",
       "label": {
         "de": "Auf Warteliste bleiben",
@@ -146,8 +151,7 @@
       "beschreibung": {
         "de": "In vielen Quartieren übersteigt die Nachfrage das Angebot — Wartezeiten von mehreren Monaten sind häufig.",
         "en": "In many neighbourhoods demand exceeds supply — waiting times of several months are common."
-      },
-      "dauer_est": { "min": 1, "max": 12, "einheit": "monate", "typ": "durchlauf" }
+      }
     },
     {
       "id": "betreuungsvertrag",
@@ -158,13 +162,9 @@
         "en": "Sign a care contract with the daycare centre",
         "ls": "Sie machen einen Vertrag mit der Kita"
       },
-      "dauer_est": { "min": 1, "max": 10, "einheit": "kalendertage", "typ": "durchlauf" },
-      "kosten_chf": {
-        "anmerkung": {
-          "de": "Der volle Kita-Tarif ist einkommensunabhängig hoch; der Betreuungsgutschein senkt den effektiven Elternbeitrag je nach Einkommen und Beschäftigungsgrad.",
-          "en": "The full daycare tariff is high; the voucher reduces the effective parental contribution depending on income and employment level."
-        }
-      }
+      "referenzen": [
+        "r-elternbeitrag"
+      ]
     },
     {
       "id": "gutschein-antrag",
@@ -180,11 +180,28 @@
         "en": "Application to the school office with proof of income and the employment/education situation of both parents.",
         "ls": "Sie zeigen, wie viel Sie verdienen und wie viel Sie arbeiten."
       },
-      "dauer_est": { "min": 30, "max": 60, "einheit": "minuten", "typ": "durchlauf" },
       "unterlagen": [
-        { "label": { "de": "Betreuungsvertrag der Kita", "en": "Daycare care contract" }, "pflicht": true },
-        { "label": { "de": "Einkommensnachweis (Lohnausweis / Steuerunterlagen)", "en": "Proof of income (salary statement / tax documents)" }, "pflicht": true },
-        { "label": { "de": "Nachweis Erwerbstätigkeit oder Ausbildung beider Eltern", "en": "Proof of employment or education of both parents" }, "pflicht": true }
+        {
+          "label": {
+            "de": "Betreuungsvertrag der Kita",
+            "en": "Daycare care contract"
+          },
+          "pflicht": true
+        },
+        {
+          "label": {
+            "de": "Einkommensnachweis (Lohnausweis / Steuerunterlagen)",
+            "en": "Proof of income (salary statement / tax documents)"
+          },
+          "pflicht": true
+        },
+        {
+          "label": {
+            "de": "Nachweis Erwerbstätigkeit oder Ausbildung beider Eltern",
+            "en": "Proof of employment or education of both parents"
+          },
+          "pflicht": true
+        }
       ],
       "quelle": "q-stz-bg"
     },
@@ -199,8 +216,7 @@
       "beschreibung": {
         "de": "Das Schulamt prüft Wohnsitz, Erwerbs-/Ausbildungspensum und das massgebende Einkommen.",
         "en": "The school office checks residence, employment/education level and the relevant income."
-      },
-      "dauer_est": { "min": 2, "max": 6, "einheit": "wochen", "typ": "bearbeitung" }
+      }
     },
     {
       "id": "anspruch",
@@ -224,8 +240,7 @@
       "beschreibung": {
         "de": "Die Höhe richtet sich nach massgebendem Einkommen, Beschäftigungsgrad und Betreuungsumfang.",
         "en": "The amount depends on relevant income, employment level and care volume."
-      },
-      "dauer_est": { "min": 1, "max": 5, "einheit": "arbeitstage", "typ": "bearbeitung" }
+      }
     },
     {
       "id": "verfuegung",
@@ -240,7 +255,6 @@
         "de": "Das Schulamt verfügt den einkommensabhängigen Beitragsfaktor. Dieser bestimmt, wie stark der Elternbeitrag subventioniert wird.",
         "en": "The school office grants the income-based contribution factor, which determines how much the parental contribution is subsidised."
       },
-      "dauer_est": { "min": 1, "max": 5, "einheit": "arbeitstage", "typ": "bearbeitung" },
       "quelle": "q-stz-betreuungskosten"
     },
     {
@@ -256,7 +270,6 @@
         "de": "Auf Basis des verfügten Beitragsfaktors finanziert das Sozialdepartement die Subvention und richtet sie der Kita aus, sodass sich der von den Eltern zu zahlende Beitrag reduziert.",
         "en": "Based on the granted contribution factor, the Social Welfare Department finances the subsidy and pays it to the daycare centre, reducing the amount the parents pay."
       },
-      "dauer_est": { "min": 1, "max": 4, "einheit": "wochen", "typ": "bearbeitung" },
       "quelle": "q-stz-kitafin"
     },
     {
@@ -291,14 +304,13 @@
     },
     {
       "id": "rekurs",
-      "typ": "prozess",
+      "typ": "loop",
       "akteur": "bezirksrat",
       "label": {
         "de": "Rekurs beim Bezirksrat",
         "en": "Appeal to the district council",
         "ls": "Beschwerde bei der Kantonsstelle"
-      },
-      "dauer_est": { "min": 2, "max": 9, "einheit": "monate", "typ": "durchlauf" }
+      }
     },
     {
       "id": "ende-abgelehnt",
@@ -312,57 +324,185 @@
     }
   ],
   "flow": [
-    { "von": "start", "nach": "kita-suchen" },
-    { "von": "kita-suchen", "nach": "platz-frei" },
-    { "von": "platz-frei", "nach": "betreuungsvertrag", "bedingung": "ja", "label": { "de": "Platz frei", "en": "place available" } },
-    { "von": "platz-frei", "nach": "warteliste", "bedingung": "nein", "label": { "de": "kein Platz", "en": "no place" } },
-    { "von": "warteliste", "nach": "kita-suchen" },
-    { "von": "betreuungsvertrag", "nach": "gutschein-antrag" },
-    { "von": "gutschein-antrag", "nach": "pruefung" },
-    { "von": "pruefung", "nach": "anspruch" },
-    { "von": "anspruch", "nach": "bemessung", "bedingung": "ja" },
-    { "von": "anspruch", "nach": "ablehnung", "bedingung": "nein" },
-    { "von": "bemessung", "nach": "verfuegung" },
-    { "von": "verfuegung", "nach": "finanzierung" },
-    { "von": "finanzierung", "nach": "ende-bewilligt" },
-    { "von": "ablehnung", "nach": "einsprache" },
-    { "von": "einsprache", "nach": "rekurs", "bedingung": "ja" },
-    { "von": "einsprache", "nach": "ende-abgelehnt", "bedingung": "nein" },
-    { "von": "rekurs", "nach": "anspruch", "label": { "de": "Neubeurteilung", "en": "re-evaluation" } }
+    {
+      "von": "start",
+      "nach": "kita-suchen"
+    },
+    {
+      "von": "kita-suchen",
+      "nach": "platz-frei"
+    },
+    {
+      "von": "platz-frei",
+      "nach": "betreuungsvertrag",
+      "bedingung": "ja",
+      "label": {
+        "de": "Platz frei",
+        "en": "place available"
+      }
+    },
+    {
+      "von": "platz-frei",
+      "nach": "warteliste",
+      "bedingung": "nein",
+      "label": {
+        "de": "kein Platz",
+        "en": "no place"
+      }
+    },
+    {
+      "von": "warteliste",
+      "nach": "kita-suchen"
+    },
+    {
+      "von": "betreuungsvertrag",
+      "nach": "gutschein-antrag"
+    },
+    {
+      "von": "gutschein-antrag",
+      "nach": "pruefung"
+    },
+    {
+      "von": "pruefung",
+      "nach": "anspruch"
+    },
+    {
+      "von": "anspruch",
+      "nach": "bemessung",
+      "bedingung": "ja"
+    },
+    {
+      "von": "anspruch",
+      "nach": "ablehnung",
+      "bedingung": "nein"
+    },
+    {
+      "von": "bemessung",
+      "nach": "verfuegung"
+    },
+    {
+      "von": "verfuegung",
+      "nach": "finanzierung"
+    },
+    {
+      "von": "finanzierung",
+      "nach": "ende-bewilligt"
+    },
+    {
+      "von": "ablehnung",
+      "nach": "einsprache"
+    },
+    {
+      "von": "einsprache",
+      "nach": "rekurs",
+      "bedingung": "ja"
+    },
+    {
+      "von": "einsprache",
+      "nach": "ende-abgelehnt",
+      "bedingung": "nein"
+    },
+    {
+      "von": "rekurs",
+      "nach": "anspruch",
+      "label": {
+        "de": "Neubeurteilung",
+        "en": "re-evaluation"
+      }
+    }
   ],
   "reife": {
     "onlineReifegrad": "teil-digital",
-    "medienbrueche": ["erneute-dateneingabe"],
+    "medienbrueche": [
+      "erneute-dateneingabe"
+    ],
     "onceOnlyPotenzial": {
       "de": "Das massgebende Einkommen liegt dem Steueramt bereits vor. Bei einer Registerverknüpfung müsste es nicht erneut belegt werden, und der Gutschein könnte jährlich automatisch neu bemessen werden.",
       "en": "The relevant income is already held by the tax office. With register linkage it would not need to be re-submitted, and the voucher could be re-assessed automatically each year.",
       "ls": "Das Steuer-Amt kennt Ihren Lohn schon. Diese Angabe müssten Sie nicht jedes Jahr neu schicken."
     },
     "nutzergruppen": [
-      { "de": "Erwerbstätige Eltern mit kleinen Kindern", "en": "Working parents with young children", "ls": "Eltern, die arbeiten und kleine Kinder haben" },
-      { "de": "Eltern in Ausbildung", "en": "Parents in education", "ls": "Eltern, die eine Ausbildung machen" },
-      { "de": "Alleinerziehende", "en": "Single parents", "ls": "Eltern, die alleine erziehen" }
+      {
+        "de": "Erwerbstätige Eltern mit kleinen Kindern",
+        "en": "Working parents with young children",
+        "ls": "Eltern, die arbeiten und kleine Kinder haben"
+      },
+      {
+        "de": "Eltern in Ausbildung",
+        "en": "Parents in education",
+        "ls": "Eltern, die eine Ausbildung machen"
+      },
+      {
+        "de": "Alleinerziehende",
+        "en": "Single parents",
+        "ls": "Eltern, die alleine erziehen"
+      }
     ],
     "painPoints": [
-      { "de": "Die Platzsuche liegt vollständig bei den Eltern; in vielen Quartieren gibt es lange Wartelisten.", "en": "Finding a place is entirely up to the parents; many neighbourhoods have long waiting lists.", "ls": "Sie müssen selbst eine Kita suchen. Oft müssen Sie lange warten." },
-      { "de": "Einkommens- und Erwerbsnachweise müssen jährlich neu eingereicht werden.", "en": "Income and employment proofs must be re-submitted every year.", "ls": "Sie müssen jedes Jahr wieder Papiere schicken." },
-      { "de": "Geteilte Zuständigkeit: Beitragsfaktor beim Schulamt, Finanzierung/Auszahlung beim Sozialdepartement — für Eltern wenig transparent.", "en": "Split responsibility: contribution factor at the school office, financing/payment at the social welfare department — opaque for parents.", "ls": "Zwei Stellen sind zuständig. Das ist für Eltern verwirrend." }
+      {
+        "de": "Die Platzsuche liegt vollständig bei den Eltern; in vielen Quartieren gibt es lange Wartelisten.",
+        "en": "Finding a place is entirely up to the parents; many neighbourhoods have long waiting lists.",
+        "ls": "Sie müssen selbst eine Kita suchen. Oft müssen Sie lange warten."
+      },
+      {
+        "de": "Einkommens- und Erwerbsnachweise müssen jährlich neu eingereicht werden.",
+        "en": "Income and employment proofs must be re-submitted every year.",
+        "ls": "Sie müssen jedes Jahr wieder Papiere schicken."
+      },
+      {
+        "de": "Geteilte Zuständigkeit: Beitragsfaktor beim Schulamt, Finanzierung/Auszahlung beim Sozialdepartement — für Eltern wenig transparent.",
+        "en": "Split responsibility: contribution factor at the school office, financing/payment at the social welfare department — opaque for parents.",
+        "ls": "Zwei Stellen sind zuständig. Das ist für Eltern verwirrend."
+      }
     ],
     "improvementIdeas": [
-      { "de": "Eine gemeinsame Anlaufstelle für Beitragsfaktor und Kita-Finanzierung.", "en": "A single point of contact for contribution factor and daycare financing.", "ls": "Nur eine Stelle für alles rund um den Kita-Beitrag." },
-      { "de": "Zentrale Platzvermittlung statt individueller Suche.", "en": "Central placement service instead of individual search.", "ls": "Eine Stelle, die für alle einen Platz sucht." },
-      { "de": "Automatische jährliche Neubemessung über die Verknüpfung mit den Steuerdaten (Once-Only).", "en": "Automatic annual re-assessment via linkage with tax data (once-only).", "ls": "Der Gutschein wird jedes Jahr automatisch neu berechnet." }
+      {
+        "de": "Eine gemeinsame Anlaufstelle für Beitragsfaktor und Kita-Finanzierung.",
+        "en": "A single point of contact for contribution factor and daycare financing.",
+        "ls": "Nur eine Stelle für alles rund um den Kita-Beitrag."
+      },
+      {
+        "de": "Zentrale Platzvermittlung statt individueller Suche.",
+        "en": "Central placement service instead of individual search.",
+        "ls": "Eine Stelle, die für alle einen Platz sucht."
+      },
+      {
+        "de": "Automatische jährliche Neubemessung über die Verknüpfung mit den Steuerdaten (Once-Only).",
+        "en": "Automatic annual re-assessment via linkage with tax data (once-only).",
+        "ls": "Der Gutschein wird jedes Jahr automatisch neu berechnet."
+      }
     ],
     "status": "beobachtet",
     "wirkungKpi": [
-      { "label": { "de": "Bearbeitungszeit Gutschein", "en": "Voucher processing time", "ls": "Wie lange das Amt braucht" }, "wert": "2–6 Wochen" },
-      { "label": { "de": "Online-Anteil", "en": "Share online", "ls": "Wie viel geht online" }, "wert": "Gutschein-Antrag online, Platzsuche und Vertrag offline" }
+      {
+        "label": {
+          "de": "Online-Anteil",
+          "en": "Share online",
+          "ls": "Wie viel geht online"
+        },
+        "wert": "Gutschein-Antrag online, Platzsuche und Vertrag offline"
+      }
     ]
   },
   "meta": {
     "erstellt": "2026-06-06",
-    "aktualisiert": "2026-06-06",
+    "aktualisiert": "2026-06-10",
     "maintainer": "malkreide",
     "lizenz": "CC-BY-4.0"
-  }
+  },
+  "lebenslage_ref": "kita-platz",
+  "zielgruppe": "bevoelkerung",
+  "referenzen": [
+    {
+      "id": "r-elternbeitrag",
+      "label": {
+        "de": "Kita-Tarif und einkommensabhängiger Elternbeitrag (Betreuungsgutschein)",
+        "en": "Childcare tariff and income-based parental contribution (childcare voucher)"
+      },
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/betreuungskosten-und-subventionen.html",
+      "zitat": "",
+      "status": "unverifiziert",
+      "abgerufen": "2026-06-06"
+    }
+  ]
 }
