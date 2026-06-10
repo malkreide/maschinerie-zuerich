@@ -2,17 +2,25 @@
 
 // Custom-Nodes für React Flow. Ein Node-Typ pro SchrittTyp.
 // Wir halten die Optik bewusst sparsam: Rechteck/Raute/Pille reicht, damit
-// Screenreader und Text-Browser das Wesentliche — Label und Dauer — sehen.
+// Screenreader und Text-Browser das Wesentliche — Label und Referenzen — sehen.
+//
+// Kardinalregel (docs/process-data-contract.md): bindende Werte (Fristen,
+// Gebühren) erscheinen im Node NUR als Link auf die amtliche Quelle, nie
+// als Zahl.
 
 import { Handle, Position, type NodeProps } from '@xyflow/react';
 import type { SchrittTyp } from '@/types/prozess';
+
+export interface ProzessNodeReferenz {
+  label: string;
+  url: string;
+}
 
 export interface ProzessNodeData extends Record<string, unknown> {
   label: string;
   beschreibung?: string;
   akteurLabel: string;
-  dauer?: string;
-  kosten?: string;
+  referenzen?: ProzessNodeReferenz[];
   typ: SchrittTyp;
 }
 
@@ -45,12 +53,21 @@ function Base({
   );
 }
 
-function MetaRow({ dauer, kosten }: { dauer?: string; kosten?: string }) {
-  if (!dauer && !kosten) return null;
+function MetaRow({ referenzen }: { referenzen?: ProzessNodeReferenz[] }) {
+  if (!referenzen || referenzen.length === 0) return null;
   return (
-    <div className="mt-1 text-[11px] text-[var(--color-mute)] flex gap-2 flex-wrap">
-      {dauer && <span aria-label={`Dauer ${dauer}`}>⏱ {dauer}</span>}
-      {kosten && <span aria-label={`Kosten ${kosten}`}>CHF {kosten}</span>}
+    <div className="mt-1 text-[11px] flex gap-2 flex-wrap">
+      {referenzen.map((r) => (
+        <a
+          key={r.url + r.label}
+          href={r.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[var(--color-accent)] underline decoration-dotted hover:decoration-solid"
+        >
+          {r.label} ↗
+        </a>
+      ))}
     </div>
   );
 }
@@ -87,7 +104,7 @@ export function InputNode({ data }: NodeProps) {
       <Base className="border-[var(--color-line)] border-l-4 border-l-[var(--color-accent)]" ariaLabel={`Input: ${d.label}`}>
         <div className="w-full">
           <div className="font-semibold">{d.label}</div>
-          <MetaRow dauer={d.dauer} kosten={d.kosten} />
+          <MetaRow referenzen={d.referenzen} />
         </div>
       </Base>
       <Handle type="source" position={Position.Right} />
@@ -103,7 +120,7 @@ export function ProzessNode({ data }: NodeProps) {
       <Base className="border-[var(--color-line)]" ariaLabel={`Prozessschritt: ${d.label}`}>
         <div className="w-full">
           <div className="font-semibold">{d.label}</div>
-          <MetaRow dauer={d.dauer} kosten={d.kosten} />
+          <MetaRow referenzen={d.referenzen} />
         </div>
       </Base>
       <Handle type="source" position={Position.Right} />
@@ -135,7 +152,7 @@ export function LoopNode({ data }: NodeProps) {
       <Base className="border-dashed border-[var(--color-mute)]" ariaLabel={`Schleife: ${d.label}`}>
         <div className="w-full">
           <div className="font-semibold flex items-center gap-1"><span aria-hidden>↻</span>{d.label}</div>
-          <MetaRow dauer={d.dauer} kosten={d.kosten} />
+          <MetaRow referenzen={d.referenzen} />
         </div>
       </Base>
       <Handle type="source" position={Position.Right} />
@@ -152,7 +169,7 @@ export function WartenNode({ data }: NodeProps) {
       <Base className="border-[var(--color-line)] italic" ariaLabel={`Wartezeit: ${d.label}`}>
         <div className="w-full">
           <div className="font-semibold flex items-center gap-1"><span aria-hidden>⏳</span>{d.label}</div>
-          <MetaRow dauer={d.dauer} kosten={d.kosten} />
+          <MetaRow referenzen={d.referenzen} />
         </div>
       </Base>
       <Handle type="source" position={Position.Right} />

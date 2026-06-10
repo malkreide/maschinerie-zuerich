@@ -292,7 +292,7 @@
   },
   "Prozesse": {
     "title": "Administrative processes",
-    "intro": "Typed flowcharts following the OpenGov-Process-Schema. Each process shows steps, involved actors and estimated durations — so residents can see what a procedure actually entails.",
+    "intro": "Typed flowcharts following the OpenGov-Process-Schema. Each process shows steps and involved actors — so residents can see what a procedure actually entails.",
     "empty": "No processes yet.",
     "city": "City {city}",
     "relatedLebenslagenHeading": "Common concerns that lead here",
@@ -339,7 +339,13 @@
       "loop": "Loop",
       "warten": "Wait",
       "ende": "End"
-    }
+    },
+    "disclaimer": "Übersetzung ausstehend — Inoffizielle, vereinfachte Darstellung — keine amtliche Auskunft. Massgeblich sind allein die verlinkten Quellen der Stadt Zürich (siehe Quellen mit Abrufdatum).",
+    "voraussetzungenHeading": "Übersetzung ausstehend — Voraussetzungen",
+    "referenzenHeading": "Übersetzung ausstehend — Verbindliche Werte (Fristen & Gebühren)",
+    "referenzenHint": "Übersetzung ausstehend — Verbindliche Zahlen stehen bewusst nicht im Diagramm — sie gelten nur so, wie sie in der amtlichen Quelle stehen. Jeder Eintrag verlinkt auf die exakte Stelle.",
+    "referenzUnverifiziert": "Übersetzung ausstehend — Belegstelle noch nicht wörtlich übernommen",
+    "translationPending": "Translation pending — content is shown in German."
   },
   "Export": {
     "csvButton": "Export current view as CSV"

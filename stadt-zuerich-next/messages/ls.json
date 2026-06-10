@@ -292,7 +292,7 @@
   },
   "Prozesse": {
     "title": "Abläufe in der Stadt",
-    "intro": "Hier sehen Sie: So läuft ein Antrag ab. Zum Beispiel: Wenn Sie ein Haus bauen wollen. Sie sehen jeden Schritt. Sie sehen: Wer macht was. Sie sehen: Wie lange dauert es.",
+    "intro": "Hier sehen Sie: So läuft ein Antrag ab. Zum Beispiel: Wenn Sie ein Haus bauen wollen. Sie sehen jeden Schritt. Sie sehen: Wer macht was. Wichtige Zahlen wie Geld und Fristen stehen bei der Stadt. Dafür gibt es Links.",
     "empty": "Noch keine Abläufe.",
     "city": "Stadt {city}",
     "relatedLebenslagenHeading": "Diese Anliegen passen dazu",
@@ -339,7 +339,13 @@
       "loop": "Nochmal zurück",
       "warten": "Warten",
       "ende": "Ende"
-    }
+    },
+    "disclaimer": "Wichtig: Das hier ist keine offizielle Seite von der Stadt. Es ist eine einfache Erklärung. Was wirklich gilt, steht auf den Seiten von der Stadt Zürich. Die Links sind unten bei: Quellen.",
+    "voraussetzungenHeading": "Das brauchen Sie",
+    "referenzenHeading": "Wichtige Zahlen: Geld und Fristen",
+    "referenzenHint": "Zahlen wie Geld und Fristen stehen nicht im Bild. Sie stehen bei der Stadt. Klicken Sie auf den Link.",
+    "referenzUnverifiziert": "Diese Angabe ist noch nicht geprüft.",
+    "translationPending": "Diesen Text gibt es noch nicht in Leichter Sprache. Sie sehen den deutschen Text."
   },
   "Export": {
     "csvButton": "Alles als CSV-Liste herunter-laden"

@@ -21,7 +21,7 @@ import {
   type ColorMode,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
-import { nodeTypes, type ProzessNodeData } from './ProzessNodes';
+import { nodeTypes, type ProzessNodeData, type ProzessNodeReferenz } from './ProzessNodes';
 import type { Layout, LayoutLane } from '@/lib/prozess-layout';
 import type { SchrittTyp } from '@/types/prozess';
 
@@ -31,8 +31,8 @@ export interface ProzessFlowSchritt {
   akteurId: string;
   label: string;
   beschreibung?: string;
-  dauer?: string;
-  kosten?: string;
+  /** Bindende Werte des Schritts — nur als Label + Link (Kardinalregel). */
+  referenzen?: ProzessNodeReferenz[];
   akteurLabel: string;
   /** Wenn der Akteur per einheit_ref auf eine Org-Chart-Einheit verweist:
    *  href zur Hauptansicht mit ?focus=<id>. Sonst undefined. */
@@ -94,8 +94,7 @@ function ProzessFlowInner({ titel, schritte, kanten, akteure, layout, colorMode 
           label: s.label,
           beschreibung: s.beschreibung,
           akteurLabel: s.akteurLabel,
-          dauer: s.dauer,
-          kosten: s.kosten,
+          referenzen: s.referenzen,
           typ: s.typ,
         },
         draggable: false,

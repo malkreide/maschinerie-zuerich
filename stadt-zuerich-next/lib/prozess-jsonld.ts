@@ -64,17 +64,10 @@ export function prozessToJsonLd(prozess: Prozess, opts: {
   // genau ein URL-Feld, also nehmen wir die erste mit URL.
   const termsOfService = prozess.rechtsgrundlagen?.find((r) => r.url)?.url;
 
-  // Kosten: schema.org GovernmentService kennt `feesAndCommissionsSpecification`
-  // als Text. Wir aggregieren Kosten aus allen Schritten.
-  const kostenTotal = prozess.schritte
-    .map((s) => s.kosten_chf)
-    .filter((k): k is NonNullable<typeof k> => k !== undefined);
-  let feesText: string | undefined;
-  if (kostenTotal.length > 0) {
-    const min = kostenTotal.reduce((acc, k) => acc + (k.min ?? 0), 0);
-    const max = kostenTotal.reduce((acc, k) => acc + (k.max ?? k.min ?? 0), 0);
-    feesText = min === max ? `CHF ${min}` : `CHF ${min}–${max}`;
-  }
+  // Gebühren: schema.org erlaubt für `feesAndCommissionsSpecification` Text
+  // ODER URL. Kardinalregel (docs/process-data-contract.md): wir behaupten
+  // keine Zahl, sondern verlinken die amtliche Quelle der ersten Referenz.
+  const feesUrl = prozess.referenzen?.find((r) => r.url)?.url;
 
   // Zielgruppe: wer ist der Antragsteller? Nehmen wir das Label des
   // ersten Akteurs mit typ 'antragsteller'.
@@ -109,7 +102,7 @@ export function prozessToJsonLd(prozess: Prozess, opts: {
   else if (providers.length > 1) ld.provider = providers;
 
   if (termsOfService) ld.termsOfService = termsOfService;
-  if (feesText) ld.feesAndCommissionsSpecification = feesText;
+  if (feesUrl) ld.feesAndCommissionsSpecification = feesUrl;
   if (antragsteller) {
     ld.audience = {
       '@type': 'Audience',
