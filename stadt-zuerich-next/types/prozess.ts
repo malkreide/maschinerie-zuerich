@@ -1,18 +1,20 @@
-// Typen zur OpenGov-Process-Schema, Generation 2 (siehe
-// /schemas/opengov-process-schema.json; kanonische Fassung:
-// docs/process-data-contract.md im Repo-Root).
-// Halte diese Datei synchron mit dem JSON-Schema — die Source of Truth fürs Tooling
-// ist das JSON-Schema, diese Typen sind ein bequemer TS-Mirror.
+// Typen zum kanonischen Prozess-Datenvertrag (docs/process-data-contract.md
+// im Repo-Root; JSON-Schema: /schemas/opengov-process-schema.json).
+// Halte diese Datei synchron mit dem JSON-Schema — die Source of Truth fürs
+// Tooling ist das JSON-Schema, diese Typen sind ein bequemer TS-Mirror.
 //
-// Kardinalregel: bindende Werte (Fristen, Gebühren) leben NUR in Referenz
-// (Label + Deep-Link + wörtliches Zitat) — es gibt bewusst keine Felder für
-// Dauern oder Kosten als Zahl.
+// Konvention: Feldnamen englisch (Vertrag), Inhalte/Enum-Werte deutsch (eCH).
+// Kardinalregel: bindende Werte (Fristen, Gebühren) leben NUR in Reference
+// (Label + Deep-Link + wörtliches source_quote) — es gibt bewusst keine
+// Felder für Dauern oder Kosten als Zahl.
 
 export type ProzessLocale = 'de' | 'en' | 'fr' | 'it' | 'ls';
 
-/** Ein i18n-String: entweder ein einzelner String (Fallback-Sprache) oder
- *  ein Objekt mit mindestens 'de'. */
-export type I18nString = string | ({ de: string } & Partial<Record<ProzessLocale, string>>);
+/** Ein i18n-String: Objekt mit mindestens 'de'. 'ls' = Leichte Sprache
+ *  (entspricht 'leichte_sprache' im tessera-Entwurf). Fehlende Locales
+ *  bedeuten "Übersetzung ausstehend" — Fallback auf 'de', nie maschinell
+ *  raten. */
+export type I18nString = { de: string } & Partial<Record<ProzessLocale, string>>;
 
 export type SchrittTyp =
   | 'start'
@@ -30,65 +32,80 @@ export type AkteurTyp =
   | 'gericht'
   | 'dritte';
 
-export type Zielgruppe = 'bevoelkerung' | 'wirtschaft' | 'behoerden';
+export type TargetAudience = 'bevoelkerung' | 'wirtschaft' | 'behoerden';
 
-export interface Referenz {
-  id: string;
-  /** Ohne die Zahl als behaupteten Fakt — die steht nur im Zitat. */
+/** Vorgänger-Beziehung: nackte step_id oder Objekt-Variante mit
+ *  Bedingungs-Label (additive Erweiterung; auf step_id reduzierbar). */
+export type DependsOn = number | { step_id: number; condition?: I18nString };
+
+/** Liefert die step_id einer DependsOn-Angabe (beide Varianten). */
+export function dependsOnId(d: DependsOn): number {
+  return typeof d === 'number' ? d : d.step_id;
+}
+
+/** Liefert das Bedingungs-Label einer DependsOn-Angabe, falls vorhanden. */
+export function dependsOnCondition(d: DependsOn): I18nString | undefined {
+  return typeof d === 'number' ? undefined : d.condition;
+}
+
+export interface Reference {
+  reference_id: number;
+  /** Ohne die Zahl als behaupteten Fakt — die steht nur im source_quote. */
   label: I18nString;
   /** Deep-Link auf die exakte Stelle der amtlichen Quelle. */
-  url: string;
+  source_url: string;
   /** Wörtliche Belegstelle. Pflicht (nicht-leer) bei status 'verifiziert'. */
-  zitat?: string;
+  source_quote?: string;
   status?: 'verifiziert' | 'unverifiziert';
-  abgerufen: string;
+  retrieved_at: string;
 }
 
-export interface Unterlage {
+export interface Document {
   label: I18nString;
   url?: string;
-  pflicht?: boolean;
+  required?: boolean;
 }
 
-export interface Akteur {
+/** Erweiterung: Akteurs-Tabelle (Swimlanes, Org-Chart-Brücke). */
+export interface Actor {
   id: string;
   label: I18nString;
-  typ: AkteurTyp;
-  /** Optionale Verknüpfung in die bestehende Organisations-Hierarchie (data.json). */
+  type: AkteurTyp;
+  /** Optionale Verknüpfung in die Organisations-Hierarchie (org-chart.json). */
   einheit_ref?: string;
 }
 
-export interface Schritt {
-  id: string;
-  typ: SchrittTyp;
-  /** ID aus Prozess.akteure — bestimmt die Swimlane. */
-  akteur: string;
+export interface Step {
+  /** Eindeutig je Prozess. */
+  step_id: number;
+  /** Referenziert actors[].id, falls actors vorhanden — bestimmt die Swimlane. */
+  actor: string;
   label: I18nString;
-  beschreibung?: I18nString;
-  /** IDs aus Prozess.referenzen — bindende Werte dieses Schritts. */
-  referenzen?: string[];
-  unterlagen?: Unterlage[];
-  quelle?: string;
+  /** Vorgänger; leer = Start-Schritt. Graph über depends_on ist ein DAG. */
+  depends_on: DependsOn[];
+  /** Verweise auf references[].reference_id. */
+  reference_ids?: number[];
+  /** Erweiterung: Render-Hint. */
+  type?: SchrittTyp;
+  description?: I18nString;
+  documents?: Document[];
+  /** Erweiterung: Verweis auf sources[].id. */
+  source_id?: string;
+  /** Erweiterung: Rücksprung-Hinweis fürs Rendering (nur an type 'loop').
+   *  NICHT Teil des DAG. */
+  loops_back_to?: number[];
 }
 
-export interface FlowKante {
-  von: string;
-  nach: string;
-  /** Bei Entscheidungs-Schritten: 'ja' / 'nein' / etc. */
-  bedingung?: string;
-  label?: I18nString;
-}
-
-export interface Rechtsgrundlage {
-  bezeichnung: string;
+export interface LegalBasis {
+  label: string;
   url?: string;
 }
 
-export interface Quelle {
+export interface Source {
   id: string;
-  titel: string;
+  title: string;
   url: string;
-  abgerufen: string;
+  retrieved_at: string;
 }
 
 export type OnlineReifegrad = 'offline' | 'teil-digital' | 'digital' | 'end-to-end';
@@ -113,7 +130,8 @@ export interface WirkungKpi {
   wert?: string;
 }
 
-/** Digitale Reife & Vereinfachungspotenzial eines Prozesses (optional). */
+/** Erweiterung (experimentell): Digitale Reife & Vereinfachungspotenzial.
+ *  Unverändert aus Schema-Generation 1/2; Normalisierung folgt später. */
 export interface Reife {
   onlineReifegrad?: OnlineReifegrad;
   medienbrueche?: Medienbruch[];
@@ -126,25 +144,29 @@ export interface Reife {
 }
 
 export interface Prozess {
+  schema_version: string;
+  /** = lebenslage_ref (CI-geprüft). */
   id: string;
-  version: string;
-  city: string;
-  titel: I18nString;
-  kurzbeschreibung?: I18nString;
-  /** ID der Lebenslage in data/<city>/lebenslagen.json. */
   lebenslage_ref: string;
+  /** Erweiterung: Stadt-Kennung — Dateiablage + URL-Slug <city>/<id>. */
+  city: string;
+  title: I18nString;
+  /** Erweiterung: Kurzbeschreibung. */
+  description?: I18nString;
   /** Primäre Zielgruppe nach eCH-0073. */
-  zielgruppe: Zielgruppe;
-  voraussetzungen?: I18nString[];
-  rechtsgrundlagen?: Rechtsgrundlage[];
-  quellen: Quelle[];
-  referenzen?: Referenz[];
-  akteure: Akteur[];
-  schritte: Schritt[];
-  flow: FlowKante[];
+  target_audience: TargetAudience;
+  preconditions?: I18nString[];
+  steps: Step[];
+  references?: Reference[];
+  /** Primäre amtliche Quelle + Abrufdatum (Disclaimer-Anzeige). */
+  source_url: string;
+  retrieved_at: string;
+  /** i18n-Key des Inoffiziell-Hinweises, z.B. 'Prozesse.disclaimer'. */
+  disclaimer_key: string;
+  actors?: Actor[];
+  legal_basis?: LegalBasis[];
+  sources?: Source[];
   reife?: Reife;
-  /** i18n-Key des Inoffiziell-Hinweises. Default: 'Prozesse.disclaimer'. */
-  disclaimer_key?: string;
   meta?: {
     erstellt?: string;
     aktualisiert?: string;
@@ -156,6 +178,5 @@ export interface Prozess {
 /** Hilfsfunktion: i18n-String auf aktuelle Locale auflösen (mit Fallback auf 'de'). */
 export function resolveI18n(s: I18nString | undefined, locale: ProzessLocale): string {
   if (s === undefined) return '';
-  if (typeof s === 'string') return s;
   return s[locale] ?? s.de;
 }

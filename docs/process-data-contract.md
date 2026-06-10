@@ -5,7 +5,8 @@ Prozess-Schema. Der Entwurf im Repo `tessera` (`docs/data-contract.md`,
 `docs/process.schema.json`) ist ausdrücklich nicht-kanonisch und wird an diese
 Fassung angeglichen.
 
-**Schema-Generation:** 2 (Dateien tragen `version: "2.x.y"`).
+**Vertragsversion:** `schema_version: "0.1.0"` (SemVer; MAJOR-Bump bei Breaking
+Changes mit Migrationsskript).
 **Maschinenlesbare Definition:** [`stadt-zuerich-next/schemas/opengov-process-schema.json`](../stadt-zuerich-next/schemas/opengov-process-schema.json)
 **TypeScript-Typen:** [`stadt-zuerich-next/types/prozess.ts`](../stadt-zuerich-next/types/prozess.ts)
 **Validator (CI):** `npm run validate:prozesse` ([`scripts/validate-prozesse.mjs`](../stadt-zuerich-next/scripts/validate-prozesse.mjs))
@@ -15,94 +16,112 @@ Fassung angeglichen.
 ## Kardinalregel
 
 > **Bindende Werte (Fristen, Gebühren, Steuern, Prozentsätze, Rekursfristen)
-> erscheinen NUR als Referenz — Label + Deep-Link + wörtliche Belegstelle —
+> erscheinen NUR als Reference — Label + Deep-Link + wörtliche Belegstelle —
 > nie als gerenderter Wert in einem Schritt-Label, einer Beschreibung oder
 > einer Kennzahl.**
 
 Es gibt bewusst kein Klartextfeld für eine Frist oder Gebühr als Zahl.
 Der Validator lintet dagegen (siehe [Kardinalregel-Lint](#kardinalregel-lint)).
-Die Zahl selbst darf ausschliesslich im Feld `zitat` einer Referenz stehen —
-als wörtliches Zitat der verlinkten amtlichen Quelle, nicht als eigene
-Behauptung.
+Die Zahl selbst darf ausschliesslich im Feld `source_quote` einer Reference
+stehen — als wörtliches Zitat der verlinkten amtlichen Quelle, nicht als
+eigene Behauptung.
 
 ---
 
 ## Datenmodell
 
-Ein Prozess ist ein gerichteter Graph aus typisierten Schritten mit klaren
-Akteuren (Swimlanes). Eine Datei pro Prozess unter
+Ein Prozess ist ein gerichteter azyklischer Graph (DAG) aus Schritten mit
+`depends_on`-Vorgängerbeziehungen. Eine Datei pro Prozess unter
 `stadt-zuerich-next/data/prozesse/<city>/<id>.json`.
 
-### Prozess
+Feldnamen folgen dem Vertrag (englisch); **Inhalte und Enum-Werte sind
+deutsch** (eCH-Konvention). Kern-Felder sind verbindlich; als *Erweiterung*
+markierte Felder sind additiv und dürfen von reinen Vertrags-Konsumenten
+(z. B. `tessera`) ignoriert werden.
+
+### Process
 
 | Feld | Typ | Pflicht | Bedeutung |
 |---|---|---|---|
-| `id` | string, kebab-case | ✓ | Stabile Prozess-ID, z. B. `hund-anmelden` |
-| `version` | string, SemVer | ✓ | Version der Prozessbeschreibung. MAJOR = Schema-Generation (aktuell `2`) |
-| `city` | string | ✓ | Stadt-Kennung (`zh`, …) |
-| `titel` | i18n | ✓ | Titel (`de` Pflicht) |
-| `kurzbeschreibung` | i18n | – | Kurztext |
-| `lebenslage_ref` | string, kebab-case | ✓ | ID der Lebenslage in `data/<city>/lebenslagen.json`, die zu diesem Prozess führt |
-| `zielgruppe` | enum | ✓ | `bevoelkerung` \| `wirtschaft` \| `behoerden` (nach eCH-0073) |
-| `voraussetzungen` | i18n[] | – | Voraussetzungen, bevor der Prozess startet |
-| `rechtsgrundlagen` | { bezeichnung, url? }[] | – | Gesetze/Verordnungen |
-| `quellen` | Quelle[] | ✓ (≥ 1) | Belegquellen des Gesamtprozesses; jede mit `url` **und** `abgerufen` |
-| `referenzen` | Referenz[] | – | Bindende Werte als Link, siehe unten |
-| `akteure` | Akteur[] | ✓ | Rollen/Organisationen (Swimlanes), optional `einheit_ref` ins Org-Chart |
-| `schritte` | Schritt[] | ✓ | Knoten des Graphen |
-| `flow` | Kante[] | ✓ | Kanten (`von`/`nach`, optional `bedingung` + `label`) |
-| `reife` | Reife | – | Digitale Reife & Vereinfachungspotenzial |
-| `disclaimer_key` | string | – | i18n-Key des Inoffiziell-Hinweises; Default `Prozesse.disclaimer` |
-| `meta` | { erstellt?, aktualisiert?, maintainer?, lizenz? } | – | Metadaten |
+| `schema_version` | string, SemVer | ✓ | Vertragsversion, z. B. `"0.1.0"` |
+| `id` | string, kebab-case | ✓ | **= `lebenslage_ref`** der bestehenden Lebenslage (CI-geprüft) |
+| `lebenslage_ref` | string, kebab-case | ✓ | ID der Lebenslage in `data/<city>/lebenslagen.json`; muss zurückverlinken (`prozesse[]` enthält `<city>/<id>`) |
+| `title` | i18n | ✓ | Titel (`de` Pflicht) |
+| `target_audience` | enum | ✓ | `bevoelkerung` \| `wirtschaft` \| `behoerden` (eCH-0073) |
+| `preconditions` | i18n[] | – | Voraussetzungen vor Prozessstart |
+| `steps` | Step[] | ✓ | Schritte (DAG über `depends_on`) |
+| `references` | Reference[] | – | Bindende Werte als Link, siehe unten |
+| `source_url` | string (http/https) | ✓ | Primäre amtliche Quelle des Prozesses |
+| `retrieved_at` | string (ISO 8601) | ✓ | Abrufdatum der primären Quelle |
+| `disclaimer_key` | string | ✓ | i18n-Key des Inoffiziell-Hinweises (`Prozesse.disclaimer`) |
+| `city` | string | ✓ *(Erweiterung)* | Stadt-Kennung (`zh`, …) — Dateiablage + URL-Slug `<city>/<id>` |
+| `description` | i18n | – *(Erweiterung)* | Kurzbeschreibung |
+| `actors` | Actor[] | – *(Erweiterung)* | Akteurs-Tabelle (Swimlanes, Org-Chart-Brücke); `steps[].actor` referenziert `actors[].id` |
+| `legal_basis` | { label, url? }[] | – *(Erweiterung)* | Rechtsgrundlagen |
+| `sources` | Source[] | – *(Erweiterung)* | Weitere Belegquellen neben `source_url` |
+| `reife` | object | – *(Erweiterung, experimentell)* | Digitale Reife/Medienbrüche — unverändert aus Schema-Gen. 1/2 übernommen, Normalisierung später |
+| `meta` | { erstellt?, aktualisiert?, maintainer?, lizenz? } | – *(Erweiterung)* | Metadaten |
 
-### Schritt
+### Step
 
 | Feld | Typ | Pflicht | Bedeutung |
 |---|---|---|---|
-| `id` | string, kebab-case | ✓ | Eindeutig je Prozess |
-| `typ` | enum | ✓ | `start` \| `input` \| `prozess` \| `entscheidung` \| `loop` \| `warten` \| `ende` |
-| `akteur` | string | ✓ | ID aus `akteure` — bestimmt die Swimlane |
+| `step_id` | integer | ✓ | Eindeutig je Prozess |
+| `actor` | string | ✓ | Handelnde Rolle; referenziert `actors[].id`, falls `actors` vorhanden |
 | `label` | i18n | ✓ | **Keine bindenden Zahlen** (Kardinalregel-Lint) |
-| `beschreibung` | i18n | – | dito |
-| `unterlagen` | { label, url?, pflicht? }[] | – | Benötigte Dokumente (für `input`-Schritte) |
-| `quelle` | string | – | ID einer Quelle aus `quellen` |
-| `referenzen` | string[] | – | IDs aus `referenzen` — bindende Werte dieses Schritts |
+| `depends_on` | (integer \| DependsOn)[] | ✓ | Vorgänger-`step_id`s; leer = Start-Schritt |
+| `reference_ids` | integer[] | – | Verweise auf `references` |
+| `type` | enum | – *(Erweiterung)* | Render-Hint: `start` \| `input` \| `prozess` \| `entscheidung` \| `loop` \| `warten` \| `ende` |
+| `description` | i18n | – *(Erweiterung)* | dito Kardinalregel |
+| `documents` | { label, url?, required? }[] | – *(Erweiterung)* | Benötigte Unterlagen |
+| `source_id` | string | – *(Erweiterung)* | Verweis auf `sources[].id` |
+| `loops_back_to` | integer[] | – *(Erweiterung)* | Rücksprung-Hinweis (Nachbesserung/Rekurs) fürs Rendering. **Nicht Teil des DAG** — nur Schritte mit `type: "loop"` dürfen das Feld tragen |
 
-Die Felder `dauer_est` und `kosten_chf` der Schema-Generation 1 sind
-**ersatzlos entfernt** — geschätzte Dauern waren unbelegte Behauptungen,
-Kosten gehören als Referenz belegt.
+**DependsOn (Objekt-Variante, additive Erweiterung):**
+`{ "step_id": integer, "condition": i18n? }` — drückt Bedingungs-Kanten aus
+(z. B. Entscheidung „Hund bereits in AMICUS?" → `condition: { de: "nein" }`).
+Reine DAG-Konsumenten dürfen die Variante auf den `step_id`-Wert reduzieren.
 
-### Referenz
+### Reference
 
 Hier — und nur hier — leben Fristen, Gebühren, Steuern, Rekursfristen.
 
 | Feld | Typ | Pflicht | Bedeutung |
 |---|---|---|---|
-| `id` | string, kebab-case | ✓ | Eindeutig je Prozess, Konvention `r-…` |
-| `label` | i18n | ✓ | z. B. „Höhe der jährlichen Hundesteuer" — **ohne die Zahl als behaupteten Fakt** |
-| `url` | string (http/https) | ✓ | Deep-Link auf die exakte Stelle der amtlichen Quelle |
-| `zitat` | string | ✓* | **Wörtliche** Belegstelle von der verlinkten Seite (Grounding-Gate) |
-| `status` | enum | – | `verifiziert` (Default) \| `unverifiziert` |
-| `abgerufen` | string (ISO-8601-Datum) | ✓ | Abrufdatum der Quelle |
+| `reference_id` | integer | ✓ | Eindeutig je Prozess |
+| `label` | i18n | ✓ | z. B. „Rekursfrist" — **ohne die Zahl als behaupteten Fakt** |
+| `source_url` | string (http/https) | ✓ | Deep-Link auf die exakte Stelle der amtlichen Quelle |
+| `source_quote` | string | ✓* | **Wörtliche** Belegstelle von der verlinkten Seite (Grounding-Gate) |
+| `retrieved_at` | string (ISO 8601) | ✓ | Abrufdatum |
+| `status` | enum | – *(Erweiterung)* | `verifiziert` (Default) \| `unverifiziert` |
 
 \* Grounding-Gate: bei `status: "verifiziert"` (oder fehlendem `status`) ist
-ein nicht-leeres `zitat` Pflicht (CI-Fehler). `status: "unverifiziert"` mit
-leerem `zitat` ist erlaubt, erzeugt aber eine CI-Warnung und wird in der UI
-nicht als Faktum gerendert — nur Label + Link. Unverifizierte Referenzen sind
-Altbestand bzw. Arbeitsstand; neue Referenzen sollen verifiziert angelegt
-werden.
+ein nicht-leeres `source_quote` Pflicht (CI-Fehler). `status: "unverifiziert"`
+mit leerem `source_quote` ist erlaubt, erzeugt aber eine CI-Warnung und wird
+in der UI nicht als Faktum gerendert — nur Label + Link. Unverifizierte
+References sind Altbestand bzw. Arbeitsstand; neue References werden
+verifiziert angelegt.
 
-### Quelle
+### Actor *(Erweiterung)*
 
-`{ id, titel, url, abgerufen }` — Belegquellen des Gesamtprozesses. In
-Generation 2 sind `url` und `abgerufen` Pflicht; sie speisen den sichtbaren
-Quell-Link + Abrufdatum pro Prozess (Definition of Done des Disclaimers).
+`{ id, label (i18n), type, einheit_ref? }` mit
+`type ∈ antragsteller | behoerde | fachstelle | gericht | dritte`.
+`einheit_ref` verknüpft den Akteur mit einer Einheit des Org-Charts
+(`data/<city>/org-chart.json`, CI-geprüft) — Grundlage der
+Lebenslage↔Prozess↔Einheit-Brücke.
+
+### Source *(Erweiterung)*
+
+`{ id, title, url, retrieved_at }` — weitere Belegquellen. `source_url` +
+`retrieved_at` auf Prozess-Ebene bezeichnen die primäre Quelle und speisen
+den sichtbaren Quell-Link + Abrufdatum des Disclaimers.
 
 ### i18n
 
 - Objektform `{ de, en?, fr?, it?, ls? }`; `de` ist Pflicht.
-- `ls` = Leichte Sprache (Repo-Konvention; entspricht `leichte_sprache` im
-  tessera-Entwurf).
+- **`ls` = Leichte Sprache** (kanonischer Locale-Key dieses Repos; entspricht
+  `leichte_sprache` im tessera-Entwurf — Mapping dokumentiert, Entwurf wird
+  angeglichen).
 - Fehlende Locales werden **nicht maschinell geraten**. Das Frontend fällt auf
   `de` zurück und kennzeichnet die Seite als „Übersetzung ausstehend".
 
@@ -110,24 +129,23 @@ Quell-Link + Abrufdatum pro Prozess (Definition of Done des Disclaimers).
 
 ## Validierungsregeln (kanonisch, CI-bindend)
 
-1. `id` kebab-case; `version` SemVer; `quellen[].abgerufen` /
-   `referenzen[].abgerufen` ISO-8601-Datum; alle `url` http(s).
+1. `id` kebab-case und **`id == lebenslage_ref`**; `schema_version` SemVer;
+   `retrieved_at` ISO 8601; `source_url` (Prozess + References) http(s).
 2. `lebenslage_ref` existiert in `data/<city>/lebenslagen.json` **und** die
    Lebenslage verlinkt zurück (`prozesse[]` enthält `<city>/<id>`).
    Für Städte ohne Lebenslagen-Datei wird der Check mit Warnung übersprungen.
-3. `titel.de` und jedes `label.de` sind Pflicht; weitere Locales optional.
-4. `schritte[].id` eindeutig; `flow.von`/`flow.nach` verweisen nur auf
-   existierende Schritte; kein Selbstbezug (`von != nach`).
-5. Mindestens ein `start`-Schritt; `ende`-Schritte ohne ausgehende Kanten;
-   jeder Schritt vom Start erreichbar (Warnung).
-6. **Azyklisch bis auf Rücksprünge:** Nach Entfernen aller Kanten, die von
-   einem Schritt mit `typ: "loop"` ausgehen, muss der Graph ein DAG sein
-   (CI-Fehler bei sonstigen Zyklen). Rücksprünge (Nachbesserung, Nachfristen)
-   sind nur über explizit markierte `loop`-Schritte erlaubt.
-7. `referenzen[].id` eindeutig; `schritte[].referenzen` verweisen auf
-   existierende Referenzen; Grounding-Gate gemäss Tabelle oben.
-8. **Kardinalregel-Lint** (CI-Fehler), siehe unten.
-9. `akteure[].einheit_ref` existiert im Org-Chart der Stadt (Cross-Check).
+3. `title.de` und jedes `label.de` sind Pflicht; en/fr/it/ls dürfen fehlen
+   („Übersetzung ausstehend") — nicht maschinell raten.
+4. `step_id` eindeutig; `depends_on` verweist nur auf existierende
+   `step_id`s; kein Selbstbezug; mindestens ein Start-Schritt
+   (leeres `depends_on`); der Graph über `depends_on` ist **azyklisch (DAG)**.
+5. `loops_back_to` nur an Schritten mit `type: "loop"`, nur auf existierende
+   `step_id`s; fliesst nicht in den DAG-Check ein.
+6. `reference_id` eindeutig; `reference_ids` der Schritte verweisen auf
+   existierende References; Grounding-Gate gemäss Tabelle oben.
+7. **Kardinalregel-Lint** (CI-Fehler), siehe unten.
+8. `actors[].einheit_ref` existiert im Org-Chart der Stadt (Cross-Check);
+   `steps[].actor` referenziert `actors[].id`, falls `actors` vorhanden.
 
 ### Kardinalregel-Lint
 
@@ -136,49 +154,34 @@ Eine Zahl in Verbindung mit einer bindenden Einheit — `CHF`, `Fr.`, `Franken`,
 `Frist` mit Zahl im selben Text — ist ein **Fehler** in folgenden Feldern
 (alle Locales):
 
-- `titel`, `kurzbeschreibung`
-- `schritte[].label`, `schritte[].beschreibung`, `schritte[].unterlagen[].label`
-- `flow[].label`
-- `voraussetzungen[]`
-- `referenzen[].label`
-- `reife.onceOnlyPotenzial`, `reife.nutzergruppen[]`, `reife.painPoints[]`,
-  `reife.improvementIdeas[]`, `reife.wirkungKpi[].label` und `.wert`
+- `title`, `description`
+- `steps[].label`, `steps[].description`, `steps[].documents[].label`
+- `depends_on[].condition`
+- `preconditions[]`
+- `references[].label`
+- `reife`-Freitexte (`onceOnlyPotenzial`, `nutzergruppen[]`, `painPoints[]`,
+  `improvementIdeas[]`, `wirkungKpi[].label` und `.wert`)
 
-Erlaubt sind solche Angaben ausschliesslich im Feld `zitat` einer Referenz.
+Erlaubt sind solche Angaben ausschliesslich im Feld `source_quote` einer
+Reference.
 
 ---
 
 ## Abbildung auf den tessera-Entwurf
 
-Der tessera-Entwurf (nicht-kanonisch) wird wie folgt auf diese Fassung
-abgebildet. Feldnamen folgen hier den Konventionen der bestehenden
-Datendateien dieses Repos (deutsch, `ls`-Locale):
+Der Vertragskern ist feldgleich mit dem tessera-Entwurf. Abweichungen und
+Erweiterungen:
 
 | tessera-Entwurf | kanonisch (dieses Repo) | Anmerkung |
 |---|---|---|
-| `schema_version` | `version` | SemVer; MAJOR = Schema-Generation |
-| `title` | `titel` | |
-| `target_audience` | `zielgruppe` | gleiche eCH-0073-Werte |
-| `preconditions` | `voraussetzungen` | |
-| `steps` / `Step` | `schritte` / `Schritt` | |
-| `step_id` (integer) | `id` (string, kebab-case) | Repo-Konvention: sprechende String-IDs |
-| `actor` (string) | `akteur` → `akteure[]` | Akteure sind eigene Entitäten (Swimlanes, `einheit_ref` ins Org-Chart) |
-| `depends_on` (DAG) | `flow` (Kanten) | Kanten tragen zusätzlich `bedingung`/`label`. Ableitung: `depends_on(s) = { von | (von→s) ∈ flow ohne loop-Kanten }` |
-| `references` / `Reference` | `referenzen` / `Referenz` | |
-| `reference_id` (integer) | `id` (string) | |
-| `source_url` | `url` | |
-| `source_quote` | `zitat` | |
-| `retrieved_at` | `abgerufen` | Datum statt Timestamp |
-| `reference_ids` | `referenzen` (am Schritt) | |
-| `source_url`/`retrieved_at` (Prozess) | `quellen[]` (je `url` + `abgerufen`) | mehrere Quellen möglich |
-| `lebenslage_ref` | `lebenslage_ref` | **Abweichung:** `id == lebenslage_ref` ist NICHT gefordert — eine Lebenslage kann auf mehrere Prozesse zeigen (N:M, z. B. Lebenslage `baugesuch` → Prozess `baubewilligung-ordentlich`). Bidirektionale Integrität prüft die CI |
-| `title.leichte_sprache` | `titel.ls` | Locale-Key-Konvention des Repos |
-| `disclaimer_key` | `disclaimer_key` | identisch |
-| — (strikt azyklisch) | azyklisch bis auf `loop`-Kanten | **Abweichung:** reale Verfahren enthalten Nachbesserungs-Rücksprünge; diese sind als `loop`-Schritte explizit markiert und werden bei der DAG-Ableitung entfernt |
+| `title.leichte_sprache` | `title.ls` | kanonischer Locale-Key ist `ls` |
+| `depends_on: integer[]` | `(integer \| {step_id, condition?})[]` | additive Objekt-Variante für Bedingungs-Kanten; auf `step_id` reduzierbar |
+| `retrieved_at` (Timestamp) | ISO-8601-**Datum** | Tagesgenauigkeit reicht für Quell-Snapshots |
+| — | `city`, `description`, `actors`, `legal_basis`, `sources`, `reife`, `meta`, Step-`type`/`description`/`documents`/`source_id`/`loops_back_to`, Reference-`status` | dokumentierte additive Erweiterungen, ignorierbar |
 
-Nicht im tessera-Entwurf enthaltene, hier kanonische Erweiterungen:
-`kurzbeschreibung`, `rechtsgrundlagen`, `unterlagen`, `reife` (digitale
-Reife/Medienbrüche), `meta`, Schritt-`typ`-Taxonomie, `bedingung`-Kanten.
+Rücksprünge realer Verfahren (Nachbesserung, Rekurs) sind **nicht** Teil des
+`depends_on`-DAG; sie leben ausschliesslich im Rendering-Hinweis
+`loops_back_to` an explizit markierten `loop`-Schritten.
 
 ---
 
@@ -186,9 +189,12 @@ Reife/Medienbrüche), `meta`, Schritt-`typ`-Taxonomie, `bedingung`-Kanten.
 
 - Prozessdaten werden **von Hand** geschrieben (kein Scraping, keine
   LLM-Generierung, keine automatische Übersetzung).
-- Jede Referenz braucht einen Deep-Link auf eine amtliche Quelle und — sobald
+- Jede Reference braucht einen Deep-Link auf eine amtliche Quelle und — sobald
   verifiziert — die wörtliche Belegstelle. Nichts erfinden.
+- `id == lebenslage_ref` bedeutet: pro Lebenslage genau ein kanonischer
+  Prozess. Braucht eine Lebenslage später mehrere Verfahren, wird der Vertrag
+  per MAJOR-Bump erweitert — nicht stillschweigend aufgeweicht.
 - Schema-Änderungen: MAJOR-Bump + Migrationsskript
-  (`scripts/migrate-prozesse-schema-v<N>.mjs`), dann dieses Dokument
-  aktualisieren. Bei Konflikten zwischen diesem Dokument und dem JSON-Schema
-  gilt: erst klären, dann ändern — nicht raten.
+  (`scripts/migrate-prozesse-*.mjs`), dann dieses Dokument aktualisieren.
+  Bei Konflikten zwischen diesem Dokument und dem JSON-Schema gilt: erst
+  klären, dann ändern — nicht raten.

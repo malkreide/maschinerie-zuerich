@@ -1,39 +1,39 @@
 {
   "$schema": "../../../schemas/opengov-process-schema.json",
-  "id": "veranstaltung-bewilligung",
-  "version": "2.0.0",
+  "schema_version": "0.1.0",
+  "id": "veranstaltung",
+  "lebenslage_ref": "veranstaltung",
   "city": "zh",
-  "titel": {
+  "title": {
     "de": "Veranstaltung bewilligen (Nutzung öffentlicher Grund)",
     "en": "Event permit (use of public ground)",
     "fr": "Autorisation de manifestation (usage du domaine public)",
     "it": "Autorizzazione per eventi (uso del suolo pubblico)",
     "ls": "Fest oder Veranstaltung anmelden (Bewilligung)"
   },
-  "kurzbeschreibung": {
+  "description": {
     "de": "Wer in der Stadt Zürich eine Veranstaltung auf öffentlichem Grund durchführt (Fest, Markt, Strassenfest, Boulevardgastronomie, Demo), braucht eine Bewilligung der Stadtpolizei. Je nach Vorhaben werden Fachstellen (Lärm, Verkehr, Entsorgung, Ausschank) einbezogen.",
     "en": "Anyone holding an event on public ground in the City of Zurich (festival, market, street party, outdoor catering, demonstration) needs a permit from the city police. Depending on the plan, specialist offices (noise, traffic, waste, alcohol) are involved.",
     "ls": "Sie wollen ein Fest auf der Strasse oder einem Platz machen? Dann brauchen Sie eine Bewilligung von der Stadt-Polizei. Andere Ämter prüfen mit: Lärm, Verkehr, Abfall, Getränke."
   },
-  "rechtsgrundlagen": [
+  "target_audience": "bevoelkerung",
+  "source_url": "https://www.stadt-zuerich.ch/pd/de/index/stadtpolizei_zuerich/bewilligungen.html",
+  "retrieved_at": "2026-06-06",
+  "disclaimer_key": "Prozesse.disclaimer",
+  "references": [
     {
-      "bezeichnung": "Vorschriften über die Benützung des öffentlichen Grundes der Stadt Zürich",
-      "url": "https://www.stadt-zuerich.ch/pd/de/index/stadtpolizei_zuerich/bewilligungen.html"
-    },
-    {
-      "bezeichnung": "Gastgewerbegesetz des Kantons Zürich (für Ausschank/Patente)",
-      "url": "https://www.zh.ch/de/wirtschaft-arbeit/gastgewerbe.html"
+      "reference_id": 1,
+      "label": {
+        "de": "Empfohlene Vorlaufzeit für Bewilligungsgesuche (je nach Anlassgrösse)",
+        "en": "Recommended lead time for permit applications (depends on event size)"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/pd/de/index/stadtpolizei_zuerich/bewilligungen.html",
+      "source_quote": "",
+      "status": "unverifiziert",
+      "retrieved_at": "2026-06-10"
     }
   ],
-  "quellen": [
-    {
-      "id": "q-stz-bewilligungen",
-      "titel": "Stadtpolizei Zürich – Bewilligungen",
-      "url": "https://www.stadt-zuerich.ch/pd/de/index/stadtpolizei_zuerich/bewilligungen.html",
-      "abgerufen": "2026-06-06"
-    }
-  ],
-  "akteure": [
+  "actors": [
     {
       "id": "veranstalter",
       "label": {
@@ -43,7 +43,7 @@
         "it": "Organizzatore",
         "ls": "Sie (Sie machen das Fest)"
       },
-      "typ": "antragsteller"
+      "type": "antragsteller"
     },
     {
       "id": "stapo-bew",
@@ -52,7 +52,7 @@
         "en": "Zurich City Police, permits office",
         "ls": "Die Stadt-Polizei (Bewilligungen)"
       },
-      "typ": "behoerde",
+      "type": "behoerde",
       "einheit_ref": "SiD-stapo"
     },
     {
@@ -62,7 +62,7 @@
         "en": "Specialist offices (noise, traffic, waste, alcohol)",
         "ls": "Andere Ämter (Lärm, Verkehr, Abfall, Getränke)"
       },
-      "typ": "fachstelle"
+      "type": "fachstelle"
     },
     {
       "id": "statthalter",
@@ -71,284 +71,299 @@
         "en": "District governor's office (appeals)",
         "ls": "Eine Stelle vom Kanton für Beschwerden"
       },
-      "typ": "gericht"
+      "type": "gericht"
     }
   ],
-  "schritte": [
+  "steps": [
     {
-      "id": "start",
-      "typ": "start",
-      "akteur": "veranstalter",
+      "step_id": 1,
+      "actor": "veranstalter",
       "label": {
         "de": "Veranstaltung auf öffentlichem Grund geplant",
         "en": "Event on public ground planned",
         "ls": "Sie planen ein Fest auf der Strasse"
-      }
+      },
+      "depends_on": [],
+      "type": "start"
     },
     {
-      "id": "frist",
-      "typ": "input",
-      "akteur": "veranstalter",
+      "step_id": 2,
+      "actor": "veranstalter",
       "label": {
         "de": "Vorlauffrist beachten (rechtzeitig einreichen)",
         "en": "Mind the lead time (apply early)",
         "ls": "Wichtig: Früh genug anmelden"
       },
-      "beschreibung": {
+      "depends_on": [
+        1
+      ],
+      "reference_ids": [
+        1
+      ],
+      "type": "input",
+      "description": {
         "de": "Gesuche müssen je nach Grösse mehrere Wochen im Voraus eingereicht werden (Grossanlässe deutlich früher).",
         "en": "Depending on size, applications must be submitted several weeks in advance (large events much earlier).",
         "ls": "Melden Sie das Fest früh an. Grosse Feste brauchen mehr Zeit."
       },
-      "quelle": "q-stz-bewilligungen",
-      "referenzen": [
-        "r-vorlaufzeit"
-      ]
+      "source_id": "q-stz-bewilligungen"
     },
     {
-      "id": "gesuch",
-      "typ": "input",
-      "akteur": "veranstalter",
+      "step_id": 3,
+      "actor": "veranstalter",
       "label": {
         "de": "Gesuch online einreichen",
         "en": "Submit application online",
         "ls": "Sie füllen das Gesuch im Internet aus"
       },
-      "beschreibung": {
+      "depends_on": [
+        2
+      ],
+      "type": "input",
+      "description": {
         "de": "Angaben zu Ort, Datum, erwarteter Teilnehmerzahl, Aufbau, Lärm/Musik, Ausschank und Entsorgung.",
         "en": "Details on location, date, expected attendance, setup, noise/music, alcohol and waste.",
         "ls": "Wo, wann, wie viele Leute, Musik, Getränke, Abfall."
       },
-      "unterlagen": [
+      "documents": [
         {
           "label": {
             "de": "Situationsplan / Aufbauplan",
             "en": "Site/setup plan"
           },
-          "pflicht": true
+          "required": true
         },
         {
           "label": {
             "de": "Programm und Zeitplan",
             "en": "Programme and schedule"
           },
-          "pflicht": true
+          "required": true
         },
         {
           "label": {
             "de": "Bei Ausschank: Angaben zum Getränkeangebot",
             "en": "For alcohol service: details of the offering"
           },
-          "pflicht": false
+          "required": false
         }
       ],
-      "quelle": "q-stz-bewilligungen"
+      "source_id": "q-stz-bewilligungen"
     },
     {
-      "id": "pruefung",
-      "typ": "prozess",
-      "akteur": "stapo-bew",
+      "step_id": 4,
+      "actor": "stapo-bew",
       "label": {
         "de": "Gesuch prüfen, Fachstellen einholen",
         "en": "Review application, consult specialist offices"
-      }
+      },
+      "depends_on": [
+        3
+      ],
+      "type": "prozess"
     },
     {
-      "id": "mitberichte",
-      "typ": "prozess",
-      "akteur": "fachstellen",
+      "step_id": 5,
+      "actor": "fachstellen",
       "label": {
         "de": "Fachstellen-Mitberichte (Lärm, Verkehr, Entsorgung, Ausschank)",
         "en": "Specialist reports (noise, traffic, waste, alcohol)",
         "ls": "Andere Ämter prüfen mit"
-      }
+      },
+      "depends_on": [
+        4
+      ],
+      "type": "prozess"
     },
     {
-      "id": "vollstaendig",
-      "typ": "entscheidung",
-      "akteur": "stapo-bew",
+      "step_id": 6,
+      "actor": "stapo-bew",
       "label": {
         "de": "Unterlagen vollständig / Auflagen klar?",
         "en": "Documents complete / conditions clear?",
         "ls": "Sind alle Angaben da?"
-      }
+      },
+      "depends_on": [
+        5
+      ],
+      "type": "entscheidung"
     },
     {
-      "id": "nachfordern",
-      "typ": "loop",
-      "akteur": "veranstalter",
+      "step_id": 7,
+      "actor": "veranstalter",
       "label": {
         "de": "Unterlagen oder Anpassungen nachreichen",
         "en": "Submit missing documents or adjustments",
         "ls": "Fehlendes nachreichen"
-      }
+      },
+      "depends_on": [
+        {
+          "step_id": 6,
+          "condition": {
+            "de": "unvollständig",
+            "en": "incomplete"
+          }
+        }
+      ],
+      "type": "loop",
+      "loops_back_to": [
+        4
+      ]
     },
     {
-      "id": "entscheid",
-      "typ": "entscheidung",
-      "akteur": "stapo-bew",
+      "step_id": 8,
+      "actor": "stapo-bew",
       "label": {
         "de": "Bewilligt?",
         "en": "Approved?",
         "ls": "Bekommen Sie die Bewilligung?"
-      }
+      },
+      "depends_on": [
+        {
+          "step_id": 6,
+          "condition": {
+            "de": "vollständig",
+            "en": "complete"
+          }
+        }
+      ],
+      "type": "entscheidung"
     },
     {
-      "id": "verfuegung",
-      "typ": "prozess",
-      "akteur": "stapo-bew",
+      "step_id": 9,
+      "actor": "stapo-bew",
       "label": {
         "de": "Bewilligung mit Auflagen verfügen",
         "en": "Issue permit with conditions",
         "ls": "Sie bekommen die Bewilligung mit Regeln"
       },
-      "beschreibung": {
+      "depends_on": [
+        {
+          "step_id": 8,
+          "condition": {
+            "de": "ja"
+          }
+        }
+      ],
+      "type": "prozess",
+      "description": {
         "de": "Bewilligung mit Auflagen (Lärmzeiten, Sicherheit, Reinigung, Verkehr) und Gebühr.",
         "en": "Permit with conditions (noise hours, safety, cleaning, traffic) and fee."
       }
     },
     {
-      "id": "gebuehr",
-      "typ": "input",
-      "akteur": "veranstalter",
+      "step_id": 10,
+      "actor": "veranstalter",
       "label": {
         "de": "Gebühr bezahlen",
         "en": "Pay the fee",
         "ls": "Sie zahlen die Gebühr"
-      }
+      },
+      "depends_on": [
+        9
+      ],
+      "type": "input"
     },
     {
-      "id": "ende-bewilligt",
-      "typ": "ende",
-      "akteur": "veranstalter",
+      "step_id": 11,
+      "actor": "veranstalter",
       "label": {
         "de": "Veranstaltung bewilligt",
         "en": "Event approved",
         "ls": "Fertig: Das Fest ist erlaubt"
-      }
+      },
+      "depends_on": [
+        10
+      ],
+      "type": "ende"
     },
     {
-      "id": "ablehnung",
-      "typ": "prozess",
-      "akteur": "stapo-bew",
+      "step_id": 12,
+      "actor": "stapo-bew",
       "label": {
         "de": "Gesuch ablehnen (mit Begründung)",
         "en": "Reject application (with reasons)",
         "ls": "Die Stadt-Polizei sagt: Nein. Und schreibt warum."
-      }
+      },
+      "depends_on": [
+        {
+          "step_id": 8,
+          "condition": {
+            "de": "nein"
+          }
+        }
+      ],
+      "type": "prozess"
     },
     {
-      "id": "einsprache",
-      "typ": "entscheidung",
-      "akteur": "veranstalter",
+      "step_id": 13,
+      "actor": "veranstalter",
       "label": {
         "de": "Rekurs einreichen?",
         "en": "File an appeal?",
         "ls": "Wollen Sie sich beschweren?"
-      }
+      },
+      "depends_on": [
+        12
+      ],
+      "type": "entscheidung"
     },
     {
-      "id": "rekurs",
-      "typ": "loop",
-      "akteur": "statthalter",
+      "step_id": 14,
+      "actor": "statthalter",
       "label": {
         "de": "Rekurs beim Statthalteramt",
         "en": "Appeal to the district governor",
         "ls": "Beschwerde bei der Kantonsstelle"
-      }
+      },
+      "depends_on": [
+        {
+          "step_id": 13,
+          "condition": {
+            "de": "ja"
+          }
+        }
+      ],
+      "type": "loop",
+      "loops_back_to": [
+        8
+      ]
     },
     {
-      "id": "ende-abgelehnt",
-      "typ": "ende",
-      "akteur": "veranstalter",
+      "step_id": 15,
+      "actor": "veranstalter",
       "label": {
         "de": "Gesuch rechtskräftig abgelehnt",
         "en": "Application rejected (final)",
         "ls": "Das Fest ist nicht erlaubt"
-      }
+      },
+      "depends_on": [
+        {
+          "step_id": 13,
+          "condition": {
+            "de": "nein"
+          }
+        }
+      ],
+      "type": "ende"
     }
   ],
-  "flow": [
+  "legal_basis": [
     {
-      "von": "start",
-      "nach": "frist"
+      "label": "Vorschriften über die Benützung des öffentlichen Grundes der Stadt Zürich",
+      "url": "https://www.stadt-zuerich.ch/pd/de/index/stadtpolizei_zuerich/bewilligungen.html"
     },
     {
-      "von": "frist",
-      "nach": "gesuch"
-    },
+      "label": "Gastgewerbegesetz des Kantons Zürich (für Ausschank/Patente)",
+      "url": "https://www.zh.ch/de/wirtschaft-arbeit/gastgewerbe.html"
+    }
+  ],
+  "sources": [
     {
-      "von": "gesuch",
-      "nach": "pruefung"
-    },
-    {
-      "von": "pruefung",
-      "nach": "mitberichte"
-    },
-    {
-      "von": "mitberichte",
-      "nach": "vollstaendig"
-    },
-    {
-      "von": "vollstaendig",
-      "nach": "nachfordern",
-      "bedingung": "nein",
-      "label": {
-        "de": "unvollständig",
-        "en": "incomplete"
-      }
-    },
-    {
-      "von": "nachfordern",
-      "nach": "pruefung"
-    },
-    {
-      "von": "vollstaendig",
-      "nach": "entscheid",
-      "bedingung": "ja",
-      "label": {
-        "de": "vollständig",
-        "en": "complete"
-      }
-    },
-    {
-      "von": "entscheid",
-      "nach": "verfuegung",
-      "bedingung": "ja"
-    },
-    {
-      "von": "entscheid",
-      "nach": "ablehnung",
-      "bedingung": "nein"
-    },
-    {
-      "von": "verfuegung",
-      "nach": "gebuehr"
-    },
-    {
-      "von": "gebuehr",
-      "nach": "ende-bewilligt"
-    },
-    {
-      "von": "ablehnung",
-      "nach": "einsprache"
-    },
-    {
-      "von": "einsprache",
-      "nach": "rekurs",
-      "bedingung": "ja"
-    },
-    {
-      "von": "einsprache",
-      "nach": "ende-abgelehnt",
-      "bedingung": "nein"
-    },
-    {
-      "von": "rekurs",
-      "nach": "entscheid",
-      "label": {
-        "de": "Neubeurteilung",
-        "en": "re-evaluation"
-      }
+      "id": "q-stz-bewilligungen",
+      "title": "Stadtpolizei Zürich – Bewilligungen",
+      "url": "https://www.stadt-zuerich.ch/pd/de/index/stadtpolizei_zuerich/bewilligungen.html",
+      "retrieved_at": "2026-06-06"
     }
   ],
   "reife": {
@@ -420,20 +435,5 @@
     "aktualisiert": "2026-06-10",
     "maintainer": "malkreide",
     "lizenz": "CC-BY-4.0"
-  },
-  "lebenslage_ref": "veranstaltung",
-  "zielgruppe": "bevoelkerung",
-  "referenzen": [
-    {
-      "id": "r-vorlaufzeit",
-      "label": {
-        "de": "Empfohlene Vorlaufzeit für Bewilligungsgesuche (je nach Anlassgrösse)",
-        "en": "Recommended lead time for permit applications (depends on event size)"
-      },
-      "url": "https://www.stadt-zuerich.ch/pd/de/index/stadtpolizei_zuerich/bewilligungen.html",
-      "zitat": "",
-      "status": "unverifiziert",
-      "abgerufen": "2026-06-10"
-    }
-  ]
+  }
 }

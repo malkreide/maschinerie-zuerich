@@ -1,49 +1,39 @@
 {
   "$schema": "../../../schemas/opengov-process-schema.json",
-  "id": "baubewilligung-ordentlich",
-  "version": "2.0.0",
+  "schema_version": "0.1.0",
+  "id": "baugesuch",
+  "lebenslage_ref": "baugesuch",
   "city": "zh",
-  "titel": {
+  "title": {
     "de": "Baubewilligung – ordentliches Verfahren",
     "en": "Building permit – ordinary procedure",
     "fr": "Permis de construire – procédure ordinaire",
     "it": "Licenza edilizia – procedura ordinaria",
     "ls": "Bau-Bewilligung in Zürich (normales Verfahren)"
   },
-  "kurzbeschreibung": {
+  "description": {
     "de": "Ablauf einer Baubewilligung für bewilligungspflichtige Bauvorhaben in der Stadt Zürich nach PBG. Umfasst Vorprüfung, öffentliche Auflage, Einsprachen, Entscheid und Rechtsmittelverfahren.",
     "en": "Building-permit workflow in the City of Zurich under the cantonal Planning and Building Act, including public notice, objections, decision and appeal.",
     "ls": "So bekommst du die Erlaubnis, ein Haus zu bauen oder umzubauen. Du schickst einen Antrag an das Amt. Das Amt prüft. Nachbarn dürfen Einwände machen. Am Schluss sagt das Amt: Ja oder Nein."
   },
-  "rechtsgrundlagen": [
+  "target_audience": "bevoelkerung",
+  "source_url": "https://www.stadt-zuerich.ch/de/planen-bauen/bauen/baueingabe.html",
+  "retrieved_at": "2026-04-24",
+  "disclaimer_key": "Prozesse.disclaimer",
+  "references": [
     {
-      "bezeichnung": "PBG ZH §§ 309–341 (Baubewilligungsverfahren)",
-      "url": "https://www.zhlaw.ch/Erlass/700.1"
-    },
-    {
-      "bezeichnung": "BZO Stadt Zürich",
-      "url": "https://www.stadt-zuerich.ch/de/planen-bauen/bauen/bauvorschriften/bzo.html"
-    },
-    {
-      "bezeichnung": "VRG ZH (Einsprache- und Rekursverfahren)",
-      "url": "https://www.zhlaw.ch/Erlass/175.2"
+      "reference_id": 1,
+      "label": {
+        "de": "Gebühr für das Baugesuch (abhängig von der Bausumme)",
+        "en": "Building-permit fee (depends on construction cost)"
+      },
+      "source_url": "https://www.zh.ch/de/planen-bauen/baugesuche.html",
+      "source_quote": "",
+      "status": "unverifiziert",
+      "retrieved_at": "2026-04-24"
     }
   ],
-  "quellen": [
-    {
-      "id": "q-stz-baueingabe",
-      "titel": "Stadt Zürich – Baueingabe",
-      "url": "https://www.stadt-zuerich.ch/de/planen-bauen/bauen/baueingabe.html",
-      "abgerufen": "2026-04-24"
-    },
-    {
-      "id": "q-ebaugesuch",
-      "titel": "eBaugesuche Kanton Zürich",
-      "url": "https://www.zh.ch/de/planen-bauen/baugesuche.html",
-      "abgerufen": "2026-04-24"
-    }
-  ],
-  "akteure": [
+  "actors": [
     {
       "id": "bauherr",
       "label": {
@@ -53,7 +43,7 @@
         "it": "Committente",
         "ls": "Du (die Person, die bauen will)"
       },
-      "typ": "antragsteller"
+      "type": "antragsteller"
     },
     {
       "id": "amt-baubewilligungen",
@@ -62,7 +52,7 @@
         "en": "Building-Permit Office",
         "ls": "Bau-Amt"
       },
-      "typ": "behoerde",
+      "type": "behoerde",
       "einheit_ref": "HBD-bb"
     },
     {
@@ -71,7 +61,7 @@
         "de": "Amt für Hochbauten",
         "en": "Department of Buildings"
       },
-      "typ": "fachstelle",
+      "type": "fachstelle",
       "einheit_ref": "HBD-hb"
     },
     {
@@ -81,7 +71,7 @@
         "en": "Cantonal specialist offices",
         "ls": "Ämter vom Kanton"
       },
-      "typ": "fachstelle"
+      "type": "fachstelle"
     },
     {
       "id": "nachbarn",
@@ -90,7 +80,7 @@
         "en": "Objectors (neighbours)",
         "ls": "Nachbarn"
       },
-      "typ": "dritte"
+      "type": "dritte"
     },
     {
       "id": "baurekurs",
@@ -99,331 +89,358 @@
         "en": "Building Appeals Court",
         "ls": "Gericht"
       },
-      "typ": "gericht"
+      "type": "gericht"
     }
   ],
-  "schritte": [
+  "steps": [
     {
-      "id": "start",
-      "typ": "start",
-      "akteur": "bauherr",
+      "step_id": 1,
+      "actor": "bauherr",
       "label": {
         "de": "Bauvorhaben geplant",
         "en": "Building project planned",
         "ls": "Du willst etwas bauen"
-      }
+      },
+      "depends_on": [],
+      "type": "start"
     },
     {
-      "id": "unterlagen-erstellen",
-      "typ": "input",
-      "akteur": "bauherr",
+      "step_id": 2,
+      "actor": "bauherr",
       "label": {
         "de": "Baugesuch erstellen",
         "en": "Prepare building application",
         "ls": "Du sammelst alle Papiere"
       },
-      "beschreibung": {
+      "depends_on": [
+        1
+      ],
+      "type": "input",
+      "description": {
         "de": "Pläne, Projektbeschrieb, Nachweise (Energie, Schall, Statik) und Formulare gemäss Wegleitung zusammenstellen.",
         "en": "Plans, project description, evidence of energy/acoustics/statics and application forms."
       },
-      "unterlagen": [
+      "documents": [
         {
           "label": {
             "de": "Baugesuchsformular"
           },
           "url": "https://www.stadt-zuerich.ch/de/planen-bauen/bauen/baueingabe.html",
-          "pflicht": true
+          "required": true
         },
         {
           "label": {
             "de": "Situationsplan 1:500"
           },
-          "pflicht": true
+          "required": true
         },
         {
           "label": {
             "de": "Grundriss / Schnitt / Fassade 1:100"
           },
-          "pflicht": true
+          "required": true
         },
         {
           "label": {
             "de": "Energetischer Nachweis (MuKEn)"
           },
-          "pflicht": true
+          "required": true
         },
         {
           "label": {
             "de": "Umgebungsplan"
           },
-          "pflicht": true
+          "required": true
         }
       ],
-      "quelle": "q-stz-baueingabe"
+      "source_id": "q-stz-baueingabe"
     },
     {
-      "id": "einreichen",
-      "typ": "input",
-      "akteur": "bauherr",
+      "step_id": 3,
+      "actor": "bauherr",
       "label": {
         "de": "Baugesuch einreichen (eBaugesuche)",
         "en": "Submit application (eBaugesuche)",
         "ls": "Du reichst die Papiere online ein"
       },
-      "quelle": "q-ebaugesuch",
-      "referenzen": [
-        "r-baugesuch-gebuehr"
-      ]
+      "depends_on": [
+        2
+      ],
+      "reference_ids": [
+        1
+      ],
+      "type": "input",
+      "source_id": "q-ebaugesuch"
     },
     {
-      "id": "vorpruefung",
-      "typ": "prozess",
-      "akteur": "amt-baubewilligungen",
+      "step_id": 4,
+      "actor": "amt-baubewilligungen",
       "label": {
         "de": "Formelle Vorprüfung",
         "en": "Formal completeness check"
       },
-      "beschreibung": {
+      "depends_on": [
+        3
+      ],
+      "type": "prozess",
+      "description": {
         "de": "Prüfung, ob das Gesuch vollständig und bearbeitbar ist."
       }
     },
     {
-      "id": "vollstaendig",
-      "typ": "entscheidung",
-      "akteur": "amt-baubewilligungen",
+      "step_id": 5,
+      "actor": "amt-baubewilligungen",
       "label": {
         "de": "Unterlagen vollständig?",
         "en": "Application complete?",
         "ls": "Sind alle Papiere da?"
-      }
+      },
+      "depends_on": [
+        4
+      ],
+      "type": "entscheidung"
     },
     {
-      "id": "nachfrist",
-      "typ": "loop",
-      "akteur": "bauherr",
+      "step_id": 6,
+      "actor": "bauherr",
       "label": {
         "de": "Unterlagen nachliefern",
         "en": "Submit missing documents",
         "ls": "Fehlende Papiere nachliefern"
-      }
+      },
+      "depends_on": [
+        {
+          "step_id": 5,
+          "condition": {
+            "de": "unvollständig",
+            "en": "incomplete"
+          }
+        }
+      ],
+      "type": "loop",
+      "loops_back_to": [
+        4
+      ]
     },
     {
-      "id": "oeffentliche-auflage",
-      "typ": "prozess",
-      "akteur": "amt-baubewilligungen",
+      "step_id": 7,
+      "actor": "amt-baubewilligungen",
       "label": {
         "de": "Öffentliche Auflage / Publikation",
         "en": "Public notice",
         "ls": "Das Amt macht öffentlich: Hier wird gebaut"
-      }
+      },
+      "depends_on": [
+        {
+          "step_id": 5,
+          "condition": {
+            "de": "vollständig",
+            "en": "complete"
+          }
+        }
+      ],
+      "type": "prozess"
     },
     {
-      "id": "einsprachen",
-      "typ": "entscheidung",
-      "akteur": "nachbarn",
+      "step_id": 8,
+      "actor": "nachbarn",
       "label": {
         "de": "Einsprachen erhoben?",
         "en": "Objections filed?",
         "ls": "Gibt es Einwände von Nachbarn?"
-      }
+      },
+      "depends_on": [
+        7
+      ],
+      "type": "entscheidung"
     },
     {
-      "id": "einsprache-behandeln",
-      "typ": "prozess",
-      "akteur": "amt-baubewilligungen",
+      "step_id": 9,
+      "actor": "amt-baubewilligungen",
       "label": {
         "de": "Einsprachen behandeln",
         "en": "Process objections"
-      }
+      },
+      "depends_on": [
+        {
+          "step_id": 8,
+          "condition": {
+            "de": "ja"
+          }
+        }
+      ],
+      "type": "prozess"
     },
     {
-      "id": "fachstellen",
-      "typ": "prozess",
-      "akteur": "kanton",
+      "step_id": 10,
+      "actor": "kanton",
       "label": {
         "de": "Kantonale Fachstellen anhören (Zirkulationsverfahren)",
         "en": "Cantonal specialist review"
-      }
+      },
+      "depends_on": [
+        9,
+        {
+          "step_id": 8,
+          "condition": {
+            "de": "nein"
+          }
+        }
+      ],
+      "type": "prozess"
     },
     {
-      "id": "materielle-pruefung",
-      "typ": "prozess",
-      "akteur": "hochbauamt",
+      "step_id": 11,
+      "actor": "hochbauamt",
       "label": {
         "de": "Materielle Prüfung (BZO, PBG, Lärm, Brandschutz …)",
         "en": "Substantive review"
-      }
+      },
+      "depends_on": [
+        10
+      ],
+      "type": "prozess"
     },
     {
-      "id": "entscheid",
-      "typ": "entscheidung",
-      "akteur": "amt-baubewilligungen",
+      "step_id": 12,
+      "actor": "amt-baubewilligungen",
       "label": {
         "de": "Bewilligung erteilen?",
         "en": "Grant permit?",
         "ls": "Erlaubnis – ja oder nein?"
-      }
+      },
+      "depends_on": [
+        11
+      ],
+      "type": "entscheidung"
     },
     {
-      "id": "bewilligung",
-      "typ": "prozess",
-      "akteur": "amt-baubewilligungen",
+      "step_id": 13,
+      "actor": "amt-baubewilligungen",
       "label": {
         "de": "Baubewilligung erteilen (evtl. mit Auflagen)",
         "en": "Grant permit (possibly with conditions)",
         "ls": "Amt sagt Ja"
-      }
+      },
+      "depends_on": [
+        {
+          "step_id": 12,
+          "condition": {
+            "de": "ja"
+          }
+        }
+      ],
+      "type": "prozess"
     },
     {
-      "id": "abweisung",
-      "typ": "prozess",
-      "akteur": "amt-baubewilligungen",
+      "step_id": 14,
+      "actor": "amt-baubewilligungen",
       "label": {
         "de": "Gesuch abweisen",
         "en": "Reject application",
         "ls": "Amt sagt Nein"
-      }
+      },
+      "depends_on": [
+        {
+          "step_id": 12,
+          "condition": {
+            "de": "nein"
+          }
+        }
+      ],
+      "type": "prozess"
     },
     {
-      "id": "rekurs-moeglich",
-      "typ": "entscheidung",
-      "akteur": "bauherr",
+      "step_id": 15,
+      "actor": "bauherr",
       "label": {
         "de": "Rekurs einlegen?",
         "en": "File appeal?",
         "ls": "Willst du dagegen klagen?"
-      }
+      },
+      "depends_on": [
+        14
+      ],
+      "type": "entscheidung"
     },
     {
-      "id": "rekurs",
-      "typ": "loop",
-      "akteur": "baurekurs",
+      "step_id": 16,
+      "actor": "baurekurs",
       "label": {
         "de": "Rekursverfahren Baurekursgericht",
         "en": "Appeal proceedings"
-      }
+      },
+      "depends_on": [
+        {
+          "step_id": 15,
+          "condition": {
+            "de": "ja"
+          }
+        }
+      ],
+      "type": "loop",
+      "loops_back_to": [
+        12
+      ]
     },
     {
-      "id": "ende-bewilligt",
-      "typ": "ende",
-      "akteur": "bauherr",
+      "step_id": 17,
+      "actor": "bauherr",
       "label": {
         "de": "Bauen möglich (nach Rechtskraft)",
         "en": "Construction may begin (after legal force)",
         "ls": "Du darfst bauen"
-      }
+      },
+      "depends_on": [
+        13
+      ],
+      "type": "ende"
     },
     {
-      "id": "ende-abgelehnt",
-      "typ": "ende",
-      "akteur": "bauherr",
+      "step_id": 18,
+      "actor": "bauherr",
       "label": {
         "de": "Verfahren rechtskräftig abgeschlossen (ohne Bewilligung)",
         "en": "Application denied (final)",
         "ls": "Du darfst nicht bauen"
-      }
+      },
+      "depends_on": [
+        {
+          "step_id": 15,
+          "condition": {
+            "de": "nein"
+          }
+        }
+      ],
+      "type": "ende"
     }
   ],
-  "flow": [
+  "legal_basis": [
     {
-      "von": "start",
-      "nach": "unterlagen-erstellen"
+      "label": "PBG ZH §§ 309–341 (Baubewilligungsverfahren)",
+      "url": "https://www.zhlaw.ch/Erlass/700.1"
     },
     {
-      "von": "unterlagen-erstellen",
-      "nach": "einreichen"
+      "label": "BZO Stadt Zürich",
+      "url": "https://www.stadt-zuerich.ch/de/planen-bauen/bauen/bauvorschriften/bzo.html"
     },
     {
-      "von": "einreichen",
-      "nach": "vorpruefung"
+      "label": "VRG ZH (Einsprache- und Rekursverfahren)",
+      "url": "https://www.zhlaw.ch/Erlass/175.2"
+    }
+  ],
+  "sources": [
+    {
+      "id": "q-stz-baueingabe",
+      "title": "Stadt Zürich – Baueingabe",
+      "url": "https://www.stadt-zuerich.ch/de/planen-bauen/bauen/baueingabe.html",
+      "retrieved_at": "2026-04-24"
     },
     {
-      "von": "vorpruefung",
-      "nach": "vollstaendig"
-    },
-    {
-      "von": "vollstaendig",
-      "nach": "nachfrist",
-      "bedingung": "nein",
-      "label": {
-        "de": "unvollständig",
-        "en": "incomplete"
-      }
-    },
-    {
-      "von": "nachfrist",
-      "nach": "vorpruefung"
-    },
-    {
-      "von": "vollstaendig",
-      "nach": "oeffentliche-auflage",
-      "bedingung": "ja",
-      "label": {
-        "de": "vollständig",
-        "en": "complete"
-      }
-    },
-    {
-      "von": "oeffentliche-auflage",
-      "nach": "einsprachen"
-    },
-    {
-      "von": "einsprachen",
-      "nach": "einsprache-behandeln",
-      "bedingung": "ja"
-    },
-    {
-      "von": "einsprache-behandeln",
-      "nach": "fachstellen"
-    },
-    {
-      "von": "einsprachen",
-      "nach": "fachstellen",
-      "bedingung": "nein"
-    },
-    {
-      "von": "fachstellen",
-      "nach": "materielle-pruefung"
-    },
-    {
-      "von": "materielle-pruefung",
-      "nach": "entscheid"
-    },
-    {
-      "von": "entscheid",
-      "nach": "bewilligung",
-      "bedingung": "ja"
-    },
-    {
-      "von": "entscheid",
-      "nach": "abweisung",
-      "bedingung": "nein"
-    },
-    {
-      "von": "bewilligung",
-      "nach": "ende-bewilligt"
-    },
-    {
-      "von": "abweisung",
-      "nach": "rekurs-moeglich"
-    },
-    {
-      "von": "rekurs-moeglich",
-      "nach": "rekurs",
-      "bedingung": "ja"
-    },
-    {
-      "von": "rekurs-moeglich",
-      "nach": "ende-abgelehnt",
-      "bedingung": "nein"
-    },
-    {
-      "von": "rekurs",
-      "nach": "entscheid",
-      "label": {
-        "de": "Neubeurteilung",
-        "en": "re-evaluation"
-      }
+      "id": "q-ebaugesuch",
+      "title": "eBaugesuche Kanton Zürich",
+      "url": "https://www.zh.ch/de/planen-bauen/baugesuche.html",
+      "retrieved_at": "2026-04-24"
     }
   ],
   "reife": {
@@ -487,20 +504,5 @@
     "aktualisiert": "2026-06-10",
     "maintainer": "malkreide",
     "lizenz": "CC-BY-4.0"
-  },
-  "lebenslage_ref": "baugesuch",
-  "zielgruppe": "bevoelkerung",
-  "referenzen": [
-    {
-      "id": "r-baugesuch-gebuehr",
-      "label": {
-        "de": "Gebühr für das Baugesuch (abhängig von der Bausumme)",
-        "en": "Building-permit fee (depends on construction cost)"
-      },
-      "url": "https://www.zh.ch/de/planen-bauen/baugesuche.html",
-      "zitat": "",
-      "status": "unverifiziert",
-      "abgerufen": "2026-04-24"
-    }
-  ]
+  }
 }

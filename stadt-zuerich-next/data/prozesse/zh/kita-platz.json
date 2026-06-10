@@ -1,57 +1,39 @@
 {
   "$schema": "../../../schemas/opengov-process-schema.json",
+  "schema_version": "0.1.0",
   "id": "kita-platz",
-  "version": "2.0.0",
+  "lebenslage_ref": "kita-platz",
   "city": "zh",
-  "titel": {
+  "title": {
     "de": "Kita-Platz & Betreuungsgutschein",
     "en": "Daycare place & childcare subsidy voucher",
     "fr": "Place en crèche & bon de garde",
     "it": "Posto all'asilo nido & buono per la custodia",
     "ls": "Kita-Platz und Betreuungs-Gutschein"
   },
-  "kurzbeschreibung": {
+  "description": {
     "de": "Eltern in der Stadt Zürich suchen einen Platz in einer Kindertagesstätte und beantragen einen einkommensabhängigen Betreuungsbeitrag, der den Elternbeitrag senkt. Die Zuständigkeit ist geteilt: Der einkommensabhängige Beitragsfaktor wird über das Schul- und Sportdepartement (Schulamt) bestimmt, die Finanzierung und Auszahlung der Subvention an die Kita läuft über das Sozialdepartement.",
     "en": "Parents in the City of Zurich find a daycare place and apply for an income-based childcare subsidy that lowers their contribution. Responsibility is split: the income-based contribution factor is determined via the School and Sports Department (school office), while financing and payment of the subsidy to the daycare centre runs through the Social Welfare Department.",
     "ls": "Sie brauchen einen Platz für Ihr Kind in einer Kita? Sie suchen zuerst einen Platz. Dann beantragen Sie einen Beitrag. Das macht die Kita günstiger. Wie viel Sie bekommen, hängt von Ihrem Lohn ab. Zwei Stellen sind dafür zuständig: das Schul-Amt für die Berechnung und das Sozial-Departement für das Geld an die Kita."
   },
-  "rechtsgrundlagen": [
+  "target_audience": "bevoelkerung",
+  "source_url": "https://www.stadt-zuerich.ch/ssd/de/index/kinderbetreuung/betreuungsgutscheine.html",
+  "retrieved_at": "2026-06-06",
+  "disclaimer_key": "Prozesse.disclaimer",
+  "references": [
     {
-      "bezeichnung": "Verordnung über die familien- und schulergänzende Kinderbetreuung der Stadt Zürich",
-      "url": "https://www.stadt-zuerich.ch/ssd/de/index/kinderbetreuung/betreuungsgutscheine.html"
-    },
-    {
-      "bezeichnung": "Kinderbetreuungsgesetz des Kantons Zürich (KibeG)",
-      "url": "https://www.zh.ch/de/familie/kinderbetreuung.html"
+      "reference_id": 1,
+      "label": {
+        "de": "Kita-Tarif und einkommensabhängiger Elternbeitrag (Betreuungsgutschein)",
+        "en": "Childcare tariff and income-based parental contribution (childcare voucher)"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/betreuungskosten-und-subventionen.html",
+      "source_quote": "",
+      "status": "unverifiziert",
+      "retrieved_at": "2026-06-06"
     }
   ],
-  "quellen": [
-    {
-      "id": "q-stz-bg",
-      "titel": "Stadt Zürich – Betreuungsgutscheine",
-      "url": "https://www.stadt-zuerich.ch/ssd/de/index/kinderbetreuung/betreuungsgutscheine.html",
-      "abgerufen": "2026-06-06"
-    },
-    {
-      "id": "q-stz-kita",
-      "titel": "Stadt Zürich – Kinderbetreuung / Kitas finden",
-      "url": "https://www.stadt-zuerich.ch/ssd/de/index/kinderbetreuung.html",
-      "abgerufen": "2026-06-06"
-    },
-    {
-      "id": "q-stz-betreuungskosten",
-      "titel": "Stadt Zürich – Betreuungskosten und Subventionen (Beitragsfaktor)",
-      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/betreuungskosten-und-subventionen.html",
-      "abgerufen": "2026-06-06"
-    },
-    {
-      "id": "q-stz-kitafin",
-      "titel": "Stadt Zürich – Subventionen für Kitas (Finanzierung/Auszahlung)",
-      "url": "https://www.stadt-zuerich.ch/de/stadtleben/wirtschaft-und-gewerbe/fuer-kitas/subventionen.html",
-      "abgerufen": "2026-06-06"
-    }
-  ],
-  "akteure": [
+  "actors": [
     {
       "id": "eltern",
       "label": {
@@ -61,7 +43,7 @@
         "it": "Genitori / tutori legali",
         "ls": "Sie (die Eltern)"
       },
-      "typ": "antragsteller"
+      "type": "antragsteller"
     },
     {
       "id": "kita",
@@ -70,7 +52,7 @@
         "en": "Daycare centre (subsidised)",
         "ls": "Die Kita"
       },
-      "typ": "dritte"
+      "type": "dritte"
     },
     {
       "id": "schulamt",
@@ -79,7 +61,7 @@
         "en": "School Office (School and Sports Dept.) – contribution factor",
         "ls": "Das Schul-Amt (es berechnet den Beitrag)"
       },
-      "typ": "behoerde",
+      "type": "behoerde",
       "einheit_ref": "SSD-schule"
     },
     {
@@ -89,7 +71,7 @@
         "en": "Social Welfare Department – daycare financing and subsidy payment",
         "ls": "Das Sozial-Departement (es zahlt das Geld an die Kita)"
       },
-      "typ": "behoerde",
+      "type": "behoerde",
       "einheit_ref": "SD"
     },
     {
@@ -99,316 +81,348 @@
         "en": "District council (appeals body)",
         "ls": "Eine Stelle vom Kanton für Beschwerden"
       },
-      "typ": "gericht"
+      "type": "gericht"
     }
   ],
-  "schritte": [
+  "steps": [
     {
-      "id": "start",
-      "typ": "start",
-      "akteur": "eltern",
+      "step_id": 1,
+      "actor": "eltern",
       "label": {
         "de": "Betreuungsbedarf für das Kind",
         "en": "Childcare needed",
         "ls": "Sie brauchen einen Betreuungs-Platz"
-      }
+      },
+      "depends_on": [],
+      "type": "start"
     },
     {
-      "id": "kita-suchen",
-      "typ": "input",
-      "akteur": "eltern",
+      "step_id": 2,
+      "actor": "eltern",
       "label": {
         "de": "Freien Kita-Platz suchen",
         "en": "Find an available daycare place",
         "ls": "Einen freien Platz in einer Kita suchen"
       },
-      "beschreibung": {
+      "depends_on": [
+        1
+      ],
+      "type": "input",
+      "description": {
         "de": "Eltern suchen selbst einen Platz in einer subventionierten Kita. Nur Plätze in subventionierten Einrichtungen sind gutscheinberechtigt.",
         "en": "Parents look for a place in a subsidised daycare centre themselves. Only places in subsidised facilities qualify for a voucher.",
         "ls": "Sie suchen selbst eine Kita. Nur bestimmte Kitas bekommen einen Gutschein."
       },
-      "quelle": "q-stz-kita"
+      "source_id": "q-stz-kita"
     },
     {
-      "id": "platz-frei",
-      "typ": "entscheidung",
-      "akteur": "eltern",
+      "step_id": 3,
+      "actor": "eltern",
       "label": {
         "de": "Platz frei?",
         "en": "Place available?",
         "ls": "Ist ein Platz frei?"
-      }
+      },
+      "depends_on": [
+        2
+      ],
+      "type": "entscheidung"
     },
     {
-      "id": "warteliste",
-      "typ": "loop",
-      "akteur": "kita",
+      "step_id": 4,
+      "actor": "kita",
       "label": {
         "de": "Auf Warteliste bleiben",
         "en": "Stay on the waiting list",
         "ls": "Sie warten auf einen Platz"
       },
-      "beschreibung": {
+      "depends_on": [
+        {
+          "step_id": 3,
+          "condition": {
+            "de": "kein Platz",
+            "en": "no place"
+          }
+        }
+      ],
+      "type": "loop",
+      "description": {
         "de": "In vielen Quartieren übersteigt die Nachfrage das Angebot — Wartezeiten von mehreren Monaten sind häufig.",
         "en": "In many neighbourhoods demand exceeds supply — waiting times of several months are common."
-      }
+      },
+      "loops_back_to": [
+        2
+      ]
     },
     {
-      "id": "betreuungsvertrag",
-      "typ": "input",
-      "akteur": "eltern",
+      "step_id": 5,
+      "actor": "eltern",
       "label": {
         "de": "Betreuungsvertrag mit der Kita abschliessen",
         "en": "Sign a care contract with the daycare centre",
         "ls": "Sie machen einen Vertrag mit der Kita"
       },
-      "referenzen": [
-        "r-elternbeitrag"
-      ]
+      "depends_on": [
+        {
+          "step_id": 3,
+          "condition": {
+            "de": "Platz frei",
+            "en": "place available"
+          }
+        }
+      ],
+      "reference_ids": [
+        1
+      ],
+      "type": "input"
     },
     {
-      "id": "gutschein-antrag",
-      "typ": "input",
-      "akteur": "eltern",
+      "step_id": 6,
+      "actor": "eltern",
       "label": {
         "de": "Betreuungsgutschein online beantragen",
         "en": "Apply for the childcare voucher online",
         "ls": "Den Gutschein im Internet beantragen"
       },
-      "beschreibung": {
+      "depends_on": [
+        5
+      ],
+      "type": "input",
+      "description": {
         "de": "Antrag beim Schulamt mit Nachweis von Einkommen und Beschäftigungs-/Ausbildungssituation beider Elternteile.",
         "en": "Application to the school office with proof of income and the employment/education situation of both parents.",
         "ls": "Sie zeigen, wie viel Sie verdienen und wie viel Sie arbeiten."
       },
-      "unterlagen": [
+      "documents": [
         {
           "label": {
             "de": "Betreuungsvertrag der Kita",
             "en": "Daycare care contract"
           },
-          "pflicht": true
+          "required": true
         },
         {
           "label": {
             "de": "Einkommensnachweis (Lohnausweis / Steuerunterlagen)",
             "en": "Proof of income (salary statement / tax documents)"
           },
-          "pflicht": true
+          "required": true
         },
         {
           "label": {
             "de": "Nachweis Erwerbstätigkeit oder Ausbildung beider Eltern",
             "en": "Proof of employment or education of both parents"
           },
-          "pflicht": true
+          "required": true
         }
       ],
-      "quelle": "q-stz-bg"
+      "source_id": "q-stz-bg"
     },
     {
-      "id": "pruefung",
-      "typ": "prozess",
-      "akteur": "schulamt",
+      "step_id": 7,
+      "actor": "schulamt",
       "label": {
         "de": "Anspruch und Einkommen prüfen",
         "en": "Assess eligibility and income"
       },
-      "beschreibung": {
+      "depends_on": [
+        6
+      ],
+      "type": "prozess",
+      "description": {
         "de": "Das Schulamt prüft Wohnsitz, Erwerbs-/Ausbildungspensum und das massgebende Einkommen.",
         "en": "The school office checks residence, employment/education level and the relevant income."
       }
     },
     {
-      "id": "anspruch",
-      "typ": "entscheidung",
-      "akteur": "schulamt",
+      "step_id": 8,
+      "actor": "schulamt",
       "label": {
         "de": "Anspruchsberechtigt?",
         "en": "Eligible?",
         "ls": "Haben Sie Anspruch?"
-      }
+      },
+      "depends_on": [
+        7
+      ],
+      "type": "entscheidung"
     },
     {
-      "id": "bemessung",
-      "typ": "prozess",
-      "akteur": "schulamt",
+      "step_id": 9,
+      "actor": "schulamt",
       "label": {
         "de": "Gutscheinhöhe nach Einkommen bemessen",
         "en": "Calculate voucher amount based on income",
         "ls": "Das Amt rechnet aus, wie hoch der Gutschein ist"
       },
-      "beschreibung": {
+      "depends_on": [
+        {
+          "step_id": 8,
+          "condition": {
+            "de": "ja"
+          }
+        }
+      ],
+      "type": "prozess",
+      "description": {
         "de": "Die Höhe richtet sich nach massgebendem Einkommen, Beschäftigungsgrad und Betreuungsumfang.",
         "en": "The amount depends on relevant income, employment level and care volume."
       }
     },
     {
-      "id": "verfuegung",
-      "typ": "prozess",
-      "akteur": "schulamt",
+      "step_id": 10,
+      "actor": "schulamt",
       "label": {
         "de": "Beitragsfaktor verfügen (Entscheid an Eltern)",
         "en": "Issue contribution-factor decision (to parents)",
         "ls": "Das Schul-Amt entscheidet, wie hoch der Beitrag ist"
       },
-      "beschreibung": {
+      "depends_on": [
+        9
+      ],
+      "type": "prozess",
+      "description": {
         "de": "Das Schulamt verfügt den einkommensabhängigen Beitragsfaktor. Dieser bestimmt, wie stark der Elternbeitrag subventioniert wird.",
         "en": "The school office grants the income-based contribution factor, which determines how much the parental contribution is subsidised."
       },
-      "quelle": "q-stz-betreuungskosten"
+      "source_id": "q-stz-betreuungskosten"
     },
     {
-      "id": "finanzierung",
-      "typ": "prozess",
-      "akteur": "sozialdept",
+      "step_id": 11,
+      "actor": "sozialdept",
       "label": {
         "de": "Subvention finanzieren und an Kita auszahlen",
         "en": "Finance and pay the subsidy to the daycare centre",
         "ls": "Das Sozial-Departement zahlt das Geld an die Kita"
       },
-      "beschreibung": {
+      "depends_on": [
+        10
+      ],
+      "type": "prozess",
+      "description": {
         "de": "Auf Basis des verfügten Beitragsfaktors finanziert das Sozialdepartement die Subvention und richtet sie der Kita aus, sodass sich der von den Eltern zu zahlende Beitrag reduziert.",
         "en": "Based on the granted contribution factor, the Social Welfare Department finances the subsidy and pays it to the daycare centre, reducing the amount the parents pay."
       },
-      "quelle": "q-stz-kitafin"
+      "source_id": "q-stz-kitafin"
     },
     {
-      "id": "ende-bewilligt",
-      "typ": "ende",
-      "akteur": "eltern",
+      "step_id": 12,
+      "actor": "eltern",
       "label": {
         "de": "Betreuungsgutschein bewilligt",
         "en": "Childcare voucher granted",
         "ls": "Fertig: Sie haben den Gutschein"
-      }
+      },
+      "depends_on": [
+        11
+      ],
+      "type": "ende"
     },
     {
-      "id": "ablehnung",
-      "typ": "prozess",
-      "akteur": "schulamt",
+      "step_id": 13,
+      "actor": "schulamt",
       "label": {
         "de": "Antrag ablehnen (mit Begründung)",
         "en": "Reject application (with reasons)",
         "ls": "Das Amt sagt: Nein. Und schreibt warum."
-      }
+      },
+      "depends_on": [
+        {
+          "step_id": 8,
+          "condition": {
+            "de": "nein"
+          }
+        }
+      ],
+      "type": "prozess"
     },
     {
-      "id": "einsprache",
-      "typ": "entscheidung",
-      "akteur": "eltern",
+      "step_id": 14,
+      "actor": "eltern",
       "label": {
         "de": "Rekurs einreichen?",
         "en": "File an appeal?",
         "ls": "Wollen Sie sich beschweren?"
-      }
+      },
+      "depends_on": [
+        13
+      ],
+      "type": "entscheidung"
     },
     {
-      "id": "rekurs",
-      "typ": "loop",
-      "akteur": "bezirksrat",
+      "step_id": 15,
+      "actor": "bezirksrat",
       "label": {
         "de": "Rekurs beim Bezirksrat",
         "en": "Appeal to the district council",
         "ls": "Beschwerde bei der Kantonsstelle"
-      }
+      },
+      "depends_on": [
+        {
+          "step_id": 14,
+          "condition": {
+            "de": "ja"
+          }
+        }
+      ],
+      "type": "loop",
+      "loops_back_to": [
+        8
+      ]
     },
     {
-      "id": "ende-abgelehnt",
-      "typ": "ende",
-      "akteur": "eltern",
+      "step_id": 16,
+      "actor": "eltern",
       "label": {
         "de": "Antrag rechtskräftig abgelehnt",
         "en": "Application rejected (final)",
         "ls": "Sie bekommen keinen Gutschein"
-      }
+      },
+      "depends_on": [
+        {
+          "step_id": 14,
+          "condition": {
+            "de": "nein"
+          }
+        }
+      ],
+      "type": "ende"
     }
   ],
-  "flow": [
+  "legal_basis": [
     {
-      "von": "start",
-      "nach": "kita-suchen"
+      "label": "Verordnung über die familien- und schulergänzende Kinderbetreuung der Stadt Zürich",
+      "url": "https://www.stadt-zuerich.ch/ssd/de/index/kinderbetreuung/betreuungsgutscheine.html"
     },
     {
-      "von": "kita-suchen",
-      "nach": "platz-frei"
+      "label": "Kinderbetreuungsgesetz des Kantons Zürich (KibeG)",
+      "url": "https://www.zh.ch/de/familie/kinderbetreuung.html"
+    }
+  ],
+  "sources": [
+    {
+      "id": "q-stz-bg",
+      "title": "Stadt Zürich – Betreuungsgutscheine",
+      "url": "https://www.stadt-zuerich.ch/ssd/de/index/kinderbetreuung/betreuungsgutscheine.html",
+      "retrieved_at": "2026-06-06"
     },
     {
-      "von": "platz-frei",
-      "nach": "betreuungsvertrag",
-      "bedingung": "ja",
-      "label": {
-        "de": "Platz frei",
-        "en": "place available"
-      }
+      "id": "q-stz-kita",
+      "title": "Stadt Zürich – Kinderbetreuung / Kitas finden",
+      "url": "https://www.stadt-zuerich.ch/ssd/de/index/kinderbetreuung.html",
+      "retrieved_at": "2026-06-06"
     },
     {
-      "von": "platz-frei",
-      "nach": "warteliste",
-      "bedingung": "nein",
-      "label": {
-        "de": "kein Platz",
-        "en": "no place"
-      }
+      "id": "q-stz-betreuungskosten",
+      "title": "Stadt Zürich – Betreuungskosten und Subventionen (Beitragsfaktor)",
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/betreuungskosten-und-subventionen.html",
+      "retrieved_at": "2026-06-06"
     },
     {
-      "von": "warteliste",
-      "nach": "kita-suchen"
-    },
-    {
-      "von": "betreuungsvertrag",
-      "nach": "gutschein-antrag"
-    },
-    {
-      "von": "gutschein-antrag",
-      "nach": "pruefung"
-    },
-    {
-      "von": "pruefung",
-      "nach": "anspruch"
-    },
-    {
-      "von": "anspruch",
-      "nach": "bemessung",
-      "bedingung": "ja"
-    },
-    {
-      "von": "anspruch",
-      "nach": "ablehnung",
-      "bedingung": "nein"
-    },
-    {
-      "von": "bemessung",
-      "nach": "verfuegung"
-    },
-    {
-      "von": "verfuegung",
-      "nach": "finanzierung"
-    },
-    {
-      "von": "finanzierung",
-      "nach": "ende-bewilligt"
-    },
-    {
-      "von": "ablehnung",
-      "nach": "einsprache"
-    },
-    {
-      "von": "einsprache",
-      "nach": "rekurs",
-      "bedingung": "ja"
-    },
-    {
-      "von": "einsprache",
-      "nach": "ende-abgelehnt",
-      "bedingung": "nein"
-    },
-    {
-      "von": "rekurs",
-      "nach": "anspruch",
-      "label": {
-        "de": "Neubeurteilung",
-        "en": "re-evaluation"
-      }
+      "id": "q-stz-kitafin",
+      "title": "Stadt Zürich – Subventionen für Kitas (Finanzierung/Auszahlung)",
+      "url": "https://www.stadt-zuerich.ch/de/stadtleben/wirtschaft-und-gewerbe/fuer-kitas/subventionen.html",
+      "retrieved_at": "2026-06-06"
     }
   ],
   "reife": {
@@ -489,20 +503,5 @@
     "aktualisiert": "2026-06-10",
     "maintainer": "malkreide",
     "lizenz": "CC-BY-4.0"
-  },
-  "lebenslage_ref": "kita-platz",
-  "zielgruppe": "bevoelkerung",
-  "referenzen": [
-    {
-      "id": "r-elternbeitrag",
-      "label": {
-        "de": "Kita-Tarif und einkommensabhängiger Elternbeitrag (Betreuungsgutschein)",
-        "en": "Childcare tariff and income-based parental contribution (childcare voucher)"
-      },
-      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/betreuungskosten-und-subventionen.html",
-      "zitat": "",
-      "status": "unverifiziert",
-      "abgerufen": "2026-06-06"
-    }
-  ]
+  }
 }

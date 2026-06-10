@@ -1,39 +1,34 @@
 #!/usr/bin/env node
-// Validiert alle Prozess-JSONs unter data/prozesse/<city>/*.json
-// gegen schemas/opengov-process-schema.json.
+// Validiert alle Prozess-JSONs unter data/prozesse/<city>/*.json gegen den
+// kanonischen Prozess-Datenvertrag (docs/process-data-contract.md im
+// Repo-Root; JSON-Schema: schemas/opengov-process-schema.json).
 //
 // Drei Stufen:
 //   1. Formale Validierung via ajv (JSON-Schema draft-07) — inkl. Format-
 //      Checks für uri/date. Schlägt bei Pflichtfeldern, falschen Typen,
 //      ungültigen Enums an.
 //   2. Semantische Validierung — das Schema kann keine Referenzen prüfen:
-//      - Schritt.akteur muss in akteure[].id existieren
-//      - Flow.von/nach muss in schritte[].id existieren, kein Selbstbezug
-//      - Jeder Knoten sollte vom Start aus erreichbar sein (Warnung)
-//      - Schritt.quelle (falls gesetzt) muss in quellen[].id existieren
-//      - Bei Entscheidungs-Schritten sollte mindestens eine ausgehende Flow-
-//        Kante eine bedingung tragen
-//      - Generation 2 (docs/process-data-contract.md im Repo-Root):
-//        - schritte[].id und referenzen[].id eindeutig
-//        - schritte[].referenzen verweisen auf existierende referenzen
-//        - Grounding-Gate: Referenz mit status 'verifiziert' (oder ohne
-//          status) braucht ein nicht-leeres zitat (Fehler); status
-//          'unverifiziert' mit leerem zitat ist eine Warnung
-//        - Azyklisch bis auf Rücksprünge: ohne die Kanten, die von
-//          typ='loop'-Schritten ausgehen, muss der Graph ein DAG sein
-//        - Kardinalregel-Lint: Zahl + bindende Einheit (CHF, Fr., Franken,
-//          %, Tag(e), Woche(n), Monat(e), Jahr(e)) in Schritt-Labels,
-//          Beschreibungen, Flow-Labels, Voraussetzungen, Referenz-Labels
-//        oder KPI-Werten ist ein FEHLER — bindende Werte nur als Referenz
-//        - lebenslage_ref muss in data/<city>/lebenslagen.json existieren
-//          und die Lebenslage muss zurückverlinken (prozesse[] enthält
-//          '<city>/<id>')
-//   3. Cross-Reference gegen Org-Chart-JSON (Org-Chart-Brücke):
-//      - akteure[].einheit_ref muss als ID einer Unit/Department/Beteiligung
-//        in der Stadt-spezifischen Org-Chart-JSON existieren
-//      - Mapping city → Pfad lebt in config/city.config.json. Aktuell ist
-//        nur ZH konfiguriert. Andere Städte überspringen den Check mit
-//        einer Warnung, bis ihre eigene Konfiguration ergänzt wurde.
+//      - id == lebenslage_ref (Vertrag)
+//      - step_id eindeutig; depends_on verweist nur auf existierende
+//        step_ids; kein Selbstbezug; mindestens ein Start-Schritt
+//        (leeres depends_on); Graph über depends_on ist azyklisch (DAG)
+//      - loops_back_to nur an type-'loop'-Schritten, nur auf existierende
+//        step_ids (fliesst NICHT in den DAG-Check ein)
+//      - reference_id eindeutig; reference_ids verweisen auf existierende
+//        references
+//      - Grounding-Gate: Reference mit status 'verifiziert' (oder ohne
+//        status) braucht ein nicht-leeres source_quote (Fehler); status
+//        'unverifiziert' mit leerem source_quote ist eine Warnung
+//      - Kardinalregel-Lint: Zahl + bindende Einheit (CHF, Fr., Franken,
+//        %, Tag(e), Woche(n), Monat(e), Jahr(e)) in gerenderten Texten
+//        ist ein FEHLER — bindende Werte nur als Reference
+//      - steps[].actor referenziert actors[].id (falls actors vorhanden);
+//        steps[].source_id referenziert sources[].id
+//   3. Cross-Reference gegen Stadt-Daten:
+//      - actors[].einheit_ref existiert im Org-Chart der Stadt
+//      - lebenslage_ref existiert in data/<city>/lebenslagen.json und die
+//        Lebenslage verlinkt zurück (prozesse[] enthält '<city>/<id>')
+//      - Städte ohne Daten überspringen die Checks mit Warnung
 //
 // Exit-Code: 0 = alles gut. 1 = Fehler. Warnungen stehen auf stderr, brechen
 // aber nicht ab.
@@ -50,10 +45,9 @@ const SCHEMA_PATH = path.join(projectRoot, 'schemas', 'opengov-process-schema.js
 const PROZESSE_ROOT = path.join(projectRoot, 'data', 'prozesse');
 const CITY_CONFIG_PATH = path.join(projectRoot, 'config', 'city.config.json');
 
-// Mapping city → Pfad der zugehörigen Org-Chart-JSON. Single Source of Truth
-// ist config/city.config.json, damit TS-Code (loadStadtData) und dieses
-// Node-Skript exakt denselben Pfad benutzen. Aktuell ist nur eine Stadt
-// konfiguriert; Multi-City kommt mit einer späteren Config-Erweiterung.
+// Mapping city → Pfade der Stadt-Daten. Single Source of Truth ist
+// config/city.config.json, damit TS-Code (loadStadtData) und dieses
+// Node-Skript exakt dieselben Pfade benutzen.
 async function loadCityDataPaths() {
   const cfg = JSON.parse(await readFile(CITY_CONFIG_PATH, 'utf-8'));
   return {
@@ -107,6 +101,9 @@ function formatAjvError(err) {
   return `${loc}: ${err.message}${err.params ? ' ' + JSON.stringify(err.params) : ''}`;
 }
 
+const depId = (d) => (typeof d === 'number' ? d : d.step_id);
+const depCondition = (d) => (typeof d === 'number' ? undefined : d.condition);
+
 // Cache: city → Set of known unit IDs (oder null wenn kein Mapping).
 const cityIdsCache = new Map();
 async function loadCityIds(city, cityDataPaths) {
@@ -155,8 +152,8 @@ async function loadCityLebenslagen(city, cityDataPaths) {
 }
 
 // --- Kardinalregel-Lint -----------------------------------------------------
-// Bindende Werte (Zahl + Einheit) dürfen NUR im 'zitat' einer Referenz stehen.
-// Muss zur Heuristik in migrate-prozesse-schema-v2.mjs passen.
+// Bindende Werte (Zahl + Einheit) dürfen NUR im source_quote einer Reference
+// stehen.
 const BINDING_VALUE_RE =
   /(\d[\d'’.,\s–-]*\s*(CHF|Fr\.|Franken|%|Tag(e|en)?|Woche(n)?|Monat(e|en)?|Jahr(e|en)?|Arbeitstag(e|en)?|Kalendertag(e|en)?)\b)|((CHF|Fr\.)\s*\d)|(\d\s*%)/i;
 
@@ -173,20 +170,20 @@ function lintBindingValues(prozess) {
   const check = (where, s) => {
     for (const [suffix, v] of i18nValues(s)) {
       if (BINDING_VALUE_RE.test(v)) {
-        errors.push(`Kardinalregel: bindender Wert im Klartext (${where}${suffix}): "${v.slice(0, 80)}" — gehört als Referenz (Label + Link + Zitat), nicht ins Label`);
+        errors.push(`Kardinalregel: bindender Wert im Klartext (${where}${suffix}): "${v.slice(0, 80)}" — gehört als Reference (Label + Link + source_quote), nicht ins Label`);
       }
     }
   };
-  check('titel', prozess.titel);
-  check('kurzbeschreibung', prozess.kurzbeschreibung);
-  for (const s of prozess.schritte ?? []) {
-    check(`schritt '${s.id}'.label`, s.label);
-    check(`schritt '${s.id}'.beschreibung`, s.beschreibung);
-    for (const u of s.unterlagen ?? []) check(`schritt '${s.id}'.unterlagen[].label`, u.label);
+  check('title', prozess.title);
+  check('description', prozess.description);
+  for (const s of prozess.steps ?? []) {
+    check(`step ${s.step_id}.label`, s.label);
+    check(`step ${s.step_id}.description`, s.description);
+    for (const d of s.depends_on ?? []) check(`step ${s.step_id}.depends_on.condition`, depCondition(d));
+    for (const u of s.documents ?? []) check(`step ${s.step_id}.documents[].label`, u.label);
   }
-  for (const f of prozess.flow ?? []) check(`flow '${f.von}'->'${f.nach}'.label`, f.label);
-  for (const v of prozess.voraussetzungen ?? []) check('voraussetzungen[]', v);
-  for (const r of prozess.referenzen ?? []) check(`referenz '${r.id}'.label`, r.label);
+  for (const v of prozess.preconditions ?? []) check('preconditions[]', v);
+  for (const r of prozess.references ?? []) check(`reference ${r.reference_id}.label`, r.label);
   const reife = prozess.reife;
   if (reife) {
     check('reife.onceOnlyPotenzial', reife.onceOnlyPotenzial);
@@ -207,136 +204,107 @@ function semanticCheck(prozess) {
   const errors = [];
   const warnings = [];
 
-  const akteurIds = new Set((prozess.akteure ?? []).map((a) => a.id));
-  const schrittIds = new Set((prozess.schritte ?? []).map((s) => s.id));
-  const quellenIds = new Set((prozess.quellen ?? []).map((q) => q.id));
-  const referenzIds = new Set((prozess.referenzen ?? []).map((r) => r.id));
-
-  // Eindeutigkeit der IDs
-  if (schrittIds.size !== (prozess.schritte ?? []).length) {
-    errors.push('schritte[].id not unique');
-  }
-  if (referenzIds.size !== (prozess.referenzen ?? []).length) {
-    errors.push('referenzen[].id not unique');
+  // Vertrag: id == lebenslage_ref
+  if (prozess.id !== prozess.lebenslage_ref) {
+    errors.push(`id '${prozess.id}' != lebenslage_ref '${prozess.lebenslage_ref}' — der Vertrag fordert Gleichheit`);
   }
 
-  // Schritt-Referenzen
-  for (const s of prozess.schritte ?? []) {
-    if (!akteurIds.has(s.akteur)) {
-      errors.push(`schritt '${s.id}' references unknown akteur '${s.akteur}'`);
+  const stepIds = new Set((prozess.steps ?? []).map((s) => s.step_id));
+  if (stepIds.size !== (prozess.steps ?? []).length) {
+    errors.push('steps[].step_id not unique');
+  }
+
+  const refIds = new Set((prozess.references ?? []).map((r) => r.reference_id));
+  if (refIds.size !== (prozess.references ?? []).length) {
+    errors.push('references[].reference_id not unique');
+  }
+
+  const actorIds = prozess.actors ? new Set(prozess.actors.map((a) => a.id)) : null;
+  const sourceIds = new Set((prozess.sources ?? []).map((q) => q.id));
+
+  let startCount = 0;
+  for (const s of prozess.steps ?? []) {
+    if ((s.depends_on ?? []).length === 0) startCount++;
+    for (const d of s.depends_on ?? []) {
+      const id = depId(d);
+      if (!stepIds.has(id)) errors.push(`step ${s.step_id}: depends_on ${id} unbekannt`);
+      if (id === s.step_id) errors.push(`step ${s.step_id}: Selbstbezug in depends_on`);
     }
-    if (s.quelle !== undefined && !quellenIds.has(s.quelle)) {
-      errors.push(`schritt '${s.id}' references unknown quelle '${s.quelle}'`);
+    for (const rid of s.reference_ids ?? []) {
+      if (!refIds.has(rid)) errors.push(`step ${s.step_id}: reference_id ${rid} unbekannt`);
     }
-    for (const refId of s.referenzen ?? []) {
-      if (!referenzIds.has(refId)) {
-        errors.push(`schritt '${s.id}' references unknown referenz '${refId}'`);
+    if (actorIds && !actorIds.has(s.actor)) {
+      errors.push(`step ${s.step_id}: actor '${s.actor}' nicht in actors[]`);
+    }
+    if (s.source_id !== undefined && !sourceIds.has(s.source_id)) {
+      errors.push(`step ${s.step_id}: source_id '${s.source_id}' nicht in sources[]`);
+    }
+    if (s.loops_back_to) {
+      if (s.type !== 'loop') {
+        errors.push(`step ${s.step_id}: loops_back_to nur an Schritten mit type 'loop' erlaubt`);
+      }
+      for (const id of s.loops_back_to) {
+        if (!stepIds.has(id)) errors.push(`step ${s.step_id}: loops_back_to ${id} unbekannt`);
       }
     }
   }
+  if (startCount === 0) errors.push('kein Start-Schritt (leeres depends_on)');
 
-  // Grounding-Gate: verifizierte Referenzen brauchen ein wörtliches Zitat.
-  for (const r of prozess.referenzen ?? []) {
-    const zitat = (r.zitat ?? '').trim();
-    const status = r.status ?? 'verifiziert';
-    if (status === 'verifiziert' && zitat === '') {
-      errors.push(`referenz '${r.id}': status 'verifiziert' ohne zitat — wörtliche Belegstelle ist Pflicht (Grounding-Gate)`);
-    }
-    if (status === 'unverifiziert' && zitat === '') {
-      warnings.push(`referenz '${r.id}': unverifiziert ohne zitat — Belegstelle nachtragen (siehe docs/process-data-contract.md)`);
-    }
-  }
-
-  // Flow-Referenzen
-  for (const f of prozess.flow ?? []) {
-    if (!schrittIds.has(f.von)) errors.push(`flow '${f.von}' -> '${f.nach}': unknown 'von'`);
-    if (!schrittIds.has(f.nach)) errors.push(`flow '${f.von}' -> '${f.nach}': unknown 'nach'`);
-    if (f.von === f.nach) errors.push(`flow '${f.von}' -> '${f.nach}': self-loop not allowed`);
-  }
-
-  // Azyklisch bis auf Rücksprünge: ohne die Kanten, die von typ='loop'-
-  // Schritten ausgehen, muss der Graph ein DAG sein. Rücksprünge
-  // (Nachbesserung) sind nur über explizit markierte loop-Schritte erlaubt.
+  // DAG-Check über depends_on (loops_back_to fliesst nicht ein).
   {
-    const loopIds = new Set(
-      (prozess.schritte ?? []).filter((s) => s.typ === 'loop').map((s) => s.id),
+    const preds = new Map(
+      (prozess.steps ?? []).map((s) => [s.step_id, (s.depends_on ?? []).map(depId)]),
     );
-    const adj = new Map((prozess.schritte ?? []).map((s) => [s.id, []]));
-    for (const f of prozess.flow ?? []) {
-      if (loopIds.has(f.von)) continue;
-      if (adj.has(f.von) && adj.has(f.nach)) adj.get(f.von).push(f.nach);
-    }
     const state = new Map(); // 0 = unbesucht, 1 = im Stack, 2 = fertig
-    const cycleAt = [];
+    const cycles = [];
     const dfs = (n) => {
       state.set(n, 1);
-      for (const m of adj.get(n) ?? []) {
+      for (const m of preds.get(n) ?? []) {
         const st = state.get(m) ?? 0;
-        if (st === 1) cycleAt.push(`${n} -> ${m}`);
+        if (st === 1) cycles.push(`${n} -> ${m}`);
         else if (st === 0) dfs(m);
       }
       state.set(n, 2);
     };
-    for (const id of adj.keys()) if ((state.get(id) ?? 0) === 0) dfs(id);
-    if (cycleAt.length > 0) {
-      errors.push(`graph has cycle(s) outside loop-steps (${cycleAt.join('; ')}) — Rücksprünge nur via typ 'loop'`);
+    for (const id of preds.keys()) if ((state.get(id) ?? 0) === 0) dfs(id);
+    if (cycles.length > 0) {
+      errors.push(`Zyklus in depends_on (${cycles.join('; ')}) — der Graph muss ein DAG sein; Rücksprünge gehören in loops_back_to`);
+    }
+  }
+
+  // Erreichbarkeit von den Start-Schritten aus (Warnung).
+  {
+    const succ = new Map((prozess.steps ?? []).map((s) => [s.step_id, []]));
+    for (const s of prozess.steps ?? []) {
+      for (const d of s.depends_on ?? []) succ.get(depId(d))?.push(s.step_id);
+    }
+    const seen = new Set();
+    const queue = (prozess.steps ?? []).filter((s) => (s.depends_on ?? []).length === 0).map((s) => s.step_id);
+    while (queue.length) {
+      const cur = queue.shift();
+      if (seen.has(cur)) continue;
+      seen.add(cur);
+      for (const nxt of succ.get(cur) ?? []) queue.push(nxt);
+    }
+    for (const s of prozess.steps ?? []) {
+      if (!seen.has(s.step_id)) warnings.push(`step ${s.step_id} vom Start aus unerreichbar`);
+    }
+  }
+
+  // Grounding-Gate: verifizierte References brauchen ein wörtliches Zitat.
+  for (const r of prozess.references ?? []) {
+    const quote = (r.source_quote ?? '').trim();
+    const status = r.status ?? 'verifiziert';
+    if (status === 'verifiziert' && quote === '') {
+      errors.push(`reference ${r.reference_id}: status 'verifiziert' ohne source_quote — wörtliche Belegstelle ist Pflicht (Grounding-Gate)`);
+    }
+    if (status === 'unverifiziert' && quote === '') {
+      warnings.push(`reference ${r.reference_id}: unverifiziert ohne source_quote — Belegstelle nachtragen (siehe docs/process-data-contract.md)`);
     }
   }
 
   // Kardinalregel-Lint (Fehler)
   errors.push(...lintBindingValues(prozess));
-
-  // Erreichbarkeit vom Start aus (Warnung, kein Fehler)
-  const starts = (prozess.schritte ?? []).filter((s) => s.typ === 'start').map((s) => s.id);
-  if (starts.length === 0) {
-    warnings.push('no start node');
-  } else if (starts.length > 1) {
-    warnings.push(`multiple start nodes: ${starts.join(', ')}`);
-  }
-  if (starts.length > 0) {
-    const adj = new Map();
-    for (const s of prozess.schritte) adj.set(s.id, []);
-    for (const f of prozess.flow ?? []) {
-      if (adj.has(f.von)) adj.get(f.von).push(f.nach);
-    }
-    const seen = new Set();
-    const queue = [...starts];
-    while (queue.length) {
-      const cur = queue.shift();
-      if (seen.has(cur)) continue;
-      seen.add(cur);
-      for (const nxt of adj.get(cur) ?? []) queue.push(nxt);
-    }
-    for (const s of prozess.schritte) {
-      if (!seen.has(s.id)) warnings.push(`schritt '${s.id}' unreachable from start`);
-    }
-  }
-
-  // Entscheidungs-Knoten: mindestens eine ausgehende Kante mit 'bedingung'
-  for (const s of prozess.schritte ?? []) {
-    if (s.typ !== 'entscheidung') continue;
-    const out = (prozess.flow ?? []).filter((f) => f.von === s.id);
-    if (out.length < 2) {
-      warnings.push(`entscheidung '${s.id}' has ${out.length} outgoing edge(s) — decisions usually have ≥2`);
-    }
-    if (!out.some((f) => f.bedingung)) {
-      warnings.push(`entscheidung '${s.id}' has no edge with 'bedingung' label`);
-    }
-  }
-
-  // Ende-Knoten: keine ausgehenden Kanten
-  for (const s of prozess.schritte ?? []) {
-    if (s.typ !== 'ende') continue;
-    const out = (prozess.flow ?? []).filter((f) => f.von === s.id);
-    if (out.length > 0) errors.push(`ende-node '${s.id}' must not have outgoing edges`);
-  }
-
-  // Start-Knoten: keine eingehenden Kanten (Warnung — Loops zurück zum Start sind selten sinnvoll)
-  for (const s of prozess.schritte ?? []) {
-    if (s.typ !== 'start') continue;
-    const incoming = (prozess.flow ?? []).filter((f) => f.nach === s.id);
-    if (incoming.length > 0) warnings.push(`start-node '${s.id}' has ${incoming.length} incoming edge(s)`);
-  }
 
   return { errors, warnings };
 }
@@ -345,8 +313,6 @@ function semanticCheck(prozess) {
 
 async function main() {
   const schema = await loadJson(SCHEMA_PATH);
-  // Draft-07. ajv v8 braucht explizit die Draft-Angabe via $schema oder
-  // addSchema. Unser Schema hat $schema draft-07, also reicht new Ajv().
   const ajv = new Ajv({ allErrors: true, strict: false });
   addFormats.default ? addFormats.default(ajv) : addFormats(ajv);
   const validate = ajv.compile(schema);
@@ -376,20 +342,24 @@ async function main() {
     const schemaOk = validate(data);
     const { errors: semErrors, warnings } = semanticCheck(data);
 
-    // Cross-Check gegen Org-Chart der Stadt (einheit_ref → data.json).
-    // Nur bei formal gültigen Dateien, sonst ist akteure evtl. unbrauchbar.
+    // Dateiname muss der ID entsprechen (URL-Slug <city>/<id>).
+    if (file !== `${data.id}.json`) {
+      semErrors.push(`Dateiname '${file}' != '${data.id}.json' (id)`);
+    }
+
+    // Cross-Checks gegen Stadt-Daten — nur bei formal gültigen Dateien.
     const refErrors = [];
     if (schemaOk) {
       const cityIds = await loadCityIds(city, cityDataPaths);
       if (cityIds === null) {
-        const refs = (data.akteure ?? []).filter((a) => a.einheit_ref);
+        const refs = (data.actors ?? []).filter((a) => a.einheit_ref);
         if (refs.length > 0) {
           warnings.push(`${refs.length} einheit_ref(s) present but no org-chart data available for city '${city}' — skipping cross-check`);
         }
       } else {
-        for (const a of data.akteure ?? []) {
+        for (const a of data.actors ?? []) {
           if (a.einheit_ref && !cityIds.has(a.einheit_ref)) {
-            refErrors.push(`akteur '${a.id}'.einheit_ref '${a.einheit_ref}' not found in org-chart for city '${city}'`);
+            refErrors.push(`actor '${a.id}'.einheit_ref '${a.einheit_ref}' not found in org-chart for city '${city}'`);
           }
         }
       }
@@ -430,33 +400,29 @@ async function main() {
       anyError = true;
     }
     if (refErrors.length > 0) {
-      console.error(c.red(`✗ ${rel}: einheit_ref errors`));
+      console.error(c.red(`✗ ${rel}: cross-reference errors`));
       for (const e of refErrors) console.error(c.red(`  - ${e}`));
       anyError = true;
     }
     if (warnings.length > 0) {
+      anyWarn = true;
       console.error(c.yellow(`⚠ ${rel}: warnings`));
       for (const w of warnings) console.error(c.yellow(`  - ${w}`));
-      anyWarn = true;
       if (!hasError) {
-        console.log(c.dim(`  (${city}/${file} passes schema + semantic — warnings only)`));
+        console.log(c.dim(`  (${rel} passes schema + semantic — warnings only)`));
       }
     }
   }
 
-  const summary = `${files.length} file(s) checked.`;
+  console.log('');
   if (anyError) {
-    console.error(c.red(`\n${summary} ✗ Errors found.`));
+    console.log(`${files.length} file(s) checked. ${c.red('✗ Errors found.')}`);
     process.exit(1);
   }
-  if (anyWarn) {
-    console.error(c.yellow(`\n${summary} ⚠ Warnings only — ok.`));
-  } else {
-    console.log(c.green(`\n${summary} ✓ All good.`));
-  }
+  console.log(`${files.length} file(s) checked. ${anyWarn ? c.yellow('⚠ Warnings only — ok.') : c.green('✓ All valid.')}`);
 }
 
 main().catch((err) => {
-  console.error(c.red(`validate-prozesse crashed: ${err.stack ?? err}`));
-  process.exit(2);
+  console.error(c.red(`validate-prozesse failed: ${err.message}`));
+  process.exit(1);
 });

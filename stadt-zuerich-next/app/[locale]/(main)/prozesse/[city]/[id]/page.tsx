@@ -19,7 +19,7 @@ import { resolveContent } from '@/lib/search';
 import { city as cityConfig } from '@/config/city.config';
 import { layoutProzess } from '@/lib/prozess-layout';
 import { prozessToJsonLd } from '@/lib/prozess-jsonld';
-import { resolveI18n, type ProzessLocale, type Referenz } from '@/types/prozess';
+import { resolveI18n, dependsOnId, dependsOnCondition, type ProzessLocale, type Reference } from '@/types/prozess';
 import type { Department, Unit, Beteiligung, StadtData, LebenslageLocale, Lebenslage, LebenslageContent } from '@/types/stadt';
 import ProzessFlow, {
   type ProzessFlowSchritt,
@@ -59,8 +59,8 @@ export async function generateMetadata({
   const p = await loadProzess(city, id);
   if (!p) return {};
   const tApp = getT(locale as Locale, 'App');
-  const titel = resolveI18n(p.titel, locale as ProzessLocale);
-  const desc  = resolveI18n(p.kurzbeschreibung, locale as ProzessLocale);
+  const titel = resolveI18n(p.title, locale as ProzessLocale);
+  const desc  = resolveI18n(p.description, locale as ProzessLocale);
   return { title: `${titel} · ${tApp('title')}`, description: desc };
 }
 
@@ -100,9 +100,9 @@ export default async function ProzessDetailPage({
     .map((l) => ({ l, c: resolveContent(l, lebLoc as unknown as LebenslageLocale) }))
     .filter((x): x is { l: Lebenslage; c: LebenslageContent } => x.c != null);
 
-  // Akteur-ID → { label, einheitHref?, einheitName? }-Map
+  // Akteur-ID → { label, einheitHref?, einheitName? }-Map (actors-Erweiterung).
   const akteurInfo = new Map<string, { label: string; einheitHref?: string; einheitName?: string }>();
-  for (const a of prozess.akteure) {
+  for (const a of prozess.actors ?? []) {
     const label = resolveI18n(a.label, lebLoc);
     if (a.einheit_ref && stadtData) {
       const unit = findEinheit(a.einheit_ref, stadtData);
@@ -121,47 +121,64 @@ export default async function ProzessDetailPage({
     akteurInfo.set(a.id, { label });
   }
 
-  // Referenz-Map: bindende Werte (Fristen, Gebühren) hängen als Link an
+  // Reference-Map: bindende Werte (Fristen, Gebühren) hängen als Link an
   // Schritten — nie als gerenderte Zahl (Kardinalregel,
   // docs/process-data-contract.md).
-  const referenzById = new Map<string, Referenz>(
-    (prozess.referenzen ?? []).map((r) => [r.id, r]),
+  const referenceById = new Map<number, Reference>(
+    (prozess.references ?? []).map((r) => [r.reference_id, r]),
   );
-  const resolveReferenzen = (ids: string[] | undefined) =>
+  const resolveReferences = (ids: number[] | undefined) =>
     (ids ?? [])
-      .map((refId) => referenzById.get(refId))
-      .filter((r): r is Referenz => r !== undefined)
-      .map((r) => ({ label: resolveI18n(r.label, lebLoc), url: r.url }));
+      .map((refId) => referenceById.get(refId))
+      .filter((r): r is Reference => r !== undefined)
+      .map((r) => ({ label: resolveI18n(r.label, lebLoc), url: r.source_url }));
 
-  const schritte: ProzessFlowSchritt[] = prozess.schritte.map((s) => {
-    const info = akteurInfo.get(s.akteur);
+  const schritte: ProzessFlowSchritt[] = prozess.steps.map((s) => {
+    const info = akteurInfo.get(s.actor);
     return {
-      id: s.id,
-      typ: s.typ,
-      akteurId: s.akteur,
+      id: String(s.step_id),
+      typ: s.type ?? 'prozess',
+      akteurId: s.actor,
       label: resolveI18n(s.label, lebLoc),
-      beschreibung: s.beschreibung ? resolveI18n(s.beschreibung, lebLoc) : undefined,
-      referenzen: resolveReferenzen(s.referenzen),
-      akteurLabel: info?.label ?? s.akteur,
+      beschreibung: s.description ? resolveI18n(s.description, lebLoc) : undefined,
+      referenzen: resolveReferences(s.reference_ids),
+      akteurLabel: info?.label ?? s.actor,
       akteurEinheitHref: info?.einheitHref,
       akteurEinheitName: info?.einheitName,
     };
   });
 
-  const kanten: ProzessFlowKante[] = prozess.flow.map((f, i) => ({
-    id: `e-${i}-${f.von}-${f.nach}`,
-    von: f.von,
-    nach: f.nach,
-    label: f.label ? resolveI18n(f.label, lebLoc) : undefined,
-    bedingung: f.bedingung,
-  }));
+  // Kanten: Vorwärts-Kanten aus depends_on (mit condition-Label) plus
+  // gestrichelte Rücksprung-Kanten aus loops_back_to (nicht Teil des DAG).
+  const kanten: ProzessFlowKante[] = [];
+  for (const s of prozess.steps) {
+    for (const d of s.depends_on) {
+      const von = dependsOnId(d);
+      const condition = dependsOnCondition(d);
+      kanten.push({
+        id: `e-${von}-${s.step_id}`,
+        von: String(von),
+        nach: String(s.step_id),
+        label: condition ? resolveI18n(condition, lebLoc) : undefined,
+        bedingung: condition?.de,
+      });
+    }
+    for (const target of s.loops_back_to ?? []) {
+      kanten.push({
+        id: `loop-${s.step_id}-${target}`,
+        von: String(s.step_id),
+        nach: String(target),
+        bedingung: 'nein',
+      });
+    }
+  }
 
-  const akteure: ProzessFlowAkteur[] = prozess.akteure.map((a) => {
+  const akteure: ProzessFlowAkteur[] = (prozess.actors ?? []).map((a) => {
     const info = akteurInfo.get(a.id);
     return {
       id: a.id,
       label: info?.label ?? resolveI18n(a.label, lebLoc),
-      typ: a.typ,
+      typ: a.type,
       einheitHref: info?.einheitHref,
       einheitName: info?.einheitName,
     };
@@ -169,20 +186,20 @@ export default async function ProzessDetailPage({
 
   const layout = layoutProzess(prozess);
 
-  const titel = resolveI18n(prozess.titel, lebLoc);
-  const kurz  = resolveI18n(prozess.kurzbeschreibung, lebLoc);
+  const titel = resolveI18n(prozess.title, lebLoc);
+  const kurz  = resolveI18n(prozess.description, lebLoc);
   const reife = prozess.reife;
 
   // "Übersetzung ausstehend": Locale ohne eigene Titel-Fassung fällt auf
   // Deutsch zurück — sichtbar gekennzeichnet, nicht maschinell übersetzt.
-  const translationPending = loc !== 'de' && !hasOwnLocale(prozess.titel, lebLoc);
+  const translationPending = loc !== 'de' && !hasOwnLocale(prozess.title, lebLoc);
 
   // Inoffiziell-Hinweis: Key aus dem Datensatz (Default 'Prozesse.disclaimer').
   // Wir unterstützen nur das Prozesse-Namespace — andere Namespaces wären
   // hier ohnehin nicht geladen.
   const disclaimerKey = (prozess.disclaimer_key ?? 'Prozesse.disclaimer').replace(/^Prozesse\./, '');
 
-  const voraussetzungen = (prozess.voraussetzungen ?? []).map((v) => resolveI18n(v, lebLoc));
+  const voraussetzungen = (prozess.preconditions ?? []).map((v) => resolveI18n(v, lebLoc));
 
   // schema.org/GovernmentService als JSON-LD für Suchmaschinen. Absolute
   // URL aus NEXT_PUBLIC_SITE_URL (gleiche Konvention wie sitemap.ts), damit
@@ -236,19 +253,15 @@ export default async function ProzessDetailPage({
         className="max-w-[80ch] mb-4 text-[13px] px-3 py-2 rounded border border-amber-200 bg-amber-50 text-amber-900"
       >
         {t(disclaimerKey)}{' '}
-        {prozess.quellen[0] && (
-          <a
-            href={prozess.quellen[0].url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline"
-          >
-            {prozess.quellen[0].titel}
-          </a>
-        )}
-        {prozess.quellen[0] && (
-          <span> ({t('retrieved', { date: prozess.quellen[0].abgerufen })})</span>
-        )}
+        <a
+          href={prozess.source_url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline"
+        >
+          {prozess.sources?.[0]?.title ?? prozess.source_url}
+        </a>
+        <span> ({t('retrieved', { date: prozess.retrieved_at })})</span>
       </aside>
 
       {voraussetzungen.length > 0 && (
@@ -431,15 +444,15 @@ export default async function ProzessDetailPage({
         </ol>
       </section>
 
-      {prozess.referenzen && prozess.referenzen.length > 0 && (
+      {prozess.references && prozess.references.length > 0 && (
         <section aria-labelledby="referenzen-heading" className="max-w-[80ch] mt-6">
           <h3 id="referenzen-heading" className="text-base font-semibold mb-1">{t('referenzenHeading')}</h3>
           <p className="text-[12px] text-[var(--color-mute)] mb-2">{t('referenzenHint')}</p>
           <ul className="list-disc list-inside text-sm space-y-1">
-            {prozess.referenzen.map((r) => (
-              <li key={r.id}>
+            {prozess.references.map((r) => (
+              <li key={r.reference_id}>
                 <a
-                  href={r.url}
+                  href={r.source_url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="underline"
@@ -447,16 +460,16 @@ export default async function ProzessDetailPage({
                   {resolveI18n(r.label, lebLoc)}
                 </a>
                 <span className="ml-2 text-[11px] text-[var(--color-mute)]">
-                  ({t('retrieved', { date: r.abgerufen })})
+                  ({t('retrieved', { date: r.retrieved_at })})
                 </span>
                 {r.status === 'unverifiziert' && (
                   <span className="ml-2 text-[11px] px-1.5 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-200">
                     {t('referenzUnverifiziert')}
                   </span>
                 )}
-                {r.zitat && (
+                {r.source_quote && (
                   <blockquote className="ml-5 mt-0.5 text-[12px] text-[var(--color-mute)] border-l-2 border-[var(--color-line)] pl-2">
-                    «{r.zitat}»
+                    «{r.source_quote}»
                   </blockquote>
                 )}
               </li>
@@ -465,35 +478,33 @@ export default async function ProzessDetailPage({
         </section>
       )}
 
-      {prozess.rechtsgrundlagen && prozess.rechtsgrundlagen.length > 0 && (
+      {prozess.legal_basis && prozess.legal_basis.length > 0 && (
         <section aria-labelledby="legal-heading" className="max-w-[80ch] mt-6">
           <h3 id="legal-heading" className="text-base font-semibold mb-2">{t('legalHeading')}</h3>
           <ul className="list-disc list-inside text-sm text-[var(--color-mute)] space-y-1">
-            {prozess.rechtsgrundlagen.map((r, i) => (
+            {prozess.legal_basis.map((r, i) => (
               <li key={i}>
                 {r.url ? (
                   <a href={r.url} target="_blank" rel="noopener noreferrer" className="underline">
-                    {r.bezeichnung}
+                    {r.label}
                   </a>
-                ) : r.bezeichnung}
+                ) : r.label}
               </li>
             ))}
           </ul>
         </section>
       )}
 
-      {prozess.quellen && prozess.quellen.length > 0 && (
+      {prozess.sources && prozess.sources.length > 0 && (
         <section aria-labelledby="sources-heading" className="max-w-[80ch] mt-6">
           <h3 id="sources-heading" className="text-base font-semibold mb-2">{t('sourcesHeading')}</h3>
           <ul className="list-disc list-inside text-sm text-[var(--color-mute)] space-y-1">
-            {prozess.quellen.map((q) => (
+            {prozess.sources.map((q) => (
               <li key={q.id}>
-                {q.url ? (
-                  <a href={q.url} target="_blank" rel="noopener noreferrer" className="underline">
-                    {q.titel}
-                  </a>
-                ) : q.titel}
-                {q.abgerufen && <span className="ml-2 text-[11px]">({t('retrieved', { date: q.abgerufen })})</span>}
+                <a href={q.url} target="_blank" rel="noopener noreferrer" className="underline">
+                  {q.title}
+                </a>
+                <span className="ml-2 text-[11px]">({t('retrieved', { date: q.retrieved_at })})</span>
               </li>
             ))}
           </ul>

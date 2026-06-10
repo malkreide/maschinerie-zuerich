@@ -1,49 +1,70 @@
 {
   "$schema": "../../../schemas/opengov-process-schema.json",
+  "schema_version": "0.1.0",
   "id": "hund-anmelden",
-  "version": "2.0.0",
+  "lebenslage_ref": "hund-anmelden",
   "city": "zh",
-  "titel": {
+  "title": {
     "de": "Hund anmelden / Hundesteuer",
     "en": "Register a dog / dog tax",
     "fr": "Enregistrer un chien / impôt sur les chiens",
     "it": "Registrare un cane / tassa sui cani",
     "ls": "Hund anmelden und Hunde-Steuer"
   },
-  "kurzbeschreibung": {
+  "description": {
     "de": "Wer in der Stadt Zürich einen Hund hält, muss ihn in der nationalen Hundedatenbank AMICUS registrieren lassen und bei der Hundekontrolle des Steueramts anmelden. Jährlich wird die Hundesteuer erhoben.",
     "en": "Anyone keeping a dog in the City of Zurich must register it in the national dog database AMICUS and with the tax office's dog registry. The dog tax is levied annually.",
     "ls": "Sie haben einen Hund? Dann müssen Sie den Hund anmelden. Zuerst beim Tierarzt (Chip und Datenbank). Dann bei der Stadt. Jedes Jahr zahlen Sie eine Steuer für den Hund."
   },
-  "rechtsgrundlagen": [
+  "target_audience": "bevoelkerung",
+  "preconditions": [
     {
-      "bezeichnung": "Tierseuchengesetz (TSG) / Hundeverordnung (AMICUS)",
-      "url": "https://www.fedlex.admin.ch/eli/cc/1966/89_91_97/de"
-    },
-    {
-      "bezeichnung": "Hundegesetz des Kantons Zürich (HuG)",
-      "url": "https://www.zh.ch/de/tiere-natur-landschaft/tiere/hunde.html"
-    },
-    {
-      "bezeichnung": "Verordnung über die Hundesteuer der Stadt Zürich",
-      "url": "https://www.stadt-zuerich.ch/fd/de/index/steuern/hundesteuer.html"
+      "de": "Sie wohnen in der Stadt Zürich und halten einen Hund.",
+      "ls": "Sie wohnen in Zürich. Sie haben einen Hund."
     }
   ],
-  "quellen": [
+  "source_url": "https://www.stadt-zuerich.ch/fd/de/index/steuern/hundesteuer.html",
+  "retrieved_at": "2026-06-06",
+  "disclaimer_key": "Prozesse.disclaimer",
+  "references": [
     {
-      "id": "q-stz-hund",
-      "titel": "Stadt Zürich – Hundesteuer und Hundekontrolle",
-      "url": "https://www.stadt-zuerich.ch/fd/de/index/steuern/hundesteuer.html",
-      "abgerufen": "2026-06-06"
+      "reference_id": 1,
+      "label": {
+        "de": "Tierarztkosten für Mikrochip und AMICUS-Erfassung",
+        "en": "Veterinary costs for microchip and AMICUS registration",
+        "ls": "Was der Chip beim Tierarzt kostet"
+      },
+      "source_url": "https://www.amicus.ch/",
+      "source_quote": "",
+      "status": "unverifiziert",
+      "retrieved_at": "2026-06-06"
     },
     {
-      "id": "q-amicus",
-      "titel": "AMICUS – Schweizer Hundedatenbank",
-      "url": "https://www.amicus.ch/",
-      "abgerufen": "2026-06-06"
+      "reference_id": 2,
+      "label": {
+        "de": "Höhe der jährlichen Hundesteuer der Stadt Zürich",
+        "en": "Amount of the City of Zurich's annual dog tax",
+        "ls": "Wie viel Hunde-Steuer Sie zahlen"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/fd/de/index/steuern/hundesteuer.html",
+      "source_quote": "",
+      "status": "unverifiziert",
+      "retrieved_at": "2026-06-06"
+    },
+    {
+      "reference_id": 3,
+      "label": {
+        "de": "Frist für die Anmeldung bei Zuzug oder Neuanschaffung (kantonale Vorgabe)",
+        "en": "Deadline for registering after moving in or acquiring a dog (cantonal rule)",
+        "ls": "Wie schnell Sie den Hund anmelden müssen"
+      },
+      "source_url": "https://www.zh.ch/de/tiere-natur-landschaft/tiere/hunde.html",
+      "source_quote": "",
+      "status": "unverifiziert",
+      "retrieved_at": "2026-06-10"
     }
   ],
-  "akteure": [
+  "actors": [
     {
       "id": "halter",
       "label": {
@@ -53,7 +74,7 @@
         "it": "Detentore del cane",
         "ls": "Sie (Sie haben einen Hund)"
       },
-      "typ": "antragsteller"
+      "type": "antragsteller"
     },
     {
       "id": "tierarzt",
@@ -62,7 +83,7 @@
         "en": "Veterinarian (AMICUS registration)",
         "ls": "Der Tierarzt oder die Tierärztin"
       },
-      "typ": "dritte"
+      "type": "dritte"
     },
     {
       "id": "steueramt",
@@ -71,178 +92,197 @@
         "en": "Tax Office of the City of Zurich, dog registry",
         "ls": "Das Steuer-Amt der Stadt"
       },
-      "typ": "behoerde",
+      "type": "behoerde",
       "einheit_ref": "FD-st"
     }
   ],
-  "schritte": [
+  "steps": [
     {
-      "id": "start",
-      "typ": "start",
-      "akteur": "halter",
+      "step_id": 1,
+      "actor": "halter",
       "label": {
         "de": "Hund angeschafft oder mit Hund zugezogen",
         "en": "Dog acquired or moved in with a dog",
         "ls": "Sie haben neu einen Hund"
-      }
+      },
+      "depends_on": [],
+      "type": "start"
     },
     {
-      "id": "amicus-check",
-      "typ": "entscheidung",
-      "akteur": "halter",
+      "step_id": 2,
+      "actor": "halter",
       "label": {
         "de": "Hund bereits in AMICUS registriert?",
         "en": "Dog already registered in AMICUS?",
         "ls": "Ist der Hund schon in der Datenbank?"
-      }
+      },
+      "depends_on": [
+        1
+      ],
+      "type": "entscheidung"
     },
     {
-      "id": "chippen",
-      "typ": "input",
-      "akteur": "tierarzt",
+      "step_id": 3,
+      "actor": "tierarzt",
       "label": {
         "de": "Mikrochip setzen und in AMICUS erfassen",
         "en": "Implant microchip and register in AMICUS",
         "ls": "Der Tierarzt setzt einen Chip und trägt den Hund ein"
       },
-      "beschreibung": {
+      "depends_on": [
+        {
+          "step_id": 2,
+          "condition": {
+            "de": "noch nicht registriert",
+            "en": "not yet registered"
+          }
+        }
+      ],
+      "reference_ids": [
+        1
+      ],
+      "type": "input",
+      "description": {
         "de": "Jeder Hund muss gechippt und in der nationalen Datenbank AMICUS auf die Halter:in registriert sein. Das erledigt die Tierarztpraxis.",
         "en": "Every dog must be microchipped and registered to its owner in the national AMICUS database; done by the veterinary practice.",
         "ls": "Der Hund bekommt einen kleinen Chip. Damit ist er in der Datenbank."
       },
-      "quelle": "q-amicus",
-      "referenzen": [
-        "r-tierarztkosten-chip"
-      ]
+      "source_id": "q-amicus"
     },
     {
-      "id": "anmelden",
-      "typ": "input",
-      "akteur": "halter",
+      "step_id": 4,
+      "actor": "halter",
       "label": {
         "de": "Hund bei der Stadt anmelden",
         "en": "Register the dog with the city",
         "ls": "Den Hund bei der Stadt anmelden"
       },
-      "beschreibung": {
+      "depends_on": [
+        {
+          "step_id": 2,
+          "condition": {
+            "de": "bereits in AMICUS",
+            "en": "already in AMICUS"
+          }
+        },
+        3
+      ],
+      "reference_ids": [
+        3
+      ],
+      "type": "input",
+      "description": {
         "de": "Anmeldung bei der Hundekontrolle des Steueramts — online oder per Formular. Bei Zuzug oder Neuanschaffung innert der kantonalen Frist.",
         "en": "Registration with the tax office's dog registry — online or by form. On moving in or acquiring a dog, within the cantonal deadline.",
         "ls": "Sie melden den Hund beim Steuer-Amt. Das geht im Internet oder mit einem Formular."
       },
-      "unterlagen": [
+      "documents": [
         {
           "label": {
             "de": "AMICUS-Nummer / Heimtierausweis",
             "en": "AMICUS number / pet passport"
           },
-          "pflicht": true
+          "required": true
         },
         {
           "label": {
             "de": "Haftpflichtversicherungs-Nachweis",
             "en": "Liability insurance proof"
           },
-          "pflicht": false
+          "required": false
         }
       ],
-      "quelle": "q-stz-hund",
-      "referenzen": [
-        "r-anmeldefrist"
-      ]
+      "source_id": "q-stz-hund"
     },
     {
-      "id": "pruefung",
-      "typ": "prozess",
-      "akteur": "steueramt",
+      "step_id": 5,
+      "actor": "steueramt",
       "label": {
         "de": "Anmeldung mit AMICUS abgleichen",
         "en": "Match registration against AMICUS"
       },
-      "beschreibung": {
+      "depends_on": [
+        4
+      ],
+      "type": "prozess",
+      "description": {
         "de": "Das Steueramt übernimmt die Hundedaten weitgehend aus AMICUS und legt das Steuerdossier an.",
         "en": "The tax office largely imports the dog's data from AMICUS and sets up the tax record."
       }
     },
     {
-      "id": "veranlagung",
-      "typ": "prozess",
-      "akteur": "steueramt",
+      "step_id": 6,
+      "actor": "steueramt",
       "label": {
         "de": "Hundesteuer veranlagen und Rechnung zustellen",
         "en": "Assess dog tax and issue invoice",
         "ls": "Sie bekommen eine Rechnung für die Hunde-Steuer"
       },
-      "quelle": "q-stz-hund",
-      "referenzen": [
-        "r-hundesteuer"
-      ]
+      "depends_on": [
+        5
+      ],
+      "reference_ids": [
+        2
+      ],
+      "type": "prozess",
+      "source_id": "q-stz-hund"
     },
     {
-      "id": "bezahlen",
-      "typ": "input",
-      "akteur": "halter",
+      "step_id": 7,
+      "actor": "halter",
       "label": {
         "de": "Hundesteuer bezahlen",
         "en": "Pay the dog tax",
         "ls": "Sie zahlen die Rechnung"
       },
-      "referenzen": [
-        "r-hundesteuer"
-      ]
+      "depends_on": [
+        6
+      ],
+      "reference_ids": [
+        2
+      ],
+      "type": "input"
     },
     {
-      "id": "ende",
-      "typ": "ende",
-      "akteur": "halter",
+      "step_id": 8,
+      "actor": "halter",
       "label": {
         "de": "Hund angemeldet und versteuert",
         "en": "Dog registered and taxed",
         "ls": "Fertig: Ihr Hund ist angemeldet"
-      }
+      },
+      "depends_on": [
+        7
+      ],
+      "type": "ende"
     }
   ],
-  "flow": [
+  "legal_basis": [
     {
-      "von": "start",
-      "nach": "amicus-check"
+      "label": "Tierseuchengesetz (TSG) / Hundeverordnung (AMICUS)",
+      "url": "https://www.fedlex.admin.ch/eli/cc/1966/89_91_97/de"
     },
     {
-      "von": "amicus-check",
-      "nach": "chippen",
-      "bedingung": "nein",
-      "label": {
-        "de": "noch nicht registriert",
-        "en": "not yet registered"
-      }
+      "label": "Hundegesetz des Kantons Zürich (HuG)",
+      "url": "https://www.zh.ch/de/tiere-natur-landschaft/tiere/hunde.html"
     },
     {
-      "von": "amicus-check",
-      "nach": "anmelden",
-      "bedingung": "ja",
-      "label": {
-        "de": "bereits in AMICUS",
-        "en": "already in AMICUS"
-      }
+      "label": "Verordnung über die Hundesteuer der Stadt Zürich",
+      "url": "https://www.stadt-zuerich.ch/fd/de/index/steuern/hundesteuer.html"
+    }
+  ],
+  "sources": [
+    {
+      "id": "q-stz-hund",
+      "title": "Stadt Zürich – Hundesteuer und Hundekontrolle",
+      "url": "https://www.stadt-zuerich.ch/fd/de/index/steuern/hundesteuer.html",
+      "retrieved_at": "2026-06-06"
     },
     {
-      "von": "chippen",
-      "nach": "anmelden"
-    },
-    {
-      "von": "anmelden",
-      "nach": "pruefung"
-    },
-    {
-      "von": "pruefung",
-      "nach": "veranlagung"
-    },
-    {
-      "von": "veranlagung",
-      "nach": "bezahlen"
-    },
-    {
-      "von": "bezahlen",
-      "nach": "ende"
+      "id": "q-amicus",
+      "title": "AMICUS – Schweizer Hundedatenbank",
+      "url": "https://www.amicus.ch/",
+      "retrieved_at": "2026-06-06"
     }
   ],
   "reife": {
@@ -303,51 +343,5 @@
     "aktualisiert": "2026-06-10",
     "maintainer": "malkreide",
     "lizenz": "CC-BY-4.0"
-  },
-  "lebenslage_ref": "hund-anmelden",
-  "zielgruppe": "bevoelkerung",
-  "referenzen": [
-    {
-      "id": "r-tierarztkosten-chip",
-      "label": {
-        "de": "Tierarztkosten für Mikrochip und AMICUS-Erfassung",
-        "en": "Veterinary costs for microchip and AMICUS registration",
-        "ls": "Was der Chip beim Tierarzt kostet"
-      },
-      "url": "https://www.amicus.ch/",
-      "zitat": "",
-      "status": "unverifiziert",
-      "abgerufen": "2026-06-06"
-    },
-    {
-      "id": "r-hundesteuer",
-      "label": {
-        "de": "Höhe der jährlichen Hundesteuer der Stadt Zürich",
-        "en": "Amount of the City of Zurich's annual dog tax",
-        "ls": "Wie viel Hunde-Steuer Sie zahlen"
-      },
-      "url": "https://www.stadt-zuerich.ch/fd/de/index/steuern/hundesteuer.html",
-      "zitat": "",
-      "status": "unverifiziert",
-      "abgerufen": "2026-06-06"
-    },
-    {
-      "id": "r-anmeldefrist",
-      "label": {
-        "de": "Frist für die Anmeldung bei Zuzug oder Neuanschaffung (kantonale Vorgabe)",
-        "en": "Deadline for registering after moving in or acquiring a dog (cantonal rule)",
-        "ls": "Wie schnell Sie den Hund anmelden müssen"
-      },
-      "url": "https://www.zh.ch/de/tiere-natur-landschaft/tiere/hunde.html",
-      "zitat": "",
-      "status": "unverifiziert",
-      "abgerufen": "2026-06-10"
-    }
-  ],
-  "voraussetzungen": [
-    {
-      "de": "Sie wohnen in der Stadt Zürich und halten einen Hund.",
-      "ls": "Sie wohnen in Zürich. Sie haben einen Hund."
-    }
-  ]
+  }
 }

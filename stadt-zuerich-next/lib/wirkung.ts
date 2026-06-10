@@ -96,10 +96,10 @@ export async function buildWirkungReport(): Promise<WirkungReport> {
     komplexitaet.push({
       id: p.id,
       city: p.city,
-      titel: p.titel,
-      schritte: p.schritte?.length ?? 0,
-      akteure: p.akteure?.length ?? 0,
-      entscheidungen: (p.schritte ?? []).filter((s) => s.typ === 'entscheidung').length,
+      titel: p.title,
+      schritte: p.steps?.length ?? 0,
+      akteure: (p.actors ?? [])?.length ?? 0,
+      entscheidungen: (p.steps ?? []).filter((s) => s.type === 'entscheidung').length,
       medienbrueche: r?.medienbrueche?.length ?? 0,
     });
   }

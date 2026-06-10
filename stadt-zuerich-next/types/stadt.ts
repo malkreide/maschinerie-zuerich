@@ -179,7 +179,7 @@ export interface Lebenslage {
   zustaendig: string;            // unit-id oder dep-id
   zielgruppen?: Zielgruppe[];    // optionale Tags für die Filterung
   // Explizite Verknüpfung zu modellierten Verfahren (OpenGov-Process-Schema).
-  // Slug-Form "<city>/<id>", z. B. "zh/anwohnerparkkarte". Referentielle
+  // Slug-Form "<city>/<id>", z. B. "zh/parkplatz". Referentielle
   // Integrität wird in der CI gegen data/prozesse/** geprüft.
   prozesse?: string[];
   i18n: Partial<Record<LebenslageLocale, LebenslageContent | null>>;

@@ -112,7 +112,7 @@ eine Datei pro Verwaltungsprozess. Als erste Zeile:
 Dein Editor gibt dir dann Autocomplete. `npm run validate:prozesse` checkt
 Formal- und Graph-Konsistenz. Siehe
 [`schemas/README.md`](schemas/README.md) für den vollständigen Feld-Guide
-und `data/prozesse/zh/anwohnerparkkarte.json` als Beispiel.
+und `data/prozesse/zh/parkplatz.json` als Beispiel.
 
 ### 6. Föderation (Machinery of Everything) konfigurieren
 
