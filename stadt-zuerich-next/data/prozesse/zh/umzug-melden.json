@@ -33,10 +33,10 @@
         "de": "Allfällige Gebühren bei der An-/Ummeldung (insb. Bewilligungsnachführung für ausländische Staatsangehörige)",
         "en": "Possible fees for registration (esp. residence-permit updates for foreign nationals)"
       },
-      "source_url": "https://www.stadt-zuerich.ch/pd/de/index/bevoelkerungsamt/anmeldung_zuzug.html",
-      "source_quote": "",
-      "status": "unverifiziert",
-      "retrieved_at": "2026-06-06"
+      "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/zuzug.html",
+      "source_quote": "Migrationsamtliche Gebühren (je nach Art der Bewilligung unterschiedlich)",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-10"
     },
     {
       "reference_id": 2,
@@ -45,9 +45,9 @@
         "en": "Statutory deadline for registering after moving in",
         "ls": "Wie viel Zeit Sie für die Meldung haben"
       },
-      "source_url": "https://www.stadt-zuerich.ch/pd/de/index/bevoelkerungsamt/anmeldung_zuzug.html",
-      "source_quote": "",
-      "status": "unverifiziert",
+      "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/zuzug.html",
+      "source_quote": "Sie müssen sich innerhalb von 14 Tagen bei der Stadt Zürich anmelden (Meldepflicht).",
+      "status": "verifiziert",
       "retrieved_at": "2026-06-10"
     }
   ],

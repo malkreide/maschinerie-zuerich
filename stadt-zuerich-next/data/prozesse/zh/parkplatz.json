@@ -27,10 +27,10 @@
         "de": "Jahresgebühr der Anwohnerparkkarte (tarifabhängig nach Fahrzeug, anteilig bei kürzerer Dauer)",
         "en": "Annual fee for the resident parking permit (tariff depends on vehicle; pro-rated)"
       },
-      "source_url": "https://www.stadt-zuerich.ch/pd/de/index/dav/parkkarten.html",
-      "source_quote": "",
-      "status": "unverifiziert",
-      "retrieved_at": "2026-04-24"
+      "source_url": "https://www.stadt-zuerich.ch/de/mobilitaet/parkieren/parkbewilligungen/anwohnerparkkarte.html",
+      "source_quote": "Gebühr: 300 Franken pro Kalenderjahr. … Angebrochene Monate werden voll in Rechnung gestellt. Bei Rückgabe der Parkkarte wird die Gebühr für alle nicht angebrochenen Monate zurückerstattet.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-10"
     },
     {
       "reference_id": 2,
@@ -38,9 +38,9 @@
         "de": "Gültigkeitsdauer der Anwohnerparkkarte",
         "en": "Validity period of the resident parking permit"
       },
-      "source_url": "https://www.stadt-zuerich.ch/pd/de/index/dav/parkkarten.html",
-      "source_quote": "",
-      "status": "unverifiziert",
+      "source_url": "https://www.stadt-zuerich.ch/de/mobilitaet/parkieren/parkbewilligungen/anwohnerparkkarte.html",
+      "source_quote": "Die Parkkarte des*der Halter*in des Fahrzeuges wird jährlich automatisch erneuert.",
+      "status": "verifiziert",
       "retrieved_at": "2026-06-10"
     }
   ],

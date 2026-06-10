@@ -27,9 +27,9 @@
         "de": "Empfohlene Vorlaufzeit für Bewilligungsgesuche (je nach Anlassgrösse)",
         "en": "Recommended lead time for permit applications (depends on event size)"
       },
-      "source_url": "https://www.stadt-zuerich.ch/pd/de/index/stadtpolizei_zuerich/bewilligungen.html",
-      "source_quote": "",
-      "status": "unverifiziert",
+      "source_url": "https://www.stadt-zuerich.ch/de/stadtleben/veranstaltungen-und-bewilligungen/veranstaltungen/fest-sportveranstaltung-quartierfest.html",
+      "source_quote": "Bitte informieren Sie sich ausführlich, bevor Sie das Gesuch ausfüllen und reichen Sie dieses spätestens vier Wochen vor dem Veranstaltungsbeginn ein.",
+      "status": "verifiziert",
       "retrieved_at": "2026-06-10"
     }
   ],
