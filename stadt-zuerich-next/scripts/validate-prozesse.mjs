@@ -8,11 +8,26 @@
 //      ungültigen Enums an.
 //   2. Semantische Validierung — das Schema kann keine Referenzen prüfen:
 //      - Schritt.akteur muss in akteure[].id existieren
-//      - Flow.von/nach muss in schritte[].id existieren
+//      - Flow.von/nach muss in schritte[].id existieren, kein Selbstbezug
 //      - Jeder Knoten sollte vom Start aus erreichbar sein (Warnung)
 //      - Schritt.quelle (falls gesetzt) muss in quellen[].id existieren
 //      - Bei Entscheidungs-Schritten sollte mindestens eine ausgehende Flow-
 //        Kante eine bedingung tragen
+//      - Generation 2 (docs/process-data-contract.md im Repo-Root):
+//        - schritte[].id und referenzen[].id eindeutig
+//        - schritte[].referenzen verweisen auf existierende referenzen
+//        - Grounding-Gate: Referenz mit status 'verifiziert' (oder ohne
+//          status) braucht ein nicht-leeres zitat (Fehler); status
+//          'unverifiziert' mit leerem zitat ist eine Warnung
+//        - Azyklisch bis auf Rücksprünge: ohne die Kanten, die von
+//          typ='loop'-Schritten ausgehen, muss der Graph ein DAG sein
+//        - Kardinalregel-Lint: Zahl + bindende Einheit (CHF, Fr., Franken,
+//          %, Tag(e), Woche(n), Monat(e), Jahr(e)) in Schritt-Labels,
+//          Beschreibungen, Flow-Labels, Voraussetzungen, Referenz-Labels
+//        oder KPI-Werten ist ein FEHLER — bindende Werte nur als Referenz
+//        - lebenslage_ref muss in data/<city>/lebenslagen.json existieren
+//          und die Lebenslage muss zurückverlinken (prozesse[] enthält
+//          '<city>/<id>')
 //   3. Cross-Reference gegen Org-Chart-JSON (Org-Chart-Brücke):
 //      - akteure[].einheit_ref muss als ID einer Unit/Department/Beteiligung
 //        in der Stadt-spezifischen Org-Chart-JSON existieren
@@ -41,7 +56,12 @@ const CITY_CONFIG_PATH = path.join(projectRoot, 'config', 'city.config.json');
 // konfiguriert; Multi-City kommt mit einer späteren Config-Erweiterung.
 async function loadCityDataPaths() {
   const cfg = JSON.parse(await readFile(CITY_CONFIG_PATH, 'utf-8'));
-  return { [cfg.id]: path.join(projectRoot, cfg.orgChartPath) };
+  return {
+    [cfg.id]: {
+      orgChart: path.join(projectRoot, cfg.orgChartPath),
+      lebenslagen: cfg.lebenslagenPath ? path.join(projectRoot, cfg.lebenslagenPath) : null,
+    },
+  };
 }
 
 // --- Colors ---------------------------------------------------------------
@@ -91,7 +111,7 @@ function formatAjvError(err) {
 const cityIdsCache = new Map();
 async function loadCityIds(city, cityDataPaths) {
   if (cityIdsCache.has(city)) return cityIdsCache.get(city);
-  const file = cityDataPaths[city];
+  const file = cityDataPaths[city]?.orgChart;
   if (!file) {
     cityIdsCache.set(city, null);
     return null;
@@ -111,6 +131,78 @@ async function loadCityIds(city, cityDataPaths) {
   }
 }
 
+// Cache: city → Map lebenslageId → Set der verlinkten Prozess-Slugs
+// (oder null, wenn die Stadt keine Lebenslagen-Datei hat).
+const cityLebenslagenCache = new Map();
+async function loadCityLebenslagen(city, cityDataPaths) {
+  if (cityLebenslagenCache.has(city)) return cityLebenslagenCache.get(city);
+  const file = cityDataPaths[city]?.lebenslagen;
+  if (!file) {
+    cityLebenslagenCache.set(city, null);
+    return null;
+  }
+  try {
+    const data = await loadJson(file);
+    const map = new Map(
+      (data.lebenslagen ?? []).map((l) => [l.id, new Set(l.prozesse ?? [])]),
+    );
+    cityLebenslagenCache.set(city, map);
+    return map;
+  } catch {
+    cityLebenslagenCache.set(city, null);
+    return null;
+  }
+}
+
+// --- Kardinalregel-Lint -----------------------------------------------------
+// Bindende Werte (Zahl + Einheit) dürfen NUR im 'zitat' einer Referenz stehen.
+// Muss zur Heuristik in migrate-prozesse-schema-v2.mjs passen.
+const BINDING_VALUE_RE =
+  /(\d[\d'’.,\s–-]*\s*(CHF|Fr\.|Franken|%|Tag(e|en)?|Woche(n)?|Monat(e|en)?|Jahr(e|en)?|Arbeitstag(e|en)?|Kalendertag(e|en)?)\b)|((CHF|Fr\.)\s*\d)|(\d\s*%)/i;
+
+function* i18nValues(s) {
+  if (s == null) return;
+  if (typeof s === 'string') { yield ['', s]; return; }
+  for (const [loc, v] of Object.entries(s)) {
+    if (typeof v === 'string') yield [`.${loc}`, v];
+  }
+}
+
+function lintBindingValues(prozess) {
+  const errors = [];
+  const check = (where, s) => {
+    for (const [suffix, v] of i18nValues(s)) {
+      if (BINDING_VALUE_RE.test(v)) {
+        errors.push(`Kardinalregel: bindender Wert im Klartext (${where}${suffix}): "${v.slice(0, 80)}" — gehört als Referenz (Label + Link + Zitat), nicht ins Label`);
+      }
+    }
+  };
+  check('titel', prozess.titel);
+  check('kurzbeschreibung', prozess.kurzbeschreibung);
+  for (const s of prozess.schritte ?? []) {
+    check(`schritt '${s.id}'.label`, s.label);
+    check(`schritt '${s.id}'.beschreibung`, s.beschreibung);
+    for (const u of s.unterlagen ?? []) check(`schritt '${s.id}'.unterlagen[].label`, u.label);
+  }
+  for (const f of prozess.flow ?? []) check(`flow '${f.von}'->'${f.nach}'.label`, f.label);
+  for (const v of prozess.voraussetzungen ?? []) check('voraussetzungen[]', v);
+  for (const r of prozess.referenzen ?? []) check(`referenz '${r.id}'.label`, r.label);
+  const reife = prozess.reife;
+  if (reife) {
+    check('reife.onceOnlyPotenzial', reife.onceOnlyPotenzial);
+    for (const v of reife.nutzergruppen ?? []) check('reife.nutzergruppen[]', v);
+    for (const v of reife.painPoints ?? []) check('reife.painPoints[]', v);
+    for (const v of reife.improvementIdeas ?? []) check('reife.improvementIdeas[]', v);
+    for (const k of reife.wirkungKpi ?? []) {
+      check('reife.wirkungKpi[].label', k.label);
+      if (typeof k.wert === 'string' && BINDING_VALUE_RE.test(k.wert)) {
+        errors.push(`Kardinalregel: bindender Wert in reife.wirkungKpi.wert: "${k.wert.slice(0, 80)}"`);
+      }
+    }
+  }
+  return errors;
+}
+
 function semanticCheck(prozess) {
   const errors = [];
   const warnings = [];
@@ -118,6 +210,15 @@ function semanticCheck(prozess) {
   const akteurIds = new Set((prozess.akteure ?? []).map((a) => a.id));
   const schrittIds = new Set((prozess.schritte ?? []).map((s) => s.id));
   const quellenIds = new Set((prozess.quellen ?? []).map((q) => q.id));
+  const referenzIds = new Set((prozess.referenzen ?? []).map((r) => r.id));
+
+  // Eindeutigkeit der IDs
+  if (schrittIds.size !== (prozess.schritte ?? []).length) {
+    errors.push('schritte[].id not unique');
+  }
+  if (referenzIds.size !== (prozess.referenzen ?? []).length) {
+    errors.push('referenzen[].id not unique');
+  }
 
   // Schritt-Referenzen
   for (const s of prozess.schritte ?? []) {
@@ -127,13 +228,63 @@ function semanticCheck(prozess) {
     if (s.quelle !== undefined && !quellenIds.has(s.quelle)) {
       errors.push(`schritt '${s.id}' references unknown quelle '${s.quelle}'`);
     }
+    for (const refId of s.referenzen ?? []) {
+      if (!referenzIds.has(refId)) {
+        errors.push(`schritt '${s.id}' references unknown referenz '${refId}'`);
+      }
+    }
+  }
+
+  // Grounding-Gate: verifizierte Referenzen brauchen ein wörtliches Zitat.
+  for (const r of prozess.referenzen ?? []) {
+    const zitat = (r.zitat ?? '').trim();
+    const status = r.status ?? 'verifiziert';
+    if (status === 'verifiziert' && zitat === '') {
+      errors.push(`referenz '${r.id}': status 'verifiziert' ohne zitat — wörtliche Belegstelle ist Pflicht (Grounding-Gate)`);
+    }
+    if (status === 'unverifiziert' && zitat === '') {
+      warnings.push(`referenz '${r.id}': unverifiziert ohne zitat — Belegstelle nachtragen (siehe docs/process-data-contract.md)`);
+    }
   }
 
   // Flow-Referenzen
   for (const f of prozess.flow ?? []) {
     if (!schrittIds.has(f.von)) errors.push(`flow '${f.von}' -> '${f.nach}': unknown 'von'`);
     if (!schrittIds.has(f.nach)) errors.push(`flow '${f.von}' -> '${f.nach}': unknown 'nach'`);
+    if (f.von === f.nach) errors.push(`flow '${f.von}' -> '${f.nach}': self-loop not allowed`);
   }
+
+  // Azyklisch bis auf Rücksprünge: ohne die Kanten, die von typ='loop'-
+  // Schritten ausgehen, muss der Graph ein DAG sein. Rücksprünge
+  // (Nachbesserung) sind nur über explizit markierte loop-Schritte erlaubt.
+  {
+    const loopIds = new Set(
+      (prozess.schritte ?? []).filter((s) => s.typ === 'loop').map((s) => s.id),
+    );
+    const adj = new Map((prozess.schritte ?? []).map((s) => [s.id, []]));
+    for (const f of prozess.flow ?? []) {
+      if (loopIds.has(f.von)) continue;
+      if (adj.has(f.von) && adj.has(f.nach)) adj.get(f.von).push(f.nach);
+    }
+    const state = new Map(); // 0 = unbesucht, 1 = im Stack, 2 = fertig
+    const cycleAt = [];
+    const dfs = (n) => {
+      state.set(n, 1);
+      for (const m of adj.get(n) ?? []) {
+        const st = state.get(m) ?? 0;
+        if (st === 1) cycleAt.push(`${n} -> ${m}`);
+        else if (st === 0) dfs(m);
+      }
+      state.set(n, 2);
+    };
+    for (const id of adj.keys()) if ((state.get(id) ?? 0) === 0) dfs(id);
+    if (cycleAt.length > 0) {
+      errors.push(`graph has cycle(s) outside loop-steps (${cycleAt.join('; ')}) — Rücksprünge nur via typ 'loop'`);
+    }
+  }
+
+  // Kardinalregel-Lint (Fehler)
+  errors.push(...lintBindingValues(prozess));
 
   // Erreichbarkeit vom Start aus (Warnung, kein Fehler)
   const starts = (prozess.schritte ?? []).filter((s) => s.typ === 'start').map((s) => s.id);
@@ -240,6 +391,22 @@ async function main() {
           if (a.einheit_ref && !cityIds.has(a.einheit_ref)) {
             refErrors.push(`akteur '${a.id}'.einheit_ref '${a.einheit_ref}' not found in org-chart for city '${city}'`);
           }
+        }
+      }
+
+      // Lebenslagen-Brücke: lebenslage_ref muss existieren und die
+      // Lebenslage muss auf diesen Prozess zurückverlinken (bidirektional).
+      const lebenslagen = await loadCityLebenslagen(city, cityDataPaths);
+      if (lebenslagen === null) {
+        if (data.lebenslage_ref) {
+          warnings.push(`lebenslage_ref '${data.lebenslage_ref}' present but no lebenslagen data for city '${city}' — skipping cross-check`);
+        }
+      } else if (data.lebenslage_ref) {
+        const slugs = lebenslagen.get(data.lebenslage_ref);
+        if (!slugs) {
+          refErrors.push(`lebenslage_ref '${data.lebenslage_ref}' not found in lebenslagen for city '${city}'`);
+        } else if (!slugs.has(`${city}/${data.id}`)) {
+          refErrors.push(`lebenslage '${data.lebenslage_ref}' does not link back to '${city}/${data.id}' (prozesse[])`);
         }
       }
     }
