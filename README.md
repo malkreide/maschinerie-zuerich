@@ -8,6 +8,23 @@ Interaktive, barrierefreie Visualisierung der Stadtverwaltung Zürich —
 Departemente, Dienstabteilungen, verselbständigte Betriebe und Beteiligungen,
 mit Budget und Stellenwerten aus öffentlichen Quellen.
 
+## Strategischer Kontext
+
+Das Projekt ist bottom-up aus einer konkreten Frage entstanden («Wie ist
+diese Stadt eigentlich organisiert — und wohin geht mein Steuerfranken?»),
+nicht top-down aus einem Strategiepapier. Trotzdem zahlt es direkt auf
+übergeordnete Strategien von Stadt und Bund ein:
+
+| Strategie | Beitrag dieses Projekts |
+|---|---|
+| [Strategien Zürich 2040](https://www.stadt-zuerich.ch/de/politik-und-verwaltung/politik-und-recht/strategie-politikfelder/zuerich-2040.html) | Macht im Handlungsfeld «Leistungsfähige Stadt» die Verwaltung als Ganzes sichtbar und verständlich — Transparenz über Strukturen, Budgets und Stellen als Grundlage für demokratische Teilhabe. |
+| [Digitalisierungsstrategie der Stadt Zürich (2024)](https://www.stadt-zuerich.ch/content/dam/web/de/politik-verwaltung/stadtverwaltung/fd/digitalisierungsstrategie.pdf) | Liefert einen nutzerzentrierten digitalen Service: die Lebenslagen-Suche übersetzt Verwaltungsstruktur in Alltagssprache («Hund anmelden» → Steueramt), barrierefrei und in fünf Sprachen inkl. Leichter Sprache. |
+| [Smart City Strategie Zürich](https://www.stadt-zuerich.ch/de/politik-und-verwaltung/politik-und-recht/strategie-politikfelder/smart-city.html) | Zeigt als leichtgewichtiges Pilotprojekt, wie bestehende offene Daten ohne neue Infrastruktur zu einem nutzbaren Service kombiniert werden können. |
+| [Strategie Digitale Schweiz 2026](https://www.admin.ch/en/newnsb/d6evGIoTYTmY4VMGk0-v0) | Demonstriert den Mehrwert von Open Government Data durch konkrete Nachnutzung — mit einem Modell, das bewusst auf andere Schweizer Städte übertragbar ist. |
+
+Diese Verweise sind Kontext, nicht Autorität: Das Repository ist ein
+privates Open-Source-Projekt ohne offiziellen Auftrag der Stadt Zürich.
+
 ## Zwei Varianten
 
 Das Repo enthält zwei eigenständige Implementationen der gleichen Idee:
