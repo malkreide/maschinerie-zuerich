@@ -24,13 +24,13 @@
     {
       "reference_id": 1,
       "label": {
-        "de": "Allfällige Bearbeitungsgebühr und Finderlohn (OR Art. 722)",
-        "en": "Possible handling fee and finder's reward (Art. 722 Swiss Code of Obligations)"
+        "de": "Gebühr bei der Abholung einer Fundsache im Fundbüro",
+        "en": "Fee charged when collecting a found item at the lost-property office"
       },
-      "source_url": "https://www.stadt-zuerich.ch/pd/de/index/stadtpolizei_zuerich/dienstleistungen/fundbuero.html",
-      "source_quote": "",
-      "status": "unverifiziert",
-      "retrieved_at": "2026-06-06"
+      "source_url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/verloren.html",
+      "source_quote": "Bei der Abholung im Fundbüro wird eine Gebühr erhoben.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-10"
     }
   ],
   "actors": [

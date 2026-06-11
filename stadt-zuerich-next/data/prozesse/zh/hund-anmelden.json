@@ -42,14 +42,14 @@
     {
       "reference_id": 2,
       "label": {
-        "de": "Höhe der jährlichen Hundesteuer der Stadt Zürich",
-        "en": "Amount of the City of Zurich's annual dog tax",
-        "ls": "Wie viel Hunde-Steuer Sie zahlen"
+        "de": "Jährliche Hundesteuer (anteilige Rückerstattung bei unterjähriger Abmeldung)",
+        "en": "Annual dog tax (pro-rata refund on mid-year deregistration)",
+        "ls": "Dass Sie jedes Jahr Hunde-Steuer zahlen"
       },
-      "source_url": "https://www.stadt-zuerich.ch/fd/de/index/steuern/hundesteuer.html",
-      "source_quote": "",
-      "status": "unverifiziert",
-      "retrieved_at": "2026-06-06"
+      "source_url": "https://www.stadt-zuerich.ch/de/stadtleben/veranstaltungen-und-bewilligungen/hundekontrolle/abmeldung.html",
+      "source_quote": "Bei Tod vor dem 30. Juni wird Ihnen 50 % der Hundesteuer erstattet.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-10"
     },
     {
       "reference_id": 3,
