@@ -30,14 +30,14 @@
     {
       "reference_id": 1,
       "label": {
-        "de": "Tierarztkosten für Mikrochip und AMICUS-Erfassung",
-        "en": "Veterinary costs for microchip and AMICUS registration",
-        "ls": "Was der Chip beim Tierarzt kostet"
+        "de": "Pflicht zur Registrierung des Hundes in der AMICUS-Hundedatenbank",
+        "en": "Obligation to register the dog in the AMICUS dog database",
+        "ls": "Sie müssen den Hund bei AMICUS anmelden"
       },
-      "source_url": "https://www.amicus.ch/",
-      "source_quote": "",
-      "status": "unverifiziert",
-      "retrieved_at": "2026-06-06"
+      "source_url": "https://www.stadt-zuerich.ch/de/stadtleben/veranstaltungen-und-bewilligungen/hundekontrolle.html",
+      "source_quote": "Der*die eingetragene Halter*in muss den Hund ebenfalls bei AMICUS registrieren.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-10"
     },
     {
       "reference_id": 2,
