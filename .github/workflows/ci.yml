@@ -111,6 +111,29 @@ jobs:
       - name: Links in den Daten prüfen (strukturell)
         run: npm run check:links
 
+  prozess-regression:
+    name: Prozess-Daten Regression-Guard (i18n + description)
+    # Braucht eine Basis-Version zum Vergleich → nur auf Pull Requests.
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: stadt-zuerich-next
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          # Volle Historie, damit origin/<base> für den Vergleich verfügbar ist.
+          fetch-depth: 0
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24.16.0
+      - name: Basis-Branch holen
+        run: git fetch --no-tags origin "$GITHUB_BASE_REF"
+      - name: Handgepflegte Texte gegen Basis schützen
+        run: npm run check:regression
+        env:
+          NO_COLOR: '1'
+
   a11y:
     name: Accessibility (Playwright + axe-core)
     runs-on: ubuntu-latest
