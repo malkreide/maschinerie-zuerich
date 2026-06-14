@@ -146,6 +146,9 @@ den sichtbaren Quell-Link + Abrufdatum des Disclaimers.
 7. **Kardinalregel-Lint** (CI-Fehler), siehe unten.
 8. `actors[].einheit_ref` existiert im Org-Chart der Stadt (Cross-Check);
    `steps[].actor` referenziert `actors[].id`, falls `actors` vorhanden.
+9. **Regression-Guard** (CI-Fehler, nur auf Pull Requests): an einer bereits
+   bestehenden Prozessdatei darf kein belegter lokalisierter Text (`i18n`-Locale
+   oder `description`) von „befüllt" auf „leer/fehlend" zurückfallen, siehe unten.
 
 ### Kardinalregel-Lint
 
@@ -164,6 +167,30 @@ Eine Zahl in Verbindung mit einer bindenden Einheit — `CHF`, `Fr.`, `Franken`,
 
 Erlaubt sind solche Angaben ausschliesslich im Feld `source_quote` einer
 Reference.
+
+### Regression-Guard (Handdaten)
+
+**Check:** `npm run check:regression`
+([`scripts/check-prozess-regression.mjs`](../stadt-zuerich-next/scripts/check-prozess-regression.mjs)),
+CI-Job `prozess-regression` (nur auf Pull Requests).
+
+Prozessdaten werden von Hand mehrsprachig angereichert; automatisierte
+Extraktoren (z. B. tessera) liefern oft nur `de` mit leeren `en/fr/it`. Damit ein
+ungeprüfter Merge die reicheren Handdaten nicht durch die ärmere Extraktion
+**überschreibt**, vergleicht der Guard jede bestehende Datei feldweise (über
+stabile Schlüssel `step_id`/`reference_id`/`actor.id`) **und** in der
+Locale-Gesamtabdeckung gegen die Basis-Version (`origin/<base>`):
+
+- Verliert ein zuvor nicht-leerer lokalisierter Text seine Sprache (leer oder
+  entfernt) oder sinkt die Abdeckung einer Locale, schlägt CI fehl — mit
+  feldgenauem Zeiger auf den verlorenen Text.
+- Neue Dateien (keine Basis) werden übersprungen.
+- Ist eine Reduktion **wirklich** beabsichtigt: `ALLOW_PROZESS_SHRINK=1` schaltet
+  den Guard auf Warnung herab.
+
+> Der eigentliche Fix gehört in den Extraktor (tessera `pr.py`: bei bestehender
+> Handdatei feldweise mergen statt per PUT überschreiben). Dieser Guard ist das
+> repo-seitige Sicherheitsnetz, das die Regression unabhängig davon abfängt.
 
 ---
 
