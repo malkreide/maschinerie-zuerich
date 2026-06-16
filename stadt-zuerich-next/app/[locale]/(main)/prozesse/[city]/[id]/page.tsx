@@ -198,6 +198,10 @@ export default async function ProzessDetailPage({
   // Wir unterstützen nur das Prozesse-Namespace — andere Namespaces wären
   // hier ohnehin nicht geladen.
   const disclaimerKey = (prozess.disclaimer_key ?? 'Prozesse.disclaimer').replace(/^Prozesse\./, '');
+  // Hochrisiko-Rechtsfälle (baugesuch, sozialhilfe, veranstaltung) tragen einen
+  // eigenen, deutlich sichtbaren Disclaimer (rot statt amber, mit Label-Zeile) —
+  // datengetrieben über den disclaimer_key, siehe CLAUDE.md / Datenvertrag.
+  const isHochrisiko = disclaimerKey === 'disclaimerHochrisiko';
 
   const voraussetzungen = (prozess.preconditions ?? []).map((v) => resolveI18n(v, lebLoc));
 
@@ -246,12 +250,22 @@ export default async function ProzessDetailPage({
       )}
 
       {/* Inoffiziell-Hinweis: pro Prozess sichtbar, mit Quell-Link + Abrufdatum
-          der primären Quelle (vollständige Liste unten unter Quellen). */}
+          der primären Quelle (vollständige Liste unten unter Quellen).
+          Hochrisiko-Fälle bekommen rote Hervorhebung + eine fette Label-Zeile. */}
       <aside
         role="note"
-        aria-label={t('disclaimer')}
-        className="max-w-[80ch] mb-4 text-[13px] px-3 py-2 rounded border border-amber-200 bg-amber-50 text-amber-900"
+        aria-label={isHochrisiko ? t('disclaimerHochrisikoLabel') : t('disclaimer')}
+        className={`max-w-[80ch] mb-4 text-[13px] px-3 py-2 rounded border ${
+          isHochrisiko
+            ? 'border-red-300 bg-red-50 text-red-900'
+            : 'border-amber-200 bg-amber-50 text-amber-900'
+        }`}
       >
+        {isHochrisiko && (
+          <strong className="block font-semibold mb-0.5">
+            <span aria-hidden="true">⚠ </span>{t('disclaimerHochrisikoLabel')}
+          </strong>
+        )}
         {t(disclaimerKey)}{' '}
         <a
           href={prozess.source_url}

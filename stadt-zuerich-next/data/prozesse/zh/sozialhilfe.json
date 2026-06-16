@@ -19,7 +19,7 @@
   "target_audience": "bevoelkerung",
   "source_url": "https://www.stadt-zuerich.ch/sd/de/index/ueber_das_departement/organisation/soziale_dienste.html",
   "retrieved_at": "2026-06-06",
-  "disclaimer_key": "Prozesse.disclaimer",
+  "disclaimer_key": "Prozesse.disclaimerHochrisiko",
   "actors": [
     {
       "id": "person",

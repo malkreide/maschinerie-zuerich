@@ -341,6 +341,8 @@
       "ende": "Fin"
     },
     "disclaimer": "Übersetzung ausstehend — Inoffizielle, vereinfachte Darstellung — keine amtliche Auskunft. Massgeblich sind allein die verlinkten Quellen der Stadt Zürich (siehe Quellen mit Abrufdatum).",
+    "disclaimerHochrisiko": "Übersetzung ausstehend — Hochrisiko-Fall mit rechtlicher Tragweite: Hier geht es um verbindliche Fristen, Gebühren oder Rechtsmittel mit erheblichen Folgen. Diese Darstellung ist inoffiziell und vereinfacht — rechtlich verbindlich sind allein die amtlichen Quellen der Stadt Zürich. Prüfen Sie verbindliche Angaben dort und holen Sie im Zweifel persönliche Beratung ein.",
+    "disclaimerHochrisikoLabel": "Übersetzung ausstehend — Hochrisiko-Hinweis",
     "voraussetzungenHeading": "Übersetzung ausstehend — Voraussetzungen",
     "referenzenHeading": "Übersetzung ausstehend — Verbindliche Werte (Fristen & Gebühren)",
     "referenzenHint": "Übersetzung ausstehend — Verbindliche Zahlen stehen bewusst nicht im Diagramm — sie gelten nur so, wie sie in der amtlichen Quelle stehen. Jeder Eintrag verlinkt auf die exakte Stelle.",
