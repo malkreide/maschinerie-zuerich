@@ -53,7 +53,7 @@ markierte Felder sind additiv und dürfen von reinen Vertrags-Konsumenten
 | `references` | Reference[] | – | Bindende Werte als Link, siehe unten |
 | `source_url` | string (http/https) | ✓ | Primäre amtliche Quelle des Prozesses |
 | `retrieved_at` | string (ISO 8601) | ✓ | Abrufdatum der primären Quelle |
-| `disclaimer_key` | string | ✓ | i18n-Key des Inoffiziell-Hinweises (`Prozesse.disclaimer`) |
+| `disclaimer_key` | string | ✓ | i18n-Key des Inoffiziell-Hinweises (`Prozesse.disclaimer`). Hochrisiko-Rechtsfälle (`baugesuch`, `sozialhilfe`, `veranstaltung`) verwenden `Prozesse.disclaimerHochrisiko` — die Detailseite rendert diesen Hinweis sichtbar hervorgehoben (rot). |
 | `city` | string | ✓ *(Erweiterung)* | Stadt-Kennung (`zh`, …) — Dateiablage + URL-Slug `<city>/<id>` |
 | `description` | i18n | – *(Erweiterung)* | Kurzbeschreibung |
 | `actors` | Actor[] | – *(Erweiterung)* | Akteurs-Tabelle (Swimlanes, Org-Chart-Brücke); `steps[].actor` referenziert `actors[].id` |
