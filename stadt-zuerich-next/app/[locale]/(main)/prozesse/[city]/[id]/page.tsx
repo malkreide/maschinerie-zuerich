@@ -161,6 +161,7 @@ export default async function ProzessDetailPage({
         nach: String(s.step_id),
         label: condition ? resolveI18n(condition, lebLoc) : undefined,
         bedingung: condition?.de,
+        kind: 'forward',
       });
     }
     for (const target of s.loops_back_to ?? []) {
@@ -168,7 +169,7 @@ export default async function ProzessDetailPage({
         id: `loop-${s.step_id}-${target}`,
         von: String(s.step_id),
         nach: String(target),
-        bedingung: 'nein',
+        kind: 'loop',
       });
     }
   }

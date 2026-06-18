@@ -130,6 +130,10 @@ export function ProzessNode({ data }: NodeProps) {
 
 export function EntscheidungNode({ data }: NodeProps) {
   const d = data as ProzessNodeData;
+  // Drei Quell-Handles an den Rauten-Ecken (rechts/unten/oben). Welche Kante
+  // welches Handle nutzt, entscheidet die Geometrie in ProzessFlow (Ziel in
+  // tieferer/höherer/gleicher Swimlane) — nicht der Bedingungstext. So
+  // verteilen sich auch mehrwertige Verzweigungen kollisionsfrei.
   return (
     <>
       <Handle type="target" position={Position.Left} />
@@ -138,8 +142,9 @@ export function EntscheidungNode({ data }: NodeProps) {
           {d.label}
         </div>
       </Base>
-      <Handle type="source" position={Position.Right} id="ja" style={{ top: '50%' }} />
-      <Handle type="source" position={Position.Bottom} id="nein" />
+      <Handle type="source" position={Position.Right} id="right" />
+      <Handle type="source" position={Position.Bottom} id="down" />
+      <Handle type="source" position={Position.Top} id="up" />
     </>
   );
 }
@@ -156,7 +161,9 @@ export function LoopNode({ data }: NodeProps) {
         </div>
       </Base>
       <Handle type="source" position={Position.Right} />
-      <Handle type="source" position={Position.Top} id="back" />
+      {/* Rücksprung-Kante (loops_back_to) verlässt den Schritt oben — in
+          ProzessFlow eigens gestrichelt/animiert gezeichnet. */}
+      <Handle type="source" position={Position.Top} id="loop-out" />
     </>
   );
 }

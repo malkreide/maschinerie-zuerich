@@ -16,6 +16,7 @@ import {
   Background,
   Controls,
   MiniMap,
+  MarkerType,
   type Edge,
   type Node,
   type ColorMode,
@@ -47,6 +48,10 @@ export interface ProzessFlowKante {
   nach: string;
   label?: string;
   bedingung?: string;
+  /** 'forward' = normale Ablauf-Kante aus depends_on (Default).
+   *  'loop' = Rücksprung-Hinweis aus loops_back_to (nicht Teil des DAG) —
+   *  eigens gestrichelt/animiert gezeichnet. */
+  kind?: 'forward' | 'loop';
 }
 
 export interface ProzessFlowAkteur {
@@ -142,21 +147,55 @@ function ProzessFlowInner({ titel, schritte, kanten, akteure, layout, colorMode 
   }, [schritte, layout]);
 
   const edges = useMemo<Edge[]>(() => {
-    return kanten.map((k) => ({
-      id: k.id,
-      source: k.von,
-      target: k.nach,
-      label: k.label ?? k.bedingung,
-      labelStyle: { fontSize: 11, fill: 'var(--color-mute)' },
-      labelBgStyle: { fill: 'var(--color-bg)' },
-      animated: k.bedingung === 'ja' || k.bedingung === 'nein' ? false : false,
-      sourceHandle: k.bedingung === 'nein' ? 'nein' : undefined,
-      style: {
-        stroke: k.bedingung === 'nein' ? 'var(--color-mute)' : 'var(--color-ink)',
-        strokeDasharray: k.bedingung === 'nein' ? '4 4' : undefined,
-      },
-    }));
-  }, [kanten]);
+    // Knoten-Typ + Position je id — für die geometrie-basierte Handle-Wahl an
+    // Entscheidungs-Knoten (Ziel in tieferer Swimlane → unten, höhere → oben,
+    // gleiche → rechts), damit mehrwertige Verzweigungen sich nicht überlagern.
+    const typById = new Map(schritte.map((s) => [s.id, s.typ]));
+    const posById = new Map(layout.nodes.map((n) => [n.id, n]));
+    const decisionHandle = (vonId: string, nachId: string): string => {
+      const s = posById.get(vonId);
+      const t = posById.get(nachId);
+      if (!s || !t) return 'right';
+      const sc = s.y + s.height / 2;
+      const tc = t.y + t.height / 2;
+      if (tc > sc + 8) return 'down';
+      if (tc < sc - 8) return 'up';
+      return 'right';
+    };
+
+    return kanten.map((k) => {
+      if (k.kind === 'loop') {
+        // Rücksprung: deutlich abgesetzt (gestrichelt, animiert, eigene Farbe,
+        // Pfeil) und vom Top-Handle des Loop-Knotens — nie mit einer
+        // Entscheidungs-„nein"-Kante zu verwechseln.
+        return {
+          id: k.id,
+          source: k.von,
+          target: k.nach,
+          sourceHandle: 'loop-out',
+          label: k.label,
+          labelStyle: { fontSize: 11, fill: 'var(--color-mute)' },
+          labelBgStyle: { fill: 'var(--color-bg)' },
+          animated: true,
+          markerEnd: { type: MarkerType.ArrowClosed, color: 'var(--color-mute)' },
+          style: { stroke: 'var(--color-mute)', strokeDasharray: '5 4' },
+        } satisfies Edge;
+      }
+
+      const istEntscheidung = typById.get(k.von) === 'entscheidung';
+      return {
+        id: k.id,
+        source: k.von,
+        target: k.nach,
+        sourceHandle: istEntscheidung ? decisionHandle(k.von, k.nach) : undefined,
+        label: k.label ?? k.bedingung,
+        labelStyle: { fontSize: 11, fill: 'var(--color-mute)' },
+        labelBgStyle: { fill: 'var(--color-bg)' },
+        markerEnd: { type: MarkerType.ArrowClosed, color: 'var(--color-ink)' },
+        style: { stroke: 'var(--color-ink)' },
+      } satisfies Edge;
+    });
+  }, [kanten, schritte, layout]);
 
   return (
     <div>
