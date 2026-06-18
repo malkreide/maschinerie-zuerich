@@ -93,6 +93,41 @@ export interface ProzessFlowProps {
   legende?: ProzessLegendeItem[];
 }
 
+/** Lage eines Ziels relativ zum Entscheidungs-Knoten (Toleranz 8px). */
+type RelPos = 'above' | 'level' | 'below';
+function relPos(targetCenterY: number, sourceCenterY: number): RelPos {
+  if (targetCenterY > sourceCenterY + 8) return 'below';
+  if (targetCenterY < sourceCenterY - 8) return 'above';
+  return 'level';
+}
+
+/** Verteilt die nach Ziel-Höhe sortierten Zweige einer Entscheidung auf die
+ *  drei Quell-Handles (oben/rechts/unten), so dass keine zwei Zweige denselben
+ *  Ausgang teilen und die vertikale Reihenfolge erhalten bleibt (kein
+ *  Zurück-Knick). Eingabe: relative Lage je Zweig in Sortier-Reihenfolge.
+ *  Ausgabe: Handle-Id ('up' | 'right' | 'down') je Zweig. */
+function assignDecisionSlots(positions: RelPos[]): string[] {
+  const n = positions.length;
+  if (n === 0) return [];
+  if (n === 1) {
+    const p = positions[0];
+    return [p === 'below' ? 'down' : p === 'above' ? 'up' : 'right'];
+  }
+  if (n === 2) {
+    // Oberer Zweig nie nach unten, unterer nie nach oben.
+    let a = positions[0] === 'above' ? 'up' : 'right';
+    let b = positions[1] === 'below' ? 'down' : 'right';
+    if (a === b) {
+      a = 'up';
+      b = 'down';
+    }
+    return [a, b];
+  }
+  // 3+ Zweige: erster oben, letzter unten, Mittlere rechts (teilen sich bei >3
+  // das rechte Handle — in der v0-Praxis nicht erwartet).
+  return positions.map((_, i) => (i === 0 ? 'up' : i === n - 1 ? 'down' : 'right'));
+}
+
 export default function ProzessFlow(props: ProzessFlowProps) {
   return (
     <ReactFlowProvider>
@@ -152,16 +187,32 @@ function ProzessFlowInner({ titel, schritte, kanten, akteure, layout, colorMode 
     // gleiche → rechts), damit mehrwertige Verzweigungen sich nicht überlagern.
     const typById = new Map(schritte.map((s) => [s.id, s.typ]));
     const posById = new Map(layout.nodes.map((n) => [n.id, n]));
-    const decisionHandle = (vonId: string, nachId: string): string => {
-      const s = posById.get(vonId);
-      const t = posById.get(nachId);
-      if (!s || !t) return 'right';
-      const sc = s.y + s.height / 2;
-      const tc = t.y + t.height / 2;
-      if (tc > sc + 8) return 'down';
-      if (tc < sc - 8) return 'up';
-      return 'right';
+    const centerY = (id: string) => {
+      const n = posById.get(id);
+      return n ? n.y + n.height / 2 : 0;
     };
+
+    // Handle-Zuweisung je Entscheidungs-Kante VORBERECHNEN: alle Vorwärts-Kanten
+    // eines Entscheidungs-Knotens werden zusammen betrachtet, nach Ziel-Höhe
+    // sortiert und auf verschiedene Handles (up/right/down) verteilt — auch wenn
+    // mehrere Zweige in dieselbe Richtung zeigen, teilen sie sich so nicht
+    // denselben Ausgangspunkt (Folge von #118). Kein Zurück-Knick: ein höher
+    // liegendes Ziel bekommt nie ein tieferes Handle als ein tieferes Ziel.
+    const handleByEdge = new Map<string, string>();
+    const decisionGroups = new Map<string, ProzessFlowKante[]>();
+    for (const k of kanten) {
+      if (k.kind === 'loop') continue;
+      if (typById.get(k.von) !== 'entscheidung') continue;
+      const group = decisionGroups.get(k.von) ?? [];
+      group.push(k);
+      decisionGroups.set(k.von, group);
+    }
+    for (const [vonId, group] of decisionGroups) {
+      const sc = centerY(vonId);
+      const sorted = [...group].sort((a, b) => centerY(a.nach) - centerY(b.nach));
+      const slots = assignDecisionSlots(sorted.map((k) => relPos(centerY(k.nach), sc)));
+      sorted.forEach((k, i) => handleByEdge.set(k.id, slots[i]));
+    }
 
     return kanten.map((k) => {
       if (k.kind === 'loop') {
@@ -187,7 +238,7 @@ function ProzessFlowInner({ titel, schritte, kanten, akteure, layout, colorMode 
         id: k.id,
         source: k.von,
         target: k.nach,
-        sourceHandle: istEntscheidung ? decisionHandle(k.von, k.nach) : undefined,
+        sourceHandle: istEntscheidung ? (handleByEdge.get(k.id) ?? 'right') : undefined,
         label: k.label ?? k.bedingung,
         labelStyle: { fontSize: 11, fill: 'var(--color-mute)' },
         labelBgStyle: { fill: 'var(--color-bg)' },
