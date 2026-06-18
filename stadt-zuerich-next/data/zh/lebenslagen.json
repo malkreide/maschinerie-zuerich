@@ -1183,6 +1183,9 @@
         "einwohner",
         "wohnen"
       ],
+      "prozesse": [
+        "zh/abfall"
+      ],
       "i18n": {
         "de": {
           "frage": "Abfallkalender, Sperrgut, Recycling",
