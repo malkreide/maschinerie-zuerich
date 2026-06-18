@@ -210,6 +210,9 @@
         "einwohner",
         "familie"
       ],
+      "prozesse": [
+        "zh/heiraten"
+      ],
       "i18n": {
         "de": {
           "frage": "Heiraten / Zivilstandsamt",
