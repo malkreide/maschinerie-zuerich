@@ -57,6 +57,7 @@ export default async function AnliegenPage({
   const t       = getT(locale as Locale, 'Anliegen');
   const tSearch = getT(locale as Locale, 'Search');
   const tZg     = getT(locale as Locale, 'Zielgruppen');
+  const tProz   = getT(locale as Locale, 'Prozesse');
 
   const formAction = `/${locale}/anliegen`;
 
@@ -184,6 +185,15 @@ export default async function AnliegenPage({
                         >
                           <span aria-hidden>⚙</span>
                           {t('relatedProcess')}: {resolveI18n(pe.titel, locale as ProzessLocale)}
+                          {pe.hochrisiko && (
+                            <span
+                              className="ml-1 px-1.5 rounded-full border border-red-300 bg-red-50 text-red-800"
+                              title={tProz('disclaimerHochrisikoLabel')}
+                            >
+                              <span aria-hidden>⚠</span>
+                              <span className="sr-only">{tProz('disclaimerHochrisikoLabel')}</span>
+                            </span>
+                          )}
                         </Link>
                       ))}
                     </div>
