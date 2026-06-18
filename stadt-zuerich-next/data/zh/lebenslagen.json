@@ -78,6 +78,9 @@
       "zielgruppen": [
         "einwohner"
       ],
+      "prozesse": [
+        "zh/pass-id"
+      ],
       "i18n": {
         "de": {
           "frage": "Pass oder Identitätskarte beantragen",
