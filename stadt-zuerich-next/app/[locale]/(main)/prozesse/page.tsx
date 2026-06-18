@@ -39,7 +39,7 @@ export default async function ProzesseIndex({
 
   return (
     <main
-      className="absolute top-14 inset-x-0 bottom-0 px-6 pt-4 pb-10 overflow-y-auto bg-[var(--color-bg)]"
+      className="absolute top-14 inset-x-0 bottom-0 px-4 sm:px-6 pt-4 pb-10 overflow-y-auto bg-[var(--color-bg)]"
       aria-labelledby="prozesse-heading"
     >
       <h2 id="prozesse-heading" className="text-lg font-semibold mb-1">{t('title')}</h2>

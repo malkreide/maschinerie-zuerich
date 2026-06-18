@@ -285,7 +285,10 @@ function ProzessFlowInner({ titel, schritte, kanten, akteure, layout, colorMode 
       >
         <Background gap={24} />
         <Controls showInteractive={false} position="bottom-right" className="sm:mb-0 mb-4" />
-        <MiniMap pannable zoomable ariaLabel="Übersichtskarte" />
+        {/* MiniMap oben rechts (nicht unten rechts — dort sitzen die Controls)
+            und auf kleinen Screens ausgeblendet, wo sie nur Platz und Knoten
+            verdeckt. */}
+        <MiniMap pannable zoomable ariaLabel="Übersichtskarte" position="top-right" className="max-sm:!hidden" />
       </ReactFlow>
       </div>
     </div>

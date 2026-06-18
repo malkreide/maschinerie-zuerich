@@ -232,7 +232,7 @@ export default async function ProzessDetailPage({
 
   return (
     <main
-      className="absolute top-14 inset-x-0 bottom-0 px-6 pt-4 pb-10 overflow-y-auto bg-[var(--color-bg)]"
+      className="absolute top-14 inset-x-0 bottom-0 px-4 sm:px-6 pt-4 pb-10 overflow-y-auto bg-[var(--color-bg)]"
       aria-labelledby="prozess-heading"
     >
       {/* JSON-LD: macht die Seite für Google/Bing als GovernmentService
