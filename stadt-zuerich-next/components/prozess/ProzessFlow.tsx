@@ -61,6 +61,15 @@ export interface ProzessFlowAkteur {
   einheitName?: string;
 }
 
+/** Ein Eintrag der Diagramm-Legende: ein Schritt-Typ und sein bereits
+ *  i18n-aufgelöstes Label. Server-seitig gefüllt (nur die tatsächlich im
+ *  Prozess vorkommenden Typen), damit die Client-Komponente next-intl-frei
+ *  bleibt. */
+export interface ProzessLegendeItem {
+  typ: SchrittTyp;
+  label: string;
+}
+
 export interface ProzessFlowProps {
   titel: string;
   schritte: ProzessFlowSchritt[];
@@ -72,6 +81,11 @@ export interface ProzessFlowProps {
    *  Swimlane. Erhält {name} als Platzhalter und wird via String.replace
    *  gefüllt — so bleibt die Client-Komponente frei von next-intl. */
   goToUnitLabelTemplate?: string;
+  /** Legende: Überschrift + die im Prozess vorkommenden Schritt-Typen.
+   *  Erklärt die Formen-Sprache des Diagramms (Pille = Start/Ende,
+   *  Raute = Entscheidung, gestrichelt = Rücksprung …). */
+  legendeHeading?: string;
+  legende?: ProzessLegendeItem[];
 }
 
 export default function ProzessFlow(props: ProzessFlowProps) {
@@ -82,7 +96,7 @@ export default function ProzessFlow(props: ProzessFlowProps) {
   );
 }
 
-function ProzessFlowInner({ titel, schritte, kanten, akteure, layout, colorMode = 'light', goToUnitLabelTemplate }: ProzessFlowProps) {
+function ProzessFlowInner({ titel, schritte, kanten, akteure, layout, colorMode = 'light', goToUnitLabelTemplate, legendeHeading, legende }: ProzessFlowProps) {
   const nodes = useMemo<Node<ProzessNodeData>[]>(() => {
     const processNodes: Node<ProzessNodeData>[] = schritte.map((s) => {
       const ln = layout.nodes.find((n) => n.id === s.id);
@@ -145,11 +159,15 @@ function ProzessFlowInner({ titel, schritte, kanten, akteure, layout, colorMode 
   }, [kanten]);
 
   return (
-    <div
-      className="relative w-full h-[calc(100vh-12rem)] min-h-[520px] border border-[var(--color-line)] rounded-lg overflow-hidden bg-[var(--color-bg)]"
-      role="application"
-      aria-label={`Prozess-Diagramm: ${titel}`}
-    >
+    <div>
+      {legende && legende.length > 0 && (
+        <ProzessLegende heading={legendeHeading} items={legende} />
+      )}
+      <div
+        className="relative w-full h-[calc(100vh-12rem)] min-h-[520px] border border-[var(--color-line)] rounded-lg overflow-hidden bg-[var(--color-bg)]"
+        role="application"
+        aria-label={`Prozess-Diagramm: ${titel}`}
+      >
       <SwimlaneOverlay
         lanes={layout.lanes}
         akteure={akteure}
@@ -174,8 +192,56 @@ function ProzessFlowInner({ titel, schritte, kanten, akteure, layout, colorMode 
         <Controls showInteractive={false} position="bottom-right" className="sm:mb-0 mb-4" />
         <MiniMap pannable zoomable ariaLabel="Übersichtskarte" />
       </ReactFlow>
+      </div>
     </div>
   );
+}
+
+/** Legende: erklärt die Formen-Sprache des Diagramms. Reine Darstellung,
+ *  daher mit kleinen Form-Swatches (aria-hidden) plus dem i18n-Label je
+ *  Schritt-Typ. Wird über der Zeichenfläche gerendert, damit sie weder die
+ *  Swimlane-Labels (links) noch Controls/MiniMap (unten rechts) überdeckt. */
+function ProzessLegende({ heading, items }: { heading?: string; items: ProzessLegendeItem[] }) {
+  return (
+    <div
+      className="mb-2 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[12px] text-[var(--color-mute)]"
+      role="group"
+      aria-label={heading}
+    >
+      {heading && (
+        <span className="text-[11px] uppercase tracking-wider font-semibold">{heading}</span>
+      )}
+      {items.map((it) => (
+        <span key={it.typ} className="inline-flex items-center gap-1.5">
+          <LegendeSwatch typ={it.typ} />
+          <span className="text-[var(--color-ink)]">{it.label}</span>
+        </span>
+      ))}
+    </div>
+  );
+}
+
+/** Kleines Form-Symbol je Schritt-Typ, das die Node-Optik aus ProzessNodes
+ *  spiegelt (Pille, Raute, gestrichelt …). Rein dekorativ → aria-hidden. */
+function LegendeSwatch({ typ }: { typ: SchrittTyp }) {
+  const common = 'inline-block w-3.5 h-3.5 border';
+  switch (typ) {
+    case 'start':
+      return <span aria-hidden className={`${common} rounded-full border-[var(--color-accent)] bg-[var(--color-accent)]`} />;
+    case 'ende':
+      return <span aria-hidden className={`${common} rounded-full border-[var(--color-line)] bg-[var(--color-bg)]`} />;
+    case 'input':
+      return <span aria-hidden className={`${common} rounded-sm border-[var(--color-line)] border-l-[3px] border-l-[var(--color-accent)] bg-[var(--color-panel)]`} />;
+    case 'entscheidung':
+      return <span aria-hidden className="inline-block w-3 h-3 rotate-45 border border-[var(--color-accent)] bg-[var(--color-panel)]" />;
+    case 'loop':
+      return <span aria-hidden className={`${common} rounded-sm border-dashed border-[var(--color-mute)] bg-[var(--color-panel)]`} />;
+    case 'warten':
+      return <span aria-hidden className={`${common} rounded-sm border-[var(--color-line)] bg-[var(--color-panel)] italic`} />;
+    case 'prozess':
+    default:
+      return <span aria-hidden className={`${common} rounded-sm border-[var(--color-line)] bg-[var(--color-panel)]`} />;
+  }
 }
 
 /** Swimlane-Überlagerung: horizontale Bänder mit Akteur-Label links.
