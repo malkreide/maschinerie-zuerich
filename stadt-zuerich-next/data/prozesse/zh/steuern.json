@@ -1,0 +1,448 @@
+{
+  "$schema": "../../../schemas/opengov-process-schema.json",
+  "schema_version": "0.1.0",
+  "id": "steuern",
+  "lebenslage_ref": "steuern",
+  "city": "zh",
+  "title": {
+    "de": "Steuererklärung einreichen und Steuern bezahlen",
+    "en": "File a tax return and pay taxes",
+    "fr": "Déposer la déclaration d'impôt et payer les impôts",
+    "it": "Presentare la dichiarazione d'imposta e pagare le imposte",
+    "ls": "Steuer-Erklärung machen und Steuern zahlen"
+  },
+  "description": {
+    "de": "Natürliche Personen in der Stadt Zürich reichen jährlich eine Steuererklärung beim Steueramt ein — online über ZHprivateTax oder auf Papier. Bei Bedarf kann die Frist erstreckt werden. Das Steueramt veranlagt und stellt die Schlussrechnung zu; gegen die Veranlagung ist eine Einsprache möglich. Zuletzt werden die Steuern innert Frist bezahlt.",
+    "en": "Natural persons in the City of Zurich file an annual tax return with the tax office — online via ZHprivateTax or on paper. The deadline can be extended if needed. The tax office assesses the return and issues the final invoice; an objection against the assessment is possible. Finally, the taxes are paid within the deadline.",
+    "ls": "Jedes Jahr machen Sie eine Steuer-Erklärung. Das geht im Internet oder auf Papier. Brauchen Sie mehr Zeit? Dann können Sie die Frist verlängern. Das Steueramt rechnet Ihre Steuern aus. Sie bekommen eine Rechnung. Sind Sie nicht einverstanden? Dann können Sie eine Einsprache machen. Am Schluss zahlen Sie die Steuern."
+  },
+  "target_audience": "bevoelkerung",
+  "preconditions": [
+    {
+      "de": "Sie sind in der Stadt Zürich steuerpflichtig (Wohnsitz oder Aufenthalt).",
+      "en": "You are liable to tax in the City of Zurich (residence or stay).",
+      "ls": "Sie wohnen in Zürich. Darum zahlen Sie hier Steuern."
+    }
+  ],
+  "source_url": "https://www.stadt-zuerich.ch/fd/de/index/steuern.html",
+  "retrieved_at": "2026-06-18",
+  "disclaimer_key": "Prozesse.disclaimer",
+  "references": [
+    {
+      "reference_id": 1,
+      "label": {
+        "de": "Einreichefrist der Steuererklärung und Fristerstreckung",
+        "en": "Filing deadline for the tax return and deadline extension",
+        "ls": "Bis wann die Steuer-Erklärung da sein muss"
+      },
+      "source_url": "https://www.zh.ch/de/steuern-finanzen/steuern/steuererklaerung.html",
+      "source_quote": "",
+      "status": "unverifiziert",
+      "retrieved_at": "2026-06-18"
+    },
+    {
+      "reference_id": 2,
+      "label": {
+        "de": "Einsprachefrist gegen die Veranlagungsverfügung",
+        "en": "Objection deadline against the assessment decision",
+        "ls": "Wie lange Sie Zeit für eine Einsprache haben"
+      },
+      "source_url": "https://www.zh.ch/de/steuern-finanzen/steuern/einsprache.html",
+      "source_quote": "",
+      "status": "unverifiziert",
+      "retrieved_at": "2026-06-18"
+    },
+    {
+      "reference_id": 3,
+      "label": {
+        "de": "Zahlungsfristen sowie Verzugs- und Vergütungszins",
+        "en": "Payment deadlines and default / refund interest",
+        "ls": "Bis wann Sie zahlen müssen und was bei Verspätung gilt"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/fd/de/index/steuern/zahlungen.html",
+      "source_quote": "",
+      "status": "unverifiziert",
+      "retrieved_at": "2026-06-18"
+    }
+  ],
+  "actors": [
+    {
+      "id": "person",
+      "label": {
+        "de": "Steuerpflichtige Person",
+        "en": "Taxpayer",
+        "fr": "Personne contribuable",
+        "it": "Persona contribuente",
+        "ls": "Sie (Sie zahlen Steuern)"
+      },
+      "type": "antragsteller"
+    },
+    {
+      "id": "steueramt",
+      "label": {
+        "de": "Steueramt der Stadt Zürich",
+        "en": "Tax Office of the City of Zurich",
+        "ls": "Das Steuer-Amt"
+      },
+      "type": "behoerde",
+      "einheit_ref": "FD-st"
+    }
+  ],
+  "steps": [
+    {
+      "step_id": 1,
+      "actor": "person",
+      "label": {
+        "de": "Steuerperiode beginnt / Steuererklärung steht an",
+        "en": "Tax period begins / tax return is due",
+        "ls": "Es ist Zeit für die Steuer-Erklärung"
+      },
+      "depends_on": [],
+      "type": "start"
+    },
+    {
+      "step_id": 2,
+      "actor": "person",
+      "label": {
+        "de": "Unterlagen sammeln (Lohnausweis, Belege)",
+        "en": "Gather documents (salary statement, receipts)",
+        "ls": "Papiere sammeln (zum Beispiel den Lohn-Ausweis)"
+      },
+      "depends_on": [
+        1
+      ],
+      "type": "input",
+      "documents": [
+        {
+          "label": {
+            "de": "Lohnausweis",
+            "en": "Salary statement"
+          },
+          "required": true
+        },
+        {
+          "label": {
+            "de": "Belege zu Abzügen (z. B. Versicherung, Weiterbildung)",
+            "en": "Receipts for deductions (e.g. insurance, training)"
+          },
+          "required": false
+        },
+        {
+          "label": {
+            "de": "Bescheinigungen zu Vermögen und Schulden",
+            "en": "Statements of assets and debts"
+          },
+          "required": false
+        }
+      ]
+    },
+    {
+      "step_id": 3,
+      "actor": "person",
+      "label": {
+        "de": "Wie ausfüllen?",
+        "en": "How to complete it?",
+        "ls": "Wie wollen Sie die Erklärung ausfüllen?"
+      },
+      "depends_on": [
+        2
+      ],
+      "type": "entscheidung"
+    },
+    {
+      "step_id": 4,
+      "actor": "person",
+      "label": {
+        "de": "Steuererklärung online ausfüllen (ZHprivateTax)",
+        "en": "Complete the tax return online (ZHprivateTax)",
+        "ls": "Die Erklärung im Internet ausfüllen"
+      },
+      "depends_on": [
+        {
+          "step_id": 3,
+          "condition": {
+            "de": "online",
+            "en": "online"
+          }
+        }
+      ],
+      "type": "input",
+      "source_id": "q-zhprivatetax"
+    },
+    {
+      "step_id": 5,
+      "actor": "person",
+      "label": {
+        "de": "Steuererklärung auf Papier ausfüllen",
+        "en": "Complete the tax return on paper",
+        "ls": "Die Erklärung auf Papier ausfüllen"
+      },
+      "depends_on": [
+        {
+          "step_id": 3,
+          "condition": {
+            "de": "Papier",
+            "en": "paper"
+          }
+        }
+      ],
+      "type": "input"
+    },
+    {
+      "step_id": 6,
+      "actor": "person",
+      "label": {
+        "de": "Reicht die Frist?",
+        "en": "Is the deadline enough?",
+        "ls": "Reicht die Zeit?"
+      },
+      "depends_on": [
+        4,
+        5
+      ],
+      "type": "entscheidung"
+    },
+    {
+      "step_id": 7,
+      "actor": "person",
+      "label": {
+        "de": "Fristerstreckung beantragen",
+        "en": "Request a deadline extension",
+        "ls": "Mehr Zeit verlangen (Frist verlängern)"
+      },
+      "depends_on": [
+        {
+          "step_id": 6,
+          "condition": {
+            "de": "Frist reicht nicht",
+            "en": "deadline not enough"
+          }
+        }
+      ],
+      "reference_ids": [
+        1
+      ],
+      "type": "input",
+      "source_id": "q-stz-steuer"
+    },
+    {
+      "step_id": 8,
+      "actor": "person",
+      "label": {
+        "de": "Steuererklärung einreichen",
+        "en": "Submit the tax return",
+        "ls": "Die Steuer-Erklärung abgeben"
+      },
+      "depends_on": [
+        {
+          "step_id": 6,
+          "condition": {
+            "de": "rechtzeitig",
+            "en": "in time"
+          }
+        },
+        7
+      ],
+      "reference_ids": [
+        1
+      ],
+      "type": "input"
+    },
+    {
+      "step_id": 9,
+      "actor": "steueramt",
+      "label": {
+        "de": "Steuererklärung prüfen und veranlagen",
+        "en": "Review the return and assess the tax",
+        "ls": "Das Steuer-Amt rechnet die Steuern aus"
+      },
+      "depends_on": [
+        8
+      ],
+      "type": "prozess",
+      "description": {
+        "de": "Das Steueramt prüft die Angaben und setzt die Steuerfaktoren fest (Veranlagung).",
+        "en": "The tax office checks the data and determines the tax factors (assessment).",
+        "ls": "Das Amt schaut Ihre Angaben an und rechnet die Steuern aus."
+      },
+      "source_id": "q-stz-steuer"
+    },
+    {
+      "step_id": 10,
+      "actor": "steueramt",
+      "label": {
+        "de": "Veranlagungsverfügung und Schlussrechnung zustellen",
+        "en": "Issue assessment decision and final invoice",
+        "ls": "Sie bekommen die Steuer-Rechnung"
+      },
+      "depends_on": [
+        9
+      ],
+      "type": "prozess"
+    },
+    {
+      "step_id": 11,
+      "actor": "person",
+      "label": {
+        "de": "Mit der Veranlagung einverstanden?",
+        "en": "Do you agree with the assessment?",
+        "ls": "Sind Sie mit der Rechnung einverstanden?"
+      },
+      "depends_on": [
+        10
+      ],
+      "type": "entscheidung"
+    },
+    {
+      "step_id": 12,
+      "actor": "person",
+      "label": {
+        "de": "Einsprache erheben",
+        "en": "File an objection",
+        "ls": "Eine Einsprache machen"
+      },
+      "depends_on": [
+        {
+          "step_id": 11,
+          "condition": {
+            "de": "nein",
+            "en": "no"
+          }
+        }
+      ],
+      "reference_ids": [
+        2
+      ],
+      "type": "loop",
+      "loops_back_to": [
+        9
+      ],
+      "description": {
+        "de": "Gegen die Veranlagung kann innert Frist schriftlich Einsprache erhoben werden; das Steueramt prüft danach erneut.",
+        "en": "An objection against the assessment can be filed in writing within the deadline; the tax office then reviews it again.",
+        "ls": "Sind Sie nicht einverstanden? Dann schreiben Sie eine Einsprache. Das Amt prüft dann noch einmal."
+      },
+      "source_id": "q-stz-steuer"
+    },
+    {
+      "step_id": 13,
+      "actor": "person",
+      "label": {
+        "de": "Steuerrechnung bezahlen",
+        "en": "Pay the tax invoice",
+        "ls": "Die Steuer-Rechnung bezahlen"
+      },
+      "depends_on": [
+        {
+          "step_id": 11,
+          "condition": {
+            "de": "ja",
+            "en": "yes"
+          }
+        }
+      ],
+      "reference_ids": [
+        3
+      ],
+      "type": "input",
+      "description": {
+        "de": "Die Steuern werden innert der Zahlungsfrist beglichen; bei verspäteter Zahlung fällt Verzugszins an, bei Vorauszahlung gibt es einen Vergütungszins.",
+        "en": "Taxes are paid within the payment deadline; late payment incurs default interest, advance payment earns refund interest.",
+        "ls": "Sie zahlen die Steuern rechtzeitig. Zahlen Sie zu spät, kostet es mehr."
+      },
+      "source_id": "q-stz-steuer"
+    },
+    {
+      "step_id": 14,
+      "actor": "person",
+      "label": {
+        "de": "Steuern bezahlt, Veranlagung rechtskräftig",
+        "en": "Taxes paid, assessment final",
+        "ls": "Fertig: Die Steuern sind bezahlt"
+      },
+      "depends_on": [
+        13
+      ],
+      "type": "ende"
+    }
+  ],
+  "legal_basis": [
+    {
+      "label": "Steuergesetz des Kantons Zürich (StG)",
+      "url": "https://www.zh.ch/de/steuern-finanzen/steuern.html"
+    },
+    {
+      "label": "Bundesgesetz über die direkte Bundessteuer (DBG)",
+      "url": "https://www.fedlex.admin.ch/eli/cc/1991/1184_1184_1184/de"
+    }
+  ],
+  "sources": [
+    {
+      "id": "q-stz-steuer",
+      "title": "Stadt Zürich – Steueramt",
+      "url": "https://www.stadt-zuerich.ch/fd/de/index/steuern.html",
+      "retrieved_at": "2026-06-18"
+    },
+    {
+      "id": "q-zhprivatetax",
+      "title": "Kanton Zürich – ZHprivateTax (Steuererklärung online)",
+      "url": "https://www.zh.ch/de/steuern-finanzen/steuern/steuererklaerung.html",
+      "retrieved_at": "2026-06-18"
+    }
+  ],
+  "reife": {
+    "onlineReifegrad": "teil-digital",
+    "medienbrueche": [
+      "post",
+      "separate-zahlung"
+    ],
+    "onceOnlyPotenzial": {
+      "de": "Lohnausweis und Vorjahresdaten liegen den Behörden teilweise bereits vor. Eine vorausgefüllte Steuererklärung könnte die Erfassung deutlich verkürzen.",
+      "en": "Salary statements and prior-year data are partly already held by the authorities. A pre-filled tax return could shorten data entry considerably.",
+      "ls": "Das Amt kennt manche Angaben schon. Die Erklärung könnte zum Teil schon ausgefüllt sein."
+    },
+    "nutzergruppen": [
+      {
+        "de": "Angestellte mit Lohnausweis",
+        "en": "Employees with a salary statement",
+        "ls": "Menschen, die Lohn bekommen"
+      },
+      {
+        "de": "Personen mit Fristerstreckung",
+        "en": "People using a deadline extension",
+        "ls": "Menschen, die mehr Zeit brauchen"
+      }
+    ],
+    "painPoints": [
+      {
+        "de": "Zahlung erfolgt separat per Rechnung statt direkt im Online-Verfahren.",
+        "en": "Payment happens separately by invoice instead of within the online procedure.",
+        "ls": "Sie zahlen erst später mit einer Rechnung."
+      }
+    ],
+    "improvementIdeas": [
+      {
+        "de": "Vorausgefüllte Steuererklärung aus Lohn- und Registerdaten.",
+        "en": "Pre-filled tax return from salary and register data.",
+        "ls": "Eine Erklärung, die schon zum Teil ausgefüllt ist."
+      }
+    ],
+    "status": "beobachtet",
+    "wirkungKpi": [
+      {
+        "label": {
+          "de": "Online-Anteil",
+          "en": "Share online",
+          "ls": "Wie viel geht online"
+        },
+        "wert": "Erklärung online, Zahlung separat"
+      }
+    ]
+  },
+  "meta": {
+    "erstellt": "2026-06-18",
+    "aktualisiert": "2026-06-18",
+    "maintainer": "malkreide",
+    "lizenz": "CC-BY-4.0"
+  }
+}
