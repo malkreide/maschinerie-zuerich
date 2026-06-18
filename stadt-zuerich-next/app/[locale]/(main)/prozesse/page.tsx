@@ -67,8 +67,13 @@ export default async function ProzesseIndex({
                   href={{ pathname: `/prozesse/${e.city}/${e.id}` }}
                   className="block p-4 no-underline text-[var(--color-ink)] hover:bg-[var(--color-bg)] rounded-lg"
                 >
-                  <div className="font-semibold text-base mb-1">
+                  <div className="font-semibold text-base mb-1 flex items-center gap-2 flex-wrap">
                     {resolveI18n(e.titel, lebLocale)}
+                    {e.hochrisiko && (
+                      <span className="text-[11px] font-normal px-2 py-0.5 rounded-full border border-red-300 bg-red-50 text-red-800">
+                        <span aria-hidden="true">⚠ </span>{t('disclaimerHochrisikoLabel')}
+                      </span>
+                    )}
                   </div>
                   {e.kurzbeschreibung && (
                     <p className="text-sm text-[var(--color-mute)] m-0">
@@ -77,6 +82,11 @@ export default async function ProzesseIndex({
                   )}
                   <div className="text-[11px] text-[var(--color-mute)] mt-2 flex flex-wrap items-center gap-2">
                     <span>v{e.version}</span>
+                    {typeof e.schritteCount === 'number' && (
+                      <span className="px-2 py-0.5 rounded-full border border-[var(--color-line)] bg-[var(--color-bg)]">
+                        {t('schritteAnzahl', { count: e.schritteCount })}
+                      </span>
+                    )}
                     {e.onlineReifegrad && (
                       <span className="px-2 py-0.5 rounded-full border border-[var(--color-line)] bg-[var(--color-bg)]">
                         {t('reifegradLabel')}: {t(`reifegrad.${e.onlineReifegrad}`)}

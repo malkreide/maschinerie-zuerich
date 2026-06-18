@@ -21,6 +21,11 @@ export interface ProzessIndexEntry {
   version: string;
   onlineReifegrad?: OnlineReifegrad; // aus reife.onlineReifegrad, für Index-Badge
   status?: ProzessStatus;
+  /** Anzahl Schritte — Komplexitäts-Hinweis im Index. */
+  schritteCount?: number;
+  /** true, wenn der Prozess den Hochrisiko-Disclaimer trägt
+   *  (disclaimer_key === 'Prozesse.disclaimerHochrisiko') — Index-Badge. */
+  hochrisiko?: boolean;
 }
 
 function prozessRoot(): string {
@@ -64,6 +69,8 @@ export async function listProzesse(): Promise<ProzessIndexEntry[]> {
           version: p.schema_version,
           onlineReifegrad: p.reife?.onlineReifegrad,
           status: p.reife?.status,
+          schritteCount: p.steps.length,
+          hochrisiko: p.disclaimer_key === 'Prozesse.disclaimerHochrisiko',
         });
       } catch (err) {
         console.warn(`[prozesse] cannot read ${city}/${file}:`, err);
