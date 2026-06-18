@@ -325,6 +325,9 @@
           }
         }
       ],
+      "reference_ids": [
+        1
+      ],
       "type": "loop",
       "loops_back_to": [
         8
@@ -347,6 +350,20 @@
         }
       ],
       "type": "ende"
+    }
+  ],
+  "references": [
+    {
+      "reference_id": 1,
+      "label": {
+        "de": "Rekursfrist für den Rekurs an den Bezirksrat",
+        "en": "Time limit for appealing to the district council",
+        "ls": "Wie viel Zeit Sie haben, um sich zu beschweren"
+      },
+      "source_url": "https://www.zh.ch/de/soziales/sozialhilfe/sozialhilfehandbuch/flexdata-definition/1-grundlagen/1-2-verwaltung-und-rechtsmittelverfahren-im-kanton-zuerich/1-2-02-rechtsmittelverfahren-im-kantonalen-sozialhilferecht.html",
+      "source_quote": "Frist: 30 Tage nach Mitteilung. Die Frist beginnt am Tag nach der Zustellung zu laufen.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-17"
     }
   ],
   "legal_basis": [
