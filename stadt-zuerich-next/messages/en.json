@@ -298,6 +298,7 @@
     "relatedLebenslagenHeading": "Common concerns that lead here",
     "stepsHeading": "Steps (textual)",
     "legendeHeading": "Übersetzung ausstehend — Legende",
+    "schritteAnzahl": "{count, plural, one {# step} other {# steps}}",
     "legalHeading": "Legal basis",
     "sourcesHeading": "Sources",
     "retrieved": "retrieved {date}",

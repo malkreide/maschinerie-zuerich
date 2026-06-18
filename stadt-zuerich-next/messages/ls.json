@@ -298,6 +298,7 @@
     "relatedLebenslagenHeading": "Diese Anliegen passen dazu",
     "stepsHeading": "Die Schritte",
     "legendeHeading": "Was die Formen bedeuten",
+    "schritteAnzahl": "{count, plural, one {# Schritt} other {# Schritte}}",
     "legalHeading": "Gesetze",
     "sourcesHeading": "Woher sind die Informationen?",
     "retrieved": "geholt am {date}",

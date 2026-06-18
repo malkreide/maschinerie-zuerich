@@ -306,6 +306,7 @@
     "relatedLebenslagenHeading": "Häufige Anliegen, die hierher führen",
     "stepsHeading": "Schritte (textuell)",
     "legendeHeading": "Legende",
+    "schritteAnzahl": "{count, plural, one {# Schritt} other {# Schritte}}",
     "legalHeading": "Rechtsgrundlagen",
     "sourcesHeading": "Quellen",
     "retrieved": "abgerufen {date}",

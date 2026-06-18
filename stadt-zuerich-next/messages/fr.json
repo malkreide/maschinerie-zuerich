@@ -298,6 +298,7 @@
     "relatedLebenslagenHeading": "Démarches courantes menant ici",
     "stepsHeading": "Étapes (texte)",
     "legendeHeading": "Übersetzung ausstehend — Legende",
+    "schritteAnzahl": "{count, plural, one {# étape} other {# étapes}}",
     "legalHeading": "Bases légales",
     "sourcesHeading": "Sources",
     "retrieved": "consulté le {date}",

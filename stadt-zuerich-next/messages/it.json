@@ -298,6 +298,7 @@
     "relatedLebenslagenHeading": "Esigenze comuni che portano qui",
     "stepsHeading": "Fasi (testo)",
     "legendeHeading": "Übersetzung ausstehend — Legende",
+    "schritteAnzahl": "{count, plural, one {# fase} other {# fasi}}",
     "legalHeading": "Basi legali",
     "sourcesHeading": "Fonti",
     "retrieved": "consultato il {date}",
