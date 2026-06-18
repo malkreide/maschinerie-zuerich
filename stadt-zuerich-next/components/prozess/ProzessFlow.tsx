@@ -91,6 +91,10 @@ export interface ProzessFlowProps {
    *  Raute = Entscheidung, gestrichelt = Rücksprung …). */
   legendeHeading?: string;
   legende?: ProzessLegendeItem[];
+  /** i18n-Wort für unverifizierte Referenzen (z. B. „ungeprüft") — server-seitig
+   *  aufgelöst und in die Node-Daten gereicht, damit der Client next-intl-frei
+   *  bleibt. */
+  referenzUnverifiziertLabel?: string;
 }
 
 /** Lage eines Ziels relativ zum Entscheidungs-Knoten (Toleranz 8px). */
@@ -136,7 +140,7 @@ export default function ProzessFlow(props: ProzessFlowProps) {
   );
 }
 
-function ProzessFlowInner({ titel, schritte, kanten, akteure, layout, colorMode = 'light', goToUnitLabelTemplate, legendeHeading, legende }: ProzessFlowProps) {
+function ProzessFlowInner({ titel, schritte, kanten, akteure, layout, colorMode = 'light', goToUnitLabelTemplate, legendeHeading, legende, referenzUnverifiziertLabel }: ProzessFlowProps) {
   const nodes = useMemo<Node<ProzessNodeData>[]>(() => {
     const processNodes: Node<ProzessNodeData>[] = schritte.map((s) => {
       const ln = layout.nodes.find((n) => n.id === s.id);
@@ -149,6 +153,7 @@ function ProzessFlowInner({ titel, schritte, kanten, akteure, layout, colorMode 
           beschreibung: s.beschreibung,
           akteurLabel: s.akteurLabel,
           referenzen: s.referenzen,
+          referenzUnverifiziertLabel,
           typ: s.typ,
         },
         draggable: false,
@@ -179,7 +184,7 @@ function ProzessFlowInner({ titel, schritte, kanten, akteure, layout, colorMode 
     );
 
     return processNodes;
-  }, [schritte, layout]);
+  }, [schritte, layout, referenzUnverifiziertLabel]);
 
   const edges = useMemo<Edge[]>(() => {
     // Knoten-Typ + Position je id — für die geometrie-basierte Handle-Wahl an

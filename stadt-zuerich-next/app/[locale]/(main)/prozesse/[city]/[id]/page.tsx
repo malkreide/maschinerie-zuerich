@@ -131,7 +131,11 @@ export default async function ProzessDetailPage({
     (ids ?? [])
       .map((refId) => referenceById.get(refId))
       .filter((r): r is Reference => r !== undefined)
-      .map((r) => ({ label: resolveI18n(r.label, lebLoc), url: r.source_url }));
+      .map((r) => ({
+        label: resolveI18n(r.label, lebLoc),
+        url: r.source_url,
+        unverifiziert: r.status === 'unverifiziert',
+      }));
 
   const schritte: ProzessFlowSchritt[] = prozess.steps.map((s) => {
     const info = akteurInfo.get(s.actor);
@@ -334,6 +338,7 @@ export default async function ProzessDetailPage({
           goToUnitLabelTemplate={t('goToUnit', { name: '{name}' })}
           legendeHeading={t('legendeHeading')}
           legende={legende}
+          referenzUnverifiziertLabel={t('referenzUnverifiziert')}
         />
       </div>
 
@@ -451,17 +456,23 @@ export default async function ProzessDetailPage({
                 <p className="mt-1 text-[var(--color-mute)]">{s.beschreibung}</p>
               )}
               {s.referenzen && s.referenzen.length > 0 && (
-                <div className="mt-1 text-[12px] flex gap-3 flex-wrap">
+                <div className="mt-1 text-[12px] flex gap-3 flex-wrap items-baseline">
                   {s.referenzen.map((r) => (
-                    <a
-                      key={r.url + r.label}
-                      href={r.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[var(--color-accent)] underline decoration-dotted hover:decoration-solid"
-                    >
-                      {r.label} ↗
-                    </a>
+                    <span key={r.url + r.label} className="inline-flex items-baseline gap-1">
+                      <a
+                        href={r.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[var(--color-accent)] underline decoration-dotted hover:decoration-solid"
+                      >
+                        {r.label} ↗
+                      </a>
+                      {r.unverifiziert && (
+                        <span className="text-[11px] px-1.5 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-200">
+                          {t('referenzUnverifiziert')}
+                        </span>
+                      )}
+                    </span>
                   ))}
                 </div>
               )}
