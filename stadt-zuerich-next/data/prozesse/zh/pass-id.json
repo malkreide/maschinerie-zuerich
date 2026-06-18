@@ -1,0 +1,419 @@
+{
+  "$schema": "../../../schemas/opengov-process-schema.json",
+  "schema_version": "0.1.0",
+  "id": "pass-id",
+  "lebenslage_ref": "pass-id",
+  "city": "zh",
+  "title": {
+    "de": "Pass oder Identitätskarte beantragen",
+    "en": "Apply for a passport or identity card",
+    "fr": "Demander un passeport ou une carte d'identité",
+    "it": "Richiedere passaporto o carta d'identità",
+    "ls": "Pass oder Identitäts-Karte beantragen"
+  },
+  "description": {
+    "de": "Wer in der Stadt Zürich wohnt und einen Schweizer Pass oder eine Identitätskarte (ID) braucht, beantragt diese über das eidgenössische Antragsportal. Pass und das Kombi-Angebot (Pass + ID) erfordern eine biometrische Erfassung im kantonalen Biometriezentrum; eine ID allein kann ohne Biometrie beim Bevölkerungsamt bestellt werden. Die Ausweise werden zentral produziert und per Post zugestellt.",
+    "en": "Residents of the City of Zurich who need a Swiss passport or an identity card (ID) apply via the federal application portal. The passport and the combined offer (passport + ID) require a biometric capture at the cantonal biometrics centre; an ID on its own can be ordered without biometrics at the population office. The documents are produced centrally and delivered by post.",
+    "ls": "Sie brauchen einen Pass oder eine Identitäts-Karte? Die Identitäts-Karte heisst auch ID. Sie melden sich im Internet an. Für den Pass gehen Sie zu einem Termin. Dort macht man ein Foto und nimmt Ihre Finger-Abdrücke. Den Ausweis bekommen Sie dann mit der Post."
+  },
+  "target_audience": "bevoelkerung",
+  "preconditions": [
+    {
+      "de": "Sie sind Schweizer Staatsangehörige:r und haben Ihren Wohnsitz in der Stadt Zürich.",
+      "en": "You are a Swiss citizen with residence in the City of Zurich.",
+      "ls": "Sie sind Schweizerin oder Schweizer. Sie wohnen in der Stadt Zürich."
+    }
+  ],
+  "source_url": "https://www.schweizerpass.admin.ch/",
+  "retrieved_at": "2026-06-18",
+  "disclaimer_key": "Prozesse.disclaimer",
+  "references": [
+    {
+      "reference_id": 1,
+      "label": {
+        "de": "Gebühr für den Schweizer Pass (Erwachsene und Kinder unterschiedlich)",
+        "en": "Fee for the Swiss passport (different for adults and children)",
+        "ls": "Was der Pass kostet"
+      },
+      "source_url": "https://www.schweizerpass.admin.ch/ausweise/pass-id/gebuehren.html",
+      "source_quote": "",
+      "status": "unverifiziert",
+      "retrieved_at": "2026-06-18"
+    },
+    {
+      "reference_id": 2,
+      "label": {
+        "de": "Gebühr für die Identitätskarte (Erwachsene und Kinder unterschiedlich)",
+        "en": "Fee for the identity card (different for adults and children)",
+        "ls": "Was die Identitäts-Karte kostet"
+      },
+      "source_url": "https://www.schweizerpass.admin.ch/ausweise/pass-id/gebuehren.html",
+      "source_quote": "",
+      "status": "unverifiziert",
+      "retrieved_at": "2026-06-18"
+    },
+    {
+      "reference_id": 3,
+      "label": {
+        "de": "Gültigkeitsdauer von Pass und Identitätskarte (Erwachsene und Kinder unterschiedlich)",
+        "en": "Validity period of passport and identity card (different for adults and children)",
+        "ls": "Wie lange Pass und Identitäts-Karte gültig sind"
+      },
+      "source_url": "https://www.schweizerpass.admin.ch/ausweise/pass-id/gueltigkeit.html",
+      "source_quote": "",
+      "status": "unverifiziert",
+      "retrieved_at": "2026-06-18"
+    },
+    {
+      "reference_id": 4,
+      "label": {
+        "de": "Produktions- und Zustellzeit nach der Erfassung",
+        "en": "Production and delivery time after the capture",
+        "ls": "Wie lange Sie auf den Ausweis warten"
+      },
+      "source_url": "https://www.schweizerpass.admin.ch/ausweise/pass-id/bestellung.html",
+      "source_quote": "",
+      "status": "unverifiziert",
+      "retrieved_at": "2026-06-18"
+    }
+  ],
+  "actors": [
+    {
+      "id": "person",
+      "label": {
+        "de": "Antragstellende Person",
+        "en": "Applicant",
+        "fr": "Personne requérante",
+        "it": "Persona richiedente",
+        "ls": "Sie (Sie brauchen einen Ausweis)"
+      },
+      "type": "antragsteller"
+    },
+    {
+      "id": "bev",
+      "label": {
+        "de": "Bevölkerungsamt der Stadt Zürich",
+        "en": "Population Office of the City of Zurich",
+        "ls": "Das Bevölkerungs-Amt"
+      },
+      "type": "behoerde",
+      "einheit_ref": "SiD-bev"
+    },
+    {
+      "id": "biometrie",
+      "label": {
+        "de": "Kantonales Biometriezentrum (Pass- und Legitimationsbüro)",
+        "en": "Cantonal biometrics centre (passport office)",
+        "ls": "Das Biometrie-Zentrum vom Kanton"
+      },
+      "type": "fachstelle"
+    },
+    {
+      "id": "bund",
+      "label": {
+        "de": "Eidgenössische Ausweisproduktion (fedpol)",
+        "en": "Federal document production (fedpol)",
+        "ls": "Die Stelle vom Bund, die den Ausweis druckt"
+      },
+      "type": "dritte"
+    }
+  ],
+  "steps": [
+    {
+      "step_id": 1,
+      "actor": "person",
+      "label": {
+        "de": "Pass oder Identitätskarte wird benötigt",
+        "en": "Passport or identity card is needed",
+        "ls": "Sie brauchen einen neuen Ausweis"
+      },
+      "depends_on": [],
+      "type": "start"
+    },
+    {
+      "step_id": 2,
+      "actor": "person",
+      "label": {
+        "de": "Welcher Ausweis?",
+        "en": "Which document?",
+        "ls": "Welchen Ausweis wollen Sie?"
+      },
+      "depends_on": [
+        1
+      ],
+      "type": "entscheidung",
+      "description": {
+        "de": "Zur Wahl stehen der Pass, die Identitätskarte (ID) oder das Kombi-Angebot Pass + ID. Pass und Kombi-Angebot erfordern eine biometrische Erfassung, die ID allein nicht.",
+        "en": "The options are the passport, the identity card (ID) or the combined passport + ID offer. The passport and the combined offer require a biometric capture, the ID on its own does not.",
+        "ls": "Sie können wählen: nur Pass, nur Identitäts-Karte oder beides. Für den Pass brauchen Sie einen Termin."
+      },
+      "source_id": "q-schweizpass"
+    },
+    {
+      "step_id": 3,
+      "actor": "person",
+      "label": {
+        "de": "Antrag online im eidgenössischen Antragsportal erfassen",
+        "en": "Submit the application in the federal online portal",
+        "ls": "Sich im Internet anmelden"
+      },
+      "depends_on": [
+        2
+      ],
+      "reference_ids": [
+        1,
+        2
+      ],
+      "type": "input",
+      "description": {
+        "de": "Im Antragsportal werden die Personendaten erfasst und die gewünschten Ausweise gewählt. Die Gebühr richtet sich nach Ausweisart und Alter.",
+        "en": "The application portal captures personal data and lets you select the documents. The fee depends on the type of document and the applicant's age.",
+        "ls": "Sie geben Ihre Daten im Internet ein. Sie wählen den Ausweis. Dann sehen Sie, was es kostet."
+      },
+      "documents": [
+        {
+          "label": {
+            "de": "Bisheriger Pass oder bisherige Identitätskarte (falls vorhanden)",
+            "en": "Previous passport or identity card (if available)"
+          },
+          "required": false
+        },
+        {
+          "label": {
+            "de": "Angaben zur Wohnadresse in der Stadt Zürich",
+            "en": "Details of the residential address in the City of Zurich"
+          },
+          "required": true
+        }
+      ],
+      "source_id": "q-schweizpass"
+    },
+    {
+      "step_id": 4,
+      "actor": "person",
+      "label": {
+        "de": "Biometrische Erfassung nötig?",
+        "en": "Biometric capture required?",
+        "ls": "Brauchen Sie einen Termin?"
+      },
+      "depends_on": [
+        3
+      ],
+      "type": "entscheidung"
+    },
+    {
+      "step_id": 5,
+      "actor": "biometrie",
+      "label": {
+        "de": "Termin im Biometriezentrum wahrnehmen",
+        "en": "Attend the appointment at the biometrics centre",
+        "ls": "Zum Termin gehen"
+      },
+      "depends_on": [
+        {
+          "step_id": 4,
+          "condition": {
+            "de": "Pass oder Kombi-Angebot",
+            "en": "passport or combined offer"
+          }
+        }
+      ],
+      "type": "input",
+      "description": {
+        "de": "Im kantonalen Biometriezentrum werden Foto, Fingerabdrücke und Unterschrift erfasst. Dazu wird ein gültiges Ausweisdokument vorgelegt.",
+        "en": "At the cantonal biometrics centre, photo, fingerprints and signature are captured. A valid identity document is presented.",
+        "ls": "Im Biometrie-Zentrum macht man ein Foto. Man nimmt Ihre Finger-Abdrücke. Sie schreiben Ihre Unterschrift."
+      },
+      "documents": [
+        {
+          "label": {
+            "de": "Gültiges Ausweisdokument zur Identifikation",
+            "en": "Valid identity document for identification"
+          },
+          "required": true
+        }
+      ],
+      "source_id": "q-schweizpass"
+    },
+    {
+      "step_id": 6,
+      "actor": "bev",
+      "label": {
+        "de": "Identitätskarte ohne Biometrie beim Bevölkerungsamt bestellen",
+        "en": "Order the ID without biometrics at the population office",
+        "ls": "Die Identitäts-Karte beim Bevölkerungs-Amt bestellen"
+      },
+      "depends_on": [
+        {
+          "step_id": 4,
+          "condition": {
+            "de": "nur Identitätskarte",
+            "en": "ID only"
+          }
+        }
+      ],
+      "type": "prozess",
+      "description": {
+        "de": "Eine Identitätskarte ohne Pass kann ohne Erfassung im Biometriezentrum bei der Wohngemeinde bestellt werden.",
+        "en": "An identity card without a passport can be ordered at the municipality of residence without a capture at the biometrics centre.",
+        "ls": "Wenn Sie nur die Identitäts-Karte wollen, brauchen Sie keinen Termin im Biometrie-Zentrum."
+      },
+      "source_id": "q-stz-ausweise"
+    },
+    {
+      "step_id": 7,
+      "actor": "bund",
+      "label": {
+        "de": "Ausweis zentral produzieren",
+        "en": "Produce the document centrally",
+        "ls": "Der Ausweis wird gedruckt"
+      },
+      "depends_on": [
+        5,
+        6
+      ],
+      "reference_ids": [
+        4
+      ],
+      "type": "prozess",
+      "description": {
+        "de": "Die eidgenössische Ausweisproduktion stellt den Pass bzw. die Identitätskarte her.",
+        "en": "The federal document production manufactures the passport or identity card.",
+        "ls": "Eine Stelle vom Bund druckt den Ausweis."
+      },
+      "source_id": "q-schweizpass"
+    },
+    {
+      "step_id": 8,
+      "actor": "bund",
+      "label": {
+        "de": "Ausweis per Post zustellen",
+        "en": "Deliver the document by post",
+        "ls": "Der Ausweis kommt mit der Post"
+      },
+      "depends_on": [
+        7
+      ],
+      "reference_ids": [
+        4
+      ],
+      "type": "prozess",
+      "description": {
+        "de": "Der fertige Ausweis wird an die Wohnadresse zugestellt.",
+        "en": "The finished document is delivered to the residential address.",
+        "ls": "Sie bekommen den Ausweis nach Hause geschickt."
+      },
+      "source_id": "q-schweizpass"
+    },
+    {
+      "step_id": 9,
+      "actor": "person",
+      "label": {
+        "de": "Pass oder Identitätskarte erhalten",
+        "en": "Passport or identity card received",
+        "ls": "Fertig: Sie haben Ihren Ausweis"
+      },
+      "depends_on": [
+        8
+      ],
+      "reference_ids": [
+        3
+      ],
+      "type": "ende",
+      "description": {
+        "de": "Der Ausweis ist gültig; die Gültigkeitsdauer richtet sich nach Ausweisart und Alter.",
+        "en": "The document is valid; the validity period depends on the type of document and the applicant's age.",
+        "ls": "Ihr Ausweis ist jetzt gültig. Er gilt eine bestimmte Zeit."
+      }
+    }
+  ],
+  "legal_basis": [
+    {
+      "label": "Bundesgesetz über die Ausweise für Schweizer Staatsangehörige (Ausweisgesetz, AwG)",
+      "url": "https://www.fedlex.admin.ch/eli/cc/2002/142/de"
+    },
+    {
+      "label": "Verordnung über die Ausweise für Schweizer Staatsangehörige (VAwG)",
+      "url": "https://www.fedlex.admin.ch/eli/cc/2002/143/de"
+    }
+  ],
+  "sources": [
+    {
+      "id": "q-schweizpass",
+      "title": "Schweizer Pass und Identitätskarte – eidgenössisches Antragsportal",
+      "url": "https://www.schweizerpass.admin.ch/",
+      "retrieved_at": "2026-06-18"
+    },
+    {
+      "id": "q-stz-ausweise",
+      "title": "Stadt Zürich – Bevölkerungsamt, Ausweise (Pass / Identitätskarte)",
+      "url": "https://www.stadt-zuerich.ch/pd/de/index/bevoelkerungsamt.html",
+      "retrieved_at": "2026-06-18"
+    }
+  ],
+  "reife": {
+    "onlineReifegrad": "teil-digital",
+    "medienbrueche": [
+      "persoenliches-erscheinen",
+      "post"
+    ],
+    "onceOnlyPotenzial": {
+      "de": "Personendaten liegen im Einwohnerregister und in früheren Ausweisanträgen bereits vor. Bei einer Verlängerung könnten Foto- und Unterschriftsdaten aus dem bestehenden Ausweis übernommen werden, sofern die biometrischen Vorgaben dies zulassen.",
+      "en": "Personal data is already held in the residents' register and in earlier document applications. For a renewal, photo and signature data could be reused from the existing document where biometric rules allow.",
+      "ls": "Das Amt kennt viele Ihrer Angaben schon. Diese müssten Sie nicht neu eingeben."
+    },
+    "nutzergruppen": [
+      {
+        "de": "Personen mit abgelaufenem oder bald ablaufendem Ausweis",
+        "en": "People with an expired or soon-to-expire document",
+        "ls": "Menschen, deren Ausweis nicht mehr gültig ist"
+      },
+      {
+        "de": "Eltern, die Ausweise für Kinder beantragen",
+        "en": "Parents applying for documents for their children",
+        "ls": "Eltern, die einen Ausweis für ihr Kind brauchen"
+      },
+      {
+        "de": "Personen mit verlorenem oder gestohlenem Ausweis",
+        "en": "People with a lost or stolen document",
+        "ls": "Menschen, die ihren Ausweis verloren haben"
+      }
+    ],
+    "painPoints": [
+      {
+        "de": "Für den Pass ist ein persönlicher Termin im Biometriezentrum nötig.",
+        "en": "The passport requires an in-person appointment at the biometrics centre.",
+        "ls": "Für den Pass müssen Sie persönlich zu einem Termin."
+      },
+      {
+        "de": "Der Ausweis wird per Post zugestellt und nicht am Schalter ausgehändigt.",
+        "en": "The document is delivered by post rather than handed out at the counter.",
+        "ls": "Den Ausweis bekommen Sie mit der Post."
+      }
+    ],
+    "improvementIdeas": [
+      {
+        "de": "Wiederverwendung von Foto und Unterschrift bei Verlängerungen ohne neuen Biometrietermin.",
+        "en": "Reuse of photo and signature for renewals without a new biometric appointment.",
+        "ls": "Bei einem neuen Ausweis sollen Foto und Unterschrift wiederverwendet werden."
+      }
+    ],
+    "status": "beobachtet",
+    "wirkungKpi": [
+      {
+        "label": {
+          "de": "Online-Anteil",
+          "en": "Share online",
+          "ls": "Wie viel geht online"
+        },
+        "wert": "Antrag online, Erfassung und Zustellung mit Medienbruch"
+      }
+    ]
+  },
+  "meta": {
+    "erstellt": "2026-06-18",
+    "aktualisiert": "2026-06-18",
+    "maintainer": "malkreide",
+    "lizenz": "CC-BY-4.0"
+  }
+}
