@@ -305,6 +305,7 @@
     "city": "Stadt {city}",
     "relatedLebenslagenHeading": "Häufige Anliegen, die hierher führen",
     "stepsHeading": "Schritte (textuell)",
+    "legendeHeading": "Legende",
     "legalHeading": "Rechtsgrundlagen",
     "sourcesHeading": "Quellen",
     "retrieved": "abgerufen {date}",

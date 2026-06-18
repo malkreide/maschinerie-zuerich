@@ -186,6 +186,15 @@ export default async function ProzessDetailPage({
 
   const layout = layoutProzess(prozess);
 
+  // Legende für das Diagramm: nur die tatsächlich vorkommenden Schritt-Typen,
+  // in kanonischer Ablauf-Reihenfolge. Labels aus dem bestehenden
+  // schrittTyp-Namespace (server-seitig aufgelöst — Client bleibt i18n-frei).
+  const TYP_ORDER = ['start', 'input', 'prozess', 'entscheidung', 'loop', 'warten', 'ende'] as const;
+  const vorhandeneTypen = new Set(schritte.map((s) => s.typ));
+  const legende = TYP_ORDER
+    .filter((typ) => vorhandeneTypen.has(typ))
+    .map((typ) => ({ typ, label: t(`schrittTyp.${typ}`) }));
+
   const titel = resolveI18n(prozess.title, lebLoc);
   const kurz  = resolveI18n(prozess.description, lebLoc);
   const reife = prozess.reife;
@@ -322,6 +331,8 @@ export default async function ProzessDetailPage({
           akteure={akteure}
           layout={layout}
           goToUnitLabelTemplate={t('goToUnit', { name: '{name}' })}
+          legendeHeading={t('legendeHeading')}
+          legende={legende}
         />
       </div>
 
