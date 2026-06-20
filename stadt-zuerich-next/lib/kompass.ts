@@ -46,7 +46,10 @@ export function buildKompass(p: Prozess): KompassReport {
   for (const s of p.steps ?? []) {
     if (s.type === 'entscheidung') entscheidungspunkte++;
     for (const d of s.documents ?? []) {
-      if (d.required) pflichtdokumente++;
+      // Schema-Default von documents[].required ist true — ein fehlendes Feld
+      // bedeutet "Pflicht". loadProzess materialisiert keine Defaults, daher
+      // hier alles ausser explizit required:false als Pflicht zählen.
+      if (d.required !== false) pflichtdokumente++;
     }
   }
 
@@ -72,6 +75,7 @@ export function kompassHatInhalt(k: KompassReport): boolean {
     k.rekursinstanzen.length > 0 ||
     k.fachstellen.length > 0 ||
     k.pflichtdokumente > 0 ||
+    k.entscheidungspunkte > 0 ||
     k.medienbrueche.length > 0 ||
     Boolean(k.onceOnlyPotenzial) ||
     k.verbesserungenCount > 0
