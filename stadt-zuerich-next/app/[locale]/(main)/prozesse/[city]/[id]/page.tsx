@@ -26,6 +26,7 @@ import ProzessFlow, {
   type ProzessFlowKante,
   type ProzessFlowAkteur,
 } from '@/components/prozess/ProzessFlow';
+import ReifegradBadge from '@/components/ReifegradBadge';
 
 // Nur Zürich hat aktuell ein Org-Chart; andere Städte bekommen keinen
 // einheit_ref-Link (Mapping aus validate-prozesse.mjs bewusst nicht
@@ -350,9 +351,11 @@ export default async function ProzessDetailPage({
           <div className="flex flex-wrap items-center gap-2 mb-3">
             <h3 id="reife-heading" className="text-base font-semibold m-0">{t('reifeHeading')}</h3>
             {reife.onlineReifegrad && (
-              <span className="text-[11px] px-2 py-0.5 rounded-full border border-[var(--color-line)] bg-[var(--color-bg)]">
-                {t('reifegradLabel')}: <strong>{t(`reifegrad.${reife.onlineReifegrad}`)}</strong>
-              </span>
+              <ReifegradBadge
+                reifegrad={reife.onlineReifegrad}
+                label={t(`reifegrad.${reife.onlineReifegrad}`)}
+                prefix={t('reifegradLabel')}
+              />
             )}
             {reife.status && (
               <span className="text-[11px] px-2 py-0.5 rounded-full border border-[var(--color-line)] bg-[var(--color-bg)]">
