@@ -6,6 +6,7 @@
 // Planung, ohne den Privacy-by-design-Ansatz zu verletzen.
 
 import { listProzesse, loadProzess } from '@/lib/prozesse';
+import { buildKompass } from '@/lib/kompass';
 import { loadStadtData } from '@/lib/data';
 import type {
   Prozess,
@@ -61,6 +62,13 @@ export interface WirkungReport {
   improvementGesamt: number;
   painPointsGesamt: number;
   komplexitaet: KomplexitaetRow[];
+  /** Aggregierter Zuständigkeits-Kompass über alle Prozesse (siehe lib/kompass). */
+  kompass: {
+    geteilteZustaendigkeit: number;
+    mitRekurs: number;
+    pflichtdokumenteGesamt: number;
+    behoerdenGesamt: number;
+  };
   lebenslagenTotal: number;
   lebenslagenMitProzess: number;
   abdeckungProzent: number;
@@ -81,8 +89,20 @@ export async function buildWirkungReport(): Promise<WirkungReport> {
   let painPointsGesamt = 0;
   const komplexitaet: KomplexitaetRow[] = [];
 
+  // Aggregierter Zuständigkeits-Kompass: dieselbe Ableitung wie auf der
+  // Detailseite (lib/kompass), nur über alle Prozesse summiert.
+  let geteilteZustaendigkeit = 0;
+  let mitRekurs = 0;
+  let pflichtdokumenteGesamt = 0;
+  let behoerdenGesamt = 0;
+
   for (const p of prozesse) {
     const r = p.reife;
+    const kp = buildKompass(p);
+    if (kp.geteilteZustaendigkeit) geteilteZustaendigkeit++;
+    if (kp.rekursinstanzen.length > 0) mitRekurs++;
+    pflichtdokumenteGesamt += kp.pflichtdokumente;
+    behoerdenGesamt += kp.behoerden.length;
     if (r?.onlineReifegrad) reifegradCounts[r.onlineReifegrad] = (reifegradCounts[r.onlineReifegrad] ?? 0) + 1;
     if (r?.status) statusCounts[r.status] = (statusCounts[r.status] ?? 0) + 1;
     for (const m of r?.medienbrueche ?? []) {
@@ -154,6 +174,12 @@ export async function buildWirkungReport(): Promise<WirkungReport> {
     improvementGesamt,
     painPointsGesamt,
     komplexitaet,
+    kompass: {
+      geteilteZustaendigkeit,
+      mitRekurs,
+      pflichtdokumenteGesamt,
+      behoerdenGesamt,
+    },
     lebenslagenTotal,
     lebenslagenMitProzess,
     abdeckungProzent,

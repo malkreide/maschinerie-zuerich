@@ -150,6 +150,20 @@ export default async function WirkungPage({
         </section>
       </div>
 
+      {/* Zuständigkeits-Kompass (aggregiert) — spiegelt den Detail-Kompass
+          (lib/kompass) auf Bestandsebene. Strukturelle Merkmale, keine
+          bindenden Werte. */}
+      <section aria-labelledby="kompass-h" className="mt-10 max-w-[80ch]">
+        <h3 id="kompass-h" className={sectionH}>{t('kompassHeading')}</h3>
+        <p className="text-[13px] text-[var(--color-mute)] mb-3 max-w-[70ch]">{t('kompassIntro')}</p>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <Kpi value={`${r.kompass.geteilteZustaendigkeit}/${r.prozesseCount}`} label={t('kompassGeteilt')} />
+          <Kpi value={`${r.kompass.mitRekurs}/${r.prozesseCount}`} label={t('kompassRekurs')} />
+          <Kpi value={String(r.kompass.behoerdenGesamt)} label={t('kompassBehoerden')} />
+          <Kpi value={String(r.kompass.pflichtdokumenteGesamt)} label={t('kompassPflichtdokumente')} />
+        </div>
+      </section>
+
       {/* Klima & Stadtziel (Netto-Null) */}
       {r.klima && city.klimaziel && (
         <section aria-labelledby="klima-h" className="mt-10 max-w-[80ch]">
