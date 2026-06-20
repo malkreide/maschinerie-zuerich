@@ -32,7 +32,7 @@ export default function ReifegradBadge({
         className="inline-block h-1.5 w-1.5 rounded-full"
         style={{ backgroundColor: meta.dot }}
       />
-      {prefix && <span className="font-normal opacity-70">{prefix}:</span>}
+      {prefix && <span className="font-normal">{prefix}:</span>}
       <span>{label}</span>
     </span>
   );
