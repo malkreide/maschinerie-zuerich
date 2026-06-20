@@ -27,6 +27,7 @@ import ProzessFlow, {
   type ProzessFlowAkteur,
 } from '@/components/prozess/ProzessFlow';
 import ReifegradBadge from '@/components/ReifegradBadge';
+import ProzessKompass from '@/components/prozess/ProzessKompass';
 
 // Nur Zürich hat aktuell ein Org-Chart; andere Städte bekommen keinen
 // einheit_ref-Link (Mapping aus validate-prozesse.mjs bewusst nicht
@@ -292,6 +293,10 @@ export default async function ProzessDetailPage({
         </a>
         <span> ({t('retrieved', { date: prozess.retrieved_at })})</span>
       </aside>
+
+      {/* Struktureller Diagnose-Kompass (Zuständigkeit / Aufwand / Vereinfachung)
+          — wiederverwendbar für jeden Prozess, rein aus belegten Modelldaten. */}
+      <ProzessKompass prozess={prozess} locale={loc} />
 
       {voraussetzungen.length > 0 && (
         <section aria-labelledby="voraussetzungen-heading" className="max-w-[80ch] mb-4">
