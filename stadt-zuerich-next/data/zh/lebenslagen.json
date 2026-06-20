@@ -1006,6 +1006,9 @@
         "einwohner",
         "unternehmen"
       ],
+      "prozesse": [
+        "zh/steuern"
+      ],
       "i18n": {
         "de": {
           "frage": "Steuern bezahlen / Steuererklärung",
