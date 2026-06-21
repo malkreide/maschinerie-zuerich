@@ -9,7 +9,9 @@
       "die kanonische Org-Chart (data/zh/org-chart.json). Priorität: www-Slug,",
       "dann dep (ohne Eigentümer-Default HBD), dann da/postadresse gegen",
       "Org-Chart-Einheitsnamen (ohne generische Datenpfleger wie",
-      "\"Immobilien Stadt Zürich\"). Ohne Treffer bleibt department=null und",
+      "\"Immobilien Stadt Zürich\"). Für einzelne Standorte ohne ODZ-Signal greift",
+      "eine belegte Zweitquelle (MANUAL_OVERRIDE, amtliche Standortangaben",
+      "ausserhalb des ODZ-Datensatzes). Ohne Treffer bleibt department=null und",
       "der Layer-Default (BUG) greift — KEINE Verfahrens-Behauptung (Kardinalregel).",
       "",
       "Aktualisieren mit: npm run data:build-amtshaus-departments",
@@ -49,13 +51,13 @@
     },
     "ah003": {
       "name": "Amtshaus II (Beatenplatz)",
-      "department": null,
-      "beleg": "kein eindeutiges ODZ-Signal (nur Eigentümer/Datenpfleger) → allgemein"
+      "department": "SiD",
+      "beleg": "Zweitquelle (amtlich, ausserhalb ODZ): Schutz und Rettung Zürich (Feuerpolizei) am Beatenplatz 1 — Standortplan SiD — https://www.stadt-zuerich.ch/content/dam/web/de/politik-verwaltung/stadtverwaltung/sid/plan_standorte_schutz_und_rettung.pdf"
     },
     "ah014": {
       "name": "Verwaltungszentrum Werd",
-      "department": null,
-      "beleg": "kein eindeutiges ODZ-Signal (nur Eigentümer/Datenpfleger) → allgemein"
+      "department": "SD",
+      "beleg": "Zweitquelle (amtlich, ausserhalb ODZ): Umzug des Sozialdepartements ins Verwaltungszentrum Werd (Medienmitteilung 2004) — https://stored-data.stadt-zuerich.ch/internet/mm/home/mm_04/12_04/mm_08.html"
     },
     "ah011": {
       "name": "Bürohaus Walche (GWA)",

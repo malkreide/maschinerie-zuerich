@@ -1,0 +1,249 @@
+{
+  "$schema": "../../../schemas/opengov-process-schema.json",
+  "schema_version": "0.1.0",
+  "id": "strom",
+  "lebenslage_ref": "strom",
+  "city": "zh",
+  "title": {
+    "de": "Strom anmelden beim Umzug (ewz)",
+    "en": "Register electricity when moving (ewz)",
+    "fr": "Annoncer l'électricité lors d'un déménagement (ewz)",
+    "it": "Registrare l'elettricità in caso di trasloco (ewz)",
+    "ls": "Strom anmelden beim Umzug"
+  },
+  "description": {
+    "de": "Beim Umzug muss der Strom separat beim Elektrizitätswerk der Stadt Zürich (ewz) an- und abgemeldet werden – die Anmeldung beim Personenmeldeamt genügt dafür nicht. Die Meldung erfolgt online über das Konto bei ewz.",
+    "en": "When moving, electricity must be registered and deregistered separately with the City of Zurich's electricity utility (ewz) – registering with the residents' registration office is not enough. The move is reported online via the ewz account.",
+    "fr": "Lors d'un déménagement, l'électricité doit être annoncée et résiliée séparément auprès du service électrique de la Ville de Zurich (ewz) – l'inscription au contrôle des habitants ne suffit pas. L'annonce se fait en ligne via le compte ewz.",
+    "it": "In caso di trasloco, l'elettricità va registrata e disdetta separatamente presso l'azienda elettrica della Città di Zurigo (ewz) – l'annuncio al controllo abitanti non basta. La comunicazione avviene online tramite il conto ewz.",
+    "ls": "Bei einem Umzug müssen Sie den Strom selbst beim Elektrizitäts-Werk ewz anmelden. Die Anmeldung bei der Stadt (Personen-Meldeamt) reicht dafür nicht. Sie melden den Umzug online bei ewz."
+  },
+  "target_audience": "bevoelkerung",
+  "source_url": "https://www.ewz.ch/de/services/umzug.html",
+  "retrieved_at": "2026-06-21",
+  "disclaimer_key": "Prozesse.disclaimer",
+  "references": [
+    {
+      "reference_id": 1,
+      "label": {
+        "de": "Strom separat anmelden",
+        "en": "Register electricity separately",
+        "fr": "Annoncer l'électricité séparément",
+        "it": "Registrare l'elettricità separatamente",
+        "ls": "Strom extra anmelden"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/neu-in-zuerich/erste-schritte.html",
+      "source_quote": "Ihre Anmeldung beim Personenmeldeamt ersetzt nicht die Anmeldung bei der Strom- und Wasserversorgung.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-21"
+    },
+    {
+      "reference_id": 2,
+      "label": {
+        "de": "ewz über den Umzug informieren",
+        "en": "Inform ewz about the move",
+        "fr": "Informer ewz du déménagement",
+        "it": "Informare ewz del trasloco",
+        "ls": "ewz über den Umzug informieren"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/umzug.html",
+      "source_quote": "Informieren Sie Ihren Energielieferanten ewz über Ihren Umzug.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-21"
+    }
+  ],
+  "actors": [
+    {
+      "id": "haushalt",
+      "label": {
+        "de": "Umziehende Person oder Haushalt",
+        "en": "Person or household moving",
+        "fr": "Personne ou ménage qui déménage",
+        "it": "Persona o economia domestica che trasloca",
+        "ls": "Sie (Sie ziehen um)"
+      },
+      "type": "antragsteller"
+    },
+    {
+      "id": "ewz",
+      "label": {
+        "de": "Elektrizitätswerk der Stadt Zürich (ewz)",
+        "en": "City of Zurich electricity utility (ewz)",
+        "fr": "Service électrique de la Ville de Zurich (ewz)",
+        "it": "Azienda elettrica della Città di Zurigo (ewz)",
+        "ls": "Das Elektrizitäts-Werk der Stadt (ewz)"
+      },
+      "type": "behoerde",
+      "einheit_ref": "DIB-ewz"
+    }
+  ],
+  "steps": [
+    {
+      "step_id": 1,
+      "actor": "haushalt",
+      "label": {
+        "de": "Ein Umzug steht an",
+        "en": "A move is coming up",
+        "fr": "Un déménagement est prévu",
+        "it": "È in arrivo un trasloco",
+        "ls": "Sie ziehen bald um"
+      },
+      "depends_on": [],
+      "type": "start"
+    },
+    {
+      "step_id": 2,
+      "actor": "haushalt",
+      "label": {
+        "de": "Strom separat bei ewz an- und abmelden",
+        "en": "Register and deregister electricity separately with ewz",
+        "fr": "Annoncer et résilier l'électricité séparément auprès d'ewz",
+        "it": "Registrare e disdire l'elettricità separatamente presso ewz",
+        "ls": "Strom extra bei ewz an- und abmelden"
+      },
+      "depends_on": [1],
+      "type": "input",
+      "description": {
+        "de": "Die Anmeldung beim Personenmeldeamt deckt den Strom nicht ab – ewz muss separat informiert werden.",
+        "en": "Registration with the residents' registration office does not cover electricity – ewz must be informed separately.",
+        "fr": "L'inscription au contrôle des habitants ne couvre pas l'électricité – ewz doit être informé séparément.",
+        "it": "L'annuncio al controllo abitanti non copre l'elettricità – ewz va informato separatamente.",
+        "ls": "Die Anmeldung bei der Stadt gilt nicht für den Strom. Sie müssen ewz selbst informieren."
+      },
+      "reference_ids": [1, 2],
+      "source_id": "q-stz-erste-schritte"
+    },
+    {
+      "step_id": 3,
+      "actor": "haushalt",
+      "label": {
+        "de": "Umzug online über das ewz-Konto melden",
+        "en": "Report the move online via the ewz account",
+        "fr": "Annoncer le déménagement en ligne via le compte ewz",
+        "it": "Comunicare il trasloco online tramite il conto ewz",
+        "ls": "Den Umzug online bei ewz melden"
+      },
+      "depends_on": [2],
+      "type": "input",
+      "description": {
+        "de": "Adressänderung beziehungsweise Umzug online über das Konto bei ewz erfassen.",
+        "en": "Enter the change of address or move online via the ewz account.",
+        "fr": "Saisir le changement d'adresse ou le déménagement en ligne via le compte ewz.",
+        "it": "Inserire il cambio di indirizzo o il trasloco online tramite il conto ewz.",
+        "ls": "Sie geben den Umzug online im ewz-Konto ein."
+      },
+      "source_id": "q-ewz-umzug"
+    },
+    {
+      "step_id": 4,
+      "actor": "ewz",
+      "label": {
+        "de": "ewz erfasst Ein- und Auszug und liest den Zähler ab",
+        "en": "ewz records the move-in and move-out and reads the meter",
+        "fr": "ewz enregistre l'arrivée et le départ et relève le compteur",
+        "it": "ewz registra l'entrata e l'uscita e legge il contatore",
+        "ls": "ewz nimmt den Umzug auf und liest den Strom-Zähler ab"
+      },
+      "depends_on": [3],
+      "type": "prozess"
+    },
+    {
+      "step_id": 5,
+      "actor": "haushalt",
+      "label": {
+        "de": "Strom am neuen Wohnort angemeldet",
+        "en": "Electricity registered at the new address",
+        "fr": "Électricité annoncée au nouveau domicile",
+        "it": "Elettricità registrata al nuovo domicilio",
+        "ls": "Fertig: Der Strom ist am neuen Wohnort angemeldet"
+      },
+      "depends_on": [4],
+      "type": "ende"
+    }
+  ],
+  "legal_basis": [
+    {
+      "label": "Stromversorgungsgesetz (StromVG)",
+      "url": "https://www.fedlex.admin.ch/eli/cc/2007/763/de"
+    },
+    {
+      "label": "ewz – Umzug / Adressänderung melden",
+      "url": "https://www.ewz.ch/de/services/umzug.html"
+    },
+    {
+      "label": "Stadt Zürich – Erste Schritte (Strom und Wasser separat anmelden)",
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/neu-in-zuerich/erste-schritte.html"
+    }
+  ],
+  "sources": [
+    {
+      "id": "q-ewz-umzug",
+      "title": "ewz – Umzug / Adressänderung melden",
+      "url": "https://www.ewz.ch/de/services/umzug.html",
+      "retrieved_at": "2026-06-21"
+    },
+    {
+      "id": "q-stz-erste-schritte",
+      "title": "Stadt Zürich – Erste Schritte",
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/neu-in-zuerich/erste-schritte.html",
+      "retrieved_at": "2026-06-21"
+    }
+  ],
+  "reife": {
+    "onlineReifegrad": "digital",
+    "medienbrueche": ["erneute-dateneingabe"],
+    "onceOnlyPotenzial": {
+      "de": "Die Umzugsmeldung beim Personenmeldeamt und bei ewz könnte zusammengeführt werden, statt dass dieselben Angaben zweimal erfasst werden.",
+      "en": "The move notification to the residents' registration office and to ewz could be combined instead of entering the same data twice.",
+      "fr": "L'annonce de déménagement au contrôle des habitants et à ewz pourrait être regroupée au lieu de saisir deux fois les mêmes données.",
+      "it": "L'annuncio di trasloco al controllo abitanti e a ewz potrebbe essere unificato invece di inserire due volte gli stessi dati.",
+      "ls": "Sie müssen den Umzug zweimal melden: bei der Stadt und bei ewz. Das könnte man zusammenlegen."
+    },
+    "nutzergruppen": [
+      {
+        "de": "Haushalte, die innerhalb der Stadt umziehen",
+        "en": "Households moving within the city",
+        "fr": "Ménages qui déménagent à l'intérieur de la ville",
+        "it": "Economie domestiche che traslocano all'interno della città",
+        "ls": "Menschen, die in der Stadt umziehen"
+      }
+    ],
+    "painPoints": [
+      {
+        "de": "Der Umzug muss separat bei der Stadt und bei ewz gemeldet werden.",
+        "en": "The move must be reported separately to the city and to ewz.",
+        "fr": "Le déménagement doit être annoncé séparément à la ville et à ewz.",
+        "it": "Il trasloco va comunicato separatamente alla città e a ewz.",
+        "ls": "Sie müssen den Umzug zweimal melden."
+      }
+    ],
+    "improvementIdeas": [
+      {
+        "de": "Eine gemeinsame Umzugsmeldung, die Personenmeldeamt und ewz automatisch erreicht.",
+        "en": "A single move notification that automatically reaches the registration office and ewz.",
+        "fr": "Une annonce de déménagement unique qui parvient automatiquement au contrôle des habitants et à ewz.",
+        "it": "Un unico annuncio di trasloco che raggiunge automaticamente il controllo abitanti ed ewz.",
+        "ls": "Eine einzige Umzugs-Meldung, die an die Stadt und an ewz geht."
+      }
+    ],
+    "status": "beobachtet",
+    "wirkungKpi": [
+      {
+        "label": {
+          "de": "Meldekanal",
+          "en": "Notification channel",
+          "fr": "Canal d'annonce",
+          "it": "Canale di comunicazione",
+          "ls": "So melden Sie"
+        },
+        "wert": "online über das ewz-Konto"
+      }
+    ]
+  },
+  "meta": {
+    "erstellt": "2026-06-21",
+    "aktualisiert": "2026-06-21",
+    "maintainer": "malkreide",
+    "lizenz": "CC-BY-4.0"
+  }
+}

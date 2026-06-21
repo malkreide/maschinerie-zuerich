@@ -98,7 +98,7 @@
       "properties": {
         "id": "amtshaeuser-5",
         "name": "Amtshaus II (Beatenplatz)",
-        "department": "BUG"
+        "department": "SiD"
       }
     },
     {
@@ -113,7 +113,7 @@
       "properties": {
         "id": "amtshaeuser-6",
         "name": "Verwaltungszentrum Werd",
-        "department": "BUG"
+        "department": "SD"
       }
     },
     {

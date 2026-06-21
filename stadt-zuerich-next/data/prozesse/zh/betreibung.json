@@ -14,7 +14,9 @@
   "description": {
     "de": "Wer belegen will, ob eine Person oder Firma an einer Adresse betrieben wurde, bestellt beim zuständigen Stadtammann- und Betreibungsamt einen Auszug aus dem Betreibungsregister – online, per Briefpost oder am Schalter. Beizulegen ist eine Kopie eines amtlichen Ausweises.",
     "en": "To document whether a person or company at an address has faced debt enforcement, you order an extract from the debt enforcement register at the responsible municipal enforcement office – online, by mail or at the counter. A copy of an official ID must be enclosed.",
-    "ls": "Sie möchten wissen, ob jemand Schulden hat (betrieben wurde)? Dann bestellen Sie einen Betreibungs-Auszug beim Betreibungs-Amt. Sie brauchen eine Kopie von einem Ausweis."
+    "ls": "Sie möchten wissen, ob jemand Schulden hat (betrieben wurde)? Dann bestellen Sie einen Betreibungs-Auszug beim Betreibungs-Amt. Sie brauchen eine Kopie von einem Ausweis.",
+    "fr": "Pour prouver si une personne ou une entreprise a fait l'objet de poursuites à une adresse, on commande un extrait du registre des poursuites auprès de l'office des poursuites compétent – en ligne, par courrier ou au guichet. Une copie d'une pièce d'identité officielle doit être jointe.",
+    "it": "Per documentare se una persona o un'azienda è stata oggetto di esecuzioni a un indirizzo, si ordina un estratto del registro esecuzioni presso l'ufficio esecuzioni competente – online, per posta o allo sportello. Va allegata una copia di un documento d'identità ufficiale."
   },
   "target_audience": "bevoelkerung",
   "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/betreibungen/betreibungsregisterauszug-bestellen.html",
@@ -25,7 +27,10 @@
       "reference_id": 1,
       "label": {
         "de": "Inhalt und Zeitraum des Auszugs",
-        "en": "Content and period covered by the extract"
+        "en": "Content and period covered by the extract",
+        "fr": "Contenu et période de l'extrait",
+        "it": "Contenuto e periodo dell'estratto",
+        "ls": "Das steht im Auszug. Und für welche Zeit."
       },
       "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/betreibungen/betreibungsregisterauszug-bestellen.html",
       "source_quote": "Im Auszug aus dem Betreibungsregister ist ersichtlich, ob eine bestimmte Person oder Firma an der erwähnten Adresse in den letzten fünf Jahren betrieben wurde.",
@@ -36,7 +41,10 @@
       "reference_id": 2,
       "label": {
         "de": "Beizulegender amtlicher Ausweis",
-        "en": "Official ID to enclose"
+        "en": "Official ID to enclose",
+        "fr": "Pièce d'identité officielle à joindre",
+        "it": "Documento d'identità ufficiale da allegare",
+        "ls": "Diesen Ausweis müssen Sie mitschicken."
       },
       "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/betreibungen/betreibungsregisterauszug-bestellen.html",
       "source_quote": "Halten Sie eine elektronische Kopie bzw. ein Foto oder einen Scan (JPG, PNG, PDF) eines amtlichen Ausweises (Ihrer Identitätskarte, Ihres Passes, Ausländerausweises o. ä.) bereit.",
@@ -47,7 +55,10 @@
       "reference_id": 3,
       "label": {
         "de": "Gebühr und Versand",
-        "en": "Fee and postage"
+        "en": "Fee and postage",
+        "fr": "Émolument et envoi",
+        "it": "Tassa e spedizione",
+        "ls": "Das kostet etwas. Und es wird verschickt."
       },
       "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/betreibungen/betreibungsregisterauszug-bestellen.html",
       "source_quote": "Ein Standard-Auszug kostet 17 Franken plus Porto (A-Post).",
@@ -61,7 +72,9 @@
       "label": {
         "de": "Bestellende Person oder Firma",
         "en": "Ordering person or company",
-        "ls": "Sie (Sie bestellen den Auszug)"
+        "ls": "Sie (Sie bestellen den Auszug)",
+        "fr": "Personne ou entreprise qui commande",
+        "it": "Persona o azienda che ordina"
       },
       "type": "antragsteller"
     },
@@ -70,7 +83,9 @@
       "label": {
         "de": "Stadtammann- und Betreibungsamt (zuständiger Stadtkreis)",
         "en": "Municipal enforcement office (responsible city district)",
-        "ls": "Das Betreibungs-Amt von Ihrem Stadt-Kreis"
+        "ls": "Das Betreibungs-Amt von Ihrem Stadt-Kreis",
+        "fr": "Office des poursuites (arrondissement compétent)",
+        "it": "Ufficio esecuzioni (circondario competente)"
       },
       "type": "behoerde",
       "einheit_ref": "PRD-stab"
@@ -83,7 +98,9 @@
       "label": {
         "de": "Auszug aus dem Betreibungsregister wird benötigt",
         "en": "An extract from the enforcement register is needed",
-        "ls": "Sie brauchen einen Betreibungs-Auszug"
+        "ls": "Sie brauchen einen Betreibungs-Auszug",
+        "fr": "Un extrait du registre des poursuites est nécessaire",
+        "it": "Serve un estratto del registro esecuzioni"
       },
       "depends_on": [],
       "type": "start"
@@ -94,15 +111,24 @@
       "label": {
         "de": "Amtlichen Ausweis bereithalten",
         "en": "Have an official ID ready",
-        "ls": "Halten Sie einen Ausweis bereit"
+        "ls": "Halten Sie einen Ausweis bereit",
+        "fr": "Préparer une pièce d'identité officielle",
+        "it": "Tenere pronto un documento d'identità ufficiale"
       },
-      "depends_on": [1],
+      "depends_on": [
+        1
+      ],
       "type": "input",
       "description": {
         "de": "Kopie, Foto oder Scan eines amtlichen Ausweises (Identitätskarte, Pass, Ausländerausweis o. ä.) bereithalten.",
-        "en": "Have a copy, photo or scan of an official ID (identity card, passport, foreigner's permit, etc.) ready."
+        "en": "Have a copy, photo or scan of an official ID (identity card, passport, foreigner's permit, etc.) ready.",
+        "fr": "Préparer une copie, une photo ou un scan d'une pièce d'identité officielle (carte d'identité, passeport, livret pour étrangers, etc.).",
+        "it": "Tenere pronta una copia, una foto o una scansione di un documento d'identità ufficiale (carta d'identità, passaporto, permesso per stranieri, ecc.).",
+        "ls": "Machen Sie eine Kopie oder ein Foto von Ihrem Ausweis."
       },
-      "reference_ids": [2],
+      "reference_ids": [
+        2
+      ],
       "source_id": "q-stz-betreibung"
     },
     {
@@ -111,9 +137,13 @@
       "label": {
         "de": "Wie bestellen?",
         "en": "How to order?",
-        "ls": "Wie möchten Sie bestellen?"
+        "ls": "Wie möchten Sie bestellen?",
+        "fr": "Comment commander ?",
+        "it": "Come ordinare?"
       },
-      "depends_on": [2],
+      "depends_on": [
+        2
+      ],
       "type": "entscheidung"
     },
     {
@@ -122,15 +152,29 @@
       "label": {
         "de": "Online-Formular ausfüllen und Ausweis hochladen",
         "en": "Fill in the online form and upload the ID",
-        "ls": "Online-Formular ausfüllen und Ausweis hochladen"
+        "ls": "Online-Formular ausfüllen und Ausweis hochladen",
+        "fr": "Remplir le formulaire en ligne et téléverser la pièce d'identité",
+        "it": "Compilare il modulo online e caricare il documento"
       },
       "depends_on": [
-        { "step_id": 3, "condition": { "de": "online", "en": "online" } }
+        {
+          "step_id": 3,
+          "condition": {
+            "de": "online",
+            "en": "online",
+            "fr": "en ligne",
+            "it": "online",
+            "ls": "online"
+          }
+        }
       ],
       "type": "input",
       "description": {
         "de": "Das Online-Formular ermittelt das zuständige Amt automatisch; der Ausweis wird beim Bestellen hochgeladen.",
-        "en": "The online form determines the responsible office automatically; the ID is uploaded during ordering."
+        "en": "The online form determines the responsible office automatically; the ID is uploaded during ordering.",
+        "fr": "Le formulaire en ligne détermine automatiquement l'office compétent ; la pièce d'identité est téléversée lors de la commande.",
+        "it": "Il modulo online individua automaticamente l'ufficio competente; il documento viene caricato al momento dell'ordine.",
+        "ls": "Das Online-Formular sucht das richtige Amt für Sie. Den Ausweis laden Sie dabei hoch."
       },
       "source_id": "q-stz-betreibung"
     },
@@ -140,15 +184,29 @@
       "label": {
         "de": "Brieflich oder am Schalter bestellen",
         "en": "Order by mail or at the counter",
-        "ls": "Mit Brief oder am Schalter bestellen"
+        "ls": "Mit Brief oder am Schalter bestellen",
+        "fr": "Commander par courrier ou au guichet",
+        "it": "Ordinare per posta o allo sportello"
       },
       "depends_on": [
-        { "step_id": 3, "condition": { "de": "brieflich / am Schalter", "en": "by mail / at the counter" } }
+        {
+          "step_id": 3,
+          "condition": {
+            "de": "brieflich / am Schalter",
+            "en": "by mail / at the counter",
+            "fr": "par courrier / au guichet",
+            "it": "per posta / allo sportello",
+            "ls": "mit Brief oder am Schalter"
+          }
+        }
       ],
       "type": "input",
       "description": {
         "de": "Bestellung per Briefpost oder persönlich am Schalter, mit beigelegter Ausweiskopie.",
-        "en": "Order by mail or in person at the counter, with an enclosed copy of the ID."
+        "en": "Order by mail or in person at the counter, with an enclosed copy of the ID.",
+        "fr": "Commande par courrier postal ou en personne au guichet, avec une copie de la pièce d'identité jointe.",
+        "it": "Ordine per posta o di persona allo sportello, con copia del documento allegata.",
+        "ls": "Sie bestellen mit einem Brief oder gehen zum Schalter. Legen Sie eine Ausweis-Kopie dazu."
       },
       "source_id": "q-stz-betreibung"
     },
@@ -158,9 +216,14 @@
       "label": {
         "de": "Zuständiges Amt erstellt den Auszug",
         "en": "Responsible office issues the extract",
-        "ls": "Das Amt macht den Auszug"
+        "ls": "Das Amt macht den Auszug",
+        "fr": "L'office compétent établit l'extrait",
+        "it": "L'ufficio competente rilascia l'estratto"
       },
-      "depends_on": [4, 5],
+      "depends_on": [
+        4,
+        5
+      ],
       "type": "prozess"
     },
     {
@@ -169,11 +232,18 @@
       "label": {
         "de": "Auszug erhalten (gegen Gebühr)",
         "en": "Receive the extract (subject to a fee)",
-        "ls": "Fertig: Sie bekommen den Auszug (er kostet etwas)"
+        "ls": "Fertig: Sie bekommen den Auszug (er kostet etwas)",
+        "fr": "Recevoir l'extrait (contre émolument)",
+        "it": "Ricevere l'estratto (a pagamento)"
       },
-      "depends_on": [6],
+      "depends_on": [
+        6
+      ],
       "type": "ende",
-      "reference_ids": [1, 3]
+      "reference_ids": [
+        1,
+        3
+      ]
     }
   ],
   "legal_basis": [
@@ -196,31 +266,48 @@
   ],
   "reife": {
     "onlineReifegrad": "digital",
-    "medienbrueche": ["separate-zahlung"],
+    "medienbrueche": [
+      "separate-zahlung"
+    ],
     "onceOnlyPotenzial": {
       "de": "Die Suche nach dem zuständigen Stadtkreis-Amt übernimmt bereits das Online-Formular – ein kantonsweiter Auszug aus einer Stelle würde den Adress-Abgleich ganz erübrigen.",
-      "en": "The online form already finds the responsible district office – a single cantonal extract would remove the address matching entirely."
+      "en": "The online form already finds the responsible district office – a single cantonal extract would remove the address matching entirely.",
+      "fr": "La recherche de l'office d'arrondissement compétent est déjà assurée par le formulaire en ligne – un extrait cantonal délivré par un seul service rendrait toute comparaison d'adresse superflue.",
+      "it": "La ricerca dell'ufficio di circondario competente è già svolta dal modulo online – un estratto cantonale da un unico servizio renderebbe del tutto superfluo il confronto degli indirizzi.",
+      "ls": "Das Online-Formular sucht schon das richtige Amt. Ein Auszug für den ganzen Kanton von einer Stelle wäre noch einfacher."
     },
     "nutzergruppen": [
       {
         "de": "Mieter:innen und Stellensuchende, die einen Auszug beilegen müssen",
-        "en": "Tenants and job seekers who must enclose an extract"
+        "en": "Tenants and job seekers who must enclose an extract",
+        "fr": "Locataires et personnes en recherche d'emploi qui doivent joindre un extrait",
+        "it": "Inquilini e persone in cerca di lavoro che devono allegare un estratto",
+        "ls": "Menschen, die eine Wohnung oder eine Stelle suchen und einen Auszug brauchen."
       },
       {
         "de": "Unternehmen, die die Bonität von Geschäftspartnern prüfen",
-        "en": "Companies checking the creditworthiness of business partners"
+        "en": "Companies checking the creditworthiness of business partners",
+        "fr": "Entreprises qui vérifient la solvabilité de partenaires commerciaux",
+        "it": "Aziende che verificano la solvibilità dei partner commerciali",
+        "ls": "Firmen, die wissen wollen, ob ein Geschäftspartner Schulden hat."
       }
     ],
     "painPoints": [
       {
         "de": "Ein amtlicher Ausweis muss kopiert/hochgeladen werden; brieflich und am Schalter ist persönlicher Aufwand nötig.",
-        "en": "An official ID must be copied/uploaded; mail and counter require personal effort."
+        "en": "An official ID must be copied/uploaded; mail and counter require personal effort.",
+        "fr": "Une pièce d'identité officielle doit être copiée/téléversée ; par courrier et au guichet, une démarche personnelle est nécessaire.",
+        "it": "Occorre copiare/caricare un documento d'identità ufficiale; per posta e allo sportello serve un impegno personale.",
+        "ls": "Sie müssen einen Ausweis kopieren oder hochladen. Mit Brief oder am Schalter ist es mehr Aufwand."
       }
     ],
     "improvementIdeas": [
       {
         "de": "Bezug mit verifizierter E-ID ohne separaten Ausweis-Upload.",
-        "en": "Retrieval with a verified e-ID without a separate ID upload."
+        "en": "Retrieval with a verified e-ID without a separate ID upload.",
+        "fr": "Obtention avec une e-ID vérifiée, sans téléversement séparé d'une pièce d'identité.",
+        "it": "Ottenimento con un'e-ID verificata, senza caricamento separato del documento.",
+        "ls": "Mit einem geprüften digitalen Ausweis (E-ID) ginge es ohne extra Ausweis-Foto."
       }
     ],
     "status": "beobachtet",
@@ -228,7 +315,10 @@
       {
         "label": {
           "de": "Bestellweg",
-          "en": "Ordering channel"
+          "en": "Ordering channel",
+          "fr": "Voie de commande",
+          "it": "Canale d'ordine",
+          "ls": "So bestellen Sie"
         },
         "wert": "online, brieflich oder am Schalter"
       }
