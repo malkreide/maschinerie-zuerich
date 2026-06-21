@@ -5,6 +5,7 @@
     "layer": "amtshaeuser",
     "quelle": "Standorte der Amtshäuser in der Stadt Zürich",
     "datasetUrl": "https://data.stadt-zuerich.ch/dataset/geo_amtshaus",
+    "departmentOverride": "data/geo/zh/amtshaeuser-departments.json",
     "lizenz": "CC-BY",
     "attribution": "Open Data Zürich, Stadt Zürich",
     "stand": "2026-06-21"
@@ -37,7 +38,7 @@
       "properties": {
         "id": "amtshaeuser-1",
         "name": "Amtshaus IV (Uraniastrasse)",
-        "department": "BUG"
+        "department": "HBD"
       }
     },
     {
@@ -67,7 +68,7 @@
       "properties": {
         "id": "amtshaeuser-3",
         "name": "Amtshaus IV (Lindenhofstrasse)",
-        "department": "BUG"
+        "department": "HBD"
       }
     },
     {
@@ -82,7 +83,7 @@
       "properties": {
         "id": "amtshaeuser-4",
         "name": "Amtshaus Parkring",
-        "department": "BUG"
+        "department": "SSD"
       }
     },
     {
@@ -127,7 +128,7 @@
       "properties": {
         "id": "amtshaeuser-7",
         "name": "Bürohaus Walche (GWA)",
-        "department": "BUG"
+        "department": "GUD"
       }
     },
     {
@@ -142,7 +143,7 @@
       "properties": {
         "id": "amtshaeuser-8",
         "name": "Smart City Lab",
-        "department": "BUG"
+        "department": "PRD"
       }
     },
     {
@@ -172,7 +173,7 @@
       "properties": {
         "id": "amtshaeuser-10",
         "name": "Haus der Industriellen Betriebe",
-        "department": "BUG"
+        "department": "GUD"
       }
     },
     {
@@ -202,7 +203,7 @@
       "properties": {
         "id": "amtshaeuser-12",
         "name": "Amtshaus I",
-        "department": "BUG"
+        "department": "SiD"
       }
     },
     {
@@ -217,7 +218,7 @@
       "properties": {
         "id": "amtshaeuser-13",
         "name": "Amtshaus III",
-        "department": "BUG"
+        "department": "HBD"
       }
     },
     {
@@ -232,7 +233,7 @@
       "properties": {
         "id": "amtshaeuser-14",
         "name": "Amtshaus Helvetiaplatz",
-        "department": "BUG"
+        "department": "SD"
       }
     },
     {
@@ -262,7 +263,7 @@
       "properties": {
         "id": "amtshaeuser-16",
         "name": "Haus der Industriellen Betriebe",
-        "department": "BUG"
+        "department": "GUD"
       }
     },
     {
@@ -277,7 +278,7 @@
       "properties": {
         "id": "amtshaeuser-17",
         "name": "Verwaltungszentrum Eggbühl",
-        "department": "BUG"
+        "department": "GUD"
       }
     }
   ]

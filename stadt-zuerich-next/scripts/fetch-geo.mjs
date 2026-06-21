@@ -135,6 +135,22 @@ async function fetchLayer(layer) {
   }
   console.log(`  ↳ ${layer.id}: ${usedSources.length} Quelle(n) — ${usedSources.join(', ')}`);
 
+  // Optionaler, belegter Departements-Override pro Feature: ordnet einzelne
+  // Standorte einem feineren Departement zu (statt pauschal layer.department).
+  // Schlüssel ist src.keyField (z.B. poi_id); Quelle ist eine reviewte JSON-
+  // Datei mit { entries: { <key>: { department } } }. Füllt so Follow-up #2
+  // (Klick-Detail → Verfahren) auch für Layer wie die Amtshäuser.
+  let overrideEntries = null;
+  let overrideHits = 0;
+  if (src.departmentOverride && src.keyField) {
+    try {
+      const ov = JSON.parse(await readFile(path.join(root, src.departmentOverride), 'utf-8'));
+      overrideEntries = ov.entries ?? {};
+    } catch (err) {
+      console.warn(`  ⚠ ${layer.id}: departmentOverride nicht lesbar (${err.message}) — Layer-Default greift.`);
+    }
+  }
+
   let crsWarned = false;
   const features = [];
   for (let i = 0; i < inFeatures.length; i++) {
@@ -146,11 +162,23 @@ async function fetchLayer(layer) {
       crsWarned = true;
     }
     const name = f.properties?.[src.nameField] ?? f.properties?.name ?? `${layer.namePrefix} ${i + 1}`;
+    let department = layer.department;
+    if (overrideEntries && src.keyField) {
+      const key = f.properties?.[src.keyField];
+      const mapped = key != null ? overrideEntries[key]?.department : null;
+      if (mapped) {
+        department = mapped;
+        overrideHits++;
+      }
+    }
     features.push({
       type: 'Feature',
       geometry: { type: 'Point', coordinates: [pt[0], pt[1]] },
-      properties: { id: `${layer.id}-${i}`, name: String(name), department: layer.department },
+      properties: { id: `${layer.id}-${i}`, name: String(name), department: String(department) },
     });
+  }
+  if (overrideEntries) {
+    console.log(`  ↳ ${layer.id}: ${overrideHits}/${features.length} Standorte mit belegtem Departements-Override.`);
   }
 
   const out = {
@@ -160,6 +188,7 @@ async function fetchLayer(layer) {
       layer: layer.id,
       quelle: src.title ?? layer.label,
       datasetUrl: src.datasetUrl ?? null,
+      departmentOverride: src.departmentOverride ?? null,
       lizenz: cfg.license,
       attribution: cfg.attribution,
       stand: today,

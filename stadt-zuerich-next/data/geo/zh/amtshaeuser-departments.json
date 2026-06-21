@@ -1,0 +1,117 @@
+{
+  "_meta": {
+    "_doc": [
+      "Belegte, reviewte Zuordnung Amtshaus (poi_id) → zuständiges Departement.",
+      "Füllt Follow-up #2 (Klick-Detail → Verfahren) für den Amtshäuser-Layer.",
+      "",
+      "Quelle ist AUSSCHLIESSLICH der ODZ-Datensatz geo_amtshaus selbst:",
+      "- Primär das Feld www (Standort-Website mit Departements-Slug, z.B. /ssd).",
+      "- Sekundär das Feld dep, sofern es NICHT den generischen Eigentümer-",
+      "  Default Hochbaudepartement (HBD) trägt (HBD = Immobilien als Gebäude-",
+      "  verwalter, nicht die ansässige Stelle).",
+      "Ohne eindeutiges Signal bleibt department=null → der Layer-Default (BUG,",
+      "allgemeine Verwaltung) greift und es wird KEIN Verfahren behauptet",
+      "(Kardinalregel: lieber keine Aussage als eine falsche Wegweisung).",
+      "",
+      "Konsumiert von scripts/fetch-geo.mjs (source.departmentOverride). Bei",
+      "jedem Lauf von npm run data:fetch-geo wird die Zuordnung neu angewandt."
+    ],
+    "quelle": "Open Data Zürich – geo_amtshaus (poi_amtshaus_view)",
+    "datasetUrl": "https://data.stadt-zuerich.ch/dataset/geo_amtshaus",
+    "lizenz": "CC-BY",
+    "stand": "2026-06-21",
+    "keyField": "poi_id"
+  },
+  "entries": {
+    "ah004": {
+      "name": "Amtshaus II (Bahnhofquai)",
+      "department": null,
+      "beleg": "kein eindeutiges ODZ-Signal (dep=Eigentümer-Default HBD, kein Departements-www) → allgemein"
+    },
+    "ah006": {
+      "name": "Amtshaus IV (Uraniastrasse)",
+      "department": "HBD",
+      "beleg": "ODZ-Feld www=https://www.stadt-zuerich.ch/hbd"
+    },
+    "ah012": {
+      "name": "Amtshaus V",
+      "department": null,
+      "beleg": "kein eindeutiges ODZ-Signal (dep=Eigentümer-Default HBD, kein Departements-www) → allgemein"
+    },
+    "ah007": {
+      "name": "Amtshaus IV (Lindenhofstrasse)",
+      "department": "HBD",
+      "beleg": "ODZ-Feld www=https://www.stadt-zuerich.ch/hbd"
+    },
+    "ah013": {
+      "name": "Amtshaus Parkring",
+      "department": "SSD",
+      "beleg": "ODZ-Feld www=https://www.stadt-zuerich.ch/ssd"
+    },
+    "ah003": {
+      "name": "Amtshaus II (Beatenplatz)",
+      "department": null,
+      "beleg": "kein eindeutiges ODZ-Signal (dep=Eigentümer-Default HBD, kein Departements-www) → allgemein"
+    },
+    "ah014": {
+      "name": "Verwaltungszentrum Werd",
+      "department": null,
+      "beleg": "kein eindeutiges ODZ-Signal (dep=Eigentümer-Default HBD, kein Departements-www) → allgemein"
+    },
+    "ah011": {
+      "name": "Bürohaus Walche (GWA)",
+      "department": "GUD",
+      "beleg": "ODZ-Feld www=https://www.stadt-zuerich.ch/gud"
+    },
+    "ah9382": {
+      "name": "Smart City Lab",
+      "department": "PRD",
+      "beleg": "ODZ-Feld dep=Präsidialdepartement (PRD)"
+    },
+    "ah001": {
+      "name": "Stadthaus",
+      "department": null,
+      "beleg": "kein eindeutiges ODZ-Signal (dep=Eigentümer-Default HBD, kein Departements-www) → allgemein"
+    },
+    "ah10301": {
+      "name": "Haus der Industriellen Betriebe",
+      "department": "GUD",
+      "beleg": "ODZ-Feld dep=Gesundheits- und Umweltdepartement (GUD)"
+    },
+    "ah8101": {
+      "name": "Amtshaus Werdplatz",
+      "department": null,
+      "beleg": "kein eindeutiges ODZ-Signal (dep=Eigentümer-Default HBD, kein Departements-www) → allgemein"
+    },
+    "ah002": {
+      "name": "Amtshaus I",
+      "department": "SiD",
+      "beleg": "ODZ-Feld www=https://www.stadt-zuerich.ch/stadtpolizei"
+    },
+    "ah005": {
+      "name": "Amtshaus III",
+      "department": "HBD",
+      "beleg": "ODZ-Feld www=https://www.stadt-zuerich.ch/hbd"
+    },
+    "ah008": {
+      "name": "Amtshaus Helvetiaplatz",
+      "department": "SD",
+      "beleg": "ODZ-Feld www=https://www.stadt-zuerich.ch/sd"
+    },
+    "ah8221": {
+      "name": "Haus zum Rech",
+      "department": null,
+      "beleg": "kein eindeutiges ODZ-Signal (dep=Eigentümer-Default HBD, kein Departements-www) → allgemein"
+    },
+    "ah10284": {
+      "name": "Haus der Industriellen Betriebe",
+      "department": "GUD",
+      "beleg": "ODZ-Feld dep=Gesundheits- und Umweltdepartement (GUD)"
+    },
+    "ah11821": {
+      "name": "Verwaltungszentrum Eggbühl",
+      "department": "GUD",
+      "beleg": "ODZ-Feld dep=Gesundheits- und Umweltdepartement (GUD)"
+    }
+  }
+}

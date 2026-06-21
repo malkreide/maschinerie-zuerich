@@ -5,6 +5,7 @@
     "layer": "playgrounds",
     "quelle": "POI öffentliche Spielplätze der Stadt Zürich",
     "datasetUrl": "https://data.stadt-zuerich.ch/dataset/geo_poi_oeffentliche_spielplaetze",
+    "departmentOverride": null,
     "lizenz": "CC-BY",
     "attribution": "Open Data Zürich, Stadt Zürich",
     "stand": "2026-06-21"
