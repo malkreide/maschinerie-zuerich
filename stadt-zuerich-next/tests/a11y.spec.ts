@@ -79,7 +79,7 @@ for (const route of ROUTES) {
 // analog zum React-Flow-Wasserzeichen.
 test('a11y: /de/territory (Karten-Layer)', async ({ page }) => {
   await page.goto('/de/territory');
-  await page.locator('input[name="layer"]').first().waitFor({ state: 'attached', timeout: 15_000 });
+  await page.locator('input[type="checkbox"]').first().waitFor({ state: 'attached', timeout: 15_000 });
   await page.locator('.leaflet-container').first().waitFor({ state: 'attached', timeout: 15_000 });
 
   const results = await new AxeBuilder({ page })

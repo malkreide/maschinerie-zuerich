@@ -71,7 +71,8 @@
     "layerAmtshaeuser": "Administrative buildings",
     "popupTitle": "Department",
     "linkToChart": "Show in org chart",
-    "verfahren": "Responsible procedures"
+    "verfahren": "Responsible procedures",
+    "noLayer": "No layer selected – pick at least one category above."
   },
   "Nav": {
     "graph": "Machinery",

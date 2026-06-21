@@ -4,19 +4,18 @@
       "Belegte, reviewte Zuordnung Amtshaus (poi_id) → zuständiges Departement.",
       "Füllt Follow-up #2 (Klick-Detail → Verfahren) für den Amtshäuser-Layer.",
       "",
-      "Quelle ist AUSSCHLIESSLICH der ODZ-Datensatz geo_amtshaus selbst:",
-      "- Primär das Feld www (Standort-Website mit Departements-Slug, z.B. /ssd).",
-      "- Sekundär das Feld dep, sofern es NICHT den generischen Eigentümer-",
-      "  Default Hochbaudepartement (HBD) trägt (HBD = Immobilien als Gebäude-",
-      "  verwalter, nicht die ansässige Stelle).",
-      "Ohne eindeutiges Signal bleibt department=null → der Layer-Default (BUG,",
-      "allgemeine Verwaltung) greift und es wird KEIN Verfahren behauptet",
-      "(Kardinalregel: lieber keine Aussage als eine falsche Wegweisung).",
+      "Generiert von scripts/build-amtshaus-departments.mjs. Quelle ist",
+      "ausschliesslich der ODZ-Datensatz geo_amtshaus, kreuzreferenziert gegen",
+      "die kanonische Org-Chart (data/zh/org-chart.json). Priorität: www-Slug,",
+      "dann dep (ohne Eigentümer-Default HBD), dann da/postadresse gegen",
+      "Org-Chart-Einheitsnamen (ohne generische Datenpfleger wie",
+      "\"Immobilien Stadt Zürich\"). Ohne Treffer bleibt department=null und",
+      "der Layer-Default (BUG) greift — KEINE Verfahrens-Behauptung (Kardinalregel).",
       "",
-      "Konsumiert von scripts/fetch-geo.mjs (source.departmentOverride). Bei",
-      "jedem Lauf von npm run data:fetch-geo wird die Zuordnung neu angewandt."
+      "Aktualisieren mit: npm run data:build-amtshaus-departments",
+      "Danach npm run data:fetch-geo, um den Snapshot neu zu schreiben."
     ],
-    "quelle": "Open Data Zürich – geo_amtshaus (poi_amtshaus_view)",
+    "quelle": "Open Data Zürich – geo_amtshaus (poi_amtshaus_view) + data/zh/org-chart.json",
     "datasetUrl": "https://data.stadt-zuerich.ch/dataset/geo_amtshaus",
     "lizenz": "CC-BY",
     "stand": "2026-06-21",
@@ -25,8 +24,8 @@
   "entries": {
     "ah004": {
       "name": "Amtshaus II (Bahnhofquai)",
-      "department": null,
-      "beleg": "kein eindeutiges ODZ-Signal (dep=Eigentümer-Default HBD, kein Departements-www) → allgemein"
+      "department": "SiD",
+      "beleg": "ODZ-Feld postadresse=\"Stadtpolizei Zürich\" → Org-Chart-Einheit → SiD"
     },
     "ah006": {
       "name": "Amtshaus IV (Uraniastrasse)",
@@ -36,7 +35,7 @@
     "ah012": {
       "name": "Amtshaus V",
       "department": null,
-      "beleg": "kein eindeutiges ODZ-Signal (dep=Eigentümer-Default HBD, kein Departements-www) → allgemein"
+      "beleg": "kein eindeutiges ODZ-Signal (nur Eigentümer/Datenpfleger) → allgemein"
     },
     "ah007": {
       "name": "Amtshaus IV (Lindenhofstrasse)",
@@ -51,12 +50,12 @@
     "ah003": {
       "name": "Amtshaus II (Beatenplatz)",
       "department": null,
-      "beleg": "kein eindeutiges ODZ-Signal (dep=Eigentümer-Default HBD, kein Departements-www) → allgemein"
+      "beleg": "kein eindeutiges ODZ-Signal (nur Eigentümer/Datenpfleger) → allgemein"
     },
     "ah014": {
       "name": "Verwaltungszentrum Werd",
       "department": null,
-      "beleg": "kein eindeutiges ODZ-Signal (dep=Eigentümer-Default HBD, kein Departements-www) → allgemein"
+      "beleg": "kein eindeutiges ODZ-Signal (nur Eigentümer/Datenpfleger) → allgemein"
     },
     "ah011": {
       "name": "Bürohaus Walche (GWA)",
@@ -70,8 +69,8 @@
     },
     "ah001": {
       "name": "Stadthaus",
-      "department": null,
-      "beleg": "kein eindeutiges ODZ-Signal (dep=Eigentümer-Default HBD, kein Departements-www) → allgemein"
+      "department": "PRD",
+      "beleg": "ODZ-Feld da=Stadtkanzlei → Org-Chart-Einheit → PRD"
     },
     "ah10301": {
       "name": "Haus der Industriellen Betriebe",
@@ -80,8 +79,8 @@
     },
     "ah8101": {
       "name": "Amtshaus Werdplatz",
-      "department": null,
-      "beleg": "kein eindeutiges ODZ-Signal (dep=Eigentümer-Default HBD, kein Departements-www) → allgemein"
+      "department": "HBD",
+      "beleg": "ODZ-Feld da=Amt für Städtebau → Org-Chart-Einheit → HBD"
     },
     "ah002": {
       "name": "Amtshaus I",
@@ -100,8 +99,8 @@
     },
     "ah8221": {
       "name": "Haus zum Rech",
-      "department": null,
-      "beleg": "kein eindeutiges ODZ-Signal (dep=Eigentümer-Default HBD, kein Departements-www) → allgemein"
+      "department": "HBD",
+      "beleg": "ODZ-Feld da=Amt für Städtebau → Org-Chart-Einheit → HBD"
     },
     "ah10284": {
       "name": "Haus der Industriellen Betriebe",

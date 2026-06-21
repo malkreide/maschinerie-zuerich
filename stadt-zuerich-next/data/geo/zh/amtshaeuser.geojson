@@ -23,7 +23,7 @@
       "properties": {
         "id": "amtshaeuser-0",
         "name": "Amtshaus II (Bahnhofquai)",
-        "department": "BUG"
+        "department": "SiD"
       }
     },
     {
@@ -158,7 +158,7 @@
       "properties": {
         "id": "amtshaeuser-9",
         "name": "Stadthaus",
-        "department": "BUG"
+        "department": "PRD"
       }
     },
     {
@@ -188,7 +188,7 @@
       "properties": {
         "id": "amtshaeuser-11",
         "name": "Amtshaus Werdplatz",
-        "department": "BUG"
+        "department": "HBD"
       }
     },
     {
@@ -248,7 +248,7 @@
       "properties": {
         "id": "amtshaeuser-15",
         "name": "Haus zum Rech",
-        "department": "BUG"
+        "department": "HBD"
       }
     },
     {

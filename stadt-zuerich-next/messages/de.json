@@ -71,7 +71,8 @@
     "layerAmtshaeuser": "Amtshäuser / Anlaufstellen",
     "popupTitle": "Departement",
     "linkToChart": "Im Organigramm zeigen",
-    "verfahren": "Zuständige Verfahren"
+    "verfahren": "Zuständige Verfahren",
+    "noLayer": "Kein Layer ausgewählt – wählen Sie oben mindestens eine Kategorie."
   },
   "Nav": {
     "graph": "Maschinerie",

@@ -71,7 +71,8 @@
     "layerAmtshaeuser": "Edifici amministrativi",
     "popupTitle": "Dipartimento",
     "linkToChart": "Mostra nell'organigramma",
-    "verfahren": "Procedure competenti"
+    "verfahren": "Procedure competenti",
+    "noLayer": "Nessun livello selezionato – scegli almeno una categoria qui sopra."
   },
   "Nav": {
     "graph": "Macchina",
