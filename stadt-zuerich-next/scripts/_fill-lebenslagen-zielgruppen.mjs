@@ -33,7 +33,7 @@ const ZG = {
   'wasser': ['einwohner', 'wohnen'],
   'abfall': ['einwohner', 'wohnen'],
   'stadtreinigung': ['einwohner'],
-  'öv': ['einwohner', 'mobilitaet'],
+  'oev': ['einwohner', 'mobilitaet'],
   'pflegeheim': ['alter', 'gesundheit'],
   'spital': ['gesundheit'],
   'schul-arzt': ['schule', 'gesundheit', 'familie'],

@@ -141,7 +141,7 @@ const T = {
     it: { frage: 'Pulizia delle strade, sgombero neve', stichworte: ['pulizia delle strade', 'pulizia', 'neve', 'sgombero neve', 'servizio invernale', 'erz'], antwort: 'ERZ – Pulizia stradale.' },
     ls: { frage: 'Strassen-Reinigung und Schnee-Räumung', stichworte: ['strassen-reinigung', 'schnee', 'putzen', 'erz'], antwort: 'Wer putzt die Strassen? Wer räumt den Schnee weg? Das macht die ERZ.' },
   },
-  'öv': {
+  'oev': {
     en: { frage: 'Tram, bus, public transport passes', stichworte: ['tram', 'bus', 'public transport', 'vbz', 'pass', 'ticket', 'transit'], antwort: 'VBZ – Zurich Public Transport.' },
     fr: { frage: 'Tram, bus, abonnements de transports publics', stichworte: ['tram', 'bus', 'transports publics', 'vbz', 'abonnement', 'billet'], antwort: 'VBZ – Transports publics zurichois.' },
     it: { frage: 'Tram, bus, abbonamenti dei trasporti pubblici', stichworte: ['tram', 'bus', 'trasporti pubblici', 'vbz', 'abbonamento', 'biglietto'], antwort: 'VBZ – Trasporti pubblici di Zurigo.' },
