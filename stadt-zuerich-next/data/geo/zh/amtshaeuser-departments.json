@@ -36,8 +36,8 @@
     },
     "ah012": {
       "name": "Amtshaus V",
-      "department": null,
-      "beleg": "kein eindeutiges ODZ-Signal (nur Eigentümer/Datenpfleger) → allgemein"
+      "department": "TED",
+      "beleg": "Zweitquelle (amtlich, ausserhalb ODZ): Tiefbauamt, Werdmühleplatz 3, Amtshaus V (Kontakt-/Postadresse des Tiefbauamts, TED) — https://www.stadt-zuerich.ch/misc/de/standards-stadtraeume/service/kontakt.html"
     },
     "ah007": {
       "name": "Amtshaus IV (Lindenhofstrasse)",
