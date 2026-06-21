@@ -50,6 +50,27 @@ const MAINTAINER_DA = new Set([
   'Departementssekretariat',
 ]);
 
+// Belegte Zweitquellen für Standorte, die im ODZ-Datensatz nur den Eigentümer/
+// Datenpfleger nennen. Greift NUR, wenn die ODZ-Felder kein Signal liefern.
+// Jede Zuordnung nennt ihre externe (aber amtliche) Quelle. Standorte mit
+// widersprüchlicher/unklarer Quellenlage bleiben bewusst offen (department=null).
+const MANUAL_OVERRIDE = {
+  // Amtshaus II (Beatenplatz 1): Sitz der Feuerpolizei / Schutz und Rettung (SiD).
+  ah003: {
+    department: 'SiD',
+    quelle: 'https://www.stadt-zuerich.ch/content/dam/web/de/politik-verwaltung/stadtverwaltung/sid/plan_standorte_schutz_und_rettung.pdf',
+    hinweis: 'Schutz und Rettung Zürich (Feuerpolizei) am Beatenplatz 1 — Standortplan SiD',
+  },
+  // Verwaltungszentrum Werd (Werdstrasse 75): Sitz des Sozialdepartements (SD) seit 2004.
+  ah014: {
+    department: 'SD',
+    quelle: 'https://stored-data.stadt-zuerich.ch/internet/mm/home/mm_04/12_04/mm_08.html',
+    hinweis: 'Umzug des Sozialdepartements ins Verwaltungszentrum Werd (Medienmitteilung 2004)',
+  },
+  // Amtshaus V (Werdmühleplatz 3): Quellenlage uneindeutig (HBD-Bauprojekt
+  // «Industrielle Betriebe» vs. TED-Planauflagen) → bewusst NICHT zugeordnet.
+};
+
 function datasetIdFromUrl(u) {
   const m = /\/dataset\/([^/?#]+)/.exec(u || '');
   return m ? m[1] : null;
@@ -128,7 +149,13 @@ const features = await fetchAmtshausFeatures();
 const entries = {};
 for (const f of features) {
   const p = f.properties;
-  const { department, beleg } = resolve(p);
+  let { department, beleg } = resolve(p);
+  // Belegte Zweitquelle nur greifen lassen, wenn ODZ kein Signal liefert.
+  if (!department && MANUAL_OVERRIDE[p.poi_id]) {
+    const mo = MANUAL_OVERRIDE[p.poi_id];
+    department = mo.department;
+    beleg = `Zweitquelle (amtlich, ausserhalb ODZ): ${mo.hinweis} — ${mo.quelle}`;
+  }
   entries[p.poi_id] = { name: p.name, department, beleg };
 }
 
@@ -143,7 +170,9 @@ const doc = {
       'die kanonische Org-Chart (data/zh/org-chart.json). Priorität: www-Slug,',
       'dann dep (ohne Eigentümer-Default HBD), dann da/postadresse gegen',
       'Org-Chart-Einheitsnamen (ohne generische Datenpfleger wie',
-      '"Immobilien Stadt Zürich"). Ohne Treffer bleibt department=null und',
+      '"Immobilien Stadt Zürich"). Für einzelne Standorte ohne ODZ-Signal greift',
+      'eine belegte Zweitquelle (MANUAL_OVERRIDE, amtliche Standortangaben',
+      'ausserhalb des ODZ-Datensatzes). Ohne Treffer bleibt department=null und',
       'der Layer-Default (BUG) greift — KEINE Verfahrens-Behauptung (Kardinalregel).',
       '',
       'Aktualisieren mit: npm run data:build-amtshaus-departments',
