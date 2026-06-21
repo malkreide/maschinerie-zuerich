@@ -16,6 +16,7 @@
     "data:fetch": "node scripts/build-data.mjs",
     "data:fetch:force": "node scripts/build-data.mjs --force",
     "data:fetch-geo": "node scripts/fetch-geo.mjs",
+    "data:build-amtshaus-departments": "node scripts/build-amtshaus-departments.mjs",
     "data:fetch-stadtkreise": "node scripts/fetch-stadtkreise.mjs",
     "validate:org": "node scripts/validate-org-chart.mjs",
     "validate:prozesse": "node scripts/validate-prozesse.mjs",
