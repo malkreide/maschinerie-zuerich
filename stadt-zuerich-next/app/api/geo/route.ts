@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import geoConfig from '@/config/geo-layers.json';
+import { buildDepartmentProzesseMap } from '@/lib/territory';
 
 // Liefert die Geo-Layer der Territory-Ansicht als GeoJSON.
 //
@@ -93,6 +94,24 @@ export async function GET(request: Request) {
     }
   }
 
+  // Zuständigkeits-Brücke: pro vorkommendem Departement die modellierten
+  // Verfahren (actors[].einheit_ref → Departement). Nur die tatsächlich
+  // ausgelieferten Departemente einbetten, damit die Antwort schlank bleibt.
+  const departmentsPresent = new Set(features.map((f) => f.properties.department));
+  const fullMap = await buildDepartmentProzesseMap();
+  const zustaendigkeit: Record<string, Array<{ city: string; id: string; slug: string; titel: unknown }>> = {};
+  for (const dept of departmentsPresent) {
+    const procs = fullMap[dept];
+    if (procs?.length) {
+      zustaendigkeit[dept] = procs.map((p) => ({
+        city: p.city,
+        id: p.id,
+        slug: p.slug,
+        titel: p.titel,
+      }));
+    }
+  }
+
   return NextResponse.json(
     {
       type: 'FeatureCollection',
@@ -104,6 +123,8 @@ export async function GET(request: Request) {
           ? 'Mindestens ein Layer zeigt zufällige Demodaten, keine echten Verwaltungsstandorte. Vor Produktiveinsatz ODZ-Snapshot erzeugen.'
           : 'Echte Standortdaten aus Open Data Zürich.',
         sources,
+        // Departements-Code → zuständige Verfahren (für das Popup-Detail).
+        zustaendigkeit,
       },
       features,
     },
