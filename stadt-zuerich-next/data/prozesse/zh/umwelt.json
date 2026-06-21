@@ -14,7 +14,9 @@
   "description": {
     "de": "Wer sich durch Lärm gestört fühlt, wendet sich je nach Lärmart an die richtige Stelle: Bei akutem Lärm hilft die Polizei, bei Lärm von ortsfesten Anlagen (Gewerbe, Lüftungs-, Heizungs- und Klimaanlagen) der Umwelt- und Gesundheitsschutz der Stadt Zürich.",
     "en": "If you are disturbed by noise, you contact the right office depending on the type of noise: the police help with acute noise, while the City of Zurich's environmental and health protection unit handles noise from stationary installations (commercial, ventilation, heating and air-conditioning systems).",
-    "ls": "Sie stört Lärm? Bei Lärm gerade jetzt hilft die Polizei. Bei Lärm von Anlagen (zum Beispiel Lüftung oder Heizung) hilft der Umwelt- und Gesundheitsschutz der Stadt."
+    "ls": "Sie stört Lärm? Bei Lärm gerade jetzt hilft die Polizei. Bei Lärm von Anlagen (zum Beispiel Lüftung oder Heizung) hilft der Umwelt- und Gesundheitsschutz der Stadt.",
+    "fr": "Si vous êtes dérangé par du bruit, vous vous adressez au bon service selon le type de bruit : en cas de bruit aigu, la police aide ; en cas de bruit d'installations fixes (commerces, installations de ventilation, de chauffage et de climatisation), c'est la protection de l'environnement et de la santé de la Ville de Zurich.",
+    "it": "Chi è disturbato dal rumore si rivolge al servizio giusto a seconda del tipo di rumore: in caso di rumore acuto aiuta la polizia, in caso di rumore di impianti fissi (attività commerciali, impianti di ventilazione, riscaldamento e climatizzazione) la protezione dell'ambiente e della salute della Città di Zurigo."
   },
   "target_audience": "bevoelkerung",
   "source_url": "https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/oeffentlicher-raum/nachbarschaft-nachtleben/laerm.html",
@@ -25,7 +27,10 @@
       "reference_id": 1,
       "label": {
         "de": "Polizei bei Lärmproblemen",
-        "en": "Police for noise problems"
+        "en": "Police for noise problems",
+        "fr": "Police en cas de problèmes de bruit",
+        "it": "Polizia in caso di problemi di rumore",
+        "ls": "Die Polizei bei Lärm"
       },
       "source_url": "https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/oeffentlicher-raum/nachbarschaft-nachtleben/laerm.html",
       "source_quote": "Grundsätzlich kann die Polizei bei Lärmproblemen immer angerufen werden (117).",
@@ -36,7 +41,10 @@
       "reference_id": 2,
       "label": {
         "de": "Zuständigkeit bei ortsfesten Anlagen",
-        "en": "Responsibility for stationary installations"
+        "en": "Responsibility for stationary installations",
+        "fr": "Compétence pour les installations fixes",
+        "it": "Competenza per gli impianti fissi",
+        "ls": "Wer ist zuständig bei Lärm von Anlagen"
       },
       "source_url": "https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/oeffentlicher-raum/nachbarschaft-nachtleben/laerm.html",
       "source_quote": "Bei Lärm von sogenannten «ortsfesten Anlagen» wie Industrie- und Gewerbeanlagen inklusive Lüftungs-, Heizungs- und Klimaanlagen hilft der Umwelt- und Gesundheitsschutz der Stadt Zürich während den Bürozeiten weiter.",
@@ -47,7 +55,10 @@
       "reference_id": 3,
       "label": {
         "de": "Ruhezeiten / Nachtruhe",
-        "en": "Quiet hours / night-time rest"
+        "en": "Quiet hours / night-time rest",
+        "fr": "Heures de repos / repos nocturne",
+        "it": "Orari di quiete / riposo notturno",
+        "ls": "Ruhe-Zeiten in der Nacht"
       },
       "source_url": "https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/oeffentlicher-raum/nachbarschaft-nachtleben/laerm.html",
       "source_quote": "Abends ab 20 Uhr und sonntags ist dem Erholungsbedürfnis der Bevölkerung besonders Rechnung zu tragen, indem lärmintensives Verhalten zu unterlassen ist.",
@@ -58,7 +69,10 @@
       "reference_id": 4,
       "label": {
         "de": "Weiterbearbeitung der Lärmklagen",
-        "en": "Further processing of noise complaints"
+        "en": "Further processing of noise complaints",
+        "fr": "Traitement ultérieur des plaintes pour bruit",
+        "it": "Trattamento successivo delle denunce per rumore",
+        "ls": "Was mit der Lärm-Meldung passiert"
       },
       "source_url": "https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/oeffentlicher-raum/nachbarschaft-nachtleben/laerm.html",
       "source_quote": "Bei 117 eingehende Lärmklagen werden in sogenannten Einsatzjournalen gesammelt, die durch die Fachgruppe Lärmschutz der Stadtpolizei Zürich weiterbearbeitet werden.",
@@ -72,7 +86,9 @@
       "label": {
         "de": "Vom Lärm betroffene Person",
         "en": "Person affected by noise",
-        "ls": "Sie (Sie stört der Lärm)"
+        "ls": "Sie (Sie stört der Lärm)",
+        "fr": "Personne concernée par le bruit",
+        "it": "Persona disturbata dal rumore"
       },
       "type": "antragsteller"
     },
@@ -81,7 +97,9 @@
       "label": {
         "de": "Umwelt- und Gesundheitsschutz Zürich (UGZ), Fachbereich Lärmschutz",
         "en": "Environmental and Health Protection Zurich (UGZ), noise protection unit",
-        "ls": "Der Umwelt- und Gesundheitsschutz der Stadt (UGZ)"
+        "ls": "Der Umwelt- und Gesundheitsschutz der Stadt (UGZ)",
+        "fr": "Protection de l'environnement et de la santé de Zurich (UGZ), domaine de la protection contre le bruit",
+        "it": "Protezione dell'ambiente e della salute di Zurigo (UGZ), settore protezione dal rumore"
       },
       "type": "behoerde",
       "einheit_ref": "GUD-ugz"
@@ -91,7 +109,9 @@
       "label": {
         "de": "Stadtpolizei Zürich, Fachgruppe Lärmschutz",
         "en": "Zurich City Police, noise protection group",
-        "ls": "Die Stadt-Polizei"
+        "ls": "Die Stadt-Polizei",
+        "fr": "Police municipale de Zurich, groupe spécialisé protection contre le bruit",
+        "it": "Polizia municipale di Zurigo, gruppo specializzato protezione dal rumore"
       },
       "type": "behoerde",
       "einheit_ref": "SiD-stapo"
@@ -104,11 +124,15 @@
       "label": {
         "de": "Sie fühlen sich durch Lärm gestört",
         "en": "You are disturbed by noise",
-        "ls": "Sie stört Lärm"
+        "ls": "Sie stört Lärm",
+        "fr": "Vous êtes dérangé par du bruit",
+        "it": "Si sente disturbato dal rumore"
       },
       "depends_on": [],
       "type": "start",
-      "reference_ids": [3]
+      "reference_ids": [
+        3
+      ]
     },
     {
       "step_id": 2,
@@ -116,9 +140,13 @@
       "label": {
         "de": "Welche Art von Lärm?",
         "en": "What type of noise?",
-        "ls": "Welcher Lärm ist es?"
+        "ls": "Welcher Lärm ist es?",
+        "fr": "Quel type de bruit ?",
+        "it": "Che tipo di rumore?"
       },
-      "depends_on": [1],
+      "depends_on": [
+        1
+      ],
       "type": "entscheidung"
     },
     {
@@ -127,17 +155,33 @@
       "label": {
         "de": "Akuter Lärm jetzt: Polizei anrufen",
         "en": "Acute noise right now: call the police",
-        "ls": "Lärm gerade jetzt: Polizei anrufen"
+        "ls": "Lärm gerade jetzt: Polizei anrufen",
+        "fr": "Bruit aigu maintenant : appeler la police",
+        "it": "Rumore acuto adesso: chiamare la polizia"
       },
       "depends_on": [
-        { "step_id": 2, "condition": { "de": "akuter Lärm / nachts", "en": "acute noise / at night" } }
+        {
+          "step_id": 2,
+          "condition": {
+            "de": "akuter Lärm / nachts",
+            "en": "acute noise / at night",
+            "fr": "bruit aigu / la nuit",
+            "it": "rumore acuto / di notte",
+            "ls": "Lärm gerade jetzt / in der Nacht"
+          }
+        }
       ],
       "type": "input",
       "description": {
         "de": "Bei akutem, störendem Lärm (z. B. nachts) kann die Polizei angerufen werden.",
-        "en": "For acute, disturbing noise (e.g. at night) the police can be called."
+        "en": "For acute, disturbing noise (e.g. at night) the police can be called.",
+        "fr": "En cas de bruit aigu et gênant (p. ex. la nuit), la police peut être appelée.",
+        "it": "In caso di rumore acuto e molesto (ad es. di notte) si può chiamare la polizia.",
+        "ls": "Bei lautem Lärm gerade jetzt (zum Beispiel in der Nacht) können Sie die Polizei anrufen."
       },
-      "reference_ids": [1],
+      "reference_ids": [
+        1
+      ],
       "source_id": "q-stz-laerm"
     },
     {
@@ -146,11 +190,17 @@
       "label": {
         "de": "Stadtpolizei nimmt die Lärmklage auf",
         "en": "City police record the noise complaint",
-        "ls": "Die Polizei nimmt die Meldung auf"
+        "ls": "Die Polizei nimmt die Meldung auf",
+        "fr": "La police municipale enregistre la plainte pour bruit",
+        "it": "La polizia municipale registra la denuncia per rumore"
       },
-      "depends_on": [3],
+      "depends_on": [
+        3
+      ],
       "type": "prozess",
-      "reference_ids": [4]
+      "reference_ids": [
+        4
+      ]
     },
     {
       "step_id": 5,
@@ -158,9 +208,13 @@
       "label": {
         "de": "Lärmklage aufgenommen",
         "en": "Noise complaint recorded",
-        "ls": "Fertig: Die Meldung ist aufgenommen"
+        "ls": "Fertig: Die Meldung ist aufgenommen",
+        "fr": "Plainte pour bruit enregistrée",
+        "it": "Denuncia per rumore registrata"
       },
-      "depends_on": [4],
+      "depends_on": [
+        4
+      ],
       "type": "ende"
     },
     {
@@ -169,17 +223,33 @@
       "label": {
         "de": "Lärm von ortsfester Anlage: UGZ kontaktieren",
         "en": "Noise from a stationary installation: contact the UGZ",
-        "ls": "Lärm von einer Anlage: dem UGZ melden"
+        "ls": "Lärm von einer Anlage: dem UGZ melden",
+        "fr": "Bruit d'une installation fixe : contacter l'UGZ",
+        "it": "Rumore di un impianto fisso: contattare l'UGZ"
       },
       "depends_on": [
-        { "step_id": 2, "condition": { "de": "ortsfeste Anlage (Gewerbe, Lüftung, Heizung)", "en": "stationary installation (commercial, ventilation, heating)" } }
+        {
+          "step_id": 2,
+          "condition": {
+            "de": "ortsfeste Anlage (Gewerbe, Lüftung, Heizung)",
+            "en": "stationary installation (commercial, ventilation, heating)",
+            "fr": "installation fixe (commerce, ventilation, chauffage)",
+            "it": "impianto fisso (attività, ventilazione, riscaldamento)",
+            "ls": "eine Anlage (zum Beispiel Lüftung oder Heizung)"
+          }
+        }
       ],
       "type": "input",
       "description": {
         "de": "Bei Lärm von ortsfesten Anlagen (Gewerbe, Lüftungs-, Heizungs-, Klimaanlagen) hilft der Umwelt- und Gesundheitsschutz während der Bürozeiten weiter.",
-        "en": "For noise from stationary installations (commercial, ventilation, heating, air-conditioning systems) the environmental and health protection unit helps during office hours."
+        "en": "For noise from stationary installations (commercial, ventilation, heating, air-conditioning systems) the environmental and health protection unit helps during office hours.",
+        "fr": "En cas de bruit d'installations fixes (commerces, installations de ventilation, de chauffage, de climatisation), la protection de l'environnement et de la santé aide pendant les heures de bureau.",
+        "it": "In caso di rumore di impianti fissi (attività, ventilazione, riscaldamento, climatizzazione) la protezione dell'ambiente e della salute aiuta durante gli orari d'ufficio.",
+        "ls": "Bei Lärm von Anlagen (zum Beispiel Lüftung oder Heizung) hilft der Umwelt- und Gesundheitsschutz. Aber nur während der Büro-Zeiten."
       },
-      "reference_ids": [2],
+      "reference_ids": [
+        2
+      ],
       "source_id": "q-stz-laerm"
     },
     {
@@ -188,9 +258,13 @@
       "label": {
         "de": "UGZ prüft und berät",
         "en": "UGZ reviews and advises",
-        "ls": "Der UGZ schaut die Sache an und berät"
+        "ls": "Der UGZ schaut die Sache an und berät",
+        "fr": "L'UGZ examine et conseille",
+        "it": "L'UGZ verifica e fornisce consulenza"
       },
-      "depends_on": [6],
+      "depends_on": [
+        6
+      ],
       "type": "prozess"
     },
     {
@@ -199,9 +273,13 @@
       "label": {
         "de": "Anliegen bei der zuständigen Fachstelle",
         "en": "Matter handled by the responsible unit",
-        "ls": "Fertig: Die Fachstelle kümmert sich"
+        "ls": "Fertig: Die Fachstelle kümmert sich",
+        "fr": "Demande prise en charge par le service compétent",
+        "it": "Richiesta presso il servizio competente"
       },
-      "depends_on": [7],
+      "depends_on": [
+        7
+      ],
       "type": "ende"
     }
   ],
@@ -229,31 +307,48 @@
   ],
   "reife": {
     "onlineReifegrad": "teil-digital",
-    "medienbrueche": ["persoenliches-erscheinen"],
+    "medienbrueche": [
+      "persoenliches-erscheinen"
+    ],
     "onceOnlyPotenzial": {
       "de": "Eine einzige Anlaufstelle, die Meldungen nach Lärmart automatisch an Polizei oder UGZ weiterleitet, würde Betroffenen die Zuständigkeitssuche abnehmen.",
-      "en": "A single point of contact that routes reports to the police or the UGZ by noise type would spare affected people from searching for the right office."
+      "en": "A single point of contact that routes reports to the police or the UGZ by noise type would spare affected people from searching for the right office.",
+      "fr": "Un point de contact unique qui transmet automatiquement les signalements à la police ou à l'UGZ selon le type de bruit éviterait aux personnes concernées de chercher le service compétent.",
+      "it": "Un unico punto di contatto che inoltra automaticamente le segnalazioni alla polizia o all'UGZ a seconda del tipo di rumore eviterebbe alle persone interessate di cercare il servizio competente.",
+      "ls": "Eine einzige Stelle könnte die Meldung selbst an die Polizei oder den UGZ weitergeben. Dann müssten Sie nicht selbst suchen."
     },
     "nutzergruppen": [
       {
         "de": "Anwohnende, die durch Nachtlärm gestört werden",
-        "en": "Residents disturbed by night-time noise"
+        "en": "Residents disturbed by night-time noise",
+        "fr": "Riverains dérangés par le bruit nocturne",
+        "it": "Residenti disturbati dal rumore notturno",
+        "ls": "Menschen, die in der Nacht durch Lärm gestört werden."
       },
       {
         "de": "Anwohnende mit Lärm von Lüftungs- oder Klimaanlagen",
-        "en": "Residents with noise from ventilation or air-conditioning systems"
+        "en": "Residents with noise from ventilation or air-conditioning systems",
+        "fr": "Riverains confrontés au bruit d'installations de ventilation ou de climatisation",
+        "it": "Residenti con rumore di impianti di ventilazione o climatizzazione",
+        "ls": "Menschen, die Lärm von einer Lüftung oder Klima-Anlage haben."
       }
     ],
     "painPoints": [
       {
         "de": "Die Zuständigkeit hängt von der Lärmart ab – Betroffene müssen die richtige Stelle selbst finden.",
-        "en": "Responsibility depends on the noise type – affected people must find the right office themselves."
+        "en": "Responsibility depends on the noise type – affected people must find the right office themselves.",
+        "fr": "La compétence dépend du type de bruit – les personnes concernées doivent trouver elles-mêmes le bon service.",
+        "it": "La competenza dipende dal tipo di rumore – le persone interessate devono trovare da sole il servizio giusto.",
+        "ls": "Wer zuständig ist, hängt vom Lärm ab. Sie müssen die richtige Stelle selbst finden."
       }
     ],
     "improvementIdeas": [
       {
         "de": "Gemeinsames Meldeformular mit automatischer Weiterleitung an Polizei oder UGZ.",
-        "en": "A shared report form with automatic routing to the police or the UGZ."
+        "en": "A shared report form with automatic routing to the police or the UGZ.",
+        "fr": "Un formulaire de signalement commun avec transmission automatique à la police ou à l'UGZ.",
+        "it": "Un modulo di segnalazione comune con inoltro automatico alla polizia o all'UGZ.",
+        "ls": "Ein gemeinsames Formular, das die Meldung automatisch weitergibt."
       }
     ],
     "status": "beobachtet",
@@ -261,7 +356,10 @@
       {
         "label": {
           "de": "Anlaufstelle nach Lärmart",
-          "en": "Point of contact by noise type"
+          "en": "Point of contact by noise type",
+          "fr": "Point de contact selon le type de bruit",
+          "it": "Punto di contatto in base al tipo di rumore",
+          "ls": "Wohin je nach Lärm-Art"
         },
         "wert": "Polizei (akut) oder UGZ (ortsfeste Anlagen)"
       }
