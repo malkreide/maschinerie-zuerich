@@ -1122,7 +1122,10 @@
           ],
           "antwort": "Sie ziehen in eine neue Wohnung? Sie brauchen Strom. Das ewz liefert den Strom. Sie melden den Strom beim ewz an."
         }
-      }
+      },
+      "prozesse": [
+        "zh/strom"
+      ]
     },
     {
       "id": "wasser",
