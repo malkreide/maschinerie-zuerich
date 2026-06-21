@@ -71,7 +71,8 @@
     "layerAmtshaeuser": "Amts-Häuser",
     "popupTitle": "Abteilung",
     "linkToChart": "Im Organigramm zeigen",
-    "verfahren": "Diese Ämter machen das"
+    "verfahren": "Diese Ämter machen das",
+    "noLayer": "Sie haben nichts ausgewählt. Bitte wählen Sie oben mindestens eine Gruppe."
   },
   "Nav": {
     "graph": "Bild",

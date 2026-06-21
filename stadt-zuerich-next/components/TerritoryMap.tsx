@@ -24,6 +24,16 @@ type VerfahrenRef = { city: string; id: string; slug: string; titel: I18nString 
 type Zustaendigkeit = Record<string, VerfahrenRef[]>;
 
 type LayerId = 'schools' | 'recycling' | 'playgrounds' | 'amtshaeuser';
+const LAYER_IDS: LayerId[] = ['schools', 'recycling', 'playgrounds', 'amtshaeuser'];
+
+/** Pro Layer gecachte Daten (verhindert erneutes Laden beim Ein-/Ausblenden). */
+type LayerData = {
+  features: GeoFeature[];
+  zustaendigkeit: Zustaendigkeit;
+  demo: boolean;
+  attribution?: string;
+  stand?: string;
+};
 
 /** Farbe + Emoji je Layer — für Marker, Cluster-Bubble und Legenden-Swatch.
  *  Farben sind so gewählt, dass weisse Cluster-Zahlen darauf WCAG-AA-konform
@@ -54,8 +64,9 @@ type PopupLabels = {
  * Clustering-Layer auf Basis des stabilen Vanilla-Plugins leaflet.markercluster.
  * Bewusst nicht über JSX-<Marker> gelöst: bei >1000 Schul-Punkten wäre das
  * unbrauchbar langsam, und react-leaflet-cluster ist nicht auf react-leaflet v5
- * abgestimmt. Popups werden als (escapter) HTML-String gebaut; Links sind
- * locale-präfixierte Anchors (Deep-Link auf Verfahren bzw. Organigramm).
+ * abgestimmt. Pro sichtbarem Layer wird eine eigene Cluster-Gruppe in der
+ * Layer-Farbe gerendert, sodass mehrere Layer gleichzeitig unterscheidbar sind.
+ * Popups sind (escapter) HTML-String mit locale-präfixierten Anchor-Deep-Links.
  */
 function ClusteredMarkers({
   features,
@@ -136,29 +147,49 @@ export default function TerritoryMap() {
   // Defensive: nur bekannte Locales als URL-Prefix zulassen.
   const locale = (routing.locales as readonly string[]).includes(rawLocale) ? rawLocale : routing.defaultLocale;
 
-  const [activeLayer, setActiveLayer] = useState<LayerId>('schools');
-  const [features, setFeatures] = useState<GeoFeature[]>([]);
-  const [zustaendigkeit, setZustaendigkeit] = useState<Zustaendigkeit>({});
-  // Provenance der aktuell geladenen Layer (steuert das Datenqualitäts-Badge).
-  const [meta, setMeta] = useState<{ demo: boolean; attribution?: string; stand?: string }>({ demo: true });
+  // Mehrfachauswahl: mehrere Layer gleichzeitig sichtbar (durch Farbcodierung
+  // unterscheidbar). Start mit den Schulanlagen.
+  const [activeLayers, setActiveLayers] = useState<Set<LayerId>>(() => new Set<LayerId>(['schools']));
+  const [layerData, setLayerData] = useState<Partial<Record<LayerId, LayerData>>>({});
 
+  // Aktive Layer laden (gecacht — bereits geladene werden nicht erneut geholt).
   useEffect(() => {
     let cancelled = false;
-    fetch(`/api/geo?layer=${activeLayer}`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (cancelled) return;
-        if (data && data.features) setFeatures(data.features);
-        if (data && data._meta) {
+    for (const layer of activeLayers) {
+      if (layerData[layer]) continue;
+      fetch(`/api/geo?layer=${layer}`)
+        .then((res) => res.json())
+        .then((data) => {
+          if (cancelled || !data?._meta) return;
           const stand = data._meta.sources?.find?.((s: { stand?: string }) => s.stand)?.stand;
-          setMeta({ demo: Boolean(data._meta.demo), attribution: data._meta.attribution, stand });
-          setZustaendigkeit((data._meta.zustaendigkeit as Zustaendigkeit) ?? {});
-        }
-      });
+          setLayerData((prev) => ({
+            ...prev,
+            [layer]: {
+              features: (data.features as GeoFeature[]) ?? [],
+              zustaendigkeit: (data._meta.zustaendigkeit as Zustaendigkeit) ?? {},
+              demo: Boolean(data._meta.demo),
+              attribution: data._meta.attribution,
+              stand,
+            },
+          }));
+        })
+        .catch(() => {
+          /* Netzwerkfehler ignorieren — Layer bleibt einfach leer. */
+        });
+    }
     return () => {
       cancelled = true;
     };
-  }, [activeLayer]);
+  }, [activeLayers, layerData]);
+
+  const toggleLayer = (layer: LayerId) => {
+    setActiveLayers((prev) => {
+      const next = new Set(prev);
+      if (next.has(layer)) next.delete(layer);
+      else next.add(layer);
+      return next;
+    });
+  };
 
   // Stabil halten, damit der Clustering-Effekt nicht bei jedem Render neu baut.
   const labels: PopupLabels = useMemo(
@@ -171,12 +202,12 @@ export default function TerritoryMap() {
     [t, locale],
   );
 
-  const layerOptions: Array<{ id: LayerId; label: string }> = [
-    { id: 'schools', label: t('layerSchools') },
-    { id: 'recycling', label: t('layerRecycling') },
-    { id: 'playgrounds', label: t('layerPlaygrounds') },
-    { id: 'amtshaeuser', label: t('layerAmtshaeuser') },
-  ];
+  // Datenqualitäts-Badge über alle SICHTBAREN Layer aggregieren.
+  const shownData = LAYER_IDS.filter((l) => activeLayers.has(l))
+    .map((l) => layerData[l])
+    .filter((d): d is LayerData => Boolean(d));
+  const anyDemo = shownData.some((d) => d.demo);
+  const publishedSample = shownData.find((d) => !d.demo);
 
   return (
     <div className="relative w-full h-[calc(100vh-3.5rem)] mt-14">
@@ -185,42 +216,52 @@ export default function TerritoryMap() {
         <h2 className="text-sm font-semibold mb-2">{t('title')}</h2>
         <p className="text-xs text-[var(--color-mute)] mb-2">{t('intro')}</p>
         <div className="mb-4">
-          {meta.demo ? (
+          {shownData.length === 0 ? (
+            <DataQualityBadge status="demo" hinweis={t('noLayer')} />
+          ) : anyDemo ? (
             <DataQualityBadge
               status="demo"
-              hinweis="Zufällig generierte Standorte – keine echten Verwaltungsdaten. Mit `npm run data:fetch-geo` durch ODZ-Geodaten ersetzen."
+              hinweis="Mindestens ein sichtbarer Layer zeigt zufällig generierte Standorte – keine echten Verwaltungsdaten. Mit `npm run data:fetch-geo` durch ODZ-Geodaten ersetzen."
             />
           ) : (
             <DataQualityBadge
               status="publiziert"
-              quelle={meta.attribution ?? 'Open Data Zürich'}
-              stand={meta.stand}
+              quelle={publishedSample?.attribution ?? 'Open Data Zürich'}
+              stand={publishedSample?.stand}
               hinweis="Echte Standortdaten aus Open Data Zürich."
             />
           )}
         </div>
 
-        <div className="space-y-2">
-          {layerOptions.map((opt) => (
-            <label key={opt.id} className="flex items-center gap-2 text-sm cursor-pointer">
+        <fieldset className="space-y-2">
+          <legend className="sr-only">{t('title')}</legend>
+          {LAYER_IDS.map((id) => (
+            <label key={id} className="flex items-center gap-2 text-sm cursor-pointer">
               <input
-                type="radio"
-                name="layer"
-                checked={activeLayer === opt.id}
-                onChange={() => setActiveLayer(opt.id)}
+                type="checkbox"
+                checked={activeLayers.has(id)}
+                onChange={() => toggleLayer(id)}
                 className="accent-[var(--color-accent)]"
               />
               <span
                 aria-hidden="true"
                 className="inline-flex items-center justify-center w-5 h-5 rounded-full text-[11px] shrink-0"
-                style={{ backgroundColor: LAYER_STYLE[opt.id].color }}
+                style={{ backgroundColor: LAYER_STYLE[id].color }}
               >
-                {LAYER_STYLE[opt.id].emoji}
+                {LAYER_STYLE[id].emoji}
               </span>
-              {opt.label}
+              {t(
+                id === 'schools'
+                  ? 'layerSchools'
+                  : id === 'recycling'
+                    ? 'layerRecycling'
+                    : id === 'playgrounds'
+                      ? 'layerPlaygrounds'
+                      : 'layerAmtshaeuser',
+              )}
             </label>
           ))}
-        </div>
+        </fieldset>
       </div>
 
       <MapContainer
@@ -233,12 +274,19 @@ export default function TerritoryMap() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
         />
-        <ClusteredMarkers
-          features={features}
-          zustaendigkeit={zustaendigkeit}
-          labels={labels}
-          style={LAYER_STYLE[activeLayer]}
-        />
+        {LAYER_IDS.filter((l) => activeLayers.has(l)).map((l) => {
+          const d = layerData[l];
+          if (!d) return null;
+          return (
+            <ClusteredMarkers
+              key={l}
+              features={d.features}
+              zustaendigkeit={d.zustaendigkeit}
+              labels={labels}
+              style={LAYER_STYLE[l]}
+            />
+          );
+        })}
       </MapContainer>
     </div>
   );

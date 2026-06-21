@@ -71,7 +71,8 @@
     "layerAmtshaeuser": "Bâtiments administratifs",
     "popupTitle": "Département",
     "linkToChart": "Voir dans l'organigramme",
-    "verfahren": "Procédures compétentes"
+    "verfahren": "Procédures compétentes",
+    "noLayer": "Aucune couche sélectionnée – choisissez au moins une catégorie ci-dessus."
   },
   "Nav": {
     "graph": "Mécanique",
