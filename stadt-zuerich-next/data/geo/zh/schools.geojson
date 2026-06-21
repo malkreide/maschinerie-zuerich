@@ -5,6 +5,7 @@
     "layer": "schools",
     "quelle": "Schulanlagen der Stadt Zürich",
     "datasetUrl": "https://data.stadt-zuerich.ch/dataset/geo_schulanlagen",
+    "departmentOverride": null,
     "lizenz": "CC-BY",
     "attribution": "Open Data Zürich, Stadt Zürich",
     "stand": "2026-06-21"

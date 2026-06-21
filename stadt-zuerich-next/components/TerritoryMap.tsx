@@ -25,6 +25,16 @@ type Zustaendigkeit = Record<string, VerfahrenRef[]>;
 
 type LayerId = 'schools' | 'recycling' | 'playgrounds' | 'amtshaeuser';
 
+/** Farbe + Emoji je Layer — für Marker, Cluster-Bubble und Legenden-Swatch.
+ *  Farben sind so gewählt, dass weisse Cluster-Zahlen darauf WCAG-AA-konform
+ *  lesbar sind (Kontrast >= 4.5:1 gegen Weiss). */
+const LAYER_STYLE: Record<LayerId, { color: string; emoji: string }> = {
+  schools: { color: '#1d4ed8', emoji: '🏫' }, // Blau
+  recycling: { color: '#15803d', emoji: '♻️' }, // Grün
+  playgrounds: { color: '#b45309', emoji: '🛝' }, // Amber
+  amtshaeuser: { color: '#6d28d9', emoji: '🏛️' }, // Violett
+};
+
 /** HTML-escapen — Popup-Inhalt wird als String gebaut (markercluster bindPopup). */
 function esc(s: string): string {
   return String(s).replace(/[&<>"']/g, (c) =>
@@ -51,18 +61,36 @@ function ClusteredMarkers({
   features,
   zustaendigkeit,
   labels,
+  style,
 }: {
   features: GeoFeature[];
   zustaendigkeit: Zustaendigkeit;
   labels: PopupLabels;
+  style: { color: string; emoji: string };
 }) {
   const map = useMap();
 
   useEffect(() => {
+    // Farbiges Marker-Icon (Pin) je Layer.
+    const icon = L.divIcon({
+      className: 'tm-marker',
+      html: `<span class="tm-pin" style="--tm-color:${style.color}"><span class="tm-pin-emoji" aria-hidden="true">${style.emoji}</span></span>`,
+      iconSize: [28, 36],
+      iconAnchor: [14, 36],
+      popupAnchor: [0, -34],
+    });
+
     const cluster = L.markerClusterGroup({
       chunkedLoading: true,
       maxClusterRadius: 60,
       showCoverageOnHover: false,
+      // Cluster-Bubble in der Layer-Farbe statt Leaflet-Default.
+      iconCreateFunction: (c) =>
+        L.divIcon({
+          className: 'tm-cluster-wrap',
+          html: `<div class="tm-cluster" style="--tm-color:${style.color}">${c.getChildCount()}</div>`,
+          iconSize: [38, 38],
+        }),
     });
 
     for (const feature of features) {
@@ -90,14 +118,14 @@ function ClusteredMarkers({
           <a class="tm-pop-link" href="${chartHref}">${esc(labels.linkToChart)}</a>
         </div>`;
 
-      L.marker([lat, lng]).bindPopup(html).addTo(cluster);
+      L.marker([lat, lng], { icon }).bindPopup(html).addTo(cluster);
     }
 
     map.addLayer(cluster);
     return () => {
       map.removeLayer(cluster);
     };
-  }, [map, features, zustaendigkeit, labels]);
+  }, [map, features, zustaendigkeit, labels, style]);
 
   return null;
 }
@@ -143,11 +171,11 @@ export default function TerritoryMap() {
     [t, locale],
   );
 
-  const layerOptions: Array<{ id: LayerId; icon: string; label: string }> = [
-    { id: 'schools', icon: '🏫', label: t('layerSchools') },
-    { id: 'recycling', icon: '♻️', label: t('layerRecycling') },
-    { id: 'playgrounds', icon: '🛝', label: t('layerPlaygrounds') },
-    { id: 'amtshaeuser', icon: '🏛️', label: t('layerAmtshaeuser') },
+  const layerOptions: Array<{ id: LayerId; label: string }> = [
+    { id: 'schools', label: t('layerSchools') },
+    { id: 'recycling', label: t('layerRecycling') },
+    { id: 'playgrounds', label: t('layerPlaygrounds') },
+    { id: 'amtshaeuser', label: t('layerAmtshaeuser') },
   ];
 
   return (
@@ -182,7 +210,14 @@ export default function TerritoryMap() {
                 onChange={() => setActiveLayer(opt.id)}
                 className="accent-[var(--color-accent)]"
               />
-              <span aria-hidden="true">{opt.icon}</span> {opt.label}
+              <span
+                aria-hidden="true"
+                className="inline-flex items-center justify-center w-5 h-5 rounded-full text-[11px] shrink-0"
+                style={{ backgroundColor: LAYER_STYLE[opt.id].color }}
+              >
+                {LAYER_STYLE[opt.id].emoji}
+              </span>
+              {opt.label}
             </label>
           ))}
         </div>
@@ -198,7 +233,12 @@ export default function TerritoryMap() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
         />
-        <ClusteredMarkers features={features} zustaendigkeit={zustaendigkeit} labels={labels} />
+        <ClusteredMarkers
+          features={features}
+          zustaendigkeit={zustaendigkeit}
+          labels={labels}
+          style={LAYER_STYLE[activeLayer]}
+        />
       </MapContainer>
     </div>
   );

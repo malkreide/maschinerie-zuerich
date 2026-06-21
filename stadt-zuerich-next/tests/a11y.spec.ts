@@ -72,6 +72,33 @@ for (const route of ROUTES) {
   });
 }
 
+// Territory-Karte (Leaflet): eigener Test, weil die Karte client-only via
+// next/dynamic(ssr:false) lädt — wir warten daher explizit auf das Control-
+// Panel und den Leaflet-Container, bevor axe läuft. Leaflet-eigene Chrome
+// (Zoom-/Attribution-Controls) ist Drittanbieter-Markup und wird ausgeschlossen,
+// analog zum React-Flow-Wasserzeichen.
+test('a11y: /de/territory (Karten-Layer)', async ({ page }) => {
+  await page.goto('/de/territory');
+  await page.locator('input[name="layer"]').first().waitFor({ state: 'attached', timeout: 15_000 });
+  await page.locator('.leaflet-container').first().waitFor({ state: 'attached', timeout: 15_000 });
+
+  const results = await new AxeBuilder({ page })
+    .withTags(WCAG_TAGS)
+    .exclude('.react-flow__attribution')
+    .exclude('.leaflet-control-container')
+    .analyze();
+
+  const blocking = results.violations.filter(isBlocking);
+  const advisory = results.violations.filter((v) => !isBlocking(v));
+  if (advisory.length) {
+    console.log(`ℹ︎ /de/territory: ${advisory.length} nicht-blockierende Hinweise (moderate/minor): ` +
+      advisory.map((v) => v.id).join(', '));
+  }
+  if (blocking.length) console.log(summarize('/de/territory', blocking));
+
+  expect(blocking, `${blocking.length} serious/critical a11y-Verstösse auf /de/territory`).toEqual([]);
+});
+
 // Mobile-Viewport: deckt den MobileExplorer auf der Hauptseite ab (auf Desktop
 // ist er per sm:hidden ausgeblendet und würde von axe nicht gesehen).
 test.describe('mobile viewport', () => {
