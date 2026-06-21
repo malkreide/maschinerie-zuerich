@@ -70,7 +70,8 @@
     "layerPlaygrounds": "Spielplätze",
     "layerAmtshaeuser": "Amtshäuser / Anlaufstellen",
     "popupTitle": "Departement",
-    "linkToChart": "Im Organigramm zeigen"
+    "linkToChart": "Im Organigramm zeigen",
+    "verfahren": "Zuständige Verfahren"
   },
   "Nav": {
     "graph": "Maschinerie",

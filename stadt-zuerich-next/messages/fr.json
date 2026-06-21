@@ -70,7 +70,8 @@
     "layerPlaygrounds": "Aires de jeux",
     "layerAmtshaeuser": "Bâtiments administratifs",
     "popupTitle": "Département",
-    "linkToChart": "Voir dans l'organigramme"
+    "linkToChart": "Voir dans l'organigramme",
+    "verfahren": "Procédures compétentes"
   },
   "Nav": {
     "graph": "Mécanique",

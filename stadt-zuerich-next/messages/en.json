@@ -70,7 +70,8 @@
     "layerPlaygrounds": "Playgrounds",
     "layerAmtshaeuser": "Administrative buildings",
     "popupTitle": "Department",
-    "linkToChart": "Show in org chart"
+    "linkToChart": "Show in org chart",
+    "verfahren": "Responsible procedures"
   },
   "Nav": {
     "graph": "Machinery",

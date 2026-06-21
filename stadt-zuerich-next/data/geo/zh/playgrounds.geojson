@@ -7,7 +7,7 @@
     "datasetUrl": "https://data.stadt-zuerich.ch/dataset/geo_poi_oeffentliche_spielplaetze",
     "lizenz": "CC-BY",
     "attribution": "Open Data Zürich, Stadt Zürich",
-    "stand": "2026-06-09"
+    "stand": "2026-06-21"
   },
   "features": [
     {
@@ -1140,27 +1140,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          8.527298,
-          47.392096
-        ]
-      },
-      "properties": {
-        "id": "playgrounds-75",
-        "name": "Landenberganlage",
-        "department": "TED"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           8.522712,
           47.368439
         ]
       },
       "properties": {
-        "id": "playgrounds-76",
+        "id": "playgrounds-75",
         "name": "Aegerten",
         "department": "TED"
       }
@@ -1175,7 +1160,7 @@
         ]
       },
       "properties": {
-        "id": "playgrounds-77",
+        "id": "playgrounds-76",
         "name": "Irringersteig",
         "department": "TED"
       }
@@ -1190,7 +1175,7 @@
         ]
       },
       "properties": {
-        "id": "playgrounds-78",
+        "id": "playgrounds-77",
         "name": "Murmeliwiese",
         "department": "TED"
       }
@@ -1205,7 +1190,7 @@
         ]
       },
       "properties": {
-        "id": "playgrounds-79",
+        "id": "playgrounds-78",
         "name": "Looächeranlage",
         "department": "TED"
       }
@@ -1220,7 +1205,7 @@
         ]
       },
       "properties": {
-        "id": "playgrounds-80",
+        "id": "playgrounds-79",
         "name": "Althoos",
         "department": "TED"
       }
@@ -1235,7 +1220,7 @@
         ]
       },
       "properties": {
-        "id": "playgrounds-81",
+        "id": "playgrounds-80",
         "name": "Eichrain Tennisplatz",
         "department": "TED"
       }
@@ -1250,7 +1235,7 @@
         ]
       },
       "properties": {
-        "id": "playgrounds-82",
+        "id": "playgrounds-81",
         "name": "Möhrlianlage",
         "department": "TED"
       }
@@ -1265,7 +1250,7 @@
         ]
       },
       "properties": {
-        "id": "playgrounds-83",
+        "id": "playgrounds-82",
         "name": "Freizeitanlage Seebach",
         "department": "TED"
       }
@@ -1280,7 +1265,7 @@
         ]
       },
       "properties": {
-        "id": "playgrounds-84",
+        "id": "playgrounds-83",
         "name": "Manessestrasse / WeststrasseManessestrasse / Weststrasse",
         "department": "TED"
       }
@@ -1295,7 +1280,7 @@
         ]
       },
       "properties": {
-        "id": "playgrounds-85",
+        "id": "playgrounds-84",
         "name": "Saumackerstrasse",
         "department": "TED"
       }
@@ -1310,7 +1295,7 @@
         ]
       },
       "properties": {
-        "id": "playgrounds-86",
+        "id": "playgrounds-85",
         "name": "Klingenpark",
         "department": "TED"
       }
@@ -1325,7 +1310,7 @@
         ]
       },
       "properties": {
-        "id": "playgrounds-87",
+        "id": "playgrounds-86",
         "name": "Birchwald",
         "department": "TED"
       }
@@ -1340,8 +1325,23 @@
         ]
       },
       "properties": {
-        "id": "playgrounds-88",
+        "id": "playgrounds-87",
         "name": "Frauental TennisanlagFrauental Tennisanlag",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.499095,
+          47.379352
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-88",
+        "name": "Letzigraben (Freibad)",
         "department": "TED"
       }
     },
@@ -2025,27 +2025,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          8.499095,
-          47.379352
-        ]
-      },
-      "properties": {
-        "id": "playgrounds-134",
-        "name": "Letzigraben (Freibad)",
-        "department": "TED"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           8.509363,
           47.38299
         ]
       },
       "properties": {
-        "id": "playgrounds-135",
+        "id": "playgrounds-134",
         "name": "Hardau",
         "department": "TED"
       }
@@ -2060,8 +2045,23 @@
         ]
       },
       "properties": {
-        "id": "playgrounds-136",
+        "id": "playgrounds-135",
         "name": "GZ Wollishofen",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.527298,
+          47.392096
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-136",
+        "name": "Landenberganlage",
         "department": "TED"
       }
     },

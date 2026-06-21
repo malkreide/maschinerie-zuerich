@@ -1,0 +1,284 @@
+{
+  "type": "FeatureCollection",
+  "_meta": {
+    "demo": false,
+    "layer": "amtshaeuser",
+    "quelle": "Standorte der Amtshäuser in der Stadt Zürich",
+    "datasetUrl": "https://data.stadt-zuerich.ch/dataset/geo_amtshaus",
+    "lizenz": "CC-BY",
+    "attribution": "Open Data Zürich, Stadt Zürich",
+    "stand": "2026-06-21"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.54174,
+          47.375545
+        ]
+      },
+      "properties": {
+        "id": "amtshaeuser-0",
+        "name": "Amtshaus II (Bahnhofquai)",
+        "department": "BUG"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.540111,
+          47.374283
+        ]
+      },
+      "properties": {
+        "id": "amtshaeuser-1",
+        "name": "Amtshaus IV (Uraniastrasse)",
+        "department": "BUG"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.539851,
+          47.375167
+        ]
+      },
+      "properties": {
+        "id": "amtshaeuser-2",
+        "name": "Amtshaus V",
+        "department": "BUG"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.540242,
+          47.374192
+        ]
+      },
+      "properties": {
+        "id": "amtshaeuser-3",
+        "name": "Amtshaus IV (Lindenhofstrasse)",
+        "department": "BUG"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.531533,
+          47.367285
+        ]
+      },
+      "properties": {
+        "id": "amtshaeuser-4",
+        "name": "Amtshaus Parkring",
+        "department": "BUG"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.541176,
+          47.375811
+        ]
+      },
+      "properties": {
+        "id": "amtshaeuser-5",
+        "name": "Amtshaus II (Beatenplatz)",
+        "department": "BUG"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.527006,
+          47.371907
+        ]
+      },
+      "properties": {
+        "id": "amtshaeuser-6",
+        "name": "Verwaltungszentrum Werd",
+        "department": "BUG"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.540907,
+          47.382038
+        ]
+      },
+      "properties": {
+        "id": "amtshaeuser-7",
+        "name": "Bürohaus Walche (GWA)",
+        "department": "BUG"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.503638,
+          47.386606
+        ]
+      },
+      "properties": {
+        "id": "amtshaeuser-8",
+        "name": "Smart City Lab",
+        "department": "BUG"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.541637,
+          47.369312
+        ]
+      },
+      "properties": {
+        "id": "amtshaeuser-9",
+        "name": "Stadthaus",
+        "department": "BUG"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.540792,
+          47.375824
+        ]
+      },
+      "properties": {
+        "id": "amtshaeuser-10",
+        "name": "Haus der Industriellen Betriebe",
+        "department": "BUG"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.528776,
+          47.37234
+        ]
+      },
+      "properties": {
+        "id": "amtshaeuser-11",
+        "name": "Amtshaus Werdplatz",
+        "department": "BUG"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.541599,
+          47.37515
+        ]
+      },
+      "properties": {
+        "id": "amtshaeuser-12",
+        "name": "Amtshaus I",
+        "department": "BUG"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.540294,
+          47.374785
+        ]
+      },
+      "properties": {
+        "id": "amtshaeuser-13",
+        "name": "Amtshaus III",
+        "department": "BUG"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.52723,
+          47.376393
+        ]
+      },
+      "properties": {
+        "id": "amtshaeuser-14",
+        "name": "Amtshaus Helvetiaplatz",
+        "department": "BUG"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.545726,
+          47.372394
+        ]
+      },
+      "properties": {
+        "id": "amtshaeuser-15",
+        "name": "Haus zum Rech",
+        "department": "BUG"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.540792,
+          47.375824
+        ]
+      },
+      "properties": {
+        "id": "amtshaeuser-16",
+        "name": "Haus der Industriellen Betriebe",
+        "department": "BUG"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.542501,
+          47.41615
+        ]
+      },
+      "properties": {
+        "id": "amtshaeuser-17",
+        "name": "Verwaltungszentrum Eggbühl",
+        "department": "BUG"
+      }
+    }
+  ]
+}
