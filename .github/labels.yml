@@ -4,10 +4,19 @@
 # (nur anlegen/aktualisieren, nie löschen). So bleiben Labels reproduzierbar
 # und nachvollziehbar statt manuell gepflegt.
 #
-# Drei Gruppen:
+# Gruppen:
 #   prio:*       — Priorität gemäss Strategieanalyse (P0 = Blocker/Integrität)
 #   strategie:*  — Strategie-Bereich, auf den ein Issue einzahlt
+#   status:*     — Spalte auf der öffentlichen Roadmap (/roadmap)
+#   feedback:*   — Kategorie eines Bürger:innen-Feedbacks (Chip auf der Roadmap)
+#   lang:*       — Sprache eines Feedbacks/Issues (Chip auf der Roadmap)
+#   roadmap      — kuratierte Aufnahme ins öffentliche Roadmap-Board
 #   (funktional) — bestehende Arbeits-Labels der Issue-Templates
+#
+# Die status:*/feedback:*/lang:*/roadmap-Labels werden von der öffentlichen
+# Roadmap-Seite gelesen (siehe stadt-zuerich-next/lib/roadmap.ts): nur Issues
+# mit feedback*/strategie:*/roadmap-Label erscheinen, status:* bestimmt die
+# Spalte, feedback:*/lang:* die Chips. Datensparsam — keine Personendaten.
 
 # ─── Priorität (Strategieanalyse) ───────────────────────────────────────────
 - name: "prio:P0"
@@ -77,3 +86,59 @@
 - name: "good first issue"
   color: "7057ff"
   description: "Guter Einstieg für neue Mitwirkende"
+
+# ─── Roadmap-Status (Spalten auf /roadmap) ──────────────────────────────────
+- name: "status:eingegangen"
+  color: "c5def5"
+  description: "Roadmap: eingegangen – noch nicht geprüft"
+- name: "status:geprueft"
+  color: "bfd4f2"
+  description: "Roadmap: geprüft – wird eingeplant"
+- name: "status:in-umsetzung"
+  color: "fbca04"
+  description: "Roadmap: in Umsetzung"
+- name: "status:umgesetzt"
+  color: "0e8a16"
+  description: "Roadmap: umgesetzt – erledigt"
+
+# ─── Roadmap-Kuratierung ────────────────────────────────────────────────────
+- name: "roadmap"
+  color: "0052cc"
+  description: "Erscheint auf der öffentlichen Roadmap (/roadmap)"
+
+# ─── Feedback-Kategorien (Chips auf /roadmap, siehe lib/feedback.ts) ─────────
+- name: "feedback:zustaendigkeit"
+  color: "d4c5f9"
+  description: "Bürger:innen-Feedback: Zuständigkeit falsch"
+- name: "feedback:unklar"
+  color: "d4c5f9"
+  description: "Bürger:innen-Feedback: Information unklar"
+- name: "feedback:umstaendlich"
+  color: "d4c5f9"
+  description: "Bürger:innen-Feedback: Prozess umständlich"
+- name: "feedback:veraltet"
+  color: "d4c5f9"
+  description: "Bürger:innen-Feedback: Daten wirken veraltet"
+- name: "feedback:barriere"
+  color: "d4c5f9"
+  description: "Bürger:innen-Feedback: Barriere"
+- name: "feedback:vorschlag"
+  color: "d4c5f9"
+  description: "Bürger:innen-Feedback: Verbesserungsvorschlag"
+
+# ─── Sprache (Chip auf /roadmap) ────────────────────────────────────────────
+- name: "lang:de"
+  color: "c2e0c6"
+  description: "Feedback/Issue auf Deutsch"
+- name: "lang:en"
+  color: "c2e0c6"
+  description: "Feedback/Issue auf Englisch"
+- name: "lang:fr"
+  color: "c2e0c6"
+  description: "Feedback/Issue auf Französisch"
+- name: "lang:it"
+  color: "c2e0c6"
+  description: "Feedback/Issue auf Italienisch"
+- name: "lang:ls"
+  color: "c2e0c6"
+  description: "Feedback/Issue in Leichter Sprache"
