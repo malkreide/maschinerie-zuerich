@@ -18,7 +18,7 @@ type GeoFeature = {
 export default function TerritoryMap() {
   const t = useTranslations('Territory');
   const router = useRouter();
-  const [activeLayer, setActiveLayer] = useState<'schools' | 'recycling' | 'playgrounds'>('schools');
+  const [activeLayer, setActiveLayer] = useState<'schools' | 'recycling' | 'playgrounds' | 'amtshaeuser'>('schools');
   const [features, setFeatures] = useState<GeoFeature[]>([]);
   // Provenance der aktuell geladenen Layer (steuert das Datenqualitäts-Badge).
   const [meta, setMeta] = useState<{ demo: boolean; attribution?: string; stand?: string }>({ demo: true });
@@ -91,6 +91,16 @@ export default function TerritoryMap() {
               className="accent-[var(--color-accent)]"
             />
             🛝 {t('layerPlaygrounds')}
+          </label>
+          <label className="flex items-center gap-2 text-sm cursor-pointer">
+            <input
+              type="radio"
+              name="layer"
+              checked={activeLayer === 'amtshaeuser'}
+              onChange={() => setActiveLayer('amtshaeuser')}
+              className="accent-[var(--color-accent)]"
+            />
+            🏛️ {t('layerAmtshaeuser')}
           </label>
         </div>
       </div>
