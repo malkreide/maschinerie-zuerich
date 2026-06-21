@@ -62,6 +62,16 @@
     "colEntscheidungen": "Decisioni",
     "colMedienbrueche": "Rotture"
   },
+  "Territory": {
+    "title": "Sedi",
+    "intro": "Sedi cittadine sulla mappa. Scegli una categoria.",
+    "layerSchools": "Strutture scolastiche",
+    "layerRecycling": "Smaltimento rifiuti",
+    "layerPlaygrounds": "Parchi giochi",
+    "layerAmtshaeuser": "Edifici amministrativi",
+    "popupTitle": "Dipartimento",
+    "linkToChart": "Mostra nell'organigramma"
+  },
   "Nav": {
     "graph": "Macchina",
     "tax": "Franco fiscale",

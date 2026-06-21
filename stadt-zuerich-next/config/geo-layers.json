@@ -56,6 +56,18 @@
         "datasetUrl": "https://data.stadt-zuerich.ch/dataset/geo_poi_oeffentliche_spielplaetze",
         "nameField": "name"
       }
+    },
+    {
+      "id": "amtshaeuser",
+      "label": "Amtshäuser / Anlaufstellen",
+      "department": "BUG",
+      "namePrefix": "Amtshaus",
+      "demoCount": 12,
+      "source": {
+        "title": "Standorte der Amtshäuser in der Stadt Zürich",
+        "datasetUrl": "https://data.stadt-zuerich.ch/dataset/geo_amtshaus",
+        "nameField": "name"
+      }
     }
   ]
 }

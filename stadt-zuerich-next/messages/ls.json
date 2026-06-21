@@ -62,6 +62,16 @@
     "colEntscheidungen": "Entscheide",
     "colMedienbrueche": "Brüche"
   },
+  "Territory": {
+    "title": "Standorte",
+    "intro": "Orte der Stadt auf der Karte. Wählen Sie eine Gruppe.",
+    "layerSchools": "Schulen",
+    "layerRecycling": "Entsorgung",
+    "layerPlaygrounds": "Spielplätze",
+    "layerAmtshaeuser": "Amts-Häuser",
+    "popupTitle": "Abteilung",
+    "linkToChart": "Im Organigramm zeigen"
+  },
   "Nav": {
     "graph": "Bild",
     "tax": "Geld",

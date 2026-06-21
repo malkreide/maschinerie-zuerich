@@ -62,6 +62,16 @@
     "colEntscheidungen": "Entscheide",
     "colMedienbrueche": "Brüche"
   },
+  "Territory": {
+    "title": "Standorte",
+    "intro": "Städtische Standorte auf der Karte. Wählen Sie eine Kategorie.",
+    "layerSchools": "Schulanlagen",
+    "layerRecycling": "Entsorgung",
+    "layerPlaygrounds": "Spielplätze",
+    "layerAmtshaeuser": "Amtshäuser / Anlaufstellen",
+    "popupTitle": "Departement",
+    "linkToChart": "Im Organigramm zeigen"
+  },
   "Nav": {
     "graph": "Maschinerie",
     "tax": "Steuerfranken",

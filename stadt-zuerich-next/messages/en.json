@@ -62,6 +62,16 @@
     "colEntscheidungen": "Decisions",
     "colMedienbrueche": "Breaks"
   },
+  "Territory": {
+    "title": "Locations",
+    "intro": "City locations on the map. Pick a category.",
+    "layerSchools": "School facilities",
+    "layerRecycling": "Waste disposal",
+    "layerPlaygrounds": "Playgrounds",
+    "layerAmtshaeuser": "Administrative buildings",
+    "popupTitle": "Department",
+    "linkToChart": "Show in org chart"
+  },
   "Nav": {
     "graph": "Machinery",
     "tax": "Tax franc",

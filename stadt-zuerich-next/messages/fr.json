@@ -62,6 +62,16 @@
     "colEntscheidungen": "Décisions",
     "colMedienbrueche": "Ruptures"
   },
+  "Territory": {
+    "title": "Emplacements",
+    "intro": "Emplacements municipaux sur la carte. Choisissez une catégorie.",
+    "layerSchools": "Établissements scolaires",
+    "layerRecycling": "Déchets",
+    "layerPlaygrounds": "Aires de jeux",
+    "layerAmtshaeuser": "Bâtiments administratifs",
+    "popupTitle": "Département",
+    "linkToChart": "Voir dans l'organigramme"
+  },
   "Nav": {
     "graph": "Mécanique",
     "tax": "Franc d'impôt",
