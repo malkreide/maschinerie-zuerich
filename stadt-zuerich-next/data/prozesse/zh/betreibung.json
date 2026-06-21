@@ -1,0 +1,243 @@
+{
+  "$schema": "../../../schemas/opengov-process-schema.json",
+  "schema_version": "0.1.0",
+  "id": "betreibung",
+  "lebenslage_ref": "betreibung",
+  "city": "zh",
+  "title": {
+    "de": "Betreibungsregisterauszug bestellen",
+    "en": "Order an extract from the debt enforcement register",
+    "fr": "Commander un extrait du registre des poursuites",
+    "it": "Ordinare un estratto del registro esecuzioni",
+    "ls": "Einen Betreibungs-Auszug bestellen"
+  },
+  "description": {
+    "de": "Wer belegen will, ob eine Person oder Firma an einer Adresse betrieben wurde, bestellt beim zuständigen Stadtammann- und Betreibungsamt einen Auszug aus dem Betreibungsregister – online, per Briefpost oder am Schalter. Beizulegen ist eine Kopie eines amtlichen Ausweises.",
+    "en": "To document whether a person or company at an address has faced debt enforcement, you order an extract from the debt enforcement register at the responsible municipal enforcement office – online, by mail or at the counter. A copy of an official ID must be enclosed.",
+    "ls": "Sie möchten wissen, ob jemand Schulden hat (betrieben wurde)? Dann bestellen Sie einen Betreibungs-Auszug beim Betreibungs-Amt. Sie brauchen eine Kopie von einem Ausweis."
+  },
+  "target_audience": "bevoelkerung",
+  "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/betreibungen/betreibungsregisterauszug-bestellen.html",
+  "retrieved_at": "2026-06-21",
+  "disclaimer_key": "Prozesse.disclaimer",
+  "references": [
+    {
+      "reference_id": 1,
+      "label": {
+        "de": "Inhalt und Zeitraum des Auszugs",
+        "en": "Content and period covered by the extract"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/betreibungen/betreibungsregisterauszug-bestellen.html",
+      "source_quote": "Im Auszug aus dem Betreibungsregister ist ersichtlich, ob eine bestimmte Person oder Firma an der erwähnten Adresse in den letzten fünf Jahren betrieben wurde.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-21"
+    },
+    {
+      "reference_id": 2,
+      "label": {
+        "de": "Beizulegender amtlicher Ausweis",
+        "en": "Official ID to enclose"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/betreibungen/betreibungsregisterauszug-bestellen.html",
+      "source_quote": "Halten Sie eine elektronische Kopie bzw. ein Foto oder einen Scan (JPG, PNG, PDF) eines amtlichen Ausweises (Ihrer Identitätskarte, Ihres Passes, Ausländerausweises o. ä.) bereit.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-21"
+    },
+    {
+      "reference_id": 3,
+      "label": {
+        "de": "Gebühr und Versand",
+        "en": "Fee and postage"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/betreibungen/betreibungsregisterauszug-bestellen.html",
+      "source_quote": "Ein Standard-Auszug kostet 17 Franken plus Porto (A-Post).",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-21"
+    }
+  ],
+  "actors": [
+    {
+      "id": "bestellende",
+      "label": {
+        "de": "Bestellende Person oder Firma",
+        "en": "Ordering person or company",
+        "ls": "Sie (Sie bestellen den Auszug)"
+      },
+      "type": "antragsteller"
+    },
+    {
+      "id": "betreibungsamt",
+      "label": {
+        "de": "Stadtammann- und Betreibungsamt (zuständiger Stadtkreis)",
+        "en": "Municipal enforcement office (responsible city district)",
+        "ls": "Das Betreibungs-Amt von Ihrem Stadt-Kreis"
+      },
+      "type": "behoerde",
+      "einheit_ref": "PRD-stab"
+    }
+  ],
+  "steps": [
+    {
+      "step_id": 1,
+      "actor": "bestellende",
+      "label": {
+        "de": "Auszug aus dem Betreibungsregister wird benötigt",
+        "en": "An extract from the enforcement register is needed",
+        "ls": "Sie brauchen einen Betreibungs-Auszug"
+      },
+      "depends_on": [],
+      "type": "start"
+    },
+    {
+      "step_id": 2,
+      "actor": "bestellende",
+      "label": {
+        "de": "Amtlichen Ausweis bereithalten",
+        "en": "Have an official ID ready",
+        "ls": "Halten Sie einen Ausweis bereit"
+      },
+      "depends_on": [1],
+      "type": "input",
+      "description": {
+        "de": "Kopie, Foto oder Scan eines amtlichen Ausweises (Identitätskarte, Pass, Ausländerausweis o. ä.) bereithalten.",
+        "en": "Have a copy, photo or scan of an official ID (identity card, passport, foreigner's permit, etc.) ready."
+      },
+      "reference_ids": [2],
+      "source_id": "q-stz-betreibung"
+    },
+    {
+      "step_id": 3,
+      "actor": "bestellende",
+      "label": {
+        "de": "Wie bestellen?",
+        "en": "How to order?",
+        "ls": "Wie möchten Sie bestellen?"
+      },
+      "depends_on": [2],
+      "type": "entscheidung"
+    },
+    {
+      "step_id": 4,
+      "actor": "bestellende",
+      "label": {
+        "de": "Online-Formular ausfüllen und Ausweis hochladen",
+        "en": "Fill in the online form and upload the ID",
+        "ls": "Online-Formular ausfüllen und Ausweis hochladen"
+      },
+      "depends_on": [
+        { "step_id": 3, "condition": { "de": "online", "en": "online" } }
+      ],
+      "type": "input",
+      "description": {
+        "de": "Das Online-Formular ermittelt das zuständige Amt automatisch; der Ausweis wird beim Bestellen hochgeladen.",
+        "en": "The online form determines the responsible office automatically; the ID is uploaded during ordering."
+      },
+      "source_id": "q-stz-betreibung"
+    },
+    {
+      "step_id": 5,
+      "actor": "bestellende",
+      "label": {
+        "de": "Brieflich oder am Schalter bestellen",
+        "en": "Order by mail or at the counter",
+        "ls": "Mit Brief oder am Schalter bestellen"
+      },
+      "depends_on": [
+        { "step_id": 3, "condition": { "de": "brieflich / am Schalter", "en": "by mail / at the counter" } }
+      ],
+      "type": "input",
+      "description": {
+        "de": "Bestellung per Briefpost oder persönlich am Schalter, mit beigelegter Ausweiskopie.",
+        "en": "Order by mail or in person at the counter, with an enclosed copy of the ID."
+      },
+      "source_id": "q-stz-betreibung"
+    },
+    {
+      "step_id": 6,
+      "actor": "betreibungsamt",
+      "label": {
+        "de": "Zuständiges Amt erstellt den Auszug",
+        "en": "Responsible office issues the extract",
+        "ls": "Das Amt macht den Auszug"
+      },
+      "depends_on": [4, 5],
+      "type": "prozess"
+    },
+    {
+      "step_id": 7,
+      "actor": "bestellende",
+      "label": {
+        "de": "Auszug erhalten (gegen Gebühr)",
+        "en": "Receive the extract (subject to a fee)",
+        "ls": "Fertig: Sie bekommen den Auszug (er kostet etwas)"
+      },
+      "depends_on": [6],
+      "type": "ende",
+      "reference_ids": [1, 3]
+    }
+  ],
+  "legal_basis": [
+    {
+      "label": "Bundesgesetz über Schuldbetreibung und Konkurs (SchKG), Art. 8a (Einsicht)",
+      "url": "https://www.fedlex.admin.ch/eli/cc/11/529_488_529/de"
+    },
+    {
+      "label": "Stadt Zürich – Auszug aus dem Betreibungsregister bestellen",
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/betreibungen/betreibungsregisterauszug-bestellen.html"
+    }
+  ],
+  "sources": [
+    {
+      "id": "q-stz-betreibung",
+      "title": "Stadt Zürich – Auszug aus dem Betreibungsregister bestellen",
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/betreibungen/betreibungsregisterauszug-bestellen.html",
+      "retrieved_at": "2026-06-21"
+    }
+  ],
+  "reife": {
+    "onlineReifegrad": "digital",
+    "medienbrueche": ["separate-zahlung"],
+    "onceOnlyPotenzial": {
+      "de": "Die Suche nach dem zuständigen Stadtkreis-Amt übernimmt bereits das Online-Formular – ein kantonsweiter Auszug aus einer Stelle würde den Adress-Abgleich ganz erübrigen.",
+      "en": "The online form already finds the responsible district office – a single cantonal extract would remove the address matching entirely."
+    },
+    "nutzergruppen": [
+      {
+        "de": "Mieter:innen und Stellensuchende, die einen Auszug beilegen müssen",
+        "en": "Tenants and job seekers who must enclose an extract"
+      },
+      {
+        "de": "Unternehmen, die die Bonität von Geschäftspartnern prüfen",
+        "en": "Companies checking the creditworthiness of business partners"
+      }
+    ],
+    "painPoints": [
+      {
+        "de": "Ein amtlicher Ausweis muss kopiert/hochgeladen werden; brieflich und am Schalter ist persönlicher Aufwand nötig.",
+        "en": "An official ID must be copied/uploaded; mail and counter require personal effort."
+      }
+    ],
+    "improvementIdeas": [
+      {
+        "de": "Bezug mit verifizierter E-ID ohne separaten Ausweis-Upload.",
+        "en": "Retrieval with a verified e-ID without a separate ID upload."
+      }
+    ],
+    "status": "beobachtet",
+    "wirkungKpi": [
+      {
+        "label": {
+          "de": "Bestellweg",
+          "en": "Ordering channel"
+        },
+        "wert": "online, brieflich oder am Schalter"
+      }
+    ]
+  },
+  "meta": {
+    "erstellt": "2026-06-21",
+    "aktualisiert": "2026-06-21",
+    "maintainer": "malkreide",
+    "lizenz": "CC-BY-4.0"
+  }
+}

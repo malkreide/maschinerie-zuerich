@@ -1,0 +1,276 @@
+{
+  "$schema": "../../../schemas/opengov-process-schema.json",
+  "schema_version": "0.1.0",
+  "id": "umwelt",
+  "lebenslage_ref": "umwelt",
+  "city": "zh",
+  "title": {
+    "de": "Lärm melden (Lärmbelästigung)",
+    "en": "Report noise (noise nuisance)",
+    "fr": "Signaler du bruit (nuisances sonores)",
+    "it": "Segnalare rumore (disturbo acustico)",
+    "ls": "Lärm melden"
+  },
+  "description": {
+    "de": "Wer sich durch Lärm gestört fühlt, wendet sich je nach Lärmart an die richtige Stelle: Bei akutem Lärm hilft die Polizei, bei Lärm von ortsfesten Anlagen (Gewerbe, Lüftungs-, Heizungs- und Klimaanlagen) der Umwelt- und Gesundheitsschutz der Stadt Zürich.",
+    "en": "If you are disturbed by noise, you contact the right office depending on the type of noise: the police help with acute noise, while the City of Zurich's environmental and health protection unit handles noise from stationary installations (commercial, ventilation, heating and air-conditioning systems).",
+    "ls": "Sie stört Lärm? Bei Lärm gerade jetzt hilft die Polizei. Bei Lärm von Anlagen (zum Beispiel Lüftung oder Heizung) hilft der Umwelt- und Gesundheitsschutz der Stadt."
+  },
+  "target_audience": "bevoelkerung",
+  "source_url": "https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/oeffentlicher-raum/nachbarschaft-nachtleben/laerm.html",
+  "retrieved_at": "2026-06-21",
+  "disclaimer_key": "Prozesse.disclaimer",
+  "references": [
+    {
+      "reference_id": 1,
+      "label": {
+        "de": "Polizei bei Lärmproblemen",
+        "en": "Police for noise problems"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/oeffentlicher-raum/nachbarschaft-nachtleben/laerm.html",
+      "source_quote": "Grundsätzlich kann die Polizei bei Lärmproblemen immer angerufen werden (117).",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-21"
+    },
+    {
+      "reference_id": 2,
+      "label": {
+        "de": "Zuständigkeit bei ortsfesten Anlagen",
+        "en": "Responsibility for stationary installations"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/oeffentlicher-raum/nachbarschaft-nachtleben/laerm.html",
+      "source_quote": "Bei Lärm von sogenannten «ortsfesten Anlagen» wie Industrie- und Gewerbeanlagen inklusive Lüftungs-, Heizungs- und Klimaanlagen hilft der Umwelt- und Gesundheitsschutz der Stadt Zürich während den Bürozeiten weiter.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-21"
+    },
+    {
+      "reference_id": 3,
+      "label": {
+        "de": "Ruhezeiten / Nachtruhe",
+        "en": "Quiet hours / night-time rest"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/oeffentlicher-raum/nachbarschaft-nachtleben/laerm.html",
+      "source_quote": "Abends ab 20 Uhr und sonntags ist dem Erholungsbedürfnis der Bevölkerung besonders Rechnung zu tragen, indem lärmintensives Verhalten zu unterlassen ist.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-21"
+    },
+    {
+      "reference_id": 4,
+      "label": {
+        "de": "Weiterbearbeitung der Lärmklagen",
+        "en": "Further processing of noise complaints"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/oeffentlicher-raum/nachbarschaft-nachtleben/laerm.html",
+      "source_quote": "Bei 117 eingehende Lärmklagen werden in sogenannten Einsatzjournalen gesammelt, die durch die Fachgruppe Lärmschutz der Stadtpolizei Zürich weiterbearbeitet werden.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-21"
+    }
+  ],
+  "actors": [
+    {
+      "id": "betroffene",
+      "label": {
+        "de": "Vom Lärm betroffene Person",
+        "en": "Person affected by noise",
+        "ls": "Sie (Sie stört der Lärm)"
+      },
+      "type": "antragsteller"
+    },
+    {
+      "id": "ugz",
+      "label": {
+        "de": "Umwelt- und Gesundheitsschutz Zürich (UGZ), Fachbereich Lärmschutz",
+        "en": "Environmental and Health Protection Zurich (UGZ), noise protection unit",
+        "ls": "Der Umwelt- und Gesundheitsschutz der Stadt (UGZ)"
+      },
+      "type": "behoerde",
+      "einheit_ref": "GUD-ugz"
+    },
+    {
+      "id": "stapo",
+      "label": {
+        "de": "Stadtpolizei Zürich, Fachgruppe Lärmschutz",
+        "en": "Zurich City Police, noise protection group",
+        "ls": "Die Stadt-Polizei"
+      },
+      "type": "behoerde",
+      "einheit_ref": "SiD-stapo"
+    }
+  ],
+  "steps": [
+    {
+      "step_id": 1,
+      "actor": "betroffene",
+      "label": {
+        "de": "Sie fühlen sich durch Lärm gestört",
+        "en": "You are disturbed by noise",
+        "ls": "Sie stört Lärm"
+      },
+      "depends_on": [],
+      "type": "start",
+      "reference_ids": [3]
+    },
+    {
+      "step_id": 2,
+      "actor": "betroffene",
+      "label": {
+        "de": "Welche Art von Lärm?",
+        "en": "What type of noise?",
+        "ls": "Welcher Lärm ist es?"
+      },
+      "depends_on": [1],
+      "type": "entscheidung"
+    },
+    {
+      "step_id": 3,
+      "actor": "betroffene",
+      "label": {
+        "de": "Akuter Lärm jetzt: Polizei anrufen",
+        "en": "Acute noise right now: call the police",
+        "ls": "Lärm gerade jetzt: Polizei anrufen"
+      },
+      "depends_on": [
+        { "step_id": 2, "condition": { "de": "akuter Lärm / nachts", "en": "acute noise / at night" } }
+      ],
+      "type": "input",
+      "description": {
+        "de": "Bei akutem, störendem Lärm (z. B. nachts) kann die Polizei angerufen werden.",
+        "en": "For acute, disturbing noise (e.g. at night) the police can be called."
+      },
+      "reference_ids": [1],
+      "source_id": "q-stz-laerm"
+    },
+    {
+      "step_id": 4,
+      "actor": "stapo",
+      "label": {
+        "de": "Stadtpolizei nimmt die Lärmklage auf",
+        "en": "City police record the noise complaint",
+        "ls": "Die Polizei nimmt die Meldung auf"
+      },
+      "depends_on": [3],
+      "type": "prozess",
+      "reference_ids": [4]
+    },
+    {
+      "step_id": 5,
+      "actor": "betroffene",
+      "label": {
+        "de": "Lärmklage aufgenommen",
+        "en": "Noise complaint recorded",
+        "ls": "Fertig: Die Meldung ist aufgenommen"
+      },
+      "depends_on": [4],
+      "type": "ende"
+    },
+    {
+      "step_id": 6,
+      "actor": "betroffene",
+      "label": {
+        "de": "Lärm von ortsfester Anlage: UGZ kontaktieren",
+        "en": "Noise from a stationary installation: contact the UGZ",
+        "ls": "Lärm von einer Anlage: dem UGZ melden"
+      },
+      "depends_on": [
+        { "step_id": 2, "condition": { "de": "ortsfeste Anlage (Gewerbe, Lüftung, Heizung)", "en": "stationary installation (commercial, ventilation, heating)" } }
+      ],
+      "type": "input",
+      "description": {
+        "de": "Bei Lärm von ortsfesten Anlagen (Gewerbe, Lüftungs-, Heizungs-, Klimaanlagen) hilft der Umwelt- und Gesundheitsschutz während der Bürozeiten weiter.",
+        "en": "For noise from stationary installations (commercial, ventilation, heating, air-conditioning systems) the environmental and health protection unit helps during office hours."
+      },
+      "reference_ids": [2],
+      "source_id": "q-stz-laerm"
+    },
+    {
+      "step_id": 7,
+      "actor": "ugz",
+      "label": {
+        "de": "UGZ prüft und berät",
+        "en": "UGZ reviews and advises",
+        "ls": "Der UGZ schaut die Sache an und berät"
+      },
+      "depends_on": [6],
+      "type": "prozess"
+    },
+    {
+      "step_id": 8,
+      "actor": "betroffene",
+      "label": {
+        "de": "Anliegen bei der zuständigen Fachstelle",
+        "en": "Matter handled by the responsible unit",
+        "ls": "Fertig: Die Fachstelle kümmert sich"
+      },
+      "depends_on": [7],
+      "type": "ende"
+    }
+  ],
+  "legal_basis": [
+    {
+      "label": "Umweltschutzgesetz (USG)",
+      "url": "https://www.fedlex.admin.ch/eli/cc/1984/1122_1122_1122/de"
+    },
+    {
+      "label": "Lärmschutz-Verordnung (LSV)",
+      "url": "https://www.fedlex.admin.ch/eli/cc/1987/38_38_38/de"
+    },
+    {
+      "label": "Stadt Zürich – Was tun bei Lärm?",
+      "url": "https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/oeffentlicher-raum/nachbarschaft-nachtleben/laerm.html"
+    }
+  ],
+  "sources": [
+    {
+      "id": "q-stz-laerm",
+      "title": "Stadt Zürich – Was tun bei Lärm?",
+      "url": "https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/oeffentlicher-raum/nachbarschaft-nachtleben/laerm.html",
+      "retrieved_at": "2026-06-21"
+    }
+  ],
+  "reife": {
+    "onlineReifegrad": "teil-digital",
+    "medienbrueche": ["persoenliches-erscheinen"],
+    "onceOnlyPotenzial": {
+      "de": "Eine einzige Anlaufstelle, die Meldungen nach Lärmart automatisch an Polizei oder UGZ weiterleitet, würde Betroffenen die Zuständigkeitssuche abnehmen.",
+      "en": "A single point of contact that routes reports to the police or the UGZ by noise type would spare affected people from searching for the right office."
+    },
+    "nutzergruppen": [
+      {
+        "de": "Anwohnende, die durch Nachtlärm gestört werden",
+        "en": "Residents disturbed by night-time noise"
+      },
+      {
+        "de": "Anwohnende mit Lärm von Lüftungs- oder Klimaanlagen",
+        "en": "Residents with noise from ventilation or air-conditioning systems"
+      }
+    ],
+    "painPoints": [
+      {
+        "de": "Die Zuständigkeit hängt von der Lärmart ab – Betroffene müssen die richtige Stelle selbst finden.",
+        "en": "Responsibility depends on the noise type – affected people must find the right office themselves."
+      }
+    ],
+    "improvementIdeas": [
+      {
+        "de": "Gemeinsames Meldeformular mit automatischer Weiterleitung an Polizei oder UGZ.",
+        "en": "A shared report form with automatic routing to the police or the UGZ."
+      }
+    ],
+    "status": "beobachtet",
+    "wirkungKpi": [
+      {
+        "label": {
+          "de": "Anlaufstelle nach Lärmart",
+          "en": "Point of contact by noise type"
+        },
+        "wert": "Polizei (akut) oder UGZ (ortsfeste Anlagen)"
+      }
+    ]
+  },
+  "meta": {
+    "erstellt": "2026-06-21",
+    "aktualisiert": "2026-06-21",
+    "maintainer": "malkreide",
+    "lizenz": "CC-BY-4.0"
+  }
+}

@@ -1654,7 +1654,10 @@
           ],
           "antwort": "Es ist zu laut bei Ihnen? Oder Sie haben Fragen zur Luft oder zum Essen? Das macht der Umwelt- und Gesundheits-Schutz Zürich. Kurz: UGZ."
         }
-      }
+      },
+      "prozesse": [
+        "zh/umwelt"
+      ]
     },
     {
       "id": "polizei",
@@ -1968,7 +1971,10 @@
           ],
           "antwort": "Jemand zahlt Ihnen Geld nicht? Sie können eine Betreibung starten. Sie brauchen einen Auszug aus dem Betreibungs-Register? Das macht das Stadtammann- und Betreibungs-Amt."
         }
-      }
+      },
+      "prozesse": [
+        "zh/betreibung"
+      ]
     },
     {
       "id": "stadtarchiv",
