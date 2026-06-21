@@ -151,6 +151,15 @@ async function loadCityLebenslagen(city, cityDataPaths) {
   }
 }
 
+// --- Hochrisiko-Rechtsfälle -------------------------------------------------
+// Kanonische Liste der Hochrisiko-Fälle pro Stadt (CLAUDE.md, Abschnitt
+// «Hochrisiko-Rechtsfälle»). Diese tragen verpflichtend den sichtbaren
+// Hochrisiko-Disclaimer; der Key darf nur an ihnen stehen.
+const HIGH_RISK_KEY = 'Prozesse.disclaimerHochrisiko';
+const HIGH_RISK_IDS = {
+  zh: new Set(['baugesuch', 'sozialhilfe', 'veranstaltung']),
+};
+
 // --- Kardinalregel-Lint -----------------------------------------------------
 // Bindende Werte (Zahl + Einheit) dürfen NUR im source_quote einer Reference
 // stehen.
@@ -305,6 +314,22 @@ function semanticCheck(prozess) {
 
   // Kardinalregel-Lint (Fehler)
   errors.push(...lintBindingValues(prozess));
+
+  // Hochrisiko-Disclaimer-Gate (CLAUDE.md): definierte Hochrisiko-Rechtsfälle
+  // MÜSSEN den sichtbaren Hochrisiko-Disclaimer tragen (disclaimer_key
+  // 'Prozesse.disclaimerHochrisiko'); umgekehrt darf dieser Key nur an genau
+  // diesen Fällen stehen, damit die rote UI-Hervorhebung nicht verwässert.
+  const hrSet = HIGH_RISK_IDS[prozess.city];
+  if (hrSet) {
+    const isHR = prozess.disclaimer_key === HIGH_RISK_KEY;
+    const shouldHR = hrSet.has(prozess.id);
+    if (shouldHR && !isHR) {
+      errors.push(`Hochrisiko-Fall '${prozess.id}' ohne disclaimer_key '${HIGH_RISK_KEY}' — der sichtbare Hochrisiko-Disclaimer ist Pflicht (CLAUDE.md)`);
+    }
+    if (!shouldHR && isHR) {
+      errors.push(`disclaimer_key '${HIGH_RISK_KEY}' an '${prozess.id}', das nicht als Hochrisiko-Fall gelistet ist — HIGH_RISK_IDS in validate-prozesse.mjs und CLAUDE.md abgleichen`);
+    }
+  }
 
   return { errors, warnings };
 }
