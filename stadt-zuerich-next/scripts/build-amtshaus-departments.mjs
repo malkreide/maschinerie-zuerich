@@ -67,8 +67,15 @@ const MANUAL_OVERRIDE = {
     quelle: 'https://stored-data.stadt-zuerich.ch/internet/mm/home/mm_04/12_04/mm_08.html',
     hinweis: 'Umzug des Sozialdepartements ins Verwaltungszentrum Werd (Medienmitteilung 2004)',
   },
-  // Amtshaus V (Werdmühleplatz 3): Quellenlage uneindeutig (HBD-Bauprojekt
-  // «Industrielle Betriebe» vs. TED-Planauflagen) → bewusst NICHT zugeordnet.
+  // Amtshaus V (Werdmühleplatz 3): Sitz des Tiefbauamts (TED). Das Tiefbauamt
+  // führt diese Adresse als eigene Postadresse; der frühere «Industrielle
+  // Betriebe»-Treffer war ein künftiges Hochbau-Projekt, nicht die aktuelle
+  // Belegung.
+  ah012: {
+    department: 'TED',
+    quelle: 'https://www.stadt-zuerich.ch/misc/de/standards-stadtraeume/service/kontakt.html',
+    hinweis: 'Tiefbauamt, Werdmühleplatz 3, Amtshaus V (Kontakt-/Postadresse des Tiefbauamts, TED)',
+  },
 };
 
 function datasetIdFromUrl(u) {
