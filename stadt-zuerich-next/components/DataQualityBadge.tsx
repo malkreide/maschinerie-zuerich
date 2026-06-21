@@ -61,8 +61,10 @@ export default function DataQualityBadge({
         style={{ backgroundColor: meta.dot }}
       />
       <span>{meta.label}</span>
-      {stand && <span className="font-normal opacity-70">· {stand}</span>}
-      {quelle && <span className="font-normal opacity-70">· {quelle}</span>}
+      {/* font-normal (statt font-medium) de-emphasiert; KEIN opacity, da das den
+          Kontrast unter WCAG 2 AA drückte (grün auf grün ~3.5:1). */}
+      {stand && <span className="font-normal">· {stand}</span>}
+      {quelle && <span className="font-normal">· {quelle}</span>}
     </span>
   );
 }
