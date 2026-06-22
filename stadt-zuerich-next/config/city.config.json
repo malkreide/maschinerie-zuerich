@@ -16,7 +16,6 @@
   },
   "type": "city",
   "parentOrganizationId": "ch.zh.kanton",
-  "parentOrganizationUrl": "https://kanton-zh.machinery.example.com",
   "domain": "stadt-zuerich.ch",
   "population": 442047,
   "populationStand": "2024",
