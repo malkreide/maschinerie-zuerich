@@ -24,8 +24,8 @@
       "ls": "Sie sind Schweizerin oder Schweizer. Sie wohnen in der Stadt Zürich."
     }
   ],
-  "source_url": "https://www.schweizerpass.admin.ch/",
-  "retrieved_at": "2026-06-18",
+  "source_url": "https://www.ch.ch/de/gultigkeit-kosten-pass-identitatskarte/",
+  "retrieved_at": "2026-06-22",
   "disclaimer_key": "Prozesse.disclaimer",
   "references": [
     {
@@ -35,10 +35,10 @@
         "en": "Fee for the Swiss passport (different for adults and children)",
         "ls": "Was der Pass kostet"
       },
-      "source_url": "https://www.schweizerpass.admin.ch/ausweise/pass-id/gebuehren.html",
+      "source_url": "https://www.ch.ch/de/gultigkeit-kosten-pass-identitatskarte/",
       "source_quote": "",
       "status": "unverifiziert",
-      "retrieved_at": "2026-06-18"
+      "retrieved_at": "2026-06-22"
     },
     {
       "reference_id": 2,
@@ -47,10 +47,10 @@
         "en": "Fee for the identity card (different for adults and children)",
         "ls": "Was die Identitäts-Karte kostet"
       },
-      "source_url": "https://www.schweizerpass.admin.ch/ausweise/pass-id/gebuehren.html",
+      "source_url": "https://www.ch.ch/de/gultigkeit-kosten-pass-identitatskarte/",
       "source_quote": "",
       "status": "unverifiziert",
-      "retrieved_at": "2026-06-18"
+      "retrieved_at": "2026-06-22"
     },
     {
       "reference_id": 3,
@@ -59,10 +59,10 @@
         "en": "Validity period of passport and identity card (different for adults and children)",
         "ls": "Wie lange Pass und Identitäts-Karte gültig sind"
       },
-      "source_url": "https://www.schweizerpass.admin.ch/ausweise/pass-id/gueltigkeit.html",
+      "source_url": "https://www.ch.ch/de/gultigkeit-kosten-pass-identitatskarte/",
       "source_quote": "",
       "status": "unverifiziert",
-      "retrieved_at": "2026-06-18"
+      "retrieved_at": "2026-06-22"
     },
     {
       "reference_id": 4,
@@ -71,10 +71,10 @@
         "en": "Production and delivery time after the capture",
         "ls": "Wie lange Sie auf den Ausweis warten"
       },
-      "source_url": "https://www.schweizerpass.admin.ch/ausweise/pass-id/bestellung.html",
+      "source_url": "https://www.ch.ch/de/biometrischer-pass-und-identitaetskarte-beantragen/",
       "source_quote": "",
       "status": "unverifiziert",
-      "retrieved_at": "2026-06-18"
+      "retrieved_at": "2026-06-22"
     }
   ],
   "actors": [
@@ -340,15 +340,15 @@
   "sources": [
     {
       "id": "q-schweizpass",
-      "title": "Schweizer Pass und Identitätskarte – eidgenössisches Antragsportal",
-      "url": "https://www.schweizerpass.admin.ch/",
-      "retrieved_at": "2026-06-18"
+      "title": "Schweizer Pass und Identitätskarte – ch.ch (Bundesportal)",
+      "url": "https://www.ch.ch/de/biometrischer-pass-und-identitaetskarte-beantragen/",
+      "retrieved_at": "2026-06-22"
     },
     {
       "id": "q-stz-ausweise",
-      "title": "Stadt Zürich – Bevölkerungsamt, Ausweise (Pass / Identitätskarte)",
-      "url": "https://www.stadt-zuerich.ch/pd/de/index/bevoelkerungsamt.html",
-      "retrieved_at": "2026-06-18"
+      "title": "Stadt Zürich – Einwohner-Services, Identitätskarte (CH-Bürger*innen)",
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/ausweise/identitaetskarte.html",
+      "retrieved_at": "2026-06-22"
     }
   ],
   "reife": {

@@ -24,8 +24,8 @@
       "ls": "Sie wohnen in Zürich. Darum zahlen Sie hier Steuern."
     }
   ],
-  "source_url": "https://www.stadt-zuerich.ch/fd/de/index/steuern.html",
-  "retrieved_at": "2026-06-18",
+  "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/steuern.html",
+  "retrieved_at": "2026-06-22",
   "disclaimer_key": "Prozesse.disclaimer",
   "references": [
     {
@@ -35,10 +35,10 @@
         "en": "Filing deadline for the tax return and deadline extension",
         "ls": "Bis wann die Steuer-Erklärung da sein muss"
       },
-      "source_url": "https://www.zh.ch/de/steuern-finanzen/steuern/steuererklaerung.html",
+      "source_url": "https://www.zh.ch/de/steuern-finanzen/steuern/steuern-natuerliche-personen/steuererklaerung-natuerliche-personen.html",
       "source_quote": "",
       "status": "unverifiziert",
-      "retrieved_at": "2026-06-18"
+      "retrieved_at": "2026-06-22"
     },
     {
       "reference_id": 2,
@@ -47,10 +47,10 @@
         "en": "Objection deadline against the assessment decision",
         "ls": "Wie lange Sie Zeit für eine Einsprache haben"
       },
-      "source_url": "https://www.zh.ch/de/steuern-finanzen/steuern/einsprache.html",
+      "source_url": "https://www.zh.ch/de/steuern-finanzen/steuern/steuern-natuerliche-personen/steuerrechnung-natuerliche-personen.html",
       "source_quote": "",
       "status": "unverifiziert",
-      "retrieved_at": "2026-06-18"
+      "retrieved_at": "2026-06-22"
     },
     {
       "reference_id": 3,
@@ -59,10 +59,10 @@
         "en": "Payment deadlines and default / refund interest",
         "ls": "Bis wann Sie zahlen müssen und was bei Verspätung gilt"
       },
-      "source_url": "https://www.stadt-zuerich.ch/fd/de/index/steuern/zahlungen.html",
+      "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/steuern/natuerliche-personen/steuern-bezahlen/definitive-rechnung.html",
       "source_quote": "",
       "status": "unverifiziert",
-      "retrieved_at": "2026-06-18"
+      "retrieved_at": "2026-06-22"
     }
   ],
   "actors": [
@@ -380,14 +380,14 @@
     {
       "id": "q-stz-steuer",
       "title": "Stadt Zürich – Steueramt",
-      "url": "https://www.stadt-zuerich.ch/fd/de/index/steuern.html",
-      "retrieved_at": "2026-06-18"
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/steuern.html",
+      "retrieved_at": "2026-06-22"
     },
     {
       "id": "q-zhprivatetax",
       "title": "Kanton Zürich – ZHprivateTax (Steuererklärung online)",
-      "url": "https://www.zh.ch/de/steuern-finanzen/steuern/steuererklaerung.html",
-      "retrieved_at": "2026-06-18"
+      "url": "https://www.zh.ch/de/steuern-finanzen/steuern/steuern-natuerliche-personen/steuererklaerung-natuerliche-personen.html",
+      "retrieved_at": "2026-06-22"
     }
   ],
   "reife": {
