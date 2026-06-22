@@ -31,11 +31,24 @@ Das Repo enthält zwei eigenständige Implementationen der gleichen Idee:
 
 | Verzeichnis | Stack | Zweck |
 |-------------|-------|-------|
-| [`stadt-zuerich-mog/`](stadt-zuerich-mog/) | Single-HTML + Vanilla-JS + Cytoscape + D3 via CDN | Prototyp, läuft mit `python -m http.server`, kein Build |
-| [`stadt-zuerich-next/`](stadt-zuerich-next/) | Next.js 16 + React 19 + TypeScript + Tailwind + next-intl | Produktions-Variante mit Routing, SSR, i18n (5 Sprachen) |
+| [`stadt-zuerich-mog/`](stadt-zuerich-mog/) | Single-HTML + Vanilla-JS + Cytoscape + D3 via CDN | **Eingefrorener Ur-Prototyp**, läuft mit `python -m http.server`, kein Build |
+| [`stadt-zuerich-next/`](stadt-zuerich-next/) | Next.js 16 + React 19 + TypeScript + Tailwind + next-intl | **Aktive Variante** mit Routing, SSR, i18n (5 Sprachen), v0-Prozessen und CI |
 
-Beide nutzen die gleiche ETL-Pipeline in `scripts/` und das gleiche
-Datenschema (`data.json`). Wähle, was zum Anwendungsfall passt.
+Die aktive Entwicklung findet ausschliesslich in
+[`stadt-zuerich-next/`](stadt-zuerich-next/) statt; nutze diese Variante. Der
+Vanilla-Prototyp `stadt-zuerich-mog/` ist als Ursprungs-Stand erhalten, wird
+aber nicht weiterentwickelt.
+
+Historisch teilten sich beide eine gemeinsame ETL-Pipeline mit dem Output
+`data.json`. Das gilt **nicht mehr**: die Varianten sind divergiert und haben
+jeweils ein eigenes `scripts/`-Verzeichnis.
+
+- `stadt-zuerich-mog/` erzeugt weiterhin eine flache `data.json`.
+- `stadt-zuerich-next/` nutzt eine adapter-basierte Pipeline
+  (`scripts/build-data.mjs` → `scripts/adapters/<city>.mjs`) und schreibt
+  pro Stadt nach `data/<city>/` (Org-Chart, Lebenslagen); der Ausgabepfad
+  steht in `config/city.config.json`. Die v0-Prozesse liegen daneben unter
+  `data/prozesse/<city>/`.
 
 ## Features
 
