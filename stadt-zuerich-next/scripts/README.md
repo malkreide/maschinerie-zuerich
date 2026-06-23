@@ -77,6 +77,41 @@ node scripts/fetch-rpktool.mjs   # nur Struktur-Schritt
 node scripts/fetch-budget.mjs    # nur Budget-Schritt
 ```
 
+## Link-Check (`check-links.mjs`)
+
+Prüft alle URLs in den offenen Daten (Prozesse, Org-Chart, Katalog, Schemas).
+Zwei Modi:
+
+```bash
+npm run check:links                 # strukturell (kein Netz) — CI-Gate in ci.yml
+npm run check:links:online          # + Live-HTTP, advisory (Exit 0)
+npm run check:links:online:strict   # + Live-HTTP, Exit 1 bei echtem Link-Rot
+```
+
+Der **strukturelle** Modus (Default) verlangt nur wohlgeformte, absolute
+https-URLs und läuft netzfrei — deshalb taugt er als PR-Gate.
+
+Der **Live-Modus** (`--online`) ruft jede eindeutige URL real ab und
+kategorisiert die Befunde, weil „nicht erreichbar" Verschiedenes heisst:
+
+- **tot** (404/410/5xx) — echtes Link-Rot, gehört in den Daten korrigiert.
+- **blockiert** (401/403/429) — Quelle lebt, lehnt aber diesen Client ab
+  (Bot-Schutz, Rate-Limit, IP-Sperre). Kein Datenfehler.
+- **netzfehler** (Timeout/DNS) — aus dieser Umgebung gesperrt (Netzpolicy).
+  Kein Datenfehler.
+
+`--strict` (bzw. `CHECK_LINKS_STRICT=1`) kippt den Lauf nur bei **toten**
+Links; blockiert/netzfehler nie, weil IP-/policy-abhängig. Pro Befund werden
+die betroffenen Datendateien ausgewiesen.
+
+> Grenze: Der Check sieht nur den HTTP-Status. Amtliche JS-SPAs liefern auch
+> bei verschobenem Inhalt ein 200 („soft 404") — ein grüner Live-Check belegt
+> Erreichbarkeit, nicht die inhaltliche Richtigkeit der Belegstelle.
+
+Zeitgesteuert läuft der Live-Modus wöchentlich (advisory) im Workflow
+[`.github/workflows/link-rot.yml`](../../.github/workflows/link-rot.yml); ein
+manueller Lauf (`workflow_dispatch`) kann `strict` einschalten.
+
 ## Mapping
 
 [`mapping/institution-mapping.json`](mapping/institution-mapping.json) bildet

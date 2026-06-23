@@ -22,6 +22,8 @@
     "validate:prozesse": "node scripts/validate-prozesse.mjs",
     "validate:catalog": "node scripts/validate-catalog.mjs",
     "check:links": "node scripts/check-links.mjs",
+    "check:links:online": "node scripts/check-links.mjs --online",
+    "check:links:online:strict": "node scripts/check-links.mjs --online --strict",
     "check:regression": "node scripts/check-prozess-regression.mjs",
     "migrate:schema:v2": "node scripts/migrate-prozesse-schema-v2.mjs",
     "scaffold:city": "node scripts/scaffold-city.mjs",
