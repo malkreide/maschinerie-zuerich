@@ -17,7 +17,7 @@
     "ls": "Du wohnst in einer blauen Zone. Du hast ein Auto. Dann kannst du eine Park-Karte kaufen. Damit darfst du in deiner Strasse parkieren, so lange du willst. Die Karte ist digital. Die Polizei liest dein Kennzeichen."
   },
   "target_audience": "bevoelkerung",
-  "source_url": "https://www.stadt-zuerich.ch/pd/de/index/dav/parkkarten.html",
+  "source_url": "https://www.stadt-zuerich.ch/de/mobilitaet/parkieren/parkbewilligungen.html",
   "retrieved_at": "2026-04-24",
   "disclaimer_key": "Prozesse.disclaimer",
   "references": [
@@ -384,7 +384,7 @@
   "legal_basis": [
     {
       "label": "Verkehrsreglement der Stadt Zürich (VRSZ)",
-      "url": "https://www.stadt-zuerich.ch/pd/de/index/das_departement/organisation/dienstabteilungen/dav.html"
+      "url": "https://www.stadt-zuerich.ch/dav"
     },
     {
       "label": "SVG Art. 3 (Strassenverkehrsgesetz)",
@@ -399,13 +399,13 @@
     {
       "id": "q-stz-parkkarten",
       "title": "Stadt Zürich – Parkkarten-Angebote",
-      "url": "https://www.stadt-zuerich.ch/pd/de/index/dav/parkkarten.html",
+      "url": "https://www.stadt-zuerich.ch/de/mobilitaet/parkieren/parkbewilligungen.html",
       "retrieved_at": "2026-04-24"
     },
     {
       "id": "q-stz-online",
       "title": "Stadt Zürich – Parkkarten-Online-Portal",
-      "url": "https://www.stadt-zuerich.ch/pd/de/index/dav/parkkarten/anwohnerparkkarten.html",
+      "url": "https://www.stadt-zuerich.ch/de/mobilitaet/parkieren/parkbewilligungen/anwohnerparkkarte.html",
       "retrieved_at": "2026-04-24"
     }
   ],

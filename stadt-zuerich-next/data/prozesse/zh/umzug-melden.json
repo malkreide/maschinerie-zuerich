@@ -23,7 +23,7 @@
       "ls": "Sie ziehen nach Zürich. Oder Sie ziehen in Zürich um."
     }
   ],
-  "source_url": "https://www.stadt-zuerich.ch/pd/de/index/bevoelkerungsamt/anmeldung_zuzug.html",
+  "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/zuzug.html",
   "retrieved_at": "2026-06-06",
   "disclaimer_key": "Prozesse.disclaimer",
   "references": [
@@ -403,7 +403,7 @@
     {
       "id": "q-stz-umzug",
       "title": "Stadt Zürich – An-, Ab- und Ummeldung",
-      "url": "https://www.stadt-zuerich.ch/pd/de/index/bevoelkerungsamt/anmeldung_zuzug.html",
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/zuzug.html",
       "retrieved_at": "2026-06-06"
     },
     {

@@ -17,7 +17,7 @@
     "ls": "So bekommst du die Erlaubnis, ein Haus zu bauen oder umzubauen. Du schickst einen Antrag an das Amt. Das Amt prüft. Nachbarn dürfen Einwände machen. Am Schluss sagt das Amt: Ja oder Nein."
   },
   "target_audience": "bevoelkerung",
-  "source_url": "https://www.stadt-zuerich.ch/de/planen-bauen/bauen/baueingabe.html",
+  "source_url": "https://www.stadt-zuerich.ch/de/planen-und-bauen/baubewilligungen/bewilligungsprozess/baugesuch-einreichen.html",
   "retrieved_at": "2026-04-24",
   "disclaimer_key": "Prozesse.disclaimerHochrisiko",
   "references": [
@@ -125,7 +125,7 @@
           "label": {
             "de": "Baugesuchsformular"
           },
-          "url": "https://www.stadt-zuerich.ch/de/planen-bauen/bauen/baueingabe.html",
+          "url": "https://www.stadt-zuerich.ch/de/planen-und-bauen/baubewilligungen/bewilligungsprozess/baugesuch-einreichen.html",
           "required": true
         },
         {
@@ -418,28 +418,28 @@
   "legal_basis": [
     {
       "label": "PBG ZH §§ 309–341 (Baubewilligungsverfahren)",
-      "url": "https://www.zhlaw.ch/Erlass/700.1"
+      "url": "https://www.zh.ch/de/politik-staat/gesetze-beschluesse/gesetzessammlung/zhlex-ls/erlass-700_1-1975_09_07-1976_04_01-107.html"
     },
     {
       "label": "BZO Stadt Zürich",
-      "url": "https://www.stadt-zuerich.ch/de/planen-bauen/bauen/bauvorschriften/bzo.html"
+      "url": "https://www.stadt-zuerich.ch/de/planen-und-bauen/stadtplanung/bau-zonenordnung.html"
     },
     {
       "label": "VRG ZH (Einsprache- und Rekursverfahren)",
-      "url": "https://www.zhlaw.ch/Erlass/175.2"
+      "url": "https://www.zh.ch/de/politik-staat/gesetze-beschluesse/gesetzessammlung/zhlex-ls/erlass-175_2-1959_05_24-1960_05_01-109.html"
     }
   ],
   "sources": [
     {
       "id": "q-stz-baueingabe",
       "title": "Stadt Zürich – Baueingabe",
-      "url": "https://www.stadt-zuerich.ch/de/planen-bauen/bauen/baueingabe.html",
+      "url": "https://www.stadt-zuerich.ch/de/planen-und-bauen/baubewilligungen/bewilligungsprozess/baugesuch-einreichen.html",
       "retrieved_at": "2026-04-24"
     },
     {
       "id": "q-ebaugesuch",
       "title": "eBaugesuche Kanton Zürich",
-      "url": "https://www.zh.ch/de/planen-bauen/baugesuche.html",
+      "url": "https://www.zh.ch/de/planen-bauen/baubewilligung.html",
       "retrieved_at": "2026-04-24"
     }
   ],
