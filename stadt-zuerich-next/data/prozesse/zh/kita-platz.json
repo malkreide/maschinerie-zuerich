@@ -17,7 +17,7 @@
     "ls": "Sie brauchen einen Platz für Ihr Kind in einer Kita? Sie suchen zuerst einen Platz. Dann beantragen Sie einen Beitrag. Das macht die Kita günstiger. Wie viel Sie bekommen, hängt von Ihrem Lohn ab. Zwei Stellen sind dafür zuständig: das Schul-Amt für die Berechnung und das Sozial-Departement für das Geld an die Kita."
   },
   "target_audience": "bevoelkerung",
-  "source_url": "https://www.stadt-zuerich.ch/ssd/de/index/kinderbetreuung/betreuungsgutscheine.html",
+  "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/betreuungskosten-und-subventionen.html",
   "retrieved_at": "2026-06-06",
   "disclaimer_key": "Prozesse.disclaimer",
   "references": [
@@ -392,24 +392,24 @@
   "legal_basis": [
     {
       "label": "Verordnung über die familien- und schulergänzende Kinderbetreuung der Stadt Zürich",
-      "url": "https://www.stadt-zuerich.ch/ssd/de/index/kinderbetreuung/betreuungsgutscheine.html"
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/betreuungskosten-und-subventionen.html"
     },
     {
       "label": "Kinderbetreuungsgesetz des Kantons Zürich (KibeG)",
-      "url": "https://www.zh.ch/de/familie/kinderbetreuung.html"
+      "url": "https://www.zh.ch/de/familie/angebote-fuer-familien-mit-kindern.html"
     }
   ],
   "sources": [
     {
       "id": "q-stz-bg",
       "title": "Stadt Zürich – Betreuungsgutscheine",
-      "url": "https://www.stadt-zuerich.ch/ssd/de/index/kinderbetreuung/betreuungsgutscheine.html",
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/betreuungskosten-und-subventionen.html",
       "retrieved_at": "2026-06-06"
     },
     {
       "id": "q-stz-kita",
       "title": "Stadt Zürich – Kinderbetreuung / Kitas finden",
-      "url": "https://www.stadt-zuerich.ch/ssd/de/index/kinderbetreuung.html",
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung.html",
       "retrieved_at": "2026-06-06"
     },
     {

@@ -17,7 +17,7 @@
     "ls": "Sie haben etwas gefunden? Bringen Sie es zum Fund-Büro der Stadt-Polizei. Sie haben etwas verloren? Melden Sie es. Das Fund-Büro schaut, ob Ihre Sache da ist."
   },
   "target_audience": "bevoelkerung",
-  "source_url": "https://www.stadt-zuerich.ch/pd/de/index/stadtpolizei_zuerich/dienstleistungen/fundbuero.html",
+  "source_url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero.html",
   "retrieved_at": "2026-06-06",
   "disclaimer_key": "Prozesse.disclaimer",
   "references": [
@@ -261,14 +261,14 @@
     },
     {
       "label": "Stadtpolizei Zürich – Fundbüro",
-      "url": "https://www.stadt-zuerich.ch/pd/de/index/stadtpolizei_zuerich/dienstleistungen/fundbuero.html"
+      "url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero.html"
     }
   ],
   "sources": [
     {
       "id": "q-stz-fundbuero",
       "title": "Stadt Zürich – Fundbüro der Stadtpolizei",
-      "url": "https://www.stadt-zuerich.ch/pd/de/index/stadtpolizei_zuerich/dienstleistungen/fundbuero.html",
+      "url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero.html",
       "retrieved_at": "2026-06-06"
     }
   ],

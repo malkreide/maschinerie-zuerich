@@ -23,7 +23,7 @@
       "ls": "Sie wohnen in Zürich. Sie haben einen Hund."
     }
   ],
-  "source_url": "https://www.stadt-zuerich.ch/fd/de/index/steuern/hundesteuer.html",
+  "source_url": "https://www.stadt-zuerich.ch/de/stadtleben/veranstaltungen-und-bewilligungen/hundekontrolle.html",
   "retrieved_at": "2026-06-06",
   "disclaimer_key": "Prozesse.disclaimer",
   "references": [
@@ -264,18 +264,18 @@
     },
     {
       "label": "Hundegesetz des Kantons Zürich (HuG)",
-      "url": "https://www.zh.ch/de/tiere-natur-landschaft/tiere/hunde.html"
+      "url": "https://www.zh.ch/de/umwelt-tiere/tiere/haustiere-heimtiere/hunde.html"
     },
     {
       "label": "Verordnung über die Hundesteuer der Stadt Zürich",
-      "url": "https://www.stadt-zuerich.ch/fd/de/index/steuern/hundesteuer.html"
+      "url": "https://www.stadt-zuerich.ch/de/stadtleben/veranstaltungen-und-bewilligungen/hundekontrolle.html"
     }
   ],
   "sources": [
     {
       "id": "q-stz-hund",
       "title": "Stadt Zürich – Hundesteuer und Hundekontrolle",
-      "url": "https://www.stadt-zuerich.ch/fd/de/index/steuern/hundesteuer.html",
+      "url": "https://www.stadt-zuerich.ch/de/stadtleben/veranstaltungen-und-bewilligungen/hundekontrolle.html",
       "retrieved_at": "2026-06-06"
     },
     {
