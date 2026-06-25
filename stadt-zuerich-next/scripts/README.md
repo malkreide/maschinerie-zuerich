@@ -112,6 +112,43 @@ Zeitgesteuert läuft der Live-Modus wöchentlich (advisory) im Workflow
 [`.github/workflows/link-rot.yml`](../../.github/workflows/link-rot.yml); ein
 manueller Lauf (`workflow_dispatch`) kann `strict` einschalten.
 
+## Belegstellen-Kandidaten (`extract-quotes.mjs`)
+
+Schlägt für References **Kandidaten-`source_quote`** vor, indem es die
+verlinkte amtliche Seite mit einem Headless-Browser (Chromium/Playwright)
+rendert und die belegenden Passagen extrahiert. Die amtlichen Quellen sind
+JavaScript-SPAs — `curl`/`fetch` sehen nur die leere Hülle, erst das
+gerenderte DOM enthält den zitierbaren Text.
+
+```bash
+npm run extract:quotes -- --file steuern.json --only-unverified
+npm run extract:quotes -- --all-refs --out /tmp/quotes.md
+```
+
+Wichtig — **das Skript schreibt NICHTS in die Daten**. Belegstellen für
+bindende Werte (Fristen, Gebühren) sind die heikelste Stelle der Maschinerie
+(Kardinalregel «Link, don't assert»): Das Skript liefert nur Vorschläge, ein
+**Mensch** wählt das wörtliche Zitat, trägt es als `source_quote` ein und
+setzt `status: "verifiziert"`.
+
+Optionen: `--city <id>` · `--file <prozess.json>` · `--only-unverified` (nur
+unbelegte References) · `--all-refs` (auch belegte gegen die Live-Seite prüfen
+= Drift-/Re-Verifikations-Check) · `--json` · `--out <pfad>` · `--timeout` ·
+`--concurrency`.
+
+Voraussetzungen:
+- **Offene Netz-Egress** zu den Quell-Domains. In der CI-/Web-Standardumgebung
+  ist u. a. `admin.ch` gesperrt (fedlex, Schweizer Pass) — diese Quellen dann
+  lokal oder mit offener Netzpolicy abrufen; erreichbare Domains
+  (`stadt-zuerich.ch`, `zh.ch`, `ch.ch`) funktionieren bereits.
+- Chromium: `npx playwright install chromium` (in `ci.yml` ohnehin Teil des
+  a11y-Jobs).
+
+> Der `--all-refs`-Drift-Check ist **advisory** und strikt verbatim: meldet er
+> «NEIN», kann das echte Drift (Seite geändert) ODER bloss abweichende
+> Zeichensetzung/Whitespace sein — die Kandidatenliste daneben zeigt, was
+> aktuell auf der Seite steht.
+
 ## Mapping
 
 [`mapping/institution-mapping.json`](mapping/institution-mapping.json) bildet
