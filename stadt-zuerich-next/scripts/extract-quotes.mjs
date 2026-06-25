@@ -1,11 +1,15 @@
 #!/usr/bin/env node
-// Kandidaten-Belegstellen (source_quote) für References per Headless-Browser
-// extrahieren — als VORSCHLAG zur menschlichen Prüfung.
+// Kandidaten-Belegstellen (source_quote) für References extrahieren — als
+// VORSCHLAG zur menschlichen Prüfung.
 //
-// Warum ein Browser: Die amtlichen Quellen (fedlex, ch.ch, stadt-zuerich.ch,
-// zh.ch) sind JavaScript-SPAs. curl/fetch sehen nur die leere App-Hülle; erst
-// ein gerendertes DOM enthält den zitierbaren Text. Dieses Skript rendert die
-// Seite mit Chromium und liest `document.body.innerText`.
+// Zwei Bezugsmodi für den Seitentext:
+//   • --fetch (Default-Empfehlung): HTTP-GET + HTML→Text, ohne Browser. Die
+//     aktuellen stadt-zuerich.ch- und zh.ch-Seiten sind serverseitig gerendert
+//     (SSR) — der zitierbare Text steht bereits im HTML. Läuft auch hinter dem
+//     Agent-Egress-Proxy (der Chromium-Traffic nicht durchlässt).
+//   • Browser (Default ohne --fetch): rendert mit Chromium/Playwright und liest
+//     `document.body.innerText`. Nötig für echte JS-SPAs (z. B. ch.ch), wo der
+//     Text erst clientseitig entsteht. Braucht offenen Egress + Chromium.
 //
 // WICHTIG — was dieses Skript NICHT tut:
 //   • Es schreibt NICHTS in die Prozessdaten. Belegstellen für bindende Werte
@@ -15,23 +19,27 @@
 //   • Es rät nichts: gibt eine Quelle keinen passenden Text her, sagt es das.
 //
 // Voraussetzungen:
-//   • Offene Netz-Egress zu den Quell-Domains. In der CI-/Web-Standardumgebung
-//     ist u. a. admin.ch gesperrt — dann lokal oder mit offener Netzpolicy
-//     laufen lassen.
-//   • Chromium: `npx playwright install chromium` (in ci.yml ohnehin Teil des
-//     a11y-Jobs).
+//   • Netz-Egress zu den Quell-Domains. admin.ch (fedlex, Schweizer Pass) ist in
+//     der Standardumgebung gesperrt — diese Quellen lokal/mit offener Policy.
+//   • Nur Browser-Modus: Chromium (`npx playwright install chromium`).
+//   • Hinter dem Agent-Proxy: --fetch nutzt Node-`fetch`; das Skript setzt
+//     NODE_USE_ENV_PROXY=1, damit der Proxy verwendet wird (No-op ohne Proxy).
 //
 // Aufruf:
-//   node scripts/extract-quotes.mjs [--city zh] [--file <pfad>]
+//   node scripts/extract-quotes.mjs [--fetch] [--city zh] [--file <pfad>]
 //        [--only-unverified] [--all-refs] [--out <pfad>] [--json]
 //        [--timeout 30000] [--concurrency 3]
 //
+//   --fetch            HTTP statt Browser (SSR-Seiten; proxy-tauglich)
 //   --only-unverified  nur References ohne belegtes source_quote (Default: alle)
 //   --all-refs         zusätzlich bereits verifizierte gegen die Live-Seite
 //                      prüfen (Drift-/Re-Verifikations-Check)
 //   --file <pfad>      auf eine Prozessdatei beschränken
 //   --json             Report als JSON statt Text
 //   --out <pfad>       Report zusätzlich in Datei schreiben
+
+// Proxy-Egress für Node-fetch (No-op, wenn kein HTTPS_PROXY gesetzt ist).
+process.env.NODE_USE_ENV_PROXY ??= '1';
 
 import { readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
@@ -55,6 +63,11 @@ const AS_JSON = flag('--json');
 const OUT = opt('--out', null);
 const TIMEOUT = Number(opt('--timeout', '30000'));
 const CONCURRENCY = Number(opt('--concurrency', '3'));
+const FETCH_MODE = flag('--fetch');
+
+const UA =
+  'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) ' +
+  'Chrome/126.0 Safari/537.36 maschinerie-zuerich-quotes/1.0';
 
 // ── Bindende-Werte-Muster (gespiegelt aus dem Kardinalregel-Lint) ───────────
 // Ein Kandidat ist nur dann stark, wenn er eine bindende Angabe enthält — denn
@@ -166,16 +179,72 @@ function collectRefs(processes) {
   return items;
 }
 
-// ── Browser-Rendering ───────────────────────────────────────────────────────
-let chromium;
-try {
-  ({ chromium } = await import('@playwright/test'));
-} catch {
-  console.error('Playwright nicht gefunden. Installieren: npm i -D @playwright/test && npx playwright install chromium');
-  process.exit(1);
+// ── HTTP-Fetch (SSR, kein Browser) ──────────────────────────────────────────
+const NAMED_ENT = {
+  amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ', shy: '',
+  laquo: '«', raquo: '»', ndash: '–', mdash: '—', hellip: '…', deg: '°',
+  euro: '€', rsquo: '’', lsquo: '‘', ldquo: '“', rdquo: '”', sbquo: '‚',
+  auml: 'ä', ouml: 'ö', uuml: 'ü', Auml: 'Ä', Ouml: 'Ö', Uuml: 'Ü', szlig: 'ß',
+  eacute: 'é', egrave: 'è', agrave: 'à', acirc: 'â', ccedil: 'ç', ugrave: 'ù',
+};
+function decodeEntities(s) {
+  return s
+    .replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCodePoint(parseInt(h, 16)))
+    .replace(/&#(\d+);/g, (_, d) => String.fromCodePoint(parseInt(d, 10)))
+    .replace(/&([a-zA-Z]+);/g, (m, n) => (n in NAMED_ENT ? NAMED_ENT[n] : (NAMED_ENT[n.toLowerCase()] ?? m)));
+}
+// Konvertiert HTML zu lesbarem Text — genug für SSR-Seiten, deren Inhalt im
+// Markup steht. Block-Elemente werden zu Zeilenumbrüchen, damit Sätze nicht
+// über Layoutgrenzen hinweg verkleben.
+function htmlToText(html) {
+  let s = html
+    .replace(/<!--[\s\S]*?-->/g, ' ')
+    .replace(/<(script|style|noscript|template|svg)\b[\s\S]*?<\/\1>/gi, ' ')
+    .replace(/<\/(p|div|li|ul|ol|h[1-6]|tr|table|section|article|header|footer|main|nav|dd|dt)\s*>/gi, '\n')
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<[^>]+>/g, ' ');
+  s = decodeEntities(s);
+  return s
+    .split('\n')
+    .map((l) => l.replace(/[ \t\f\v ]+/g, ' ').trim())
+    .filter(Boolean)
+    .join('\n');
 }
 
+async function fetchPages(urls) {
+  const cache = new Map();
+  const list = [...urls];
+  let i = 0;
+  async function worker() {
+    while (i < list.length) {
+      const url = list[i++];
+      try {
+        const res = await fetch(url, {
+          headers: { 'user-agent': UA, 'accept-language': 'de-CH,de;q=0.9' },
+          redirect: 'follow',
+          signal: AbortSignal.timeout(TIMEOUT),
+        });
+        const html = await res.text();
+        const text = htmlToText(html);
+        cache.set(url, { ok: res.status < 400 && text.length > 0, status: res.status, text });
+      } catch (err) {
+        cache.set(url, { ok: false, status: 0, text: '', error: err.message.split('\n')[0] });
+      }
+    }
+  }
+  await Promise.all(Array.from({ length: Math.min(CONCURRENCY, list.length) }, worker));
+  return cache;
+}
+
+// ── Browser-Rendering ───────────────────────────────────────────────────────
 async function renderPages(urls) {
+  let chromium;
+  try {
+    ({ chromium } = await import('@playwright/test'));
+  } catch {
+    console.error('Playwright nicht gefunden. Installieren: npm i -D @playwright/test && npx playwright install chromium (oder --fetch verwenden)');
+    process.exit(1);
+  }
   const cache = new Map(); // url -> { ok, text, error }
   let browser;
   try {
@@ -227,8 +296,10 @@ if (!refs.length) {
 }
 
 const uniqueUrls = [...new Set(refs.map((r) => r.url).filter(Boolean))];
-console.error(`Rendere ${uniqueUrls.length} Quell-URL(s) für ${refs.length} Reference(s) …`);
-const pages = await renderPages(uniqueUrls);
+console.error(
+  `${FETCH_MODE ? 'Hole (HTTP)' : 'Rendere (Browser)'} ${uniqueUrls.length} Quell-URL(s) für ${refs.length} Reference(s) …`,
+);
+const pages = FETCH_MODE ? await fetchPages(uniqueUrls) : await renderPages(uniqueUrls);
 
 const report = [];
 for (const r of refs) {

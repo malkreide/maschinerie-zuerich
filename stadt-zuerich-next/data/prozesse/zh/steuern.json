@@ -36,9 +36,9 @@
         "ls": "Bis wann die Steuer-Erklärung da sein muss"
       },
       "source_url": "https://www.zh.ch/de/steuern-finanzen/steuern/steuern-natuerliche-personen/steuererklaerung-natuerliche-personen.html",
-      "source_quote": "",
-      "status": "unverifiziert",
-      "retrieved_at": "2026-06-22"
+      "source_quote": "Ist es Ihnen nicht möglich, Ihre Steuererklärung bis zum 31. März des auf die Steuerperiode folgenden Jahres einzureichen, dann sollten Sie vor Ablauf der Frist eine Fristerstreckung beantragen.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-25"
     },
     {
       "reference_id": 2,
@@ -60,9 +60,9 @@
         "ls": "Bis wann Sie zahlen müssen und was bei Verspätung gilt"
       },
       "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/steuern/natuerliche-personen/steuern-bezahlen/definitive-rechnung.html",
-      "source_quote": "",
-      "status": "unverifiziert",
-      "retrieved_at": "2026-06-22"
+      "source_quote": "Falls die Steuerschuld nach Ablauf der Zahlungsfrist von 30 Tagen ab Zustellung der Schlussrechnung noch nicht (vollständig) bezahlt ist, wird ein Verzugszins erhoben.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-25"
     }
   ],
   "actors": [

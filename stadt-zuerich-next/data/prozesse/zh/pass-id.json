@@ -60,9 +60,9 @@
         "ls": "Wie lange Pass und Identitäts-Karte gültig sind"
       },
       "source_url": "https://www.ch.ch/de/gultigkeit-kosten-pass-identitatskarte/",
-      "source_quote": "",
-      "status": "unverifiziert",
-      "retrieved_at": "2026-06-22"
+      "source_quote": "Der Pass und die Identitätskarte von Erwachsenen sind 10 Jahre gültig, bei Kindern und Jugendlichen bis zum vollendeten 18. Lebensjahr sind es fünf Jahre.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-25"
     },
     {
       "reference_id": 4,
