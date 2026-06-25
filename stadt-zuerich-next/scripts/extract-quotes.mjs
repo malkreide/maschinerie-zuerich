@@ -34,6 +34,9 @@
 //   --only-unverified  nur References ohne belegtes source_quote (Default: alle)
 //   --all-refs         zusätzlich bereits verifizierte gegen die Live-Seite
 //                      prüfen (Drift-/Re-Verifikations-Check)
+//   --grep <regex>     nur Seiten-Segmente, die diesem Muster (i) entsprechen —
+//                      nötig bei riesigen Einzelseiten (ganzes ZGB auf einer
+//                      fedlex-Seite), z. B. --grep "Ehefähigkeit"
 //   --file <pfad>      auf eine Prozessdatei beschränken
 //   --json             Report als JSON statt Text
 //   --out <pfad>       Report zusätzlich in Datei schreiben
@@ -64,6 +67,8 @@ const OUT = opt('--out', null);
 const TIMEOUT = Number(opt('--timeout', '30000'));
 const CONCURRENCY = Number(opt('--concurrency', '3'));
 const FETCH_MODE = flag('--fetch');
+const GREP = opt('--grep', null); // nur Segmente, die diesem Regex (i) entsprechen
+const GREP_RE = GREP ? new RegExp(GREP, 'i') : null;
 
 const UA =
   'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) ' +
@@ -119,17 +124,23 @@ function bindingScore(seg) {
   return s;
 }
 
-function rankCandidates(pageText, label, topN = 3) {
+function rankCandidates(pageText, label, topN = GREP_RE ? 8 : 3) {
   const kws = keywords(label);
-  const segs = segments(pageText);
+  // --grep grenzt auf Segmente ein, die das Muster enthalten. Unverzichtbar bei
+  // sehr grossen Einzelseiten (z. B. das ganze ZGB auf einer fedlex-Seite), wo
+  // das Stichwort-Ranking sonst von gleichgewichtigen Treffern anderer Artikel
+  // überlagert wird — dann gezielt z. B. --grep "Ehefähigkeit".
+  const segs = GREP_RE ? segments(pageText).filter((s) => GREP_RE.test(s)) : segments(pageText);
   const scored = segs.map((seg) => {
     const low = seg.toLowerCase();
     const overlap = kws.filter((k) => low.includes(k)).length;
     return { seg, score: overlap * 2 + bindingScore(seg), overlap, binding: bindingScore(seg) > 0 };
   });
-  // Priorisiere: Stichwort-Treffer UND bindende Angabe; dann der Rest.
+  // Priorisiere: Stichwort-Treffer UND bindende Angabe; dann der Rest. Bei
+  // aktivem --grep hat der Mensch die Relevanz schon vorgegeben → auch
+  // Segmente ohne Score zeigen (nach Reihenfolge im Dokument).
   return scored
-    .filter((c) => c.score > 0)
+    .filter((c) => GREP_RE || c.score > 0)
     .sort((a, b) => b.score - a.score || a.seg.length - b.seg.length)
     .slice(0, topN);
 }

@@ -139,8 +139,10 @@ setzt `status: "verifiziert"`.
 
 Optionen: `--fetch` (HTTP statt Browser) · `--city <id>` · `--file <prozess.json>` ·
 `--only-unverified` (nur unbelegte References) · `--all-refs` (auch belegte
-gegen die Live-Seite prüfen = Drift-/Re-Verifikations-Check) · `--json` ·
-`--out <pfad>` · `--timeout` · `--concurrency`.
+gegen die Live-Seite prüfen = Drift-/Re-Verifikations-Check) ·
+`--grep <regex>` (nur passende Segmente — nötig bei riesigen Einzelseiten wie
+dem ganzen ZGB auf einer fedlex-Seite, z. B. `--grep "Ehefähigkeit"`) ·
+`--json` · `--out <pfad>` · `--timeout` · `--concurrency`.
 
 Voraussetzungen:
 - **Netz-Egress** zu den Quell-Domains. `admin.ch` (fedlex, Schweizer Pass) ist
