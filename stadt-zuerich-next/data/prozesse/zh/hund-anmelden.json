@@ -21,6 +21,22 @@
     {
       "de": "Sie wohnen in der Stadt Zürich und halten einen Hund.",
       "ls": "Sie wohnen in Zürich. Sie haben einen Hund."
+    },
+    {
+      "de": "Die haltende Person ist volljährig und wohnt in der Wohngemeinde (z.B. Stadt Zürich).",
+      "ls": "Sie sind erwachsen. Sie wohnen in der Gemeinde."
+    },
+    {
+      "de": "Nur eine Person kann als Halter:in eingetragen werden.",
+      "ls": "Nur eine Person ist Halterin oder Halter."
+    },
+    {
+      "de": "Der gehaltene Hund gehört nicht zu den im Kanton verbotenen Hunderassen.",
+      "ls": "Manche Hunde sind verboten. Prüfen Sie das zuerst."
+    },
+    {
+      "de": "Es besteht eine Haftpflichtversicherung mit ausreichender Deckung für den Hund.",
+      "ls": "Sie brauchen eine Versicherung für den Hund."
     }
   ],
   "source_url": "https://www.stadt-zuerich.ch/de/stadtleben/veranstaltungen-und-bewilligungen/hundekontrolle.html",
@@ -199,7 +215,8 @@
       "actor": "steueramt",
       "label": {
         "de": "Anmeldung mit AMICUS abgleichen",
-        "en": "Match registration against AMICUS"
+        "en": "Match registration against AMICUS",
+        "ls": "Ist der Hund noch nicht bei AMICUS? Dann meldet ihn der Tierarzt an."
       },
       "depends_on": [
         4
@@ -255,6 +272,67 @@
         7
       ],
       "type": "ende"
+    },
+    {
+      "step_id": 9,
+      "actor": "Halter:in",
+      "label": {
+        "de": "Prüfungsbestätigung des Theoriekurses bei der Wohngemeinde einreichen",
+        "en": "",
+        "fr": "",
+        "it": "",
+        "ls": "Geben Sie die Bestätigung bei der Gemeinde ab."
+      },
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "step_id": 10,
+      "actor": "Halter:in",
+      "label": {
+        "de": "Praktischen Ausbildungskurs absolvieren, sofern kurspflichtig",
+        "en": "",
+        "fr": "",
+        "it": "",
+        "ls": "Sie müssen einen Praxiskurs mit dem Hund machen."
+      },
+      "depends_on": [
+        {
+          "step_id": 2,
+          "condition": {
+            "de": "Die haltende Person ist zur praktischen Ausbildung verpflichtet und nicht ausgenommen."
+          }
+        }
+      ]
+    },
+    {
+      "step_id": 11,
+      "actor": "Hundeausbildner:in",
+      "label": {
+        "de": "Erfolgreiches Absolvieren des Praxiskurses in AMICUS eintragen und Lernerfolgskontrolle aushändigen",
+        "en": "",
+        "fr": "",
+        "it": "",
+        "ls": "Die Ausbildnerin trägt den Praxiskurs bei AMICUS ein. Sie bekommen eine Bestätigung."
+      },
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "step_id": 12,
+      "actor": "Halter:in",
+      "label": {
+        "de": "Jährliche Hundeabgabe (Hundesteuer) bei der Wohngemeinde bezahlen",
+        "en": "",
+        "fr": "",
+        "it": "",
+        "ls": "Sie zahlen jedes Jahr eine Hundesteuer an die Gemeinde."
+      },
+      "depends_on": [
+        2
+      ]
     }
   ],
   "legal_basis": [
