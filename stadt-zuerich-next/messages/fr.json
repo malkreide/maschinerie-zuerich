@@ -92,7 +92,8 @@
     "skipToList": "Vers l'aperçu textuel (lecteurs d'écran)",
     "language": "Langue",
     "expandAll": "Tout déplier",
-    "collapseAll": "Tout replier"
+    "collapseAll": "Tout replier",
+    "portfolio": "Portfolio"
   },
   "Search": {
     "label": "Chercher un service ou une démarche",
@@ -460,5 +461,31 @@
     "tooltipValue": "{value} {unit}",
     "noData": "Pas encore de données d'équipements pour cet indicateur — chargez-les avec `npm run data:fetch-geo`.",
     "noGeo": "Géométrie des arrondissements indisponible."
+  },
+  "Portfolio": {
+    "title": "Portefeuille : processus × dimensions",
+    "intro": "La vue d’ensemble de tous les processus : une procédure par ligne, un indicateur de numérisation ou d’orientation usager par colonne, la couleur indique le degré de réalisation. Métadonnées dérivées — pas une affirmation faisant autorité. Chaque cellule renvoie au processus et à ses preuves.",
+    "source": "Dérivé des indicateurs de processus (lib/bewertung.ts)",
+    "privacyNote": "Généré de manière déterministe à partir des données de processus existantes — aucune donnée d’usage ou personnelle, aucune valeur inventée pour combler les lacunes.",
+    "empty": "Aucun processus enregistré pour l’instant.",
+    "caption": "Carte de chaleur : processus (lignes) × indicateurs (colonnes)",
+    "colProzess": "Processus",
+    "scoreGroup": "Score (% atteint)",
+    "scoreDigital": "Num.",
+    "scoreNutzend": "Usager",
+    "scoreGesamt": "Total",
+    "scoreDigitalLong": "Numérisation — part des indicateurs atteints",
+    "scoreNutzendLong": "Orientation usager — part des indicateurs atteints",
+    "scoreGesamtLong": "Total — part des indicateurs atteints",
+    "scoreNa": "pas de score",
+    "legendHeading": "Légende",
+    "legendInformativ": "informatif (oui/non, ne compte pas dans le score)",
+    "cellTitle": "{indikator} : {status}",
+    "detailLink": "Vers le processus « {titel} » — détails et preuves",
+    "belegLuecke": "Preuves en attente",
+    "belegLueckeTitle": "Aucune preuve de numérisation enregistrée — les colonnes numériques restent « inconnu », pas « non atteint ».",
+    "coverageNote": "{ohne, plural, =0 {Les {total} processus disposent tous d’indicateurs de numérisation étayés.} one {# processus sur {total} n’a pas encore d’indicateurs de numérisation étayés — les colonnes numériques restent « inconnu », pas « non atteint ».} other {# processus sur {total} n’ont pas encore d’indicateurs de numérisation étayés — les colonnes numériques restent « inconnu », pas « non atteint ».}}",
+    "summaryHeading": "Réalisation par indicateur (sur tous les processus)",
+    "summaryZeile": "{erfuellt} atteint · {nichtErfuellt} non atteint · {unbekannt} inconnu"
   }
 }

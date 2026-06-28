@@ -96,7 +96,8 @@
     "climateToggle": "🌡️ Klimabudget-Indikator",
     "climateToggleTitle": "Zeigt eine Live-Indikation der klimatischen Auswirkungen",
     "diversityToggle": "👥 Diversity & Kader (Mitarbeitende)",
-    "diversityToggleTitle": "Zeigt den Geschlechteranteil im Kader pro Organisationseinheit als Ringdiagramm"
+    "diversityToggleTitle": "Zeigt den Geschlechteranteil im Kader pro Organisationseinheit als Ringdiagramm",
+    "portfolio": "Portfolio"
   },
   "Search": {
     "label": "Stelle oder Anliegen suchen",
@@ -476,5 +477,31 @@
     "tooltipValue": "{value} {unit}",
     "noData": "Für diese Kennzahl liegen noch keine Standortdaten vor — mit `npm run data:fetch-geo` laden.",
     "noGeo": "Stadtkreis-Geometrie nicht verfügbar."
+  },
+  "Portfolio": {
+    "title": "Portfolio: Prozesse × Dimensionen",
+    "intro": "Das Big Picture über alle Prozesse: je Zeile ein Verfahren, je Spalte ein Indikator für Digitalisierung oder Nutzendenorientierung, die Farbe zeigt den Erfüllungsgrad. Abgeleitete Metadaten — keine autoritative Aussage. Jede Zelle verlinkt auf den Prozess und seine Evidenz.",
+    "source": "Abgeleitet aus den Prozess-Indikatoren (lib/bewertung.ts)",
+    "privacyNote": "Deterministisch aus den vorhandenen Prozessdaten erzeugt — keine Nutzungs- oder Personendaten, keine erfundenen Werte zum Lückenfüllen.",
+    "empty": "Noch keine Prozesse erfasst.",
+    "caption": "Heatmap: Prozesse (Zeilen) × Indikatoren (Spalten)",
+    "colProzess": "Prozess",
+    "scoreGroup": "Score (% erfüllt)",
+    "scoreDigital": "Dig.",
+    "scoreNutzend": "Nutz.",
+    "scoreGesamt": "Ges.",
+    "scoreDigitalLong": "Digitalisierung — Anteil erfüllter Indikatoren",
+    "scoreNutzendLong": "Nutzendenorientierung — Anteil erfüllter Indikatoren",
+    "scoreGesamtLong": "Gesamt — Anteil erfüllter Indikatoren",
+    "scoreNa": "kein Score",
+    "legendHeading": "Legende",
+    "legendInformativ": "informativ (ja/nein, zählt nicht in den Score)",
+    "cellTitle": "{indikator}: {status}",
+    "detailLink": "Zum Prozess «{titel}» — Details und Evidenz",
+    "belegLuecke": "Belege ausstehend",
+    "belegLueckeTitle": "Noch keine Digitalisierungs-Belege hinterlegt — die Digital-Spalten bleiben «unbekannt», nicht «nicht erfüllt».",
+    "coverageNote": "{ohne, plural, =0 {Alle {total} Prozesse haben belegte Digitalisierungs-Indikatoren.} one {# von {total} Prozessen hat noch keine belegten Digitalisierungs-Indikatoren — die Digital-Spalten bleiben «unbekannt», nicht «nicht erfüllt».} other {# von {total} Prozessen haben noch keine belegten Digitalisierungs-Indikatoren — die Digital-Spalten bleiben «unbekannt», nicht «nicht erfüllt».}}",
+    "summaryHeading": "Erfüllung je Indikator (über alle Prozesse)",
+    "summaryZeile": "{erfuellt} erfüllt · {nichtErfuellt} nicht erfüllt · {unbekannt} unbekannt"
   }
 }

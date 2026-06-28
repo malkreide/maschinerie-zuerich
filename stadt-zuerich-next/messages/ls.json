@@ -92,7 +92,8 @@
     "skipToList": "Zur Liste springen. Die Liste ist gut für Sprach-Programme.",
     "language": "Sprache",
     "expandAll": "Alles aufklappen",
-    "collapseAll": "Alles zuklappen"
+    "collapseAll": "Alles zuklappen",
+    "portfolio": "Überblick"
   },
   "Search": {
     "label": "Wonach suchen Sie?",
@@ -460,5 +461,31 @@
     "tooltipValue": "{value} {unit}",
     "noData": "Für diese Zahl gibt es noch keine Orts-Daten. Laden Sie sie mit `npm run data:fetch-geo`.",
     "noGeo": "Die Karten-Daten fehlen."
+  },
+  "Portfolio": {
+    "title": "Überblick: alle Prozesse",
+    "intro": "Hier sehen Sie alle Prozesse auf einen Blick. Jede Zeile ist ein Prozess. Jede Spalte ist eine Frage: Geht es digital? Ist es einfach für die Menschen? Die Farbe zeigt die Antwort. Tippen Sie auf ein Feld, dann sehen Sie den Prozess und die Belege.",
+    "source": "Berechnet aus den Prozess-Daten",
+    "privacyNote": "Alles wird aus den Prozess-Daten berechnet. Wir sammeln keine Daten über Sie. Wir erfinden keine Werte.",
+    "empty": "Es gibt noch keine Prozesse.",
+    "caption": "Tabelle: Prozesse (Zeilen) und Fragen (Spalten)",
+    "colProzess": "Prozess",
+    "scoreGroup": "Wert (Prozent erfüllt)",
+    "scoreDigital": "Digital",
+    "scoreNutzend": "Einfach",
+    "scoreGesamt": "Total",
+    "scoreDigitalLong": "Digital — wie viel ist erfüllt",
+    "scoreNutzendLong": "Einfach für die Menschen — wie viel ist erfüllt",
+    "scoreGesamtLong": "Total — wie viel ist erfüllt",
+    "scoreNa": "kein Wert",
+    "legendHeading": "Was die Farben bedeuten",
+    "legendInformativ": "nur eine Info (ja/nein, zählt nicht zum Wert)",
+    "cellTitle": "{indikator}: {status}",
+    "detailLink": "Zum Prozess «{titel}» — mehr und Belege",
+    "belegLuecke": "Belege fehlen noch",
+    "belegLueckeTitle": "Für diesen Prozess fehlen noch Belege. Darum steht in den Digital-Spalten «unbekannt». Das heisst nicht «nicht erfüllt».",
+    "coverageNote": "{ohne, plural, =0 {Alle {total} Prozesse haben Belege.} one {# von {total} Prozessen hat noch keine Belege. Darum steht «unbekannt». Das heisst nicht «nicht erfüllt».} other {# von {total} Prozessen haben noch keine Belege. Darum steht «unbekannt». Das heisst nicht «nicht erfüllt».}}",
+    "summaryHeading": "Antworten je Frage (über alle Prozesse)",
+    "summaryZeile": "{erfuellt} erfüllt · {nichtErfuellt} nicht erfüllt · {unbekannt} unbekannt"
   }
 }
