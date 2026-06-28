@@ -1,0 +1,1299 @@
+{
+  "schema_version": "1.0.0",
+  "city": "zh",
+  "generator": "lib/portfolio.ts/buildPortfolio",
+  "spalten": [
+    {
+      "key": "online-antrag",
+      "kategorie": "digitalisierung",
+      "gezaehlt": true
+    },
+    {
+      "key": "online-bezahlung",
+      "kategorie": "digitalisierung",
+      "gezaehlt": true
+    },
+    {
+      "key": "statusverfolgung",
+      "kategorie": "digitalisierung",
+      "gezaehlt": true
+    },
+    {
+      "key": "medienbruchfrei",
+      "kategorie": "digitalisierung",
+      "gezaehlt": true
+    },
+    {
+      "key": "digital-abschliessbar",
+      "kategorie": "digitalisierung",
+      "gezaehlt": true
+    },
+    {
+      "key": "eid-noetig",
+      "kategorie": "digitalisierung",
+      "gezaehlt": false
+    },
+    {
+      "key": "leichte-sprache",
+      "kategorie": "nutzendenorientierung",
+      "gezaehlt": true
+    },
+    {
+      "key": "mehrsprachigkeit",
+      "kategorie": "nutzendenorientierung",
+      "gezaehlt": true
+    },
+    {
+      "key": "voraussetzungen-genannt",
+      "kategorie": "nutzendenorientierung",
+      "gezaehlt": true
+    },
+    {
+      "key": "fristen-kosten-verlinkt",
+      "kategorie": "nutzendenorientierung",
+      "gezaehlt": true
+    }
+  ],
+  "prozesse": [
+    {
+      "slug": "zh/abfall",
+      "city": "zh",
+      "id": "abfall",
+      "zellen": [
+        {
+          "key": "online-antrag",
+          "status": "unbekannt"
+        },
+        {
+          "key": "online-bezahlung",
+          "status": "unbekannt"
+        },
+        {
+          "key": "statusverfolgung",
+          "status": "unbekannt"
+        },
+        {
+          "key": "medienbruchfrei",
+          "status": "unbekannt"
+        },
+        {
+          "key": "digital-abschliessbar",
+          "status": "unbekannt"
+        },
+        {
+          "key": "eid-noetig",
+          "status": "unbekannt"
+        },
+        {
+          "key": "leichte-sprache",
+          "status": "erfuellt"
+        },
+        {
+          "key": "mehrsprachigkeit",
+          "status": "nicht-erfuellt"
+        },
+        {
+          "key": "voraussetzungen-genannt",
+          "status": "erfuellt"
+        },
+        {
+          "key": "fristen-kosten-verlinkt",
+          "status": "erfuellt"
+        }
+      ],
+      "score": {
+        "digitalisierung": {
+          "erfuellt": 0,
+          "bekannt": 0,
+          "unbekannt": 5,
+          "prozent": null
+        },
+        "nutzendenorientierung": {
+          "erfuellt": 3,
+          "bekannt": 4,
+          "unbekannt": 0,
+          "prozent": 75
+        },
+        "gesamt": {
+          "erfuellt": 3,
+          "bekannt": 4,
+          "unbekannt": 5,
+          "prozent": 75
+        }
+      },
+      "unbekannt": 5,
+      "belegLuecke": true
+    },
+    {
+      "slug": "zh/baugesuch",
+      "city": "zh",
+      "id": "baugesuch",
+      "zellen": [
+        {
+          "key": "online-antrag",
+          "status": "unbekannt"
+        },
+        {
+          "key": "online-bezahlung",
+          "status": "unbekannt"
+        },
+        {
+          "key": "statusverfolgung",
+          "status": "unbekannt"
+        },
+        {
+          "key": "medienbruchfrei",
+          "status": "unbekannt"
+        },
+        {
+          "key": "digital-abschliessbar",
+          "status": "unbekannt"
+        },
+        {
+          "key": "eid-noetig",
+          "status": "unbekannt"
+        },
+        {
+          "key": "leichte-sprache",
+          "status": "nicht-erfuellt"
+        },
+        {
+          "key": "mehrsprachigkeit",
+          "status": "nicht-erfuellt"
+        },
+        {
+          "key": "voraussetzungen-genannt",
+          "status": "nicht-erfuellt"
+        },
+        {
+          "key": "fristen-kosten-verlinkt",
+          "status": "erfuellt"
+        }
+      ],
+      "score": {
+        "digitalisierung": {
+          "erfuellt": 0,
+          "bekannt": 0,
+          "unbekannt": 5,
+          "prozent": null
+        },
+        "nutzendenorientierung": {
+          "erfuellt": 1,
+          "bekannt": 4,
+          "unbekannt": 0,
+          "prozent": 25
+        },
+        "gesamt": {
+          "erfuellt": 1,
+          "bekannt": 4,
+          "unbekannt": 5,
+          "prozent": 25
+        }
+      },
+      "unbekannt": 5,
+      "belegLuecke": true
+    },
+    {
+      "slug": "zh/betreibung",
+      "city": "zh",
+      "id": "betreibung",
+      "zellen": [
+        {
+          "key": "online-antrag",
+          "status": "unbekannt"
+        },
+        {
+          "key": "online-bezahlung",
+          "status": "unbekannt"
+        },
+        {
+          "key": "statusverfolgung",
+          "status": "unbekannt"
+        },
+        {
+          "key": "medienbruchfrei",
+          "status": "unbekannt"
+        },
+        {
+          "key": "digital-abschliessbar",
+          "status": "unbekannt"
+        },
+        {
+          "key": "eid-noetig",
+          "status": "unbekannt"
+        },
+        {
+          "key": "leichte-sprache",
+          "status": "erfuellt"
+        },
+        {
+          "key": "mehrsprachigkeit",
+          "status": "erfuellt"
+        },
+        {
+          "key": "voraussetzungen-genannt",
+          "status": "nicht-erfuellt"
+        },
+        {
+          "key": "fristen-kosten-verlinkt",
+          "status": "erfuellt"
+        }
+      ],
+      "score": {
+        "digitalisierung": {
+          "erfuellt": 0,
+          "bekannt": 0,
+          "unbekannt": 5,
+          "prozent": null
+        },
+        "nutzendenorientierung": {
+          "erfuellt": 3,
+          "bekannt": 4,
+          "unbekannt": 0,
+          "prozent": 75
+        },
+        "gesamt": {
+          "erfuellt": 3,
+          "bekannt": 4,
+          "unbekannt": 5,
+          "prozent": 75
+        }
+      },
+      "unbekannt": 5,
+      "belegLuecke": true
+    },
+    {
+      "slug": "zh/fundsache",
+      "city": "zh",
+      "id": "fundsache",
+      "zellen": [
+        {
+          "key": "online-antrag",
+          "status": "unbekannt"
+        },
+        {
+          "key": "online-bezahlung",
+          "status": "unbekannt"
+        },
+        {
+          "key": "statusverfolgung",
+          "status": "unbekannt"
+        },
+        {
+          "key": "medienbruchfrei",
+          "status": "unbekannt"
+        },
+        {
+          "key": "digital-abschliessbar",
+          "status": "unbekannt"
+        },
+        {
+          "key": "eid-noetig",
+          "status": "unbekannt"
+        },
+        {
+          "key": "leichte-sprache",
+          "status": "erfuellt"
+        },
+        {
+          "key": "mehrsprachigkeit",
+          "status": "nicht-erfuellt"
+        },
+        {
+          "key": "voraussetzungen-genannt",
+          "status": "erfuellt"
+        },
+        {
+          "key": "fristen-kosten-verlinkt",
+          "status": "erfuellt"
+        }
+      ],
+      "score": {
+        "digitalisierung": {
+          "erfuellt": 0,
+          "bekannt": 0,
+          "unbekannt": 5,
+          "prozent": null
+        },
+        "nutzendenorientierung": {
+          "erfuellt": 3,
+          "bekannt": 4,
+          "unbekannt": 0,
+          "prozent": 75
+        },
+        "gesamt": {
+          "erfuellt": 3,
+          "bekannt": 4,
+          "unbekannt": 5,
+          "prozent": 75
+        }
+      },
+      "unbekannt": 5,
+      "belegLuecke": true
+    },
+    {
+      "slug": "zh/heiraten",
+      "city": "zh",
+      "id": "heiraten",
+      "zellen": [
+        {
+          "key": "online-antrag",
+          "status": "unbekannt"
+        },
+        {
+          "key": "online-bezahlung",
+          "status": "unbekannt"
+        },
+        {
+          "key": "statusverfolgung",
+          "status": "unbekannt"
+        },
+        {
+          "key": "medienbruchfrei",
+          "status": "unbekannt"
+        },
+        {
+          "key": "digital-abschliessbar",
+          "status": "unbekannt"
+        },
+        {
+          "key": "eid-noetig",
+          "status": "unbekannt"
+        },
+        {
+          "key": "leichte-sprache",
+          "status": "erfuellt"
+        },
+        {
+          "key": "mehrsprachigkeit",
+          "status": "nicht-erfuellt"
+        },
+        {
+          "key": "voraussetzungen-genannt",
+          "status": "erfuellt"
+        },
+        {
+          "key": "fristen-kosten-verlinkt",
+          "status": "erfuellt"
+        }
+      ],
+      "score": {
+        "digitalisierung": {
+          "erfuellt": 0,
+          "bekannt": 0,
+          "unbekannt": 5,
+          "prozent": null
+        },
+        "nutzendenorientierung": {
+          "erfuellt": 3,
+          "bekannt": 4,
+          "unbekannt": 0,
+          "prozent": 75
+        },
+        "gesamt": {
+          "erfuellt": 3,
+          "bekannt": 4,
+          "unbekannt": 5,
+          "prozent": 75
+        }
+      },
+      "unbekannt": 5,
+      "belegLuecke": true
+    },
+    {
+      "slug": "zh/hund-anmelden",
+      "city": "zh",
+      "id": "hund-anmelden",
+      "zellen": [
+        {
+          "key": "online-antrag",
+          "status": "unbekannt"
+        },
+        {
+          "key": "online-bezahlung",
+          "status": "unbekannt"
+        },
+        {
+          "key": "statusverfolgung",
+          "status": "unbekannt"
+        },
+        {
+          "key": "medienbruchfrei",
+          "status": "unbekannt"
+        },
+        {
+          "key": "digital-abschliessbar",
+          "status": "unbekannt"
+        },
+        {
+          "key": "eid-noetig",
+          "status": "unbekannt"
+        },
+        {
+          "key": "leichte-sprache",
+          "status": "erfuellt"
+        },
+        {
+          "key": "mehrsprachigkeit",
+          "status": "nicht-erfuellt"
+        },
+        {
+          "key": "voraussetzungen-genannt",
+          "status": "erfuellt"
+        },
+        {
+          "key": "fristen-kosten-verlinkt",
+          "status": "erfuellt"
+        }
+      ],
+      "score": {
+        "digitalisierung": {
+          "erfuellt": 0,
+          "bekannt": 0,
+          "unbekannt": 5,
+          "prozent": null
+        },
+        "nutzendenorientierung": {
+          "erfuellt": 3,
+          "bekannt": 4,
+          "unbekannt": 0,
+          "prozent": 75
+        },
+        "gesamt": {
+          "erfuellt": 3,
+          "bekannt": 4,
+          "unbekannt": 5,
+          "prozent": 75
+        }
+      },
+      "unbekannt": 5,
+      "belegLuecke": true
+    },
+    {
+      "slug": "zh/kita-platz",
+      "city": "zh",
+      "id": "kita-platz",
+      "zellen": [
+        {
+          "key": "online-antrag",
+          "status": "unbekannt"
+        },
+        {
+          "key": "online-bezahlung",
+          "status": "unbekannt"
+        },
+        {
+          "key": "statusverfolgung",
+          "status": "unbekannt"
+        },
+        {
+          "key": "medienbruchfrei",
+          "status": "unbekannt"
+        },
+        {
+          "key": "digital-abschliessbar",
+          "status": "unbekannt"
+        },
+        {
+          "key": "eid-noetig",
+          "status": "unbekannt"
+        },
+        {
+          "key": "leichte-sprache",
+          "status": "nicht-erfuellt"
+        },
+        {
+          "key": "mehrsprachigkeit",
+          "status": "nicht-erfuellt"
+        },
+        {
+          "key": "voraussetzungen-genannt",
+          "status": "nicht-erfuellt"
+        },
+        {
+          "key": "fristen-kosten-verlinkt",
+          "status": "erfuellt"
+        }
+      ],
+      "score": {
+        "digitalisierung": {
+          "erfuellt": 0,
+          "bekannt": 0,
+          "unbekannt": 5,
+          "prozent": null
+        },
+        "nutzendenorientierung": {
+          "erfuellt": 1,
+          "bekannt": 4,
+          "unbekannt": 0,
+          "prozent": 25
+        },
+        "gesamt": {
+          "erfuellt": 1,
+          "bekannt": 4,
+          "unbekannt": 5,
+          "prozent": 25
+        }
+      },
+      "unbekannt": 5,
+      "belegLuecke": true
+    },
+    {
+      "slug": "zh/oev",
+      "city": "zh",
+      "id": "oev",
+      "zellen": [
+        {
+          "key": "online-antrag",
+          "status": "unbekannt"
+        },
+        {
+          "key": "online-bezahlung",
+          "status": "unbekannt"
+        },
+        {
+          "key": "statusverfolgung",
+          "status": "unbekannt"
+        },
+        {
+          "key": "medienbruchfrei",
+          "status": "unbekannt"
+        },
+        {
+          "key": "digital-abschliessbar",
+          "status": "unbekannt"
+        },
+        {
+          "key": "eid-noetig",
+          "status": "unbekannt"
+        },
+        {
+          "key": "leichte-sprache",
+          "status": "erfuellt"
+        },
+        {
+          "key": "mehrsprachigkeit",
+          "status": "erfuellt"
+        },
+        {
+          "key": "voraussetzungen-genannt",
+          "status": "nicht-erfuellt"
+        },
+        {
+          "key": "fristen-kosten-verlinkt",
+          "status": "erfuellt"
+        }
+      ],
+      "score": {
+        "digitalisierung": {
+          "erfuellt": 0,
+          "bekannt": 0,
+          "unbekannt": 5,
+          "prozent": null
+        },
+        "nutzendenorientierung": {
+          "erfuellt": 3,
+          "bekannt": 4,
+          "unbekannt": 0,
+          "prozent": 75
+        },
+        "gesamt": {
+          "erfuellt": 3,
+          "bekannt": 4,
+          "unbekannt": 5,
+          "prozent": 75
+        }
+      },
+      "unbekannt": 5,
+      "belegLuecke": true
+    },
+    {
+      "slug": "zh/parkplatz",
+      "city": "zh",
+      "id": "parkplatz",
+      "zellen": [
+        {
+          "key": "online-antrag",
+          "status": "unbekannt"
+        },
+        {
+          "key": "online-bezahlung",
+          "status": "unbekannt"
+        },
+        {
+          "key": "statusverfolgung",
+          "status": "unbekannt"
+        },
+        {
+          "key": "medienbruchfrei",
+          "status": "unbekannt"
+        },
+        {
+          "key": "digital-abschliessbar",
+          "status": "unbekannt"
+        },
+        {
+          "key": "eid-noetig",
+          "status": "unbekannt"
+        },
+        {
+          "key": "leichte-sprache",
+          "status": "nicht-erfuellt"
+        },
+        {
+          "key": "mehrsprachigkeit",
+          "status": "nicht-erfuellt"
+        },
+        {
+          "key": "voraussetzungen-genannt",
+          "status": "nicht-erfuellt"
+        },
+        {
+          "key": "fristen-kosten-verlinkt",
+          "status": "erfuellt"
+        }
+      ],
+      "score": {
+        "digitalisierung": {
+          "erfuellt": 0,
+          "bekannt": 0,
+          "unbekannt": 5,
+          "prozent": null
+        },
+        "nutzendenorientierung": {
+          "erfuellt": 1,
+          "bekannt": 4,
+          "unbekannt": 0,
+          "prozent": 25
+        },
+        "gesamt": {
+          "erfuellt": 1,
+          "bekannt": 4,
+          "unbekannt": 5,
+          "prozent": 25
+        }
+      },
+      "unbekannt": 5,
+      "belegLuecke": true
+    },
+    {
+      "slug": "zh/pass-id",
+      "city": "zh",
+      "id": "pass-id",
+      "zellen": [
+        {
+          "key": "online-antrag",
+          "status": "unbekannt"
+        },
+        {
+          "key": "online-bezahlung",
+          "status": "unbekannt"
+        },
+        {
+          "key": "statusverfolgung",
+          "status": "unbekannt"
+        },
+        {
+          "key": "medienbruchfrei",
+          "status": "unbekannt"
+        },
+        {
+          "key": "digital-abschliessbar",
+          "status": "unbekannt"
+        },
+        {
+          "key": "eid-noetig",
+          "status": "unbekannt"
+        },
+        {
+          "key": "leichte-sprache",
+          "status": "erfuellt"
+        },
+        {
+          "key": "mehrsprachigkeit",
+          "status": "nicht-erfuellt"
+        },
+        {
+          "key": "voraussetzungen-genannt",
+          "status": "erfuellt"
+        },
+        {
+          "key": "fristen-kosten-verlinkt",
+          "status": "erfuellt"
+        }
+      ],
+      "score": {
+        "digitalisierung": {
+          "erfuellt": 0,
+          "bekannt": 0,
+          "unbekannt": 5,
+          "prozent": null
+        },
+        "nutzendenorientierung": {
+          "erfuellt": 3,
+          "bekannt": 4,
+          "unbekannt": 0,
+          "prozent": 75
+        },
+        "gesamt": {
+          "erfuellt": 3,
+          "bekannt": 4,
+          "unbekannt": 5,
+          "prozent": 75
+        }
+      },
+      "unbekannt": 5,
+      "belegLuecke": true
+    },
+    {
+      "slug": "zh/sozialhilfe",
+      "city": "zh",
+      "id": "sozialhilfe",
+      "zellen": [
+        {
+          "key": "online-antrag",
+          "status": "unbekannt"
+        },
+        {
+          "key": "online-bezahlung",
+          "status": "unbekannt"
+        },
+        {
+          "key": "statusverfolgung",
+          "status": "unbekannt"
+        },
+        {
+          "key": "medienbruchfrei",
+          "status": "unbekannt"
+        },
+        {
+          "key": "digital-abschliessbar",
+          "status": "unbekannt"
+        },
+        {
+          "key": "eid-noetig",
+          "status": "unbekannt"
+        },
+        {
+          "key": "leichte-sprache",
+          "status": "nicht-erfuellt"
+        },
+        {
+          "key": "mehrsprachigkeit",
+          "status": "nicht-erfuellt"
+        },
+        {
+          "key": "voraussetzungen-genannt",
+          "status": "nicht-erfuellt"
+        },
+        {
+          "key": "fristen-kosten-verlinkt",
+          "status": "erfuellt"
+        }
+      ],
+      "score": {
+        "digitalisierung": {
+          "erfuellt": 0,
+          "bekannt": 0,
+          "unbekannt": 5,
+          "prozent": null
+        },
+        "nutzendenorientierung": {
+          "erfuellt": 1,
+          "bekannt": 4,
+          "unbekannt": 0,
+          "prozent": 25
+        },
+        "gesamt": {
+          "erfuellt": 1,
+          "bekannt": 4,
+          "unbekannt": 5,
+          "prozent": 25
+        }
+      },
+      "unbekannt": 5,
+      "belegLuecke": true
+    },
+    {
+      "slug": "zh/steuern",
+      "city": "zh",
+      "id": "steuern",
+      "zellen": [
+        {
+          "key": "online-antrag",
+          "status": "unbekannt"
+        },
+        {
+          "key": "online-bezahlung",
+          "status": "unbekannt"
+        },
+        {
+          "key": "statusverfolgung",
+          "status": "unbekannt"
+        },
+        {
+          "key": "medienbruchfrei",
+          "status": "unbekannt"
+        },
+        {
+          "key": "digital-abschliessbar",
+          "status": "unbekannt"
+        },
+        {
+          "key": "eid-noetig",
+          "status": "unbekannt"
+        },
+        {
+          "key": "leichte-sprache",
+          "status": "erfuellt"
+        },
+        {
+          "key": "mehrsprachigkeit",
+          "status": "nicht-erfuellt"
+        },
+        {
+          "key": "voraussetzungen-genannt",
+          "status": "erfuellt"
+        },
+        {
+          "key": "fristen-kosten-verlinkt",
+          "status": "erfuellt"
+        }
+      ],
+      "score": {
+        "digitalisierung": {
+          "erfuellt": 0,
+          "bekannt": 0,
+          "unbekannt": 5,
+          "prozent": null
+        },
+        "nutzendenorientierung": {
+          "erfuellt": 3,
+          "bekannt": 4,
+          "unbekannt": 0,
+          "prozent": 75
+        },
+        "gesamt": {
+          "erfuellt": 3,
+          "bekannt": 4,
+          "unbekannt": 5,
+          "prozent": 75
+        }
+      },
+      "unbekannt": 5,
+      "belegLuecke": true
+    },
+    {
+      "slug": "zh/strom",
+      "city": "zh",
+      "id": "strom",
+      "zellen": [
+        {
+          "key": "online-antrag",
+          "status": "unbekannt"
+        },
+        {
+          "key": "online-bezahlung",
+          "status": "unbekannt"
+        },
+        {
+          "key": "statusverfolgung",
+          "status": "unbekannt"
+        },
+        {
+          "key": "medienbruchfrei",
+          "status": "unbekannt"
+        },
+        {
+          "key": "digital-abschliessbar",
+          "status": "unbekannt"
+        },
+        {
+          "key": "eid-noetig",
+          "status": "unbekannt"
+        },
+        {
+          "key": "leichte-sprache",
+          "status": "erfuellt"
+        },
+        {
+          "key": "mehrsprachigkeit",
+          "status": "erfuellt"
+        },
+        {
+          "key": "voraussetzungen-genannt",
+          "status": "nicht-erfuellt"
+        },
+        {
+          "key": "fristen-kosten-verlinkt",
+          "status": "erfuellt"
+        }
+      ],
+      "score": {
+        "digitalisierung": {
+          "erfuellt": 0,
+          "bekannt": 0,
+          "unbekannt": 5,
+          "prozent": null
+        },
+        "nutzendenorientierung": {
+          "erfuellt": 3,
+          "bekannt": 4,
+          "unbekannt": 0,
+          "prozent": 75
+        },
+        "gesamt": {
+          "erfuellt": 3,
+          "bekannt": 4,
+          "unbekannt": 5,
+          "prozent": 75
+        }
+      },
+      "unbekannt": 5,
+      "belegLuecke": true
+    },
+    {
+      "slug": "zh/umwelt",
+      "city": "zh",
+      "id": "umwelt",
+      "zellen": [
+        {
+          "key": "online-antrag",
+          "status": "unbekannt"
+        },
+        {
+          "key": "online-bezahlung",
+          "status": "unbekannt"
+        },
+        {
+          "key": "statusverfolgung",
+          "status": "unbekannt"
+        },
+        {
+          "key": "medienbruchfrei",
+          "status": "unbekannt"
+        },
+        {
+          "key": "digital-abschliessbar",
+          "status": "unbekannt"
+        },
+        {
+          "key": "eid-noetig",
+          "status": "unbekannt"
+        },
+        {
+          "key": "leichte-sprache",
+          "status": "erfuellt"
+        },
+        {
+          "key": "mehrsprachigkeit",
+          "status": "erfuellt"
+        },
+        {
+          "key": "voraussetzungen-genannt",
+          "status": "nicht-erfuellt"
+        },
+        {
+          "key": "fristen-kosten-verlinkt",
+          "status": "erfuellt"
+        }
+      ],
+      "score": {
+        "digitalisierung": {
+          "erfuellt": 0,
+          "bekannt": 0,
+          "unbekannt": 5,
+          "prozent": null
+        },
+        "nutzendenorientierung": {
+          "erfuellt": 3,
+          "bekannt": 4,
+          "unbekannt": 0,
+          "prozent": 75
+        },
+        "gesamt": {
+          "erfuellt": 3,
+          "bekannt": 4,
+          "unbekannt": 5,
+          "prozent": 75
+        }
+      },
+      "unbekannt": 5,
+      "belegLuecke": true
+    },
+    {
+      "slug": "zh/umzug-melden",
+      "city": "zh",
+      "id": "umzug-melden",
+      "zellen": [
+        {
+          "key": "online-antrag",
+          "status": "unbekannt"
+        },
+        {
+          "key": "online-bezahlung",
+          "status": "unbekannt"
+        },
+        {
+          "key": "statusverfolgung",
+          "status": "unbekannt"
+        },
+        {
+          "key": "medienbruchfrei",
+          "status": "unbekannt"
+        },
+        {
+          "key": "digital-abschliessbar",
+          "status": "unbekannt"
+        },
+        {
+          "key": "eid-noetig",
+          "status": "unbekannt"
+        },
+        {
+          "key": "leichte-sprache",
+          "status": "erfuellt"
+        },
+        {
+          "key": "mehrsprachigkeit",
+          "status": "nicht-erfuellt"
+        },
+        {
+          "key": "voraussetzungen-genannt",
+          "status": "erfuellt"
+        },
+        {
+          "key": "fristen-kosten-verlinkt",
+          "status": "erfuellt"
+        }
+      ],
+      "score": {
+        "digitalisierung": {
+          "erfuellt": 0,
+          "bekannt": 0,
+          "unbekannt": 5,
+          "prozent": null
+        },
+        "nutzendenorientierung": {
+          "erfuellt": 3,
+          "bekannt": 4,
+          "unbekannt": 0,
+          "prozent": 75
+        },
+        "gesamt": {
+          "erfuellt": 3,
+          "bekannt": 4,
+          "unbekannt": 5,
+          "prozent": 75
+        }
+      },
+      "unbekannt": 5,
+      "belegLuecke": true
+    },
+    {
+      "slug": "zh/veranstaltung",
+      "city": "zh",
+      "id": "veranstaltung",
+      "zellen": [
+        {
+          "key": "online-antrag",
+          "status": "unbekannt"
+        },
+        {
+          "key": "online-bezahlung",
+          "status": "unbekannt"
+        },
+        {
+          "key": "statusverfolgung",
+          "status": "unbekannt"
+        },
+        {
+          "key": "medienbruchfrei",
+          "status": "unbekannt"
+        },
+        {
+          "key": "digital-abschliessbar",
+          "status": "unbekannt"
+        },
+        {
+          "key": "eid-noetig",
+          "status": "unbekannt"
+        },
+        {
+          "key": "leichte-sprache",
+          "status": "nicht-erfuellt"
+        },
+        {
+          "key": "mehrsprachigkeit",
+          "status": "nicht-erfuellt"
+        },
+        {
+          "key": "voraussetzungen-genannt",
+          "status": "nicht-erfuellt"
+        },
+        {
+          "key": "fristen-kosten-verlinkt",
+          "status": "erfuellt"
+        }
+      ],
+      "score": {
+        "digitalisierung": {
+          "erfuellt": 0,
+          "bekannt": 0,
+          "unbekannt": 5,
+          "prozent": null
+        },
+        "nutzendenorientierung": {
+          "erfuellt": 1,
+          "bekannt": 4,
+          "unbekannt": 0,
+          "prozent": 25
+        },
+        "gesamt": {
+          "erfuellt": 1,
+          "bekannt": 4,
+          "unbekannt": 5,
+          "prozent": 25
+        }
+      },
+      "unbekannt": 5,
+      "belegLuecke": true
+    },
+    {
+      "slug": "zh/wasser",
+      "city": "zh",
+      "id": "wasser",
+      "zellen": [
+        {
+          "key": "online-antrag",
+          "status": "unbekannt"
+        },
+        {
+          "key": "online-bezahlung",
+          "status": "unbekannt"
+        },
+        {
+          "key": "statusverfolgung",
+          "status": "unbekannt"
+        },
+        {
+          "key": "medienbruchfrei",
+          "status": "unbekannt"
+        },
+        {
+          "key": "digital-abschliessbar",
+          "status": "unbekannt"
+        },
+        {
+          "key": "eid-noetig",
+          "status": "unbekannt"
+        },
+        {
+          "key": "leichte-sprache",
+          "status": "erfuellt"
+        },
+        {
+          "key": "mehrsprachigkeit",
+          "status": "erfuellt"
+        },
+        {
+          "key": "voraussetzungen-genannt",
+          "status": "nicht-erfuellt"
+        },
+        {
+          "key": "fristen-kosten-verlinkt",
+          "status": "erfuellt"
+        }
+      ],
+      "score": {
+        "digitalisierung": {
+          "erfuellt": 0,
+          "bekannt": 0,
+          "unbekannt": 5,
+          "prozent": null
+        },
+        "nutzendenorientierung": {
+          "erfuellt": 3,
+          "bekannt": 4,
+          "unbekannt": 0,
+          "prozent": 75
+        },
+        "gesamt": {
+          "erfuellt": 3,
+          "bekannt": 4,
+          "unbekannt": 5,
+          "prozent": 75
+        }
+      },
+      "unbekannt": 5,
+      "belegLuecke": true
+    }
+  ],
+  "summary": {
+    "prozesse": 17,
+    "mitBeleg": 0,
+    "ohneBeleg": 17,
+    "proIndikator": [
+      {
+        "key": "online-antrag",
+        "erfuellt": 0,
+        "nichtErfuellt": 0,
+        "unbekannt": 17
+      },
+      {
+        "key": "online-bezahlung",
+        "erfuellt": 0,
+        "nichtErfuellt": 0,
+        "unbekannt": 17
+      },
+      {
+        "key": "statusverfolgung",
+        "erfuellt": 0,
+        "nichtErfuellt": 0,
+        "unbekannt": 17
+      },
+      {
+        "key": "medienbruchfrei",
+        "erfuellt": 0,
+        "nichtErfuellt": 0,
+        "unbekannt": 17
+      },
+      {
+        "key": "digital-abschliessbar",
+        "erfuellt": 0,
+        "nichtErfuellt": 0,
+        "unbekannt": 17
+      },
+      {
+        "key": "eid-noetig",
+        "erfuellt": 0,
+        "nichtErfuellt": 0,
+        "unbekannt": 17
+      },
+      {
+        "key": "leichte-sprache",
+        "erfuellt": 12,
+        "nichtErfuellt": 5,
+        "unbekannt": 0
+      },
+      {
+        "key": "mehrsprachigkeit",
+        "erfuellt": 5,
+        "nichtErfuellt": 12,
+        "unbekannt": 0
+      },
+      {
+        "key": "voraussetzungen-genannt",
+        "erfuellt": 7,
+        "nichtErfuellt": 10,
+        "unbekannt": 0
+      },
+      {
+        "key": "fristen-kosten-verlinkt",
+        "erfuellt": 17,
+        "nichtErfuellt": 0,
+        "unbekannt": 0
+      }
+    ]
+  }
+}

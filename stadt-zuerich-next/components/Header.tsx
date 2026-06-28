@@ -15,6 +15,7 @@ const ROUTES = [
   { href: '/simulator',     key: 'simulator' },
   { href: '/territory',     key: 'territory' },
   { href: '/prozesse',      key: 'prozesse' },
+  { href: '/portfolio',     key: 'portfolio' },
   { href: '/wirkung',       key: 'wirkung' },
   { href: '/roadmap',       key: 'roadmap' },
   { href: '/liste',         key: 'list' },

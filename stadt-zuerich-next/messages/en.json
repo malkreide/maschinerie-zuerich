@@ -99,7 +99,8 @@
     "skipToList": "Skip to textual overview (for screen readers)",
     "language": "Language",
     "expandAll": "Expand all",
-    "collapseAll": "Collapse all"
+    "collapseAll": "Collapse all",
+    "portfolio": "Portfolio"
   },
   "Search": {
     "label": "Search for an office or a concern",
@@ -476,5 +477,31 @@
     "tooltipValue": "{value} {unit}",
     "noData": "No facility data yet for this metric — load it with `npm run data:fetch-geo`.",
     "noGeo": "District geometry not available."
+  },
+  "Portfolio": {
+    "title": "Portfolio: processes × dimensions",
+    "intro": "The big picture across all processes: one procedure per row, one indicator for digitalisation or user-orientation per column, colour shows the degree of fulfilment. Derived metadata — not an authoritative statement. Every cell links to the process and its evidence.",
+    "source": "Derived from the process indicators (lib/bewertung.ts)",
+    "privacyNote": "Generated deterministically from the existing process data — no usage or personal data, no invented values to fill gaps.",
+    "empty": "No processes recorded yet.",
+    "caption": "Heatmap: processes (rows) × indicators (columns)",
+    "colProzess": "Process",
+    "scoreGroup": "Score (% fulfilled)",
+    "scoreDigital": "Dig.",
+    "scoreNutzend": "User",
+    "scoreGesamt": "Total",
+    "scoreDigitalLong": "Digitalisation — share of fulfilled indicators",
+    "scoreNutzendLong": "User-orientation — share of fulfilled indicators",
+    "scoreGesamtLong": "Total — share of fulfilled indicators",
+    "scoreNa": "no score",
+    "legendHeading": "Legend",
+    "legendInformativ": "informational (yes/no, does not count towards the score)",
+    "cellTitle": "{indikator}: {status}",
+    "detailLink": "Go to process “{titel}” — details and evidence",
+    "belegLuecke": "Evidence pending",
+    "belegLueckeTitle": "No digitalisation evidence on file yet — the digital columns stay “unknown”, not “not fulfilled”.",
+    "coverageNote": "{ohne, plural, =0 {All {total} processes have substantiated digitalisation indicators.} one {# of {total} processes has no substantiated digitalisation indicators yet — the digital columns stay “unknown”, not “not fulfilled”.} other {# of {total} processes have no substantiated digitalisation indicators yet — the digital columns stay “unknown”, not “not fulfilled”.}}",
+    "summaryHeading": "Fulfilment per indicator (across all processes)",
+    "summaryZeile": "{erfuellt} fulfilled · {nichtErfuellt} not fulfilled · {unbekannt} unknown"
   }
 }

@@ -106,6 +106,10 @@ jobs:
         run: npm run validate:prozesse
         env:
           NO_COLOR: '1'
+      - name: Portfolio-Aggregat synchron mit den Prozessdaten (Drift-Gate)
+        run: npm run check:portfolio
+        env:
+          NO_COLOR: '1'
       - name: OpenAPI + Datenkatalog validieren
         run: npm run validate:catalog
       - name: Links in den Daten prüfen (strukturell)

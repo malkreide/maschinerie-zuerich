@@ -99,7 +99,8 @@
     "skipToList": "Vai alla panoramica testuale (lettori di schermo)",
     "language": "Lingua",
     "expandAll": "Espandi tutto",
-    "collapseAll": "Comprimi tutto"
+    "collapseAll": "Comprimi tutto",
+    "portfolio": "Portfolio"
   },
   "Search": {
     "label": "Cerca un ufficio o una pratica",
@@ -476,5 +477,31 @@
     "tooltipValue": "{value} {unit}",
     "noData": "Nessun dato sulle strutture per questo indicatore — caricalo con `npm run data:fetch-geo`.",
     "noGeo": "Geometria dei circondari non disponibile."
+  },
+  "Portfolio": {
+    "title": "Portfolio: processi × dimensioni",
+    "intro": "Il quadro d’insieme di tutti i processi: una procedura per riga, un indicatore di digitalizzazione o orientamento all’utenza per colonna, il colore mostra il grado di adempimento. Metadati derivati — non un’affermazione autorevole. Ogni cella rimanda al processo e alle sue prove.",
+    "source": "Derivato dagli indicatori di processo (lib/bewertung.ts)",
+    "privacyNote": "Generato in modo deterministico dai dati di processo esistenti — nessun dato d’uso o personale, nessun valore inventato per colmare le lacune.",
+    "empty": "Nessun processo registrato finora.",
+    "caption": "Mappa di calore: processi (righe) × indicatori (colonne)",
+    "colProzess": "Processo",
+    "scoreGroup": "Punteggio (% adempiuto)",
+    "scoreDigital": "Dig.",
+    "scoreNutzend": "Utenza",
+    "scoreGesamt": "Totale",
+    "scoreDigitalLong": "Digitalizzazione — quota di indicatori adempiuti",
+    "scoreNutzendLong": "Orientamento all’utenza — quota di indicatori adempiuti",
+    "scoreGesamtLong": "Totale — quota di indicatori adempiuti",
+    "scoreNa": "nessun punteggio",
+    "legendHeading": "Legenda",
+    "legendInformativ": "informativo (sì/no, non conta nel punteggio)",
+    "cellTitle": "{indikator}: {status}",
+    "detailLink": "Al processo «{titel}» — dettagli e prove",
+    "belegLuecke": "Prove in attesa",
+    "belegLueckeTitle": "Nessuna prova di digitalizzazione registrata — le colonne digitali restano «sconosciuto», non «non adempiuto».",
+    "coverageNote": "{ohne, plural, =0 {Tutti i {total} processi hanno indicatori di digitalizzazione documentati.} one {# processo su {total} non ha ancora indicatori di digitalizzazione documentati — le colonne digitali restano «sconosciuto», non «non adempiuto».} other {# processi su {total} non hanno ancora indicatori di digitalizzazione documentati — le colonne digitali restano «sconosciuto», non «non adempiuto».}}",
+    "summaryHeading": "Adempimento per indicatore (su tutti i processi)",
+    "summaryZeile": "{erfuellt} adempiuto · {nichtErfuellt} non adempiuto · {unbekannt} sconosciuto"
   }
 }

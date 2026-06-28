@@ -25,6 +25,8 @@
     "check:links:online": "node scripts/check-links.mjs --online",
     "check:links:online:strict": "node scripts/check-links.mjs --online --strict",
     "check:regression": "node scripts/check-prozess-regression.mjs",
+    "build:portfolio": "node --experimental-strip-types scripts/build-portfolio.mjs",
+    "check:portfolio": "node --experimental-strip-types scripts/build-portfolio.mjs --check",
     "extract:quotes": "node scripts/extract-quotes.mjs",
     "migrate:schema:v2": "node scripts/migrate-prozesse-schema-v2.mjs",
     "scaffold:city": "node scripts/scaffold-city.mjs",
