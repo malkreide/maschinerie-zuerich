@@ -31,6 +31,97 @@
       "source_quote": "Bei der Abholung im Fundbüro wird eine Gebühr erhoben.",
       "status": "verifiziert",
       "retrieved_at": "2026-06-10"
+    },
+    {
+      "reference_id": 2,
+      "label": {
+        "de": "Express-Zuschlag zusätzlich zur normalen Gebühr",
+        "en": "",
+        "fr": "",
+        "it": ""
+      },
+      "source_url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/verloren.html",
+      "source_quote": "",
+      "status": "unverifiziert",
+      "retrieved_at": "2026-06-28"
+    },
+    {
+      "reference_id": 3,
+      "label": {
+        "de": "Berechtigte Gegenstände für den Express-Service",
+        "en": "",
+        "fr": "",
+        "it": ""
+      },
+      "source_url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/verloren.html",
+      "source_quote": "Brauchen Sie den Gegenstand dringend? Dann können Sie eine Express-Suche beantragen. Dafür zahlen Sie einen Zuschlag.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-28"
+    },
+    {
+      "reference_id": 4,
+      "label": {
+        "de": "Aufbewahrungsfrist bei VBZ und Forchbahn vor Verkauf",
+        "en": "",
+        "fr": "",
+        "it": ""
+      },
+      "source_url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/versteigerung.html",
+      "source_quote": "Die VBZ und die Forchbahn bewahren gefundene Gegenstände 3 Monate lang auf. Danach verkauft die Firma fundsachenverkauf.ch die Gegenstände öffentlich.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-28"
+    },
+    {
+      "reference_id": 5,
+      "label": {
+        "de": "Aufbewahrungsfrist für Funde auf öffentlichem Grund vor Versteigerung",
+        "en": "",
+        "fr": "",
+        "it": ""
+      },
+      "source_url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/versteigerung.html",
+      "source_quote": "Wenn jemand Gegenstände auf öffentlichem Grund findet, bewahrt man sie 12 Monate lang auf.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-28"
+    },
+    {
+      "reference_id": 6,
+      "label": {
+        "de": "Wertgrenze und Aufbewahrungsfrist für vorzeitigen Verkauf von Fundsachen",
+        "en": "",
+        "fr": "",
+        "it": ""
+      },
+      "source_url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/rechtsgrundlage.html",
+      "source_quote": "",
+      "status": "unverifiziert",
+      "retrieved_at": "2026-06-28"
+    },
+    {
+      "reference_id": 7,
+      "label": {
+        "de": "Wertgrenze für die Pflicht zur Fundanzeige bei der Polizei",
+        "en": "",
+        "fr": "",
+        "it": ""
+      },
+      "source_url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/rechtsgrundlage.html",
+      "source_quote": "Zur Anzeige an die Polizei ist er verpflichtet, wenn der Wert der Sache offenbar 10 Franken übersteigt.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-28"
+    },
+    {
+      "reference_id": 8,
+      "label": {
+        "de": "Finderlohn-Anspruch bei Funden in einem Unternehmen oder Fahrzeug",
+        "en": "",
+        "fr": "",
+        "it": ""
+      },
+      "source_url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/rechtsgrundlage.html",
+      "source_quote": "Das Unternehmen wird als Finderin betrachtet, kann aber keinen Finderlohn beanspruchen.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-28"
     }
   ],
   "actors": [
@@ -103,7 +194,11 @@
         "de": "Fundsache online melden und/oder beim Fundbüro abgeben. Wertgegenstände möglichst rasch übergeben.",
         "en": "Report the found item online and/or hand it in at the lost property office; valuables as soon as possible."
       },
-      "source_id": "q-stz-fundbuero"
+      "source_id": "q-stz-fundbuero",
+      "reference_ids": [
+        2,
+        3
+      ]
     },
     {
       "step_id": 4,
@@ -153,19 +248,26 @@
         "de": "Online-Verlustmeldung mit Beschreibung des Gegenstands, Verlustort und -datum.",
         "en": "Online loss report with a description of the item, place and date of loss."
       },
-      "source_id": "q-stz-fundbuero"
+      "source_id": "q-stz-fundbuero",
+      "reference_ids": [
+        1
+      ]
     },
     {
       "step_id": 7,
       "actor": "fundbuero",
       "label": {
         "de": "Mit Fundbestand abgleichen",
-        "en": "Match against the found-items inventory"
+        "en": "Match against the found-items inventory",
+        "ls": "Bei der Abholung zahlen Sie eine Gebühr."
       },
       "depends_on": [
         6
       ],
-      "type": "prozess"
+      "type": "prozess",
+      "reference_ids": [
+        1
+      ]
     },
     {
       "step_id": 8,
@@ -216,7 +318,10 @@
       "depends_on": [
         9
       ],
-      "type": "ende"
+      "type": "ende",
+      "reference_ids": [
+        7
+      ]
     },
     {
       "step_id": 11,
@@ -251,7 +356,12 @@
       "depends_on": [
         11
       ],
-      "type": "ende"
+      "type": "ende",
+      "reference_ids": [
+        4,
+        5,
+        6
+      ]
     }
   ],
   "legal_basis": [
@@ -325,5 +435,14 @@
     "aktualisiert": "2026-06-10",
     "maintainer": "malkreide",
     "lizenz": "CC-BY-4.0"
-  }
+  },
+  "preconditions": [
+    {
+      "de": "Der Gegenstand wurde in der Stadt Zürich gefunden – auch in Trams und Bussen der VBZ sowie in der Forchbahn.",
+      "ls": "Der Gegenstand ist in der Stadt Zürich verloren gegangen oder gefunden worden."
+    },
+    {
+      "de": "Für Gegenstände, die in der Agglomeration oder an einem anderen Ort verloren wurden, ist der zuständige Betrieb oder das zuständige Fundbüro zu kontaktieren."
+    }
+  ]
 }
