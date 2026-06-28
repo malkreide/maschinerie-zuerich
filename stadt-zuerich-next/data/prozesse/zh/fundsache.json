@@ -25,7 +25,8 @@
       "reference_id": 1,
       "label": {
         "de": "Gebühr bei der Abholung einer Fundsache im Fundbüro",
-        "en": "Fee charged when collecting a found item at the lost-property office"
+        "en": "Fee charged when collecting a found item at the lost-property office",
+        "ls": "Die Express-Suche kostet extra Geld."
       },
       "source_url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/verloren.html",
       "source_quote": "Bei der Abholung im Fundbüro wird eine Gebühr erhoben.",
@@ -38,10 +39,11 @@
         "de": "Express-Zuschlag zusätzlich zur normalen Gebühr",
         "en": "",
         "fr": "",
-        "it": ""
+        "it": "",
+        "ls": "Ab wann Sie am nächsten Tag im Fundbüro nachfragen können."
       },
       "source_url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/verloren.html",
-      "source_quote": "",
+      "source_quote": "Verlorene Fundgegenstände können am folgenden Tag ab 11.00 Uhr angefragt und im Fundbüro abgeholt werden.",
       "status": "unverifiziert",
       "retrieved_at": "2026-06-28"
     },
@@ -51,7 +53,8 @@
         "de": "Berechtigte Gegenstände für den Express-Service",
         "en": "",
         "fr": "",
-        "it": ""
+        "it": "",
+        "ls": "Wenn Sie eine Sache abholen, kostet das Geld."
       },
       "source_url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/verloren.html",
       "source_quote": "Brauchen Sie den Gegenstand dringend? Dann können Sie eine Express-Suche beantragen. Dafür zahlen Sie einen Zuschlag.",
@@ -64,7 +67,8 @@
         "de": "Aufbewahrungsfrist bei VBZ und Forchbahn vor Verkauf",
         "en": "",
         "fr": "",
-        "it": ""
+        "it": "",
+        "ls": "Wie lange Fundsachen vom öffentlichen Grund aufbewahrt werden."
       },
       "source_url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/versteigerung.html",
       "source_quote": "Die VBZ und die Forchbahn bewahren gefundene Gegenstände 3 Monate lang auf. Danach verkauft die Firma fundsachenverkauf.ch die Gegenstände öffentlich.",
@@ -77,7 +81,8 @@
         "de": "Aufbewahrungsfrist für Funde auf öffentlichem Grund vor Versteigerung",
         "en": "",
         "fr": "",
-        "it": ""
+        "it": "",
+        "ls": "Wie lange VBZ und Forchbahn Fundsachen aufbewahren."
       },
       "source_url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/versteigerung.html",
       "source_quote": "Wenn jemand Gegenstände auf öffentlichem Grund findet, bewahrt man sie 12 Monate lang auf.",
@@ -442,7 +447,8 @@
       "ls": "Der Gegenstand ist in der Stadt Zürich verloren gegangen oder gefunden worden."
     },
     {
-      "de": "Für Gegenstände, die in der Agglomeration oder an einem anderen Ort verloren wurden, ist der zuständige Betrieb oder das zuständige Fundbüro zu kontaktieren."
+      "de": "Für Gegenstände, die in der Agglomeration oder an einem anderen Ort verloren wurden, ist der zuständige Betrieb oder das zuständige Fundbüro zu kontaktieren.",
+      "ls": "Haben Sie etwas woanders verloren? Dann fragen Sie dort nach."
     }
   ]
 }
