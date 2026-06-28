@@ -25,7 +25,8 @@
       "reference_id": 1,
       "label": {
         "de": "Jahresgebühr der Anwohnerparkkarte (tarifabhängig nach Fahrzeug, anteilig bei kürzerer Dauer)",
-        "en": "Annual fee for the resident parking permit (tariff depends on vehicle; pro-rated)"
+        "en": "Annual fee for the resident parking permit (tariff depends on vehicle; pro-rated)",
+        "ls": "Die Karte kostet Geld pro Jahr."
       },
       "source_url": "https://www.stadt-zuerich.ch/de/mobilitaet/parkieren/parkbewilligungen/anwohnerparkkarte.html",
       "source_quote": "Gebühr: 300 Franken pro Kalenderjahr. … Angebrochene Monate werden voll in Rechnung gestellt. Bei Rückgabe der Parkkarte wird die Gebühr für alle nicht angebrochenen Monate zurückerstattet.",
@@ -36,7 +37,8 @@
       "reference_id": 2,
       "label": {
         "de": "Gültigkeitsdauer der Anwohnerparkkarte",
-        "en": "Validity period of the resident parking permit"
+        "en": "Validity period of the resident parking permit",
+        "ls": "Bei Rueckgabe bekommen Sie Geld zurueck fuer ganze Monate."
       },
       "source_url": "https://www.stadt-zuerich.ch/de/mobilitaet/parkieren/parkbewilligungen/anwohnerparkkarte.html",
       "source_quote": "Die Parkkarte des*der Halter*in des Fahrzeuges wird jährlich automatisch erneuert.",
@@ -204,7 +206,11 @@
       "depends_on": [
         4
       ],
-      "type": "entscheidung"
+      "type": "entscheidung",
+      "reference_ids": [
+        1,
+        2
+      ]
     },
     {
       "step_id": 6,
@@ -501,7 +507,8 @@
       "de": "Wochenaufenthalter*innen, Halter*innen von Fahrzeugen mit ausserkantonalen oder auslaendischen Nummernschildern und Gewerbebetriebe muessen die Parkkarten schriftlich beantragen."
     },
     {
-      "de": "Bei Carsharing darf kein Mitglied der Gruppe Halter*in eines weiteren leichten Motorfahrzeugs sein."
+      "de": "Bei Carsharing darf kein Mitglied der Gruppe Halter*in eines weiteren leichten Motorfahrzeugs sein.",
+      "ls": "Sie bekommen keinen festen Parkplatz."
     },
     {
       "de": "Mit dem Erwerb einer Anwohnerparkkarte entsteht kein Anspruch auf einen Parkplatz in der Blauen Zone."
