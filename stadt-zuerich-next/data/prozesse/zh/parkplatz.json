@@ -42,6 +42,19 @@
       "source_quote": "Die Parkkarte des*der Halter*in des Fahrzeuges wird jährlich automatisch erneuert.",
       "status": "verifiziert",
       "retrieved_at": "2026-06-10"
+    },
+    {
+      "reference_id": 3,
+      "label": {
+        "de": "Verrechnung angebrochener Monate bei Rueckgabe",
+        "en": "",
+        "fr": "",
+        "it": ""
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/mobilitaet/parkieren/parkbewilligungen/anwohnerparkkarte.html",
+      "source_quote": "Angebrochene Monate werden voll in Rechnung gestellt. Bei Rückgabe der Parkkarte wird die Gebühr für alle nicht angebrochenen Monate zurückerstattet.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-28"
     }
   ],
   "actors": [
@@ -96,7 +109,10 @@
         "ls": "Du wohnst in einer blauen Zone und hast ein Auto"
       },
       "depends_on": [],
-      "type": "start"
+      "type": "start",
+      "reference_ids": [
+        1
+      ]
     },
     {
       "step_id": 2,
@@ -156,14 +172,18 @@
           "required": false
         }
       ],
-      "source_id": "q-stz-online"
+      "source_id": "q-stz-online",
+      "reference_ids": [
+        2
+      ]
     },
     {
       "step_id": 4,
       "actor": "dav",
       "label": {
         "de": "Antrag prüfen (Wohnsitz, Halterschaft, Zone)",
-        "en": "Check application (residence, holdership, zone)"
+        "en": "Check application (residence, holdership, zone)",
+        "ls": "Sie waehlen, wie Sie bezahlen wollen."
       },
       "depends_on": [
         3
@@ -259,7 +279,10 @@
       "depends_on": [
         8
       ],
-      "type": "input"
+      "type": "input",
+      "reference_ids": [
+        3
+      ]
     },
     {
       "step_id": 10,
@@ -468,5 +491,20 @@
     "aktualisiert": "2026-06-10",
     "maintainer": "malkreide",
     "lizenz": "CC-BY-4.0"
-  }
+  },
+  "preconditions": [
+    {
+      "de": "Fahrzeughalter*innen mit Zuercher Nummernschildern und registrierte Gewerbebetriebe koennen die Parkkarten online, telefonisch oder schriftlich anfordern.",
+      "ls": "Sie haben ein Auto mit Zuercher Nummernschild. Dann koennen Sie eine Parkkarte beantragen."
+    },
+    {
+      "de": "Wochenaufenthalter*innen, Halter*innen von Fahrzeugen mit ausserkantonalen oder auslaendischen Nummernschildern und Gewerbebetriebe muessen die Parkkarten schriftlich beantragen."
+    },
+    {
+      "de": "Bei Carsharing darf kein Mitglied der Gruppe Halter*in eines weiteren leichten Motorfahrzeugs sein."
+    },
+    {
+      "de": "Mit dem Erwerb einer Anwohnerparkkarte entsteht kein Anspruch auf einen Parkplatz in der Blauen Zone."
+    }
+  ]
 }
