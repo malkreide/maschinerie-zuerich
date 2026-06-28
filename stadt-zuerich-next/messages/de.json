@@ -418,11 +418,14 @@
         "statusverfolgung": "Statusverfolgung online",
         "medienbruchfrei": "Ohne Medienbruch",
         "digital-abschliessbar": "Vollständig digital abschliessbar",
-        "eid-noetig": "Authentifizierung/eID nötig",
         "leichte-sprache": "Leichte Sprache vorhanden",
         "mehrsprachigkeit": "Mehrsprachig (en/fr/it)",
         "voraussetzungen-genannt": "Voraussetzungen klar genannt",
-        "fristen-kosten-verlinkt": "Fristen/Kosten transparent verlinkt"
+        "fristen-kosten-verlinkt": "Fristen/Kosten transparent verlinkt",
+        "once-only": "Once-only (keine Mehrfacheingabe)",
+        "barrierefreiheit": "Barrierefrei (WCAG 2.1 AA)",
+        "nicht-digitaler-alternativweg": "Nicht-digitaler Alternativweg",
+        "eid-moeglich": "Login/eID möglich"
       },
       "evidenz": {
         "toggle": "Evidenz",

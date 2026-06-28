@@ -66,7 +66,15 @@ export const STRATEGIE_ANKER: Record<string, StrategieAnker> = {
       'Die Schweiz priorisiert digitale Angebote konsequent zum Nutzen aller Menschen (digital first).',
     staerke: 'schwach',
   },
-  'eid-noetig': {
+  'once-only': {
+    dokument: 'digistrat',
+    dokumentTitel: 'Digitalisierungsstrategie der Stadt Zürich',
+    seite: 13,
+    zitat:
+      'Weiter wird den Nutzer*innen ermöglicht, dass sie dieselben Dateneingaben nicht mehrfach tätigen müssen.',
+    staerke: 'direkt',
+  },
+  'eid-moeglich': {
     dokument: 'dch2026',
     dokumentTitel: 'Strategie «Digitale Schweiz 2026»',
     seite: 3,
@@ -105,6 +113,22 @@ export const STRATEGIE_ANKER: Record<string, StrategieAnker> = {
     dokumentTitel: 'Strategien Zürich 2040',
     seite: 27,
     zitat: 'Sie pflegt transparente und lösungsorientierte Prozesse.',
+    staerke: 'direkt',
+  },
+  barrierefreiheit: {
+    dokument: 'servicestd',
+    dokumentTitel: 'Service Standard (STRB 677/2025)',
+    seite: 3,
+    zitat:
+      'Das Projektteam stellt sicher, dass öffentliche, digitale Lösung barrierefrei sind (nach WCAG 2.1 Stufe AA).',
+    staerke: 'direkt',
+  },
+  'nicht-digitaler-alternativweg': {
+    dokument: 'ds2040',
+    dokumentTitel: 'Strategien Zürich 2040',
+    seite: 31,
+    zitat:
+      'Sie stellt dabei die Nutzer*innen stets ins Zentrum und berücksichtigt zugleich diejenigen, die nicht digital affin sind.',
     staerke: 'direkt',
   },
 };

@@ -410,11 +410,14 @@
         "statusverfolgung": "Suivi du statut en ligne",
         "medienbruchfrei": "Sans rupture de média",
         "digital-abschliessbar": "Entièrement réalisable en ligne",
-        "eid-noetig": "Authentification/eID requise",
         "leichte-sprache": "Version en langage simplifié",
         "mehrsprachigkeit": "Multilingue (en/fr/it)",
         "voraussetzungen-genannt": "Conditions clairement indiquées",
-        "fristen-kosten-verlinkt": "Délais/émoluments liés de façon transparente"
+        "fristen-kosten-verlinkt": "Délais/émoluments liés de façon transparente",
+        "once-only": "Once-only (pas de double saisie)",
+        "barrierefreiheit": "Accessible (WCAG 2.1 AA)",
+        "nicht-digitaler-alternativweg": "Voie alternative non numérique",
+        "eid-moeglich": "Login/eID possible"
       },
       "evidenz": {
         "toggle": "Preuve",

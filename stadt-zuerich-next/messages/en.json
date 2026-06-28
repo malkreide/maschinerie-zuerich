@@ -410,11 +410,14 @@
         "statusverfolgung": "Online status tracking",
         "medienbruchfrei": "No media break",
         "digital-abschliessbar": "Can be completed fully digitally",
-        "eid-noetig": "Authentication/eID required",
         "leichte-sprache": "Easy-language version available",
         "mehrsprachigkeit": "Multilingual (en/fr/it)",
         "voraussetzungen-genannt": "Preconditions clearly stated",
-        "fristen-kosten-verlinkt": "Deadlines/fees transparently linked"
+        "fristen-kosten-verlinkt": "Deadlines/fees transparently linked",
+        "once-only": "Once-only (no re-entry of data)",
+        "barrierefreiheit": "Accessible (WCAG 2.1 AA)",
+        "nicht-digitaler-alternativweg": "Non-digital alternative path",
+        "eid-moeglich": "Login/eID available"
       },
       "evidenz": {
         "toggle": "Evidence",

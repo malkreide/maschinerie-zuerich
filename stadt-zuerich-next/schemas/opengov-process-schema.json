@@ -247,8 +247,8 @@
       "properties": {
         "key": {
           "type": "string",
-          "enum": ["online-antrag", "online-bezahlung", "statusverfolgung", "medienbruchfrei", "digital-abschliessbar", "eid-noetig"],
-          "description": "Indikator-Kennung. online-antrag/online-bezahlung/statusverfolgung/medienbruchfrei/digital-abschliessbar zählen in den Digitalisierungs-Score (wert true = nutzendenfreundliche Ausprägung). eid-noetig ist rein informativ (zählt nicht)."
+          "enum": ["online-antrag", "online-bezahlung", "statusverfolgung", "medienbruchfrei", "digital-abschliessbar", "once-only", "barrierefreiheit", "nicht-digitaler-alternativweg", "eid-moeglich"],
+          "description": "Indikator-Kennung (wert true = nutzendenfreundliche Ausprägung). Digitalisierungs-Score: online-antrag, online-bezahlung, statusverfolgung, medienbruchfrei, digital-abschliessbar, once-only. Nutzendenorientierungs-Score (belegpflichtig): barrierefreiheit (WCAG 2.1 AA), nicht-digitaler-alternativweg. eid-moeglich ist rein informativ (zählt nicht). Strategiebezug je Indikator: docs/bewertung-strategiebezug.md."
         },
         "wert": {
           "type": "boolean",

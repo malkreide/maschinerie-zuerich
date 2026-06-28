@@ -73,10 +73,26 @@ function prozessReich() {
           retrieved_at: '2026-01-01',
         },
         {
-          key: 'eid-noetig',
+          key: 'once-only',
+          wert: true,
+          source_url: 'https://example.org/once',
+          source_quote: 'Bekannte Daten werden übernommen',
+          status: 'verifiziert',
+          retrieved_at: '2026-01-01',
+        },
+        {
+          key: 'barrierefreiheit',
+          wert: true,
+          source_url: 'https://example.org/wcag',
+          source_quote: 'Erfüllt WCAG 2.1 AA',
+          status: 'verifiziert',
+          retrieved_at: '2026-01-01',
+        },
+        {
+          key: 'eid-moeglich',
           wert: true,
           source_url: 'https://example.org/eid',
-          source_quote: 'Login mit eID erforderlich',
+          source_quote: 'Login mit eID möglich',
           status: 'verifiziert',
           retrieved_at: '2026-01-01',
         },
@@ -125,16 +141,29 @@ test('Belegte Digitalisierungs-Indikatoren: erfüllt / nicht erfüllt / unbekann
   }
 });
 
-test('eid-noetig ist informativ und zählt NICHT in den Score', () => {
+test('eid-moeglich ist informativ und zählt NICHT in den Score', () => {
   const r = buildBewertung(prozessReich());
-  const eid = byKey(r, 'eid-noetig');
+  const eid = byKey(r, 'eid-moeglich');
   assert.equal(eid.gezaehlt, false);
   assert.equal(eid.status, 'erfuellt'); // wert true
-  // Digitalisierungs-Score sieht nur die 5 gezählten Indikatoren.
-  assert.equal(r.score.digitalisierung.erfuellt, 1); // nur online-antrag
-  assert.equal(r.score.digitalisierung.bekannt, 2); // antrag + bezahlung
-  assert.equal(r.score.digitalisierung.unbekannt, 3);
-  assert.equal(r.score.digitalisierung.prozent, 50);
+  // Digitalisierungs-Score sieht nur die 6 gezählten Indikatoren.
+  assert.equal(r.score.digitalisierung.erfuellt, 2); // online-antrag + once-only
+  assert.equal(r.score.digitalisierung.bekannt, 3); // + online-bezahlung
+  assert.equal(r.score.digitalisierung.unbekannt, 3); // status/medienbruch/digital
+  assert.equal(r.score.digitalisierung.prozent, 67);
+});
+
+test('Neue belegpflichtige Indikatoren (once-only, barrierefreiheit, alternativweg)', () => {
+  const r = buildBewertung(prozessReich());
+  assert.equal(byKey(r, 'once-only').status, 'erfuellt');
+  assert.equal(byKey(r, 'once-only').kategorie, 'digitalisierung');
+  const barr = byKey(r, 'barrierefreiheit');
+  assert.equal(barr.status, 'erfuellt');
+  assert.equal(barr.kategorie, 'nutzendenorientierung');
+  assert.equal(barr.evidenz.quote, 'Erfüllt WCAG 2.1 AA');
+  // Unbelegt → unbekannt, NICHT 'nicht-erfuellt'.
+  assert.equal(byKey(r, 'nicht-digitaler-alternativweg').status, 'unbekannt');
+  assert.equal(byKey(r, 'nicht-digitaler-alternativweg').evidenz, null);
 });
 
 test('Berechnete Nutzendenorientierung: Locale-Abdeckung & Zählungen', () => {
@@ -150,6 +179,11 @@ test('Berechnete Nutzendenorientierung: Locale-Abdeckung & Zählungen', () => {
   assert.equal(byKey(r, 'voraussetzungen-genannt').evidenz.zahl, 2);
   assert.equal(byKey(r, 'fristen-kosten-verlinkt').status, 'erfuellt');
   assert.equal(byKey(r, 'fristen-kosten-verlinkt').evidenz.zahl, 1);
+  // 4 berechnete + barrierefreiheit (belegt) erfüllt; alternativweg unbekannt
+  // (zählt nicht in den Nenner) → 100 %.
+  assert.equal(r.score.nutzendenorientierung.erfuellt, 5);
+  assert.equal(r.score.nutzendenorientierung.bekannt, 5);
+  assert.equal(r.score.nutzendenorientierung.unbekannt, 1);
   assert.equal(r.score.nutzendenorientierung.prozent, 100);
 });
 
@@ -164,23 +198,30 @@ test('Kennzahlen aus dem Graphen', () => {
 
 test('Gesamt-Score: Anteil erfüllter unter den bekannten, gerundet', () => {
   const r = buildBewertung(prozessReich());
-  // gezählt: 5 digital + 4 nutzend = 9; erfüllt 5; bekannt 6; unbekannt 3.
-  assert.equal(r.score.gesamt.erfuellt, 5);
-  assert.equal(r.score.gesamt.bekannt, 6);
-  assert.equal(r.score.gesamt.unbekannt, 3);
-  assert.equal(r.score.gesamt.prozent, Math.round((100 * 5) / 6)); // 83
+  // gezählt: 6 digital + 6 nutzend = 12; erfüllt 7; bekannt 8; unbekannt 4.
+  assert.equal(r.score.gesamt.erfuellt, 7);
+  assert.equal(r.score.gesamt.bekannt, 8);
+  assert.equal(r.score.gesamt.unbekannt, 4);
+  assert.equal(r.score.gesamt.prozent, Math.round((100 * 7) / 8)); // 88
 });
 
 test('Minimaler Prozess: alles Belegpflichtige unbekannt, kein Digital-Score', () => {
   const r = buildBewertung(prozessMinimal());
   assert.equal(r.score.digitalisierung.bekannt, 0);
   assert.equal(r.score.digitalisierung.prozent, null); // kein Score statt 0
-  assert.equal(r.score.digitalisierung.unbekannt, 5);
+  assert.equal(r.score.digitalisierung.unbekannt, 6); // 6 gezählte Digital-Indikatoren
   // eid informativ + unbelegt → unbekannt, gezaehlt false.
-  assert.equal(byKey(r, 'eid-noetig').status, 'unbekannt');
-  // Nutzendenorientierung ist immer berechenbar → nie unbekannt.
+  assert.equal(byKey(r, 'eid-moeglich').status, 'unbekannt');
+  // Berechnete Nutzendenorientierungs-Indikatoren sind immer bestimmbar.
   for (const key of ['leichte-sprache', 'mehrsprachigkeit', 'voraussetzungen-genannt', 'fristen-kosten-verlinkt']) {
     assert.equal(byKey(r, key).status, 'nicht-erfuellt', key);
   }
+  // Belegpflichtige Nutzendenorientierungs-Indikatoren unbelegt → unbekannt.
+  for (const key of ['barrierefreiheit', 'nicht-digitaler-alternativweg']) {
+    assert.equal(byKey(r, key).status, 'unbekannt', key);
+  }
+  // bekannt = 4 berechnete (alle nicht erfüllt); 2 belegpflichtige unbekannt.
+  assert.equal(r.score.nutzendenorientierung.bekannt, 4);
+  assert.equal(r.score.nutzendenorientierung.unbekannt, 2);
   assert.equal(r.score.nutzendenorientierung.prozent, 0);
 });
