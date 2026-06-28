@@ -591,6 +591,18 @@
       }
     ]
   },
+  "bewertung": {
+    "indikatoren": [
+      {
+        "key": "online-antrag",
+        "wert": true,
+        "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/zuzug.html",
+        "source_quote": "Melden Sie Ihren Umzug nach Zürich online via eUmzugCH",
+        "status": "verifiziert",
+        "retrieved_at": "2026-06-28"
+      }
+    ]
+  },
   "meta": {
     "erstellt": "2026-06-06",
     "aktualisiert": "2026-06-10",

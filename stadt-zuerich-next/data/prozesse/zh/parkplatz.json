@@ -506,5 +506,17 @@
     {
       "de": "Mit dem Erwerb einer Anwohnerparkkarte entsteht kein Anspruch auf einen Parkplatz in der Blauen Zone."
     }
-  ]
+  ],
+  "bewertung": {
+    "indikatoren": [
+      {
+        "key": "online-antrag",
+        "wert": true,
+        "source_url": "https://www.stadt-zuerich.ch/de/mobilitaet/parkieren/parkbewilligungen/anwohnerparkkarte.html",
+        "source_quote": "Fahrzeughalter*innen mit Zürcher Nummernschildern und registrierte Gewerbebetriebe können die Parkkarten online, telefonisch oder schriftlich bei der Bewilligungsstelle anfordern.",
+        "status": "verifiziert",
+        "retrieved_at": "2026-06-28"
+      }
+    ]
+  }
 }
