@@ -33,7 +33,8 @@
     "probe:feedback": "node scripts/probe-feedback.mjs",
     "probe:feedback-issue": "node scripts/probe-feedback-issue.mjs",
     "probe:roadmap": "node scripts/probe-roadmap.mjs",
-    "test:a11y": "playwright test"
+    "test:a11y": "playwright test",
+    "test:unit": "node --experimental-strip-types --test tests/*.test.mjs"
   },
   "dependencies": {
     "@types/d3-geo": "^3.1.0",

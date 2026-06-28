@@ -11,6 +11,9 @@ const PORT = 3100;
 
 export default defineConfig({
   testDir: './tests',
+  // Nur E2E-/a11y-Specs hier — Unit-Tests (*.test.mjs, node:test) laufen
+  // separat über `npm run test:unit`, nicht über Playwright.
+  testMatch: '**/*.spec.ts',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
