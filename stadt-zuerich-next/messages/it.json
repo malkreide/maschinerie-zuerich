@@ -60,7 +60,14 @@
     "colSchritte": "Fasi",
     "colAkteure": "Attori",
     "colEntscheidungen": "Decisioni",
-    "colMedienbrueche": "Rotture"
+    "colMedienbrueche": "Rotture",
+    "bewertungHeading": "Valutazione (portfolio)",
+    "bewertungIntro": "Quota di indicatori soddisfatti su tutti i processi modellati — un’istantanea dei dati del modello, non un grado ufficiale di digitalizzazione. «sconosciuto» non conta come non soddisfatto.",
+    "bewertungDigital": "Digitalizzazione",
+    "bewertungNutzend": "Orientamento all’utenza",
+    "bewertungGesamt": "Soddisfatto in totale",
+    "bewertungKeinScore": "nessun punteggio",
+    "bewertungUnbekanntKurz": "scon."
   },
   "Territory": {
     "title": "Sedi",

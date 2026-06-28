@@ -60,7 +60,14 @@
     "colSchritte": "Steps",
     "colAkteure": "Actors",
     "colEntscheidungen": "Decisions",
-    "colMedienbrueche": "Breaks"
+    "colMedienbrueche": "Breaks",
+    "bewertungHeading": "Assessment (portfolio)",
+    "bewertungIntro": "Share of indicators met across all modelled processes — a snapshot of the model data, not an official digitalisation level. «unknown» is not counted as not met.",
+    "bewertungDigital": "Digitalisation",
+    "bewertungNutzend": "User-centricity",
+    "bewertungGesamt": "Overall met",
+    "bewertungKeinScore": "no score",
+    "bewertungUnbekanntKurz": "unkn."
   },
   "Territory": {
     "title": "Locations",

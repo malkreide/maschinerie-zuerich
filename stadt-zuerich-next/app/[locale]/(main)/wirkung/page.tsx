@@ -100,6 +100,49 @@ export default async function WirkungPage({
         </div>
       </section>
 
+      {/* Bewertung (Portfolio) — Ist-Schnappschuss der berechneten/belegten
+          Indikatoren über alle Prozesse. Anteil erfüllter unter den BEKANNTEN;
+          «unbekannt» (kein Beleg) wird separat ausgewiesen, nie als 0. */}
+      {r.bewertung.prozesse > 0 && (
+        <section aria-labelledby="bewertung-h" className="mb-10 max-w-[80ch]">
+          <h3 id="bewertung-h" className={sectionH}>{t('bewertungHeading')}</h3>
+          <p className="text-[13px] text-[var(--color-mute)] mb-3 max-w-[70ch]">{t('bewertungIntro')}</p>
+          <div className="grid grid-cols-3 gap-3 mb-5">
+            <Kpi
+              value={r.bewertung.digitalisierungProzent == null ? t('bewertungKeinScore') : `${r.bewertung.digitalisierungProzent}%`}
+              label={t('bewertungDigital')}
+            />
+            <Kpi
+              value={r.bewertung.nutzendenorientierungProzent == null ? t('bewertungKeinScore') : `${r.bewertung.nutzendenorientierungProzent}%`}
+              label={t('bewertungNutzend')}
+            />
+            <Kpi
+              value={r.bewertung.gesamtProzent == null ? t('bewertungKeinScore') : `${r.bewertung.gesamtProzent}%`}
+              label={t('bewertungGesamt')}
+            />
+          </div>
+          {(['digitalisierung', 'nutzendenorientierung'] as const).map((kat) => (
+            <div key={kat} className="mb-4">
+              <h4 className="text-[13px] font-medium text-[var(--color-ink)] mb-1">
+                {tP(`bewertung.kategorie.${kat}`)}
+              </h4>
+              {r.bewertung.indikatoren
+                .filter((a) => a.gezaehlt && a.kategorie === kat)
+                .map((a) => (
+                  <Bar
+                    key={a.key}
+                    label={tP(`bewertung.indikator.${a.key}`)}
+                    value={a.erfuellt}
+                    max={r.bewertung.prozesse}
+                    color="#16a34a"
+                    suffix={`/${r.bewertung.prozesse}${a.unbekannt > 0 ? ` · ${a.unbekannt} ${t('bewertungUnbekanntKurz')}` : ''}`}
+                  />
+                ))}
+            </div>
+          ))}
+        </section>
+      )}
+
       <div className="grid lg:grid-cols-2 gap-x-10 gap-y-8 max-w-[80ch]">
         {/* Online-Reifegrad */}
         <section aria-labelledby="reife-h">

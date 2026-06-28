@@ -60,7 +60,14 @@
     "colSchritte": "Schritte",
     "colAkteure": "Beteiligte",
     "colEntscheidungen": "Entscheide",
-    "colMedienbrueche": "Brüche"
+    "colMedienbrueche": "Brüche",
+    "bewertungHeading": "Bewertung (alle Prozesse)",
+    "bewertungIntro": "So viele Punkte sind über alle Prozesse erfüllt. Das ist eine Momentaufnahme aus unseren Daten, keine amtliche Zahl. «unbekannt» heisst nicht «nein».",
+    "bewertungDigital": "Geht es online?",
+    "bewertungNutzend": "Ist es einfach?",
+    "bewertungGesamt": "Insgesamt erfüllt",
+    "bewertungKeinScore": "kein Wert",
+    "bewertungUnbekanntKurz": "unbek."
   },
   "Territory": {
     "title": "Standorte",

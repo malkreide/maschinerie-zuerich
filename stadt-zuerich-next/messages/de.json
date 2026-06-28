@@ -60,7 +60,14 @@
     "colSchritte": "Schritte",
     "colAkteure": "Beteiligte",
     "colEntscheidungen": "Entscheide",
-    "colMedienbrueche": "Brüche"
+    "colMedienbrueche": "Brüche",
+    "bewertungHeading": "Bewertung (Portfolio)",
+    "bewertungIntro": "Anteil erfüllter Indikatoren über alle modellierten Prozesse — ein Ist-Schnappschuss der Modelldaten, kein amtlicher Digitalisierungsgrad. «unbekannt» zählt nicht als nicht erfüllt.",
+    "bewertungDigital": "Digitalisierung",
+    "bewertungNutzend": "Nutzendenorientierung",
+    "bewertungGesamt": "Gesamt erfüllt",
+    "bewertungKeinScore": "kein Score",
+    "bewertungUnbekanntKurz": "unbek."
   },
   "Territory": {
     "title": "Standorte",
