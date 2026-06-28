@@ -108,15 +108,18 @@ test('Spalten = stabile Indikator-Reihenfolge aus buildBewertung', () => {
       'statusverfolgung',
       'medienbruchfrei',
       'digital-abschliessbar',
-      'eid-noetig',
+      'once-only',
+      'eid-moeglich',
       'leichte-sprache',
       'mehrsprachigkeit',
       'voraussetzungen-genannt',
       'fristen-kosten-verlinkt',
+      'barrierefreiheit',
+      'nicht-digitaler-alternativweg',
     ],
   );
-  // eid-noetig ist informativ → gezaehlt: false, der Rest gezaehlt: true.
-  assert.equal(pf.spalten.find((s) => s.key === 'eid-noetig').gezaehlt, false);
+  // eid-moeglich ist informativ → gezaehlt: false, der Rest gezaehlt: true.
+  assert.equal(pf.spalten.find((s) => s.key === 'eid-moeglich').gezaehlt, false);
   assert.equal(pf.spalten.find((s) => s.key === 'online-antrag').gezaehlt, true);
 });
 
@@ -124,12 +127,12 @@ test('«unbekannt» bleibt eigene Kategorie — nie 0 oder «nicht erfüllt»', 
   const pf = buildPortfolio('zh', [prozessMinimal()].map(toInput));
   const row = rowBySlug(pf, 'zh/minimal');
   // Alle belegpflichtigen Digital-Indikatoren ohne Beleg → unbekannt.
-  for (const key of ['online-antrag', 'online-bezahlung', 'statusverfolgung', 'medienbruchfrei', 'digital-abschliessbar']) {
+  for (const key of ['online-antrag', 'online-bezahlung', 'statusverfolgung', 'medienbruchfrei', 'digital-abschliessbar', 'once-only']) {
     assert.equal(row.zellen.find((z) => z.key === key).status, 'unbekannt', key);
   }
   // Score: kein Digital-Score (prozent null), unbekannt separat gezählt — NICHT 0.
   assert.equal(row.score.digitalisierung.prozent, null);
-  assert.equal(row.score.digitalisierung.unbekannt, 5);
+  assert.equal(row.score.digitalisierung.unbekannt, 6);
   assert.equal(row.score.digitalisierung.erfuellt, 0);
 });
 
