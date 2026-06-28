@@ -14,6 +14,8 @@
   "description": {
     "de": "Ablauf einer Baubewilligung für bewilligungspflichtige Bauvorhaben in der Stadt Zürich nach PBG. Umfasst Vorprüfung, öffentliche Auflage, Einsprachen, Entscheid und Rechtsmittelverfahren.",
     "en": "Building-permit workflow in the City of Zurich under the cantonal Planning and Building Act, including public notice, objections, decision and appeal.",
+    "fr": "Déroulement d'un permis de construire pour les projets soumis à autorisation dans la ville de Zurich selon la loi sur l'aménagement du territoire et les constructions (PBG). Comprend l'examen préalable, la mise à l'enquête publique, les oppositions, la décision et la procédure de recours.",
+    "it": "Iter di una licenza edilizia per progetti soggetti ad autorizzazione nella città di Zurigo secondo la legge sulla pianificazione e le costruzioni (PBG). Comprende l'esame preliminare, la pubblicazione, le opposizioni, la decisione e la procedura di ricorso.",
     "ls": "So bekommst du die Erlaubnis, ein Haus zu bauen oder umzubauen. Du schickst einen Antrag an das Amt. Das Amt prüft. Nachbarn dürfen Einwände machen. Am Schluss sagt das Amt: Ja oder Nein."
   },
   "target_audience": "bevoelkerung",
@@ -25,7 +27,9 @@
       "reference_id": 1,
       "label": {
         "de": "Gebühr für das Baugesuch (abhängig von der Bausumme)",
-        "en": "Building-permit fee (depends on construction cost)"
+        "en": "Building-permit fee (depends on construction cost)",
+        "fr": "Émolument pour la demande de permis de construire (selon le coût de construction)",
+        "it": "Tassa per la domanda di licenza edilizia (in funzione del costo di costruzione)"
       },
       "source_url": "https://www.stadt-zuerich.ch/de/planen-und-bauen/baubewilligungen/bewilligungsprozess/fristen-und-gebuehren.html",
       "source_quote": "Bauentscheide und Bauabnahmen sind kostenpflichtig. Die Höhe der Gebühr hängt bei Neubauten vom Bauvolumen und bei Umbauten von den Baukosten ab.",
@@ -50,6 +54,8 @@
       "label": {
         "de": "Amt für Baubewilligungen (AfB)",
         "en": "Building-Permit Office",
+        "fr": "Office des autorisations de construire (AfB)",
+        "it": "Ufficio delle licenze edilizie (AfB)",
         "ls": "Bau-Amt"
       },
       "type": "behoerde",
@@ -59,7 +65,9 @@
       "id": "hochbauamt",
       "label": {
         "de": "Amt für Hochbauten",
-        "en": "Department of Buildings"
+        "en": "Department of Buildings",
+        "fr": "Office des constructions",
+        "it": "Ufficio delle costruzioni edili"
       },
       "type": "fachstelle",
       "einheit_ref": "HBD-hb"
@@ -69,6 +77,8 @@
       "label": {
         "de": "Kantonale Fachstellen",
         "en": "Cantonal specialist offices",
+        "fr": "Services spécialisés cantonaux",
+        "it": "Servizi specializzati cantonali",
         "ls": "Ämter vom Kanton"
       },
       "type": "fachstelle"
@@ -78,6 +88,8 @@
       "label": {
         "de": "Einsprachelegitimierte (Nachbarn)",
         "en": "Objectors (neighbours)",
+        "fr": "Personnes légitimées à faire opposition (voisins)",
+        "it": "Persone legittimate all'opposizione (vicini)",
         "ls": "Nachbarn"
       },
       "type": "dritte"
@@ -87,6 +99,8 @@
       "label": {
         "de": "Baurekursgericht",
         "en": "Building Appeals Court",
+        "fr": "Tribunal des recours en matière de construction",
+        "it": "Tribunale dei ricorsi in materia edilizia",
         "ls": "Gericht"
       },
       "type": "gericht"
@@ -99,6 +113,8 @@
       "label": {
         "de": "Bauvorhaben geplant",
         "en": "Building project planned",
+        "fr": "Projet de construction planifié",
+        "it": "Progetto di costruzione pianificato",
         "ls": "Du willst etwas bauen"
       },
       "depends_on": [],
@@ -110,6 +126,8 @@
       "label": {
         "de": "Baugesuch erstellen",
         "en": "Prepare building application",
+        "fr": "Établir la demande de permis de construire",
+        "it": "Allestire la domanda di licenza edilizia",
         "ls": "Du sammelst alle Papiere"
       },
       "depends_on": [
@@ -118,37 +136,54 @@
       "type": "input",
       "description": {
         "de": "Pläne, Projektbeschrieb, Nachweise (Energie, Schall, Statik) und Formulare gemäss Wegleitung zusammenstellen.",
-        "en": "Plans, project description, evidence of energy/acoustics/statics and application forms."
+        "en": "Plans, project description, evidence of energy/acoustics/statics and application forms.",
+        "fr": "Réunir les plans, la description du projet, les justificatifs (énergie, acoustique, statique) et les formulaires selon le guide.",
+        "it": "Raccogliere piani, descrizione del progetto, attestati (energia, acustica, statica) e moduli secondo la guida."
       },
       "documents": [
         {
           "label": {
-            "de": "Baugesuchsformular"
+            "de": "Baugesuchsformular",
+            "en": "Building application form",
+            "fr": "Formulaire de demande de permis de construire",
+            "it": "Modulo di domanda di licenza edilizia"
           },
           "url": "https://www.stadt-zuerich.ch/de/planen-und-bauen/baubewilligungen/bewilligungsprozess/baugesuch-einreichen.html",
           "required": true
         },
         {
           "label": {
-            "de": "Situationsplan 1:500"
+            "de": "Situationsplan 1:500",
+            "en": "Site plan 1:500",
+            "fr": "Plan de situation 1:500",
+            "it": "Piano di situazione 1:500"
           },
           "required": true
         },
         {
           "label": {
-            "de": "Grundriss / Schnitt / Fassade 1:100"
+            "de": "Grundriss / Schnitt / Fassade 1:100",
+            "en": "Floor plan / section / facade 1:100",
+            "fr": "Plan / coupe / façade 1:100",
+            "it": "Pianta / sezione / facciata 1:100"
           },
           "required": true
         },
         {
           "label": {
-            "de": "Energetischer Nachweis (MuKEn)"
+            "de": "Energetischer Nachweis (MuKEn)",
+            "en": "Energy compliance proof (MuKEn)",
+            "fr": "Justificatif énergétique (MoPEC)",
+            "it": "Attestato energetico (MoPEC)"
           },
           "required": true
         },
         {
           "label": {
-            "de": "Umgebungsplan"
+            "de": "Umgebungsplan",
+            "en": "Surroundings plan",
+            "fr": "Plan d'aménagement extérieur",
+            "it": "Piano delle sistemazioni esterne"
           },
           "required": true
         }
@@ -161,6 +196,8 @@
       "label": {
         "de": "Baugesuch einreichen (eBaugesuche)",
         "en": "Submit application (eBaugesuche)",
+        "fr": "Déposer la demande de permis de construire (eBaugesuche)",
+        "it": "Inoltrare la domanda di licenza edilizia (eBaugesuche)",
         "ls": "Du reichst die Papiere online ein"
       },
       "depends_on": [
@@ -177,14 +214,19 @@
       "actor": "amt-baubewilligungen",
       "label": {
         "de": "Formelle Vorprüfung",
-        "en": "Formal completeness check"
+        "en": "Formal completeness check",
+        "fr": "Examen préalable formel",
+        "it": "Esame preliminare formale"
       },
       "depends_on": [
         3
       ],
       "type": "prozess",
       "description": {
-        "de": "Prüfung, ob das Gesuch vollständig und bearbeitbar ist."
+        "de": "Prüfung, ob das Gesuch vollständig und bearbeitbar ist.",
+        "en": "Check whether the application is complete and ready for processing.",
+        "fr": "Vérification que la demande est complète et peut être traitée.",
+        "it": "Verifica che la domanda sia completa ed evadibile."
       }
     },
     {
@@ -193,6 +235,8 @@
       "label": {
         "de": "Unterlagen vollständig?",
         "en": "Application complete?",
+        "fr": "Le dossier est-il complet ?",
+        "it": "La documentazione è completa?",
         "ls": "Sind alle Papiere da?"
       },
       "depends_on": [
@@ -206,6 +250,8 @@
       "label": {
         "de": "Unterlagen nachliefern",
         "en": "Submit missing documents",
+        "fr": "Fournir les documents manquants",
+        "it": "Trasmettere i documenti mancanti",
         "ls": "Fehlende Papiere nachliefern"
       },
       "depends_on": [
@@ -213,7 +259,9 @@
           "step_id": 5,
           "condition": {
             "de": "unvollständig",
-            "en": "incomplete"
+            "en": "incomplete",
+            "fr": "incomplet",
+            "it": "incompleto"
           }
         }
       ],
@@ -228,6 +276,8 @@
       "label": {
         "de": "Öffentliche Auflage / Publikation",
         "en": "Public notice",
+        "fr": "Mise à l'enquête publique / publication",
+        "it": "Pubblicazione / deposito pubblico",
         "ls": "Das Amt macht öffentlich: Hier wird gebaut"
       },
       "depends_on": [
@@ -235,7 +285,9 @@
           "step_id": 5,
           "condition": {
             "de": "vollständig",
-            "en": "complete"
+            "en": "complete",
+            "fr": "complet",
+            "it": "completo"
           }
         }
       ],
@@ -247,6 +299,8 @@
       "label": {
         "de": "Einsprachen erhoben?",
         "en": "Objections filed?",
+        "fr": "Des oppositions ont-elles été formées ?",
+        "it": "Sono state presentate opposizioni?",
         "ls": "Gibt es Einwände von Nachbarn?"
       },
       "depends_on": [
@@ -259,7 +313,9 @@
       "actor": "amt-baubewilligungen",
       "label": {
         "de": "Einsprachen behandeln",
-        "en": "Process objections"
+        "en": "Process objections",
+        "fr": "Traiter les oppositions",
+        "it": "Trattare le opposizioni"
       },
       "depends_on": [
         {
@@ -276,7 +332,9 @@
       "actor": "kanton",
       "label": {
         "de": "Kantonale Fachstellen anhören (Zirkulationsverfahren)",
-        "en": "Cantonal specialist review"
+        "en": "Cantonal specialist review",
+        "fr": "Consultation des services spécialisés cantonaux (procédure de circulation)",
+        "it": "Consultazione dei servizi specializzati cantonali (procedura di circolazione)"
       },
       "depends_on": [
         9,
@@ -294,7 +352,9 @@
       "actor": "hochbauamt",
       "label": {
         "de": "Materielle Prüfung (BZO, PBG, Lärm, Brandschutz …)",
-        "en": "Substantive review"
+        "en": "Substantive review",
+        "fr": "Examen matériel (BZO, PBG, bruit, protection incendie …)",
+        "it": "Esame materiale (BZO, PBG, rumore, protezione antincendio …)"
       },
       "depends_on": [
         10
@@ -307,6 +367,8 @@
       "label": {
         "de": "Bewilligung erteilen?",
         "en": "Grant permit?",
+        "fr": "Accorder l'autorisation ?",
+        "it": "Rilasciare la licenza?",
         "ls": "Erlaubnis – ja oder nein?"
       },
       "depends_on": [
@@ -320,6 +382,8 @@
       "label": {
         "de": "Baubewilligung erteilen (evtl. mit Auflagen)",
         "en": "Grant permit (possibly with conditions)",
+        "fr": "Accorder le permis de construire (le cas échéant avec des charges)",
+        "it": "Rilasciare la licenza edilizia (eventualmente con oneri)",
         "ls": "Amt sagt Ja"
       },
       "depends_on": [
@@ -338,6 +402,8 @@
       "label": {
         "de": "Gesuch abweisen",
         "en": "Reject application",
+        "fr": "Rejeter la demande",
+        "it": "Respingere la domanda",
         "ls": "Amt sagt Nein"
       },
       "depends_on": [
@@ -356,6 +422,8 @@
       "label": {
         "de": "Rekurs einlegen?",
         "en": "File appeal?",
+        "fr": "Former un recours ?",
+        "it": "Presentare ricorso?",
         "ls": "Willst du dagegen klagen?"
       },
       "depends_on": [
@@ -368,7 +436,9 @@
       "actor": "baurekurs",
       "label": {
         "de": "Rekursverfahren Baurekursgericht",
-        "en": "Appeal proceedings"
+        "en": "Appeal proceedings",
+        "fr": "Procédure de recours devant le Tribunal des recours en matière de construction",
+        "it": "Procedura di ricorso dinanzi al Tribunale dei ricorsi in materia edilizia"
       },
       "depends_on": [
         {
@@ -389,6 +459,8 @@
       "label": {
         "de": "Bauen möglich (nach Rechtskraft)",
         "en": "Construction may begin (after legal force)",
+        "fr": "Construction possible (après entrée en force)",
+        "it": "Costruzione possibile (dopo il passaggio in giudicato)",
         "ls": "Du darfst bauen"
       },
       "depends_on": [
@@ -402,6 +474,8 @@
       "label": {
         "de": "Verfahren rechtskräftig abgeschlossen (ohne Bewilligung)",
         "en": "Application denied (final)",
+        "fr": "Procédure close avec entrée en force (sans autorisation)",
+        "it": "Procedura conclusa con passaggio in giudicato (senza licenza)",
         "ls": "Du darfst nicht bauen"
       },
       "depends_on": [

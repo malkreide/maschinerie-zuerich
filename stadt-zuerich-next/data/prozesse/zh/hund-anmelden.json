@@ -14,28 +14,40 @@
   "description": {
     "de": "Wer in der Stadt Zürich einen Hund hält, muss ihn in der nationalen Hundedatenbank AMICUS registrieren lassen und bei der Hundekontrolle des Steueramts anmelden. Jährlich wird die Hundesteuer erhoben.",
     "en": "Anyone keeping a dog in the City of Zurich must register it in the national dog database AMICUS and with the tax office's dog registry. The dog tax is levied annually.",
+    "fr": "Toute personne qui détient un chien en ville de Zurich doit le faire enregistrer dans la banque de données nationale AMICUS et l'annoncer au contrôle des chiens de l'office des impôts. L'impôt sur les chiens est perçu chaque année.",
+    "it": "Chi detiene un cane nella città di Zurigo deve farlo registrare nella banca dati nazionale AMICUS e annunciarlo al controllo dei cani dell'ufficio delle imposte. La tassa sui cani è riscossa ogni anno.",
     "ls": "Sie haben einen Hund? Dann müssen Sie den Hund anmelden. Zuerst beim Tierarzt (Chip und Datenbank). Dann bei der Stadt. Jedes Jahr zahlen Sie eine Steuer für den Hund."
   },
   "target_audience": "bevoelkerung",
   "preconditions": [
     {
       "de": "Sie wohnen in der Stadt Zürich und halten einen Hund.",
+      "fr": "Vous habitez en ville de Zurich et détenez un chien.",
+      "it": "Lei abita nella città di Zurigo e detiene un cane.",
       "ls": "Sie wohnen in Zürich. Sie haben einen Hund."
     },
     {
       "de": "Die haltende Person ist volljährig und wohnt in der Wohngemeinde (z.B. Stadt Zürich).",
+      "fr": "La personne détentrice est majeure et habite dans la commune de domicile (p. ex. ville de Zurich).",
+      "it": "La persona detentrice è maggiorenne e abita nel comune di domicilio (p. es. città di Zurigo).",
       "ls": "Sie sind erwachsen. Sie wohnen in der Gemeinde."
     },
     {
       "de": "Nur eine Person kann als Halter:in eingetragen werden.",
+      "fr": "Une seule personne peut être enregistrée comme détentrice.",
+      "it": "Solo una persona può essere registrata come detentrice.",
       "ls": "Nur eine Person ist Halterin oder Halter."
     },
     {
       "de": "Der gehaltene Hund gehört nicht zu den im Kanton verbotenen Hunderassen.",
+      "fr": "Le chien détenu n'appartient pas à une race de chiens interdite dans le canton.",
+      "it": "Il cane detenuto non appartiene a una razza vietata nel Cantone.",
       "ls": "Manche Hunde sind verboten. Prüfen Sie das zuerst."
     },
     {
       "de": "Es besteht eine Haftpflichtversicherung mit ausreichender Deckung für den Hund.",
+      "fr": "Une assurance responsabilité civile avec une couverture suffisante pour le chien est en place.",
+      "it": "È in essere un'assicurazione di responsabilità civile con copertura sufficiente per il cane.",
       "ls": "Sie brauchen eine Versicherung für den Hund."
     }
   ],
@@ -48,6 +60,8 @@
       "label": {
         "de": "Pflicht zur Registrierung des Hundes in der AMICUS-Hundedatenbank",
         "en": "Obligation to register the dog in the AMICUS dog database",
+        "fr": "Obligation d'enregistrer le chien dans la banque de données canine AMICUS",
+        "it": "Obbligo di registrare il cane nella banca dati canina AMICUS",
         "ls": "Sie müssen den Hund bei AMICUS anmelden"
       },
       "source_url": "https://www.stadt-zuerich.ch/de/stadtleben/veranstaltungen-und-bewilligungen/hundekontrolle.html",
@@ -60,6 +74,8 @@
       "label": {
         "de": "Jährliche Hundesteuer (anteilige Rückerstattung bei unterjähriger Abmeldung)",
         "en": "Annual dog tax (pro-rata refund on mid-year deregistration)",
+        "fr": "Impôt annuel sur les chiens (remboursement au prorata en cas de désinscription en cours d'année)",
+        "it": "Tassa annuale sui cani (rimborso proporzionale in caso di cancellazione durante l'anno)",
         "ls": "Dass Sie jedes Jahr Hunde-Steuer zahlen"
       },
       "source_url": "https://www.stadt-zuerich.ch/de/stadtleben/veranstaltungen-und-bewilligungen/hundekontrolle/abmeldung.html",
@@ -72,6 +88,8 @@
       "label": {
         "de": "Frist für die Anmeldung bei Zuzug oder Neuanschaffung (kantonale Vorgabe)",
         "en": "Deadline for registering after moving in or acquiring a dog (cantonal rule)",
+        "fr": "Délai pour l'annonce en cas d'arrivée ou d'acquisition d'un chien (prescription cantonale)",
+        "it": "Termine per l'annuncio in caso di arrivo o acquisizione di un cane (prescrizione cantonale)",
         "ls": "Wie schnell Sie den Hund anmelden müssen"
       },
       "source_url": "https://www.zh.ch/de/umwelt-tiere/tiere/haustiere-heimtiere/hunde.html",
@@ -97,6 +115,8 @@
       "label": {
         "de": "Tierärztin / Tierarzt (AMICUS-Erfassung)",
         "en": "Veterinarian (AMICUS registration)",
+        "fr": "Vétérinaire (enregistrement AMICUS)",
+        "it": "Veterinario (registrazione AMICUS)",
         "ls": "Der Tierarzt oder die Tierärztin"
       },
       "type": "dritte"
@@ -106,6 +126,8 @@
       "label": {
         "de": "Steueramt der Stadt Zürich, Hundekontrolle",
         "en": "Tax Office of the City of Zurich, dog registry",
+        "fr": "Office des impôts de la ville de Zurich, contrôle des chiens",
+        "it": "Ufficio delle imposte della città di Zurigo, controllo dei cani",
         "ls": "Das Steuer-Amt der Stadt"
       },
       "type": "behoerde",
@@ -115,6 +137,8 @@
       "id": "hundeausbildner",
       "label": {
         "de": "Hundeausbildner:in",
+        "fr": "Éducateur canin",
+        "it": "Educatore cinofilo",
         "ls": "Die Hundeausbildnerin oder der Hundeausbildner"
       },
       "type": "dritte"
@@ -127,6 +151,8 @@
       "label": {
         "de": "Hund angeschafft oder mit Hund zugezogen",
         "en": "Dog acquired or moved in with a dog",
+        "fr": "Chien acquis ou arrivée avec un chien",
+        "it": "Cane acquisito o arrivo con un cane",
         "ls": "Sie haben neu einen Hund"
       },
       "depends_on": [],
@@ -138,6 +164,8 @@
       "label": {
         "de": "Hund bereits in AMICUS registriert?",
         "en": "Dog already registered in AMICUS?",
+        "fr": "Le chien est-il déjà enregistré dans AMICUS ?",
+        "it": "Il cane è già registrato in AMICUS?",
         "ls": "Ist der Hund schon in der Datenbank?"
       },
       "depends_on": [
@@ -151,6 +179,8 @@
       "label": {
         "de": "Mikrochip setzen und in AMICUS erfassen",
         "en": "Implant microchip and register in AMICUS",
+        "fr": "Poser la puce électronique et enregistrer dans AMICUS",
+        "it": "Applicare il microchip e registrare in AMICUS",
         "ls": "Der Tierarzt setzt einen Chip und trägt den Hund ein"
       },
       "depends_on": [
@@ -158,7 +188,9 @@
           "step_id": 2,
           "condition": {
             "de": "noch nicht registriert",
-            "en": "not yet registered"
+            "en": "not yet registered",
+            "fr": "pas encore enregistré",
+            "it": "non ancora registrato"
           }
         }
       ],
@@ -169,6 +201,8 @@
       "description": {
         "de": "Jeder Hund muss gechippt und in der nationalen Datenbank AMICUS auf die Halter:in registriert sein. Das erledigt die Tierarztpraxis.",
         "en": "Every dog must be microchipped and registered to its owner in the national AMICUS database; done by the veterinary practice.",
+        "fr": "Chaque chien doit être pucé et enregistré au nom de la personne détentrice dans la banque de données nationale AMICUS. Cela est effectué par le cabinet vétérinaire.",
+        "it": "Ogni cane deve essere dotato di microchip e registrato a nome della persona detentrice nella banca dati nazionale AMICUS. Se ne occupa lo studio veterinario.",
         "ls": "Der Hund bekommt einen kleinen Chip. Damit ist er in der Datenbank."
       },
       "source_id": "q-amicus"
@@ -179,6 +213,8 @@
       "label": {
         "de": "Hund bei der Stadt anmelden",
         "en": "Register the dog with the city",
+        "fr": "Annoncer le chien auprès de la ville",
+        "it": "Annunciare il cane presso la città",
         "ls": "Den Hund bei der Stadt anmelden"
       },
       "depends_on": [
@@ -186,7 +222,9 @@
           "step_id": 2,
           "condition": {
             "de": "bereits in AMICUS",
-            "en": "already in AMICUS"
+            "en": "already in AMICUS",
+            "fr": "déjà dans AMICUS",
+            "it": "già in AMICUS"
           }
         },
         3
@@ -198,20 +236,26 @@
       "description": {
         "de": "Anmeldung bei der Hundekontrolle des Steueramts — online oder per Formular. Bei Zuzug oder Neuanschaffung innert der kantonalen Frist.",
         "en": "Registration with the tax office's dog registry — online or by form. On moving in or acquiring a dog, within the cantonal deadline.",
+        "fr": "Annonce auprès du contrôle des chiens de l'office des impôts — en ligne ou au moyen d'un formulaire. En cas d'arrivée ou d'acquisition, dans le délai cantonal.",
+        "it": "Annuncio presso il controllo dei cani dell'ufficio delle imposte — online o tramite modulo. In caso di arrivo o acquisizione, entro il termine cantonale.",
         "ls": "Sie melden den Hund beim Steuer-Amt. Das geht im Internet oder mit einem Formular."
       },
       "documents": [
         {
           "label": {
             "de": "AMICUS-Nummer / Heimtierausweis",
-            "en": "AMICUS number / pet passport"
+            "en": "AMICUS number / pet passport",
+            "fr": "Numéro AMICUS / passeport pour animal de compagnie",
+            "it": "Numero AMICUS / passaporto per animali da compagnia"
           },
           "required": true
         },
         {
           "label": {
             "de": "Haftpflichtversicherungs-Nachweis",
-            "en": "Liability insurance proof"
+            "en": "Liability insurance proof",
+            "fr": "Attestation d'assurance responsabilité civile",
+            "it": "Attestato di assicurazione di responsabilità civile"
           },
           "required": false
         }
@@ -224,6 +268,8 @@
       "label": {
         "de": "Anmeldung mit AMICUS abgleichen",
         "en": "Match registration against AMICUS",
+        "fr": "Comparer l'annonce avec AMICUS",
+        "it": "Confrontare l'annuncio con AMICUS",
         "ls": "Ist der Hund noch nicht bei AMICUS? Dann meldet ihn der Tierarzt an."
       },
       "depends_on": [
@@ -232,7 +278,9 @@
       "type": "prozess",
       "description": {
         "de": "Das Steueramt übernimmt die Hundedaten weitgehend aus AMICUS und legt das Steuerdossier an.",
-        "en": "The tax office largely imports the dog's data from AMICUS and sets up the tax record."
+        "en": "The tax office largely imports the dog's data from AMICUS and sets up the tax record.",
+        "fr": "L'office des impôts reprend en grande partie les données du chien depuis AMICUS et ouvre le dossier fiscal.",
+        "it": "L'ufficio delle imposte riprende in gran parte i dati del cane da AMICUS e apre il dossier fiscale."
       }
     },
     {
@@ -241,6 +289,8 @@
       "label": {
         "de": "Hundesteuer veranlagen und Rechnung zustellen",
         "en": "Assess dog tax and issue invoice",
+        "fr": "Taxer l'impôt sur les chiens et envoyer la facture",
+        "it": "Determinare la tassa sui cani e inviare la fattura",
         "ls": "Sie bekommen eine Rechnung für die Hunde-Steuer"
       },
       "depends_on": [
@@ -258,6 +308,8 @@
       "label": {
         "de": "Hundesteuer bezahlen",
         "en": "Pay the dog tax",
+        "fr": "Payer l'impôt sur les chiens",
+        "it": "Pagare la tassa sui cani",
         "ls": "Sie zahlen die Rechnung"
       },
       "depends_on": [
@@ -274,6 +326,8 @@
       "label": {
         "de": "Hund angemeldet und versteuert",
         "en": "Dog registered and taxed",
+        "fr": "Chien annoncé et imposé",
+        "it": "Cane annunciato e tassato",
         "ls": "Fertig: Ihr Hund ist angemeldet"
       },
       "depends_on": [
@@ -286,9 +340,9 @@
       "actor": "halter",
       "label": {
         "de": "Prüfungsbestätigung des Theoriekurses bei der Wohngemeinde einreichen",
-        "en": "",
-        "fr": "",
-        "it": "",
+        "en": "Submit the theory course exam confirmation to the municipality of residence",
+        "fr": "Remettre l'attestation d'examen du cours théorique à la commune de domicile",
+        "it": "Presentare l'attestato d'esame del corso teorico al comune di domicilio",
         "ls": "Geben Sie die Bestätigung bei der Gemeinde ab."
       },
       "depends_on": [
@@ -300,16 +354,18 @@
       "actor": "halter",
       "label": {
         "de": "Praktischen Ausbildungskurs absolvieren, sofern kurspflichtig",
-        "en": "",
-        "fr": "",
-        "it": "",
+        "en": "Complete the practical training course, if required",
+        "fr": "Suivre le cours d'éducation pratique, si obligatoire",
+        "it": "Frequentare il corso di educazione pratica, se obbligatorio",
         "ls": "Sie müssen einen Praxiskurs mit dem Hund machen."
       },
       "depends_on": [
         {
           "step_id": 1,
           "condition": {
-            "de": "Die haltende Person ist zur praktischen Ausbildung verpflichtet und nicht ausgenommen."
+            "de": "Die haltende Person ist zur praktischen Ausbildung verpflichtet und nicht ausgenommen.",
+            "fr": "La personne détentrice est soumise à l'obligation d'éducation pratique et n'en est pas exemptée.",
+            "it": "La persona detentrice è soggetta all'obbligo di educazione pratica e non ne è esentata."
           }
         }
       ]
@@ -319,9 +375,9 @@
       "actor": "hundeausbildner",
       "label": {
         "de": "Erfolgreiches Absolvieren des Praxiskurses in AMICUS eintragen und Lernerfolgskontrolle aushändigen",
-        "en": "",
-        "fr": "",
-        "it": "",
+        "en": "Record successful completion of the practical course in AMICUS and hand over the learning assessment",
+        "fr": "Inscrire la réussite du cours pratique dans AMICUS et remettre le contrôle des acquis",
+        "it": "Registrare il superamento del corso pratico in AMICUS e consegnare il controllo dell'apprendimento",
         "ls": "Die Ausbildnerin trägt den Praxiskurs bei AMICUS ein. Sie bekommen eine Bestätigung."
       },
       "depends_on": [

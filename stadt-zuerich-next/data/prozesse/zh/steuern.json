@@ -14,6 +14,8 @@
   "description": {
     "de": "Natürliche Personen in der Stadt Zürich reichen jährlich eine Steuererklärung beim Steueramt ein — online über ZHprivateTax oder auf Papier. Bei Bedarf kann die Frist erstreckt werden. Das Steueramt veranlagt und stellt die Schlussrechnung zu; gegen die Veranlagung ist eine Einsprache möglich. Zuletzt werden die Steuern innert Frist bezahlt.",
     "en": "Natural persons in the City of Zurich file an annual tax return with the tax office — online via ZHprivateTax or on paper. The deadline can be extended if needed. The tax office assesses the return and issues the final invoice; an objection against the assessment is possible. Finally, the taxes are paid within the deadline.",
+    "fr": "Les personnes physiques de la Ville de Zurich déposent chaque année une déclaration d'impôt auprès de l'office des impôts — en ligne via ZHprivateTax ou sur papier. Le délai peut être prolongé en cas de besoin. L'office des impôts procède à la taxation et établit le décompte final; une réclamation contre la taxation est possible. Enfin, les impôts sont payés dans le délai imparti.",
+    "it": "Le persone fisiche della Città di Zurigo presentano ogni anno una dichiarazione d'imposta all'ufficio delle imposte — online tramite ZHprivateTax o su carta. Il termine puo essere prorogato in caso di necessita. L'ufficio delle imposte procede alla tassazione e notifica il conteggio finale; contro la tassazione e possibile presentare reclamo. Infine le imposte vengono pagate entro il termine stabilito.",
     "ls": "Jedes Jahr machen Sie eine Steuer-Erklärung. Das geht im Internet oder auf Papier. Brauchen Sie mehr Zeit? Dann können Sie die Frist verlängern. Das Steueramt rechnet Ihre Steuern aus. Sie bekommen eine Rechnung. Sind Sie nicht einverstanden? Dann können Sie eine Einsprache machen. Am Schluss zahlen Sie die Steuern."
   },
   "target_audience": "bevoelkerung",
@@ -21,6 +23,8 @@
     {
       "de": "Sie sind in der Stadt Zürich steuerpflichtig (Wohnsitz oder Aufenthalt).",
       "en": "You are liable to tax in the City of Zurich (residence or stay).",
+      "fr": "Vous êtes assujetti à l'impôt dans la Ville de Zurich (domicile ou séjour).",
+      "it": "Siete assoggettati all'imposta nella Città di Zurigo (domicilio o dimora).",
       "ls": "Sie wohnen in Zürich. Darum zahlen Sie hier Steuern."
     }
   ],
@@ -33,6 +37,8 @@
       "label": {
         "de": "Einreichefrist der Steuererklärung und Fristerstreckung",
         "en": "Filing deadline for the tax return and deadline extension",
+        "fr": "Délai de dépôt de la déclaration d'impôt et prolongation de délai",
+        "it": "Termine di presentazione della dichiarazione d'imposta e proroga del termine",
         "ls": "Bis wann die Steuer-Erklärung da sein muss"
       },
       "source_url": "https://www.zh.ch/de/steuern-finanzen/steuern/steuern-natuerliche-personen/steuererklaerung-natuerliche-personen.html",
@@ -45,6 +51,8 @@
       "label": {
         "de": "Einsprachefrist gegen die Veranlagungsverfügung",
         "en": "Objection deadline against the assessment decision",
+        "fr": "Délai de réclamation contre la décision de taxation",
+        "it": "Termine di reclamo contro la decisione di tassazione",
         "ls": "Wie lange Sie Zeit für eine Einsprache haben"
       },
       "source_url": "https://www.zh.ch/de/politik-staat/gesetze-beschluesse/gesetzessammlung/zhlex-ls/erlass-631_1-1997_06_08--051.html",
@@ -57,6 +65,8 @@
       "label": {
         "de": "Zahlungsfristen sowie Verzugs- und Vergütungszins",
         "en": "Payment deadlines and default / refund interest",
+        "fr": "Délais de paiement ainsi qu'intérêt moratoire et intérêt rémunératoire",
+        "it": "Termini di pagamento nonché interesse di mora e interesse rimunerativo",
         "ls": "Bis wann Sie zahlen müssen und was bei Verspätung gilt"
       },
       "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/steuern/natuerliche-personen/steuern-bezahlen/definitive-rechnung.html",
@@ -82,6 +92,8 @@
       "label": {
         "de": "Steueramt der Stadt Zürich",
         "en": "Tax Office of the City of Zurich",
+        "fr": "Office des impôts de la Ville de Zurich",
+        "it": "Ufficio delle imposte della Città di Zurigo",
         "ls": "Das Steuer-Amt"
       },
       "type": "behoerde",
@@ -95,6 +107,8 @@
       "label": {
         "de": "Steuerperiode beginnt / Steuererklärung steht an",
         "en": "Tax period begins / tax return is due",
+        "fr": "La période fiscale commence / la déclaration d'impôt est à établir",
+        "it": "Inizia il periodo fiscale / la dichiarazione d'imposta è in scadenza",
         "ls": "Es ist Zeit für die Steuer-Erklärung"
       },
       "depends_on": [],
@@ -106,6 +120,8 @@
       "label": {
         "de": "Unterlagen sammeln (Lohnausweis, Belege)",
         "en": "Gather documents (salary statement, receipts)",
+        "fr": "Rassembler les documents (certificat de salaire, justificatifs)",
+        "it": "Raccogliere i documenti (certificato di salario, giustificativi)",
         "ls": "Papiere sammeln (zum Beispiel den Lohn-Ausweis)"
       },
       "depends_on": [
@@ -116,21 +132,27 @@
         {
           "label": {
             "de": "Lohnausweis",
-            "en": "Salary statement"
+            "en": "Salary statement",
+            "fr": "Certificat de salaire",
+            "it": "Certificato di salario"
           },
           "required": true
         },
         {
           "label": {
             "de": "Belege zu Abzügen (z. B. Versicherung, Weiterbildung)",
-            "en": "Receipts for deductions (e.g. insurance, training)"
+            "en": "Receipts for deductions (e.g. insurance, training)",
+            "fr": "Justificatifs des déductions (p. ex. assurance, formation continue)",
+            "it": "Giustificativi delle deduzioni (p. es. assicurazione, formazione continua)"
           },
           "required": false
         },
         {
           "label": {
             "de": "Bescheinigungen zu Vermögen und Schulden",
-            "en": "Statements of assets and debts"
+            "en": "Statements of assets and debts",
+            "fr": "Attestations relatives à la fortune et aux dettes",
+            "it": "Attestazioni relative alla sostanza e ai debiti"
           },
           "required": false
         }
@@ -142,6 +164,8 @@
       "label": {
         "de": "Wie ausfüllen?",
         "en": "How to complete it?",
+        "fr": "Comment la remplir?",
+        "it": "Come compilarla?",
         "ls": "Wie wollen Sie die Erklärung ausfüllen?"
       },
       "depends_on": [
@@ -155,6 +179,8 @@
       "label": {
         "de": "Steuererklärung online ausfüllen (ZHprivateTax)",
         "en": "Complete the tax return online (ZHprivateTax)",
+        "fr": "Remplir la déclaration d'impôt en ligne (ZHprivateTax)",
+        "it": "Compilare la dichiarazione d'imposta online (ZHprivateTax)",
         "ls": "Die Erklärung im Internet ausfüllen"
       },
       "depends_on": [
@@ -162,7 +188,9 @@
           "step_id": 3,
           "condition": {
             "de": "online",
-            "en": "online"
+            "en": "online",
+            "fr": "en ligne",
+            "it": "online"
           }
         }
       ],
@@ -175,6 +203,8 @@
       "label": {
         "de": "Steuererklärung auf Papier ausfüllen",
         "en": "Complete the tax return on paper",
+        "fr": "Remplir la déclaration d'impôt sur papier",
+        "it": "Compilare la dichiarazione d'imposta su carta",
         "ls": "Die Erklärung auf Papier ausfüllen"
       },
       "depends_on": [
@@ -182,7 +212,9 @@
           "step_id": 3,
           "condition": {
             "de": "Papier",
-            "en": "paper"
+            "en": "paper",
+            "fr": "papier",
+            "it": "carta"
           }
         }
       ],
@@ -194,6 +226,8 @@
       "label": {
         "de": "Reicht die Frist?",
         "en": "Is the deadline enough?",
+        "fr": "Le délai suffit-il?",
+        "it": "Il termine è sufficiente?",
         "ls": "Reicht die Zeit?"
       },
       "depends_on": [
@@ -208,6 +242,8 @@
       "label": {
         "de": "Fristerstreckung beantragen",
         "en": "Request a deadline extension",
+        "fr": "Demander une prolongation de délai",
+        "it": "Richiedere una proroga del termine",
         "ls": "Mehr Zeit verlangen (Frist verlängern)"
       },
       "depends_on": [
@@ -215,7 +251,9 @@
           "step_id": 6,
           "condition": {
             "de": "Frist reicht nicht",
-            "en": "deadline not enough"
+            "en": "deadline not enough",
+            "fr": "délai insuffisant",
+            "it": "termine insufficiente"
           }
         }
       ],
@@ -231,6 +269,8 @@
       "label": {
         "de": "Steuererklärung einreichen",
         "en": "Submit the tax return",
+        "fr": "Déposer la déclaration d'impôt",
+        "it": "Presentare la dichiarazione d'imposta",
         "ls": "Die Steuer-Erklärung abgeben"
       },
       "depends_on": [
@@ -238,7 +278,9 @@
           "step_id": 6,
           "condition": {
             "de": "rechtzeitig",
-            "en": "in time"
+            "en": "in time",
+            "fr": "à temps",
+            "it": "in tempo"
           }
         },
         7
@@ -254,6 +296,8 @@
       "label": {
         "de": "Steuererklärung prüfen und veranlagen",
         "en": "Review the return and assess the tax",
+        "fr": "Vérifier la déclaration d'impôt et procéder à la taxation",
+        "it": "Verificare la dichiarazione d'imposta ed effettuare la tassazione",
         "ls": "Das Steuer-Amt rechnet die Steuern aus"
       },
       "depends_on": [
@@ -263,6 +307,8 @@
       "description": {
         "de": "Das Steueramt prüft die Angaben und setzt die Steuerfaktoren fest (Veranlagung).",
         "en": "The tax office checks the data and determines the tax factors (assessment).",
+        "fr": "L'office des impôts vérifie les indications et fixe les facteurs d'imposition (taxation).",
+        "it": "L'ufficio delle imposte verifica le indicazioni e stabilisce i fattori d'imposta (tassazione).",
         "ls": "Das Amt schaut Ihre Angaben an und rechnet die Steuern aus."
       },
       "source_id": "q-stz-steuer"
@@ -273,6 +319,8 @@
       "label": {
         "de": "Veranlagungsverfügung und Schlussrechnung zustellen",
         "en": "Issue assessment decision and final invoice",
+        "fr": "Notifier la décision de taxation et le décompte final",
+        "it": "Notificare la decisione di tassazione e il conteggio finale",
         "ls": "Sie bekommen die Steuer-Rechnung"
       },
       "depends_on": [
@@ -286,6 +334,8 @@
       "label": {
         "de": "Mit der Veranlagung einverstanden?",
         "en": "Do you agree with the assessment?",
+        "fr": "Êtes-vous d'accord avec la taxation?",
+        "it": "Siete d'accordo con la tassazione?",
         "ls": "Sind Sie mit der Rechnung einverstanden?"
       },
       "depends_on": [
@@ -299,6 +349,8 @@
       "label": {
         "de": "Einsprache erheben",
         "en": "File an objection",
+        "fr": "Former une réclamation",
+        "it": "Presentare un reclamo",
         "ls": "Eine Einsprache machen"
       },
       "depends_on": [
@@ -306,7 +358,9 @@
           "step_id": 11,
           "condition": {
             "de": "nein",
-            "en": "no"
+            "en": "no",
+            "fr": "non",
+            "it": "no"
           }
         }
       ],
@@ -320,6 +374,8 @@
       "description": {
         "de": "Gegen die Veranlagung kann innert Frist schriftlich Einsprache erhoben werden; das Steueramt prüft danach erneut.",
         "en": "An objection against the assessment can be filed in writing within the deadline; the tax office then reviews it again.",
+        "fr": "Une réclamation contre la taxation peut être formée par écrit dans le délai imparti; l'office des impôts procède ensuite à un nouvel examen.",
+        "it": "Contro la tassazione è possibile presentare reclamo per iscritto entro il termine stabilito; l'ufficio delle imposte procede in seguito a un nuovo esame.",
         "ls": "Sind Sie nicht einverstanden? Dann schreiben Sie eine Einsprache. Das Amt prüft dann noch einmal."
       },
       "source_id": "q-stz-steuer"
@@ -330,6 +386,8 @@
       "label": {
         "de": "Steuerrechnung bezahlen",
         "en": "Pay the tax invoice",
+        "fr": "Payer la facture d'impôt",
+        "it": "Pagare la fattura d'imposta",
         "ls": "Die Steuer-Rechnung bezahlen"
       },
       "depends_on": [
@@ -337,7 +395,9 @@
           "step_id": 11,
           "condition": {
             "de": "ja",
-            "en": "yes"
+            "en": "yes",
+            "fr": "oui",
+            "it": "sì"
           }
         }
       ],
@@ -348,6 +408,8 @@
       "description": {
         "de": "Die Steuern werden innert der Zahlungsfrist beglichen; bei verspäteter Zahlung fällt Verzugszins an, bei Vorauszahlung gibt es einen Vergütungszins.",
         "en": "Taxes are paid within the payment deadline; late payment incurs default interest, advance payment earns refund interest.",
+        "fr": "Les impôts sont réglés dans le délai de paiement; en cas de paiement tardif, un intérêt moratoire est dû, en cas de paiement anticipé, un intérêt rémunératoire est accordé.",
+        "it": "Le imposte vengono saldate entro il termine di pagamento; in caso di pagamento tardivo è dovuto un interesse di mora, in caso di pagamento anticipato viene accordato un interesse rimunerativo.",
         "ls": "Sie zahlen die Steuern rechtzeitig. Zahlen Sie zu spät, kostet es mehr."
       },
       "source_id": "q-stz-steuer"
@@ -358,6 +420,8 @@
       "label": {
         "de": "Steuern bezahlt, Veranlagung rechtskräftig",
         "en": "Taxes paid, assessment final",
+        "fr": "Impôts payés, taxation entrée en force",
+        "it": "Imposte pagate, tassazione passata in giudicato",
         "ls": "Fertig: Die Steuern sind bezahlt"
       },
       "depends_on": [
