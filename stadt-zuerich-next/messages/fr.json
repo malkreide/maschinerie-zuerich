@@ -438,7 +438,13 @@
       },
       "ja": "oui",
       "nein": "non",
-      "informativ": "informatif"
+      "informativ": "informatif",
+      "ankerLabel": "Ancrage stratégique",
+      "ankerStaerke": {
+        "direkt": "ancré directement",
+        "schwach": "faiblement ancré",
+        "kein": "défini en propre"
+      }
     }
   },
   "Export": {

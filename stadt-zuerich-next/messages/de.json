@@ -446,7 +446,13 @@
       },
       "ja": "ja",
       "nein": "nein",
-      "informativ": "informativ"
+      "informativ": "informativ",
+      "ankerLabel": "Strategischer Bezug",
+      "ankerStaerke": {
+        "direkt": "direkt verankert",
+        "schwach": "schwach verankert",
+        "kein": "selbst gesetzt"
+      }
     }
   },
   "GraphTable": {

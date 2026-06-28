@@ -438,7 +438,13 @@
       },
       "ja": "yes",
       "nein": "no",
-      "informativ": "informational"
+      "informativ": "informational",
+      "ankerLabel": "Strategic basis",
+      "ankerStaerke": {
+        "direkt": "directly anchored",
+        "schwach": "weakly anchored",
+        "kein": "self-defined"
+      }
     }
   },
   "Export": {

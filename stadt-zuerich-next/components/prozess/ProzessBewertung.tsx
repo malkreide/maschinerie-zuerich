@@ -23,6 +23,7 @@ import {
   type IndikatorResult,
   type KategorieScore,
 } from '@/lib/bewertung';
+import { ankerFor } from '@/lib/bewertung-anker';
 import type { Prozess } from '@/types/prozess';
 
 /** Gleiche String-basierte Translator-Signatur wie getT zurückgibt. */
@@ -39,47 +40,79 @@ const AXIS_H = 'text-[11px] uppercase tracking-wider text-[var(--color-mute)] mb
 /** Evidenz-Block eines Indikators (aufklappbar, ohne Client-JS). */
 function Evidenz({ ind, t }: { ind: IndikatorResult; t: T }) {
   const ev = ind.evidenz;
-  if (ev === null) {
-    return (
-      <p className="mt-1 text-[12px] text-[var(--color-mute)]">
+  const anker = ankerFor(ind.key);
+
+  const body =
+    ev === null ? (
+      <p className="text-[12px] text-[var(--color-mute)]">
         {t('bewertung.evidenz.unbekanntText')}
       </p>
-    );
-  }
-  if (ev.art === 'berechnet') {
-    return (
-      <p className="mt-1 text-[12px] text-[var(--color-mute)]">
+    ) : ev.art === 'berechnet' ? (
+      <p className="text-[12px] text-[var(--color-mute)]">
         <span className="font-medium text-[var(--color-ink)]">
           {t('bewertung.evidenz.berechnetLabel')}:
         </span>{' '}
         {t(`bewertung.evidenz.berechnet.${ind.key}`, { zahl: ev.zahl, von: ev.von ?? 0 })}
       </p>
+    ) : (
+      // Belegt — wörtliches Zitat + Deep-Link, wie bei References.
+      <div className="text-[12px] text-[var(--color-mute)]">
+        <span className="font-medium text-[var(--color-ink)]">
+          {t('bewertung.evidenz.belegLabel')}:
+        </span>{' '}
+        <a
+          href={ev.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[var(--color-accent)] underline decoration-dotted hover:decoration-solid"
+        >
+          {ev.url} ↗
+        </a>
+        {ev.unverifiziert && (
+          <span className="ml-2 text-[11px] px-1.5 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-200">
+            {t('referenzUnverifiziert')}
+          </span>
+        )}
+        <span className="ml-2">({t('retrieved', { date: ev.retrieved_at })})</span>
+        {ev.quote && (
+          <blockquote className="mt-0.5 border-l-2 border-[var(--color-line)] pl-2">
+            «{ev.quote}»
+          </blockquote>
+        )}
+      </div>
     );
-  }
-  // Belegt — wörtliches Zitat + Deep-Link, wie bei References.
+
   return (
-    <div className="mt-1 text-[12px] text-[var(--color-mute)]">
-      <span className="font-medium text-[var(--color-ink)]">
-        {t('bewertung.evidenz.belegLabel')}:
-      </span>{' '}
-      <a
-        href={ev.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-[var(--color-accent)] underline decoration-dotted hover:decoration-solid"
-      >
-        {ev.url} ↗
-      </a>
-      {ev.unverifiziert && (
-        <span className="ml-2 text-[11px] px-1.5 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-200">
-          {t('referenzUnverifiziert')}
-        </span>
-      )}
-      <span className="ml-2">({t('retrieved', { date: ev.retrieved_at })})</span>
-      {ev.quote && (
-        <blockquote className="mt-0.5 border-l-2 border-[var(--color-line)] pl-2">
-          «{ev.quote}»
-        </blockquote>
+    <div className="mt-1 space-y-1">
+      {body}
+      {/* Strategischer Bezug: belegt, WARUM der Indikator zählt (Strategie +
+          Seite + wörtliches Zitat). Siehe docs/bewertung-strategiebezug.md. */}
+      {anker && (
+        <p className="text-[12px] text-[var(--color-mute)]">
+          <span className="font-medium text-[var(--color-ink)]">
+            {t('bewertung.ankerLabel')}:
+          </span>{' '}
+          {anker.url ? (
+            <a
+              href={anker.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[var(--color-accent)] underline decoration-dotted hover:decoration-solid"
+            >
+              {anker.dokumentTitel}
+              {anker.seite ? `, S. ${anker.seite}` : ''} ↗
+            </a>
+          ) : (
+            <span className="text-[var(--color-ink)]">
+              {anker.dokumentTitel}
+              {anker.seite ? `, S. ${anker.seite}` : ''}
+            </span>
+          )}
+          <span className="ml-2 text-[11px] px-1.5 py-0.5 rounded-full border border-[var(--color-line)] bg-[var(--color-bg)]">
+            {t(`bewertung.ankerStaerke.${anker.staerke}`)}
+          </span>
+          <span className="block italic mt-0.5">«{anker.zitat}»</span>
+        </p>
       )}
     </div>
   );

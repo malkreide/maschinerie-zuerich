@@ -438,7 +438,13 @@
       },
       "ja": "ja",
       "nein": "nein",
-      "informativ": "nur Info"
+      "informativ": "nur Info",
+      "ankerLabel": "Das steht in einer Strategie",
+      "ankerStaerke": {
+        "direkt": "steht klar in der Strategie",
+        "schwach": "steht ungefähr in der Strategie",
+        "kein": "wir haben es selbst gewählt"
+      }
     }
   },
   "Export": {
