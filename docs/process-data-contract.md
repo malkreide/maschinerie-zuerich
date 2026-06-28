@@ -60,6 +60,7 @@ markierte Felder sind additiv und dürfen von reinen Vertrags-Konsumenten
 | `legal_basis` | { label, url? }[] | – *(Erweiterung)* | Rechtsgrundlagen |
 | `sources` | Source[] | – *(Erweiterung)* | Weitere Belegquellen neben `source_url` |
 | `reife` | object | – *(Erweiterung, experimentell)* | Digitale Reife/Medienbrüche — unverändert aus Schema-Gen. 1/2 übernommen, Normalisierung später |
+| `bewertung` | object | – *(Erweiterung)* | Belegte Bewertungs-Indikatoren (Digitalisierung); siehe [Bewertung](#bewertung-erweiterung) |
 | `meta` | { erstellt?, aktualisiert?, maintainer?, lizenz? } | – *(Erweiterung)* | Metadaten |
 
 ### Step
@@ -110,6 +111,45 @@ verifiziert angelegt.
 (`data/<city>/org-chart.json`, CI-geprüft) — Grundlage der
 Lebenslage↔Prozess↔Einheit-Brücke.
 
+### Bewertung *(Erweiterung)*
+
+Bewertet einen Prozess hinsichtlich **Digitalisierung** und
+**Nutzendenorientierung** — als *abgeleitete Metadaten*, nie als autoritative
+Aussage. Zwei Quellen, sonst nichts:
+
+- **Berechnet** — deterministisch aus dem Prozess-Graphen (Locale-Abdeckung,
+  Schrittzahl, Akteurswechsel, Pflichtdokumente, Voraussetzungen, verlinkte
+  Referenzen). Diese Indikatoren werden **von der App** berechnet
+  (`stadt-zuerich-next/lib/bewertung.ts`) und **nicht** im JSON gepflegt —
+  doppelte Pflege entfällt.
+- **Belegt** — Eigenschaften, die *nicht* aus dem Graphen ableitbar sind
+  (gibt es einen Online-Antrag? Online-Zahlung? Statusverfolgung?). Diese
+  leben hier, **exakt wie eine Reference**: `source_url` + wörtliches
+  `source_quote` (Grounding-Gate). Fehlt der Beleg, gilt der Indikator als
+  **«unbekannt»** — er wird sichtbar als unbekannt gezeigt, **nicht** geraten
+  und **nicht** als «nicht erfüllt» gewertet.
+
+Der aggregierte Score ist eine transparente, deterministische Funktion:
+Anteil erfüllter Indikatoren **unter den bekannten** (gezählten). «unbekannt»
+zählt nicht in den Nenner. Jeder Indikator ist im UI mit aufklappbarer
+Evidenz hinterlegt.
+
+`bewertung = { indikatoren?: BewertungIndikator[] }`
+
+**BewertungIndikator** `{ key, wert, source_url, source_quote?, status?, retrieved_at }`:
+
+| Feld | Typ | Pflicht | Bedeutung |
+|---|---|---|---|
+| `key` | enum | ✓ | `online-antrag` \| `online-bezahlung` \| `statusverfolgung` \| `medienbruchfrei` \| `digital-abschliessbar` (zählen in den Score) \| `eid-noetig` (rein informativ) |
+| `wert` | boolean | ✓ | Belegte Ausprägung der strukturellen Eigenschaft (`true` = trifft zu). **Kein bindender Wert** (Kardinalregel). |
+| `source_url` | string (http/https) | ✓ | Deep-Link auf die belegende amtliche Stelle |
+| `source_quote` | string | ✓* | **Wörtliche** Belegstelle (Grounding-Gate wie bei References) |
+| `status` | enum | – | `verifiziert` (Default) \| `unverifiziert` |
+| `retrieved_at` | string (ISO 8601) | ✓ | Abrufdatum |
+
+\* Grounding-Gate identisch zu References: bei `status: "verifiziert"` (oder
+fehlendem `status`) ist ein nicht-leeres `source_quote` Pflicht (CI-Fehler).
+
 ### Source *(Erweiterung)*
 
 `{ id, title, url, retrieved_at }` — weitere Belegquellen. `source_url` +
@@ -142,7 +182,9 @@ den sichtbaren Quell-Link + Abrufdatum des Disclaimers.
 5. `loops_back_to` nur an Schritten mit `type: "loop"`, nur auf existierende
    `step_id`s; fliesst nicht in den DAG-Check ein.
 6. `reference_id` eindeutig; `reference_ids` der Schritte verweisen auf
-   existierende References; Grounding-Gate gemäss Tabelle oben.
+   existierende References; Grounding-Gate gemäss Tabelle oben. Dasselbe
+   Grounding-Gate gilt für `bewertung.indikatoren[]` (verifiziert ⇒
+   nicht-leeres `source_quote`).
 7. **Kardinalregel-Lint** (CI-Fehler), siehe unten.
 8. `actors[].einheit_ref` existiert im Org-Chart der Stadt (Cross-Check);
    `steps[].actor` referenziert `actors[].id`, falls `actors` vorhanden.
@@ -204,7 +246,7 @@ Erweiterungen:
 | `title.leichte_sprache` | `title.ls` | kanonischer Locale-Key ist `ls` |
 | `depends_on: integer[]` | `(integer \| {step_id, condition?})[]` | additive Objekt-Variante für Bedingungs-Kanten; auf `step_id` reduzierbar |
 | `retrieved_at` (Timestamp) | ISO-8601-**Datum** | Tagesgenauigkeit reicht für Quell-Snapshots |
-| — | `city`, `description`, `actors`, `legal_basis`, `sources`, `reife`, `meta`, Step-`type`/`description`/`documents`/`source_id`/`loops_back_to`, Reference-`status` | dokumentierte additive Erweiterungen, ignorierbar |
+| — | `city`, `description`, `actors`, `legal_basis`, `sources`, `reife`, `bewertung`, `meta`, Step-`type`/`description`/`documents`/`source_id`/`loops_back_to`, Reference-`status` | dokumentierte additive Erweiterungen, ignorierbar |
 
 Rücksprünge realer Verfahren (Nachbesserung, Rekurs) sind **nicht** Teil des
 `depends_on`-DAG; sie leben ausschliesslich im Rendering-Hinweis

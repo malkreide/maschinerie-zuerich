@@ -387,7 +387,59 @@
     "referenzenHeading": "Übersetzung ausstehend — Verbindliche Werte (Fristen & Gebühren)",
     "referenzenHint": "Übersetzung ausstehend — Verbindliche Zahlen stehen bewusst nicht im Diagramm — sie gelten nur so, wie sie in der amtlichen Quelle stehen. Jeder Eintrag verlinkt auf die exakte Stelle.",
     "referenzUnverifiziert": "Übersetzung ausstehend — Belegstelle noch nicht wörtlich übernommen",
-    "translationPending": "Translation pending — content is shown in German."
+    "translationPending": "Translation pending — content is shown in German.",
+    "bewertung": {
+      "heading": "Assessment: digitalisation & user-centricity",
+      "intro": "Derived metadata — not an authoritative statement. Each indicator is either deterministically computed from the process model or evidenced from the official source. Without evidence or derivation an indicator stays \"unknown\" — it is never guessed.",
+      "scoreLabel": "Indicators met",
+      "scoreWert": "{erfuellt} of {bekannt}",
+      "keinScore": "No known indicators yet",
+      "unbekanntHinweis": "{count, plural, one {# indicator unknown} other {# indicators unknown}} — not assessed for lack of evidence (not counted as \"not met\").",
+      "kategorie": {
+        "digitalisierung": "Digitalisation",
+        "nutzendenorientierung": "User-centricity"
+      },
+      "status": {
+        "erfuellt": "met",
+        "nicht-erfuellt": "not met",
+        "unbekannt": "unknown"
+      },
+      "indikator": {
+        "online-antrag": "Online application available",
+        "online-bezahlung": "Online payment available",
+        "statusverfolgung": "Online status tracking",
+        "medienbruchfrei": "No media break",
+        "digital-abschliessbar": "Can be completed fully digitally",
+        "eid-noetig": "Authentication/eID required",
+        "leichte-sprache": "Easy-language version available",
+        "mehrsprachigkeit": "Multilingual (en/fr/it)",
+        "voraussetzungen-genannt": "Preconditions clearly stated",
+        "fristen-kosten-verlinkt": "Deadlines/fees transparently linked"
+      },
+      "evidenz": {
+        "toggle": "Evidence",
+        "belegLabel": "Evidenced",
+        "berechnetLabel": "Computed",
+        "unbekanntText": "No evidence on file — flagged as unknown, not as not met.",
+        "berechnet": {
+          "leichte-sprache": "{zahl} of {von} texts (title + steps) in easy language",
+          "mehrsprachigkeit": "{zahl} of {von} languages (en/fr/it) fully covered",
+          "voraussetzungen-genannt": "{zahl, plural, =0 {no preconditions stated} one {# precondition stated} other {# preconditions stated}}",
+          "fristen-kosten-verlinkt": "{zahl, plural, =0 {no linked source} one {# linked source for binding values} other {# linked sources for binding values}}"
+        }
+      },
+      "kennzahlenHeading": "Computed metrics (from the graph)",
+      "kennzahl": {
+        "schritte": "{count, plural, one {# step} other {# steps}}",
+        "akteurswechsel": "{count, plural, one {# actor handover} other {# actor handovers}}",
+        "behoerden": "{count, plural, one {# authority} other {# authorities}}",
+        "pflichtdokumente": "{count, plural, one {# required document} other {# required documents}}",
+        "entscheidungspunkte": "{count, plural, one {# decision point} other {# decision points}}"
+      },
+      "ja": "yes",
+      "nein": "no",
+      "informativ": "informational"
+    }
   },
   "Export": {
     "csvButton": "Export current view as CSV"

@@ -387,7 +387,59 @@
     "referenzenHeading": "Übersetzung ausstehend — Verbindliche Werte (Fristen & Gebühren)",
     "referenzenHint": "Übersetzung ausstehend — Verbindliche Zahlen stehen bewusst nicht im Diagramm — sie gelten nur so, wie sie in der amtlichen Quelle stehen. Jeder Eintrag verlinkt auf die exakte Stelle.",
     "referenzUnverifiziert": "Übersetzung ausstehend — Belegstelle noch nicht wörtlich übernommen",
-    "translationPending": "Traduction en attente — contenu affiché en allemand."
+    "translationPending": "Traduction en attente — contenu affiché en allemand.",
+    "bewertung": {
+      "heading": "Évaluation : numérisation & orientation usagers",
+      "intro": "Métadonnées dérivées — pas une affirmation faisant autorité. Chaque indicateur est soit calculé de manière déterministe à partir du modèle de processus, soit attesté par la source officielle. Sans preuve ni dérivation, un indicateur reste « inconnu » — il n’est jamais deviné.",
+      "scoreLabel": "Indicateurs remplis",
+      "scoreWert": "{erfuellt} sur {bekannt}",
+      "keinScore": "Aucun indicateur connu pour l’instant",
+      "unbekanntHinweis": "{count, plural, one {# indicateur inconnu} other {# indicateurs inconnus}} — non évalué faute de preuve (pas compté comme « non rempli »).",
+      "kategorie": {
+        "digitalisierung": "Numérisation",
+        "nutzendenorientierung": "Orientation usagers"
+      },
+      "status": {
+        "erfuellt": "rempli",
+        "nicht-erfuellt": "non rempli",
+        "unbekannt": "inconnu"
+      },
+      "indikator": {
+        "online-antrag": "Demande en ligne possible",
+        "online-bezahlung": "Paiement en ligne possible",
+        "statusverfolgung": "Suivi du statut en ligne",
+        "medienbruchfrei": "Sans rupture de média",
+        "digital-abschliessbar": "Entièrement réalisable en ligne",
+        "eid-noetig": "Authentification/eID requise",
+        "leichte-sprache": "Version en langage simplifié",
+        "mehrsprachigkeit": "Multilingue (en/fr/it)",
+        "voraussetzungen-genannt": "Conditions clairement indiquées",
+        "fristen-kosten-verlinkt": "Délais/émoluments liés de façon transparente"
+      },
+      "evidenz": {
+        "toggle": "Preuve",
+        "belegLabel": "Attesté",
+        "berechnetLabel": "Calculé",
+        "unbekanntText": "Aucune preuve enregistrée — marqué comme inconnu, pas comme non rempli.",
+        "berechnet": {
+          "leichte-sprache": "{zahl} sur {von} textes (titre + étapes) en langage simplifié",
+          "mehrsprachigkeit": "{zahl} sur {von} langues (en/fr/it) entièrement couvertes",
+          "voraussetzungen-genannt": "{zahl, plural, =0 {aucune condition indiquée} one {# condition indiquée} other {# conditions indiquées}}",
+          "fristen-kosten-verlinkt": "{zahl, plural, =0 {aucune source liée} one {# source liée pour les valeurs contraignantes} other {# sources liées pour les valeurs contraignantes}}"
+        }
+      },
+      "kennzahlenHeading": "Indicateurs calculés (à partir du graphe)",
+      "kennzahl": {
+        "schritte": "{count, plural, one {# étape} other {# étapes}}",
+        "akteurswechsel": "{count, plural, one {# changement d’acteur} other {# changements d’acteur}}",
+        "behoerden": "{count, plural, one {# autorité} other {# autorités}}",
+        "pflichtdokumente": "{count, plural, one {# document obligatoire} other {# documents obligatoires}}",
+        "entscheidungspunkte": "{count, plural, one {# point de décision} other {# points de décision}}"
+      },
+      "ja": "oui",
+      "nein": "non",
+      "informativ": "informatif"
+    }
   },
   "Export": {
     "csvButton": "Exporter la vue actuelle au format CSV"

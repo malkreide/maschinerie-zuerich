@@ -111,6 +111,21 @@ jobs:
       - name: Links in den Daten prüfen (strukturell)
         run: npm run check:links
 
+  unit-tests:
+    name: Unit-Tests (Bewertungs-Ableitung)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: stadt-zuerich-next
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24.16.0
+      # Keine npm-Abhängigkeiten nötig: die reine Ableitungs-Funktion
+      # importiert nur node:test + type-only Typen (Node-Type-Stripping).
+      - run: npm run test:unit
+
   prozess-regression:
     name: Prozess-Daten Regression-Guard (i18n + description)
     # Braucht eine Basis-Version zum Vergleich → nur auf Pull Requests.
