@@ -110,6 +110,14 @@
       },
       "type": "behoerde",
       "einheit_ref": "FD-st"
+    },
+    {
+      "id": "hundeausbildner",
+      "label": {
+        "de": "Hundeausbildner:in",
+        "ls": "Die Hundeausbildnerin oder der Hundeausbildner"
+      },
+      "type": "dritte"
     }
   ],
   "steps": [
@@ -275,7 +283,7 @@
     },
     {
       "step_id": 9,
-      "actor": "Halter:in",
+      "actor": "halter",
       "label": {
         "de": "Prüfungsbestätigung des Theoriekurses bei der Wohngemeinde einreichen",
         "en": "",
@@ -289,7 +297,7 @@
     },
     {
       "step_id": 10,
-      "actor": "Halter:in",
+      "actor": "halter",
       "label": {
         "de": "Praktischen Ausbildungskurs absolvieren, sofern kurspflichtig",
         "en": "",
@@ -308,7 +316,7 @@
     },
     {
       "step_id": 11,
-      "actor": "Hundeausbildner:in",
+      "actor": "hundeausbildner",
       "label": {
         "de": "Erfolgreiches Absolvieren des Praxiskurses in AMICUS eintragen und Lernerfolgskontrolle aushändigen",
         "en": "",
@@ -318,20 +326,6 @@
       },
       "depends_on": [
         10
-      ]
-    },
-    {
-      "step_id": 12,
-      "actor": "Halter:in",
-      "label": {
-        "de": "Jährliche Hundeabgabe (Hundesteuer) bei der Wohngemeinde bezahlen",
-        "en": "",
-        "fr": "",
-        "it": "",
-        "ls": "Sie zahlen jedes Jahr eine Hundesteuer an die Gemeinde."
-      },
-      "depends_on": [
-        2
       ]
     }
   ],
