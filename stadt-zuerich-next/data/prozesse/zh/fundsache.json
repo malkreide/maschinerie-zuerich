@@ -43,8 +43,8 @@
         "ls": "Ab wann Sie am nächsten Tag im Fundbüro nachfragen können."
       },
       "source_url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/verloren.html",
-      "source_quote": "Verlorene Fundgegenstände können am folgenden Tag ab 11.00 Uhr angefragt und im Fundbüro abgeholt werden.",
-      "status": "unverifiziert",
+      "source_quote": "Wenn der Gegenstand gefunden wird, zahlen Sie zusätzlich zur normalen Gebühr einen Express-Zuschlag von 50 Schweizer Franken.",
+      "status": "verifiziert",
       "retrieved_at": "2026-06-28"
     },
     {
@@ -98,8 +98,8 @@
         "it": ""
       },
       "source_url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/rechtsgrundlage.html",
-      "source_quote": "",
-      "status": "unverifiziert",
+      "source_quote": "Fundsachen mit einem Zeitwert von höchstens 50 Franken dürfen bereits nach Ablauf eines Monats versteigert oder freihändig verkauft werden.",
+      "status": "verifiziert",
       "retrieved_at": "2026-06-28"
     },
     {
