@@ -439,6 +439,26 @@
       }
     ]
   },
+  "bewertung": {
+    "indikatoren": [
+      {
+        "key": "online-antrag",
+        "wert": true,
+        "source_url": "https://www.zh.ch/de/steuern-finanzen/steuern/steuern-natuerliche-personen/steuererklaerung-natuerliche-personen.html",
+        "source_quote": "Sie können die Steuererklärung komplett elektronisch einreichen.",
+        "status": "verifiziert",
+        "retrieved_at": "2026-06-28"
+      },
+      {
+        "key": "medienbruchfrei",
+        "wert": true,
+        "source_url": "https://www.zh.ch/de/steuern-finanzen/steuern/steuern-natuerliche-personen/steuererklaerung-natuerliche-personen.html",
+        "source_quote": "Kein Ausdrucken, keine Unterschrift, kein Postversand",
+        "status": "verifiziert",
+        "retrieved_at": "2026-06-28"
+      }
+    ]
+  },
   "meta": {
     "erstellt": "2026-06-18",
     "aktualisiert": "2026-06-18",

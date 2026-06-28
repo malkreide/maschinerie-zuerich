@@ -29,7 +29,12 @@
       "gezaehlt": true
     },
     {
-      "key": "eid-noetig",
+      "key": "once-only",
+      "kategorie": "digitalisierung",
+      "gezaehlt": true
+    },
+    {
+      "key": "eid-moeglich",
       "kategorie": "digitalisierung",
       "gezaehlt": false
     },
@@ -50,6 +55,16 @@
     },
     {
       "key": "fristen-kosten-verlinkt",
+      "kategorie": "nutzendenorientierung",
+      "gezaehlt": true
+    },
+    {
+      "key": "barrierefreiheit",
+      "kategorie": "nutzendenorientierung",
+      "gezaehlt": true
+    },
+    {
+      "key": "nicht-digitaler-alternativweg",
       "kategorie": "nutzendenorientierung",
       "gezaehlt": true
     }
@@ -81,7 +96,11 @@
           "status": "unbekannt"
         },
         {
-          "key": "eid-noetig",
+          "key": "once-only",
+          "status": "unbekannt"
+        },
+        {
+          "key": "eid-moeglich",
           "status": "unbekannt"
         },
         {
@@ -99,29 +118,37 @@
         {
           "key": "fristen-kosten-verlinkt",
           "status": "erfuellt"
+        },
+        {
+          "key": "barrierefreiheit",
+          "status": "unbekannt"
+        },
+        {
+          "key": "nicht-digitaler-alternativweg",
+          "status": "unbekannt"
         }
       ],
       "score": {
         "digitalisierung": {
           "erfuellt": 0,
           "bekannt": 0,
-          "unbekannt": 5,
+          "unbekannt": 6,
           "prozent": null
         },
         "nutzendenorientierung": {
           "erfuellt": 3,
           "bekannt": 4,
-          "unbekannt": 0,
+          "unbekannt": 2,
           "prozent": 75
         },
         "gesamt": {
           "erfuellt": 3,
           "bekannt": 4,
-          "unbekannt": 5,
+          "unbekannt": 8,
           "prozent": 75
         }
       },
-      "unbekannt": 5,
+      "unbekannt": 8,
       "belegLuecke": true
     },
     {
@@ -150,7 +177,11 @@
           "status": "unbekannt"
         },
         {
-          "key": "eid-noetig",
+          "key": "once-only",
+          "status": "unbekannt"
+        },
+        {
+          "key": "eid-moeglich",
           "status": "unbekannt"
         },
         {
@@ -168,29 +199,37 @@
         {
           "key": "fristen-kosten-verlinkt",
           "status": "erfuellt"
+        },
+        {
+          "key": "barrierefreiheit",
+          "status": "unbekannt"
+        },
+        {
+          "key": "nicht-digitaler-alternativweg",
+          "status": "unbekannt"
         }
       ],
       "score": {
         "digitalisierung": {
           "erfuellt": 0,
           "bekannt": 0,
-          "unbekannt": 5,
+          "unbekannt": 6,
           "prozent": null
         },
         "nutzendenorientierung": {
           "erfuellt": 1,
           "bekannt": 4,
-          "unbekannt": 0,
+          "unbekannt": 2,
           "prozent": 25
         },
         "gesamt": {
           "erfuellt": 1,
           "bekannt": 4,
-          "unbekannt": 5,
+          "unbekannt": 8,
           "prozent": 25
         }
       },
-      "unbekannt": 5,
+      "unbekannt": 8,
       "belegLuecke": true
     },
     {
@@ -219,7 +258,11 @@
           "status": "unbekannt"
         },
         {
-          "key": "eid-noetig",
+          "key": "once-only",
+          "status": "unbekannt"
+        },
+        {
+          "key": "eid-moeglich",
           "status": "unbekannt"
         },
         {
@@ -237,29 +280,37 @@
         {
           "key": "fristen-kosten-verlinkt",
           "status": "erfuellt"
+        },
+        {
+          "key": "barrierefreiheit",
+          "status": "unbekannt"
+        },
+        {
+          "key": "nicht-digitaler-alternativweg",
+          "status": "unbekannt"
         }
       ],
       "score": {
         "digitalisierung": {
           "erfuellt": 0,
           "bekannt": 0,
-          "unbekannt": 5,
+          "unbekannt": 6,
           "prozent": null
         },
         "nutzendenorientierung": {
           "erfuellt": 3,
           "bekannt": 4,
-          "unbekannt": 0,
+          "unbekannt": 2,
           "prozent": 75
         },
         "gesamt": {
           "erfuellt": 3,
           "bekannt": 4,
-          "unbekannt": 5,
+          "unbekannt": 8,
           "prozent": 75
         }
       },
-      "unbekannt": 5,
+      "unbekannt": 8,
       "belegLuecke": true
     },
     {
@@ -288,7 +339,11 @@
           "status": "unbekannt"
         },
         {
-          "key": "eid-noetig",
+          "key": "once-only",
+          "status": "unbekannt"
+        },
+        {
+          "key": "eid-moeglich",
           "status": "unbekannt"
         },
         {
@@ -306,29 +361,37 @@
         {
           "key": "fristen-kosten-verlinkt",
           "status": "erfuellt"
+        },
+        {
+          "key": "barrierefreiheit",
+          "status": "unbekannt"
+        },
+        {
+          "key": "nicht-digitaler-alternativweg",
+          "status": "unbekannt"
         }
       ],
       "score": {
         "digitalisierung": {
           "erfuellt": 0,
           "bekannt": 0,
-          "unbekannt": 5,
+          "unbekannt": 6,
           "prozent": null
         },
         "nutzendenorientierung": {
           "erfuellt": 3,
           "bekannt": 4,
-          "unbekannt": 0,
+          "unbekannt": 2,
           "prozent": 75
         },
         "gesamt": {
           "erfuellt": 3,
           "bekannt": 4,
-          "unbekannt": 5,
+          "unbekannt": 8,
           "prozent": 75
         }
       },
-      "unbekannt": 5,
+      "unbekannt": 8,
       "belegLuecke": true
     },
     {
@@ -357,7 +420,11 @@
           "status": "unbekannt"
         },
         {
-          "key": "eid-noetig",
+          "key": "once-only",
+          "status": "unbekannt"
+        },
+        {
+          "key": "eid-moeglich",
           "status": "unbekannt"
         },
         {
@@ -375,29 +442,37 @@
         {
           "key": "fristen-kosten-verlinkt",
           "status": "erfuellt"
+        },
+        {
+          "key": "barrierefreiheit",
+          "status": "unbekannt"
+        },
+        {
+          "key": "nicht-digitaler-alternativweg",
+          "status": "unbekannt"
         }
       ],
       "score": {
         "digitalisierung": {
           "erfuellt": 0,
           "bekannt": 0,
-          "unbekannt": 5,
+          "unbekannt": 6,
           "prozent": null
         },
         "nutzendenorientierung": {
           "erfuellt": 3,
           "bekannt": 4,
-          "unbekannt": 0,
+          "unbekannt": 2,
           "prozent": 75
         },
         "gesamt": {
           "erfuellt": 3,
           "bekannt": 4,
-          "unbekannt": 5,
+          "unbekannt": 8,
           "prozent": 75
         }
       },
-      "unbekannt": 5,
+      "unbekannt": 8,
       "belegLuecke": true
     },
     {
@@ -426,7 +501,11 @@
           "status": "unbekannt"
         },
         {
-          "key": "eid-noetig",
+          "key": "once-only",
+          "status": "unbekannt"
+        },
+        {
+          "key": "eid-moeglich",
           "status": "unbekannt"
         },
         {
@@ -444,29 +523,37 @@
         {
           "key": "fristen-kosten-verlinkt",
           "status": "erfuellt"
+        },
+        {
+          "key": "barrierefreiheit",
+          "status": "unbekannt"
+        },
+        {
+          "key": "nicht-digitaler-alternativweg",
+          "status": "unbekannt"
         }
       ],
       "score": {
         "digitalisierung": {
           "erfuellt": 0,
           "bekannt": 0,
-          "unbekannt": 5,
+          "unbekannt": 6,
           "prozent": null
         },
         "nutzendenorientierung": {
           "erfuellt": 3,
           "bekannt": 4,
-          "unbekannt": 0,
+          "unbekannt": 2,
           "prozent": 75
         },
         "gesamt": {
           "erfuellt": 3,
           "bekannt": 4,
-          "unbekannt": 5,
+          "unbekannt": 8,
           "prozent": 75
         }
       },
-      "unbekannt": 5,
+      "unbekannt": 8,
       "belegLuecke": true
     },
     {
@@ -495,7 +582,11 @@
           "status": "unbekannt"
         },
         {
-          "key": "eid-noetig",
+          "key": "once-only",
+          "status": "unbekannt"
+        },
+        {
+          "key": "eid-moeglich",
           "status": "unbekannt"
         },
         {
@@ -513,29 +604,37 @@
         {
           "key": "fristen-kosten-verlinkt",
           "status": "erfuellt"
+        },
+        {
+          "key": "barrierefreiheit",
+          "status": "unbekannt"
+        },
+        {
+          "key": "nicht-digitaler-alternativweg",
+          "status": "unbekannt"
         }
       ],
       "score": {
         "digitalisierung": {
           "erfuellt": 0,
           "bekannt": 0,
-          "unbekannt": 5,
+          "unbekannt": 6,
           "prozent": null
         },
         "nutzendenorientierung": {
           "erfuellt": 1,
           "bekannt": 4,
-          "unbekannt": 0,
+          "unbekannt": 2,
           "prozent": 25
         },
         "gesamt": {
           "erfuellt": 1,
           "bekannt": 4,
-          "unbekannt": 5,
+          "unbekannt": 8,
           "prozent": 25
         }
       },
-      "unbekannt": 5,
+      "unbekannt": 8,
       "belegLuecke": true
     },
     {
@@ -564,7 +663,11 @@
           "status": "unbekannt"
         },
         {
-          "key": "eid-noetig",
+          "key": "once-only",
+          "status": "unbekannt"
+        },
+        {
+          "key": "eid-moeglich",
           "status": "unbekannt"
         },
         {
@@ -582,29 +685,37 @@
         {
           "key": "fristen-kosten-verlinkt",
           "status": "erfuellt"
+        },
+        {
+          "key": "barrierefreiheit",
+          "status": "unbekannt"
+        },
+        {
+          "key": "nicht-digitaler-alternativweg",
+          "status": "unbekannt"
         }
       ],
       "score": {
         "digitalisierung": {
           "erfuellt": 0,
           "bekannt": 0,
-          "unbekannt": 5,
+          "unbekannt": 6,
           "prozent": null
         },
         "nutzendenorientierung": {
           "erfuellt": 3,
           "bekannt": 4,
-          "unbekannt": 0,
+          "unbekannt": 2,
           "prozent": 75
         },
         "gesamt": {
           "erfuellt": 3,
           "bekannt": 4,
-          "unbekannt": 5,
+          "unbekannt": 8,
           "prozent": 75
         }
       },
-      "unbekannt": 5,
+      "unbekannt": 8,
       "belegLuecke": true
     },
     {
@@ -614,7 +725,7 @@
       "zellen": [
         {
           "key": "online-antrag",
-          "status": "unbekannt"
+          "status": "erfuellt"
         },
         {
           "key": "online-bezahlung",
@@ -633,12 +744,16 @@
           "status": "unbekannt"
         },
         {
-          "key": "eid-noetig",
+          "key": "once-only",
+          "status": "unbekannt"
+        },
+        {
+          "key": "eid-moeglich",
           "status": "unbekannt"
         },
         {
           "key": "leichte-sprache",
-          "status": "nicht-erfuellt"
+          "status": "erfuellt"
         },
         {
           "key": "mehrsprachigkeit",
@@ -646,35 +761,43 @@
         },
         {
           "key": "voraussetzungen-genannt",
-          "status": "nicht-erfuellt"
+          "status": "erfuellt"
         },
         {
           "key": "fristen-kosten-verlinkt",
           "status": "erfuellt"
+        },
+        {
+          "key": "barrierefreiheit",
+          "status": "unbekannt"
+        },
+        {
+          "key": "nicht-digitaler-alternativweg",
+          "status": "unbekannt"
         }
       ],
       "score": {
         "digitalisierung": {
-          "erfuellt": 0,
-          "bekannt": 0,
+          "erfuellt": 1,
+          "bekannt": 1,
           "unbekannt": 5,
-          "prozent": null
+          "prozent": 100
         },
         "nutzendenorientierung": {
-          "erfuellt": 1,
+          "erfuellt": 3,
           "bekannt": 4,
-          "unbekannt": 0,
-          "prozent": 25
+          "unbekannt": 2,
+          "prozent": 75
         },
         "gesamt": {
-          "erfuellt": 1,
-          "bekannt": 4,
-          "unbekannt": 5,
-          "prozent": 25
+          "erfuellt": 4,
+          "bekannt": 5,
+          "unbekannt": 7,
+          "prozent": 80
         }
       },
-      "unbekannt": 5,
-      "belegLuecke": true
+      "unbekannt": 7,
+      "belegLuecke": false
     },
     {
       "slug": "zh/pass-id",
@@ -702,7 +825,11 @@
           "status": "unbekannt"
         },
         {
-          "key": "eid-noetig",
+          "key": "once-only",
+          "status": "unbekannt"
+        },
+        {
+          "key": "eid-moeglich",
           "status": "unbekannt"
         },
         {
@@ -720,29 +847,37 @@
         {
           "key": "fristen-kosten-verlinkt",
           "status": "erfuellt"
+        },
+        {
+          "key": "barrierefreiheit",
+          "status": "unbekannt"
+        },
+        {
+          "key": "nicht-digitaler-alternativweg",
+          "status": "unbekannt"
         }
       ],
       "score": {
         "digitalisierung": {
           "erfuellt": 0,
           "bekannt": 0,
-          "unbekannt": 5,
+          "unbekannt": 6,
           "prozent": null
         },
         "nutzendenorientierung": {
           "erfuellt": 3,
           "bekannt": 4,
-          "unbekannt": 0,
+          "unbekannt": 2,
           "prozent": 75
         },
         "gesamt": {
           "erfuellt": 3,
           "bekannt": 4,
-          "unbekannt": 5,
+          "unbekannt": 8,
           "prozent": 75
         }
       },
-      "unbekannt": 5,
+      "unbekannt": 8,
       "belegLuecke": true
     },
     {
@@ -771,7 +906,11 @@
           "status": "unbekannt"
         },
         {
-          "key": "eid-noetig",
+          "key": "once-only",
+          "status": "unbekannt"
+        },
+        {
+          "key": "eid-moeglich",
           "status": "unbekannt"
         },
         {
@@ -789,29 +928,37 @@
         {
           "key": "fristen-kosten-verlinkt",
           "status": "erfuellt"
+        },
+        {
+          "key": "barrierefreiheit",
+          "status": "unbekannt"
+        },
+        {
+          "key": "nicht-digitaler-alternativweg",
+          "status": "unbekannt"
         }
       ],
       "score": {
         "digitalisierung": {
           "erfuellt": 0,
           "bekannt": 0,
-          "unbekannt": 5,
+          "unbekannt": 6,
           "prozent": null
         },
         "nutzendenorientierung": {
           "erfuellt": 1,
           "bekannt": 4,
-          "unbekannt": 0,
+          "unbekannt": 2,
           "prozent": 25
         },
         "gesamt": {
           "erfuellt": 1,
           "bekannt": 4,
-          "unbekannt": 5,
+          "unbekannt": 8,
           "prozent": 25
         }
       },
-      "unbekannt": 5,
+      "unbekannt": 8,
       "belegLuecke": true
     },
     {
@@ -821,7 +968,7 @@
       "zellen": [
         {
           "key": "online-antrag",
-          "status": "unbekannt"
+          "status": "erfuellt"
         },
         {
           "key": "online-bezahlung",
@@ -833,14 +980,18 @@
         },
         {
           "key": "medienbruchfrei",
-          "status": "unbekannt"
+          "status": "erfuellt"
         },
         {
           "key": "digital-abschliessbar",
           "status": "unbekannt"
         },
         {
-          "key": "eid-noetig",
+          "key": "once-only",
+          "status": "unbekannt"
+        },
+        {
+          "key": "eid-moeglich",
           "status": "unbekannt"
         },
         {
@@ -858,30 +1009,38 @@
         {
           "key": "fristen-kosten-verlinkt",
           "status": "erfuellt"
+        },
+        {
+          "key": "barrierefreiheit",
+          "status": "unbekannt"
+        },
+        {
+          "key": "nicht-digitaler-alternativweg",
+          "status": "unbekannt"
         }
       ],
       "score": {
         "digitalisierung": {
-          "erfuellt": 0,
-          "bekannt": 0,
-          "unbekannt": 5,
-          "prozent": null
+          "erfuellt": 2,
+          "bekannt": 2,
+          "unbekannt": 4,
+          "prozent": 100
         },
         "nutzendenorientierung": {
           "erfuellt": 3,
           "bekannt": 4,
-          "unbekannt": 0,
+          "unbekannt": 2,
           "prozent": 75
         },
         "gesamt": {
-          "erfuellt": 3,
-          "bekannt": 4,
-          "unbekannt": 5,
-          "prozent": 75
+          "erfuellt": 5,
+          "bekannt": 6,
+          "unbekannt": 6,
+          "prozent": 83
         }
       },
-      "unbekannt": 5,
-      "belegLuecke": true
+      "unbekannt": 6,
+      "belegLuecke": false
     },
     {
       "slug": "zh/strom",
@@ -909,7 +1068,11 @@
           "status": "unbekannt"
         },
         {
-          "key": "eid-noetig",
+          "key": "once-only",
+          "status": "unbekannt"
+        },
+        {
+          "key": "eid-moeglich",
           "status": "unbekannt"
         },
         {
@@ -927,29 +1090,37 @@
         {
           "key": "fristen-kosten-verlinkt",
           "status": "erfuellt"
+        },
+        {
+          "key": "barrierefreiheit",
+          "status": "unbekannt"
+        },
+        {
+          "key": "nicht-digitaler-alternativweg",
+          "status": "unbekannt"
         }
       ],
       "score": {
         "digitalisierung": {
           "erfuellt": 0,
           "bekannt": 0,
-          "unbekannt": 5,
+          "unbekannt": 6,
           "prozent": null
         },
         "nutzendenorientierung": {
           "erfuellt": 3,
           "bekannt": 4,
-          "unbekannt": 0,
+          "unbekannt": 2,
           "prozent": 75
         },
         "gesamt": {
           "erfuellt": 3,
           "bekannt": 4,
-          "unbekannt": 5,
+          "unbekannt": 8,
           "prozent": 75
         }
       },
-      "unbekannt": 5,
+      "unbekannt": 8,
       "belegLuecke": true
     },
     {
@@ -978,7 +1149,11 @@
           "status": "unbekannt"
         },
         {
-          "key": "eid-noetig",
+          "key": "once-only",
+          "status": "unbekannt"
+        },
+        {
+          "key": "eid-moeglich",
           "status": "unbekannt"
         },
         {
@@ -996,29 +1171,37 @@
         {
           "key": "fristen-kosten-verlinkt",
           "status": "erfuellt"
+        },
+        {
+          "key": "barrierefreiheit",
+          "status": "unbekannt"
+        },
+        {
+          "key": "nicht-digitaler-alternativweg",
+          "status": "unbekannt"
         }
       ],
       "score": {
         "digitalisierung": {
           "erfuellt": 0,
           "bekannt": 0,
-          "unbekannt": 5,
+          "unbekannt": 6,
           "prozent": null
         },
         "nutzendenorientierung": {
           "erfuellt": 3,
           "bekannt": 4,
-          "unbekannt": 0,
+          "unbekannt": 2,
           "prozent": 75
         },
         "gesamt": {
           "erfuellt": 3,
           "bekannt": 4,
-          "unbekannt": 5,
+          "unbekannt": 8,
           "prozent": 75
         }
       },
-      "unbekannt": 5,
+      "unbekannt": 8,
       "belegLuecke": true
     },
     {
@@ -1028,7 +1211,7 @@
       "zellen": [
         {
           "key": "online-antrag",
-          "status": "unbekannt"
+          "status": "erfuellt"
         },
         {
           "key": "online-bezahlung",
@@ -1047,7 +1230,11 @@
           "status": "unbekannt"
         },
         {
-          "key": "eid-noetig",
+          "key": "once-only",
+          "status": "unbekannt"
+        },
+        {
+          "key": "eid-moeglich",
           "status": "unbekannt"
         },
         {
@@ -1065,30 +1252,38 @@
         {
           "key": "fristen-kosten-verlinkt",
           "status": "erfuellt"
+        },
+        {
+          "key": "barrierefreiheit",
+          "status": "unbekannt"
+        },
+        {
+          "key": "nicht-digitaler-alternativweg",
+          "status": "unbekannt"
         }
       ],
       "score": {
         "digitalisierung": {
-          "erfuellt": 0,
-          "bekannt": 0,
+          "erfuellt": 1,
+          "bekannt": 1,
           "unbekannt": 5,
-          "prozent": null
+          "prozent": 100
         },
         "nutzendenorientierung": {
           "erfuellt": 3,
           "bekannt": 4,
-          "unbekannt": 0,
+          "unbekannt": 2,
           "prozent": 75
         },
         "gesamt": {
-          "erfuellt": 3,
-          "bekannt": 4,
-          "unbekannt": 5,
-          "prozent": 75
+          "erfuellt": 4,
+          "bekannt": 5,
+          "unbekannt": 7,
+          "prozent": 80
         }
       },
-      "unbekannt": 5,
-      "belegLuecke": true
+      "unbekannt": 7,
+      "belegLuecke": false
     },
     {
       "slug": "zh/veranstaltung",
@@ -1116,7 +1311,11 @@
           "status": "unbekannt"
         },
         {
-          "key": "eid-noetig",
+          "key": "once-only",
+          "status": "unbekannt"
+        },
+        {
+          "key": "eid-moeglich",
           "status": "unbekannt"
         },
         {
@@ -1134,29 +1333,37 @@
         {
           "key": "fristen-kosten-verlinkt",
           "status": "erfuellt"
+        },
+        {
+          "key": "barrierefreiheit",
+          "status": "unbekannt"
+        },
+        {
+          "key": "nicht-digitaler-alternativweg",
+          "status": "unbekannt"
         }
       ],
       "score": {
         "digitalisierung": {
           "erfuellt": 0,
           "bekannt": 0,
-          "unbekannt": 5,
+          "unbekannt": 6,
           "prozent": null
         },
         "nutzendenorientierung": {
           "erfuellt": 1,
           "bekannt": 4,
-          "unbekannt": 0,
+          "unbekannt": 2,
           "prozent": 25
         },
         "gesamt": {
           "erfuellt": 1,
           "bekannt": 4,
-          "unbekannt": 5,
+          "unbekannt": 8,
           "prozent": 25
         }
       },
-      "unbekannt": 5,
+      "unbekannt": 8,
       "belegLuecke": true
     },
     {
@@ -1185,7 +1392,11 @@
           "status": "unbekannt"
         },
         {
-          "key": "eid-noetig",
+          "key": "once-only",
+          "status": "unbekannt"
+        },
+        {
+          "key": "eid-moeglich",
           "status": "unbekannt"
         },
         {
@@ -1203,42 +1414,50 @@
         {
           "key": "fristen-kosten-verlinkt",
           "status": "erfuellt"
+        },
+        {
+          "key": "barrierefreiheit",
+          "status": "unbekannt"
+        },
+        {
+          "key": "nicht-digitaler-alternativweg",
+          "status": "unbekannt"
         }
       ],
       "score": {
         "digitalisierung": {
           "erfuellt": 0,
           "bekannt": 0,
-          "unbekannt": 5,
+          "unbekannt": 6,
           "prozent": null
         },
         "nutzendenorientierung": {
           "erfuellt": 3,
           "bekannt": 4,
-          "unbekannt": 0,
+          "unbekannt": 2,
           "prozent": 75
         },
         "gesamt": {
           "erfuellt": 3,
           "bekannt": 4,
-          "unbekannt": 5,
+          "unbekannt": 8,
           "prozent": 75
         }
       },
-      "unbekannt": 5,
+      "unbekannt": 8,
       "belegLuecke": true
     }
   ],
   "summary": {
     "prozesse": 17,
-    "mitBeleg": 0,
-    "ohneBeleg": 17,
+    "mitBeleg": 3,
+    "ohneBeleg": 14,
     "proIndikator": [
       {
         "key": "online-antrag",
-        "erfuellt": 0,
+        "erfuellt": 3,
         "nichtErfuellt": 0,
-        "unbekannt": 17
+        "unbekannt": 14
       },
       {
         "key": "online-bezahlung",
@@ -1254,9 +1473,9 @@
       },
       {
         "key": "medienbruchfrei",
-        "erfuellt": 0,
+        "erfuellt": 1,
         "nichtErfuellt": 0,
-        "unbekannt": 17
+        "unbekannt": 16
       },
       {
         "key": "digital-abschliessbar",
@@ -1265,15 +1484,21 @@
         "unbekannt": 17
       },
       {
-        "key": "eid-noetig",
+        "key": "once-only",
+        "erfuellt": 0,
+        "nichtErfuellt": 0,
+        "unbekannt": 17
+      },
+      {
+        "key": "eid-moeglich",
         "erfuellt": 0,
         "nichtErfuellt": 0,
         "unbekannt": 17
       },
       {
         "key": "leichte-sprache",
-        "erfuellt": 12,
-        "nichtErfuellt": 5,
+        "erfuellt": 13,
+        "nichtErfuellt": 4,
         "unbekannt": 0
       },
       {
@@ -1284,8 +1509,8 @@
       },
       {
         "key": "voraussetzungen-genannt",
-        "erfuellt": 7,
-        "nichtErfuellt": 10,
+        "erfuellt": 8,
+        "nichtErfuellt": 9,
         "unbekannt": 0
       },
       {
@@ -1293,6 +1518,18 @@
         "erfuellt": 17,
         "nichtErfuellt": 0,
         "unbekannt": 0
+      },
+      {
+        "key": "barrierefreiheit",
+        "erfuellt": 0,
+        "nichtErfuellt": 0,
+        "unbekannt": 17
+      },
+      {
+        "key": "nicht-digitaler-alternativweg",
+        "erfuellt": 0,
+        "nichtErfuellt": 0,
+        "unbekannt": 17
       }
     ]
   }
