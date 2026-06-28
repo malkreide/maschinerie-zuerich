@@ -387,7 +387,59 @@
     "referenzenHeading": "Wichtige Zahlen: Geld und Fristen",
     "referenzenHint": "Zahlen wie Geld und Fristen stehen nicht im Bild. Sie stehen bei der Stadt. Klicken Sie auf den Link.",
     "referenzUnverifiziert": "Diese Angabe ist noch nicht geprüft.",
-    "translationPending": "Diesen Text gibt es noch nicht in Leichter Sprache. Sie sehen den deutschen Text."
+    "translationPending": "Diesen Text gibt es noch nicht in Leichter Sprache. Sie sehen den deutschen Text.",
+    "bewertung": {
+      "heading": "Bewertung: Geht es online? Ist es einfach?",
+      "intro": "Diese Angaben rechnet das Programm aus dem Modell aus oder belegt sie mit einer Quelle. Wenn es keinen Beleg gibt, steht «unbekannt». Wir raten nicht.",
+      "scoreLabel": "Erfüllte Punkte",
+      "scoreWert": "{erfuellt} von {bekannt}",
+      "keinScore": "Noch keine bekannten Punkte",
+      "unbekanntHinweis": "{count, plural, one {# Punkt ist unbekannt} other {# Punkte sind unbekannt}}. Es gibt dazu keinen Beleg. Wir bewerten das nicht.",
+      "kategorie": {
+        "digitalisierung": "Geht es online?",
+        "nutzendenorientierung": "Ist es einfach?"
+      },
+      "status": {
+        "erfuellt": "ja",
+        "nicht-erfuellt": "nein",
+        "unbekannt": "unbekannt"
+      },
+      "indikator": {
+        "online-antrag": "Antrag geht online",
+        "online-bezahlung": "Bezahlen geht online",
+        "statusverfolgung": "Sie sehen online, wie weit es ist",
+        "medienbruchfrei": "Kein Wechsel zu Papier oder Post",
+        "digital-abschliessbar": "Alles geht online",
+        "eid-noetig": "Sie brauchen einen Login (eID)",
+        "leichte-sprache": "Es gibt Leichte Sprache",
+        "mehrsprachigkeit": "Es gibt mehrere Sprachen (en/fr/it)",
+        "voraussetzungen-genannt": "Die Voraussetzungen stehen klar da",
+        "fristen-kosten-verlinkt": "Fristen und Kosten sind verlinkt"
+      },
+      "evidenz": {
+        "toggle": "Beleg",
+        "belegLabel": "Belegt",
+        "berechnetLabel": "Berechnet",
+        "unbekanntText": "Es gibt keinen Beleg. Darum steht hier «unbekannt». Das heisst nicht «nein».",
+        "berechnet": {
+          "leichte-sprache": "{zahl} von {von} Texten sind in Leichter Sprache",
+          "mehrsprachigkeit": "{zahl} von {von} Sprachen (en/fr/it) sind ganz da",
+          "voraussetzungen-genannt": "{zahl, plural, =0 {keine Voraussetzung steht da} one {# Voraussetzung steht da} other {# Voraussetzungen stehen da}}",
+          "fristen-kosten-verlinkt": "{zahl, plural, =0 {kein Link zu einer Quelle} one {# Link zu einer Quelle} other {# Links zu Quellen}}"
+        }
+      },
+      "kennzahlenHeading": "Berechnete Zahlen",
+      "kennzahl": {
+        "schritte": "{count, plural, one {# Schritt} other {# Schritte}}",
+        "akteurswechsel": "{count, plural, one {# Mal wechselt die Stelle} other {# Mal wechselt die Stelle}}",
+        "behoerden": "{count, plural, one {# Behörde} other {# Behörden}}",
+        "pflichtdokumente": "{count, plural, one {# Dokument} other {# Dokumente}}",
+        "entscheidungspunkte": "{count, plural, one {# Entscheidung} other {# Entscheidungen}}"
+      },
+      "ja": "ja",
+      "nein": "nein",
+      "informativ": "nur Info"
+    }
   },
   "Export": {
     "csvButton": "Alles als CSV-Liste herunter-laden"

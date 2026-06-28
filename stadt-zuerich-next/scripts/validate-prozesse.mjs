@@ -312,6 +312,19 @@ function semanticCheck(prozess) {
     }
   }
 
+  // Grounding-Gate für belegte Bewertungs-Indikatoren — gleiche Regel wie bei
+  // References: ein 'verifizierter' Indikator braucht ein wörtliches Zitat.
+  for (const ind of prozess.bewertung?.indikatoren ?? []) {
+    const quote = (ind.source_quote ?? '').trim();
+    const status = ind.status ?? 'verifiziert';
+    if (status === 'verifiziert' && quote === '') {
+      errors.push(`bewertung-indikator '${ind.key}': status 'verifiziert' ohne source_quote — wörtliche Belegstelle ist Pflicht (Grounding-Gate)`);
+    }
+    if (status === 'unverifiziert' && quote === '') {
+      warnings.push(`bewertung-indikator '${ind.key}': unverifiziert ohne source_quote — Belegstelle nachtragen`);
+    }
+  }
+
   // Kardinalregel-Lint (Fehler)
   errors.push(...lintBindingValues(prozess));
 

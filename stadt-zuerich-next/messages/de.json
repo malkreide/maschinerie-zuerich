@@ -395,7 +395,59 @@
     "referenzenHeading": "Verbindliche Werte (Fristen & Gebühren)",
     "referenzenHint": "Verbindliche Zahlen stehen bewusst nicht im Diagramm — sie gelten nur so, wie sie in der amtlichen Quelle stehen. Jeder Eintrag verlinkt auf die exakte Stelle.",
     "referenzUnverifiziert": "Belegstelle noch nicht wörtlich übernommen",
-    "translationPending": "Übersetzung ausstehend — Inhalte werden auf Deutsch angezeigt."
+    "translationPending": "Übersetzung ausstehend — Inhalte werden auf Deutsch angezeigt.",
+    "bewertung": {
+      "heading": "Bewertung: Digitalisierung & Nutzendenorientierung",
+      "intro": "Abgeleitete Metadaten — keine autoritative Aussage. Jeder Indikator ist entweder deterministisch aus dem Prozess-Modell berechnet oder aus der amtlichen Quelle belegt. Ohne Beleg oder Ableitung bleibt ein Indikator «unbekannt» — er wird nicht geraten.",
+      "scoreLabel": "Erfüllte Indikatoren",
+      "scoreWert": "{erfuellt} von {bekannt}",
+      "keinScore": "Noch keine bekannten Indikatoren",
+      "unbekanntHinweis": "{count, plural, one {# Indikator unbekannt} other {# Indikatoren unbekannt}} — mangels Beleg nicht bewertet (nicht als «nicht erfüllt» gewertet).",
+      "kategorie": {
+        "digitalisierung": "Digitalisierung",
+        "nutzendenorientierung": "Nutzendenorientierung"
+      },
+      "status": {
+        "erfuellt": "erfüllt",
+        "nicht-erfuellt": "nicht erfüllt",
+        "unbekannt": "unbekannt"
+      },
+      "indikator": {
+        "online-antrag": "Online-Antrag möglich",
+        "online-bezahlung": "Online-Bezahlung möglich",
+        "statusverfolgung": "Statusverfolgung online",
+        "medienbruchfrei": "Ohne Medienbruch",
+        "digital-abschliessbar": "Vollständig digital abschliessbar",
+        "eid-noetig": "Authentifizierung/eID nötig",
+        "leichte-sprache": "Leichte Sprache vorhanden",
+        "mehrsprachigkeit": "Mehrsprachig (en/fr/it)",
+        "voraussetzungen-genannt": "Voraussetzungen klar genannt",
+        "fristen-kosten-verlinkt": "Fristen/Kosten transparent verlinkt"
+      },
+      "evidenz": {
+        "toggle": "Evidenz",
+        "belegLabel": "Belegt",
+        "berechnetLabel": "Berechnet",
+        "unbekanntText": "Kein Beleg hinterlegt — als unbekannt geflaggt, nicht als nicht erfüllt.",
+        "berechnet": {
+          "leichte-sprache": "{zahl} von {von} Texten (Titel + Schritte) in Leichter Sprache",
+          "mehrsprachigkeit": "{zahl} von {von} Sprachen (en/fr/it) vollständig abgedeckt",
+          "voraussetzungen-genannt": "{zahl, plural, =0 {keine Voraussetzung genannt} one {# Voraussetzung genannt} other {# Voraussetzungen genannt}}",
+          "fristen-kosten-verlinkt": "{zahl, plural, =0 {keine verlinkte Quelle} one {# verlinkte Quelle für bindende Werte} other {# verlinkte Quellen für bindende Werte}}"
+        }
+      },
+      "kennzahlenHeading": "Berechnete Kennzahlen (aus dem Graphen)",
+      "kennzahl": {
+        "schritte": "{count, plural, one {# Schritt} other {# Schritte}}",
+        "akteurswechsel": "{count, plural, one {# Akteurswechsel} other {# Akteurswechsel}}",
+        "behoerden": "{count, plural, one {# Behörde} other {# Behörden}}",
+        "pflichtdokumente": "{count, plural, one {# Pflichtdokument} other {# Pflichtdokumente}}",
+        "entscheidungspunkte": "{count, plural, one {# Entscheidungspunkt} other {# Entscheidungspunkte}}"
+      },
+      "ja": "ja",
+      "nein": "nein",
+      "informativ": "informativ"
+    }
   },
   "GraphTable": {
     "caption": "Daten des Netzwerkgraphen (aktuell sichtbare Knoten)",

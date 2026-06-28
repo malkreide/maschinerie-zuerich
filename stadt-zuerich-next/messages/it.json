@@ -387,7 +387,59 @@
     "referenzenHeading": "Übersetzung ausstehend — Verbindliche Werte (Fristen & Gebühren)",
     "referenzenHint": "Übersetzung ausstehend — Verbindliche Zahlen stehen bewusst nicht im Diagramm — sie gelten nur so, wie sie in der amtlichen Quelle stehen. Jeder Eintrag verlinkt auf die exakte Stelle.",
     "referenzUnverifiziert": "Übersetzung ausstehend — Belegstelle noch nicht wörtlich übernommen",
-    "translationPending": "Traduzione in sospeso — contenuto visualizzato in tedesco."
+    "translationPending": "Traduzione in sospeso — contenuto visualizzato in tedesco.",
+    "bewertung": {
+      "heading": "Valutazione: digitalizzazione e orientamento all’utenza",
+      "intro": "Metadati derivati — non un’affermazione autoritativa. Ogni indicatore è calcolato in modo deterministico dal modello di processo oppure documentato dalla fonte ufficiale. Senza prova o derivazione un indicatore resta «sconosciuto» — non viene mai indovinato.",
+      "scoreLabel": "Indicatori soddisfatti",
+      "scoreWert": "{erfuellt} su {bekannt}",
+      "keinScore": "Ancora nessun indicatore noto",
+      "unbekanntHinweis": "{count, plural, one {# indicatore sconosciuto} other {# indicatori sconosciuti}} — non valutato per mancanza di prove (non conteggiato come «non soddisfatto»).",
+      "kategorie": {
+        "digitalisierung": "Digitalizzazione",
+        "nutzendenorientierung": "Orientamento all’utenza"
+      },
+      "status": {
+        "erfuellt": "soddisfatto",
+        "nicht-erfuellt": "non soddisfatto",
+        "unbekannt": "sconosciuto"
+      },
+      "indikator": {
+        "online-antrag": "Domanda online possibile",
+        "online-bezahlung": "Pagamento online possibile",
+        "statusverfolgung": "Tracciamento dello stato online",
+        "medienbruchfrei": "Senza interruzione di media",
+        "digital-abschliessbar": "Concludibile completamente online",
+        "eid-noetig": "Autenticazione/eID necessaria",
+        "leichte-sprache": "Versione in lingua facile",
+        "mehrsprachigkeit": "Multilingue (en/fr/it)",
+        "voraussetzungen-genannt": "Requisiti indicati chiaramente",
+        "fristen-kosten-verlinkt": "Termini/tasse collegati in modo trasparente"
+      },
+      "evidenz": {
+        "toggle": "Prova",
+        "belegLabel": "Documentato",
+        "berechnetLabel": "Calcolato",
+        "unbekanntText": "Nessuna prova registrata — contrassegnato come sconosciuto, non come non soddisfatto.",
+        "berechnet": {
+          "leichte-sprache": "{zahl} di {von} testi (titolo + passi) in lingua facile",
+          "mehrsprachigkeit": "{zahl} di {von} lingue (en/fr/it) completamente coperte",
+          "voraussetzungen-genannt": "{zahl, plural, =0 {nessun requisito indicato} one {# requisito indicato} other {# requisiti indicati}}",
+          "fristen-kosten-verlinkt": "{zahl, plural, =0 {nessuna fonte collegata} one {# fonte collegata per valori vincolanti} other {# fonti collegate per valori vincolanti}}"
+        }
+      },
+      "kennzahlenHeading": "Indicatori calcolati (dal grafo)",
+      "kennzahl": {
+        "schritte": "{count, plural, one {# passo} other {# passi}}",
+        "akteurswechsel": "{count, plural, one {# cambio di attore} other {# cambi di attore}}",
+        "behoerden": "{count, plural, one {# autorità} other {# autorità}}",
+        "pflichtdokumente": "{count, plural, one {# documento obbligatorio} other {# documenti obbligatori}}",
+        "entscheidungspunkte": "{count, plural, one {# punto di decisione} other {# punti di decisione}}"
+      },
+      "ja": "sì",
+      "nein": "no",
+      "informativ": "informativo"
+    }
   },
   "Export": {
     "csvButton": "Esporta la vista attuale in CSV"
