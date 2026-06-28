@@ -292,7 +292,7 @@
         "ls": "Geben Sie die Bestätigung bei der Gemeinde ab."
       },
       "depends_on": [
-        8
+        1
       ]
     },
     {
@@ -307,7 +307,7 @@
       },
       "depends_on": [
         {
-          "step_id": 2,
+          "step_id": 1,
           "condition": {
             "de": "Die haltende Person ist zur praktischen Ausbildung verpflichtet und nicht ausgenommen."
           }
