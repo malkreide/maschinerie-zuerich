@@ -17,7 +17,7 @@
     "ls": "Sie haben zu wenig Geld zum Leben? Dann können Sie Sozial-Hilfe beantragen. Das machen die Sozialen Dienste der Stadt. Sie gehen zum Sozial-Zentrum in Ihrem Quartier. Dort wird geprüft, ob Sie Hilfe bekommen und wie viel."
   },
   "target_audience": "bevoelkerung",
-  "source_url": "https://www.stadt-zuerich.ch/sd/de/index/ueber_das_departement/organisation/soziale_dienste.html",
+  "source_url": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/stadtverwaltung/sd/sod.html",
   "retrieved_at": "2026-06-06",
   "disclaimer_key": "Prozesse.disclaimerHochrisiko",
   "actors": [
@@ -384,7 +384,7 @@
     {
       "id": "q-stz-sozialhilfe",
       "title": "Stadt Zürich – Soziale Dienste / wirtschaftliche Hilfe",
-      "url": "https://www.stadt-zuerich.ch/sd/de/index/ueber_das_departement/organisation/soziale_dienste.html",
+      "url": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/stadtverwaltung/sd/sod.html",
       "retrieved_at": "2026-06-06"
     },
     {

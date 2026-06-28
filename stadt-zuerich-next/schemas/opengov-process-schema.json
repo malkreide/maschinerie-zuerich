@@ -115,6 +115,7 @@
       }
     },
     "reife": { "$ref": "#/definitions/Reife" },
+    "bewertung": { "$ref": "#/definitions/Bewertung" },
     "meta": {
       "type": "object",
       "description": "Erweiterung: Metadaten.",
@@ -222,6 +223,46 @@
           "enum": ["verifiziert", "unverifiziert"],
           "default": "verifiziert",
           "description": "Erweiterung: Verifikationsstand des Zitats."
+        },
+        "retrieved_at": { "type": "string", "format": "date" }
+      }
+    },
+    "Bewertung": {
+      "type": "object",
+      "description": "Erweiterung (additiv, optional): belegte Bewertungs-Indikatoren zu Digitalisierung & Nutzendenorientierung. NUR Indikatoren, die NICHT deterministisch aus dem Prozess-Graphen ableitbar sind (z.B. ob ein Online-Antrag existiert), werden hier mit Beleg hinterlegt — exakt wie References: Deep-Link + wörtliches source_quote. Graph-ableitbare Indikatoren (Locale-Abdeckung, Schrittzahl, Akteurswechsel …) berechnet die App selbst und gehören NICHT hierher. Kardinalregel: ein Indikator beschreibt eine strukturelle Eigenschaft (true/false), NIE einen bindenden Wert (Frist/Gebühr).",
+      "additionalProperties": false,
+      "properties": {
+        "indikatoren": {
+          "type": "array",
+          "description": "Belegte Einzelindikatoren. Fehlt ein Indikator-Key, gilt er in der App als 'unbekannt' (nicht als 'nicht erfüllt').",
+          "items": { "$ref": "#/definitions/BewertungIndikator" }
+        }
+      }
+    },
+    "BewertungIndikator": {
+      "type": "object",
+      "description": "Ein belegter Bewertungs-Indikator. 'wert' ist die belegte Ausprägung der Eigenschaft (true = Eigenschaft trifft zu). Grounding-Gate wie bei References: bei status 'verifiziert' ist ein nicht-leeres source_quote Pflicht.",
+      "required": ["key", "wert", "source_url", "retrieved_at"],
+      "additionalProperties": false,
+      "properties": {
+        "key": {
+          "type": "string",
+          "enum": ["online-antrag", "online-bezahlung", "statusverfolgung", "medienbruchfrei", "digital-abschliessbar", "once-only", "barrierefreiheit", "nicht-digitaler-alternativweg", "eid-moeglich"],
+          "description": "Indikator-Kennung (wert true = nutzendenfreundliche Ausprägung). Digitalisierungs-Score: online-antrag, online-bezahlung, statusverfolgung, medienbruchfrei, digital-abschliessbar, once-only. Nutzendenorientierungs-Score (belegpflichtig): barrierefreiheit (WCAG 2.1 AA), nicht-digitaler-alternativweg. eid-moeglich ist rein informativ (zählt nicht). Strategiebezug je Indikator: docs/bewertung-strategiebezug.md."
+        },
+        "wert": {
+          "type": "boolean",
+          "description": "Belegte Ausprägung der strukturellen Eigenschaft. KEIN bindender Wert."
+        },
+        "source_url": { "type": "string", "format": "uri", "pattern": "^https?://" },
+        "source_quote": {
+          "type": "string",
+          "description": "Wörtliche Belegstelle von der verlinkten Seite. Pflicht (nicht-leer) bei status 'verifiziert'."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["verifiziert", "unverifiziert"],
+          "default": "verifiziert"
         },
         "retrieved_at": { "type": "string", "format": "date" }
       }

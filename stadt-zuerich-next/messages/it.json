@@ -60,7 +60,14 @@
     "colSchritte": "Fasi",
     "colAkteure": "Attori",
     "colEntscheidungen": "Decisioni",
-    "colMedienbrueche": "Rotture"
+    "colMedienbrueche": "Rotture",
+    "bewertungHeading": "Valutazione (portfolio)",
+    "bewertungIntro": "Quota di indicatori soddisfatti su tutti i processi modellati — un’istantanea dei dati del modello, non un grado ufficiale di digitalizzazione. «sconosciuto» non conta come non soddisfatto.",
+    "bewertungDigital": "Digitalizzazione",
+    "bewertungNutzend": "Orientamento all’utenza",
+    "bewertungGesamt": "Soddisfatto in totale",
+    "bewertungKeinScore": "nessun punteggio",
+    "bewertungUnbekanntKurz": "scon."
   },
   "Territory": {
     "title": "Sedi",
@@ -92,7 +99,8 @@
     "skipToList": "Vai alla panoramica testuale (lettori di schermo)",
     "language": "Lingua",
     "expandAll": "Espandi tutto",
-    "collapseAll": "Comprimi tutto"
+    "collapseAll": "Comprimi tutto",
+    "portfolio": "Portfolio"
   },
   "Search": {
     "label": "Cerca un ufficio o una pratica",
@@ -387,7 +395,68 @@
     "referenzenHeading": "Übersetzung ausstehend — Verbindliche Werte (Fristen & Gebühren)",
     "referenzenHint": "Übersetzung ausstehend — Verbindliche Zahlen stehen bewusst nicht im Diagramm — sie gelten nur so, wie sie in der amtlichen Quelle stehen. Jeder Eintrag verlinkt auf die exakte Stelle.",
     "referenzUnverifiziert": "Übersetzung ausstehend — Belegstelle noch nicht wörtlich übernommen",
-    "translationPending": "Traduzione in sospeso — contenuto visualizzato in tedesco."
+    "translationPending": "Traduzione in sospeso — contenuto visualizzato in tedesco.",
+    "bewertung": {
+      "heading": "Valutazione: digitalizzazione e orientamento all’utenza",
+      "intro": "Metadati derivati — non un’affermazione autoritativa. Ogni indicatore è calcolato in modo deterministico dal modello di processo oppure documentato dalla fonte ufficiale. Senza prova o derivazione un indicatore resta «sconosciuto» — non viene mai indovinato.",
+      "scoreLabel": "Indicatori soddisfatti",
+      "scoreWert": "{erfuellt} su {bekannt}",
+      "keinScore": "Ancora nessun indicatore noto",
+      "unbekanntHinweis": "{count, plural, one {# indicatore sconosciuto} other {# indicatori sconosciuti}} — non valutato per mancanza di prove (non conteggiato come «non soddisfatto»).",
+      "kategorie": {
+        "digitalisierung": "Digitalizzazione",
+        "nutzendenorientierung": "Orientamento all’utenza"
+      },
+      "status": {
+        "erfuellt": "soddisfatto",
+        "nicht-erfuellt": "non soddisfatto",
+        "unbekannt": "sconosciuto"
+      },
+      "indikator": {
+        "online-antrag": "Domanda online possibile",
+        "online-bezahlung": "Pagamento online possibile",
+        "statusverfolgung": "Tracciamento dello stato online",
+        "medienbruchfrei": "Senza interruzione di media",
+        "digital-abschliessbar": "Concludibile completamente online",
+        "leichte-sprache": "Versione in lingua facile",
+        "mehrsprachigkeit": "Multilingue (en/fr/it)",
+        "voraussetzungen-genannt": "Requisiti indicati chiaramente",
+        "fristen-kosten-verlinkt": "Termini/tasse collegati in modo trasparente",
+        "once-only": "Once-only (nessun reinserimento)",
+        "barrierefreiheit": "Accessibile (WCAG 2.1 AA)",
+        "nicht-digitaler-alternativweg": "Percorso alternativo non digitale",
+        "eid-moeglich": "Login/eID possibile"
+      },
+      "evidenz": {
+        "toggle": "Prova",
+        "belegLabel": "Documentato",
+        "berechnetLabel": "Calcolato",
+        "unbekanntText": "Nessuna prova registrata — contrassegnato come sconosciuto, non come non soddisfatto.",
+        "berechnet": {
+          "leichte-sprache": "{zahl} di {von} testi (titolo + passi) in lingua facile",
+          "mehrsprachigkeit": "{zahl} di {von} lingue (en/fr/it) completamente coperte",
+          "voraussetzungen-genannt": "{zahl, plural, =0 {nessun requisito indicato} one {# requisito indicato} other {# requisiti indicati}}",
+          "fristen-kosten-verlinkt": "{zahl, plural, =0 {nessuna fonte collegata} one {# fonte collegata per valori vincolanti} other {# fonti collegate per valori vincolanti}}"
+        }
+      },
+      "kennzahlenHeading": "Indicatori calcolati (dal grafo)",
+      "kennzahl": {
+        "schritte": "{count, plural, one {# passo} other {# passi}}",
+        "akteurswechsel": "{count, plural, one {# cambio di attore} other {# cambi di attore}}",
+        "behoerden": "{count, plural, one {# autorità} other {# autorità}}",
+        "pflichtdokumente": "{count, plural, one {# documento obbligatorio} other {# documenti obbligatori}}",
+        "entscheidungspunkte": "{count, plural, one {# punto di decisione} other {# punti di decisione}}"
+      },
+      "ja": "sì",
+      "nein": "no",
+      "informativ": "informativo",
+      "ankerLabel": "Riferimento strategico",
+      "ankerStaerke": {
+        "direkt": "ancorato direttamente",
+        "schwach": "debolmente ancorato",
+        "kein": "definito autonomamente"
+      }
+    }
   },
   "Export": {
     "csvButton": "Esporta la vista attuale in CSV"
@@ -408,5 +477,31 @@
     "tooltipValue": "{value} {unit}",
     "noData": "Nessun dato sulle strutture per questo indicatore — caricalo con `npm run data:fetch-geo`.",
     "noGeo": "Geometria dei circondari non disponibile."
+  },
+  "Portfolio": {
+    "title": "Portfolio: processi × dimensioni",
+    "intro": "Il quadro d’insieme di tutti i processi: una procedura per riga, un indicatore di digitalizzazione o orientamento all’utenza per colonna, il colore mostra il grado di adempimento. Metadati derivati — non un’affermazione autorevole. Ogni cella rimanda al processo e alle sue prove.",
+    "source": "Derivato dagli indicatori di processo (lib/bewertung.ts)",
+    "privacyNote": "Generato in modo deterministico dai dati di processo esistenti — nessun dato d’uso o personale, nessun valore inventato per colmare le lacune.",
+    "empty": "Nessun processo registrato finora.",
+    "caption": "Mappa di calore: processi (righe) × indicatori (colonne)",
+    "colProzess": "Processo",
+    "scoreGroup": "Punteggio (% adempiuto)",
+    "scoreDigital": "Dig.",
+    "scoreNutzend": "Utenza",
+    "scoreGesamt": "Totale",
+    "scoreDigitalLong": "Digitalizzazione — quota di indicatori adempiuti",
+    "scoreNutzendLong": "Orientamento all’utenza — quota di indicatori adempiuti",
+    "scoreGesamtLong": "Totale — quota di indicatori adempiuti",
+    "scoreNa": "nessun punteggio",
+    "legendHeading": "Legenda",
+    "legendInformativ": "informativo (sì/no, non conta nel punteggio)",
+    "cellTitle": "{indikator}: {status}",
+    "detailLink": "Al processo «{titel}» — dettagli e prove",
+    "belegLuecke": "Prove in attesa",
+    "belegLueckeTitle": "Nessuna prova di digitalizzazione registrata — le colonne digitali restano «sconosciuto», non «non adempiuto».",
+    "coverageNote": "{ohne, plural, =0 {Tutti i {total} processi hanno indicatori di digitalizzazione documentati.} one {# processo su {total} non ha ancora indicatori di digitalizzazione documentati — le colonne digitali restano «sconosciuto», non «non adempiuto».} other {# processi su {total} non hanno ancora indicatori di digitalizzazione documentati — le colonne digitali restano «sconosciuto», non «non adempiuto».}}",
+    "summaryHeading": "Adempimento per indicatore (su tutti i processi)",
+    "summaryZeile": "{erfuellt} adempiuto · {nichtErfuellt} non adempiuto · {unbekannt} sconosciuto"
   }
 }

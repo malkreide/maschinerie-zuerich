@@ -21,9 +21,16 @@
     {
       "de": "Sie ziehen neu in die Stadt Zürich oder innerhalb der Stadt um.",
       "ls": "Sie ziehen nach Zürich. Oder Sie ziehen in Zürich um."
+    },
+    {
+      "de": "Beim Zuzug aus einer anderen Schweizer Gemeinde müssen Sie sich zuerst bei Ihrer bisherigen Wohnsitzgemeinde abmelden.",
+      "ls": "Sie kommen aus einer anderen Gemeinde? Melden Sie sich dort zuerst ab."
+    },
+    {
+      "de": "Für die Online-Umzugsmeldung innerhalb der Stadt müssen Sie bereits in der Stadt Zürich angemeldet sowie volljährig und handlungsfähig sein."
     }
   ],
-  "source_url": "https://www.stadt-zuerich.ch/pd/de/index/bevoelkerungsamt/anmeldung_zuzug.html",
+  "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/zuzug.html",
   "retrieved_at": "2026-06-06",
   "disclaimer_key": "Prozesse.disclaimer",
   "references": [
@@ -31,7 +38,8 @@
       "reference_id": 1,
       "label": {
         "de": "Allfällige Gebühren bei der An-/Ummeldung (insb. Bewilligungsnachführung für ausländische Staatsangehörige)",
-        "en": "Possible fees for registration (esp. residence-permit updates for foreign nationals)"
+        "en": "Possible fees for registration (esp. residence-permit updates for foreign nationals)",
+        "ls": "Frist für die Anmeldung beim Zuzug"
       },
       "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/zuzug.html",
       "source_quote": "Migrationsamtliche Gebühren (je nach Art der Bewilligung unterschiedlich)",
@@ -49,6 +57,90 @@
       "source_quote": "Sie müssen sich innerhalb von 14 Tagen bei der Stadt Zürich anmelden (Meldepflicht).",
       "status": "verifiziert",
       "retrieved_at": "2026-06-10"
+    },
+    {
+      "reference_id": 3,
+      "label": {
+        "de": "Erforderliche Dokumente für die Anmeldung",
+        "en": "",
+        "fr": "",
+        "it": "",
+        "ls": "Was Sie für die Anmeldung brauchen"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/zuzug.html",
+      "source_quote": "",
+      "status": "unverifiziert",
+      "retrieved_at": "2026-06-28"
+    },
+    {
+      "reference_id": 4,
+      "label": {
+        "de": "Meldefrist bei Adressänderung (Umzug innerhalb der Stadt)",
+        "en": "",
+        "fr": "",
+        "it": "",
+        "ls": "Frist beim Umzug in der Stadt"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/umzug.html",
+      "source_quote": "Die Meldepflicht Ihrer Adressänderung beträgt 14 Tage ab Umzug.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-28"
+    },
+    {
+      "reference_id": 5,
+      "label": {
+        "de": "Früheste Meldemöglichkeit vor Einzug bei Umzug innerhalb der Stadt",
+        "en": "",
+        "fr": "",
+        "it": "",
+        "ls": "Wann Sie den Umzug frühestens melden können"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/umzug.html",
+      "source_quote": "Die Adressänderung können Sie uns **online frühestens 30 Tage vor Einzug** melden.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-28"
+    },
+    {
+      "reference_id": 6,
+      "label": {
+        "de": "Meldefrist bei Wegzug",
+        "en": "",
+        "fr": "",
+        "it": "",
+        "ls": "Frist beim Wegzug"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/wegzug.html",
+      "source_quote": "melden Sie Ihren Wegzug innerhalb von 14 Tagen nach Ihrem Auszug (Meldepflicht).",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-28"
+    },
+    {
+      "reference_id": 7,
+      "label": {
+        "de": "Früheste Entgegennahme der Wegzugsmeldung vor Auszug",
+        "en": "",
+        "fr": "",
+        "it": "",
+        "ls": "Wann Sie den Wegzug frühestens melden können"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/wegzug.html",
+      "source_quote": "Das Personenmeldeamt nimmt Ihre Wegzugsmeldung frühestens 30 Tage vor Ihrem geplanten Auszug entgegen.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-28"
+    },
+    {
+      "reference_id": 8,
+      "label": {
+        "de": "Gebühr für Abmeldebestätigung / Wohnsitzattest",
+        "en": "",
+        "fr": "",
+        "it": "",
+        "ls": "Gebühr für die Abmeldebestätigung"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/wegzug.html",
+      "source_quote": "Fr. 20.– für eine Abmeldebestätigung / Wohnsitzattest (bevorzugt: Karte und Twint)",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-28"
     }
   ],
   "actors": [
@@ -137,7 +229,10 @@
       "depends_on": [
         2
       ],
-      "type": "entscheidung"
+      "type": "entscheidung",
+      "reference_ids": [
+        3
+      ]
     },
     {
       "step_id": 4,
@@ -185,7 +280,10 @@
           "required": false
         }
       ],
-      "source_id": "q-eumzug"
+      "source_id": "q-eumzug",
+      "reference_ids": [
+        3
+      ]
     },
     {
       "step_id": 5,
@@ -233,14 +331,19 @@
           "required": true
         }
       ],
-      "source_id": "q-stz-umzug"
+      "source_id": "q-stz-umzug",
+      "reference_ids": [
+        4,
+        5
+      ]
     },
     {
       "step_id": 6,
       "actor": "bev",
       "label": {
         "de": "Meldung und Unterlagen prüfen",
-        "en": "Check registration and documents"
+        "en": "Check registration and documents",
+        "ls": "Sie ziehen in eine andere Gemeinde? Sie melden sich ab."
       },
       "depends_on": [
         4,
@@ -250,7 +353,11 @@
       "description": {
         "de": "Das Bevölkerungsamt prüft die Angaben und gleicht sie mit dem kantonalen Personenregister ab.",
         "en": "The population office verifies the data and matches it against the cantonal person register."
-      }
+      },
+      "reference_ids": [
+        6,
+        7
+      ]
     },
     {
       "step_id": 7,
@@ -263,7 +370,11 @@
       "depends_on": [
         6
       ],
-      "type": "entscheidung"
+      "type": "entscheidung",
+      "reference_ids": [
+        6,
+        8
+      ]
     },
     {
       "step_id": 8,
@@ -285,6 +396,9 @@
       "type": "loop",
       "loops_back_to": [
         6
+      ],
+      "reference_ids": [
+        8
       ]
     },
     {
@@ -403,7 +517,7 @@
     {
       "id": "q-stz-umzug",
       "title": "Stadt Zürich – An-, Ab- und Ummeldung",
-      "url": "https://www.stadt-zuerich.ch/pd/de/index/bevoelkerungsamt/anmeldung_zuzug.html",
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/zuzug.html",
       "retrieved_at": "2026-06-06"
     },
     {
@@ -474,6 +588,18 @@
           "ls": "Wie viel geht online"
         },
         "wert": "online für CH-Bürger:innen, Schalter für viele Ausländer:innen"
+      }
+    ]
+  },
+  "bewertung": {
+    "indikatoren": [
+      {
+        "key": "online-antrag",
+        "wert": true,
+        "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/zuzug.html",
+        "source_quote": "Melden Sie Ihren Umzug nach Zürich online via eUmzugCH",
+        "status": "verifiziert",
+        "retrieved_at": "2026-06-28"
       }
     ]
   },

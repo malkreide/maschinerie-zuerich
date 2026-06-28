@@ -21,9 +21,25 @@
     {
       "de": "Sie wohnen in der Stadt Zürich und halten einen Hund.",
       "ls": "Sie wohnen in Zürich. Sie haben einen Hund."
+    },
+    {
+      "de": "Die haltende Person ist volljährig und wohnt in der Wohngemeinde (z.B. Stadt Zürich).",
+      "ls": "Sie sind erwachsen. Sie wohnen in der Gemeinde."
+    },
+    {
+      "de": "Nur eine Person kann als Halter:in eingetragen werden.",
+      "ls": "Nur eine Person ist Halterin oder Halter."
+    },
+    {
+      "de": "Der gehaltene Hund gehört nicht zu den im Kanton verbotenen Hunderassen.",
+      "ls": "Manche Hunde sind verboten. Prüfen Sie das zuerst."
+    },
+    {
+      "de": "Es besteht eine Haftpflichtversicherung mit ausreichender Deckung für den Hund.",
+      "ls": "Sie brauchen eine Versicherung für den Hund."
     }
   ],
-  "source_url": "https://www.stadt-zuerich.ch/fd/de/index/steuern/hundesteuer.html",
+  "source_url": "https://www.stadt-zuerich.ch/de/stadtleben/veranstaltungen-und-bewilligungen/hundekontrolle.html",
   "retrieved_at": "2026-06-06",
   "disclaimer_key": "Prozesse.disclaimer",
   "references": [
@@ -94,6 +110,14 @@
       },
       "type": "behoerde",
       "einheit_ref": "FD-st"
+    },
+    {
+      "id": "hundeausbildner",
+      "label": {
+        "de": "Hundeausbildner:in",
+        "ls": "Die Hundeausbildnerin oder der Hundeausbildner"
+      },
+      "type": "dritte"
     }
   ],
   "steps": [
@@ -199,7 +223,8 @@
       "actor": "steueramt",
       "label": {
         "de": "Anmeldung mit AMICUS abgleichen",
-        "en": "Match registration against AMICUS"
+        "en": "Match registration against AMICUS",
+        "ls": "Ist der Hund noch nicht bei AMICUS? Dann meldet ihn der Tierarzt an."
       },
       "depends_on": [
         4
@@ -255,6 +280,53 @@
         7
       ],
       "type": "ende"
+    },
+    {
+      "step_id": 9,
+      "actor": "halter",
+      "label": {
+        "de": "Prüfungsbestätigung des Theoriekurses bei der Wohngemeinde einreichen",
+        "en": "",
+        "fr": "",
+        "it": "",
+        "ls": "Geben Sie die Bestätigung bei der Gemeinde ab."
+      },
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "step_id": 10,
+      "actor": "halter",
+      "label": {
+        "de": "Praktischen Ausbildungskurs absolvieren, sofern kurspflichtig",
+        "en": "",
+        "fr": "",
+        "it": "",
+        "ls": "Sie müssen einen Praxiskurs mit dem Hund machen."
+      },
+      "depends_on": [
+        {
+          "step_id": 1,
+          "condition": {
+            "de": "Die haltende Person ist zur praktischen Ausbildung verpflichtet und nicht ausgenommen."
+          }
+        }
+      ]
+    },
+    {
+      "step_id": 11,
+      "actor": "hundeausbildner",
+      "label": {
+        "de": "Erfolgreiches Absolvieren des Praxiskurses in AMICUS eintragen und Lernerfolgskontrolle aushändigen",
+        "en": "",
+        "fr": "",
+        "it": "",
+        "ls": "Die Ausbildnerin trägt den Praxiskurs bei AMICUS ein. Sie bekommen eine Bestätigung."
+      },
+      "depends_on": [
+        10
+      ]
     }
   ],
   "legal_basis": [
@@ -264,18 +336,18 @@
     },
     {
       "label": "Hundegesetz des Kantons Zürich (HuG)",
-      "url": "https://www.zh.ch/de/tiere-natur-landschaft/tiere/hunde.html"
+      "url": "https://www.zh.ch/de/umwelt-tiere/tiere/haustiere-heimtiere/hunde.html"
     },
     {
       "label": "Verordnung über die Hundesteuer der Stadt Zürich",
-      "url": "https://www.stadt-zuerich.ch/fd/de/index/steuern/hundesteuer.html"
+      "url": "https://www.stadt-zuerich.ch/de/stadtleben/veranstaltungen-und-bewilligungen/hundekontrolle.html"
     }
   ],
   "sources": [
     {
       "id": "q-stz-hund",
       "title": "Stadt Zürich – Hundesteuer und Hundekontrolle",
-      "url": "https://www.stadt-zuerich.ch/fd/de/index/steuern/hundesteuer.html",
+      "url": "https://www.stadt-zuerich.ch/de/stadtleben/veranstaltungen-und-bewilligungen/hundekontrolle.html",
       "retrieved_at": "2026-06-06"
     },
     {

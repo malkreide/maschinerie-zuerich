@@ -5,7 +5,7 @@
   "license": "MIT",
   "author": "Hayal Oezkan",
   "engines": {
-    "node": ">=24.16.0"
+    "node": ">=24.17.0"
   },
   "scripts": {
     "dev": "next dev",
@@ -22,7 +22,12 @@
     "validate:prozesse": "node scripts/validate-prozesse.mjs",
     "validate:catalog": "node scripts/validate-catalog.mjs",
     "check:links": "node scripts/check-links.mjs",
+    "check:links:online": "node scripts/check-links.mjs --online",
+    "check:links:online:strict": "node scripts/check-links.mjs --online --strict",
     "check:regression": "node scripts/check-prozess-regression.mjs",
+    "build:portfolio": "node --experimental-strip-types scripts/build-portfolio.mjs",
+    "check:portfolio": "node --experimental-strip-types scripts/build-portfolio.mjs --check",
+    "extract:quotes": "node scripts/extract-quotes.mjs",
     "migrate:schema:v2": "node scripts/migrate-prozesse-schema-v2.mjs",
     "scaffold:city": "node scripts/scaffold-city.mjs",
     "probe:search": "node scripts/probe-search.mjs",
@@ -30,7 +35,8 @@
     "probe:feedback": "node scripts/probe-feedback.mjs",
     "probe:feedback-issue": "node scripts/probe-feedback-issue.mjs",
     "probe:roadmap": "node scripts/probe-roadmap.mjs",
-    "test:a11y": "playwright test"
+    "test:a11y": "playwright test",
+    "test:unit": "node --experimental-strip-types --test tests/*.test.mjs"
   },
   "dependencies": {
     "@types/d3-geo": "^3.1.0",
@@ -59,13 +65,13 @@
   "devDependencies": {
     "@axe-core/playwright": "^4.11.3",
     "@eslint/eslintrc": "^3.3.5",
-    "@playwright/test": "^1.60.0",
+    "@playwright/test": "^1.61.0",
     "@tailwindcss/postcss": "^4.3.1",
     "@types/cytoscape": "^3.31.0",
     "@types/d3-hierarchy": "^3.1.7",
     "@types/d3-scale": "^4.0.9",
     "@types/d3-selection": "^3.0.11",
-    "@types/node": "^22.19.21",
+    "@types/node": "^22.20.0",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "ajv": "^8.20.0",

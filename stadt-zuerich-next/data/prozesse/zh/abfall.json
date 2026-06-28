@@ -24,7 +24,7 @@
       "ls": "Sie wohnen in Zürich. Sie haben Abfall."
     }
   ],
-  "source_url": "https://www.stadt-zuerich.ch/ted/de/index/entsorgung_recycling.html",
+  "source_url": "https://www.stadt-zuerich.ch/de/umwelt-und-energie/entsorgung.html",
   "retrieved_at": "2026-06-18",
   "disclaimer_key": "Prozesse.disclaimer",
   "references": [
@@ -35,22 +35,22 @@
         "en": "Fee for the official waste bag (advance disposal charge)",
         "ls": "Was der offizielle Abfall-Sack kostet"
       },
-      "source_url": "https://www.stadt-zuerich.ch/ted/de/index/entsorgung_recycling/sauberes_zuerich/abfallgebuehren.html",
-      "source_quote": "",
-      "status": "unverifiziert",
-      "retrieved_at": "2026-06-18"
+      "source_url": "https://www.stadt-zuerich.ch/de/umwelt-und-energie/entsorgung/zueri-sack.html",
+      "source_quote": "Fr. 0.37 pro 10-Liter-Sack Fr. 0.63 pro 17-Liter-Sack Fr. 1.30 pro 35-Liter-Sack Fr. 2.22 pro 60-Liter-Sack Fr. 4.07 pro 110-Liter-Sack",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-27"
     },
     {
       "reference_id": 2,
       "label": {
-        "de": "Gebühr für die Sperrgut-Entsorgung (Sperrgut-Marke)",
-        "en": "Fee for bulky-waste disposal (bulky-waste sticker)",
-        "ls": "Was das Entsorgen von grossen Sachen kostet"
+        "de": "Gebühr für die Sperrgut-Abholung am Strassenrand",
+        "en": "Fee for kerbside bulky-waste collection",
+        "ls": "Was das Abholen von grossen Sachen kostet"
       },
-      "source_url": "https://www.stadt-zuerich.ch/ted/de/index/entsorgung_recycling/sauberes_zuerich/sperrgut.html",
-      "source_quote": "",
-      "status": "unverifiziert",
-      "retrieved_at": "2026-06-18"
+      "source_url": "https://www.stadt-zuerich.ch/de/umwelt-und-energie/entsorgung/wo-und-wann-entsorgen/abfuhr-sperrgut-metall-elektro-grubengut.html",
+      "source_quote": "Ab Strassenrand Anfahrt, 15 Min. aufladen, entsorgen, pauschal Fr. 86.50 pro weitere 15 Min. (bis max. 60 Min.) Fr. 86.50",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-27"
     }
   ],
   "actors": [
@@ -251,9 +251,9 @@
       "step_id": 11,
       "actor": "person",
       "label": {
-        "de": "Sperrgut mit Marke bereitstellen oder zum Entsorgungshof bringen",
-        "en": "Put out bulky waste with a sticker or take it to the recycling yard",
-        "ls": "Grosse Sachen mit einer Marke bereitstellen oder selbst hinbringen"
+        "de": "Sperrgut-Abholung bestellen oder zum Recyclinghof bringen",
+        "en": "Order bulky-waste collection or take it to the recycling yard",
+        "ls": "Die Abholung von grossen Sachen bestellen oder selbst hinbringen"
       },
       "depends_on": [
         {
@@ -269,9 +269,9 @@
       ],
       "type": "input",
       "description": {
-        "de": "Sperrgut wird mit der Sperrgut-Marke zur Abholung bereitgestellt oder kostenpflichtig zum Entsorgungshof gebracht.",
-        "en": "Bulky waste is presented for collection with a bulky-waste sticker or taken to the recycling yard for a charge.",
-        "ls": "Für grosse Sachen kaufen Sie eine Marke. Oder Sie bringen die Sachen selbst zum Entsorgungs-Hof."
+        "de": "Sperrgut wird kostenpflichtig bei ERZ zur Abholung am Strassenrand bestellt oder selbst zum Recyclinghof gebracht.",
+        "en": "Bulky waste is ordered from ERZ for kerbside collection for a charge, or taken to the recycling yard yourself.",
+        "ls": "Sie bestellen die Abholung bei der ERZ. Das kostet etwas. Oder Sie bringen die Sachen selbst zum Recyclinghof."
       },
       "source_id": "q-erz"
     },
@@ -323,20 +323,20 @@
     },
     {
       "label": "Abfallverordnung / Abfallreglement der Stadt Zürich",
-      "url": "https://www.stadt-zuerich.ch/ted/de/index/entsorgung_recycling.html"
+      "url": "https://www.stadt-zuerich.ch/de/umwelt-und-energie/entsorgung.html"
     }
   ],
   "sources": [
     {
       "id": "q-erz",
       "title": "Stadt Zürich – ERZ Entsorgung + Recycling Zürich",
-      "url": "https://www.stadt-zuerich.ch/ted/de/index/entsorgung_recycling.html",
+      "url": "https://www.stadt-zuerich.ch/de/umwelt-und-energie/entsorgung.html",
       "retrieved_at": "2026-06-18"
     },
     {
       "id": "q-kalender",
       "title": "Stadt Zürich – Abfuhrdaten / Abfallkalender",
-      "url": "https://www.stadt-zuerich.ch/ted/de/index/entsorgung_recycling/sauberes_zuerich/abfuhrdaten.html",
+      "url": "https://www.stadt-zuerich.ch/de/umwelt-und-energie/entsorgung/entsorgungskalender.html",
       "retrieved_at": "2026-06-18"
     }
   ],

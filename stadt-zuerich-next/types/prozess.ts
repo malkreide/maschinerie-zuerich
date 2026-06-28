@@ -143,6 +143,40 @@ export interface Reife {
   wirkungKpi?: WirkungKpi[];
 }
 
+/** Belegpflichtige Bewertungs-Indikator-Keys. Diese Eigenschaften lassen sich
+ *  NICHT aus dem Graphen ableiten und brauchen einen Quellenbeleg (wie eine
+ *  Reference). Graph-ableitbare Indikatoren leben in lib/bewertung.ts, nicht
+ *  hier. */
+export type BewertungIndikatorKey =
+  | 'online-antrag'
+  | 'online-bezahlung'
+  | 'statusverfolgung'
+  | 'medienbruchfrei'
+  | 'digital-abschliessbar'
+  | 'once-only'
+  | 'barrierefreiheit'
+  | 'nicht-digitaler-alternativweg'
+  | 'eid-moeglich';
+
+/** Ein belegter Bewertungs-Indikator — Eigenschaft (wert) + Beleg
+ *  (source_quote + Link), exakt wie eine Reference. KEIN bindender Wert. */
+export interface BewertungIndikator {
+  key: BewertungIndikatorKey;
+  /** Belegte Ausprägung der Eigenschaft (true = trifft zu). */
+  wert: boolean;
+  source_url: string;
+  /** Wörtliche Belegstelle. Pflicht (nicht-leer) bei status 'verifiziert'. */
+  source_quote?: string;
+  status?: 'verifiziert' | 'unverifiziert';
+  retrieved_at: string;
+}
+
+/** Erweiterung (additiv, optional): belegte Bewertungs-Indikatoren. Nur was
+ *  nicht aus dem Graphen ableitbar ist, wird hier mit Beleg hinterlegt. */
+export interface Bewertung {
+  indikatoren?: BewertungIndikator[];
+}
+
 export interface Prozess {
   schema_version: string;
   /** = lebenslage_ref (CI-geprüft). */
@@ -167,6 +201,8 @@ export interface Prozess {
   legal_basis?: LegalBasis[];
   sources?: Source[];
   reife?: Reife;
+  /** Erweiterung: belegte Bewertungs-Indikatoren (Digitalisierung). */
+  bewertung?: Bewertung;
   meta?: {
     erstellt?: string;
     aktualisiert?: string;

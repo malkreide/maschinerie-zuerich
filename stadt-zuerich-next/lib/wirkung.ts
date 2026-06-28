@@ -7,6 +7,7 @@
 
 import { listProzesse, loadProzess } from '@/lib/prozesse';
 import { buildKompass } from '@/lib/kompass';
+import { buildBewertung, type IndikatorKategorie } from '@/lib/bewertung';
 import { loadStadtData } from '@/lib/data';
 import type {
   Prozess,
@@ -51,9 +52,35 @@ export interface KlimaAggregat {
   avgBudgetSharePct: number;
 }
 
+/** Aggregierter Stand eines Bewertungs-Indikators über alle Prozesse. */
+export interface IndikatorAggregat {
+  key: string;
+  kategorie: IndikatorKategorie;
+  /** Zählt der Indikator in den Score? (informative wie eid-moeglich nicht.) */
+  gezaehlt: boolean;
+  erfuellt: number;
+  nichtErfuellt: number;
+  unbekannt: number;
+  /** erfuellt + nichtErfuellt (bekannte Fälle). */
+  bekannt: number;
+  /** Anteil erfüllter unter den bekannten, gerundet; null wenn nichts bekannt. */
+  prozent: number | null;
+}
+
+/** Portfolio-Aggregat der Bewertung: Ist-Schnappschuss über alle Prozesse
+ *  (analog zur Messlogik «Digitale Schweiz 2026»: Ist-Werte, keine Zielwerte). */
+export interface BewertungAggregat {
+  prozesse: number;
+  indikatoren: IndikatorAggregat[];
+  gesamtProzent: number | null;
+  digitalisierungProzent: number | null;
+  nutzendenorientierungProzent: number | null;
+}
+
 export interface WirkungReport {
   prozesseCount: number;
   klima: KlimaAggregat | null;
+  bewertung: BewertungAggregat;
   reifegrad: Count<OnlineReifegrad>[];
   status: Count<ProzessStatus>[];
   medienbruecheGesamt: number;
@@ -96,9 +123,36 @@ export async function buildWirkungReport(): Promise<WirkungReport> {
   let pflichtdokumenteGesamt = 0;
   let behoerdenGesamt = 0;
 
+  // Bewertungs-Aggregat: pro Indikator über alle Prozesse zählen. Reihenfolge
+  // wird aus der ersten Begegnung übernommen (buildBewertung ist deterministisch,
+  // liefert dieselben Keys in derselben Reihenfolge).
+  const bewMap = new Map<string, IndikatorAggregat>();
+  const bewOrder: string[] = [];
+
   for (const p of prozesse) {
     const r = p.reife;
     const kp = buildKompass(p);
+    const bew = buildBewertung(p);
+    for (const ind of bew.indikatoren) {
+      let a = bewMap.get(ind.key);
+      if (!a) {
+        a = {
+          key: ind.key,
+          kategorie: ind.kategorie,
+          gezaehlt: ind.gezaehlt,
+          erfuellt: 0,
+          nichtErfuellt: 0,
+          unbekannt: 0,
+          bekannt: 0,
+          prozent: null,
+        };
+        bewMap.set(ind.key, a);
+        bewOrder.push(ind.key);
+      }
+      if (ind.status === 'erfuellt') a.erfuellt++;
+      else if (ind.status === 'nicht-erfuellt') a.nichtErfuellt++;
+      else a.unbekannt++;
+    }
     if (kp.geteilteZustaendigkeit) geteilteZustaendigkeit++;
     if (kp.rekursinstanzen.length > 0) mitRekurs++;
     pflichtdokumenteGesamt += kp.pflichtdokumente;
@@ -124,6 +178,28 @@ export async function buildWirkungReport(): Promise<WirkungReport> {
     });
   }
   komplexitaet.sort((a, b) => b.schritte - a.schritte || a.id.localeCompare(b.id));
+
+  // Bewertungs-Aggregat finalisieren: bekannte Fälle und Prozent je Indikator,
+  // dazu Portfolio-Scores (nur gezählte Indikatoren).
+  const bewIndikatoren = bewOrder.map((k) => {
+    const a = bewMap.get(k)!;
+    a.bekannt = a.erfuellt + a.nichtErfuellt;
+    a.prozent = a.bekannt > 0 ? Math.round((100 * a.erfuellt) / a.bekannt) : null;
+    return a;
+  });
+  const pct = (arr: IndikatorAggregat[]): number | null => {
+    const e = arr.reduce((s, x) => s + x.erfuellt, 0);
+    const b = arr.reduce((s, x) => s + x.bekannt, 0);
+    return b > 0 ? Math.round((100 * e) / b) : null;
+  };
+  const scored = bewIndikatoren.filter((a) => a.gezaehlt);
+  const bewertung: BewertungAggregat = {
+    prozesse: prozesse.length,
+    indikatoren: bewIndikatoren,
+    gesamtProzent: pct(scored),
+    digitalisierungProzent: pct(scored.filter((a) => a.kategorie === 'digitalisierung')),
+    nutzendenorientierungProzent: pct(scored.filter((a) => a.kategorie === 'nutzendenorientierung')),
+  };
 
   const data = await loadStadtData();
 
@@ -164,6 +240,7 @@ export async function buildWirkungReport(): Promise<WirkungReport> {
   return {
     prozesseCount: prozesse.length,
     klima,
+    bewertung,
     reifegrad: REIFEGRAD_ORDER.map((key) => ({ key, count: reifegradCounts[key] ?? 0 })),
     status: STATUS_ORDER.map((key) => ({ key, count: statusCounts[key] ?? 0 })),
     medienbruecheGesamt,

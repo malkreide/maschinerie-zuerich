@@ -17,7 +17,7 @@
     "ls": "Du wohnst in einer blauen Zone. Du hast ein Auto. Dann kannst du eine Park-Karte kaufen. Damit darfst du in deiner Strasse parkieren, so lange du willst. Die Karte ist digital. Die Polizei liest dein Kennzeichen."
   },
   "target_audience": "bevoelkerung",
-  "source_url": "https://www.stadt-zuerich.ch/pd/de/index/dav/parkkarten.html",
+  "source_url": "https://www.stadt-zuerich.ch/de/mobilitaet/parkieren/parkbewilligungen.html",
   "retrieved_at": "2026-04-24",
   "disclaimer_key": "Prozesse.disclaimer",
   "references": [
@@ -25,7 +25,8 @@
       "reference_id": 1,
       "label": {
         "de": "Jahresgebühr der Anwohnerparkkarte (tarifabhängig nach Fahrzeug, anteilig bei kürzerer Dauer)",
-        "en": "Annual fee for the resident parking permit (tariff depends on vehicle; pro-rated)"
+        "en": "Annual fee for the resident parking permit (tariff depends on vehicle; pro-rated)",
+        "ls": "Die Karte kostet Geld pro Jahr."
       },
       "source_url": "https://www.stadt-zuerich.ch/de/mobilitaet/parkieren/parkbewilligungen/anwohnerparkkarte.html",
       "source_quote": "Gebühr: 300 Franken pro Kalenderjahr. … Angebrochene Monate werden voll in Rechnung gestellt. Bei Rückgabe der Parkkarte wird die Gebühr für alle nicht angebrochenen Monate zurückerstattet.",
@@ -36,12 +37,26 @@
       "reference_id": 2,
       "label": {
         "de": "Gültigkeitsdauer der Anwohnerparkkarte",
-        "en": "Validity period of the resident parking permit"
+        "en": "Validity period of the resident parking permit",
+        "ls": "Bei Rueckgabe bekommen Sie Geld zurueck fuer ganze Monate."
       },
       "source_url": "https://www.stadt-zuerich.ch/de/mobilitaet/parkieren/parkbewilligungen/anwohnerparkkarte.html",
       "source_quote": "Die Parkkarte des*der Halter*in des Fahrzeuges wird jährlich automatisch erneuert.",
       "status": "verifiziert",
       "retrieved_at": "2026-06-10"
+    },
+    {
+      "reference_id": 3,
+      "label": {
+        "de": "Verrechnung angebrochener Monate bei Rueckgabe",
+        "en": "",
+        "fr": "",
+        "it": ""
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/mobilitaet/parkieren/parkbewilligungen/anwohnerparkkarte.html",
+      "source_quote": "Angebrochene Monate werden voll in Rechnung gestellt. Bei Rückgabe der Parkkarte wird die Gebühr für alle nicht angebrochenen Monate zurückerstattet.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-28"
     }
   ],
   "actors": [
@@ -96,7 +111,10 @@
         "ls": "Du wohnst in einer blauen Zone und hast ein Auto"
       },
       "depends_on": [],
-      "type": "start"
+      "type": "start",
+      "reference_ids": [
+        1
+      ]
     },
     {
       "step_id": 2,
@@ -156,14 +174,18 @@
           "required": false
         }
       ],
-      "source_id": "q-stz-online"
+      "source_id": "q-stz-online",
+      "reference_ids": [
+        2
+      ]
     },
     {
       "step_id": 4,
       "actor": "dav",
       "label": {
         "de": "Antrag prüfen (Wohnsitz, Halterschaft, Zone)",
-        "en": "Check application (residence, holdership, zone)"
+        "en": "Check application (residence, holdership, zone)",
+        "ls": "Sie waehlen, wie Sie bezahlen wollen."
       },
       "depends_on": [
         3
@@ -184,7 +206,11 @@
       "depends_on": [
         4
       ],
-      "type": "entscheidung"
+      "type": "entscheidung",
+      "reference_ids": [
+        1,
+        2
+      ]
     },
     {
       "step_id": 6,
@@ -259,7 +285,10 @@
       "depends_on": [
         8
       ],
-      "type": "input"
+      "type": "input",
+      "reference_ids": [
+        3
+      ]
     },
     {
       "step_id": 10,
@@ -384,7 +413,7 @@
   "legal_basis": [
     {
       "label": "Verkehrsreglement der Stadt Zürich (VRSZ)",
-      "url": "https://www.stadt-zuerich.ch/pd/de/index/das_departement/organisation/dienstabteilungen/dav.html"
+      "url": "https://www.stadt-zuerich.ch/dav"
     },
     {
       "label": "SVG Art. 3 (Strassenverkehrsgesetz)",
@@ -399,13 +428,13 @@
     {
       "id": "q-stz-parkkarten",
       "title": "Stadt Zürich – Parkkarten-Angebote",
-      "url": "https://www.stadt-zuerich.ch/pd/de/index/dav/parkkarten.html",
+      "url": "https://www.stadt-zuerich.ch/de/mobilitaet/parkieren/parkbewilligungen.html",
       "retrieved_at": "2026-04-24"
     },
     {
       "id": "q-stz-online",
       "title": "Stadt Zürich – Parkkarten-Online-Portal",
-      "url": "https://www.stadt-zuerich.ch/pd/de/index/dav/parkkarten/anwohnerparkkarten.html",
+      "url": "https://www.stadt-zuerich.ch/de/mobilitaet/parkieren/parkbewilligungen/anwohnerparkkarte.html",
       "retrieved_at": "2026-04-24"
     }
   ],
@@ -468,5 +497,33 @@
     "aktualisiert": "2026-06-10",
     "maintainer": "malkreide",
     "lizenz": "CC-BY-4.0"
+  },
+  "preconditions": [
+    {
+      "de": "Fahrzeughalter*innen mit Zuercher Nummernschildern und registrierte Gewerbebetriebe koennen die Parkkarten online, telefonisch oder schriftlich anfordern.",
+      "ls": "Sie haben ein Auto mit Zuercher Nummernschild. Dann koennen Sie eine Parkkarte beantragen."
+    },
+    {
+      "de": "Wochenaufenthalter*innen, Halter*innen von Fahrzeugen mit ausserkantonalen oder auslaendischen Nummernschildern und Gewerbebetriebe muessen die Parkkarten schriftlich beantragen."
+    },
+    {
+      "de": "Bei Carsharing darf kein Mitglied der Gruppe Halter*in eines weiteren leichten Motorfahrzeugs sein.",
+      "ls": "Sie bekommen keinen festen Parkplatz."
+    },
+    {
+      "de": "Mit dem Erwerb einer Anwohnerparkkarte entsteht kein Anspruch auf einen Parkplatz in der Blauen Zone."
+    }
+  ],
+  "bewertung": {
+    "indikatoren": [
+      {
+        "key": "online-antrag",
+        "wert": true,
+        "source_url": "https://www.stadt-zuerich.ch/de/mobilitaet/parkieren/parkbewilligungen/anwohnerparkkarte.html",
+        "source_quote": "Fahrzeughalter*innen mit Zürcher Nummernschildern und registrierte Gewerbebetriebe können die Parkkarten online, telefonisch oder schriftlich bei der Bewilligungsstelle anfordern.",
+        "status": "verifiziert",
+        "retrieved_at": "2026-06-28"
+      }
+    ]
   }
 }

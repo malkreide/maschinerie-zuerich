@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1.24
+# syntax=docker/dockerfile:1.25
 #
 # Multi-Stage-Build für die Maschinerie-App.
 #
@@ -16,7 +16,7 @@
 # engines.node >=24.16.0). Alle vier Stellen müssen übereinstimmen, sonst
 # löst der npm-Resolver unterschiedliche Peer-Dep-Versionen auf.
 
-ARG NODE_VERSION=24.16.0-alpine
+ARG NODE_VERSION=24.17.0-alpine
 
 # ─── Stage 1: deps ──────────────────────────────────────────────────────────
 # Installiert nur die Abhängigkeiten. Eigener Stage, damit `npm ci` nur

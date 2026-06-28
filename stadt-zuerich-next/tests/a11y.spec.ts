@@ -30,6 +30,7 @@ const ROUTES = [
   '/de/steuerfranken',
   '/de/prozesse',
   '/de/prozesse/zh/parkplatz',
+  '/de/portfolio',
   '/de/roadmap',
 ];
 
