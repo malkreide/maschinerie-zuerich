@@ -153,7 +153,10 @@ export type BewertungIndikatorKey =
   | 'statusverfolgung'
   | 'medienbruchfrei'
   | 'digital-abschliessbar'
-  | 'eid-noetig';
+  | 'once-only'
+  | 'barrierefreiheit'
+  | 'nicht-digitaler-alternativweg'
+  | 'eid-moeglich';
 
 /** Ein belegter Bewertungs-Indikator — Eigenschaft (wert) + Beleg
  *  (source_quote + Link), exakt wie eine Reference. KEIN bindender Wert. */

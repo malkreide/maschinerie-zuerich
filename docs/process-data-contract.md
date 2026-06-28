@@ -140,7 +140,7 @@ Evidenz hinterlegt.
 
 | Feld | Typ | Pflicht | Bedeutung |
 |---|---|---|---|
-| `key` | enum | ✓ | `online-antrag` \| `online-bezahlung` \| `statusverfolgung` \| `medienbruchfrei` \| `digital-abschliessbar` (zählen in den Score) \| `eid-noetig` (rein informativ) |
+| `key` | enum | ✓ | Digitalisierung: `online-antrag` \| `online-bezahlung` \| `statusverfolgung` \| `medienbruchfrei` \| `digital-abschliessbar` \| `once-only`. Nutzendenorientierung: `barrierefreiheit` (WCAG 2.1 AA) \| `nicht-digitaler-alternativweg`. Rein informativ (zählt nicht): `eid-moeglich`. Strategiebezug je Indikator: `docs/bewertung-strategiebezug.md` |
 | `wert` | boolean | ✓ | Belegte Ausprägung der strukturellen Eigenschaft (`true` = trifft zu). **Kein bindender Wert** (Kardinalregel). |
 | `source_url` | string (http/https) | ✓ | Deep-Link auf die belegende amtliche Stelle |
 | `source_quote` | string | ✓* | **Wörtliche** Belegstelle (Grounding-Gate wie bei References) |

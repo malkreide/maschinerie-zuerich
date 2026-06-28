@@ -60,7 +60,14 @@
     "colSchritte": "Schritte",
     "colAkteure": "Beteiligte",
     "colEntscheidungen": "Entscheide",
-    "colMedienbrueche": "Brüche"
+    "colMedienbrueche": "Brüche",
+    "bewertungHeading": "Bewertung (alle Prozesse)",
+    "bewertungIntro": "So viele Punkte sind über alle Prozesse erfüllt. Das ist eine Momentaufnahme aus unseren Daten, keine amtliche Zahl. «unbekannt» heisst nicht «nein».",
+    "bewertungDigital": "Geht es online?",
+    "bewertungNutzend": "Ist es einfach?",
+    "bewertungGesamt": "Insgesamt erfüllt",
+    "bewertungKeinScore": "kein Wert",
+    "bewertungUnbekanntKurz": "unbek."
   },
   "Territory": {
     "title": "Standorte",
@@ -410,11 +417,14 @@
         "statusverfolgung": "Sie sehen online, wie weit es ist",
         "medienbruchfrei": "Kein Wechsel zu Papier oder Post",
         "digital-abschliessbar": "Alles geht online",
-        "eid-noetig": "Sie brauchen einen Login (eID)",
         "leichte-sprache": "Es gibt Leichte Sprache",
         "mehrsprachigkeit": "Es gibt mehrere Sprachen (en/fr/it)",
         "voraussetzungen-genannt": "Die Voraussetzungen stehen klar da",
-        "fristen-kosten-verlinkt": "Fristen und Kosten sind verlinkt"
+        "fristen-kosten-verlinkt": "Fristen und Kosten sind verlinkt",
+        "once-only": "Sie geben Daten nur einmal ein",
+        "barrierefreiheit": "Ohne Hindernisse nutzbar (WCAG 2.1 AA)",
+        "nicht-digitaler-alternativweg": "Es geht auch ohne Computer",
+        "eid-moeglich": "Login mit eID ist möglich"
       },
       "evidenz": {
         "toggle": "Beleg",
@@ -438,7 +448,13 @@
       },
       "ja": "ja",
       "nein": "nein",
-      "informativ": "nur Info"
+      "informativ": "nur Info",
+      "ankerLabel": "Das steht in einer Strategie",
+      "ankerStaerke": {
+        "direkt": "steht klar in der Strategie",
+        "schwach": "steht ungefähr in der Strategie",
+        "kein": "wir haben es selbst gewählt"
+      }
     }
   },
   "Export": {

@@ -91,10 +91,19 @@ const DIGITAL_SCORED: BewertungIndikatorKey[] = [
   'statusverfolgung',
   'medienbruchfrei',
   'digital-abschliessbar',
+  'once-only',
 ];
 
 /** Informative belegpflichtige Indikatoren (zählen NICHT in den Score). */
-const DIGITAL_INFO: BewertungIndikatorKey[] = ['eid-noetig'];
+const DIGITAL_INFO: BewertungIndikatorKey[] = ['eid-moeglich'];
+
+/** Belegpflichtige Nutzendenorientierungs-Indikatoren (zählen in den Score).
+ *  Nicht aus dem Graphen ableitbar (z.B. WCAG-Konformität, analoger
+ *  Alternativweg) — daher belegt oder 'unbekannt'. */
+const NUTZEND_BELEGT: BewertungIndikatorKey[] = [
+  'barrierefreiheit',
+  'nicht-digitaler-alternativweg',
+];
 
 /** Hat der i18n-String eine eigene, nicht-leere Fassung in dieser Locale?
  *  (Fallback auf 'de' zählt NICHT als Abdeckung.) */
@@ -153,19 +162,20 @@ function kennzahlen(p: Prozess): Kennzahlen {
   };
 }
 
-/** Belegter Digitalisierungs-Indikator → IndikatorResult (oder 'unbekannt'). */
+/** Belegter Indikator → IndikatorResult (oder 'unbekannt'). */
 function belegterIndikator(
   p: Prozess,
   key: BewertungIndikatorKey,
+  kategorie: IndikatorKategorie,
   gezaehlt: boolean,
 ): IndikatorResult {
   const beleg = (p.bewertung?.indikatoren ?? []).find((i) => i.key === key);
   if (!beleg) {
-    return { key, kategorie: 'digitalisierung', status: 'unbekannt', gezaehlt, evidenz: null };
+    return { key, kategorie, status: 'unbekannt', gezaehlt, evidenz: null };
   }
   return {
     key,
-    kategorie: 'digitalisierung',
+    kategorie,
     status: beleg.wert ? 'erfuellt' : 'nicht-erfuellt',
     gezaehlt,
     evidenz: {
@@ -211,11 +221,11 @@ function scoreFor(indikatoren: IndikatorResult[]): KategorieScore {
 export function buildBewertung(p: Prozess): BewertungReport {
   // --- DIGITALISIERUNG (belegpflichtig) ---
   const digital: IndikatorResult[] = [
-    ...DIGITAL_SCORED.map((k) => belegterIndikator(p, k, true)),
-    ...DIGITAL_INFO.map((k) => belegterIndikator(p, k, false)),
+    ...DIGITAL_SCORED.map((k) => belegterIndikator(p, k, 'digitalisierung', true)),
+    ...DIGITAL_INFO.map((k) => belegterIndikator(p, k, 'digitalisierung', false)),
   ];
 
-  // --- NUTZENDENORIENTIERUNG (berechnet) ---
+  // --- NUTZENDENORIENTIERUNG (berechnet + belegpflichtig) ---
   const ls = localeAbdeckung(p, 'ls');
   const en = localeAbdeckung(p, 'en');
   const fr = localeAbdeckung(p, 'fr');
@@ -235,6 +245,7 @@ export function buildBewertung(p: Prozess): BewertungReport {
       (p.references?.length ?? 0) > 0,
       p.references?.length ?? 0,
     ),
+    ...NUTZEND_BELEGT.map((k) => belegterIndikator(p, k, 'nutzendenorientierung', true)),
   ];
 
   const indikatoren = [...digital, ...nutzend];

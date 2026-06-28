@@ -60,7 +60,14 @@
     "colSchritte": "Schritte",
     "colAkteure": "Beteiligte",
     "colEntscheidungen": "Entscheide",
-    "colMedienbrueche": "Brüche"
+    "colMedienbrueche": "Brüche",
+    "bewertungHeading": "Bewertung (Portfolio)",
+    "bewertungIntro": "Anteil erfüllter Indikatoren über alle modellierten Prozesse — ein Ist-Schnappschuss der Modelldaten, kein amtlicher Digitalisierungsgrad. «unbekannt» zählt nicht als nicht erfüllt.",
+    "bewertungDigital": "Digitalisierung",
+    "bewertungNutzend": "Nutzendenorientierung",
+    "bewertungGesamt": "Gesamt erfüllt",
+    "bewertungKeinScore": "kein Score",
+    "bewertungUnbekanntKurz": "unbek."
   },
   "Territory": {
     "title": "Standorte",
@@ -418,11 +425,14 @@
         "statusverfolgung": "Statusverfolgung online",
         "medienbruchfrei": "Ohne Medienbruch",
         "digital-abschliessbar": "Vollständig digital abschliessbar",
-        "eid-noetig": "Authentifizierung/eID nötig",
         "leichte-sprache": "Leichte Sprache vorhanden",
         "mehrsprachigkeit": "Mehrsprachig (en/fr/it)",
         "voraussetzungen-genannt": "Voraussetzungen klar genannt",
-        "fristen-kosten-verlinkt": "Fristen/Kosten transparent verlinkt"
+        "fristen-kosten-verlinkt": "Fristen/Kosten transparent verlinkt",
+        "once-only": "Once-only (keine Mehrfacheingabe)",
+        "barrierefreiheit": "Barrierefrei (WCAG 2.1 AA)",
+        "nicht-digitaler-alternativweg": "Nicht-digitaler Alternativweg",
+        "eid-moeglich": "Login/eID möglich"
       },
       "evidenz": {
         "toggle": "Evidenz",
@@ -446,7 +456,13 @@
       },
       "ja": "ja",
       "nein": "nein",
-      "informativ": "informativ"
+      "informativ": "informativ",
+      "ankerLabel": "Strategischer Bezug",
+      "ankerStaerke": {
+        "direkt": "direkt verankert",
+        "schwach": "schwach verankert",
+        "kein": "selbst gesetzt"
+      }
     }
   },
   "GraphTable": {
