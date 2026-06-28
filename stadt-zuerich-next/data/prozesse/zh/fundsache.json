@@ -14,6 +14,8 @@
   "description": {
     "de": "Wer in der Stadt Zürich etwas findet, meldet oder übergibt es dem Fundbüro der Stadtpolizei; wer etwas verloren hat, stellt einen Suchauftrag. Gefundene Gegenstände werden erfasst und für eine gesetzliche Frist aufbewahrt.",
     "en": "Anyone who finds something in the City of Zurich reports or hands it to the city police's lost property office; anyone who has lost something files a search request. Found items are recorded and kept for a statutory period.",
+    "fr": "Toute personne qui trouve quelque chose en ville de Zurich l'annonce ou le remet au bureau des objets trouvés de la police municipale; toute personne qui a perdu quelque chose dépose une demande de recherche. Les objets trouvés sont enregistrés et conservés pendant un délai légal.",
+    "it": "Chi trova qualcosa nella città di Zurigo lo segnala o lo consegna all'ufficio oggetti smarriti della polizia municipale; chi ha smarrito qualcosa presenta una richiesta di ricerca. Gli oggetti trovati vengono registrati e conservati per un termine legale.",
     "ls": "Sie haben etwas gefunden? Bringen Sie es zum Fund-Büro der Stadt-Polizei. Sie haben etwas verloren? Melden Sie es. Das Fund-Büro schaut, ob Ihre Sache da ist."
   },
   "target_audience": "bevoelkerung",
@@ -26,6 +28,8 @@
       "label": {
         "de": "Gebühr bei der Abholung einer Fundsache im Fundbüro",
         "en": "Fee charged when collecting a found item at the lost-property office",
+        "fr": "Émolument perçu lors du retrait d'un objet trouvé au bureau des objets trouvés",
+        "it": "Tassa riscossa al ritiro di un oggetto trovato presso l'ufficio oggetti smarriti",
         "ls": "Die Express-Suche kostet extra Geld."
       },
       "source_url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/verloren.html",
@@ -37,9 +41,9 @@
       "reference_id": 2,
       "label": {
         "de": "Express-Zuschlag zusätzlich zur normalen Gebühr",
-        "en": "",
-        "fr": "",
-        "it": "",
+        "en": "Express surcharge in addition to the standard fee",
+        "fr": "Supplément express en plus de l'émolument ordinaire",
+        "it": "Supplemento express in aggiunta alla tassa ordinaria",
         "ls": "Ab wann Sie am nächsten Tag im Fundbüro nachfragen können."
       },
       "source_url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/verloren.html",
@@ -51,9 +55,9 @@
       "reference_id": 3,
       "label": {
         "de": "Berechtigte Gegenstände für den Express-Service",
-        "en": "",
-        "fr": "",
-        "it": "",
+        "en": "Items eligible for the express service",
+        "fr": "Objets pouvant bénéficier du service express",
+        "it": "Oggetti ammessi al servizio express",
         "ls": "Wenn Sie eine Sache abholen, kostet das Geld."
       },
       "source_url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/verloren.html",
@@ -65,9 +69,9 @@
       "reference_id": 4,
       "label": {
         "de": "Aufbewahrungsfrist bei VBZ und Forchbahn vor Verkauf",
-        "en": "",
-        "fr": "",
-        "it": "",
+        "en": "Storage period at VBZ and Forchbahn before sale",
+        "fr": "Délai de conservation auprès des VBZ et de la Forchbahn avant la vente",
+        "it": "Termine di conservazione presso VBZ e Forchbahn prima della vendita",
         "ls": "Wie lange Fundsachen vom öffentlichen Grund aufbewahrt werden."
       },
       "source_url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/versteigerung.html",
@@ -79,9 +83,9 @@
       "reference_id": 5,
       "label": {
         "de": "Aufbewahrungsfrist für Funde auf öffentlichem Grund vor Versteigerung",
-        "en": "",
-        "fr": "",
-        "it": "",
+        "en": "Storage period for items found on public ground before auction",
+        "fr": "Délai de conservation des objets trouvés sur le domaine public avant la mise aux enchères",
+        "it": "Termine di conservazione degli oggetti trovati su suolo pubblico prima dell'asta",
         "ls": "Wie lange VBZ und Forchbahn Fundsachen aufbewahren."
       },
       "source_url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/versteigerung.html",
@@ -93,9 +97,9 @@
       "reference_id": 6,
       "label": {
         "de": "Wertgrenze und Aufbewahrungsfrist für vorzeitigen Verkauf von Fundsachen",
-        "en": "",
-        "fr": "",
-        "it": ""
+        "en": "Value threshold and storage period for early sale of found items",
+        "fr": "Valeur limite et délai de conservation pour la vente anticipée d'objets trouvés",
+        "it": "Valore limite e termine di conservazione per la vendita anticipata di oggetti trovati"
       },
       "source_url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/rechtsgrundlage.html",
       "source_quote": "Fundsachen mit einem Zeitwert von höchstens 50 Franken dürfen bereits nach Ablauf eines Monats versteigert oder freihändig verkauft werden.",
@@ -106,9 +110,9 @@
       "reference_id": 7,
       "label": {
         "de": "Wertgrenze für die Pflicht zur Fundanzeige bei der Polizei",
-        "en": "",
-        "fr": "",
-        "it": ""
+        "en": "Value threshold for the obligation to report a find to the police",
+        "fr": "Valeur limite déclenchant l'obligation d'annoncer la trouvaille à la police",
+        "it": "Valore limite per l'obbligo di segnalare il ritrovamento alla polizia"
       },
       "source_url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/rechtsgrundlage.html",
       "source_quote": "Zur Anzeige an die Polizei ist er verpflichtet, wenn der Wert der Sache offenbar 10 Franken übersteigt.",
@@ -119,9 +123,9 @@
       "reference_id": 8,
       "label": {
         "de": "Finderlohn-Anspruch bei Funden in einem Unternehmen oder Fahrzeug",
-        "en": "",
-        "fr": "",
-        "it": ""
+        "en": "Finder's reward claim for items found in a company or vehicle",
+        "fr": "Droit à la récompense pour les objets trouvés dans une entreprise ou un véhicule",
+        "it": "Diritto alla mancia di ritrovamento per oggetti trovati in un'azienda o in un veicolo"
       },
       "source_url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/rechtsgrundlage.html",
       "source_quote": "Das Unternehmen wird als Finderin betrachtet, kann aber keinen Finderlohn beanspruchen.",
@@ -146,6 +150,8 @@
       "label": {
         "de": "Fundbüro der Stadtpolizei Zürich",
         "en": "Lost property office of the Zurich City Police",
+        "fr": "Bureau des objets trouvés de la police municipale de Zurich",
+        "it": "Ufficio oggetti smarriti della polizia municipale di Zurigo",
         "ls": "Das Fund-Büro der Stadt-Polizei"
       },
       "type": "behoerde",
@@ -159,6 +165,8 @@
       "label": {
         "de": "Gegenstand gefunden oder verloren",
         "en": "Item found or lost",
+        "fr": "Objet trouvé ou perdu",
+        "it": "Oggetto trovato o smarrito",
         "ls": "Sie haben etwas gefunden oder verloren"
       },
       "depends_on": [],
@@ -170,6 +178,8 @@
       "label": {
         "de": "Gefunden oder verloren?",
         "en": "Found or lost?",
+        "fr": "Trouvé ou perdu?",
+        "it": "Trovato o smarrito?",
         "ls": "Gefunden oder verloren?"
       },
       "depends_on": [
@@ -183,6 +193,8 @@
       "label": {
         "de": "Fundsache melden oder abgeben",
         "en": "Report or hand in the found item",
+        "fr": "Annoncer ou remettre l'objet trouvé",
+        "it": "Segnalare o consegnare l'oggetto trovato",
         "ls": "Sie bringen die Sache zum Fund-Büro"
       },
       "depends_on": [
@@ -190,14 +202,18 @@
           "step_id": 2,
           "condition": {
             "de": "gefunden",
-            "en": "found"
+            "en": "found",
+            "fr": "trouvé",
+            "it": "trovato"
           }
         }
       ],
       "type": "input",
       "description": {
         "de": "Fundsache online melden und/oder beim Fundbüro abgeben. Wertgegenstände möglichst rasch übergeben.",
-        "en": "Report the found item online and/or hand it in at the lost property office; valuables as soon as possible."
+        "en": "Report the found item online and/or hand it in at the lost property office; valuables as soon as possible.",
+        "fr": "Annoncer l'objet trouvé en ligne et/ou le remettre au bureau des objets trouvés; remettre les objets de valeur le plus rapidement possible.",
+        "it": "Segnalare l'oggetto trovato online e/o consegnarlo all'ufficio oggetti smarriti; consegnare gli oggetti di valore il più rapidamente possibile."
       },
       "source_id": "q-stz-fundbuero",
       "reference_ids": [
@@ -211,6 +227,8 @@
       "label": {
         "de": "Fund erfassen und aufbewahren",
         "en": "Record and store the found item",
+        "fr": "Enregistrer et conserver l'objet trouvé",
+        "it": "Registrare e conservare l'oggetto trovato",
         "ls": "Das Fund-Büro nimmt die Sache auf"
       },
       "depends_on": [
@@ -224,6 +242,8 @@
       "label": {
         "de": "Fund gemeldet (ggf. Finderlohn-Anspruch)",
         "en": "Found item reported (possible finder's reward)",
+        "fr": "Objet trouvé annoncé (éventuel droit à la récompense)",
+        "it": "Oggetto trovato segnalato (eventuale diritto alla mancia di ritrovamento)",
         "ls": "Fertig: Die Sache ist gemeldet"
       },
       "depends_on": [
@@ -237,6 +257,8 @@
       "label": {
         "de": "Verlust melden (Suchauftrag)",
         "en": "Report the loss (search request)",
+        "fr": "Annoncer la perte (demande de recherche)",
+        "it": "Segnalare lo smarrimento (richiesta di ricerca)",
         "ls": "Sie melden den Verlust"
       },
       "depends_on": [
@@ -244,14 +266,18 @@
           "step_id": 2,
           "condition": {
             "de": "verloren",
-            "en": "lost"
+            "en": "lost",
+            "fr": "perdu",
+            "it": "smarrito"
           }
         }
       ],
       "type": "input",
       "description": {
         "de": "Online-Verlustmeldung mit Beschreibung des Gegenstands, Verlustort und -datum.",
-        "en": "Online loss report with a description of the item, place and date of loss."
+        "en": "Online loss report with a description of the item, place and date of loss.",
+        "fr": "Annonce de perte en ligne avec description de l'objet, lieu et date de la perte.",
+        "it": "Segnalazione di smarrimento online con descrizione dell'oggetto, luogo e data dello smarrimento."
       },
       "source_id": "q-stz-fundbuero",
       "reference_ids": [
@@ -264,6 +290,8 @@
       "label": {
         "de": "Mit Fundbestand abgleichen",
         "en": "Match against the found-items inventory",
+        "fr": "Comparer avec le stock des objets trouvés",
+        "it": "Confrontare con l'inventario degli oggetti trovati",
         "ls": "Bei der Abholung zahlen Sie eine Gebühr."
       },
       "depends_on": [
@@ -280,6 +308,8 @@
       "label": {
         "de": "Gegenstand vorhanden?",
         "en": "Item available?",
+        "fr": "Objet disponible?",
+        "it": "Oggetto disponibile?",
         "ls": "Ist die Sache da?"
       },
       "depends_on": [
@@ -293,13 +323,17 @@
       "label": {
         "de": "Gegen Ausweis abholen",
         "en": "Collect against ID",
+        "fr": "Retirer sur présentation d'une pièce d'identité",
+        "it": "Ritirare dietro presentazione di un documento d'identità",
         "ls": "Sie holen die Sache mit Ausweis ab"
       },
       "depends_on": [
         {
           "step_id": 8,
           "condition": {
-            "de": "ja"
+            "de": "ja",
+            "fr": "oui",
+            "it": "sì"
           }
         }
       ],
@@ -309,7 +343,9 @@
       "type": "input",
       "description": {
         "de": "Abholung gegen Identitätsnachweis; allfällige Aufbewahrungs-/Bearbeitungsgebühr und Finderlohn nach OR.",
-        "en": "Collection against proof of identity; any storage/handling fee and finder's reward under the Code of Obligations."
+        "en": "Collection against proof of identity; any storage/handling fee and finder's reward under the Code of Obligations.",
+        "fr": "Retrait sur présentation d'une preuve d'identité; éventuel émolument de conservation/de traitement et récompense selon le CO.",
+        "it": "Ritiro dietro presentazione di una prova d'identità; eventuale tassa di conservazione/di trattamento e mancia di ritrovamento secondo il CO."
       }
     },
     {
@@ -318,6 +354,8 @@
       "label": {
         "de": "Gegenstand zurückerhalten",
         "en": "Item returned",
+        "fr": "Objet restitué",
+        "it": "Oggetto restituito",
         "ls": "Fertig: Sie haben Ihre Sache zurück"
       },
       "depends_on": [
@@ -334,20 +372,26 @@
       "label": {
         "de": "Suchauftrag bleibt aktiv (Aufbewahrungsfrist)",
         "en": "Search request stays active (storage period)",
+        "fr": "La demande de recherche reste active (délai de conservation)",
+        "it": "La richiesta di ricerca resta attiva (termine di conservazione)",
         "ls": "Das Fund-Büro sucht weiter"
       },
       "depends_on": [
         {
           "step_id": 8,
           "condition": {
-            "de": "nein"
+            "de": "nein",
+            "fr": "non",
+            "it": "no"
           }
         }
       ],
       "type": "warten",
       "description": {
         "de": "Fundsachen werden eine gesetzliche Frist aufbewahrt; meldet sich ein passender Fund, wird die Person benachrichtigt.",
-        "en": "Found items are kept for a statutory period; if a matching item appears, the person is notified."
+        "en": "Found items are kept for a statutory period; if a matching item appears, the person is notified.",
+        "fr": "Les objets trouvés sont conservés pendant un délai légal; si un objet correspondant est annoncé, la personne en est informée.",
+        "it": "Gli oggetti trovati vengono conservati per un termine legale; se viene segnalato un oggetto corrispondente, la persona viene avvisata."
       }
     },
     {
@@ -356,6 +400,8 @@
       "label": {
         "de": "Noch kein Treffer",
         "en": "No match yet",
+        "fr": "Pas encore de correspondance",
+        "it": "Nessuna corrispondenza per ora",
         "ls": "Noch nichts gefunden"
       },
       "depends_on": [
@@ -444,10 +490,14 @@
   "preconditions": [
     {
       "de": "Der Gegenstand wurde in der Stadt Zürich gefunden – auch in Trams und Bussen der VBZ sowie in der Forchbahn.",
+      "fr": "L'objet a été trouvé en ville de Zurich – y compris dans les trams et bus des VBZ ainsi que dans la Forchbahn.",
+      "it": "L'oggetto è stato trovato nella città di Zurigo – anche nei tram e negli autobus delle VBZ nonché nella Forchbahn.",
       "ls": "Der Gegenstand ist in der Stadt Zürich verloren gegangen oder gefunden worden."
     },
     {
       "de": "Für Gegenstände, die in der Agglomeration oder an einem anderen Ort verloren wurden, ist der zuständige Betrieb oder das zuständige Fundbüro zu kontaktieren.",
+      "fr": "Pour les objets perdus dans l'agglomération ou en un autre lieu, il convient de contacter l'entreprise compétente ou le bureau des objets trouvés compétent.",
+      "it": "Per gli oggetti smarriti nell'agglomerato o in un altro luogo occorre contattare l'azienda competente o l'ufficio oggetti smarriti competente.",
       "ls": "Haben Sie etwas woanders verloren? Dann fragen Sie dort nach."
     }
   ]

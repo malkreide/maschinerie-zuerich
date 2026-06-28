@@ -109,7 +109,7 @@
         },
         {
           "key": "mehrsprachigkeit",
-          "status": "nicht-erfuellt"
+          "status": "erfuellt"
         },
         {
           "key": "voraussetzungen-genannt",
@@ -136,16 +136,16 @@
           "prozent": null
         },
         "nutzendenorientierung": {
-          "erfuellt": 3,
+          "erfuellt": 4,
           "bekannt": 4,
           "unbekannt": 2,
-          "prozent": 75
+          "prozent": 100
         },
         "gesamt": {
-          "erfuellt": 3,
+          "erfuellt": 4,
           "bekannt": 4,
           "unbekannt": 8,
-          "prozent": 75
+          "prozent": 100
         }
       },
       "unbekannt": 8,
@@ -190,7 +190,7 @@
         },
         {
           "key": "mehrsprachigkeit",
-          "status": "nicht-erfuellt"
+          "status": "erfuellt"
         },
         {
           "key": "voraussetzungen-genannt",
@@ -217,16 +217,16 @@
           "prozent": null
         },
         "nutzendenorientierung": {
-          "erfuellt": 1,
+          "erfuellt": 2,
           "bekannt": 4,
           "unbekannt": 2,
-          "prozent": 25
+          "prozent": 50
         },
         "gesamt": {
-          "erfuellt": 1,
+          "erfuellt": 2,
           "bekannt": 4,
           "unbekannt": 8,
-          "prozent": 25
+          "prozent": 50
         }
       },
       "unbekannt": 8,
@@ -352,7 +352,7 @@
         },
         {
           "key": "mehrsprachigkeit",
-          "status": "nicht-erfuellt"
+          "status": "erfuellt"
         },
         {
           "key": "voraussetzungen-genannt",
@@ -379,16 +379,16 @@
           "prozent": null
         },
         "nutzendenorientierung": {
-          "erfuellt": 3,
+          "erfuellt": 4,
           "bekannt": 4,
           "unbekannt": 2,
-          "prozent": 75
+          "prozent": 100
         },
         "gesamt": {
-          "erfuellt": 3,
+          "erfuellt": 4,
           "bekannt": 4,
           "unbekannt": 8,
-          "prozent": 75
+          "prozent": 100
         }
       },
       "unbekannt": 8,
@@ -433,7 +433,7 @@
         },
         {
           "key": "mehrsprachigkeit",
-          "status": "nicht-erfuellt"
+          "status": "erfuellt"
         },
         {
           "key": "voraussetzungen-genannt",
@@ -460,16 +460,16 @@
           "prozent": null
         },
         "nutzendenorientierung": {
-          "erfuellt": 3,
+          "erfuellt": 4,
           "bekannt": 4,
           "unbekannt": 2,
-          "prozent": 75
+          "prozent": 100
         },
         "gesamt": {
-          "erfuellt": 3,
+          "erfuellt": 4,
           "bekannt": 4,
           "unbekannt": 8,
-          "prozent": 75
+          "prozent": 100
         }
       },
       "unbekannt": 8,
@@ -514,7 +514,7 @@
         },
         {
           "key": "mehrsprachigkeit",
-          "status": "nicht-erfuellt"
+          "status": "erfuellt"
         },
         {
           "key": "voraussetzungen-genannt",
@@ -541,16 +541,16 @@
           "prozent": null
         },
         "nutzendenorientierung": {
-          "erfuellt": 3,
+          "erfuellt": 4,
           "bekannt": 4,
           "unbekannt": 2,
-          "prozent": 75
+          "prozent": 100
         },
         "gesamt": {
-          "erfuellt": 3,
+          "erfuellt": 4,
           "bekannt": 4,
           "unbekannt": 8,
-          "prozent": 75
+          "prozent": 100
         }
       },
       "unbekannt": 8,
@@ -595,7 +595,7 @@
         },
         {
           "key": "mehrsprachigkeit",
-          "status": "nicht-erfuellt"
+          "status": "erfuellt"
         },
         {
           "key": "voraussetzungen-genannt",
@@ -622,16 +622,16 @@
           "prozent": null
         },
         "nutzendenorientierung": {
-          "erfuellt": 1,
+          "erfuellt": 2,
           "bekannt": 4,
           "unbekannt": 2,
-          "prozent": 25
+          "prozent": 50
         },
         "gesamt": {
-          "erfuellt": 1,
+          "erfuellt": 2,
           "bekannt": 4,
           "unbekannt": 8,
-          "prozent": 25
+          "prozent": 50
         }
       },
       "unbekannt": 8,
@@ -757,7 +757,7 @@
         },
         {
           "key": "mehrsprachigkeit",
-          "status": "nicht-erfuellt"
+          "status": "erfuellt"
         },
         {
           "key": "voraussetzungen-genannt",
@@ -784,16 +784,16 @@
           "prozent": 100
         },
         "nutzendenorientierung": {
-          "erfuellt": 3,
+          "erfuellt": 4,
           "bekannt": 4,
           "unbekannt": 2,
-          "prozent": 75
+          "prozent": 100
         },
         "gesamt": {
-          "erfuellt": 4,
+          "erfuellt": 5,
           "bekannt": 5,
           "unbekannt": 7,
-          "prozent": 80
+          "prozent": 100
         }
       },
       "unbekannt": 7,
@@ -838,7 +838,7 @@
         },
         {
           "key": "mehrsprachigkeit",
-          "status": "nicht-erfuellt"
+          "status": "erfuellt"
         },
         {
           "key": "voraussetzungen-genannt",
@@ -865,16 +865,16 @@
           "prozent": null
         },
         "nutzendenorientierung": {
-          "erfuellt": 3,
+          "erfuellt": 4,
           "bekannt": 4,
           "unbekannt": 2,
-          "prozent": 75
+          "prozent": 100
         },
         "gesamt": {
-          "erfuellt": 3,
+          "erfuellt": 4,
           "bekannt": 4,
           "unbekannt": 8,
-          "prozent": 75
+          "prozent": 100
         }
       },
       "unbekannt": 8,
@@ -919,7 +919,7 @@
         },
         {
           "key": "mehrsprachigkeit",
-          "status": "nicht-erfuellt"
+          "status": "erfuellt"
         },
         {
           "key": "voraussetzungen-genannt",
@@ -946,16 +946,16 @@
           "prozent": null
         },
         "nutzendenorientierung": {
-          "erfuellt": 1,
+          "erfuellt": 2,
           "bekannt": 4,
           "unbekannt": 2,
-          "prozent": 25
+          "prozent": 50
         },
         "gesamt": {
-          "erfuellt": 1,
+          "erfuellt": 2,
           "bekannt": 4,
           "unbekannt": 8,
-          "prozent": 25
+          "prozent": 50
         }
       },
       "unbekannt": 8,
@@ -1000,7 +1000,7 @@
         },
         {
           "key": "mehrsprachigkeit",
-          "status": "nicht-erfuellt"
+          "status": "erfuellt"
         },
         {
           "key": "voraussetzungen-genannt",
@@ -1027,16 +1027,16 @@
           "prozent": 100
         },
         "nutzendenorientierung": {
-          "erfuellt": 3,
+          "erfuellt": 4,
           "bekannt": 4,
           "unbekannt": 2,
-          "prozent": 75
+          "prozent": 100
         },
         "gesamt": {
-          "erfuellt": 5,
+          "erfuellt": 6,
           "bekannt": 6,
           "unbekannt": 6,
-          "prozent": 83
+          "prozent": 100
         }
       },
       "unbekannt": 6,
@@ -1243,7 +1243,7 @@
         },
         {
           "key": "mehrsprachigkeit",
-          "status": "nicht-erfuellt"
+          "status": "erfuellt"
         },
         {
           "key": "voraussetzungen-genannt",
@@ -1270,16 +1270,16 @@
           "prozent": 100
         },
         "nutzendenorientierung": {
-          "erfuellt": 3,
+          "erfuellt": 4,
           "bekannt": 4,
           "unbekannt": 2,
-          "prozent": 75
+          "prozent": 100
         },
         "gesamt": {
-          "erfuellt": 4,
+          "erfuellt": 5,
           "bekannt": 5,
           "unbekannt": 7,
-          "prozent": 80
+          "prozent": 100
         }
       },
       "unbekannt": 7,
@@ -1324,7 +1324,7 @@
         },
         {
           "key": "mehrsprachigkeit",
-          "status": "nicht-erfuellt"
+          "status": "erfuellt"
         },
         {
           "key": "voraussetzungen-genannt",
@@ -1351,16 +1351,16 @@
           "prozent": null
         },
         "nutzendenorientierung": {
-          "erfuellt": 1,
+          "erfuellt": 2,
           "bekannt": 4,
           "unbekannt": 2,
-          "prozent": 25
+          "prozent": 50
         },
         "gesamt": {
-          "erfuellt": 1,
+          "erfuellt": 2,
           "bekannt": 4,
           "unbekannt": 8,
-          "prozent": 25
+          "prozent": 50
         }
       },
       "unbekannt": 8,
@@ -1503,8 +1503,8 @@
       },
       {
         "key": "mehrsprachigkeit",
-        "erfuellt": 5,
-        "nichtErfuellt": 12,
+        "erfuellt": 17,
+        "nichtErfuellt": 0,
         "unbekannt": 0
       },
       {
