@@ -16,7 +16,7 @@
 # engines.node >=24.16.0). Alle vier Stellen müssen übereinstimmen, sonst
 # löst der npm-Resolver unterschiedliche Peer-Dep-Versionen auf.
 
-ARG NODE_VERSION=24.17.0-alpine
+ARG NODE_VERSION=24.18.0-alpine
 
 # ─── Stage 1: deps ──────────────────────────────────────────────────────────
 # Installiert nur die Abhängigkeiten. Eigener Stage, damit `npm ci` nur
