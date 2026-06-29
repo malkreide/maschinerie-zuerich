@@ -63,7 +63,7 @@
     "react-leaflet": "^5.0.0"
   },
   "devDependencies": {
-    "@axe-core/playwright": "^4.11.3",
+    "@axe-core/playwright": "^4.12.1",
     "@eslint/eslintrc": "^3.3.5",
     "@playwright/test": "^1.61.1",
     "@tailwindcss/postcss": "^4.3.1",
