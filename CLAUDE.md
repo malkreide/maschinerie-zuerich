@@ -26,6 +26,10 @@ v0 = 2–3 von Hand modellierte Prozesse, die im Vercel-Preview beweisen, dass
 Prozess-Graphen dem Bürger helfen. Erst wenn dieser Nutzen belegt ist, automatisiert
 tessera (v1). Hier nichts bauen, das diesen Nachweis voraussetzt, bevor er steht.
 
+**Stand:** Das Gate ist **passiert** (Abnahme 2026-06-29, siehe
+`docs/v0-gate.md`) — tessera v1 ist freigegeben. Die Leitplanken bleiben:
+kein Auto-Merge, Regression-Guard, Kardinalregel, Hochrisiko-Review.
+
 ## Cardinal Rule – «Link, don't assert»
 
 Rechtlich bindende Werte (Fristen, Gebühren, Rekursfristen) werden **nie** als
