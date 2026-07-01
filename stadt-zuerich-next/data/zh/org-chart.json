@@ -3548,6 +3548,78 @@
       "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
       "stand": "2025",
       "provenance": "aggregiert"
+    },
+    {
+      "id": "B-shz",
+      "name": "Schauspielhaus Zürich AG",
+      "verbunden": "PRD",
+      "rechtsform": "ag",
+      "beteiligungsart": "strategisch",
+      "sektor": "kultur",
+      "zweck": "Betrieb der Sprechbühnen Pfauen und Schiffbau; die Stadt ist Hauptaktionärin und Subventionsgeberin.",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2025",
+      "provenance": "aggregiert"
+    },
+    {
+      "id": "B-tonhalle",
+      "name": "Tonhalle-Gesellschaft Zürich AG",
+      "verbunden": "PRD",
+      "rechtsform": "ag",
+      "beteiligungsart": "strategisch",
+      "sektor": "kultur",
+      "zweck": "Trägerin des Tonhalle-Orchesters Zürich und Veranstalterin des Konzertbetriebs.",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2025",
+      "provenance": "aggregiert"
+    },
+    {
+      "id": "B-neumarkt",
+      "name": "Theater am Neumarkt AG",
+      "verbunden": "PRD",
+      "rechtsform": "ag",
+      "beteiligungsart": "strategisch",
+      "sektor": "kultur",
+      "zweck": "Betrieb des städtisch mitfinanzierten Theaters am Neumarkt.",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2025",
+      "provenance": "aggregiert"
+    },
+    {
+      "id": "B-szu",
+      "name": "Sihltal Zürich Uetliberg Bahn SZU AG",
+      "verbunden": "DIB",
+      "rechtsform": "ag",
+      "beteiligungsart": "strategisch",
+      "sektor": "verkehr",
+      "zweck": "Bahn- und Busbetrieb im Sihltal und auf den Uetliberg im Verbund des ZVV; Stadt Zürich als Aktionärin.",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2025",
+      "provenance": "aggregiert"
+    },
+    {
+      "id": "B-zsg",
+      "name": "Zürichsee-Schifffahrtsgesellschaft (ZSG)",
+      "verbunden": "DIB",
+      "rechtsform": "ag",
+      "beteiligungsart": "strategisch",
+      "sektor": "verkehr",
+      "zweck": "Personenschifffahrt auf dem Zürichsee im Verbund des ZVV; Stadt Zürich als Aktionärin.",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2025",
+      "provenance": "aggregiert"
+    },
+    {
+      "id": "B-zbz",
+      "name": "Stiftung Zentralbibliothek Zürich",
+      "verbunden": "PRD",
+      "rechtsform": "stiftung",
+      "beteiligungsart": "strategisch",
+      "sektor": "kultur",
+      "zweck": "Kantons-, Stadt- und Universitätsbibliothek; gemeinsame Stiftung von Stadt, Kanton und Zentralbibliothek-Gesellschaft.",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2025",
+      "provenance": "aggregiert"
     }
   ]
 }
