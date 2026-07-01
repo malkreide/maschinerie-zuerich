@@ -20,9 +20,9 @@ jobs:
     name: github-labeler
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Labels aus .github/labels.yml synchronisieren
-        uses: crazy-max/ghaction-github-labeler@v5
+        uses: crazy-max/ghaction-github-labeler@v6
         with:
           yaml-file: .github/labels.yml
           skip-delete: true
