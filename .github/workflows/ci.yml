@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
         with:
-          node-version: 24.16.0
+          node-version: 24.18.0
           cache: npm
           cache-dependency-path: stadt-zuerich-next/package-lock.json
       - run: npm ci
@@ -30,7 +30,7 @@ jobs:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
         with:
-          node-version: 24.16.0
+          node-version: 24.18.0
       # Pfade spiegeln die data/zh/-Struktur (scaffold:city legt dieselbe
       # Form für jede weitere Stadt an). Früher lagen diese Dateien in
       # stadt-zuerich-next/data.json bzw. data/manual/lebenslagen.json —
@@ -94,7 +94,7 @@ jobs:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
         with:
-          node-version: 24.16.0
+          node-version: 24.18.0
           cache: npm
           cache-dependency-path: stadt-zuerich-next/package-lock.json
       - run: npm ci
@@ -125,7 +125,7 @@ jobs:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
         with:
-          node-version: 24.16.0
+          node-version: 24.18.0
       # Keine npm-Abhängigkeiten nötig: die reine Ableitungs-Funktion
       # importiert nur node:test + type-only Typen (Node-Type-Stripping).
       - run: npm run test:unit
@@ -145,7 +145,7 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-node@v6
         with:
-          node-version: 24.16.0
+          node-version: 24.18.0
       - name: Basis-Branch holen
         run: git fetch --no-tags origin "$GITHUB_BASE_REF"
       - name: Handgepflegte Texte gegen Basis schützen
@@ -163,7 +163,7 @@ jobs:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
         with:
-          node-version: 24.16.0
+          node-version: 24.18.0
           cache: npm
           cache-dependency-path: stadt-zuerich-next/package-lock.json
       - run: npm ci
