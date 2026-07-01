@@ -591,7 +591,7 @@
         },
         {
           "key": "leichte-sprache",
-          "status": "nicht-erfuellt"
+          "status": "erfuellt"
         },
         {
           "key": "mehrsprachigkeit",
@@ -599,7 +599,7 @@
         },
         {
           "key": "voraussetzungen-genannt",
-          "status": "nicht-erfuellt"
+          "status": "erfuellt"
         },
         {
           "key": "fristen-kosten-verlinkt",
@@ -622,16 +622,16 @@
           "prozent": null
         },
         "nutzendenorientierung": {
-          "erfuellt": 2,
+          "erfuellt": 4,
           "bekannt": 4,
           "unbekannt": 2,
-          "prozent": 50
+          "prozent": 100
         },
         "gesamt": {
-          "erfuellt": 2,
+          "erfuellt": 4,
           "bekannt": 4,
           "unbekannt": 8,
-          "prozent": 50
+          "prozent": 100
         }
       },
       "unbekannt": 8,
@@ -1497,8 +1497,8 @@
       },
       {
         "key": "leichte-sprache",
-        "erfuellt": 13,
-        "nichtErfuellt": 4,
+        "erfuellt": 14,
+        "nichtErfuellt": 3,
         "unbekannt": 0
       },
       {
@@ -1509,8 +1509,8 @@
       },
       {
         "key": "voraussetzungen-genannt",
-        "erfuellt": 8,
-        "nichtErfuellt": 9,
+        "erfuellt": 9,
+        "nichtErfuellt": 8,
         "unbekannt": 0
       },
       {
