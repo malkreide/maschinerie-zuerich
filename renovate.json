@@ -45,7 +45,6 @@
       "description": "Gruppiert Cytoscape + Plugins",
       "matchPackageNames": [
         "cytoscape",
-        "@types/cytoscape",
         "/^cytoscape-/"
       ],
       "groupName": "cytoscape"
