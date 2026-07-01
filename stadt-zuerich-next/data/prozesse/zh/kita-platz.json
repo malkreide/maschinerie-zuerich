@@ -35,6 +35,19 @@
       "source_quote": "Mit dem Beitragsfaktor rechnen wir aus, wie viel Subventionen Sie bekommen. Das hängt davon ab, wie viel Sie verdienen und wie viel Vermögen Sie haben.",
       "status": "verifiziert",
       "retrieved_at": "2026-06-10"
+    },
+    {
+      "reference_id": 2,
+      "label": {
+        "de": "Maximale Weitersubventionierung bei freiwilliger Abwesenheit des Kindes",
+        "en": "",
+        "fr": "",
+        "it": ""
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/faq.html",
+      "source_quote": "Bei subventionierten Kindern werden bei freiwilliger Abwesenheit maximal 7 Wochen weiter subventioniert.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-07-01"
     }
   ],
   "actors": [
@@ -178,6 +191,15 @@
       },
       "loops_back_to": [
         2
+      ],
+      "documents": [
+        {
+          "label": {
+            "de": "Beitragsfaktorbestätigung",
+            "ls": "Die Beitragsfaktorbestätigung."
+          },
+          "required": true
+        }
       ]
     },
     {
@@ -265,7 +287,8 @@
         "de": "Anspruch und Einkommen prüfen",
         "en": "Assess eligibility and income",
         "fr": "Vérifier le droit et le revenu",
-        "it": "Verificare il diritto e il reddito"
+        "it": "Verificare il diritto e il reddito",
+        "ls": "Das Sozialdepartement prüft, wie viele Tage Sie Betreuung brauchen. Dann bekommen Sie die SBU-Bestätigung."
       },
       "depends_on": [
         6
@@ -291,7 +314,23 @@
       "depends_on": [
         7
       ],
-      "type": "entscheidung"
+      "type": "entscheidung",
+      "documents": [
+        {
+          "label": {
+            "de": "Beitragsfaktorbestätigung",
+            "ls": "Die Beitragsfaktorbestätigung."
+          },
+          "required": true
+        },
+        {
+          "label": {
+            "de": "Bestätigung über den subventionsberechtigten Betreuungsumfang (SBU)",
+            "ls": "Die SBU-Bestätigung."
+          },
+          "required": true
+        }
+      ]
     },
     {
       "step_id": 9,
@@ -317,7 +356,10 @@
         "en": "The amount depends on relevant income, employment level and care volume.",
         "fr": "Le montant dépend du revenu déterminant, du taux d'activité et de l'ampleur de la garde.",
         "it": "L'importo dipende dal reddito determinante, dal grado di occupazione e dall'entità della custodia."
-      }
+      },
+      "reference_ids": [
+        1
+      ]
     },
     {
       "step_id": 10,
@@ -571,5 +613,23 @@
     "aktualisiert": "2026-06-10",
     "maintainer": "malkreide",
     "lizenz": "CC-BY-4.0"
-  }
+  },
+  "preconditions": [
+    {
+      "de": "Sie müssen in der Stadt Zürich wohnen.",
+      "ls": "Sie wohnen in der Stadt Zürich."
+    },
+    {
+      "de": "Ihre Kita muss einen Vertrag für Subventionen (Kontrakt) haben.",
+      "ls": "Ihre Kita hat einen Vertrag für Subventionen mit der Stadt."
+    },
+    {
+      "de": "Sie müssen niedrige bis mittlere Einkommens- und Vermögensverhältnisse nachweisen.",
+      "ls": "Ihr Einkommen und Ihr Vermögen sind niedrig bis mittel."
+    },
+    {
+      "de": "Sie müssen angeben, in welchem Umfang (wie viele Tage pro Woche) Sie auf die Kinderbetreuung angewiesen sind.",
+      "ls": "Sie sagen, wie viele Tage pro Woche Sie Betreuung brauchen."
+    }
+  ]
 }
