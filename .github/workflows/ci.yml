@@ -153,6 +153,30 @@ jobs:
         env:
           NO_COLOR: '1'
 
+  referenz-gate:
+    name: Referenzen-Gate (Liveness + Verbatim für geänderte References)
+    # Prüft nur die im PR neu hinzugefügten/geänderten References live gegen
+    # ihre Quelle (toter Deep-Link bzw. source_quote nicht wörtlich auf der
+    # Seite → Fehler). Bestandsdaten deckt der wöchentliche link-rot.yml ab.
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: stadt-zuerich-next
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24.18.0
+      - name: Basis-Branch holen
+        run: git fetch --no-tags origin "$GITHUB_BASE_REF"
+      - name: Neue/geänderte References live prüfen
+        run: npm run check:refs
+        env:
+          NO_COLOR: '1'
+
   a11y:
     name: Accessibility (Playwright + axe-core)
     runs-on: ubuntu-latest

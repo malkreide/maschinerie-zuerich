@@ -25,6 +25,7 @@
     "check:links:online": "node scripts/check-links.mjs --online",
     "check:links:online:strict": "node scripts/check-links.mjs --online --strict",
     "check:regression": "node scripts/check-prozess-regression.mjs",
+    "check:refs": "node scripts/check-refs-gate.mjs",
     "build:portfolio": "node --experimental-strip-types scripts/build-portfolio.mjs",
     "check:portfolio": "node --experimental-strip-types scripts/build-portfolio.mjs --check",
     "extract:quotes": "node scripts/extract-quotes.mjs",

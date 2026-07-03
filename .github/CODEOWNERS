@@ -1,0 +1,28 @@
+# CODEOWNERS — Pflicht-Review des Maintainers für die Pfade, an denen die
+# Schutzmechanismen der Maschinerie hängen. Wirkt nur zusammen mit der
+# Branch-Protection-Regel «Require review from Code Owners» auf `main`
+# (siehe docs/branch-protection.md).
+#
+# Warum: bei `pull_request`-Workflows läuft die Workflow-Datei aus dem
+# PR-Head. Ohne Owner-Review könnte ein PR den Regression-Guard-Job
+# entfernen oder Escape-Hatches (ALLOW_PROZESS_SHRINK) injizieren und so
+# alle Daten-Gates umgehen.
+
+# CI-Workflows und dieses File selbst
+/.github/ @malkreide
+
+# Kanonischer Datenvertrag + JSON-Schemas
+/docs/process-data-contract.md @malkreide
+/stadt-zuerich-next/schemas/ @malkreide
+
+# Prozessdaten (Kardinalregel, Hochrisiko-Fälle, Handdaten)
+/stadt-zuerich-next/data/prozesse/ @malkreide
+
+# Die Guard-Skripte, die die CI-Gates implementieren
+/stadt-zuerich-next/scripts/validate-prozesse.mjs @malkreide
+/stadt-zuerich-next/scripts/check-prozess-regression.mjs @malkreide
+/stadt-zuerich-next/scripts/check-links.mjs @malkreide
+/stadt-zuerich-next/scripts/check-refs-gate.mjs @malkreide
+
+# Verbindliche Session-Regeln für Agents
+/CLAUDE.md @malkreide

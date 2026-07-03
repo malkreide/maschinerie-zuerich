@@ -13,7 +13,9 @@ import type { SchrittTyp } from '@/types/prozess';
 
 export interface ProzessNodeReferenz {
   label: string;
-  url: string;
+  /** Bereits durch safeUrl() geprüfte Quell-URL (lib/safe-url.ts).
+   *  undefined = URL unsicher/fehlend → Label wird als Text gerendert. */
+  url?: string;
   /** true = Beleg noch nicht wörtlich gegen die Quelle geprüft. Wird im Node
    *  dezent als „ungeprüft" markiert — nie als bestätigter Wert dargestellt
    *  (Kardinalregel). */
@@ -69,23 +71,35 @@ function MetaRow({
   if (!referenzen || referenzen.length === 0) return null;
   return (
     <div className="mt-1 text-[11px] flex gap-2 flex-wrap">
-      {referenzen.map((r) => (
-        <a
-          key={r.url + r.label}
-          href={r.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-[var(--color-accent)] underline decoration-dotted hover:decoration-solid"
-          title={r.unverifiziert ? unverifiziertLabel : undefined}
-        >
-          {r.unverifiziert && (
-            // Kompakter „ungeprüft"-Marker im Node; der volle Hinweis steht im
-            // title-Tooltip und ausgeschrieben in der textuellen Schrittliste.
-            <span className="text-amber-700" aria-label={unverifiziertLabel}>⚠ </span>
-          )}
-          {r.label} ↗
-        </a>
-      ))}
+      {referenzen.map((r) => {
+        const marker = r.unverifiziert && (
+          // Kompakter „ungeprüft"-Marker im Node; der volle Hinweis steht im
+          // title-Tooltip und ausgeschrieben in der textuellen Schrittliste.
+          <span className="text-amber-700" aria-label={unverifiziertLabel}>⚠ </span>
+        );
+        return r.url ? (
+          <a
+            key={`${r.url}|${r.label}`}
+            href={r.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[var(--color-accent)] underline decoration-dotted hover:decoration-solid"
+            title={r.unverifiziert ? unverifiziertLabel : undefined}
+          >
+            {marker}
+            {r.label} ↗
+          </a>
+        ) : (
+          <span
+            key={`|${r.label}`}
+            className="text-[var(--color-accent)]"
+            title={r.unverifiziert ? unverifiziertLabel : undefined}
+          >
+            {marker}
+            {r.label}
+          </span>
+        );
+      })}
     </div>
   );
 }

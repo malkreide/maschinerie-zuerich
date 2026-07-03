@@ -24,6 +24,7 @@ import {
   type KategorieScore,
 } from '@/lib/bewertung';
 import { ankerFor } from '@/lib/bewertung-anker';
+import { safeUrl } from '@/lib/safe-url';
 import type { Prozess } from '@/types/prozess';
 
 /** Gleiche String-basierte Translator-Signatur wie getT zurückgibt. */
@@ -60,14 +61,18 @@ function Evidenz({ ind, t }: { ind: IndikatorResult; t: T }) {
         <span className="font-medium text-[var(--color-ink)]">
           {t('bewertung.evidenz.belegLabel')}:
         </span>{' '}
-        <a
-          href={ev.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-[var(--color-accent)] underline decoration-dotted hover:decoration-solid"
-        >
-          {ev.url} ↗
-        </a>
+        {safeUrl(ev.url) ? (
+          <a
+            href={safeUrl(ev.url)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[var(--color-accent)] underline decoration-dotted hover:decoration-solid"
+          >
+            {ev.url} ↗
+          </a>
+        ) : (
+          <span>{ev.url}</span>
+        )}
         {ev.unverifiziert && (
           <span className="ml-2 text-[11px] px-1.5 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-200">
             {t('referenzUnverifiziert')}
@@ -92,9 +97,9 @@ function Evidenz({ ind, t }: { ind: IndikatorResult; t: T }) {
           <span className="font-medium text-[var(--color-ink)]">
             {t('bewertung.ankerLabel')}:
           </span>{' '}
-          {anker.url ? (
+          {safeUrl(anker.url) ? (
             <a
-              href={anker.url}
+              href={safeUrl(anker.url)}
               target="_blank"
               rel="noopener noreferrer"
               className="text-[var(--color-accent)] underline decoration-dotted hover:decoration-solid"

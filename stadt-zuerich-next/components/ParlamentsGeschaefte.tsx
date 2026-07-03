@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { safeUrl } from '@/lib/safe-url';
 
 type Geschaeft = {
   id: string;
@@ -104,14 +105,12 @@ export default function ParlamentsGeschaefte({ departmentName }: { departmentNam
         {t('heading')}
       </h4>
       <ul className="space-y-2 m-0 p-0 list-none">
-        {items.map(item => (
-          <li key={item.id} className="text-xs">
-            <a 
-              href={item.link} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="group block hover:bg-[var(--color-bg)] p-1.5 -mx-1.5 rounded transition-colors no-underline"
-            >
+        {items.map(item => {
+          // item.link stammt aus extern geparster RIS-XML — nur mit
+          // sicherer URL verlinken (lib/safe-url.ts), sonst reiner Text.
+          const href = safeUrl(item.link);
+          const body = (
+            <>
               <div className="font-medium text-[var(--color-ink)] group-hover:text-[var(--color-accent)] leading-tight mb-0.5">
                 {item.titel}
               </div>
@@ -119,9 +118,25 @@ export default function ParlamentsGeschaefte({ departmentName }: { departmentNam
                 <span>{item.geschaeftsart}</span>
                 <span>{new Date(item.datum).toLocaleDateString('de-CH')}</span>
               </div>
-            </a>
-          </li>
-        ))}
+            </>
+          );
+          return (
+            <li key={item.id} className="text-xs">
+              {href ? (
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block hover:bg-[var(--color-bg)] p-1.5 -mx-1.5 rounded transition-colors no-underline"
+                >
+                  {body}
+                </a>
+              ) : (
+                <div className="p-1.5 -mx-1.5">{body}</div>
+              )}
+            </li>
+          );
+        })}
       </ul>
       {officialSearchLink}
     </div>
