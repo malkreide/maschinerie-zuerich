@@ -30,6 +30,7 @@ import ProzessFlow, {
 import ReifegradBadge from '@/components/ReifegradBadge';
 import ProzessKompass from '@/components/prozess/ProzessKompass';
 import ProzessBewertung from '@/components/prozess/ProzessBewertung';
+import MicroFeedback from '@/components/MicroFeedback';
 
 // Nur Zürich hat aktuell ein Org-Chart; andere Städte bekommen keinen
 // einheit_ref-Link (Mapping aus validate-prozesse.mjs bewusst nicht
@@ -210,9 +211,19 @@ export default async function ProzessDetailPage({
   const kurz  = resolveI18n(prozess.description, lebLoc);
   const reife = prozess.reife;
 
-  // "Übersetzung ausstehend": Locale ohne eigene Titel-Fassung fällt auf
-  // Deutsch zurück — sichtbar gekennzeichnet, nicht maschinell übersetzt.
-  const translationPending = loc !== 'de' && !hasOwnLocale(prozess.title, lebLoc);
+  // "Übersetzung ausstehend": fällt IRGENDEIN gerenderter Text (Titel,
+  // Schritt-Label/-Beschreibung, Referenz-Label) still auf Deutsch zurück,
+  // wird das sichtbar gekennzeichnet. Früher zählte nur der Titel — dadurch
+  // blieben Sprach-Lücken auf Schritt-Ebene (gerade in Leichter Sprache bei
+  // den Hochrisiko-Fällen) unmarkiert.
+  const translationPending = loc !== 'de' && (
+    !hasOwnLocale(prozess.title, lebLoc)
+    || !hasOwnLocale(prozess.description, lebLoc)
+    || prozess.steps.some(
+      (s) => !hasOwnLocale(s.label, lebLoc) || !hasOwnLocale(s.description, lebLoc),
+    )
+    || (prozess.references ?? []).some((r) => !hasOwnLocale(r.label, lebLoc))
+  );
 
   // Inoffiziell-Hinweis: Key aus dem Datensatz (Default 'Prozesse.disclaimer').
   // Wir unterstützen nur das Prozesse-Namespace — andere Namespaces wären
@@ -589,6 +600,13 @@ export default async function ProzessDetailPage({
           </ul>
         </section>
       )}
+
+      {/* Rückkanal direkt auf der inhaltstiefsten Seite: gerade hier (Fristen,
+          Gebühren, Rechtsmittel) sollen Bürger:innen Fehler melden können —
+          contextId "<city>/<id>" macht das Feedback dem Verfahren zuordenbar. */}
+      <div className="max-w-[80ch]">
+        <MicroFeedback contextId={prozessSlug} />
+      </div>
     </main>
   );
 }
