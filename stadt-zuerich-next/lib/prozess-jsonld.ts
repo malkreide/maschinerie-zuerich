@@ -124,3 +124,12 @@ export function prozessToJsonLd(prozess: Prozess, opts: {
 
   return ld;
 }
+
+/** Serialisiert JSON-LD für ein Inline-`<script>` XSS-sicher.
+ *  `JSON.stringify` escaped `<` nicht — ein `</script><script>…` in einem
+ *  Datenfeld (Prozess-Titel/-Beschreibung aus tessera-PRs) würde aus dem
+ *  Script-Tag ausbrechen. Die Escape-Sequenz `\u003c` ist in JSON dasselbe
+ *  Zeichen wie `<`, für den HTML-Parser aber harmlos. */
+export function serializeJsonLd(ld: Record<string, unknown>): string {
+  return JSON.stringify(ld).replace(/</g, '\\u003c');
+}

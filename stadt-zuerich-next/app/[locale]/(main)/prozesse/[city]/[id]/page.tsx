@@ -18,7 +18,8 @@ import { loadStadtData } from '@/lib/data';
 import { resolveContent } from '@/lib/search';
 import { city as cityConfig } from '@/config/city.config';
 import { layoutProzess } from '@/lib/prozess-layout';
-import { prozessToJsonLd } from '@/lib/prozess-jsonld';
+import { prozessToJsonLd, serializeJsonLd } from '@/lib/prozess-jsonld';
+import { safeUrl } from '@/lib/safe-url';
 import { resolveI18n, dependsOnId, dependsOnCondition, type ProzessLocale, type Reference } from '@/types/prozess';
 import type { Department, Unit, Beteiligung, StadtData, LebenslageLocale, Lebenslage, LebenslageContent } from '@/types/stadt';
 import ProzessFlow, {
@@ -136,7 +137,9 @@ export default async function ProzessDetailPage({
       .filter((r): r is Reference => r !== undefined)
       .map((r) => ({
         label: resolveI18n(r.label, lebLoc),
-        url: r.source_url,
+        // safeUrl: nur http(s)/relativ darf in ein href — undefined rendert
+        // das Label als Text (Laufzeitschutz, s. lib/safe-url.ts).
+        url: safeUrl(r.source_url),
         unverifiziert: r.status === 'unverifiziert',
       }));
 
@@ -233,6 +236,9 @@ export default async function ProzessDetailPage({
   const canonicalUrl = `${baseUrl}${localePrefix}/prozesse/${city}/${id}`;
   const jsonLd = prozessToJsonLd(prozess, { locale: loc, canonicalUrl });
 
+  // Primäre Quelle des Disclaimers: nur mit sicherer URL als Link rendern.
+  const sourceHref = safeUrl(prozess.source_url);
+
   return (
     <main
       className="absolute top-14 inset-x-0 bottom-0 px-4 sm:px-6 pt-4 pb-10 overflow-y-auto bg-[var(--color-bg)]"
@@ -244,7 +250,7 @@ export default async function ProzessDetailPage({
           unterbringt — Suchmaschinen parsen beide Orte gleich. */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
       <nav aria-label="Breadcrumb" className="text-[13px] text-[var(--color-mute)] mb-3">
         <Link href={{ pathname: '/prozesse' }} className="hover:underline">
@@ -284,14 +290,18 @@ export default async function ProzessDetailPage({
           </strong>
         )}
         {t(disclaimerKey)}{' '}
-        <a
-          href={prozess.source_url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline"
-        >
-          {prozess.sources?.[0]?.title ?? prozess.source_url}
-        </a>
+        {sourceHref ? (
+          <a
+            href={sourceHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline"
+          >
+            {prozess.sources?.[0]?.title ?? prozess.source_url}
+          </a>
+        ) : (
+          <span>{prozess.sources?.[0]?.title ?? prozess.source_url}</span>
+        )}
         <span> ({t('retrieved', { date: prozess.retrieved_at })})</span>
       </aside>
 
@@ -472,15 +482,19 @@ export default async function ProzessDetailPage({
               {s.referenzen && s.referenzen.length > 0 && (
                 <div className="mt-1 text-[12px] flex gap-3 flex-wrap items-baseline">
                   {s.referenzen.map((r) => (
-                    <span key={r.url + r.label} className="inline-flex items-baseline gap-1">
-                      <a
-                        href={r.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-[var(--color-accent)] underline decoration-dotted hover:decoration-solid"
-                      >
-                        {r.label} ↗
-                      </a>
+                    <span key={`${r.url ?? ''}|${r.label}`} className="inline-flex items-baseline gap-1">
+                      {r.url ? (
+                        <a
+                          href={r.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[var(--color-accent)] underline decoration-dotted hover:decoration-solid"
+                        >
+                          {r.label} ↗
+                        </a>
+                      ) : (
+                        <span className="text-[var(--color-accent)]">{r.label}</span>
+                      )}
                       {r.unverifiziert && (
                         <span className="text-[11px] px-1.5 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-200">
                           {t('referenzUnverifiziert')}
@@ -502,14 +516,18 @@ export default async function ProzessDetailPage({
           <ul className="list-disc list-inside text-sm space-y-1">
             {prozess.references.map((r) => (
               <li key={r.reference_id}>
-                <a
-                  href={r.source_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline"
-                >
-                  {resolveI18n(r.label, lebLoc)}
-                </a>
+                {safeUrl(r.source_url) ? (
+                  <a
+                    href={safeUrl(r.source_url)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline"
+                  >
+                    {resolveI18n(r.label, lebLoc)}
+                  </a>
+                ) : (
+                  <span>{resolveI18n(r.label, lebLoc)}</span>
+                )}
                 <span className="ml-2 text-[11px] text-[var(--color-mute)]">
                   ({t('retrieved', { date: r.retrieved_at })})
                 </span>
@@ -533,15 +551,18 @@ export default async function ProzessDetailPage({
         <section aria-labelledby="legal-heading" className="max-w-[80ch] mt-6">
           <h3 id="legal-heading" className="text-base font-semibold mb-2">{t('legalHeading')}</h3>
           <ul className="list-disc list-inside text-sm text-[var(--color-mute)] space-y-1">
-            {prozess.legal_basis.map((r, i) => (
-              <li key={i}>
-                {r.url ? (
-                  <a href={r.url} target="_blank" rel="noopener noreferrer" className="underline">
-                    {r.label}
-                  </a>
-                ) : r.label}
-              </li>
-            ))}
+            {prozess.legal_basis.map((r, i) => {
+              const u = safeUrl(r.url);
+              return (
+                <li key={i}>
+                  {u ? (
+                    <a href={u} target="_blank" rel="noopener noreferrer" className="underline">
+                      {r.label}
+                    </a>
+                  ) : r.label}
+                </li>
+              );
+            })}
           </ul>
         </section>
       )}
@@ -550,14 +571,21 @@ export default async function ProzessDetailPage({
         <section aria-labelledby="sources-heading" className="max-w-[80ch] mt-6">
           <h3 id="sources-heading" className="text-base font-semibold mb-2">{t('sourcesHeading')}</h3>
           <ul className="list-disc list-inside text-sm text-[var(--color-mute)] space-y-1">
-            {prozess.sources.map((q) => (
-              <li key={q.id}>
-                <a href={q.url} target="_blank" rel="noopener noreferrer" className="underline">
-                  {q.title}
-                </a>
-                <span className="ml-2 text-[11px]">({t('retrieved', { date: q.retrieved_at })})</span>
-              </li>
-            ))}
+            {prozess.sources.map((q) => {
+              const u = safeUrl(q.url);
+              return (
+                <li key={q.id}>
+                  {u ? (
+                    <a href={u} target="_blank" rel="noopener noreferrer" className="underline">
+                      {q.title}
+                    </a>
+                  ) : (
+                    <span>{q.title}</span>
+                  )}
+                  <span className="ml-2 text-[11px]">({t('retrieved', { date: q.retrieved_at })})</span>
+                </li>
+              );
+            })}
           </ul>
         </section>
       )}
