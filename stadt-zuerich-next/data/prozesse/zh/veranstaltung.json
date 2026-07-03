@@ -29,7 +29,8 @@
         "de": "Empfohlene Vorlaufzeit für Bewilligungsgesuche (je nach Anlassgrösse)",
         "en": "Recommended lead time for permit applications (depends on event size)",
         "fr": "Délai recommandé pour les demandes d'autorisation (selon la taille de la manifestation)",
-        "it": "Tempo di preavviso consigliato per le domande di autorizzazione (a seconda delle dimensioni della manifestazione)"
+        "it": "Tempo di preavviso consigliato per le domande di autorizzazione (a seconda delle dimensioni della manifestazione)",
+        "ls": "So früh sollten Sie das Gesuch schicken: Das hängt von der Grösse vom Fest ab"
       },
       "source_url": "https://www.stadt-zuerich.ch/de/stadtleben/veranstaltungen-und-bewilligungen/veranstaltungen/fest-sportveranstaltung-quartierfest.html",
       "source_quote": "Bitte informieren Sie sich ausführlich, bevor Sie das Gesuch ausfüllen und reichen Sie dieses spätestens vier Wochen vor dem Veranstaltungsbeginn ein.",
@@ -183,7 +184,8 @@
         "de": "Gesuch prüfen, Fachstellen einholen",
         "en": "Review application, consult specialist offices",
         "fr": "Examiner la demande, consulter les services spécialisés",
-        "it": "Esaminare la domanda, consultare i servizi specializzati"
+        "it": "Esaminare la domanda, consultare i servizi specializzati",
+        "ls": "Die Stadt-Polizei prüft das Gesuch und fragt andere Ämter"
       },
       "depends_on": [
         3
@@ -292,7 +294,8 @@
         "de": "Bewilligung mit Auflagen (Lärmzeiten, Sicherheit, Reinigung, Verkehr) und Gebühr.",
         "en": "Permit with conditions (noise hours, safety, cleaning, traffic) and fee.",
         "fr": "Autorisation assortie de conditions (horaires de bruit, sécurité, nettoyage, circulation) et émolument.",
-        "it": "Autorizzazione con condizioni (orari del rumore, sicurezza, pulizia, traffico) e tassa."
+        "it": "Autorizzazione con condizioni (orari del rumore, sicurezza, pulizia, traffico) e tassa.",
+        "ls": "Sie bekommen die Erlaubnis mit Regeln. Zum Beispiel: Wann darf es laut sein? Wer räumt auf? Die Bewilligung kostet eine Gebühr."
       }
     },
     {

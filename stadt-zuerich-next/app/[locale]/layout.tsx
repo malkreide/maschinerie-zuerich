@@ -2,7 +2,8 @@ import '../globals.css';
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import { notFound } from 'next/navigation';
-import { NextIntlClientProvider, hasLocale } from 'next-intl';
+import { hasLocale } from 'next-intl';
+import IntlProvider from '@/components/IntlProvider';
 import { getTheme } from '@/lib/theme';
 import { routing, type Locale } from '@/i18n/routing';
 import { getT, getMessages } from '@/lib/i18n-server';
@@ -43,9 +44,9 @@ export default async function LocaleLayout({
         />
       </head>
       <body className="font-sans antialiased">
-        <NextIntlClientProvider locale={locale} messages={messages}>
+        <IntlProvider locale={locale} messages={messages}>
           {children}
-        </NextIntlClientProvider>
+        </IntlProvider>
       </body>
     </html>
   );

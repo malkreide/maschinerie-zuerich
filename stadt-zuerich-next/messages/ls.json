@@ -100,6 +100,10 @@
     "language": "Sprache",
     "expandAll": "Alles aufklappen",
     "collapseAll": "Alles zuklappen",
+    "climateToggle": "🌡️ Klima-Anzeige",
+    "climateToggleTitle": "Zeigt an: So wirkt sich das Geld auf das Klima aus.",
+    "diversityToggle": "👥 Frauen und Männer in der Leitung",
+    "diversityToggleTitle": "Zeigt für jeden Bereich: So viele Frauen und Männer sind in der Leitung. Als Kreis-Bild.",
     "portfolio": "Überblick"
   },
   "Search": {
@@ -170,6 +174,8 @@
     "searchPlaceholder": "zum Beispiel: Steueramt, Schule, VBZ",
     "resultsCount": "{count, plural, one {# Treffer} other {# Treffer}} für „{query}\"",
     "noResults": "Nichts gefunden. Bitte ein anderes Wort versuchen.",
+    "anliegenHeading": "Passende Anliegen",
+    "anliegenZustaendig": "Diese Stelle hilft",
     "department": "Departement",
     "beteiligung": "Beteiligung",
     "beteiligungenHeading": "Beteiligungen",
@@ -247,17 +253,21 @@
     "phaseBudget": "Geplant",
     "phaseProposal": "Vorschlag",
     "phaseAccount": "Wirklich ausgegeben",
+    "fteUnitFallback": "Stellen",
+    "fteUnitPublished": "{value} {einheit} (sichere Zahl)",
+    "fteEstimateText": "Etwa {value} Stellen (Schätzung: Lohn geteilt durch {amount} Franken)",
+    "relatedProzesseHeading": "Diese Stelle hilft bei diesen Abläufen",
+    "relatedLebenslagenHeading": "Diese Anliegen passen zu dieser Stelle",
     "perCapitaLabel": "Pro Person",
     "perCapitaValue": "≈ {value}",
     "perCapitaTitle": "So viel Geld pro Person. Wir teilen das Geld durch alle Menschen, die in der Stadt wohnen.",
     "budgetShareLabel": "Anteil vom ganzen Geld",
     "budgetShareValue": "{percent} %",
     "budgetShareTitle": "So viel Prozent vom ganzen Geld der Stadt geht hierher.",
-    "fteUnitFallback": "Stellen",
-    "fteUnitPublished": "{value} {einheit} (sichere Zahl)",
-    "fteEstimateText": "Etwa {value} Stellen (Schätzung: Lohn geteilt durch {amount} Franken)",
-    "relatedProzesseHeading": "Diese Stelle hilft bei diesen Abläufen",
-    "relatedLebenslagenHeading": "Diese Anliegen passen zu dieser Stelle"
+    "detailDiversity": "Frauen und Männer in der Leitung",
+    "detailDiversityDesc": "So viele Frauen und Männer sind in der Leitung",
+    "detailDiversityWomen": "Frauen",
+    "detailDiversityMen": "Männer"
   },
   "Legend": {
     "headingTop": "Die Chefs der Stadt",
@@ -457,6 +467,14 @@
         "kein": "wir haben es selbst gewählt"
       }
     }
+  },
+  "GraphTable": {
+    "caption": "Tabelle mit den Daten aus dem Schau-Bild",
+    "colName": "Bereich oder Amt",
+    "colType": "Art",
+    "colParent": "Gehört zu",
+    "colBudget": "Ausgaben (CHF)",
+    "colFte": "Stellen"
   },
   "Export": {
     "csvButton": "Alles als CSV-Liste herunter-laden"

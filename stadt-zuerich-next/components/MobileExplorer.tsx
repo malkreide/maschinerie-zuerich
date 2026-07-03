@@ -6,10 +6,10 @@
 // Expand/Collapse (eingebaute Tastatur-/Screenreader-Bedienung).
 
 import { useMemo, useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
-import type { StadtData, Department, Unit, Beteiligung } from '@/types/stadt';
-import { fmtCHF, fmtNumber } from '@/lib/search';
+import type { StadtData, Department, Unit, Beteiligung, LebenslageLocale } from '@/types/stadt';
+import { fmtCHF, fmtNumber, searchLebenslagen, resolveContent } from '@/lib/search';
 
 export interface ExplorerRelatedProzess {
   id: string;
@@ -24,6 +24,7 @@ type Props = {
 
 export default function MobileExplorer({ data, relatedProzesse }: Props) {
   const t = useTranslations('Explorer');
+  const locale = useLocale() as LebenslageLocale;
   const [q, setQ] = useState('');
   const norm = q.trim().toLowerCase();
 
@@ -55,8 +56,27 @@ export default function MobileExplorer({ data, relatedProzesse }: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [norm, data]);
 
+  // Anliegen-Einstieg wie in der Desktop-Suche: dieselbe Fuzzy-Suche mit
+  // Synonym-Expansion («Hund anmelden» → Steueramt). Vorher konnte Mobile
+  // nur Org-Einheiten per Substring finden — der beworbene Lebenslagen-
+  // Einstieg fehlte auf kleinen Bildschirmen komplett.
+  const anliegen = useMemo(() => {
+    if (!norm) return [];
+    return searchLebenslagen(q, data.lebenslagen ?? [], locale)
+      .map((l) => ({ l, c: resolveContent(l, locale) }))
+      .filter((x): x is { l: (typeof x)['l']; c: NonNullable<(typeof x)['c']> } => x.c != null);
+  }, [norm, q, data, locale]);
+
+  const einheitById = useMemo(() => {
+    const m = new Map<string, Department | Unit | Beteiligung>();
+    for (const d of data.departments) m.set(d.id, d);
+    for (const u of data.units) m.set(u.id, u);
+    for (const b of data.beteiligungen) m.set(b.id, b);
+    return m;
+  }, [data]);
+
   const totalResults = results
-    ? results.departments.length + results.units.length + results.beteiligungen.length
+    ? results.departments.length + results.units.length + results.beteiligungen.length + anliegen.length
     : 0;
 
   return (
@@ -86,6 +106,37 @@ export default function MobileExplorer({ data, relatedProzesse }: Props) {
           </p>
           {totalResults === 0 && (
             <p className="text-[var(--color-mute)] text-sm">{t('noResults')}</p>
+          )}
+          {anliegen.length > 0 && (
+            <div className="mb-3">
+              <h3 className="text-[11px] uppercase tracking-wider text-[var(--color-mute)] mb-1.5">
+                {t('anliegenHeading')}
+              </h3>
+              {anliegen.map(({ l, c }) => {
+                const einheit = einheitById.get(l.zustaendig);
+                return (
+                  <details
+                    key={`a-${l.id}`}
+                    className="mb-1.5 rounded-lg border border-[var(--color-line)] bg-[var(--color-panel)]"
+                  >
+                    <summary className="cursor-pointer px-3 py-2 select-none">
+                      <span className="text-sm text-[var(--color-ink)]">{c.frage}</span>
+                      {einheit && (
+                        <span className="block text-[11px] text-[var(--color-mute)]">
+                          {t('anliegenZustaendig')}: {einheit.name}
+                        </span>
+                      )}
+                    </summary>
+                    <div className="px-3 pb-2">
+                      <p className="text-[13px] text-[var(--color-ink)] mt-1 mb-2">{c.antwort}</p>
+                      {einheit && (
+                        <Facts item={einheit} related={relatedProzesse[einheit.id]} t={t} />
+                      )}
+                    </div>
+                  </details>
+                );
+              })}
+            </div>
           )}
           {results.departments.map((dep) => (
             <ItemCard

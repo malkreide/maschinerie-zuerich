@@ -23,13 +23,25 @@ function isBlocking(v: Result): boolean {
 }
 
 // Locale-präfixierte Routen (localePrefix: 'always'). '/' redirectet auf '/de'.
+//
+// Nicht nur Deutsch: die a11y-Zusage gilt für alle 5 Sprachen. Fehlende
+// i18n-Keys liessen früher rohe Key-Strings im Screenreader-Fallback der
+// Nicht-DE-Locales rendern — von den axe-Läufen unbemerkt, weil nur /de
+// geprüft wurde. Deshalb decken /en und /ls (Leichte Sprache) die Haupt-
+// ansicht mit ab, und die Hochrisiko-Prozesse (baugesuch, sozialhilfe)
+// laufen zusätzlich zu parkplatz durch das Gate — auch in Leichter Sprache.
 const ROUTES = [
   '/de',
+  '/en',
+  '/ls',
   '/de/liste',
   '/de/anliegen',
   '/de/steuerfranken',
   '/de/prozesse',
   '/de/prozesse/zh/parkplatz',
+  '/de/prozesse/zh/baugesuch',
+  '/ls/prozesse/zh/baugesuch',
+  '/en/prozesse/zh/sozialhilfe',
   '/de/portfolio',
   '/de/roadmap',
 ];

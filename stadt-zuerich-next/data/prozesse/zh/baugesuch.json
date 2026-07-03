@@ -29,7 +29,8 @@
         "de": "Gebühr für das Baugesuch (abhängig von der Bausumme)",
         "en": "Building-permit fee (depends on construction cost)",
         "fr": "Émolument pour la demande de permis de construire (selon le coût de construction)",
-        "it": "Tassa per la domanda di licenza edilizia (in funzione del costo di costruzione)"
+        "it": "Tassa per la domanda di licenza edilizia (in funzione del costo di costruzione)",
+        "ls": "Kosten für das Baugesuch: Das hängt davon ab, wie teuer der Bau ist"
       },
       "source_url": "https://www.stadt-zuerich.ch/de/planen-und-bauen/baubewilligungen/bewilligungsprozess/fristen-und-gebuehren.html",
       "source_quote": "Bauentscheide und Bauabnahmen sind kostenpflichtig. Die Höhe der Gebühr hängt bei Neubauten vom Bauvolumen und bei Umbauten von den Baukosten ab.",
@@ -138,7 +139,8 @@
         "de": "Pläne, Projektbeschrieb, Nachweise (Energie, Schall, Statik) und Formulare gemäss Wegleitung zusammenstellen.",
         "en": "Plans, project description, evidence of energy/acoustics/statics and application forms.",
         "fr": "Réunir les plans, la description du projet, les justificatifs (énergie, acoustique, statique) et les formulaires selon le guide.",
-        "it": "Raccogliere piani, descrizione del progetto, attestati (energia, acustica, statica) e moduli secondo la guida."
+        "it": "Raccogliere piani, descrizione del progetto, attestati (energia, acustica, statica) e moduli secondo la guida.",
+        "ls": "Du sammelst: Pläne, eine Beschreibung von deinem Bau-Projekt und alle Formulare. Eine Anleitung vom Amt sagt dir: Diese Papiere brauchst du."
       },
       "documents": [
         {
@@ -216,7 +218,8 @@
         "de": "Formelle Vorprüfung",
         "en": "Formal completeness check",
         "fr": "Examen préalable formel",
-        "it": "Esame preliminare formale"
+        "it": "Esame preliminare formale",
+        "ls": "Das Amt schaut die Papiere zuerst an"
       },
       "depends_on": [
         3
@@ -226,7 +229,8 @@
         "de": "Prüfung, ob das Gesuch vollständig und bearbeitbar ist.",
         "en": "Check whether the application is complete and ready for processing.",
         "fr": "Vérification que la demande est complète et peut être traitée.",
-        "it": "Verifica che la domanda sia completa ed evadibile."
+        "it": "Verifica che la domanda sia completa ed evadibile.",
+        "ls": "Das Amt schaut: Sind alle Papiere da? Kann das Amt damit arbeiten?"
       }
     },
     {
@@ -315,7 +319,8 @@
         "de": "Einsprachen behandeln",
         "en": "Process objections",
         "fr": "Traiter les oppositions",
-        "it": "Trattare le opposizioni"
+        "it": "Trattare le opposizioni",
+        "ls": "Das Amt schaut die Einwände an"
       },
       "depends_on": [
         {
@@ -334,7 +339,8 @@
         "de": "Kantonale Fachstellen anhören (Zirkulationsverfahren)",
         "en": "Cantonal specialist review",
         "fr": "Consultation des services spécialisés cantonaux (procédure de circulation)",
-        "it": "Consultazione dei servizi specializzati cantonali (procedura di circolazione)"
+        "it": "Consultazione dei servizi specializzati cantonali (procedura di circolazione)",
+        "ls": "Ämter vom Kanton prüfen mit"
       },
       "depends_on": [
         9,
@@ -354,7 +360,8 @@
         "de": "Materielle Prüfung (BZO, PBG, Lärm, Brandschutz …)",
         "en": "Substantive review",
         "fr": "Examen matériel (BZO, PBG, bruit, protection incendie …)",
-        "it": "Esame materiale (BZO, PBG, rumore, protezione antincendio …)"
+        "it": "Esame materiale (BZO, PBG, rumore, protezione antincendio …)",
+        "ls": "Das Amt prüft: Sind alle Bau-Regeln eingehalten?"
       },
       "depends_on": [
         10
@@ -438,7 +445,8 @@
         "de": "Rekursverfahren Baurekursgericht",
         "en": "Appeal proceedings",
         "fr": "Procédure de recours devant le Tribunal des recours en matière de construction",
-        "it": "Procedura di ricorso dinanzi al Tribunale dei ricorsi in materia edilizia"
+        "it": "Procedura di ricorso dinanzi al Tribunale dei ricorsi in materia edilizia",
+        "ls": "Ein Gericht prüft den Entscheid"
       },
       "depends_on": [
         {

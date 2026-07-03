@@ -6,6 +6,7 @@
 
 import { createTranslator } from 'next-intl';
 import type { Locale } from '@/i18n/routing';
+import { messageFallback, onI18nError } from '@/i18n/fallback';
 import { city } from '@/config/city.config';
 import de from '@/messages/de.json';
 import en from '@/messages/en.json';
@@ -42,6 +43,10 @@ export function getT(locale: Locale, namespace?: string): Translator {
     messages: getMessages(locale),
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     namespace: namespace as any,
+    // Fehlende Keys fallen auf de zurück statt als roher Key zu rendern
+    // (siehe i18n/fallback.ts).
+    getMessageFallback: messageFallback,
+    onError: onI18nError,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   }) as any;
   const defaults = getDefaultValues(locale);
