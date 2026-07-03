@@ -100,6 +100,10 @@
     "language": "Langue",
     "expandAll": "Tout déplier",
     "collapseAll": "Tout replier",
+    "climateToggle": "🌡️ Indicateur du budget climatique",
+    "climateToggleTitle": "Affiche une indication en direct de l'impact climatique",
+    "diversityToggle": "👥 Diversité & cadres (personnel)",
+    "diversityToggleTitle": "Affiche la part des femmes et des hommes parmi les cadres de chaque unité organisationnelle sous forme de diagramme en anneau",
     "portfolio": "Portfolio"
   },
   "Search": {
@@ -170,6 +174,8 @@
     "searchPlaceholder": "p. ex. office des impôts, école, VBZ …",
     "resultsCount": "{count, plural, one {# résultat} other {# résultats}} pour « {query} »",
     "noResults": "Aucun résultat. Essayez un autre terme.",
+    "anliegenHeading": "Demandes correspondantes",
+    "anliegenZustaendig": "Compétent",
     "department": "Département",
     "beteiligung": "Participation",
     "beteiligungenHeading": "Participations",
@@ -257,7 +263,11 @@
     "perCapitaTitle": "Charges par habitant·e — charges divisées par la population résidente de la ville",
     "budgetShareLabel": "Part du budget total",
     "budgetShareValue": "{percent} %",
-    "budgetShareTitle": "Part de ce poste dans les charges totales de la ville"
+    "budgetShareTitle": "Part de ce poste dans les charges totales de la ville",
+    "detailDiversity": "Diversité & cadres",
+    "detailDiversityDesc": "Part des femmes et des hommes parmi les cadres",
+    "detailDiversityWomen": "Femmes",
+    "detailDiversityMen": "Hommes"
   },
   "Legend": {
     "headingTop": "Conseil municipal et départements",
@@ -457,6 +467,14 @@
         "kein": "défini en propre"
       }
     }
+  },
+  "GraphTable": {
+    "caption": "Données du graphe du réseau (nœuds actuellement visibles)",
+    "colName": "Unité organisationnelle",
+    "colType": "Type",
+    "colParent": "Unité supérieure",
+    "colBudget": "Charge (CHF)",
+    "colFte": "Postes (EPT)"
   },
   "Export": {
     "csvButton": "Exporter la vue actuelle au format CSV"

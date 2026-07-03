@@ -100,6 +100,10 @@
     "language": "Language",
     "expandAll": "Expand all",
     "collapseAll": "Collapse all",
+    "climateToggle": "🌡️ Climate budget indicator",
+    "climateToggleTitle": "Shows a live indication of climate impact",
+    "diversityToggle": "👥 Diversity & management (staff)",
+    "diversityToggleTitle": "Shows the gender balance in management for each organisational unit as a ring chart",
     "portfolio": "Portfolio"
   },
   "Search": {
@@ -170,6 +174,8 @@
     "searchPlaceholder": "e.g. tax office, school, VBZ …",
     "resultsCount": "{count, plural, one {# result} other {# results}} for “{query}”",
     "noResults": "No results. Try a different term.",
+    "anliegenHeading": "Matching concerns",
+    "anliegenZustaendig": "Responsible",
     "department": "Department",
     "beteiligung": "Holding",
     "beteiligungenHeading": "Holdings",
@@ -257,7 +263,11 @@
     "perCapitaTitle": "Expense per capita — expense divided by the city's resident population",
     "budgetShareLabel": "Share of total budget",
     "budgetShareValue": "{percent} %",
-    "budgetShareTitle": "Share of this item in the city's total expense"
+    "budgetShareTitle": "Share of this item in the city's total expense",
+    "detailDiversity": "Diversity & management",
+    "detailDiversityDesc": "Share of women and men in management",
+    "detailDiversityWomen": "Women",
+    "detailDiversityMen": "Men"
   },
   "Legend": {
     "headingTop": "City council & departments",
@@ -457,6 +467,14 @@
         "kein": "self-defined"
       }
     }
+  },
+  "GraphTable": {
+    "caption": "Data of the network graph (currently visible nodes)",
+    "colName": "Organisational unit",
+    "colType": "Type",
+    "colParent": "Parent unit",
+    "colBudget": "Expense (CHF)",
+    "colFte": "Positions (FTE)"
   },
   "Export": {
     "csvButton": "Export current view as CSV"

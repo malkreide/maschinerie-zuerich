@@ -100,6 +100,10 @@
     "language": "Lingua",
     "expandAll": "Espandi tutto",
     "collapseAll": "Comprimi tutto",
+    "climateToggle": "🌡️ Indicatore del budget climatico",
+    "climateToggleTitle": "Mostra un'indicazione in tempo reale dell'impatto climatico",
+    "diversityToggle": "👥 Diversità & quadri (personale)",
+    "diversityToggleTitle": "Mostra la percentuale di donne e uomini nei quadri di ogni unità organizzativa come diagramma ad anello",
     "portfolio": "Portfolio"
   },
   "Search": {
@@ -170,6 +174,8 @@
     "searchPlaceholder": "es. ufficio imposte, scuola, VBZ …",
     "resultsCount": "{count, plural, one {# risultato} other {# risultati}} per «{query}»",
     "noResults": "Nessun risultato. Prova un altro termine.",
+    "anliegenHeading": "Richieste corrispondenti",
+    "anliegenZustaendig": "Competente",
     "department": "Dipartimento",
     "beteiligung": "Partecipazione",
     "beteiligungenHeading": "Partecipazioni",
@@ -247,17 +253,21 @@
     "phaseBudget": "Budget",
     "phaseProposal": "Proposta",
     "phaseAccount": "Consuntivo",
+    "fteUnitFallback": "ETP",
+    "fteUnitPublished": "{value} {einheit} (pubblicato)",
+    "fteEstimateText": "~{value} (stima: spese del personale ÷ {amount} CHF)",
+    "relatedProzesseHeading": "Coinvolta nelle seguenti procedure",
+    "relatedLebenslagenHeading": "Esigenze che portano qui",
     "perCapitaLabel": "Pro capite",
     "perCapitaValue": "≈ {value}",
     "perCapitaTitle": "Spesa pro capite — spesa divisa per la popolazione residente della città",
     "budgetShareLabel": "Quota del budget totale",
     "budgetShareValue": "{percent} %",
     "budgetShareTitle": "Quota di questa voce sulle spese totali della città",
-    "fteUnitFallback": "ETP",
-    "fteUnitPublished": "{value} {einheit} (pubblicato)",
-    "fteEstimateText": "~{value} (stima: spese del personale ÷ {amount} CHF)",
-    "relatedProzesseHeading": "Coinvolta nelle seguenti procedure",
-    "relatedLebenslagenHeading": "Esigenze che portano qui"
+    "detailDiversity": "Diversità & quadri",
+    "detailDiversityDesc": "Percentuale di donne e uomini nei quadri",
+    "detailDiversityWomen": "Donne",
+    "detailDiversityMen": "Uomini"
   },
   "Legend": {
     "headingTop": "Consiglio municipale e dipartimenti",
@@ -457,6 +467,14 @@
         "kein": "definito autonomamente"
       }
     }
+  },
+  "GraphTable": {
+    "caption": "Dati del grafo della rete (nodi attualmente visibili)",
+    "colName": "Unità organizzativa",
+    "colType": "Tipo",
+    "colParent": "Unità superiore",
+    "colBudget": "Spesa (CHF)",
+    "colFte": "Posti (ETP)"
   },
   "Export": {
     "csvButton": "Esporta la vista attuale in CSV"
