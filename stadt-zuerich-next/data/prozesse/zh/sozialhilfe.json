@@ -113,7 +113,8 @@
         "de": "Persönliches Gespräch: Klärung der Notlage, vorrangiger Ansprüche (z. B. Arbeitslosen-, IV-, Ergänzungsleistungen) und des weiteren Vorgehens.",
         "en": "In-person interview: clarifying the situation, priority entitlements (e.g. unemployment, disability, supplementary benefits) and next steps.",
         "fr": "Entretien personnel : clarification de la situation de détresse, des droits prioritaires (p. ex. assurance-chômage, AI, prestations complémentaires) et de la suite de la démarche.",
-        "it": "Colloquio personale: chiarimento dello stato di bisogno, dei diritti prioritari (p. es. assicurazione contro la disoccupazione, AI, prestazioni complementari) e del seguito della procedura."
+        "it": "Colloquio personale: chiarimento dello stato di bisogno, dei diritti prioritari (p. es. assicurazione contro la disoccupazione, AI, prestazioni complementari) e del seguito della procedura.",
+        "ls": "Sie sprechen mit einer Fachperson. Es geht um Ihre Lage. Und um die Frage: Bekommen Sie zuerst anderes Geld? Zum Beispiel von der Arbeitslosen-Versicherung oder der IV."
       }
     },
     {
@@ -193,7 +194,8 @@
         "de": "Anspruch und Unterstützungsbudget prüfen",
         "en": "Assess entitlement and support budget",
         "fr": "Examiner le droit et le budget d'aide",
-        "it": "Verificare il diritto e il budget di sostegno"
+        "it": "Verificare il diritto e il budget di sostegno",
+        "ls": "Das Amt prüft: Wie viel Hilfe brauchen Sie?"
       },
       "depends_on": [
         4
@@ -203,7 +205,8 @@
         "de": "Das Sozialzentrum prüft die Bedürftigkeit und berechnet das Unterstützungsbudget nach SKOS-Richtlinien (Grundbedarf, Wohnkosten, medizinische Grundversorgung).",
         "en": "The social centre checks neediness and calculates the support budget according to SKOS guidelines (basic needs, housing costs, basic medical care).",
         "fr": "Le centre social examine l'état de besoin et calcule le budget d'aide selon les normes CSIAS (besoins de base, frais de logement, soins médicaux de base).",
-        "it": "Il centro sociale verifica lo stato di bisogno e calcola il budget di sostegno secondo le norme COSAS (fabbisogno di base, spese abitative, assistenza medica di base)."
+        "it": "Il centro sociale verifica lo stato di bisogno e calcola il budget di sostegno secondo le norme COSAS (fabbisogno di base, spese abitative, assistenza medica di base).",
+        "ls": "Das Sozial-Zentrum prüft: Wie viel Geld brauchen Sie zum Leben? Dafür gibt es Regeln. Gezählt werden: Essen und Alltag, Wohnung und Arzt-Kosten."
       }
     },
     {
@@ -293,7 +296,8 @@
         "de": "Schriftliche Verfügung über die laufende Unterstützung, allfällige Auflagen (z. B. Stellensuche) und die Mitwirkungspflichten.",
         "en": "Written decision on the ongoing support, any conditions (e.g. job search) and the duties to cooperate.",
         "fr": "Décision écrite sur l'aide courante, les éventuelles conditions (p. ex. recherche d'emploi) et les obligations de collaborer.",
-        "it": "Decisione scritta sul sostegno corrente, sugli eventuali oneri (p. es. ricerca di un impiego) e sugli obblighi di collaborazione."
+        "it": "Decisione scritta sul sostegno corrente, sugli eventuali oneri (p. es. ricerca di un impiego) e sugli obblighi di collaborazione.",
+        "ls": "Sie bekommen einen Brief. Darin steht: So viel Hilfe bekommen Sie. Und das müssen Sie dafür tun. Zum Beispiel: Arbeit suchen."
       }
     },
     {
@@ -314,7 +318,8 @@
         "de": "Laufende Auszahlung der wirtschaftlichen Hilfe; persönliche Beratung und periodische Überprüfung der Situation.",
         "en": "Ongoing payment of economic assistance; personal counselling and periodic review of the situation.",
         "fr": "Versement courant de l'aide économique ; conseil personnel et réexamen périodique de la situation.",
-        "it": "Versamento corrente dell'aiuto economico; consulenza personale e riesame periodico della situazione."
+        "it": "Versamento corrente dell'aiuto economico; consulenza personale e riesame periodico della situazione.",
+        "ls": "Sie bekommen das Geld regelmässig. Eine Fachperson berät Sie. Das Amt schaut immer wieder: Hat sich Ihre Lage geändert?"
       }
     },
     {

@@ -186,7 +186,7 @@
         },
         {
           "key": "leichte-sprache",
-          "status": "nicht-erfuellt"
+          "status": "erfuellt"
         },
         {
           "key": "mehrsprachigkeit",
@@ -217,16 +217,16 @@
           "prozent": null
         },
         "nutzendenorientierung": {
-          "erfuellt": 2,
+          "erfuellt": 3,
           "bekannt": 4,
           "unbekannt": 2,
-          "prozent": 50
+          "prozent": 75
         },
         "gesamt": {
-          "erfuellt": 2,
+          "erfuellt": 3,
           "bekannt": 4,
           "unbekannt": 8,
-          "prozent": 50
+          "prozent": 75
         }
       },
       "unbekannt": 8,
@@ -915,7 +915,7 @@
         },
         {
           "key": "leichte-sprache",
-          "status": "nicht-erfuellt"
+          "status": "erfuellt"
         },
         {
           "key": "mehrsprachigkeit",
@@ -946,16 +946,16 @@
           "prozent": null
         },
         "nutzendenorientierung": {
-          "erfuellt": 2,
+          "erfuellt": 3,
           "bekannt": 4,
           "unbekannt": 2,
-          "prozent": 50
+          "prozent": 75
         },
         "gesamt": {
-          "erfuellt": 2,
+          "erfuellt": 3,
           "bekannt": 4,
           "unbekannt": 8,
-          "prozent": 50
+          "prozent": 75
         }
       },
       "unbekannt": 8,
@@ -1320,7 +1320,7 @@
         },
         {
           "key": "leichte-sprache",
-          "status": "nicht-erfuellt"
+          "status": "erfuellt"
         },
         {
           "key": "mehrsprachigkeit",
@@ -1351,16 +1351,16 @@
           "prozent": null
         },
         "nutzendenorientierung": {
-          "erfuellt": 2,
+          "erfuellt": 3,
           "bekannt": 4,
           "unbekannt": 2,
-          "prozent": 50
+          "prozent": 75
         },
         "gesamt": {
-          "erfuellt": 2,
+          "erfuellt": 3,
           "bekannt": 4,
           "unbekannt": 8,
-          "prozent": 50
+          "prozent": 75
         }
       },
       "unbekannt": 8,
@@ -1497,8 +1497,8 @@
       },
       {
         "key": "leichte-sprache",
-        "erfuellt": 14,
-        "nichtErfuellt": 3,
+        "erfuellt": 17,
+        "nichtErfuellt": 0,
         "unbekannt": 0
       },
       {
