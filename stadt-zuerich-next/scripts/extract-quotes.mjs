@@ -47,6 +47,7 @@ process.env.NODE_USE_ENV_PROXY ??= '1';
 import { readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { htmlToText, normWs } from './lib/html-text.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '..');
@@ -96,10 +97,6 @@ function keywords(label) {
       .split(/\s+/)
       .filter((w) => w.length >= 5 && !STOP.has(w)),
   )];
-}
-
-function normWs(s) {
-  return s.replace(/\s+/g, ' ').trim();
 }
 
 // Seitentext in prüfbare Segmente (Zeilen + Sätze) zerlegen.
@@ -191,36 +188,8 @@ function collectRefs(processes) {
 }
 
 // ── HTTP-Fetch (SSR, kein Browser) ──────────────────────────────────────────
-const NAMED_ENT = {
-  amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ', shy: '',
-  laquo: '«', raquo: '»', ndash: '–', mdash: '—', hellip: '…', deg: '°',
-  euro: '€', rsquo: '’', lsquo: '‘', ldquo: '“', rdquo: '”', sbquo: '‚',
-  auml: 'ä', ouml: 'ö', uuml: 'ü', Auml: 'Ä', Ouml: 'Ö', Uuml: 'Ü', szlig: 'ß',
-  eacute: 'é', egrave: 'è', agrave: 'à', acirc: 'â', ccedil: 'ç', ugrave: 'ù',
-};
-function decodeEntities(s) {
-  return s
-    .replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCodePoint(parseInt(h, 16)))
-    .replace(/&#(\d+);/g, (_, d) => String.fromCodePoint(parseInt(d, 10)))
-    .replace(/&([a-zA-Z]+);/g, (m, n) => (n in NAMED_ENT ? NAMED_ENT[n] : (NAMED_ENT[n.toLowerCase()] ?? m)));
-}
-// Konvertiert HTML zu lesbarem Text — genug für SSR-Seiten, deren Inhalt im
-// Markup steht. Block-Elemente werden zu Zeilenumbrüchen, damit Sätze nicht
-// über Layoutgrenzen hinweg verkleben.
-function htmlToText(html) {
-  let s = html
-    .replace(/<!--[\s\S]*?-->/g, ' ')
-    .replace(/<(script|style|noscript|template|svg)\b[\s\S]*?<\/\1>/gi, ' ')
-    .replace(/<\/(p|div|li|ul|ol|h[1-6]|tr|table|section|article|header|footer|main|nav|dd|dt)\s*>/gi, '\n')
-    .replace(/<br\s*\/?>/gi, '\n')
-    .replace(/<[^>]+>/g, ' ');
-  s = decodeEntities(s);
-  return s
-    .split('\n')
-    .map((l) => l.replace(/[ \t\f\v ]+/g, ' ').trim())
-    .filter(Boolean)
-    .join('\n');
-}
+// HTML→Text-Konvertierung in scripts/lib/html-text.mjs (geteilt mit dem
+// Referenzen-Gate check-refs-gate.mjs).
 
 async function fetchPages(urls) {
   const cache = new Map();
