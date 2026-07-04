@@ -36,6 +36,19 @@
       "source_quote": "Bitte informieren Sie sich ausführlich, bevor Sie das Gesuch ausfüllen und reichen Sie dieses spätestens vier Wochen vor dem Veranstaltungsbeginn ein.",
       "status": "verifiziert",
       "retrieved_at": "2026-06-10"
+    },
+    {
+      "reference_id": 2,
+      "label": {
+        "de": "Mindest-Vorlaufzeit fuer die Planung eines Sanitaetsdienstes durch Schutz & Rettung Zuerich",
+        "en": "",
+        "fr": "",
+        "it": ""
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/stadtleben/veranstaltungen-und-bewilligungen/veranstaltungen/infrastruktur-sicherheit.html",
+      "source_quote": "dass für die Planung von Sanitätsdiensten an Veranstaltungen eine Vorlaufzeit von mindestens 6 Wochen benötigt wird.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-07-04"
     }
   ],
   "actors": [
@@ -123,7 +136,15 @@
         "it": "A seconda delle dimensioni, le domande devono essere presentate con diverse settimane di anticipo (le grandi manifestazioni nettamente prima).",
         "ls": "Melden Sie das Fest früh an. Grosse Feste brauchen mehr Zeit."
       },
-      "source_id": "q-stz-bewilligungen"
+      "source_id": "q-stz-bewilligungen",
+      "documents": [
+        {
+          "label": {
+            "de": "Plan mit aller Infrastruktur (Buehnen, Baenke, Tische, Zelte)"
+          },
+          "required": true
+        }
+      ]
     },
     {
       "step_id": 3,
@@ -190,7 +211,10 @@
       "depends_on": [
         3
       ],
-      "type": "prozess"
+      "type": "prozess",
+      "reference_ids": [
+        1
+      ]
     },
     {
       "step_id": 5,
@@ -494,5 +518,20 @@
     "aktualisiert": "2026-06-10",
     "maintainer": "malkreide",
     "lizenz": "CC-BY-4.0"
-  }
+  },
+  "preconditions": [
+    {
+      "de": "Sie planen, oeffentlichen Grund zu benuetzen.",
+      "ls": "Sie wollen oeffentlichen Grund benutzen."
+    },
+    {
+      "de": "Sie planen, im Freien Lautsprecher einzusetzen."
+    },
+    {
+      "de": "Sie planen, auf oeffentlichem Grund Infrastruktur jeglicher Art aufzubauen (Zelte, Buehnen, Schaustellgeschaefte usw.)."
+    },
+    {
+      "de": "Sie planen, Getraenke und Speisen zu verkaufen."
+    }
+  ]
 }
