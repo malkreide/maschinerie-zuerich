@@ -144,6 +144,19 @@ function localeCoverage(i18nMap) {
   return cov;
 }
 
+// Nicht-leere source_quotes pro reference_id. source_quote ist ein Plain-
+// String (kein i18n-Map) und wird von collectI18n deshalb NICHT erfasst —
+// ohne diesen separaten Vergleich liesse sich ein belegtes Zitat durch
+// Downgrade auf 'unverifiziert' + Leeren still entfernen (Beleg-Erosion).
+function collectQuotes(data) {
+  const m = new Map();
+  for (const r of data?.references ?? []) {
+    const q = typeof r?.source_quote === 'string' ? r.source_quote.trim() : '';
+    if (q && r.reference_id !== undefined) m.set(r.reference_id, q);
+  }
+  return m;
+}
+
 // --- Vergleich ------------------------------------------------------------
 function compare(baseData, headData) {
   const baseMap = new Map();
@@ -173,7 +186,39 @@ function compare(baseData, headData) {
     }
   }
 
-  return { fieldLosses, covLosses, baseCov, headCov };
+  // 3. source_quote-Erosion — gleiche Zwei-Signal-Struktur wie bei i18n:
+  //    feld-genau (dieselbe reference_id verliert ihr belegtes Zitat) plus
+  //    Gesamt-Zählung (robust gegen Neunummerierung der References).
+  const baseQuotes = collectQuotes(baseData);
+  const headQuotes = collectQuotes(headData);
+  const headRefIds = new Set((headData?.references ?? []).map((r) => r?.reference_id));
+  const quoteLosses = [];
+  for (const [id, was] of baseQuotes) {
+    if (headRefIds.has(id) && !headQuotes.has(id)) quoteLosses.push({ id, was });
+  }
+  const quoteCountLoss =
+    headQuotes.size < baseQuotes.size ? { base: baseQuotes.size, head: headQuotes.size } : null;
+
+  return { fieldLosses, covLosses, baseCov, headCov, quoteLosses, quoteCountLoss };
+}
+
+// Prozess-Dateien der BASIS-Version — via git ls-tree, nicht Working-Tree.
+// Ohne diese Liste sieht der Guard gelöschte/umbenannte Dateien nie: die
+// Hauptschleife iteriert nur über vorhandene Dateien, eine gelöschte Datei
+// taucht dort nicht auf und ihre Handdaten verschwänden ungeprüft.
+function listBaseProzessFiles(ref) {
+  const relRoot = path.relative(repoRoot, PROZESSE_ROOT).split(path.sep).join('/');
+  try {
+    return execFileSync('git', ['ls-tree', '-r', '--name-only', ref, '--', relRoot], {
+      cwd: repoRoot,
+      encoding: 'utf-8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+    })
+      .split('\n')
+      .filter((l) => l.endsWith('.json'));
+  } catch {
+    return [];
+  }
 }
 
 // --- Dateien finden -------------------------------------------------------
@@ -217,6 +262,22 @@ async function main() {
   const files = await listProzessFiles();
   let regressionFiles = 0;
 
+  // Gelöschte/umbenannte Dateien: in der Basis vorhanden, im Working-Tree
+  // nicht mehr. Ein Rename erscheint als Löschung (alter Pfad) plus neue
+  // Datei («neu — übersprungen») und wird damit ebenfalls sichtbar.
+  const headPaths = new Set(
+    files.map(({ abs }) => path.relative(repoRoot, abs).split(path.sep).join('/')),
+  );
+  for (const basePath of listBaseProzessFiles(baseRef)) {
+    if (headPaths.has(basePath)) continue;
+    regressionFiles++;
+    const tag = ALLOW_SHRINK ? col.yellow('⚠') : col.red('✗');
+    console.error(
+      `${tag} ${basePath}: Datei in ${baseRef} vorhanden, hier gelöscht/umbenannt — ` +
+        'Handdaten würden vollständig verloren gehen',
+    );
+  }
+
   for (const { abs } of files) {
     const gitPath = path.relative(repoRoot, abs).split(path.sep).join('/');
     const rel = path.relative(projectRoot, abs);
@@ -244,9 +305,13 @@ async function main() {
       continue;
     }
 
-    const { fieldLosses, covLosses, baseCov, headCov } = compare(baseData, headData);
+    const { fieldLosses, covLosses, baseCov, headCov, quoteLosses, quoteCountLoss } =
+      compare(baseData, headData);
 
-    if (fieldLosses.length === 0 && covLosses.length === 0) {
+    if (
+      fieldLosses.length === 0 && covLosses.length === 0 &&
+      quoteLosses.length === 0 && quoteCountLoss === null
+    ) {
       console.log(col.green(`✓ ${rel}`));
       continue;
     }
@@ -265,6 +330,20 @@ async function main() {
     for (const { loc, base, head } of covLosses) {
       console.error(
         col.red(`  - Abdeckung ${loc}: ${base} → ${head} belegte Texte (−${base - head})`),
+      );
+    }
+    for (const { id, was } of quoteLosses) {
+      console.error(
+        col.red(
+          `  - reference ${id}: source_quote verloren (war: "${was.slice(0, 60)}${was.length > 60 ? '…' : ''}") — Beleg-Erosion`,
+        ),
+      );
+    }
+    if (quoteCountLoss) {
+      console.error(
+        col.red(
+          `  - source_quotes gesamt: ${quoteCountLoss.base} → ${quoteCountLoss.head} belegte Zitate (−${quoteCountLoss.base - quoteCountLoss.head})`,
+        ),
       );
     }
     console.error(

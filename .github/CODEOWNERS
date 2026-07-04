@@ -23,6 +23,7 @@
 /stadt-zuerich-next/scripts/check-prozess-regression.mjs @malkreide
 /stadt-zuerich-next/scripts/check-links.mjs @malkreide
 /stadt-zuerich-next/scripts/check-refs-gate.mjs @malkreide
+/stadt-zuerich-next/scripts/lib/ @malkreide
 
 # Verbindliche Session-Regeln für Agents
 /CLAUDE.md @malkreide

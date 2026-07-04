@@ -5,6 +5,7 @@
   "description": "Kanonischer Prozess-Datenvertrag (siehe docs/process-data-contract.md im Repo-Root). Ein Prozess = DAG aus Schritten mit depends_on-Vorgängern. Kardinalregel: bindende Werte (Fristen, Gebühren) erscheinen NUR als Reference (Label + Deep-Link + wörtliches source_quote), nie als Klartext-Zahl. Feldnamen englisch (Vertrag), Inhalte/Enum-Werte deutsch (eCH). Als Erweiterung markierte Felder sind additiv und für reine Vertrags-Konsumenten ignorierbar.",
   "type": "object",
   "required": ["schema_version", "id", "lebenslage_ref", "city", "title", "target_audience", "steps", "source_url", "retrieved_at", "disclaimer_key"],
+  "additionalProperties": false,
   "properties": {
     "$schema": { "type": "string" },
     "schema_version": {
@@ -74,6 +75,7 @@
       "items": {
         "type": "object",
         "required": ["id", "label", "type"],
+        "additionalProperties": false,
         "properties": {
           "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
           "label": { "$ref": "#/definitions/i18nString" },
@@ -94,6 +96,7 @@
       "items": {
         "type": "object",
         "required": ["label"],
+        "additionalProperties": false,
         "properties": {
           "label": { "type": "string", "description": "z.B. 'PBG §§ 309–341'" },
           "url": { "type": "string", "format": "uri" }
@@ -106,6 +109,7 @@
       "items": {
         "type": "object",
         "required": ["id", "title", "url", "retrieved_at"],
+        "additionalProperties": false,
         "properties": {
           "id": { "type": "string" },
           "title": { "type": "string" },
@@ -119,6 +123,7 @@
     "meta": {
       "type": "object",
       "description": "Erweiterung: Metadaten.",
+      "additionalProperties": false,
       "properties": {
         "erstellt": { "type": "string", "format": "date" },
         "aktualisiert": { "type": "string", "format": "date" },
@@ -130,10 +135,11 @@
   "definitions": {
     "i18nString": {
       "type": "object",
-      "description": "Mehrsprachiger String. 'de' ist Pflicht; en/fr/it/ls optional ('Übersetzung ausstehend' — nicht maschinell raten). 'ls' = Leichte Sprache (entspricht 'leichte_sprache' im tessera-Entwurf).",
+      "description": "Mehrsprachiger String. 'de' ist Pflicht und nicht-leer; en/fr/it/ls optional ('Übersetzung ausstehend' — nicht maschinell raten). 'ls' = Leichte Sprache (entspricht 'leichte_sprache' im tessera-Entwurf). Andere Schlüssel sind unzulässig.",
       "required": ["de"],
+      "additionalProperties": false,
       "properties": {
-        "de": { "type": "string" },
+        "de": { "type": "string", "minLength": 1 },
         "en": { "type": "string" },
         "fr": { "type": "string" },
         "it": { "type": "string" },
@@ -147,6 +153,7 @@
           "type": "object",
           "description": "Additive Objekt-Variante: Vorgänger mit Bedingungs-Label (z.B. ja/nein an Entscheidungs-Schritten). Reine DAG-Konsumenten reduzieren auf step_id.",
           "required": ["step_id"],
+          "additionalProperties": false,
           "properties": {
             "step_id": { "type": "integer" },
             "condition": { "$ref": "#/definitions/i18nString" }
@@ -187,6 +194,7 @@
           "items": {
             "type": "object",
             "required": ["label"],
+            "additionalProperties": false,
             "properties": {
               "label": { "$ref": "#/definitions/i18nString" },
               "url": { "type": "string", "format": "uri" },
@@ -270,6 +278,7 @@
     "Reife": {
       "type": "object",
       "description": "Erweiterung (experimentell): Digitale Reife & Vereinfachungspotenzial. Unverändert aus Schema-Generation 1/2 übernommen; Normalisierung der Feldnamen folgt später.",
+      "additionalProperties": false,
       "properties": {
         "onlineReifegrad": {
           "type": "string",
@@ -295,6 +304,7 @@
           "items": {
             "type": "object",
             "required": ["label"],
+            "additionalProperties": false,
             "properties": {
               "label": { "$ref": "#/definitions/i18nString" },
               "wert": { "type": "string" }
