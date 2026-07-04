@@ -1328,7 +1328,7 @@
         },
         {
           "key": "voraussetzungen-genannt",
-          "status": "nicht-erfuellt"
+          "status": "erfuellt"
         },
         {
           "key": "fristen-kosten-verlinkt",
@@ -1351,16 +1351,16 @@
           "prozent": null
         },
         "nutzendenorientierung": {
-          "erfuellt": 3,
+          "erfuellt": 4,
           "bekannt": 4,
           "unbekannt": 2,
-          "prozent": 75
+          "prozent": 100
         },
         "gesamt": {
-          "erfuellt": 3,
+          "erfuellt": 4,
           "bekannt": 4,
           "unbekannt": 8,
-          "prozent": 75
+          "prozent": 100
         }
       },
       "unbekannt": 8,
@@ -1509,8 +1509,8 @@
       },
       {
         "key": "voraussetzungen-genannt",
-        "erfuellt": 9,
-        "nichtErfuellt": 8,
+        "erfuellt": 10,
+        "nichtErfuellt": 7,
         "unbekannt": 0
       },
       {
