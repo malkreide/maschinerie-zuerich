@@ -324,9 +324,29 @@
       }
     ]
   },
+  "bewertung": {
+    "indikatoren": [
+      {
+        "key": "online-antrag",
+        "wert": true,
+        "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/betreibungen/betreibungsregisterauszug-bestellen.html",
+        "source_quote": "Der schnellste und einfachste Weg ist die Bestellung über das Onlineformular.",
+        "status": "verifiziert",
+        "retrieved_at": "2026-07-04"
+      },
+      {
+        "key": "nicht-digitaler-alternativweg",
+        "wert": true,
+        "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/betreibungen/betreibungsregisterauszug-bestellen.html",
+        "source_quote": "Dies ist online, per Brief oder persönlich am Schalter möglich.",
+        "status": "verifiziert",
+        "retrieved_at": "2026-07-04"
+      }
+    ]
+  },
   "meta": {
     "erstellt": "2026-06-21",
-    "aktualisiert": "2026-06-21",
+    "aktualisiert": "2026-07-04",
     "maintainer": "malkreide",
     "lizenz": "CC-BY-4.0"
   }
