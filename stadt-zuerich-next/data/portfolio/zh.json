@@ -283,7 +283,7 @@
         },
         {
           "key": "barrierefreiheit",
-          "status": "unbekannt"
+          "status": "erfuellt"
         },
         {
           "key": "nicht-digitaler-alternativweg",
@@ -298,19 +298,19 @@
           "prozent": 100
         },
         "nutzendenorientierung": {
-          "erfuellt": 4,
-          "bekannt": 5,
-          "unbekannt": 1,
-          "prozent": 80
-        },
-        "gesamt": {
           "erfuellt": 5,
           "bekannt": 6,
-          "unbekannt": 6,
+          "unbekannt": 0,
           "prozent": 83
+        },
+        "gesamt": {
+          "erfuellt": 6,
+          "bekannt": 7,
+          "unbekannt": 5,
+          "prozent": 86
         }
       },
-      "unbekannt": 6,
+      "unbekannt": 5,
       "belegLuecke": false
     },
     {
@@ -1521,9 +1521,9 @@
       },
       {
         "key": "barrierefreiheit",
-        "erfuellt": 0,
+        "erfuellt": 1,
         "nichtErfuellt": 0,
-        "unbekannt": 17
+        "unbekannt": 16
       },
       {
         "key": "nicht-digitaler-alternativweg",

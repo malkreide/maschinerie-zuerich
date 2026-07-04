@@ -341,6 +341,14 @@
         "source_quote": "Dies ist online, per Brief oder persönlich am Schalter möglich.",
         "status": "verifiziert",
         "retrieved_at": "2026-07-04"
+      },
+      {
+        "key": "barrierefreiheit",
+        "wert": true,
+        "source_url": "https://www.stadt-zuerich.ch/de/service/barrierefreiheit.html",
+        "source_quote": "Um einen möglichst barrierefreien Webauftritt zur Verfügung zu stellen, orientiert sich die Stadt Zürich an den etablierten Standards: WCAG 2.1 / Konformitätsstufe AA […] Der Webauftritt der Stadt Zürich ist weitgehend barrierefrei zugänglich. Einige Inhalte sind nicht oder noch nicht barrierefrei umgesetzt.",
+        "status": "verifiziert",
+        "retrieved_at": "2026-07-04"
       }
     ]
   },
