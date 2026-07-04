@@ -137,6 +137,9 @@ jobs:
   a11y:
     name: Accessibility (Playwright + axe-core)
     runs-on: ubuntu-latest
+    # Sicherheitsnetz: hängende Schritte (z. B. ein nicht beendeter Server-
+    # Prozess) sollen den Runner nicht bis zum 6h-Default blockieren.
+    timeout-minutes: 20
     defaults:
       run:
         working-directory: stadt-zuerich-next

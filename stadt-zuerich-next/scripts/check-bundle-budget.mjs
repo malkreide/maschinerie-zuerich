@@ -32,13 +32,26 @@ const BUDGET_KB = Number(process.env.BUNDLE_BUDGET_KB ?? 900);
 const ROUTE = '/de';
 
 function startServer() {
+  // detached: eigene Prozessgruppe. `npx` spawnt `next-server` als Enkel —
+  // ein SIGTERM nur an den Wrapper liesse den Server (und damit unsere
+  // stderr-Pipe) weiterleben, und der Check hinge bis zum Workflow-Timeout.
   const child = spawn('npx', ['next', 'start', '-p', String(PORT)], {
     cwd: root,
-    stdio: ['ignore', 'pipe', 'pipe'],
+    stdio: ['ignore', 'ignore', 'pipe'],
+    detached: true,
     env: { ...process.env, NODE_ENV: 'production' },
   });
   child.stderr.on('data', (d) => process.stderr.write(d));
   return child;
+}
+
+function stopServer(child) {
+  // Ganze Prozessgruppe beenden (negatives PID), nicht nur den Wrapper.
+  try {
+    process.kill(-child.pid, 'SIGTERM');
+  } catch {
+    child.kill('SIGTERM');
+  }
 }
 
 async function waitForServer(timeoutMs = 30000) {
@@ -58,6 +71,7 @@ async function waitForServer(timeoutMs = 30000) {
 }
 
 const server = startServer();
+let failed = false;
 try {
   const res = await waitForServer();
   const html = await res.text();
@@ -96,9 +110,16 @@ try {
         'Abhängigkeit (Cytoscape, Leaflet, …) ins Initial-Bundle gerutscht? ' +
         'Lazy-Loading via next/dynamic prüfen (GraphLoader/TreemapLoader-Muster).',
     );
-    process.exit(1);
+    failed = true;
+  } else {
+    console.log('✓ Bundle-Budget eingehalten.');
   }
-  console.log('✓ Bundle-Budget eingehalten.');
+} catch (err) {
+  console.error(`✗ ${err.message}`);
+  failed = true;
 } finally {
-  server.kill('SIGTERM');
+  stopServer(server);
 }
+// Expliziter Exit: verlässt den Prozess auch dann, wenn eine verwaiste
+// Server-Pipe die Event-Loop sonst offen halten würde.
+process.exit(failed ? 1 : 0);
