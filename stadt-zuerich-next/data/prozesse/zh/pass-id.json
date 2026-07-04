@@ -470,9 +470,37 @@
       }
     ]
   },
+  "bewertung": {
+    "indikatoren": [
+      {
+        "key": "online-antrag",
+        "wert": true,
+        "source_url": "https://www.zh.ch/de/mobilitaet/pass-identitaetskarte/pass-kombi-beantragen.html",
+        "source_quote": "Eine Erfassung der Daten ohne vorherigen Antrag (online oder telefonisch) ist nicht möglich. Vor Ort im Passbüro werden keine Anträge entgegen genommen.",
+        "status": "verifiziert",
+        "retrieved_at": "2026-07-04"
+      },
+      {
+        "key": "digital-abschliessbar",
+        "wert": false,
+        "source_url": "https://www.zh.ch/de/mobilitaet/pass-identitaetskarte/pass-kombi-beantragen.html",
+        "source_quote": "Am vereinbarten Termin erfassen wir Ihre biometrischen Daten (Foto und Fingerabdrücke).",
+        "status": "verifiziert",
+        "retrieved_at": "2026-07-04"
+      },
+      {
+        "key": "nicht-digitaler-alternativweg",
+        "wert": true,
+        "source_url": "https://www.zh.ch/de/mobilitaet/pass-identitaetskarte/pass-kombi-beantragen.html",
+        "source_quote": "Eine Erfassung der Daten ohne vorherigen Antrag (online oder telefonisch) ist nicht möglich.",
+        "status": "verifiziert",
+        "retrieved_at": "2026-07-04"
+      }
+    ]
+  },
   "meta": {
     "erstellt": "2026-06-18",
-    "aktualisiert": "2026-06-18",
+    "aktualisiert": "2026-07-04",
     "maintainer": "malkreide",
     "lizenz": "CC-BY-4.0"
   }
