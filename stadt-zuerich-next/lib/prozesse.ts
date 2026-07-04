@@ -2,6 +2,12 @@
 // Liest alle JSON-Dateien aus /data/prozesse/<city>/*.json, validiert minimal
 // und gibt typisiert zurück. Wird von /prozesse-Routen in Server-Components
 // aufgerufen.
+//
+// Architektur: loadAllProzesse() ist die EINZIGE I/O-Quelle (ein Verzeichnis-
+// Walk); alle Index- und Map-Funktionen sind reine In-Memory-Ableitungen
+// darauf. Vorher hielt jede der vier Abfragen ihren eigenen Walk samt
+// dupliziertem Parse-/Validate-Boilerplate — jede Änderung an der Projektion
+// musste vierfach nachgezogen werden.
 
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
@@ -32,9 +38,9 @@ function prozessRoot(): string {
   return path.join(process.cwd(), ...PROZESSE_ROOT_SEGMENTS);
 }
 
-/** Liefert eine flache Liste aller bekannten Prozesse (alle Städte).
+/** Der eine Verzeichnis-Walk: alle gültigen Prozesse aller Städte.
  *  Failed-soft: Fehler in einzelnen Dateien loggen, aber nicht werfen. */
-export async function listProzesse(): Promise<ProzessIndexEntry[]> {
+async function walkProzesse(): Promise<Prozess[]> {
   const root = prozessRoot();
   let cities: string[];
   try {
@@ -43,14 +49,13 @@ export async function listProzesse(): Promise<ProzessIndexEntry[]> {
     return [];
   }
 
-  const entries: ProzessIndexEntry[] = [];
+  const out: Prozess[] = [];
   for (const city of cities) {
     const cityDir = path.join(root, city);
     const stat = await fs.stat(cityDir).catch(() => null);
     if (!stat?.isDirectory()) continue;
 
-    const files = await fs.readdir(cityDir);
-    for (const file of files) {
+    for (const file of await fs.readdir(cityDir)) {
       if (!file.endsWith('.json')) continue;
       try {
         const raw = await fs.readFile(path.join(cityDir, file), 'utf-8');
@@ -60,31 +65,64 @@ export async function listProzesse(): Promise<ProzessIndexEntry[]> {
           console.warn(`[prozesse] ${city}/${file} skipped:`, errors);
           continue;
         }
-        entries.push({
-          id: p.id,
-          city: p.city,
-          slug: `${p.city}/${p.id}`,
-          titel: p.title,
-          kurzbeschreibung: p.description,
-          version: p.schema_version,
-          onlineReifegrad: p.reife?.onlineReifegrad,
-          status: p.reife?.status,
-          schritteCount: p.steps.length,
-          hochrisiko: p.disclaimer_key === 'Prozesse.disclaimerHochrisiko',
-        });
+        out.push(p);
       } catch (err) {
         console.warn(`[prozesse] cannot read ${city}/${file}:`, err);
       }
     }
   }
+  return out;
+}
+
+// Im Production-/Build-Kontext ändern sich die Daten-Dateien nicht mehr —
+// ein einziger Walk genügt für alle statisch generierten Seiten. Im Dev-Modus
+// bewusst KEIN Cache, damit Daten-Edits ohne Neustart sichtbar bleiben.
+let prodCache: Promise<Prozess[]> | null = null;
+export function loadAllProzesse(): Promise<Prozess[]> {
+  if (process.env.NODE_ENV !== 'production') return walkProzesse();
+  return (prodCache ??= walkProzesse());
+}
+
+/** Volle Index-Projektion (mit Reife-/Hochrisiko-Badges). */
+function toIndexEntry(p: Prozess): ProzessIndexEntry {
+  return {
+    id: p.id,
+    city: p.city,
+    slug: `${p.city}/${p.id}`,
+    titel: p.title,
+    kurzbeschreibung: p.description,
+    version: p.schema_version,
+    onlineReifegrad: p.reife?.onlineReifegrad,
+    status: p.reife?.status,
+    schritteCount: p.steps.length,
+    hochrisiko: p.disclaimer_key === 'Prozesse.disclaimerHochrisiko',
+  };
+}
+
+/** Leichte Projektion ohne Badge-Felder — für Maps, die als Props an
+ *  Client-Components serialisiert werden (Payload klein halten). */
+function toLightEntry(p: Prozess): ProzessIndexEntry {
+  return {
+    id: p.id,
+    city: p.city,
+    slug: `${p.city}/${p.id}`,
+    titel: p.title,
+    kurzbeschreibung: p.description,
+    version: p.schema_version,
+  };
+}
+
+/** Liefert eine flache Liste aller bekannten Prozesse (alle Städte). */
+export async function listProzesse(): Promise<ProzessIndexEntry[]> {
+  const entries = (await loadAllProzesse()).map(toIndexEntry);
   return entries.sort((a, b) => {
     if (a.city !== b.city) return a.city.localeCompare(b.city);
     return a.id.localeCompare(b.id);
   });
 }
 
-/** Lädt einen einzelnen Prozess by city + id. Gibt null zurück, wenn nicht gefunden
- *  oder ungültig. */
+/** Lädt einen einzelnen Prozess by city + id. Gibt null zurück, wenn nicht
+ *  gefunden oder ungültig. Bewusst als direkter Einzeldatei-Read (kein Walk). */
 export async function loadProzess(city: string, id: string): Promise<Prozess | null> {
   // Defensives Path-Handling: verhindere Directory-Traversal, auch wenn diese
   // Werte i.d.R. aus generateStaticParams kommen.
@@ -149,28 +187,12 @@ export async function buildProzessSlugMap(): Promise<Record<string, ProzessIndex
  * ableiten, nicht nur die primär zuständige.
  */
 export async function buildProzessEinheitenMap(): Promise<Record<string, string[]>> {
-  const root = prozessRoot();
-  let cities: string[];
-  try { cities = await fs.readdir(root); } catch { return {}; }
   const map: Record<string, string[]> = {};
-  for (const city of cities) {
-    const cityDir = path.join(root, city);
-    const st = await fs.stat(cityDir).catch(() => null);
-    if (!st?.isDirectory()) continue;
-    for (const file of await fs.readdir(cityDir)) {
-      if (!file.endsWith('.json')) continue;
-      try {
-        const raw = await fs.readFile(path.join(cityDir, file), 'utf-8');
-        const p = JSON.parse(raw) as Prozess;
-        if (validateProzess(p).length > 0) continue;
-        const units = Array.from(
-          new Set((p.actors ?? []).map((a) => a.einheit_ref).filter((x): x is string => Boolean(x))),
-        );
-        map[`${p.city}/${p.id}`] = units;
-      } catch {
-        // skip file silently
-      }
-    }
+  for (const p of await loadAllProzesse()) {
+    const units = Array.from(
+      new Set((p.actors ?? []).map((a) => a.einheit_ref).filter((x): x is string => Boolean(x))),
+    );
+    map[`${p.city}/${p.id}`] = units;
   }
   return map;
 }
@@ -190,37 +212,14 @@ export async function listProzessParams(): Promise<Array<{ city: string; id: str
  * Component Prop-Passing).
  */
 export async function buildEinheitProzesseMap(): Promise<Record<string, ProzessIndexEntry[]>> {
-  const root = prozessRoot();
-  let cities: string[];
-  try { cities = await fs.readdir(root); } catch { return {}; }
   const map: Record<string, ProzessIndexEntry[]> = {};
-  for (const city of cities) {
-    const cityDir = path.join(root, city);
-    const st = await fs.stat(cityDir).catch(() => null);
-    if (!st?.isDirectory()) continue;
-    for (const file of await fs.readdir(cityDir)) {
-      if (!file.endsWith('.json')) continue;
-      try {
-        const raw = await fs.readFile(path.join(cityDir, file), 'utf-8');
-        const p = JSON.parse(raw) as Prozess;
-        if (validateProzess(p).length > 0) continue;
-        const entry: ProzessIndexEntry = {
-          id: p.id,
-          city: p.city,
-          slug: `${p.city}/${p.id}`,
-          titel: p.title,
-          kurzbeschreibung: p.description,
-          version: p.schema_version,
-        };
-        for (const a of p.actors ?? []) {
-          if (!a.einheit_ref) continue;
-          const bucket = map[a.einheit_ref] ??= [];
-          if (!bucket.some((e) => e.id === entry.id && e.city === entry.city)) {
-            bucket.push(entry);
-          }
-        }
-      } catch {
-        // skip file silently
+  for (const p of await loadAllProzesse()) {
+    const entry = toLightEntry(p);
+    for (const a of p.actors ?? []) {
+      if (!a.einheit_ref) continue;
+      const bucket = (map[a.einheit_ref] ??= []);
+      if (!bucket.some((e) => e.id === entry.id && e.city === entry.city)) {
+        bucket.push(entry);
       }
     }
   }
@@ -236,47 +235,11 @@ export async function buildEinheitProzesseMap(): Promise<Record<string, ProzessI
  * die eine gegebene Einheit referenzieren (über actors[].einheit_ref).
  * Wird im DetailPanel der Hauptansicht verwendet, um "Diese Stelle ist
  * an folgenden Verfahren beteiligt" anzuzeigen.
- *
- * Implementiert naiv: lädt alle Prozesse und filtert. Für unsere Grössen-
- * ordnung (<100 Prozesse) unproblematisch. Falls irgendwann nötig, könnte
- * der Loader einen invertierten Index im Speicher halten.
  */
 export async function findProzesseForEinheit(einheitId: string): Promise<ProzessIndexEntry[]> {
   if (!einheitId) return [];
-  const root = prozessRoot();
-  let cities: string[];
-  try {
-    cities = await fs.readdir(root);
-  } catch {
-    return [];
-  }
-
-  const matches: ProzessIndexEntry[] = [];
-  for (const city of cities) {
-    const cityDir = path.join(root, city);
-    const st = await fs.stat(cityDir).catch(() => null);
-    if (!st?.isDirectory()) continue;
-
-    for (const file of await fs.readdir(cityDir)) {
-      if (!file.endsWith('.json')) continue;
-      try {
-        const raw = await fs.readFile(path.join(cityDir, file), 'utf-8');
-        const p = JSON.parse(raw) as Prozess;
-        if (validateProzess(p).length > 0) continue;
-        if ((p.actors ?? []).some((a) => a.einheit_ref === einheitId)) {
-          matches.push({
-            id: p.id,
-            city: p.city,
-            slug: `${p.city}/${p.id}`,
-            titel: p.title,
-            kurzbeschreibung: p.description,
-            version: p.schema_version,
-          });
-        }
-      } catch {
-        // skip file silently
-      }
-    }
-  }
+  const matches = (await loadAllProzesse())
+    .filter((p) => (p.actors ?? []).some((a) => a.einheit_ref === einheitId))
+    .map(toLightEntry);
   return matches.sort((a, b) => a.id.localeCompare(b.id));
 }
