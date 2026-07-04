@@ -72,8 +72,33 @@
     },
     "konflikt": "#c00d23",
     "departmentPalette": [
-      "#0F05A0", "#1485BD", "#0E7574", "#116091", "#084645",
-      "#070250", "#0C4F71", "#23355B", "#3b5998"
+      "#0F05A0",
+      "#1485BD",
+      "#0E7574",
+      "#116091",
+      "#084645",
+      "#070250",
+      "#0C4F71",
+      "#23355B",
+      "#3b5998"
     ]
+  },
+  "htmlLang": {
+    "de": "de-CH",
+    "en": "en",
+    "fr": "fr-CH",
+    "it": "it-CH",
+    "ls": "de-CH"
+  },
+  "attribution": "Maschinerie der Stadt Zürich",
+  "repoRawUrl": "https://raw.githubusercontent.com/malkreide/maschinerie-zuerich/main/stadt-zuerich-next",
+  "geo": {
+    "boundingBox": {
+      "minLat": 47.35,
+      "maxLat": 47.41,
+      "minLng": 8.48,
+      "maxLng": 8.58
+    },
+    "stadtkreiseGeoJsonPath": "public/data/stadtkreise.geojson"
   }
 }

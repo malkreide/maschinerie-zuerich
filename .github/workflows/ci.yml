@@ -26,63 +26,20 @@ jobs:
   data-validation:
     name: org-chart.json + lebenslagen.json validieren
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: stadt-zuerich-next
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v6
         with:
           node-version: 24.18.0
-      # Pfade spiegeln die data/zh/-Struktur (scaffold:city legt dieselbe
-      # Form für jede weitere Stadt an). Früher lagen diese Dateien in
-      # stadt-zuerich-next/data.json bzw. data/manual/lebenslagen.json —
-      # der Job lief seitdem ins Leere. Siehe PR #29.
-      - name: Syntax-Check (JSON)
-        run: |
-          node -e "JSON.parse(require('fs').readFileSync('stadt-zuerich-next/data/zh/org-chart.json','utf8'))"
-          node -e "JSON.parse(require('fs').readFileSync('stadt-zuerich-next/data/zh/lebenslagen.json','utf8'))"
-      - name: Lebenslagen-IDs gegen org-chart.json prüfen
-        run: |
-          node -e "
-            const d = JSON.parse(require('fs').readFileSync('stadt-zuerich-next/data/zh/org-chart.json','utf8'));
-            const l = JSON.parse(require('fs').readFileSync('stadt-zuerich-next/data/zh/lebenslagen.json','utf8'));
-            const ids = new Set([
-              d.center?.id,
-              ...d.departments.map(x => x.id),
-              ...d.units.map(u => u.id),
-              ...(d.beteiligungen ?? []).map(b => b.id),
-            ].filter(Boolean));
-            const LOCALES = ['de','en','fr','it','ls'];
-            const ZIELGRUPPEN = new Set(['einwohner','unternehmen','familie','alter','schule','migration','mobilitaet','wohnen','gesundheit']);
-            const problems = [];
-            for (const e of l.lebenslagen) {
-              if (!ids.has(e.zustaendig)) problems.push(e.id + ': unbekannte zustaendig ' + e.zustaendig);
-              if (!e.i18n?.de?.frage || !Array.isArray(e.i18n?.de?.stichworte)) problems.push(e.id + ': fehlt i18n.de.frage oder .stichworte');
-              // zielgruppen (optional) müssen aus der bekannten Taxonomie stammen.
-              if (e.zielgruppen !== undefined) {
-                if (!Array.isArray(e.zielgruppen) || e.zielgruppen.length === 0) problems.push(e.id + ': zielgruppen muss ein nicht-leeres Array sein');
-                else for (const z of e.zielgruppen) if (!ZIELGRUPPEN.has(z)) problems.push(e.id + ': unbekannte zielgruppe ' + z);
-              }
-              // Explizite Prozess-Verknüpfungen müssen auf vorhandene Verfahren zeigen.
-              if (e.prozesse !== undefined) {
-                if (!Array.isArray(e.prozesse)) problems.push(e.id + ': prozesse muss ein Array sein');
-                else for (const slug of e.prozesse) {
-                  if (!/^[a-z0-9-]+\/[a-z0-9-]+$/.test(slug)) { problems.push(e.id + ': ungueltiger prozess-slug ' + slug); continue; }
-                  if (!require('fs').existsSync('stadt-zuerich-next/data/prozesse/' + slug + '.json')) problems.push(e.id + ': prozess-referenz ohne Datei: ' + slug);
-                }
-              }
-              // Jede VORHANDENE (non-null) Locale muss vollständig sein —
-              // verhindert kaputte Teilübersetzungen. Fehlt eine Locale ganz
-              // (null/undefined), ist das ok: die Suche fällt auf de zurück.
-              for (const loc of LOCALES) {
-                const c = e.i18n?.[loc];
-                if (c == null) continue;
-                if (typeof c.frage !== 'string' || !c.frage.trim()) problems.push(e.id + '.' + loc + ': frage fehlt/leer');
-                if (!Array.isArray(c.stichworte) || c.stichworte.length === 0) problems.push(e.id + '.' + loc + ': stichworte fehlen/leer');
-              }
-            }
-            if (problems.length) { console.error('Probleme:\n  ' + problems.join('\n  ')); process.exit(1); }
-            const counts = LOCALES.map(loc => loc + ':' + l.lebenslagen.filter(e => e.i18n?.[loc] != null).length).join(' ');
-            console.log('✓ Alle ' + l.lebenslagen.length + ' Lebenslagen valide; Locale-Abdeckung ' + counts + ' (' + ids.size + ' bekannte IDs in org-chart)');
-          "
+      # Die Prüfregeln leben in scripts/validate-lebenslagen.mjs (stdlib-only,
+      # auch lokal via `npm run validate:lebenslagen` ausführbar). Früher war
+      # dieselbe Logik als node -e-Heredoc hier eingebettet — zwei Wahrheiten,
+      # die auseinanderdriften konnten.
+      - name: Lebenslagen gegen Org-Chart + Prozessdaten prüfen
+        run: node scripts/validate-lebenslagen.mjs
 
   schema-validation:
     name: OpenGov-Schemas validieren (Org-Chart + Prozesse)
@@ -180,6 +137,9 @@ jobs:
   a11y:
     name: Accessibility (Playwright + axe-core)
     runs-on: ubuntu-latest
+    # Sicherheitsnetz: hängende Schritte (z. B. ein nicht beendeter Server-
+    # Prozess) sollen den Runner nicht bis zum 6h-Default blockieren.
+    timeout-minutes: 20
     defaults:
       run:
         working-directory: stadt-zuerich-next
@@ -195,6 +155,8 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: Production-Build
         run: npm run build
+      - name: Bundle-Budget der Startseite (First-Load JS)
+        run: npm run check:bundle
       - name: a11y-Smoke (WCAG A/AA, serious+critical = Gate)
         run: npm run test:a11y
       - name: Playwright-Report hochladen

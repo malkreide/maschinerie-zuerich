@@ -6,13 +6,19 @@
 // ETag) und bewusst dokumentiertes, offenes CORS.
 
 import { createHash } from 'node:crypto';
+import { city } from '@/config/city.config';
 
 export const API_VERSION = '1';
 export const DATA_LICENSE = 'CC-BY-4.0';
-export const ATTRIBUTION = 'Maschinerie der Stadt Zürich';
+// Attribution aus der City-Config; Fallback generisch aus dem Stadtnamen —
+// vorher hart auf «Maschinerie der Stadt Zürich» codiert.
+export const ATTRIBUTION = city.attribution ?? `Maschinerie ${city.name.de}`;
 
+// Schema-Deep-Links: Forks mit eigenem repoRawUrl verlinken ihre Kopie;
+// ohne Eintrag gilt das kanonische Upstream-Schema (stabile $id).
 const REPO_RAW =
-  'https://raw.githubusercontent.com/malkreide/maschinerie-zuerich/main/stadt-zuerich-next';
+  city.repoRawUrl
+  ?? 'https://raw.githubusercontent.com/malkreide/maschinerie-zuerich/main/stadt-zuerich-next';
 export const MACHINERY_SCHEMA_URL = `${REPO_RAW}/schemas/opengov-machinery-schema.json`;
 export const PROCESS_SCHEMA_URL = `${REPO_RAW}/schemas/opengov-process-schema.json`;
 

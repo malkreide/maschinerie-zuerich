@@ -97,6 +97,26 @@ export interface CityConfig {
    *  (siehe themeCssVars()) und zusätzlich direkt von Komponenten gelesen,
    *  die einen JS-Array oder Cytoscape-Stylesheet brauchen. */
   theme: CityTheme;
+  /** BCP-47-Sprach-Tags pro Locale für `<html lang>` (z. B. de → de-CH).
+   *  Stadt-/länderspezifisch — ein Nicht-Schweizer Fork nutzt andere
+   *  Regions-Tags. Fehlt der Block, wird der rohe Locale-Code verwendet. */
+  htmlLang?: Record<Locale, string>;
+  /** Attributions-Text der offenen API (X-Data-Attribution-Header).
+   *  Fehlt er, wird generisch aus dem Stadtnamen abgeleitet. */
+  attribution?: string;
+  /** Raw-URL des (Fork-)Repos für Schema-Deep-Links in den API-Headern.
+   *  Fehlt sie, verweisen die Links auf das kanonische Upstream-Schema. */
+  repoRawUrl?: string;
+  /** Geo-Einstellungen für Karten-Features (Territory-/Quartier-Ansicht). */
+  geo?: {
+    /** Bounding-Box des Stadtgebiets — für Demo-/Platzhalter-Koordinaten,
+     *  wenn kein echter Geo-Snapshot vorliegt. Fehlt sie, werden keine
+     *  Demo-Punkte erzeugt. */
+    boundingBox?: { minLat: number; maxLat: number; minLng: number; maxLng: number };
+    /** Pfad zur Stadtkreis-/Quartier-GeoJSON relativ zum Projekt-Root.
+     *  Fehlt er, rendert die Quartier-Ansicht ohne Grenzen-Overlay. */
+    stadtkreiseGeoJsonPath?: string;
+  };
 }
 
 /** City-spezifisches Farb-Theme. Alle Werte sind CSS-Farb-Strings (Hex,

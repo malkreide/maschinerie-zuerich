@@ -9,7 +9,7 @@ import { getT } from '@/lib/i18n-server';
 import { routing, type Locale } from '@/i18n/routing';
 import { resolveI18n, type ProzessLocale } from '@/types/prozess';
 import type { LebenslageLocale } from '@/types/stadt';
-import GraphView from '@/components/GraphView';
+import GraphLoader from '@/components/GraphLoader';
 import DetailPanel, { type RelatedProzess, type RelatedLebenslage } from '@/components/DetailPanel';
 import Legend from '@/components/Legend';
 import BudgetSummary from '@/components/BudgetSummary';
@@ -60,7 +60,7 @@ export default async function MaschineriePage({
     <main aria-label={tNav('graph')}>
       <div className="hidden sm:block relative h-[calc(100vh-56px)] mt-14 overflow-hidden">
         <Suspense fallback={null}>
-          <GraphView data={data} locale={locale as Locale} />
+          <GraphLoader data={data} locale={locale as Locale} />
           <DetailPanel data={data} relatedProzesse={relatedProzesse} relatedLebenslagen={relatedLebenslagen} />
         </Suspense>
         <Legend locale={locale as Locale} />
