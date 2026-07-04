@@ -64,18 +64,19 @@
       "schedule": ["before 5am on the first day of the month"]
     },
     {
-      "description": "Auto-Merge: Patch- und Minor-Updates von devDependencies",
+      "description": "Auto-Merge: Patch- und Minor-Updates von devDependencies — mit Cooldown, damit ein frisch kompromittiertes Release nicht ungesehen einläuft (npm-Hijacks werden meist innert Tagen entdeckt/gezogen)",
       "matchDepTypes": ["devDependencies"],
       "matchUpdateTypes": ["patch", "minor"],
       "automerge": true,
-      "automergeStrategy": "squash"
+      "automergeStrategy": "squash",
+      "minimumReleaseAge": "3 days"
     },
     {
-      "description": "Auto-Merge: Patch-Updates der Runtime-Deps",
+      "description": "Runtime-Deps: KEIN Auto-Merge — main wird via docker-publish.yml automatisch als :latest veröffentlicht, ein kompromittiertes Patch-Release ginge sonst ohne menschliches Review live",
       "matchDepTypes": ["dependencies"],
-      "matchUpdateTypes": ["patch"],
-      "automerge": true,
-      "automergeStrategy": "squash"
+      "automerge": false,
+      "minimumReleaseAge": "3 days",
+      "addLabels": ["runtime-dep"]
     },
     {
       "description": "Major-Updates: manuell prüfen (Breaking-Change-Risiko)",
@@ -84,10 +85,9 @@
       "addLabels": ["major-update"]
     },
     {
-      "description": "Lock-File-Maintenance: Transitive Deps refreshen",
+      "description": "Lock-File-Maintenance: KEIN Auto-Merge — refresht transitive Runtime-Deps und ist damit derselbe Supply-Chain-Pfad wie direkte Runtime-Updates",
       "matchUpdateTypes": ["lockFileMaintenance"],
-      "automerge": true,
-      "automergeStrategy": "squash"
+      "automerge": false
     }
   ],
   "lockFileMaintenance": {
