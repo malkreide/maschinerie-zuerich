@@ -158,7 +158,9 @@ den sichtbaren Quell-Link + Abrufdatum des Disclaimers.
 
 ### i18n
 
-- Objektform `{ de, en?, fr?, it?, ls? }`; `de` ist Pflicht.
+- Objektform `{ de, en?, fr?, it?, ls? }`; `de` ist Pflicht und **nicht-leer**
+  (Schema: `minLength: 1`). Andere Schlüssel als die fünf Locales lehnt das
+  Schema ab.
 - **`ls` = Leichte Sprache** (kanonischer Locale-Key dieses Repos; entspricht
   `leichte_sprache` im tessera-Entwurf — Mapping dokumentiert, Entwurf wird
   angeglichen).
@@ -171,6 +173,10 @@ den sichtbaren Quell-Link + Abrufdatum des Disclaimers.
 
 1. `id` kebab-case und **`id == lebenslage_ref`**; `schema_version` SemVer;
    `retrieved_at` ISO 8601; `source_url` (Prozess + References) http(s).
+   Das Schema lehnt **unbekannte Felder ab** (`additionalProperties: false`
+   auf allen Objekten) — Tippfehler-Felder scheitern in der CI statt still
+   ignoriert zu werden. `city` muss dem Ablage-Verzeichnis
+   `data/prozesse/<city>/` entsprechen.
 2. `lebenslage_ref` existiert in `data/<city>/lebenslagen.json` **und** die
    Lebenslage verlinkt zurück (`prozesse[]` enthält `<city>/<id>`).
    Für Städte ohne Lebenslagen-Datei wird der Check mit Warnung übersprungen.
@@ -195,9 +201,13 @@ den sichtbaren Quell-Link + Abrufdatum des Disclaimers.
 ### Kardinalregel-Lint
 
 Eine Zahl in Verbindung mit einer bindenden Einheit — `CHF`, `Fr.`, `Franken`,
-`%`, `Tag(e/en)`, `Woche(n)`, `Monat(e/en)`, `Jahr(e/en)`, sowie
-`Frist` mit Zahl im selben Text — ist ein **Fehler** in folgenden Feldern
-(alle Locales):
+`%`/`Prozent`, `Tag(e/en)`, `Woche(n)`, `Monat(e/en)`, `Jahr(e/en)` — ist ein
+**Fehler** in den unten gelisteten Feldern (alle Locales). Erkannt werden
+neben Ziffern auch **ausgeschriebene Zahlwörter** («innert zehn Tagen»,
+«fünf Jahre») und die Schweizer Preisnotation **«500.–»**; die Muster leben
+unit-getestet in
+[`scripts/lib/binding-values.mjs`](../stadt-zuerich-next/scripts/lib/binding-values.mjs).
+Geprüfte Felder:
 
 - `title`, `description`
 - `steps[].label`, `steps[].description`, `steps[].documents[].label`
@@ -226,6 +236,12 @@ Locale-Gesamtabdeckung gegen die Basis-Version (`origin/<base>`):
 - Verliert ein zuvor nicht-leerer lokalisierter Text seine Sprache (leer oder
   entfernt) oder sinkt die Abdeckung einer Locale, schlägt CI fehl — mit
   feldgenauem Zeiger auf den verlorenen Text.
+- **Gelöschte oder umbenannte Prozessdateien** (in der Basis vorhanden, im PR
+  nicht mehr) sind ebenfalls eine Regression — der Guard vergleicht gegen die
+  Dateiliste der Basis (`git ls-tree`), nicht nur den Working-Tree.
+- **`source_quote`-Erosion:** verliert eine bestehende Reference ihr belegtes
+  Zitat (auch via Downgrade auf `unverifiziert` + Leeren) oder sinkt die
+  Gesamtzahl belegter Zitate einer Datei, schlägt CI fehl.
 - Neue Dateien (keine Basis) werden übersprungen.
 - Ist eine Reduktion **wirklich** beabsichtigt: `ALLOW_PROZESS_SHRINK=1` schaltet
   den Guard auf Warnung herab.
@@ -246,7 +262,8 @@ Erweiterungen:
 | `title.leichte_sprache` | `title.ls` | kanonischer Locale-Key ist `ls` |
 | `depends_on: integer[]` | `(integer \| {step_id, condition?})[]` | additive Objekt-Variante für Bedingungs-Kanten; auf `step_id` reduzierbar |
 | `retrieved_at` (Timestamp) | ISO-8601-**Datum** | Tagesgenauigkeit reicht für Quell-Snapshots |
-| — | `city`, `description`, `actors`, `legal_basis`, `sources`, `reife`, `bewertung`, `meta`, Step-`type`/`description`/`documents`/`source_id`/`loops_back_to`, Reference-`status` | dokumentierte additive Erweiterungen, ignorierbar |
+| — | `city` | Erweiterung, aber **Pflichtfeld** (Schema-`required`): bestimmt Dateiablage und URL-Slug `<city>/<id>`. Produzenten, die Dateien für dieses Repo erzeugen, MÜSSEN es setzen; die CI prüft, dass es zum Ablage-Verzeichnis passt. Nur reine *Lese*-Konsumenten dürfen es ignorieren. |
+| — | `description`, `actors`, `legal_basis`, `sources`, `reife`, `bewertung`, `meta`, Step-`type`/`description`/`documents`/`source_id`/`loops_back_to`, Reference-`status` | dokumentierte additive Erweiterungen, ignorierbar |
 
 Rücksprünge realer Verfahren (Nachbesserung, Rekurs) sind **nicht** Teil des
 `depends_on`-DAG; sie leben ausschliesslich im Rendering-Hinweis

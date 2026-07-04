@@ -38,6 +38,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
+import { findBindingValue } from './lib/binding-values.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(here, '..');
@@ -161,10 +162,9 @@ const HIGH_RISK_IDS = {
 };
 
 // --- Kardinalregel-Lint -----------------------------------------------------
-// Bindende Werte (Zahl + Einheit) dürfen NUR im source_quote einer Reference
-// stehen.
-const BINDING_VALUE_RE =
-  /(\d[\d'’.,\s–-]*\s*(CHF|Fr\.|Franken|%|Tag(e|en)?|Woche(n)?|Monat(e|en)?|Jahr(e|en)?|Arbeitstag(e|en)?|Kalendertag(e|en)?)\b)|((CHF|Fr\.)\s*\d)|(\d\s*%)/i;
+// Bindende Werte dürfen NUR im source_quote einer Reference stehen. Die
+// Muster (Ziffern, ausgeschriebene Zahlwörter, «500.–»-Notation) leben
+// unit-getestet in scripts/lib/binding-values.mjs.
 
 function* i18nValues(s) {
   if (s == null) return;
@@ -178,8 +178,9 @@ function lintBindingValues(prozess) {
   const errors = [];
   const check = (where, s) => {
     for (const [suffix, v] of i18nValues(s)) {
-      if (BINDING_VALUE_RE.test(v)) {
-        errors.push(`Kardinalregel: bindender Wert im Klartext (${where}${suffix}): "${v.slice(0, 80)}" — gehört als Reference (Label + Link + source_quote), nicht ins Label`);
+      const hit = findBindingValue(v);
+      if (hit) {
+        errors.push(`Kardinalregel: bindender Wert im Klartext (${where}${suffix}, Treffer "${hit}"): "${v.slice(0, 80)}" — gehört als Reference (Label + Link + source_quote), nicht ins Label`);
       }
     }
   };
@@ -201,7 +202,7 @@ function lintBindingValues(prozess) {
     for (const v of reife.improvementIdeas ?? []) check('reife.improvementIdeas[]', v);
     for (const k of reife.wirkungKpi ?? []) {
       check('reife.wirkungKpi[].label', k.label);
-      if (typeof k.wert === 'string' && BINDING_VALUE_RE.test(k.wert)) {
+      if (typeof k.wert === 'string' && findBindingValue(k.wert)) {
         errors.push(`Kardinalregel: bindender Wert in reife.wirkungKpi.wert: "${k.wert.slice(0, 80)}"`);
       }
     }
@@ -383,6 +384,12 @@ async function main() {
     // Dateiname muss der ID entsprechen (URL-Slug <city>/<id>).
     if (file !== `${data.id}.json`) {
       semErrors.push(`Dateiname '${file}' != '${data.id}.json' (id)`);
+    }
+
+    // city muss zum Ablage-Verzeichnis passen — sonst zeigen URL-Slug und
+    // Hochrisiko-Gate (HIGH_RISK_IDS[city]) auf die falsche Stadt.
+    if (data.city !== undefined && data.city !== city) {
+      semErrors.push(`city '${data.city}' != Verzeichnis 'data/prozesse/${city}/'`);
     }
 
     // Cross-Checks gegen Stadt-Daten — nur bei formal gültigen Dateien.
