@@ -239,7 +239,7 @@
       "zellen": [
         {
           "key": "online-antrag",
-          "status": "unbekannt"
+          "status": "erfuellt"
         },
         {
           "key": "online-bezahlung",
@@ -287,31 +287,31 @@
         },
         {
           "key": "nicht-digitaler-alternativweg",
-          "status": "unbekannt"
+          "status": "erfuellt"
         }
       ],
       "score": {
         "digitalisierung": {
-          "erfuellt": 0,
-          "bekannt": 0,
-          "unbekannt": 6,
-          "prozent": null
+          "erfuellt": 1,
+          "bekannt": 1,
+          "unbekannt": 5,
+          "prozent": 100
         },
         "nutzendenorientierung": {
-          "erfuellt": 3,
-          "bekannt": 4,
-          "unbekannt": 2,
-          "prozent": 75
+          "erfuellt": 4,
+          "bekannt": 5,
+          "unbekannt": 1,
+          "prozent": 80
         },
         "gesamt": {
-          "erfuellt": 3,
-          "bekannt": 4,
-          "unbekannt": 8,
-          "prozent": 75
+          "erfuellt": 5,
+          "bekannt": 6,
+          "unbekannt": 6,
+          "prozent": 83
         }
       },
-      "unbekannt": 8,
-      "belegLuecke": true
+      "unbekannt": 6,
+      "belegLuecke": false
     },
     {
       "slug": "zh/fundsache",
@@ -1450,14 +1450,14 @@
   ],
   "summary": {
     "prozesse": 17,
-    "mitBeleg": 3,
-    "ohneBeleg": 14,
+    "mitBeleg": 4,
+    "ohneBeleg": 13,
     "proIndikator": [
       {
         "key": "online-antrag",
-        "erfuellt": 3,
+        "erfuellt": 4,
         "nichtErfuellt": 0,
-        "unbekannt": 14
+        "unbekannt": 13
       },
       {
         "key": "online-bezahlung",
@@ -1527,9 +1527,9 @@
       },
       {
         "key": "nicht-digitaler-alternativweg",
-        "erfuellt": 0,
+        "erfuellt": 1,
         "nichtErfuellt": 0,
-        "unbekannt": 17
+        "unbekannt": 16
       }
     ]
   }
