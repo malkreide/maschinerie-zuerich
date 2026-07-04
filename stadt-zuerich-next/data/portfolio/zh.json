@@ -806,7 +806,7 @@
       "zellen": [
         {
           "key": "online-antrag",
-          "status": "unbekannt"
+          "status": "erfuellt"
         },
         {
           "key": "online-bezahlung",
@@ -822,7 +822,7 @@
         },
         {
           "key": "digital-abschliessbar",
-          "status": "unbekannt"
+          "status": "nicht-erfuellt"
         },
         {
           "key": "once-only",
@@ -854,31 +854,31 @@
         },
         {
           "key": "nicht-digitaler-alternativweg",
-          "status": "unbekannt"
+          "status": "erfuellt"
         }
       ],
       "score": {
         "digitalisierung": {
-          "erfuellt": 0,
-          "bekannt": 0,
-          "unbekannt": 6,
-          "prozent": null
+          "erfuellt": 1,
+          "bekannt": 2,
+          "unbekannt": 4,
+          "prozent": 50
         },
         "nutzendenorientierung": {
-          "erfuellt": 4,
-          "bekannt": 4,
-          "unbekannt": 2,
+          "erfuellt": 5,
+          "bekannt": 5,
+          "unbekannt": 1,
           "prozent": 100
         },
         "gesamt": {
-          "erfuellt": 4,
-          "bekannt": 4,
-          "unbekannt": 8,
-          "prozent": 100
+          "erfuellt": 6,
+          "bekannt": 7,
+          "unbekannt": 5,
+          "prozent": 86
         }
       },
-      "unbekannt": 8,
-      "belegLuecke": true
+      "unbekannt": 5,
+      "belegLuecke": false
     },
     {
       "slug": "zh/sozialhilfe",
@@ -1450,14 +1450,14 @@
   ],
   "summary": {
     "prozesse": 17,
-    "mitBeleg": 4,
-    "ohneBeleg": 13,
+    "mitBeleg": 5,
+    "ohneBeleg": 12,
     "proIndikator": [
       {
         "key": "online-antrag",
-        "erfuellt": 4,
+        "erfuellt": 5,
         "nichtErfuellt": 0,
-        "unbekannt": 13
+        "unbekannt": 12
       },
       {
         "key": "online-bezahlung",
@@ -1480,8 +1480,8 @@
       {
         "key": "digital-abschliessbar",
         "erfuellt": 0,
-        "nichtErfuellt": 0,
-        "unbekannt": 17
+        "nichtErfuellt": 1,
+        "unbekannt": 16
       },
       {
         "key": "once-only",
@@ -1527,9 +1527,9 @@
       },
       {
         "key": "nicht-digitaler-alternativweg",
-        "erfuellt": 1,
+        "erfuellt": 2,
         "nichtErfuellt": 0,
-        "unbekannt": 16
+        "unbekannt": 15
       }
     ]
   }
