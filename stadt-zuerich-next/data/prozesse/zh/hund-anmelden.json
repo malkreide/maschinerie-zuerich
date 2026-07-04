@@ -234,11 +234,11 @@
       ],
       "type": "input",
       "description": {
-        "de": "Anmeldung bei der Hundekontrolle des Steueramts — online oder per Formular. Bei Zuzug oder Neuanschaffung innert der kantonalen Frist.",
-        "en": "Registration with the tax office's dog registry — online or by form. On moving in or acquiring a dog, within the cantonal deadline.",
-        "fr": "Annonce auprès du contrôle des chiens de l'office des impôts — en ligne ou au moyen d'un formulaire. En cas d'arrivée ou d'acquisition, dans le délai cantonal.",
-        "it": "Annuncio presso il controllo dei cani dell'ufficio delle imposte — online o tramite modulo. In caso di arrivo o acquisizione, entro il termine cantonale.",
-        "ls": "Sie melden den Hund beim Steuer-Amt. Das geht im Internet oder mit einem Formular."
+        "de": "Anmeldung als Hundehalter*in mittels Anmeldeformular bei der Wohngemeinde (Hundekontrolle des Steueramts). Bei Zuzug oder Neuanschaffung innert der kantonalen Frist.",
+        "en": "Registration as a dog owner by form at the residential municipality (the tax office's dog registry). On moving in or acquiring a dog, within the cantonal deadline.",
+        "fr": "Annonce en tant que détenteur/-trice de chien au moyen d'un formulaire auprès de la commune de domicile (contrôle des chiens de l'office des impôts). En cas d'arrivée ou d'acquisition, dans le délai cantonal.",
+        "it": "Annuncio come detentore/-trice di cane tramite modulo presso il Comune di domicilio (controllo dei cani dell'ufficio delle imposte). In caso di arrivo o acquisizione, entro il termine cantonale.",
+        "ls": "Sie melden den Hund beim Steuer-Amt in Ihrer Gemeinde. Dafür brauchen Sie ein Formular."
       },
       "documents": [
         {
@@ -414,7 +414,7 @@
     }
   ],
   "reife": {
-    "onlineReifegrad": "digital",
+    "onlineReifegrad": "teil-digital",
     "medienbrueche": [
       "separate-zahlung"
     ],
@@ -462,7 +462,7 @@
           "en": "Share online",
           "ls": "Wie viel geht online"
         },
-        "wert": "Anmeldung online, Zahlung separat"
+        "wert": "Anmeldung per Formular bei der Wohngemeinde; Zahlung separat"
       }
     ]
   },
