@@ -7,7 +7,7 @@ import IntlProvider from '@/components/IntlProvider';
 import { getTheme } from '@/lib/theme';
 import { routing, type Locale } from '@/i18n/routing';
 import { getT, getMessages } from '@/lib/i18n-server';
-import { themeCssVars } from '@/config/city.config';
+import { city, themeCssVars } from '@/config/city.config';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -34,7 +34,9 @@ export default async function LocaleLayout({
   const theme = await getTheme();
   const messages = getMessages(locale as Locale);
 
-  const htmlLang = ({ de: 'de-CH', en: 'en', fr: 'fr-CH', it: 'it-CH', ls: 'de-CH' } as const)[locale as Locale];
+  // BCP-47-Tag aus der City-Config (htmlLang) — die Regions-Tags (de-CH …)
+  // sind stadt-/länderspezifisch, kein App-Wissen. Fallback: roher Locale-Code.
+  const htmlLang = city.htmlLang?.[locale as Locale] ?? locale;
 
   return (
     <html lang={htmlLang} className={theme === 'dark' ? 'dark' : ''}>

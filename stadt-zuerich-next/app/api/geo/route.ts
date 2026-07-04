@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import geoConfig from '@/config/geo-layers.json';
+import { city } from '@/config/city.config';
 import { buildDepartmentProzesseMap } from '@/lib/territory';
 
 // Liefert die Geo-Layer der Territory-Ansicht als GeoJSON.
@@ -40,18 +41,27 @@ type Feature = {
   properties: { id: string; name: string; department: string };
 };
 
-function randomZrhCoord(): [number, number] {
-  const lat = 47.35 + Math.random() * 0.06;
-  const lng = 8.48 + Math.random() * 0.1;
+// Demo-Koordinaten aus der Bounding-Box der konfigurierten Stadt
+// (city.config.json → geo.boundingBox) — vorher hart auf Zürich codiert.
+// Ohne Bounding-Box (Fork ohne Geo-Block) gibt es keine Demo-Punkte.
+function randomCityCoord(): [number, number] | null {
+  const bb = city.geo?.boundingBox;
+  if (!bb) return null;
+  const lat = bb.minLat + Math.random() * (bb.maxLat - bb.minLat);
+  const lng = bb.minLng + Math.random() * (bb.maxLng - bb.minLng);
   return [lng, lat];
 }
 
 function demoFeatures(layer: Layer): Feature[] {
-  return Array.from({ length: layer.demoCount }).map((_, i) => ({
-    type: 'Feature',
-    geometry: { type: 'Point', coordinates: randomZrhCoord() },
-    properties: { id: `${layer.id}-${i}`, name: `${layer.namePrefix} ${i + 1}`, department: layer.department },
-  }));
+  return Array.from({ length: layer.demoCount }).flatMap((_, i) => {
+    const coord = randomCityCoord();
+    if (!coord) return [];
+    return [{
+      type: 'Feature' as const,
+      geometry: { type: 'Point' as const, coordinates: coord },
+      properties: { id: `${layer.id}-${i}`, name: `${layer.namePrefix} ${i + 1}`, department: layer.department },
+    }];
+  });
 }
 
 async function loadSnapshot(

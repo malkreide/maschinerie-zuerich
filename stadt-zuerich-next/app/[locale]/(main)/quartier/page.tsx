@@ -8,6 +8,7 @@ import { routing } from '@/i18n/routing';
 import { featureAreaKm2, countPointsPerKreis, isPlaceholderGeometry, type KreisFeature } from '@/lib/quartier-geo';
 import type { DataQualityStatus } from '@/components/DataQualityBadge';
 import geoConfig from '@/config/geo-layers.json';
+import { city } from '@/config/city.config';
 import fs from 'fs';
 import path from 'path';
 
@@ -26,13 +27,18 @@ export default async function QuartierPage({
 
   await loadStadtData();
 
-  // Amtliche Stadtkreis-Geometrie (Open Data Zürich).
+  // Amtliche Stadtkreis-Geometrie — Pfad aus der City-Config
+  // (geo.stadtkreiseGeoJsonPath), vorher hart auf Zürich codiert.
+  // Ohne konfigurierten Pfad rendert die Seite ohne Grenzen-Overlay.
   let geoJson: { type: string; features: KreisFeature[] } | null = null;
-  try {
-    const geoPath = path.join(process.cwd(), 'public/data/stadtkreise.geojson');
-    geoJson = JSON.parse(fs.readFileSync(geoPath, 'utf8'));
-  } catch (e) {
-    console.error('Konnte Stadtkreis-GeoJSON nicht laden', e);
+  const geoRelPath = city.geo?.stadtkreiseGeoJsonPath;
+  if (geoRelPath) {
+    try {
+      const geoPath = path.join(process.cwd(), geoRelPath);
+      geoJson = JSON.parse(fs.readFileSync(geoPath, 'utf8'));
+    } catch (e) {
+      console.error('Konnte Stadtkreis-GeoJSON nicht laden', e);
+    }
   }
 
   const kreise = geoJson?.features ?? [];
