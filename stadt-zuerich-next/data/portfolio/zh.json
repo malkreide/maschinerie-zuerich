@@ -644,7 +644,7 @@
       "zellen": [
         {
           "key": "online-antrag",
-          "status": "unbekannt"
+          "status": "erfuellt"
         },
         {
           "key": "online-bezahlung",
@@ -697,10 +697,10 @@
       ],
       "score": {
         "digitalisierung": {
-          "erfuellt": 0,
-          "bekannt": 0,
-          "unbekannt": 6,
-          "prozent": null
+          "erfuellt": 1,
+          "bekannt": 1,
+          "unbekannt": 5,
+          "prozent": 100
         },
         "nutzendenorientierung": {
           "erfuellt": 3,
@@ -709,14 +709,14 @@
           "prozent": 75
         },
         "gesamt": {
-          "erfuellt": 3,
-          "bekannt": 4,
-          "unbekannt": 8,
-          "prozent": 75
+          "erfuellt": 4,
+          "bekannt": 5,
+          "unbekannt": 7,
+          "prozent": 80
         }
       },
-      "unbekannt": 8,
-      "belegLuecke": true
+      "unbekannt": 7,
+      "belegLuecke": false
     },
     {
       "slug": "zh/parkplatz",
@@ -1049,7 +1049,7 @@
       "zellen": [
         {
           "key": "online-antrag",
-          "status": "unbekannt"
+          "status": "erfuellt"
         },
         {
           "key": "online-bezahlung",
@@ -1102,10 +1102,10 @@
       ],
       "score": {
         "digitalisierung": {
-          "erfuellt": 0,
-          "bekannt": 0,
-          "unbekannt": 6,
-          "prozent": null
+          "erfuellt": 1,
+          "bekannt": 1,
+          "unbekannt": 5,
+          "prozent": 100
         },
         "nutzendenorientierung": {
           "erfuellt": 3,
@@ -1114,14 +1114,14 @@
           "prozent": 75
         },
         "gesamt": {
-          "erfuellt": 3,
-          "bekannt": 4,
-          "unbekannt": 8,
-          "prozent": 75
+          "erfuellt": 4,
+          "bekannt": 5,
+          "unbekannt": 7,
+          "prozent": 80
         }
       },
-      "unbekannt": 8,
-      "belegLuecke": true
+      "unbekannt": 7,
+      "belegLuecke": false
     },
     {
       "slug": "zh/umwelt",
@@ -1450,14 +1450,14 @@
   ],
   "summary": {
     "prozesse": 17,
-    "mitBeleg": 5,
-    "ohneBeleg": 12,
+    "mitBeleg": 7,
+    "ohneBeleg": 10,
     "proIndikator": [
       {
         "key": "online-antrag",
-        "erfuellt": 5,
+        "erfuellt": 7,
         "nichtErfuellt": 0,
-        "unbekannt": 12
+        "unbekannt": 10
       },
       {
         "key": "online-bezahlung",

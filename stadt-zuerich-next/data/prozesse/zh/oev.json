@@ -283,9 +283,21 @@
       }
     ]
   },
+  "bewertung": {
+    "indikatoren": [
+      {
+        "key": "online-antrag",
+        "wert": true,
+        "source_url": "https://www.stadt-zuerich.ch/vbz/de/tickets.html",
+        "source_quote": "Kaufen Sie Ihr Ticket oder Abonnement im Online-Shop des ZVV.",
+        "status": "verifiziert",
+        "retrieved_at": "2026-07-04"
+      }
+    ]
+  },
   "meta": {
     "erstellt": "2026-06-21",
-    "aktualisiert": "2026-06-21",
+    "aktualisiert": "2026-07-04",
     "maintainer": "malkreide",
     "lizenz": "CC-BY-4.0"
   }
