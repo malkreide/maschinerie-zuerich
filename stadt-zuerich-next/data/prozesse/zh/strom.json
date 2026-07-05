@@ -240,9 +240,21 @@
       }
     ]
   },
+  "bewertung": {
+    "indikatoren": [
+      {
+        "key": "online-antrag",
+        "wert": true,
+        "source_url": "https://www.ewz.ch/de/services/umzug.html",
+        "source_quote": "Ich ziehe im ewz-Versorgungsgebiet um und melde meine neue Adresse in «Mein ewz».",
+        "status": "verifiziert",
+        "retrieved_at": "2026-07-04"
+      }
+    ]
+  },
   "meta": {
     "erstellt": "2026-06-21",
-    "aktualisiert": "2026-06-21",
+    "aktualisiert": "2026-07-04",
     "maintainer": "malkreide",
     "lizenz": "CC-BY-4.0"
   }
