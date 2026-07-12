@@ -292,6 +292,7 @@
   <h4 style="margin-top:8px">Verwaltungseinheiten</h4>
   <div class="row"><div class="swatch sq" style="background:#3b6ea5"></div>Dienstabteilung</div>
   <div class="row"><div class="swatch sq" style="background:#8b5cf6"></div>Stab / Querschnitt</div>
+  <div class="row"><div class="swatch sq" style="background:#fff;border:1.5px solid #475569"></div>Spezialverwaltungsbehörde</div>
   <h4 style="margin-top:8px">Verselbständigt & Beteiligungen</h4>
   <div class="row"><div class="swatch dia" style="background:#16a085"></div>Verselbständigter Betrieb</div>
   <div class="row"><div class="swatch dia" style="background:#f1c40f"></div>Beteiligung / Stiftung</div>
@@ -414,6 +415,12 @@ const style = [
   { selector: 'node[type = "staff"]',
     style: { 'background-color': '#8b5cf6', 'shape': 'round-rectangle',
              'width': 22, 'height': 16 } },
+  // Spezialverwaltungsbehörde: weisse Box mit Kontur wie im offiziellen
+  // Organigramm der Stadt (z. B. Betreibungsämter, KESB, Stadtrichteramt).
+  { selector: 'node[type = "spezial"]',
+    style: { 'background-color': '#ffffff', 'shape': 'round-rectangle',
+             'width': 22, 'height': 16,
+             'border-width': 1.5, 'border-color': '#475569' } },
   { selector: 'node[type = "extern"]',
     style: { 'background-color': '#16a085', 'shape': 'diamond',
              'width': 22, 'height': 22 } },
@@ -478,6 +485,7 @@ const TYPE_LABEL = {
   unit: 'Dienstabteilung',
   staff: 'Stab- / Querschnittsstelle',
   extern: 'Verselbständigter Betrieb',
+  spezial: 'Spezialverwaltungsbehörde',
   beteiligung: 'Beteiligung / Stiftung',
 };
 

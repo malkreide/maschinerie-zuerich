@@ -486,6 +486,11 @@ const GRAPH_STYLE: cytoscape.StylesheetStyle[] = [
       'background-color': TC.nodeType.unit, 'shape': 'round-rectangle', 'width': 22, 'height': 16 } },
   { selector: 'node[type = "staff"]', style: {
       'background-color': TC.nodeType.staff, 'shape': 'round-rectangle', 'width': 22, 'height': 16 } },
+  // Spezialverwaltungsbehörde: weisse Box mit kräftiger Kontur — spiegelt
+  // die Darstellung im offiziellen Organigramm der Stadt.
+  { selector: 'node[type = "spezial"]', style: {
+      'background-color': TC.nodeType.spezial, 'shape': 'round-rectangle',
+      'width': 22, 'height': 16, 'border-width': 1.5, 'border-color': '#475569' } },
   { selector: 'node[type = "extern"]', style: {
       'background-color': TC.nodeType.extern, 'shape': 'diamond', 'width': 22, 'height': 22 } },
   { selector: 'node[type = "beteiligung"]', style: {

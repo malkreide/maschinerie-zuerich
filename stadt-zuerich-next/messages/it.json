@@ -137,6 +137,7 @@
     "departement": "Dipartimento",
     "dienstabteilung": "Divisione",
     "stab": "Stato maggiore / trasversale",
+    "spezial": "Autorità amministrativa speciale",
     "verselbst": "Azienda autonoma",
     "beteiligung": "Partecipazione / fondazione",
     "konflikt": "Assegnazione cittadini ≠ RPK"
@@ -181,6 +182,7 @@
     "unit": "Divisione",
     "staff": "Stato maggiore",
     "extern": "Azienda autonoma",
+    "spezial": "Autorità amministrativa speciale",
     "beteiligung": "Partecipazione / fondazione"
   },
   "Prozesse": {

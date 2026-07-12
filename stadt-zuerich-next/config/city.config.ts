@@ -98,6 +98,9 @@ export interface CityTheme {
     unit: string;
     staff: string;
     extern: string;
+    /** Spezialverwaltungsbehörde mit Dienstabteilungskompetenzen (im
+     *  offiziellen Organigramm: weisse Box), z. B. Betreibungsämter, KESB. */
+    spezial: string;
     beteiligung: string;
   };
   /** Warn-Farbe für Konflikte (Bürger- vs. RPK-Zuordnung). */
@@ -129,6 +132,7 @@ export function themeCssVars(): string {
     `  --color-node-unit: ${t.nodeType.unit};`,
     `  --color-node-staff: ${t.nodeType.staff};`,
     `  --color-node-extern: ${t.nodeType.extern};`,
+    `  --color-node-spezial: ${t.nodeType.spezial};`,
     `  --color-node-beteiligung: ${t.nodeType.beteiligung};`,
     `  --color-konflikt: ${t.konflikt};`,
     `}`,

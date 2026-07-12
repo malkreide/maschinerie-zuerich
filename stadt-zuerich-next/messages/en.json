@@ -137,6 +137,7 @@
     "departement": "Department",
     "dienstabteilung": "Division",
     "stab": "Staff / cross-cutting",
+    "spezial": "Special administrative authority",
     "verselbst": "Independent operation",
     "beteiligung": "Holding / foundation",
     "konflikt": "Citizen vs. RPK assignment differs"
@@ -181,6 +182,7 @@
     "unit": "Division",
     "staff": "Staff unit",
     "extern": "Independent operation",
+    "spezial": "Special administrative authority",
     "beteiligung": "Holding / foundation"
   },
   "Prozesse": {

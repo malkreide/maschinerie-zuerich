@@ -137,6 +137,7 @@
     "departement": "Grosser Bereich",
     "dienstabteilung": "Amt",
     "stab": "Hilfs-Stelle",
+    "spezial": "Besondere Behörde",
     "verselbst": "Eigene Firma der Stadt",
     "beteiligung": "Stiftung oder Beteiligung",
     "konflikt": "Hier passt etwas nicht zusammen."
@@ -181,6 +182,7 @@
     "unit": "Amt",
     "staff": "Hilfs-Stelle",
     "extern": "Eigene Firma der Stadt",
+    "spezial": "Besondere Behörde",
     "beteiligung": "Stiftung oder Beteiligung"
   },
   "Prozesse": {
