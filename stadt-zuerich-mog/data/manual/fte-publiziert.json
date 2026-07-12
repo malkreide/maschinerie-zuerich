@@ -8,7 +8,12 @@
     "Vorgehen beim Aktualisieren:",
     "1. Aktuelle Globalbudget-/Anstalten-PDFs auf stadt-zuerich.ch herunterladen",
     "2. Nach 'Anzahl beschäftigte Mitarbeitende' und 'Vollzeitäquivalente' suchen",
-    "3. Werte hier ergänzen — Format: { id: '<unit-id>', wert, einheit, quelle, jahr, seite }"
+    "3. Werte hier ergänzen — Format: { id: '<unit-id>', wert, einheit, quelle, jahr, seite }",
+    "",
+    "ACHTUNG Strukturbruch: Die Departements-Werte aus der Rechnung 2025 spiegeln",
+    "die Departementszuteilung VOR dem Organigramm 2026 (Stand 27.05.2026) —",
+    "insbesondere zählt das Bevölkerungsamt (~188 FTE) dort noch zum SiD statt",
+    "zum PRD. Mit der Rechnung 2026 ersetzen und diesen Hinweis entfernen."
   ],
 
   "werte": [

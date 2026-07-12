@@ -61,11 +61,13 @@ async function main() {
   let written = 0;
 
   const apply = item => {
-    const key = item.odz?.key;
-    if (!key) return;
-    const pers = persByInst.get(key);
+    // odz.keys = Einheit aggregiert mehrere RPK-Institutionen (Array-Mapping).
+    const keys = item.odz?.keys ?? (item.odz?.key ? [item.odz.key] : []);
+    if (!keys.length) return;
+    const pers = keys.reduce((s, k) => s + (persByInst.get(k) || 0), 0);
     if (!Number.isFinite(pers) || pers <= 0) return;
-    item.fte = { ...meta, schaetzung: Math.round(pers / VOLLKOSTEN), personalaufwand: Math.round(pers) };
+    item.fte = { ...meta, schaetzung: Math.round(pers / VOLLKOSTEN), personalaufwand: Math.round(pers),
+                 ...(keys.length > 1 ? { _aggregiertAus: keys.length } : {}) };
     written++;
   };
   data.units.forEach(apply);

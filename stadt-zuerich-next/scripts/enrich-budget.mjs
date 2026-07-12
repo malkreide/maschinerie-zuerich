@@ -61,15 +61,18 @@ async function main() {
   let written = 0;
 
   const apply = (item) => {
-    const key = item.odz?.key;
-    if (!key) return;
-    const v = agg.get(key);
-    if (!v) return;
+    // odz.keys = Einheit aggregiert mehrere RPK-Institutionen (Array-Mapping).
+    const keys = item.odz?.keys ?? (item.odz?.key ? [item.odz.key] : []);
+    const vals = keys.map(k => agg.get(k)).filter(Boolean);
+    if (!vals.length) return;
+    const aufwand = vals.reduce((s, v) => s + v.aufwand, 0);
+    const ertrag  = vals.reduce((s, v) => s + v.ertrag,  0);
     item.budget = {
       ...meta,
-      aufwand: Math.round(v.aufwand),
-      ertrag:  Math.round(v.ertrag),
-      nettoaufwand: Math.round(v.aufwand - v.ertrag),
+      aufwand: Math.round(aufwand),
+      ertrag:  Math.round(ertrag),
+      nettoaufwand: Math.round(aufwand - ertrag),
+      ...(vals.length > 1 ? { _aggregiertAus: vals.length } : {}),
     };
     written++;
   };
