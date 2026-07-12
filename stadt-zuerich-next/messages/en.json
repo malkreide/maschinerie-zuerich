@@ -315,9 +315,7 @@
     "eyebrow": "Budget",
     "eyebrowYear": "Budget {jahr}",
     "aufwandLabel": "Expense",
-    "aufwandTitle": "Gross expense of the city — sum of all department expenses; in parentheses the per-resident figure.",
-    "nettoLabel": "Net",
-    "nettoTitle": "Net expense (expense minus income) — the amount taxpayers effectively fund; in parentheses the per-resident figure."
+    "aufwandTitle": "Gross expense of the city — sum of all department expenses; in parentheses the per-resident figure."
   },
   "Type": {
     "center": "Executive",

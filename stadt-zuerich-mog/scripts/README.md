@@ -104,9 +104,9 @@ Im UI sichtbar als orange-gestrichelter Rand am Knoten und als
 Die API liefert Beträge pro **Institution × Sachkonto**, nicht direkt pro
 Departement. `enrich-budget.mjs` summiert nach HRM2-Konvention:
 
-- **Aufwand** = Σ aller Sachkonten 30…39
-- **Ertrag**  = Σ aller Sachkonten 40…49
-- **Nettoaufwand** = Aufwand − Ertrag
+- **Aufwand** = Σ aller Sachkonten 30…39 (positiv)
+- **Ertrag**  = Σ aller Sachkonten 40…49 (in den Rohdaten bereits **negativ**)
+- **Nettoaufwand** = Aufwand + Ertrag (negativer Wert = Ertragsüberschuss)
 
 Departement-Totals werden **konservativ** aus den Units aggregiert, deren
 RPK-Zuordnung zum Departement passt. Konflikt-Units (siehe oben) fliessen

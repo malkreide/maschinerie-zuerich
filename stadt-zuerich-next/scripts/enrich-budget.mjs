@@ -3,8 +3,11 @@
 // Datei (Pfad aus city.config.json).
 //
 // HRM2-Konvention:
-//   Sachkonto 30…39 = Aufwand
-//   Sachkonto 40…49 = Ertrag
+//   Sachkonto 30…39 = Aufwand (positive Beträge)
+//   Sachkonto 40…49 = Ertrag  (in den RPK-Rohdaten bereits NEGATIV gespeichert)
+//
+// Nettoaufwand = aufwand + ertrag — nicht minus: weil der Ertrag negativ
+// vorliegt, würde eine Subtraktion Aufwand und |Ertrag| addieren.
 //
 // Geschrieben wird auf Departement- und Unit-Ebene jeweils:
 //   budget: { jahr, typ, aufwand, ertrag, nettoaufwand }
@@ -92,7 +95,7 @@ async function main() {
         typ: BETRAGS_TYP,
         aufwand: Math.round(v.aufwand),
         ertrag:  Math.round(v.ertrag),
-        nettoaufwand: Math.round(v.aufwand - v.ertrag),
+        nettoaufwand: Math.round(v.aufwand + v.ertrag),
         ...(instAggs.length > 1 ? { _aggregiertAus: instAggs.length } : {}),
       });
     }

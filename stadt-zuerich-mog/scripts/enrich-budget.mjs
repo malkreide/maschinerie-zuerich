@@ -2,8 +2,11 @@
 // 'aufwand' / 'ertrag' pro Institution und schreibt sie in data.json.
 //
 // HRM2-Konvention:
-//   Sachkonto 30…39 = Aufwand
-//   Sachkonto 40…49 = Ertrag
+//   Sachkonto 30…39 = Aufwand (positive Beträge)
+//   Sachkonto 40…49 = Ertrag  (in den RPK-Rohdaten bereits NEGATIV gespeichert)
+//
+// Nettoaufwand = aufwand + ertrag — nicht minus: weil der Ertrag negativ
+// vorliegt, würde eine Subtraktion Aufwand und |Ertrag| addieren.
 //
 // Geschrieben wird auf Departement- und Unit-Ebene jeweils:
 //   budget: { jahr, typ, aufwand, ertrag, nettoaufwand }
@@ -70,7 +73,7 @@ async function main() {
       ...meta,
       aufwand: Math.round(aufwand),
       ertrag:  Math.round(ertrag),
-      nettoaufwand: Math.round(aufwand - ertrag),
+      nettoaufwand: Math.round(aufwand + ertrag),
       ...(vals.length > 1 ? { _aggregiertAus: vals.length } : {}),
     };
     written++;

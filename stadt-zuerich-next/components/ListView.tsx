@@ -7,7 +7,6 @@ import { getT } from '@/lib/i18n-server';
 import { fmtCHF, fmtNumber } from '@/lib/search';
 import {
   computeTotalAufwand,
-  computeTotalNettoaufwand,
   perCapitaCHF,
   budgetSharePercent,
 } from '@/lib/budget-context';
@@ -23,10 +22,9 @@ export default function ListView({ data, locale }: { data: StadtData; locale: Lo
   const tExport = getT(locale, 'Export');
   // Bezugswerte für Pro-Kopf- und Anteils-Zeilen. Auf Server-Seite einmalig
   // berechnet — die ganze Liste ist statisch und wird pro Render erneut
-  // erzeugt, daher reicht ein lokaler const. Brutto und Netto getrennt,
-  // damit die Anteile gegen die jeweils passende Bezugsgrösse laufen.
+  // erzeugt, daher reicht ein lokaler const. Anteil nur gegen den Brutto-
+  // Aufwand: das Stadt-Netto liegt nahe null und taugt nicht als Bezug.
   const totalAufwand = computeTotalAufwand(data);
-  const totalNetto   = computeTotalNettoaufwand(data);
   const population = city.population;
 
   return (
@@ -54,7 +52,6 @@ export default function ListView({ data, locale }: { data: StadtData; locale: Lo
           tDetail={tDetail}
           tList={t}
           totalAufwand={totalAufwand}
-          totalNetto={totalNetto}
           population={population}
         />
       ))}
@@ -72,7 +69,6 @@ export default function ListView({ data, locale }: { data: StadtData; locale: Lo
                 b={b}
                 tDetail={tDetail}
                 totalAufwand={totalAufwand}
-                totalNetto={totalNetto}
                 population={population}
               />
             ))}
@@ -86,14 +82,13 @@ export default function ListView({ data, locale }: { data: StadtData; locale: Lo
 }
 
 function DepDetail({
-  dep, units, tDetail, tList, totalAufwand, totalNetto, population,
+  dep, units, tDetail, tList, totalAufwand, population,
 }: {
   dep: Department;
   units: Unit[];
   tDetail: TFn;
   tList: TFn;
   totalAufwand: number;
-  totalNetto: number;
   population: number | undefined;
 }) {
   const extras: string[] = [dep.id];
@@ -114,7 +109,6 @@ function DepDetail({
         dep={dep}
         tDetail={tDetail}
         totalAufwand={totalAufwand}
-        totalNetto={totalNetto}
         population={population}
       />
       {!hasAnyBudget && (
@@ -130,7 +124,6 @@ function DepDetail({
               unit={u}
               tDetail={tDetail}
               totalAufwand={totalAufwand}
-              totalNetto={totalNetto}
               population={population}
             />
           ))}
@@ -145,12 +138,11 @@ function DepDetail({
 }
 
 function UnitDetail({
-  unit, tDetail, totalAufwand, totalNetto, population,
+  unit, tDetail, totalAufwand, population,
 }: {
   unit: Unit;
   tDetail: TFn;
   totalAufwand: number;
-  totalNetto: number;
   population: number | undefined;
 }) {
   const extras: string[] = [];
@@ -168,7 +160,6 @@ function UnitDetail({
         unit={unit}
         tDetail={tDetail}
         totalAufwand={totalAufwand}
-        totalNetto={totalNetto}
         population={population}
       />
     </details>
@@ -176,12 +167,11 @@ function UnitDetail({
 }
 
 function BetDetail({
-  b, tDetail, totalAufwand, totalNetto, population,
+  b, tDetail, totalAufwand, population,
 }: {
   b: Beteiligung;
   tDetail: TFn;
   totalAufwand: number;
-  totalNetto: number;
   population: number | undefined;
 }) {
   return (
@@ -191,7 +181,6 @@ function BetDetail({
         beteiligung={b}
         tDetail={tDetail}
         totalAufwand={totalAufwand}
-        totalNetto={totalNetto}
         population={population}
       />
     </details>
@@ -199,14 +188,13 @@ function BetDetail({
 }
 
 function Meta({
-  dep, unit, beteiligung, tDetail, totalAufwand, totalNetto, population,
+  dep, unit, beteiligung, tDetail, totalAufwand, population,
 }: {
   dep?: Department;
   unit?: Unit;
   beteiligung?: Beteiligung;
   tDetail: TFn;
   totalAufwand: number;
-  totalNetto: number;
   population: number | undefined;
 }) {
   const item = dep ?? unit ?? beteiligung!;
@@ -222,9 +210,9 @@ function Meta({
     if (item.budget.ertrag != null) rows.push({ k: t('income'), v: fmtCHF(item.budget.ertrag) });
     if (item.budget.nettoaufwand != null) {
       rows.push({ k: t('netExpense'), v: <strong>{fmtCHF(item.budget.nettoaufwand)}</strong> });
-      // Aux-Zeilen für den Netto-Wert — relevant, weil das die Zahl ist, die
-      // Steuerzahlende effektiv tragen (Aufwand minus Ertrag).
-      pushAuxBudgetRows(rows, item.budget.nettoaufwand, t, totalNetto, population);
+      // Beim Netto nur Pro-Kopf, kein Anteil: das Stadt-weite Netto liegt
+      // nahe bei null (Steuern zählen als Ertrag), ein Prozentwert wäre absurd.
+      pushAuxBudgetRows(rows, item.budget.nettoaufwand, t, undefined, population);
     }
     rows.push({ k: t('budgetYear'), v: `${item.budget.jahr} (${item.budget.typ})` });
   }
@@ -263,14 +251,15 @@ function fteLabel(f: Fte, t: TFn): string {
 
 /**
  * Mutiert die Row-Liste um Pro-Kopf- und Anteils-Zeilen zu einem CHF-Betrag.
- * Aufrufer übergibt den passenden Stadt-Total (Brutto- oder Netto-Aufwand).
- * In-place-Push spart eine Konkatenation pro Item bei der grossen Liste.
+ * Ohne `total` entfällt die Anteils-Zeile (beim Netto-Wert, dessen Stadt-
+ * Summe keine sinnvolle Bezugsgrösse ist). In-place-Push spart eine
+ * Konkatenation pro Item bei der grossen Liste.
  */
 function pushAuxBudgetRows(
   rows: { k: React.ReactNode; v: React.ReactNode }[],
   amount: number | null | undefined,
   t: TFn,
-  total: number,
+  total: number | undefined,
   population: number | undefined,
 ): void {
   const pc = perCapitaCHF(amount, population);
@@ -280,7 +269,7 @@ function pushAuxBudgetRows(
       v: <span className="text-[var(--color-mute)]">{t('perCapitaValue', { value: pc })}</span>,
     });
   }
-  const sh = budgetSharePercent(amount, total);
+  const sh = total != null ? budgetSharePercent(amount, total) : null;
   if (sh) {
     rows.push({
       k: <span title={t('budgetShareTitle')} className="text-[var(--color-mute)]">↳ {t('budgetShareLabel')}</span>,

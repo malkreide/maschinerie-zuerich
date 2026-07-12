@@ -315,9 +315,7 @@
     "eyebrow": "Geld",
     "eyebrowYear": "Geld im Jahr {jahr}",
     "aufwandLabel": "Ausgaben",
-    "aufwandTitle": "So viel Geld gibt die Stadt aus. In Klammern: So viel ist das pro Person.",
-    "nettoLabel": "Netto",
-    "nettoTitle": "Ausgaben minus Einnahmen. So viel müssen die Steuer-Zahler bezahlen. In Klammern: So viel ist das pro Person."
+    "aufwandTitle": "So viel Geld gibt die Stadt aus. In Klammern: So viel ist das pro Person."
   },
   "Type": {
     "center": "Die Chefs",

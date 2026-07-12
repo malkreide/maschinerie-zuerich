@@ -315,9 +315,7 @@
     "eyebrow": "Budget",
     "eyebrowYear": "Budget {jahr}",
     "aufwandLabel": "Aufwand",
-    "aufwandTitle": "Brutto-Aufwand der Stadt — Summe aller Departement-Aufwände, in Klammern die Pro-Kopf-Zahl (Einwohnerbasis Stadt Zürich).",
-    "nettoLabel": "Netto",
-    "nettoTitle": "Netto-Aufwand (Aufwand minus Ertrag) — der Betrag, den Steuerzahlende effektiv tragen, in Klammern die Pro-Kopf-Zahl."
+    "aufwandTitle": "Brutto-Aufwand der Stadt — Summe aller Departement-Aufwände, in Klammern die Pro-Kopf-Zahl (Einwohnerbasis Stadt Zürich)."
   },
   "Type": {
     "center": "Exekutive",
