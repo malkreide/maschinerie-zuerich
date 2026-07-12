@@ -393,7 +393,7 @@
     },
     {
       "id": "abfall",
-      "zustaendig": "TED-erz-abf",
+      "zustaendig": "TED-erz",
       "i18n": {
         "de": {
           "frage": "Abfallkalender, Sperrgut, Recycling",
@@ -404,9 +404,11 @@
             "recycling",
             "altglas",
             "papier",
-            "tonne"
+            "tonne",
+            "erz",
+            "entsorgung"
           ],
-          "antwort": "ERZ – Entsorgung + Recycling Zürich, Bereich Abfall."
+          "antwort": "Entsorgung + Recycling – Abfuhr, Sperrgut und Recycling."
         },
         "en": null,
         "fr": null,
@@ -416,7 +418,7 @@
     },
     {
       "id": "stadtreinigung",
-      "zustaendig": "TED-erz-r",
+      "zustaendig": "TED-erz",
       "i18n": {
         "de": {
           "frage": "Strassenreinigung, Schneeräumung",
@@ -425,9 +427,10 @@
             "putzen",
             "schnee",
             "schneeräumung",
-            "winterdienst"
+            "winterdienst",
+            "erz"
           ],
-          "antwort": "ERZ – Stadtreinigung."
+          "antwort": "Entsorgung + Recycling – Strassenreinigung und Winterdienst."
         },
         "en": null,
         "fr": null,
@@ -470,9 +473,10 @@
             "altersheim",
             "spitex",
             "alterszentrum",
-            "demenz"
+            "demenz",
+            "pflegezentren"
           ],
-          "antwort": "Pflegezentren / Gesundheitszentren für das Alter."
+          "antwort": "Gesundheitszentren für das Alter."
         },
         "en": null,
         "fr": null,
@@ -641,7 +645,7 @@
             "register",
             "konkurs"
           ],
-          "antwort": "Stadtammann- und Betreibungsamt."
+          "antwort": "Betreibungsämter der Stadt Zürich."
         },
         "en": null,
         "fr": null,

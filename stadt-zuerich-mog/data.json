@@ -1,19 +1,21 @@
 {
   "_meta": {
     "schemaVersion": 1,
-    "stand": "2026-04-20",
+    "stand": "2026-05-27",
     "quellen": [
+      "Organigramm Stadt Zürich «Behörden und Verwaltung», Stand 27. Mai 2026 (PDF)",
       "https://www.stadt-zuerich.ch/ – Organigramm und Departementsseiten",
       "Geschäftsbericht Stadt Zürich – Aufwand pro Dienstabteilung",
       "Beteiligungsbericht Stadt Zürich – verselbständigte Betriebe und Beteiligungen",
       "https://data.stadt-zuerich.ch/ – Personalstatistik (FTE)"
     ],
     "hinweise": [
-      "Strukturdaten sind prototypisch – vor Go-Live mit aktuellem Organigramm abgleichen.",
+      "Struktur abgeglichen mit dem offiziellen Organigramm, Stand 27. Mai 2026: Bevölkerungsamt neu im PRD, Immobilien im HBD, ERZ-Teilbereiche zu 'Entsorgung + Recycling' konsolidiert (Fernwärme zum ewz), Sonderpädagogik fasst HPS/SKB/SFS zusammen.",
       "Personen bewusst als Rolle gehalten ('Stadtpräsident:in', 'Stadtrat / Stadträtin') – Namen wechseln, Strukturen bleiben länger stabil.",
-      "Felder budget und fte sind null und müssen aus Geschäftsbericht / Personalstatistik gespeist werden."
+      "Budgetzahlen 2024 (Gemeinderatsbeschluss) in der Struktur 2026: Umhängungen und Konsolidierungen sind budgetseitig erst ab Budget 2027 nativ abgebildet; aggregierte Einheiten sind mit _aggregiertAus markiert.",
+      "Unit-IDs sind stabil und ändern sich bei Umhängungen nicht (Deep-Links, Mapping) – das Departements-Präfix kann daher historisch sein (z. B. SiD-bev im PRD)."
     ],
-    "angereichert": "2026-04-20",
+    "angereichert": "2026-07-12",
     "quelleEnrichment": "data.stadt-zuerich.ch / fd_rpktool (rpkk-rs/v1)",
     "budgetStand": "2024 (GEMEINDERAT_BESCHLUSS)",
     "fteHinweis": "FTE-Werte sind primär Schätzungen (Personalaufwand / 130'000 CHF). 10 Einheit(en) haben publizierte Werte aus Budget-/Rechnungs-PDFs.",
@@ -35,7 +37,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 97367300,
         "ertrag": -31905300,
-        "nettoaufwand": 129272600,
+        "nettoaufwand": 65462000,
         "_aggregiertAus": 5
       },
       "fte": {
@@ -62,7 +64,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 949425300,
         "ertrag": -4310759200,
-        "nettoaufwand": 5260184500,
+        "nettoaufwand": -3361333900,
         "_aggregiertAus": 4
       },
       "fte": {
@@ -89,7 +91,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 1332631500,
         "ertrag": -720915100,
-        "nettoaufwand": 2053546600,
+        "nettoaufwand": 611716400,
         "_aggregiertAus": 6
       },
       "fte": {
@@ -116,7 +118,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 1388042000,
         "ertrag": -1125033100,
-        "nettoaufwand": 2513075100,
+        "nettoaufwand": 263008900,
         "_aggregiertAus": 4
       },
       "fte": {
@@ -141,10 +143,10 @@
       "budget": {
         "jahr": 2024,
         "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 654995500,
-        "ertrag": -438218400,
-        "nettoaufwand": 1093213900,
-        "_aggregiertAus": 7
+        "aufwand": 537167100,
+        "ertrag": -320390000,
+        "nettoaufwand": 216777100,
+        "_aggregiertAus": 4
       },
       "fte": {
         "schaetzung": 1864.2,
@@ -170,7 +172,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 488593800,
         "ertrag": -532325000,
-        "nettoaufwand": 1020918800,
+        "nettoaufwand": -43731200,
         "_aggregiertAus": 4
       },
       "fte": {
@@ -197,7 +199,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 606003000,
         "ertrag": -274004900,
-        "nettoaufwand": 880007900,
+        "nettoaufwand": 331998100,
         "_aggregiertAus": 5
       },
       "fte": {
@@ -224,8 +226,8 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 1596275900,
         "ertrag": -231477600,
-        "nettoaufwand": 1827753500,
-        "_aggregiertAus": 10
+        "nettoaufwand": 1364798300,
+        "_aggregiertAus": 6
       },
       "fte": {
         "schaetzung": 5587.9,
@@ -249,9 +251,9 @@
       "budget": {
         "jahr": 2024,
         "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 2672751200,
-        "ertrag": -2672751200,
-        "nettoaufwand": 5345502400,
+        "aufwand": 2790579600,
+        "ertrag": -2790579600,
+        "nettoaufwand": 0,
         "_aggregiertAus": 3
       },
       "fte": {
@@ -281,7 +283,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 12610300,
         "ertrag": -2841800,
-        "nettoaufwand": 15452100
+        "nettoaufwand": 9768500
       },
       "fte": {
         "jahr": 2024,
@@ -315,7 +317,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 7711200,
         "ertrag": -75000,
-        "nettoaufwand": 7786200
+        "nettoaufwand": 7636200
       },
       "fte": {
         "jahr": 2024,
@@ -343,7 +345,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 30199900,
         "ertrag": -1877000,
-        "nettoaufwand": 32076900
+        "nettoaufwand": 28322900
       },
       "fte": {
         "jahr": 2024,
@@ -371,7 +373,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 5573000,
         "ertrag": -25000,
-        "nettoaufwand": 5598000
+        "nettoaufwand": 5548000
       },
       "fte": {
         "jahr": 2024,
@@ -390,22 +392,6 @@
       }
     },
     {
-      "id": "PRD-wifo",
-      "parent": "PRD",
-      "name": "Wirtschaftsförderung",
-      "kind": "staff",
-      "budget": null,
-      "fte": null
-    },
-    {
-      "id": "PRD-int",
-      "parent": "PRD",
-      "name": "Integrationsförderung",
-      "kind": "staff",
-      "budget": null,
-      "fte": null
-    },
-    {
       "id": "PRD-gleich",
       "parent": "PRD",
       "name": "Fachstelle Gleichstellung",
@@ -415,7 +401,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 2127300,
         "ertrag": -113500,
-        "nettoaufwand": 2240800
+        "nettoaufwand": 2013800
       },
       "fte": {
         "jahr": 2024,
@@ -434,16 +420,24 @@
       }
     },
     {
+      "id": "PRD-wohnen",
+      "parent": "PRD",
+      "name": "Delegierte/r Wohnen",
+      "kind": "staff",
+      "budget": null,
+      "fte": null
+    },
+    {
       "id": "PRD-stab",
       "parent": "PRD",
-      "name": "Stadtammann- und Betreibungsamt",
-      "kind": "unit",
+      "name": "Betreibungsämter",
+      "kind": "spezial",
       "budget": {
         "jahr": 2024,
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 26896700,
         "ertrag": -22019400,
-        "nettoaufwand": 48916100
+        "nettoaufwand": 4877300
       },
       "fte": {
         "jahr": 2024,
@@ -477,7 +471,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 607760200,
         "ertrag": -612093300,
-        "nettoaufwand": 1219853500
+        "nettoaufwand": -4333100
       },
       "fte": {
         "jahr": 2024,
@@ -505,7 +499,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 70611600,
         "ertrag": -3557095900,
-        "nettoaufwand": 3627707500
+        "nettoaufwand": -3486484300
       },
       "fte": {
         "schaetzung": 222,
@@ -533,7 +527,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 35214100,
         "ertrag": -6676300,
-        "nettoaufwand": 41890400
+        "nettoaufwand": 28537800
       },
       "fte": {
         "jahr": 2024,
@@ -553,7 +547,7 @@
     },
     {
       "id": "FD-imm",
-      "parent": "FD",
+      "parent": "HBD",
       "name": "Immobilien Stadt Zürich",
       "kind": "unit",
       "budget": {
@@ -561,7 +555,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 404636500,
         "ertrag": -473098000,
-        "nettoaufwand": 877734500
+        "nettoaufwand": -68461500
       },
       "fte": {
         "jahr": 2024,
@@ -577,12 +571,6 @@
         "kurzname": "IMO",
         "bezeichnung": "Immobilien Stadt Zürich",
         "departementKurzname": "HBD"
-      },
-      "konflikt": {
-        "unsereZuordnung": "FD",
-        "unsereKurzname": "FD",
-        "rpkKurzname": "HBD",
-        "rpkBezeichnung": "Hochbaudepartement"
       }
     },
     {
@@ -595,7 +583,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 235839400,
         "ertrag": -134893700,
-        "nettoaufwand": 370733100
+        "nettoaufwand": 100945700
       },
       "fte": {
         "jahr": 2024,
@@ -623,7 +611,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 459524900,
         "ertrag": -362208200,
-        "nettoaufwand": 821733100
+        "nettoaufwand": 97316700
       },
       "fte": {
         "jahr": 2024,
@@ -665,7 +653,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 46751900,
         "ertrag": -520000,
-        "nettoaufwand": 47271900
+        "nettoaufwand": 46231900
       },
       "fte": {
         "jahr": 2024,
@@ -693,7 +681,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 666124700,
         "ertrag": -270651200,
-        "nettoaufwand": 936775900
+        "nettoaufwand": 395473500
       },
       "fte": {
         "jahr": 2024,
@@ -721,7 +709,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 25663600,
         "ertrag": -5937500,
-        "nettoaufwand": 31601100
+        "nettoaufwand": 19726100
       },
       "fte": {
         "jahr": 2024,
@@ -743,13 +731,13 @@
       "id": "SD-keb",
       "parent": "SD",
       "name": "Kindes- und Erwachsenenschutzbehörde",
-      "kind": "unit",
+      "kind": "spezial",
       "budget": {
         "jahr": 2024,
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 19951700,
         "ertrag": -3710500,
-        "nettoaufwand": 23662200
+        "nettoaufwand": 16241200
       },
       "fte": {
         "jahr": 2024,
@@ -777,7 +765,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 114614700,
         "ertrag": -77887700,
-        "nettoaufwand": 192502400
+        "nettoaufwand": 36727000
       },
       "fte": {
         "jahr": 2024,
@@ -805,7 +793,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 724823400,
         "ertrag": -679088900,
-        "nettoaufwand": 1403912300
+        "nettoaufwand": 45734500
       },
       "fte": {
         "jahr": 2024,
@@ -826,14 +814,14 @@
     {
       "id": "GUD-pflege",
       "parent": "GUD",
-      "name": "Pflegezentren",
+      "name": "Gesundheitszentren für das Alter",
       "kind": "unit",
       "budget": {
         "jahr": 2024,
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 468330400,
         "ertrag": -420348300,
-        "nettoaufwand": 888678700
+        "nettoaufwand": 47982100
       },
       "fte": {
         "jahr": 2024,
@@ -861,7 +849,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 143348600,
         "ertrag": -17791000,
-        "nettoaufwand": 161139600
+        "nettoaufwand": 125557600
       },
       "fte": {
         "jahr": 2024,
@@ -880,14 +868,6 @@
       }
     },
     {
-      "id": "GUD-staz",
-      "parent": "GUD",
-      "name": "Stadtärztlicher Dienst",
-      "kind": "unit",
-      "budget": null,
-      "fte": null
-    },
-    {
       "id": "GUD-ugz",
       "parent": "GUD",
       "name": "Umwelt- und Gesundheitsschutz Zürich (UGZ)",
@@ -897,7 +877,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 51539600,
         "ertrag": -7804900,
-        "nettoaufwand": 59344500
+        "nettoaufwand": 43734700
       },
       "fte": {
         "jahr": 2024,
@@ -916,14 +896,6 @@
       }
     },
     {
-      "id": "GUD-vet",
-      "parent": "GUD",
-      "name": "Veterinäramt",
-      "kind": "unit",
-      "budget": null,
-      "fte": null
-    },
-    {
       "id": "TED-tba",
       "parent": "TED",
       "name": "Tiefbauamt",
@@ -933,7 +905,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 125045700,
         "ertrag": -53756500,
-        "nettoaufwand": 178802200
+        "nettoaufwand": 71289200
       },
       "fte": {
         "jahr": 2024,
@@ -952,115 +924,38 @@
       }
     },
     {
-      "id": "TED-erz-abf",
+      "id": "TED-erz",
       "parent": "TED",
-      "name": "ERZ – Abfall",
-      "kind": "extern",
+      "name": "Entsorgung + Recycling",
+      "kind": "unit",
       "budget": {
         "jahr": 2024,
         "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 127019300,
-        "ertrag": -127019300,
-        "nettoaufwand": 254038600
+        "aufwand": 257341700,
+        "ertrag": -217336800,
+        "nettoaufwand": 40004900,
+        "_aggregiertAus": 3
       },
       "fte": {
         "jahr": 2024,
         "typ": "GEMEINDERAT_BESCHLUSS",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 495,
-        "personalaufwand": 64369600,
+        "schaetzung": 911,
+        "personalaufwand": 118388700,
+        "_aggregiertAus": 3,
         "quelle": "schaetzung"
       },
       "odz": {
         "key": "3550",
-        "kurzname": "ERZ-Abf",
-        "bezeichnung": "Entsorgung + Recycling Zürich, Abfall",
-        "departementKurzname": "TED"
-      }
-    },
-    {
-      "id": "TED-erz-abw",
-      "parent": "TED",
-      "name": "ERZ – Abwasser",
-      "kind": "extern",
-      "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 80381500,
-        "ertrag": -80381500,
-        "nettoaufwand": 160763000
-      },
-      "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "methode": "personalaufwand/vollkosten",
-        "vollkostenProFte": 130000,
-        "schaetzung": 207,
-        "personalaufwand": 26949000,
-        "quelle": "schaetzung"
-      },
-      "odz": {
-        "key": "3535",
-        "kurzname": "ERZ-Abw",
-        "bezeichnung": "Entsorgung + Recycling Zürich, Abwasser",
-        "departementKurzname": "TED"
-      }
-    },
-    {
-      "id": "TED-erz-w",
-      "parent": "TED",
-      "name": "ERZ – Fernwärme",
-      "kind": "extern",
-      "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 117828400,
-        "ertrag": -117828400,
-        "nettoaufwand": 235656800
-      },
-      "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "methode": "personalaufwand/vollkosten",
-        "vollkostenProFte": 130000,
-        "schaetzung": 93,
-        "personalaufwand": 12154400,
-        "quelle": "schaetzung"
-      },
-      "odz": {
-        "key": "3555",
-        "kurzname": "ERZ-W",
-        "bezeichnung": "Entsorgung + Recycling Zürich, Fernwärme",
-        "departementKurzname": "TED"
-      }
-    },
-    {
-      "id": "TED-erz-r",
-      "parent": "TED",
-      "name": "ERZ – Stadtreinigung",
-      "kind": "extern",
-      "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 49940900,
-        "ertrag": -9936000,
-        "nettoaufwand": 59876900
-      },
-      "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "methode": "personalaufwand/vollkosten",
-        "vollkostenProFte": 130000,
-        "schaetzung": 208,
-        "personalaufwand": 27070100,
-        "quelle": "schaetzung"
-      },
-      "odz": {
-        "key": "3560",
-        "kurzname": "ERZ-R",
-        "bezeichnung": "Entsorgung + Recycling Zürich, Stadtreinigung",
-        "departementKurzname": "TED"
+        "kurzname": "ERZ-Abf+ERZ-Abw+ERZ-R",
+        "bezeichnung": "Entsorgung + Recycling Zürich, Abfall + Entsorgung + Recycling Zürich, Abwasser + Entsorgung + Recycling Zürich, Stadtreinigung",
+        "departementKurzname": "TED",
+        "keys": [
+          "3550",
+          "3535",
+          "3560"
+        ]
       }
     },
     {
@@ -1073,7 +968,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 13020100,
         "ertrag": -10111000,
-        "nettoaufwand": 23131100
+        "nettoaufwand": 2909100
       },
       "fte": {
         "jahr": 2024,
@@ -1101,7 +996,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 141759600,
         "ertrag": -39185700,
-        "nettoaufwand": 180945300
+        "nettoaufwand": 102573900
       },
       "fte": {
         "jahr": 2024,
@@ -1129,7 +1024,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 31376300,
         "ertrag": -16660000,
-        "nettoaufwand": 48036300
+        "nettoaufwand": 14716300
       },
       "fte": {
         "jahr": 2024,
@@ -1157,7 +1052,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 37206800,
         "ertrag": -26699500,
-        "nettoaufwand": 63906300
+        "nettoaufwand": 10507300
       },
       "fte": {
         "jahr": 2024,
@@ -1185,7 +1080,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 15374200,
         "ertrag": -15867500,
-        "nettoaufwand": 31241700
+        "nettoaufwand": -493300
       },
       "fte": {
         "jahr": 2024,
@@ -1213,7 +1108,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 380475500,
         "ertrag": -125245500,
-        "nettoaufwand": 505721000
+        "nettoaufwand": 255230000
       },
       "fte": {
         "jahr": 2024,
@@ -1241,7 +1136,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 157848900,
         "ertrag": -95924300,
-        "nettoaufwand": 253773200
+        "nettoaufwand": 61924600
       },
       "fte": {
         "jahr": 2024,
@@ -1261,7 +1156,7 @@
     },
     {
       "id": "SiD-bev",
-      "parent": "SiD",
+      "parent": "PRD",
       "name": "Bevölkerungsamt",
       "kind": "unit",
       "budget": {
@@ -1269,7 +1164,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 51755900,
         "ertrag": -29814800,
-        "nettoaufwand": 81570700
+        "nettoaufwand": 21941100
       },
       "fte": {
         "jahr": 2024,
@@ -1285,25 +1180,19 @@
         "kurzname": "BVA",
         "bezeichnung": "Bevölkerungsamt",
         "departementKurzname": "PRD"
-      },
-      "konflikt": {
-        "unsereZuordnung": "SiD",
-        "unsereKurzname": "SID",
-        "rpkKurzname": "PRD",
-        "rpkBezeichnung": "Präsidialdepartement"
       }
     },
     {
       "id": "SiD-richt",
       "parent": "SiD",
       "name": "Stadtrichteramt",
-      "kind": "unit",
+      "kind": "spezial",
       "budget": {
         "jahr": 2024,
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 19705500,
         "ertrag": -24937500,
-        "nettoaufwand": 44643000
+        "nettoaufwand": -5232000
       },
       "fte": {
         "jahr": 2024,
@@ -1331,7 +1220,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 36111100,
         "ertrag": -18303800,
-        "nettoaufwand": 54414900
+        "nettoaufwand": 17807300
       },
       "fte": {
         "jahr": 2024,
@@ -1359,7 +1248,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 11862000,
         "ertrag": -9593800,
-        "nettoaufwand": 21455800
+        "nettoaufwand": 2268200
       },
       "fte": {
         "jahr": 2024,
@@ -1385,24 +1274,30 @@
       "budget": {
         "jahr": 2024,
         "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 1246638400,
-        "ertrag": -74846600,
-        "nettoaufwand": 1321485000
+        "aufwand": 1271958100,
+        "ertrag": -100216300,
+        "nettoaufwand": 1171741800,
+        "_aggregiertAus": 2
       },
       "fte": {
         "jahr": 2024,
         "typ": "GEMEINDERAT_BESCHLUSS",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 3632,
-        "personalaufwand": 472192600,
+        "schaetzung": 3664,
+        "personalaufwand": 476305800,
+        "_aggregiertAus": 2,
         "quelle": "schaetzung"
       },
       "odz": {
         "key": "5010",
-        "kurzname": "SAM",
-        "bezeichnung": "Schulamt",
-        "departementKurzname": "SSD"
+        "kurzname": "SAM+SBMV",
+        "bezeichnung": "Schulamt + Schul- und Büromaterialverwaltung",
+        "departementKurzname": "SSD",
+        "keys": [
+          "5010",
+          "5005"
+        ]
       }
     },
     {
@@ -1415,7 +1310,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 73221200,
         "ertrag": -21551400,
-        "nettoaufwand": 94772600
+        "nettoaufwand": 51669800
       },
       "fte": {
         "jahr": 2024,
@@ -1443,7 +1338,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 29014100,
         "ertrag": -4877600,
-        "nettoaufwand": 33891700
+        "nettoaufwand": 24136500
       },
       "fte": {
         "jahr": 2024,
@@ -1462,171 +1357,72 @@
       }
     },
     {
-      "id": "SSD-hps",
+      "id": "SSD-sopaed",
       "parent": "SSD",
-      "name": "Heilpädagogische Schule Zürich",
-      "kind": "extern",
-      "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 17944500,
-        "ertrag": -17944500,
-        "nettoaufwand": 35889000
-      },
-      "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "methode": "personalaufwand/vollkosten",
-        "vollkostenProFte": 130000,
-        "schaetzung": 93,
-        "personalaufwand": 12140600,
-        "quelle": "schaetzung"
-      },
-      "odz": {
-        "key": "5030",
-        "kurzname": "HPS",
-        "bezeichnung": "Heilpädagogische Schule Zürich",
-        "departementKurzname": "SSD"
-      }
-    },
-    {
-      "id": "SSD-skb",
-      "parent": "SSD",
-      "name": "Schule für Körper- und Mehrfachbehinderungen",
-      "kind": "extern",
-      "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 12236900,
-        "ertrag": -12236900,
-        "nettoaufwand": 24473800
-      },
-      "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "methode": "personalaufwand/vollkosten",
-        "vollkostenProFte": 130000,
-        "schaetzung": 77,
-        "personalaufwand": 10006400,
-        "quelle": "schaetzung"
-      },
-      "odz": {
-        "key": "5031",
-        "kurzname": "SKB",
-        "bezeichnung": "Schule für Kinder und Jugendliche mit Körper- und Mehrfachbehinderungen Zürich",
-        "departementKurzname": "SSD"
-      }
-    },
-    {
-      "id": "SSD-sfs",
-      "parent": "SSD",
-      "name": "Schule Fokus Sehen",
-      "kind": "extern",
-      "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 4468800,
-        "ertrag": -4468800,
-        "nettoaufwand": 8937600
-      },
-      "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "methode": "personalaufwand/vollkosten",
-        "vollkostenProFte": 130000,
-        "schaetzung": 25,
-        "personalaufwand": 3307200,
-        "quelle": "schaetzung"
-      },
-      "odz": {
-        "key": "5032",
-        "kurzname": "SFS",
-        "bezeichnung": "Schule Fokus Sehen",
-        "departementKurzname": "SSD"
-      }
-    },
-    {
-      "id": "SSD-v15",
-      "parent": "SSD",
-      "name": "Viventa15plus",
+      "name": "Sonderpädagogik",
       "kind": "unit",
       "budget": {
         "jahr": 2024,
         "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 7776100,
-        "ertrag": -7776100,
-        "nettoaufwand": 15552200
+        "aufwand": 34650200,
+        "ertrag": -34650200,
+        "nettoaufwand": 0,
+        "_aggregiertAus": 3
       },
       "fte": {
         "jahr": 2024,
         "typ": "GEMEINDERAT_BESCHLUSS",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 45,
-        "personalaufwand": 5846800,
+        "schaetzung": 196,
+        "personalaufwand": 25454200,
+        "_aggregiertAus": 3,
         "quelle": "schaetzung"
       },
       "odz": {
-        "key": "5033",
-        "kurzname": "V15",
-        "bezeichnung": "Viventa15plus",
-        "departementKurzname": "SSD"
+        "key": "5030",
+        "kurzname": "HPS+SKB+SFS",
+        "bezeichnung": "Heilpädagogische Schule Zürich + Schule für Kinder und Jugendliche mit Körper- und Mehrfachbehinderungen Zürich + Schule Fokus Sehen",
+        "departementKurzname": "SSD",
+        "keys": [
+          "5030",
+          "5031",
+          "5032"
+        ]
       }
     },
     {
       "id": "SSD-fsv",
       "parent": "SSD",
       "name": "Fachschule Viventa",
-      "kind": "extern",
-      "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 30526700,
-        "ertrag": -10069100,
-        "nettoaufwand": 40595800
-      },
-      "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "methode": "personalaufwand/vollkosten",
-        "vollkostenProFte": 130000,
-        "schaetzung": 165,
-        "personalaufwand": 21502300,
-        "quelle": "schaetzung"
-      },
-      "odz": {
-        "key": "5063",
-        "kurzname": "FSV",
-        "bezeichnung": "Fachschule Viventa",
-        "departementKurzname": "SSD"
-      }
-    },
-    {
-      "id": "SSD-sbmv",
-      "parent": "SSD",
-      "name": "Schul- und Büromaterialverwaltung",
       "kind": "unit",
       "budget": {
         "jahr": 2024,
         "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 25319700,
-        "ertrag": -25369700,
-        "nettoaufwand": 50689400
+        "aufwand": 38302800,
+        "ertrag": -17845200,
+        "nettoaufwand": 20457600,
+        "_aggregiertAus": 2
       },
       "fte": {
         "jahr": 2024,
         "typ": "GEMEINDERAT_BESCHLUSS",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 32,
-        "personalaufwand": 4113200,
+        "schaetzung": 210,
+        "personalaufwand": 27349100,
+        "_aggregiertAus": 2,
         "quelle": "schaetzung"
       },
       "odz": {
-        "key": "5005",
-        "kurzname": "SBMV",
-        "bezeichnung": "Schul- und Büromaterialverwaltung",
-        "departementKurzname": "SSD"
+        "key": "5063",
+        "kurzname": "FSV+V15",
+        "bezeichnung": "Fachschule Viventa + Viventa15plus",
+        "departementKurzname": "SSD",
+        "keys": [
+          "5063",
+          "5033"
+        ]
       }
     },
     {
@@ -1639,7 +1435,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 149129500,
         "ertrag": -52336900,
-        "nettoaufwand": 201466400
+        "nettoaufwand": 96792600
       },
       "fte": {
         "jahr": 2024,
@@ -1665,24 +1461,30 @@
       "budget": {
         "jahr": 2024,
         "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 1874900100,
-        "ertrag": -1874900100,
-        "nettoaufwand": 3749800200
+        "aufwand": 1992728500,
+        "ertrag": -1992728500,
+        "nettoaufwand": 0,
+        "_aggregiertAus": 2
       },
       "fte": {
         "jahr": 2024,
         "typ": "GEMEINDERAT_BESCHLUSS",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 1275,
-        "personalaufwand": 165793400,
+        "schaetzung": 1369,
+        "personalaufwand": 177947800,
+        "_aggregiertAus": 2,
         "quelle": "schaetzung"
       },
       "odz": {
         "key": "4530",
-        "kurzname": "EWZ",
-        "bezeichnung": "Elektrizitätswerk der Stadt Zürich",
-        "departementKurzname": "DIB"
+        "kurzname": "EWZ+ERZ-W",
+        "bezeichnung": "Elektrizitätswerk der Stadt Zürich + Entsorgung + Recycling Zürich, Fernwärme",
+        "departementKurzname": "DIB",
+        "keys": [
+          "4530",
+          "3555"
+        ]
       }
     },
     {
@@ -1695,7 +1497,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 94833800,
         "ertrag": -94833800,
-        "nettoaufwand": 189667600
+        "nettoaufwand": 0
       },
       "fte": {
         "jahr": 2024,
@@ -1723,7 +1525,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 703017300,
         "ertrag": -703017300,
-        "nettoaufwand": 1406034600
+        "nettoaufwand": 0
       },
       "fte": {
         "jahr": 2024,
@@ -1740,6 +1542,14 @@
         "bezeichnung": "Verkehrsbetriebe",
         "departementKurzname": "DIB"
       }
+    },
+    {
+      "id": "DIB-energie",
+      "parent": "DIB",
+      "name": "Energiebeauftragte/r",
+      "kind": "staff",
+      "budget": null,
+      "fte": null
     }
   ],
   "beteiligungen": [
