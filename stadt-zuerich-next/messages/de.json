@@ -279,6 +279,7 @@
     "departement": "Departement",
     "dienstabteilung": "Dienstabteilung",
     "stab": "Stab / Querschnitt",
+    "spezial": "Spezialverwaltungsbehörde",
     "verselbst": "Verselbständigter Betrieb",
     "beteiligung": "Beteiligung / Stiftung",
     "konflikt": "Bürger-/RPK-Zuordnung divergiert",
@@ -324,6 +325,8 @@
     "unit": "Dienstabteilung",
     "staff": "Stab- / Querschnittsstelle",
     "extern": "Verselbständigter Betrieb",
+    "spezial": "Spezialverwaltungsbehörde",
+    "committee": "Ausschuss / Kommission",
     "beteiligung": "Beteiligung / Stiftung"
   },
   "Prozesse": {

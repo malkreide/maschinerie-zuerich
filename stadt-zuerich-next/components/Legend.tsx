@@ -37,6 +37,7 @@ function LegendContent({ t, c }: { t: ReturnType<typeof getT>; c: typeof city.th
       <Heading mt>{t('headingUnits')}</Heading>
       <Row color={c.unit} sq>{t('dienstabteilung')}</Row>
       <Row color={c.staff} sq>{t('stab')}</Row>
+      <Row color={c.spezial} sq outlined>{t('spezial')}</Row>
       <Row color={c.committee} hex>{t('committee')}</Row>
 
       <Heading mt>{t('headingExtern')}</Heading>
@@ -58,10 +59,10 @@ function Heading({ children, mt }: { children: React.ReactNode; mt?: boolean }) 
 }
 
 function Row({
-  color, sq, dia, round, hex, dashed, dashColor, children,
+  color, sq, dia, round, hex, dashed, dashColor, outlined, children,
 }: {
   color?: string; sq?: boolean; dia?: boolean; round?: boolean; hex?: boolean; dashed?: boolean;
-  dashColor?: string;
+  dashColor?: string; outlined?: boolean;
   children: React.ReactNode;
 }) {
   const style: React.CSSProperties = dashed
@@ -78,7 +79,9 @@ function Row({
         height: dia ? 11 : 14,
         borderRadius: round ? '50%' : (sq ? 3 : 0),
         transform: dia ? 'rotate(45deg)' : undefined,
-        border: '1px solid rgba(0,0,0,.1)',
+        // outlined: weisse Swatches (Spezialverwaltungsbehörde) brauchen eine
+        // kräftigere Kontur, sonst verschwinden sie auf hellem Panel.
+        border: outlined ? '1.5px solid #475569' : '1px solid rgba(0,0,0,.1)',
       };
   return (
     <div className="flex items-center gap-2 py-0.5">

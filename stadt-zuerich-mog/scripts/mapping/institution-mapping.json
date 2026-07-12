@@ -4,6 +4,9 @@
     "der RPK-API (data.stadt-zuerich.ch / fd_rpktool).",
     "Wert null = bewusst nicht gemappt (z. B. Beteiligung, die nicht zur",
     "Stadtverwaltung gehört, oder Querschnittsstelle ohne eigene Institution).",
+    "Array-Wert = Einheit aggregiert mehrere RPK-Institutionen (Organigramm 2026",
+    "fasst sie zusammen); die erste Institution ist die primäre (Departements-",
+    "Zuordnung, odz.key). Budget/FTE werden über alle Codes summiert.",
     "Vor jedem Daten-Refresh prüfen: stimmt die Zuordnung noch?"
   ],
 
@@ -24,9 +27,8 @@
     "PRD-stat":   "SSZ",
     "PRD-se":     "STE",
     "PRD-arch":   "SAR",
-    "PRD-wifo":   null,
-    "PRD-int":    null,
     "PRD-gleich": "ZFG",
+    "PRD-wohnen": null,
     "PRD-stab":   "BNN",
 
     "FD-fv":      "FVW",
@@ -46,15 +48,10 @@
     "GUD-spital": "STZ",
     "GUD-pflege": "GFA",
     "GUD-sgd":    "SGD",
-    "GUD-staz":   null,
     "GUD-ugz":    "UGZ",
-    "GUD-vet":    null,
 
     "TED-tba":     "TAZ",
-    "TED-erz-abf": "ERZ-Abf",
-    "TED-erz-abw": "ERZ-Abw",
-    "TED-erz-w":   "ERZ-W",
-    "TED-erz-r":   "ERZ-R",
+    "TED-erz":     ["ERZ-Abf", "ERZ-Abw", "ERZ-R"],
     "TED-geo":     "GEO",
     "TED-grun":    "GSZ",
 
@@ -69,20 +66,17 @@
     "SiD-dav":    "DAV",
     "SiD-bzb":    "BZB",
 
-    "SSD-schule": "SAM",
+    "SSD-schule": ["SAM", "SBMV"],
     "SSD-mkz":    "MKZ",
     "SSD-sport":  "SPA",
     "SSD-sg":     "SG",
-    "SSD-hps":    "HPS",
-    "SSD-skb":    "SKB",
-    "SSD-sfs":    "SFS",
-    "SSD-v15":    "V15",
-    "SSD-fsv":    "FSV",
-    "SSD-sbmv":   "SBMV",
+    "SSD-sopaed": ["HPS", "SKB", "SFS"],
+    "SSD-fsv":    ["FSV", "V15"],
 
-    "DIB-ewz":    "EWZ",
+    "DIB-ewz":    ["EWZ", "ERZ-W"],
     "DIB-wv":     "WVZ",
-    "DIB-vbz":    "VBZ"
+    "DIB-vbz":    "VBZ",
+    "DIB-energie": null
   },
 
   "beteiligungen": {

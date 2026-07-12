@@ -1,18 +1,20 @@
 {
   "_meta": {
     "schemaVersion": 1,
-    "stand": "2026-04-20",
+    "stand": "2026-05-27",
     "license": "CC-BY 4.0 (abgeleitete/aggregierte Daten); Originalquellen siehe quellen[]",
     "quellen": [
+      "Organigramm Stadt Zürich «Behörden und Verwaltung», Stand 27. Mai 2026 (PDF)",
       "https://www.stadt-zuerich.ch/ – Organigramm und Departementsseiten",
       "Geschäftsbericht Stadt Zürich – Aufwand pro Dienstabteilung",
       "Beteiligungsbericht Stadt Zürich – verselbständigte Betriebe und Beteiligungen",
       "https://data.stadt-zuerich.ch/ – Personalstatistik (FTE)"
     ],
     "hinweise": [
-      "Strukturdaten sind prototypisch – vor Go-Live mit aktuellem Organigramm abgleichen.",
+      "Struktur abgeglichen mit dem offiziellen Organigramm, Stand 27. Mai 2026: Bevölkerungsamt neu im PRD, Immobilien im HBD, ERZ-Teilbereiche zu 'Entsorgung + Recycling' konsolidiert (Fernwärme beim ewz), Sonderpädagogik fasst HPS/SKB/SFS zusammen.",
       "Personen bewusst als Rolle gehalten ('Stadtpräsident:in', 'Stadtrat / Stadträtin') – Namen wechseln, Strukturen bleiben länger stabil.",
-      "Felder budget und fte sind null und müssen aus Geschäftsbericht / Personalstatistik gespeist werden.",
+      "Budget-/FTE-Zahlen stammen aus der Zeit vor dem Organigramm 2026: Umhängungen und Konsolidierungen sind budgetseitig erst ab Budget 2027 nativ abgebildet; aggregierte Einheiten sind mit _aggregiertAus markiert.",
+      "Unit-IDs sind stabil und ändern sich bei Umhängungen nicht (Deep-Links, Mapping) – das Departements-Präfix kann daher historisch sein (z. B. SiD-bev im PRD).",
       "Per-Departement-Aufwand stammt noch aus Budget 2024 (GEMEINDERAT_BESCHLUSS); FTE pro Departement bereits aus Rechnung 2025. Stadtweite Eckwerte aus Geschäftsbericht 2025 unter '_meta.gesamtstadt'. Per-Departement-Refresh aus RECHNUNG/2025 erfordert nächsten Lauf von 'npm run data:fetch:force' mit RPK_API_KEY."
     ],
     "angereichert": "2026-04-30",
@@ -461,7 +463,8 @@
         "typ": "RECHNUNG",
         "aufwand": 29728904,
         "ertrag": -1558094,
-        "nettoaufwand": 31286997
+        "nettoaufwand": 31286997,
+        "_aggregiertAus": 1
       },
       "fte": {
         "jahr": 2025,
@@ -470,7 +473,8 @@
         "vollkostenProFte": 130000,
         "schaetzung": 58,
         "personalaufwand": 7525212,
-        "quelle": "schaetzung"
+        "quelle": "schaetzung",
+        "_aggregiertAus": 1
       },
       "odz": {
         "key": "1505",
@@ -524,38 +528,6 @@
       }
     },
     {
-      "id": "PRD-wifo",
-      "parent": "PRD",
-      "name": "Wirtschaftsförderung",
-      "kind": "staff",
-      "budget": null,
-      "fte": null,
-      "klima": {
-        "co2Score": 17,
-        "budgetShare": 0.03
-      },
-      "diversity": {
-        "womenInManagement": 30,
-        "menInManagement": 70
-      }
-    },
-    {
-      "id": "PRD-int",
-      "parent": "PRD",
-      "name": "Integrationsförderung",
-      "kind": "staff",
-      "budget": null,
-      "fte": null,
-      "klima": {
-        "co2Score": 4,
-        "budgetShare": 0.08
-      },
-      "diversity": {
-        "womenInManagement": 30,
-        "menInManagement": 70
-      }
-    },
-    {
       "id": "PRD-gleich",
       "parent": "PRD",
       "name": "Fachstelle Gleichstellung",
@@ -592,10 +564,18 @@
       }
     },
     {
+      "id": "PRD-wohnen",
+      "parent": "PRD",
+      "name": "Delegierte/r Wohnen",
+      "kind": "staff",
+      "budget": null,
+      "fte": null
+    },
+    {
       "id": "PRD-stab",
       "parent": "PRD",
-      "name": "Stadtammann- und Betreibungsamt",
-      "kind": "unit",
+      "name": "Betreibungsämter",
+      "kind": "spezial",
       "budget": {
         "jahr": 2025,
         "typ": "RECHNUNG",
@@ -743,7 +723,7 @@
     },
     {
       "id": "FD-imm",
-      "parent": "FD",
+      "parent": "HBD",
       "name": "Immobilien Stadt Zürich",
       "kind": "unit",
       "budget": {
@@ -767,12 +747,6 @@
         "kurzname": "IMO",
         "bezeichnung": "Immobilien Stadt Zürich",
         "departementKurzname": "HBD"
-      },
-      "konflikt": {
-        "unsereZuordnung": "FD",
-        "unsereKurzname": "FD",
-        "rpkKurzname": "HBD",
-        "rpkBezeichnung": "Hochbaudepartement"
       },
       "klima": {
         "co2Score": 65,
@@ -989,7 +963,7 @@
       "id": "SD-keb",
       "parent": "SD",
       "name": "Kindes- und Erwachsenenschutzbehörde",
-      "kind": "unit",
+      "kind": "spezial",
       "budget": {
         "jahr": 2025,
         "typ": "RECHNUNG",
@@ -1096,7 +1070,7 @@
     {
       "id": "GUD-pflege",
       "parent": "GUD",
-      "name": "Pflegezentren",
+      "name": "Gesundheitszentren für das Alter",
       "kind": "unit",
       "budget": {
         "jahr": 2025,
@@ -1139,7 +1113,8 @@
         "typ": "RECHNUNG",
         "aufwand": 164408990,
         "ertrag": -18287427,
-        "nettoaufwand": 182696417
+        "nettoaufwand": 182696417,
+        "_aggregiertAus": 1
       },
       "fte": {
         "jahr": 2025,
@@ -1148,7 +1123,8 @@
         "vollkostenProFte": 130000,
         "schaetzung": 211,
         "personalaufwand": 27418503,
-        "quelle": "schaetzung"
+        "quelle": "schaetzung",
+        "_aggregiertAus": 1
       },
       "odz": {
         "key": "3010",
@@ -1166,22 +1142,6 @@
       }
     },
     {
-      "id": "GUD-staz",
-      "parent": "GUD",
-      "name": "Stadtärztlicher Dienst",
-      "kind": "unit",
-      "budget": null,
-      "fte": null,
-      "klima": {
-        "co2Score": 3,
-        "budgetShare": 0.09
-      },
-      "diversity": {
-        "womenInManagement": 43,
-        "menInManagement": 57
-      }
-    },
-    {
       "id": "GUD-ugz",
       "parent": "GUD",
       "name": "Umwelt- und Gesundheitsschutz Zürich (UGZ)",
@@ -1191,7 +1151,8 @@
         "typ": "RECHNUNG",
         "aufwand": 50693059,
         "ertrag": -5195441,
-        "nettoaufwand": 55888500
+        "nettoaufwand": 55888500,
+        "_aggregiertAus": 1
       },
       "fte": {
         "jahr": 2025,
@@ -1200,7 +1161,8 @@
         "vollkostenProFte": 130000,
         "schaetzung": 221,
         "personalaufwand": 28743018,
-        "quelle": "schaetzung"
+        "quelle": "schaetzung",
+        "_aggregiertAus": 1
       },
       "odz": {
         "key": "3045",
@@ -1215,22 +1177,6 @@
       "diversity": {
         "womenInManagement": 25,
         "menInManagement": 75
-      }
-    },
-    {
-      "id": "GUD-vet",
-      "parent": "GUD",
-      "name": "Veterinäramt",
-      "kind": "unit",
-      "budget": null,
-      "fte": null,
-      "klima": {
-        "co2Score": 5,
-        "budgetShare": 0.08
-      },
-      "diversity": {
-        "womenInManagement": 35,
-        "menInManagement": 65
       }
     },
     {
@@ -1270,147 +1216,38 @@
       }
     },
     {
-      "id": "TED-erz-abf",
+      "id": "TED-erz",
       "parent": "TED",
-      "name": "ERZ – Abfall",
-      "kind": "extern",
+      "name": "Entsorgung + Recycling",
+      "kind": "unit",
       "budget": {
         "jahr": 2025,
         "typ": "RECHNUNG",
-        "aufwand": 117927321,
-        "ertrag": -117927321,
-        "nettoaufwand": 235854642
+        "aufwand": 254106177,
+        "ertrag": -212899420,
+        "nettoaufwand": 467005597,
+        "_aggregiertAus": 3
       },
       "fte": {
         "jahr": 2025,
         "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 487,
-        "personalaufwand": 63368133,
-        "quelle": "schaetzung"
+        "schaetzung": 915,
+        "personalaufwand": 118973110,
+        "quelle": "schaetzung",
+        "_aggregiertAus": 3
       },
       "odz": {
         "key": "3550",
-        "kurzname": "ERZ-Abf",
-        "bezeichnung": "Entsorgung + Recycling Zürich, Abfall",
-        "departementKurzname": "TED"
-      },
-      "klima": {
-        "co2Score": 90,
-        "budgetShare": 0.4
-      },
-      "diversity": {
-        "womenInManagement": 37,
-        "menInManagement": 63
-      }
-    },
-    {
-      "id": "TED-erz-abw",
-      "parent": "TED",
-      "name": "ERZ – Abwasser",
-      "kind": "extern",
-      "budget": {
-        "jahr": 2025,
-        "typ": "RECHNUNG",
-        "aufwand": 85003296,
-        "ertrag": -85003296,
-        "nettoaufwand": 170006592
-      },
-      "fte": {
-        "jahr": 2025,
-        "typ": "RECHNUNG",
-        "methode": "personalaufwand/vollkosten",
-        "vollkostenProFte": 130000,
-        "schaetzung": 211,
-        "personalaufwand": 27458969,
-        "quelle": "schaetzung"
-      },
-      "odz": {
-        "key": "3535",
-        "kurzname": "ERZ-Abw",
-        "bezeichnung": "Entsorgung + Recycling Zürich, Abwasser",
-        "departementKurzname": "TED"
-      },
-      "klima": {
-        "co2Score": 90,
-        "budgetShare": 0.4
-      },
-      "diversity": {
-        "womenInManagement": 32,
-        "menInManagement": 68
-      }
-    },
-    {
-      "id": "TED-erz-w",
-      "parent": "TED",
-      "name": "ERZ – Fernwärme",
-      "kind": "extern",
-      "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 117828400,
-        "ertrag": -117828400,
-        "nettoaufwand": 235656800
-      },
-      "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "methode": "personalaufwand/vollkosten",
-        "vollkostenProFte": 130000,
-        "schaetzung": 93,
-        "personalaufwand": 12154400,
-        "quelle": "schaetzung"
-      },
-      "odz": {
-        "key": "3555",
-        "kurzname": "ERZ-W",
-        "bezeichnung": "Entsorgung + Recycling Zürich, Fernwärme",
-        "departementKurzname": "TED"
-      },
-      "klima": {
-        "co2Score": 90,
-        "budgetShare": 0.4
-      },
-      "diversity": {
-        "womenInManagement": 45,
-        "menInManagement": 55
-      }
-    },
-    {
-      "id": "TED-erz-r",
-      "parent": "TED",
-      "name": "ERZ – Stadtreinigung",
-      "kind": "extern",
-      "budget": {
-        "jahr": 2025,
-        "typ": "RECHNUNG",
-        "aufwand": 51175560,
-        "ertrag": -9968803,
-        "nettoaufwand": 61144363
-      },
-      "fte": {
-        "jahr": 2025,
-        "typ": "RECHNUNG",
-        "methode": "personalaufwand/vollkosten",
-        "vollkostenProFte": 130000,
-        "schaetzung": 217,
-        "personalaufwand": 28146008,
-        "quelle": "schaetzung"
-      },
-      "odz": {
-        "key": "3560",
-        "kurzname": "ERZ-R",
-        "bezeichnung": "Entsorgung + Recycling Zürich, Stadtreinigung",
-        "departementKurzname": "TED"
-      },
-      "klima": {
-        "co2Score": 90,
-        "budgetShare": 0.4
-      },
-      "diversity": {
-        "womenInManagement": 31,
-        "menInManagement": 69
+        "kurzname": "ERZ-Abf+ERZ-Abw+ERZ-R",
+        "bezeichnung": "Entsorgung + Recycling Zürich, Abfall + Entsorgung + Recycling Zürich, Abwasser + Entsorgung + Recycling Zürich, Stadtreinigung",
+        "departementKurzname": "TED",
+        "keys": [
+          "3550",
+          "3535",
+          "3560"
+        ]
       }
     },
     {
@@ -1667,7 +1504,7 @@
     },
     {
       "id": "SiD-bev",
-      "parent": "SiD",
+      "parent": "PRD",
       "name": "Bevölkerungsamt",
       "kind": "unit",
       "budget": {
@@ -1692,12 +1529,6 @@
         "bezeichnung": "Bevölkerungsamt",
         "departementKurzname": "PRD"
       },
-      "konflikt": {
-        "unsereZuordnung": "SiD",
-        "unsereKurzname": "SID",
-        "rpkKurzname": "PRD",
-        "rpkBezeichnung": "Präsidialdepartement"
-      },
       "klima": {
         "co2Score": 7,
         "budgetShare": 0.08
@@ -1711,7 +1542,7 @@
       "id": "SiD-richt",
       "parent": "SiD",
       "name": "Stadtrichteramt",
-      "kind": "unit",
+      "kind": "spezial",
       "budget": {
         "jahr": 2025,
         "typ": "RECHNUNG",
@@ -1823,24 +1654,30 @@
       "budget": {
         "jahr": 2025,
         "typ": "RECHNUNG",
-        "aufwand": 1307570621,
-        "ertrag": -87424541,
-        "nettoaufwand": 1394995163
+        "aufwand": 1329648220,
+        "ertrag": -109552987,
+        "nettoaufwand": 1439201208,
+        "_aggregiertAus": 2
       },
       "fte": {
         "jahr": 2025,
         "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 3827,
-        "personalaufwand": 497542945,
-        "quelle": "schaetzung"
+        "schaetzung": 3861,
+        "personalaufwand": 501964052,
+        "quelle": "schaetzung",
+        "_aggregiertAus": 2
       },
       "odz": {
         "key": "5010",
-        "kurzname": "SAM",
-        "bezeichnung": "Schulamt",
-        "departementKurzname": "SSD"
+        "kurzname": "SAM+SBMV",
+        "bezeichnung": "Schulamt + Schul- und Büromaterialverwaltung",
+        "departementKurzname": "SSD",
+        "keys": [
+          "5010",
+          "5005"
+        ]
       },
       "klima": {
         "co2Score": 30,
@@ -1924,175 +1761,72 @@
       }
     },
     {
-      "id": "SSD-hps",
+      "id": "SSD-sopaed",
       "parent": "SSD",
-      "name": "Heilpädagogische Schule Zürich",
-      "kind": "extern",
-      "budget": {
-        "jahr": 2025,
-        "typ": "RECHNUNG",
-        "aufwand": 20702386,
-        "ertrag": -20702386,
-        "nettoaufwand": 41404771
-      },
-      "fte": {
-        "jahr": 2025,
-        "typ": "RECHNUNG",
-        "methode": "personalaufwand/vollkosten",
-        "vollkostenProFte": 130000,
-        "schaetzung": 130,
-        "personalaufwand": 16889381,
-        "quelle": "schaetzung"
-      },
-      "odz": {
-        "key": "5030",
-        "kurzname": "HPS",
-        "bezeichnung": "Heilpädagogische Schule Zürich",
-        "departementKurzname": "SSD"
-      },
-      "klima": {
-        "co2Score": 16,
-        "budgetShare": 0.05
-      },
-      "diversity": {
-        "womenInManagement": 45,
-        "menInManagement": 55
-      }
-    },
-    {
-      "id": "SSD-skb",
-      "parent": "SSD",
-      "name": "Schule für Körper- und Mehrfachbehinderungen",
-      "kind": "extern",
-      "budget": {
-        "jahr": 2025,
-        "typ": "RECHNUNG",
-        "aufwand": 11759975,
-        "ertrag": -11759975,
-        "nettoaufwand": 23519950
-      },
-      "fte": {
-        "jahr": 2025,
-        "typ": "RECHNUNG",
-        "methode": "personalaufwand/vollkosten",
-        "vollkostenProFte": 130000,
-        "schaetzung": 75,
-        "personalaufwand": 9731345,
-        "quelle": "schaetzung"
-      },
-      "odz": {
-        "key": "5031",
-        "kurzname": "SKB",
-        "bezeichnung": "Schule für Kinder und Jugendliche mit Körper- und Mehrfachbehinderungen Zürich",
-        "departementKurzname": "SSD"
-      },
-      "klima": {
-        "co2Score": 20,
-        "budgetShare": 0.02
-      },
-      "diversity": {
-        "womenInManagement": 41,
-        "menInManagement": 59
-      }
-    },
-    {
-      "id": "SSD-sfs",
-      "parent": "SSD",
-      "name": "Schule Fokus Sehen",
-      "kind": "extern",
-      "budget": {
-        "jahr": 2025,
-        "typ": "RECHNUNG",
-        "aufwand": 5200792,
-        "ertrag": -5200792,
-        "nettoaufwand": 10401583
-      },
-      "fte": {
-        "jahr": 2025,
-        "typ": "RECHNUNG",
-        "methode": "personalaufwand/vollkosten",
-        "vollkostenProFte": 130000,
-        "schaetzung": 27,
-        "personalaufwand": 3529213,
-        "quelle": "schaetzung"
-      },
-      "odz": {
-        "key": "5032",
-        "kurzname": "SFS",
-        "bezeichnung": "Schule Fokus Sehen",
-        "departementKurzname": "SSD"
-      },
-      "klima": {
-        "co2Score": 14,
-        "budgetShare": 0
-      },
-      "diversity": {
-        "womenInManagement": 25,
-        "menInManagement": 75
-      }
-    },
-    {
-      "id": "SSD-v15",
-      "parent": "SSD",
-      "name": "Viventa15plus",
+      "name": "Sonderpädagogik",
       "kind": "unit",
       "budget": {
         "jahr": 2025,
         "typ": "RECHNUNG",
-        "aufwand": 9538275,
-        "ertrag": -9538275,
-        "nettoaufwand": 19076550
+        "aufwand": 37663153,
+        "ertrag": -37663153,
+        "nettoaufwand": 75326304,
+        "_aggregiertAus": 3
       },
       "fte": {
         "jahr": 2025,
         "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 55,
-        "personalaufwand": 7092761,
-        "quelle": "schaetzung"
+        "schaetzung": 232,
+        "personalaufwand": 30149939,
+        "quelle": "schaetzung",
+        "_aggregiertAus": 3
       },
       "odz": {
-        "key": "5033",
-        "kurzname": "V15",
-        "bezeichnung": "Viventa15plus",
-        "departementKurzname": "SSD"
-      },
-      "klima": {
-        "co2Score": 2,
-        "budgetShare": 0.02
-      },
-      "diversity": {
-        "womenInManagement": 31,
-        "menInManagement": 69
+        "key": "5030",
+        "kurzname": "HPS+SKB+SFS",
+        "bezeichnung": "Heilpädagogische Schule Zürich + Schule für Kinder und Jugendliche mit Körper- und Mehrfachbehinderungen Zürich + Schule Fokus Sehen",
+        "departementKurzname": "SSD",
+        "keys": [
+          "5030",
+          "5031",
+          "5032"
+        ]
       }
     },
     {
       "id": "SSD-fsv",
       "parent": "SSD",
       "name": "Fachschule Viventa",
-      "kind": "extern",
+      "kind": "unit",
       "budget": {
         "jahr": 2025,
         "typ": "RECHNUNG",
-        "aufwand": 29184586,
-        "ertrag": -7942671,
-        "nettoaufwand": 37127257
+        "aufwand": 38722861,
+        "ertrag": -17480946,
+        "nettoaufwand": 56203807,
+        "_aggregiertAus": 2
       },
       "fte": {
         "jahr": 2025,
         "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 159,
-        "personalaufwand": 20709934,
-        "quelle": "schaetzung"
+        "schaetzung": 214,
+        "personalaufwand": 27802695,
+        "quelle": "schaetzung",
+        "_aggregiertAus": 2
       },
       "odz": {
         "key": "5063",
-        "kurzname": "FSV",
-        "bezeichnung": "Fachschule Viventa",
-        "departementKurzname": "SSD"
+        "kurzname": "FSV+V15",
+        "bezeichnung": "Fachschule Viventa + Viventa15plus",
+        "departementKurzname": "SSD",
+        "keys": [
+          "5063",
+          "5033"
+        ]
       },
       "klima": {
         "co2Score": 27,
@@ -2101,42 +1835,6 @@
       "diversity": {
         "womenInManagement": 26,
         "menInManagement": 74
-      }
-    },
-    {
-      "id": "SSD-sbmv",
-      "parent": "SSD",
-      "name": "Schul- und Büromaterialverwaltung",
-      "kind": "unit",
-      "budget": {
-        "jahr": 2025,
-        "typ": "RECHNUNG",
-        "aufwand": 22077599,
-        "ertrag": -22128446,
-        "nettoaufwand": 44206045
-      },
-      "fte": {
-        "jahr": 2025,
-        "typ": "RECHNUNG",
-        "methode": "personalaufwand/vollkosten",
-        "vollkostenProFte": 130000,
-        "schaetzung": 34,
-        "personalaufwand": 4421107,
-        "quelle": "schaetzung"
-      },
-      "odz": {
-        "key": "5005",
-        "kurzname": "SBMV",
-        "bezeichnung": "Schul- und Büromaterialverwaltung",
-        "departementKurzname": "SSD"
-      },
-      "klima": {
-        "co2Score": 21,
-        "budgetShare": 0
-      },
-      "diversity": {
-        "womenInManagement": 44,
-        "menInManagement": 56
       }
     },
     {
@@ -2198,9 +1896,13 @@
       },
       "odz": {
         "key": "4530",
-        "kurzname": "EWZ",
-        "bezeichnung": "Elektrizitätswerk der Stadt Zürich",
-        "departementKurzname": "DIB"
+        "kurzname": "EWZ+ERZ-W",
+        "bezeichnung": "Elektrizitätswerk der Stadt Zürich + Entsorgung + Recycling Zürich, Fernwärme",
+        "departementKurzname": "DIB",
+        "keys": [
+          "4530",
+          "3555"
+        ]
       },
       "klima": {
         "co2Score": 20,
@@ -2282,6 +1984,14 @@
         "womenInManagement": 30,
         "menInManagement": 70
       }
+    },
+    {
+      "id": "DIB-energie",
+      "parent": "DIB",
+      "name": "Energiebeauftragte/r",
+      "kind": "staff",
+      "budget": null,
+      "fte": null
     },
     {
       "id": "PRD-ds",
@@ -3040,6 +2750,14 @@
       }
     },
     {
+      "id": "BUG-parl",
+      "parent": "BUG",
+      "name": "Parlamentsdienste",
+      "kind": "unit",
+      "budget": null,
+      "fte": null
+    },
+    {
       "id": "BUG-str",
       "parent": "BUG",
       "name": "Stadtrat (Gremium)",
@@ -3221,9 +2939,9 @@
     },
     {
       "id": "BUG-fnn",
-      "parent": "BUG",
+      "parent": "PRD",
       "name": "Friedensrichterämter",
-      "kind": "unit",
+      "kind": "spezial",
       "odz": {
         "key": "1080",
         "kurzname": "FNN",
@@ -3253,6 +2971,12 @@
       "diversity": {
         "womenInManagement": 43,
         "menInManagement": 57
+      },
+      "konflikt": {
+        "unsereZuordnung": "PRD",
+        "unsereKurzname": "PRD",
+        "rpkKurzname": "BUG",
+        "rpkBezeichnung": "Behörden und Gesamtverwaltung"
       }
     },
     {
@@ -3336,7 +3060,7 @@
     {
       "id": "SSD-ksp",
       "parent": "SSD",
-      "name": "Kreisschulpflegen",
+      "name": "Kreisschulbehörden",
       "kind": "committee",
       "klima": {
         "co2Score": 8,
@@ -3348,7 +3072,23 @@
       }
     },
     {
-      "id": "SD-soz",
+      "id": "SSD-spfl",
+      "parent": "SSD",
+      "name": "Schulpflege",
+      "kind": "committee",
+      "budget": null,
+      "fte": null
+    },
+    {
+      "id": "SSD-skom",
+      "parent": "SSD",
+      "name": "Schulkommissionen",
+      "kind": "committee",
+      "budget": null,
+      "fte": null
+    },
+    {
+      "id": "SD-sozb",
       "parent": "SD",
       "name": "Sozialbehörde",
       "kind": "committee",
@@ -3387,20 +3127,6 @@
       "diversity": {
         "womenInManagement": 27,
         "menInManagement": 73
-      }
-    },
-    {
-      "id": "PRD-betr",
-      "parent": "PRD",
-      "name": "Stadtammann- und Betreibungsämter",
-      "kind": "committee",
-      "klima": {
-        "co2Score": 16,
-        "budgetShare": 0.03
-      },
-      "diversity": {
-        "womenInManagement": 26,
-        "menInManagement": 74
       }
     },
     {

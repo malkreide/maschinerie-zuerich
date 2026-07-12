@@ -39,7 +39,11 @@ async function main() {
     stats.departments++;
   }
 
-  // Dienstabteilungen / Stäbe / verselbständigte Betriebe
+  // Dienstabteilungen / Stäbe / verselbständigte Betriebe.
+  // Mapping-Wert kann ein Array sein: die Einheit aggregiert dann mehrere
+  // RPK-Institutionen (z. B. Organigramm 2026 fasst ERZ-Teilbereiche zu
+  // 'Entsorgung + Recycling' zusammen). Die erste Institution ist die primäre:
+  // sie bestimmt odz.key und die Departements-Zuordnung.
   for (const u of data.units) {
     const targetKurz = map.units[u.id];
     if (targetKurz === undefined) {
@@ -48,24 +52,40 @@ async function main() {
     }
     if (targetKurz === null) continue;
 
-    const odz = instByKurzname.get(targetKurz);
-    if (!odz) {
-      log(`  WARN unit ${u.id} → kurzname '${targetKurz}' nicht in API gefunden`);
-      stats.missing++;
-      continue;
+    const codes = Array.isArray(targetKurz) ? targetKurz : [targetKurz];
+    const found = [];
+    for (const code of codes) {
+      const inst = instByKurzname.get(code);
+      if (!inst) {
+        log(`  WARN unit ${u.id} → kurzname '${code}' nicht in API gefunden`);
+        stats.missing++;
+      } else {
+        found.push(inst);
+      }
     }
+    if (!found.length) continue;
+    const odz = found[0];
 
     u.odz = {
       key: odz.key,
-      kurzname: norm(odz.kurzname),
-      bezeichnung: odz.bezeichnung,
+      kurzname: found.map(i => norm(i.kurzname)).join('+'),
+      bezeichnung: found.map(i => i.bezeichnung).join(' + '),
       departementKurzname: norm(odz.departement?.kurzname),
     };
+    if (found.length > 1) u.odz.keys = found.map(i => i.key);
     stats.units++;
 
     // Konflikt-Erkennung: API-Departement vs. unser Departement.
     // Bei Abweichung: 'konflikt' als Feld speichern, damit das UI die
     // Bürger-vs-RPK-Sicht visualisieren kann (statt nur loggen).
+    // Massgeblich ist die primäre Institution; abweichende Neben-
+    // Institutionen (bewusste Umhängung, z. B. Fernwärme → ewz) nur loggen.
+    for (const i of found.slice(1)) {
+      const k = norm(i.departement?.kurzname);
+      if (k && k !== norm(odz.departement?.kurzname)) {
+        log(`  NOTE ${u.id}: Teil-Institution '${norm(i.kurzname)}' liegt in RPK unter '${k}'`);
+      }
+    }
     const ourDepKurz = map.departments[u.parent];
     const rpkDepKurz = norm(odz.departement?.kurzname);
     if (ourDepKurz && rpkDepKurz && ourDepKurz !== rpkDepKurz) {

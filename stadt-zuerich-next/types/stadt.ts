@@ -3,7 +3,7 @@
 // Budget-/Rechnungs-PDFs (manuelle Anreicherung).
 
 export type DepartmentId = string;
-export type UnitKind = 'unit' | 'staff' | 'extern' | 'committee';
+export type UnitKind = 'unit' | 'staff' | 'extern' | 'committee' | 'spezial';
 
 export interface Budget {
   jahr: number;
@@ -34,6 +34,7 @@ export interface Odz {
   kurzname: string;
   bezeichnung: string;
   departementKurzname?: string;
+  keys?: string[];             // gesetzt, wenn die Einheit mehrere RPK-Institutionen aggregiert
 }
 
 export interface Konflikt {

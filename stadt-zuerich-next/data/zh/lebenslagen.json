@@ -1190,7 +1190,7 @@
     },
     {
       "id": "abfall",
-      "zustaendig": "TED-erz-abf",
+      "zustaendig": "TED-erz",
       "zielgruppen": [
         "einwohner",
         "wohnen"
@@ -1208,9 +1208,11 @@
             "recycling",
             "altglas",
             "papier",
-            "tonne"
+            "tonne",
+            "erz",
+            "entsorgung"
           ],
-          "antwort": "ERZ – Entsorgung + Recycling Zürich, Bereich Abfall."
+          "antwort": "Entsorgung + Recycling – Abfuhr, Sperrgut und Recycling."
         },
         "en": {
           "frage": "Waste calendar, bulky waste, recycling",
@@ -1224,7 +1226,7 @@
             "garbage",
             "erz"
           ],
-          "antwort": "ERZ – Disposal + Recycling Zurich, waste division."
+          "antwort": "Disposal + Recycling Zurich – waste collection, bulky waste and recycling."
         },
         "fr": {
           "frage": "Calendrier des déchets, encombrants, recyclage",
@@ -1237,7 +1239,7 @@
             "papier",
             "erz"
           ],
-          "antwort": "ERZ – Élimination + recyclage Zurich, secteur déchets."
+          "antwort": "Élimination + recyclage Zurich – collecte des déchets, encombrants et recyclage."
         },
         "it": {
           "frage": "Calendario dei rifiuti, ingombranti, riciclaggio",
@@ -1250,7 +1252,7 @@
             "carta",
             "erz"
           ],
-          "antwort": "ERZ – Smaltimento + riciclaggio Zurigo, settore rifiuti."
+          "antwort": "Smaltimento + riciclaggio Zurigo – raccolta rifiuti, ingombranti e riciclaggio."
         },
         "ls": {
           "frage": "Abfall, Sperr-Gut, Recycling",
@@ -1261,13 +1263,13 @@
             "recycling",
             "erz"
           ],
-          "antwort": "Wann kommt die Müll-Abfuhr? Wohin mit altem Glas oder Papier? Die ERZ kümmert sich um den Abfall."
+          "antwort": "Wann kommt die Müll-Abfuhr? Wohin mit altem Glas oder Papier? Die Stelle Entsorgung + Recycling kümmert sich um den Abfall."
         }
       }
     },
     {
       "id": "stadtreinigung",
-      "zustaendig": "TED-erz-r",
+      "zustaendig": "TED-erz",
       "zielgruppen": [
         "einwohner"
       ],
@@ -1279,9 +1281,10 @@
             "putzen",
             "schnee",
             "schneeräumung",
-            "winterdienst"
+            "winterdienst",
+            "erz"
           ],
-          "antwort": "ERZ – Stadtreinigung."
+          "antwort": "Entsorgung + Recycling – Strassenreinigung und Winterdienst."
         },
         "en": {
           "frage": "Street cleaning, snow clearing",
@@ -1293,7 +1296,7 @@
             "winter service",
             "erz"
           ],
-          "antwort": "ERZ – Street Cleaning."
+          "antwort": "Disposal + Recycling Zurich – street cleaning and winter service."
         },
         "fr": {
           "frage": "Nettoyage des rues, déneigement",
@@ -1305,7 +1308,7 @@
             "service hivernal",
             "erz"
           ],
-          "antwort": "ERZ – Nettoiement."
+          "antwort": "Élimination + recyclage Zurich – nettoiement et service hivernal."
         },
         "it": {
           "frage": "Pulizia delle strade, sgombero neve",
@@ -1317,7 +1320,7 @@
             "servizio invernale",
             "erz"
           ],
-          "antwort": "ERZ – Pulizia stradale."
+          "antwort": "Smaltimento + riciclaggio Zurigo – pulizia stradale e servizio invernale."
         },
         "ls": {
           "frage": "Strassen-Reinigung und Schnee-Räumung",
@@ -1327,7 +1330,7 @@
             "putzen",
             "erz"
           ],
-          "antwort": "Wer putzt die Strassen? Wer räumt den Schnee weg? Das macht die ERZ."
+          "antwort": "Wer putzt die Strassen? Wer räumt den Schnee weg? Das macht die Stelle Entsorgung + Recycling."
         }
       }
     },
@@ -1421,9 +1424,10 @@
             "altersheim",
             "spitex",
             "alterszentrum",
-            "demenz"
+            "demenz",
+            "pflegezentren"
           ],
-          "antwort": "Pflegezentren / Gesundheitszentren für das Alter."
+          "antwort": "Gesundheitszentren für das Alter."
         },
         "en": {
           "frage": "Care home, home care (Spitex), elderly care",
@@ -1434,9 +1438,10 @@
             "spitex",
             "senior centre",
             "dementia",
-            "home care"
+            "home care",
+            "care centres"
           ],
-          "antwort": "Care Centres / Health Centres for the Elderly."
+          "antwort": "Health Centres for the Elderly."
         },
         "fr": {
           "frage": "EMS, soins à domicile (Spitex), prise en charge des aînés",
@@ -1446,9 +1451,10 @@
             "maison de retraite",
             "spitex",
             "centre pour personnes âgées",
-            "démence"
+            "démence",
+            "centres de soins"
           ],
-          "antwort": "Centres de soins / centres de santé pour personnes âgées."
+          "antwort": "Centres de santé pour personnes âgées."
         },
         "it": {
           "frage": "Casa di cura, cure a domicilio (Spitex), assistenza agli anziani",
@@ -1458,9 +1464,10 @@
             "casa per anziani",
             "spitex",
             "centro per anziani",
-            "demenza"
+            "demenza",
+            "centri di cura"
           ],
-          "antwort": "Centri di cura / centri sanitari per anziani."
+          "antwort": "Centri sanitari per anziani."
         },
         "ls": {
           "frage": "Pflege-Heim, Spitex, Hilfe im Alter",
@@ -1470,7 +1477,7 @@
             "spitex",
             "alter"
           ],
-          "antwort": "Ein alter Mensch braucht Pflege? Es gibt Pflege-Heime. Die Spitex hilft auch zu Hause."
+          "antwort": "Ein alter Mensch braucht Pflege? Es gibt die Gesundheits-Zentren für das Alter. Die Spitex hilft auch zu Hause."
         }
       }
     },
@@ -1938,7 +1945,7 @@
             "register",
             "konkurs"
           ],
-          "antwort": "Stadtammann- und Betreibungsamt."
+          "antwort": "Betreibungsämter der Stadt Zürich."
         },
         "en": {
           "frage": "Initiate debt collection, debt register extract",
@@ -1949,7 +1956,7 @@
             "register extract",
             "bankruptcy"
           ],
-          "antwort": "Stadtammann and Debt Collection Office."
+          "antwort": "Debt Collection Offices of the City of Zurich."
         },
         "fr": {
           "frage": "Engager une poursuite, extrait du registre des poursuites",
@@ -1959,7 +1966,7 @@
             "extrait du registre des poursuites",
             "faillite"
           ],
-          "antwort": "Office du Stadtammann et des poursuites."
+          "antwort": "Offices des poursuites de la ville de Zurich."
         },
         "it": {
           "frage": "Avviare un'esecuzione, estratto del registro esecuzioni",
@@ -1969,7 +1976,7 @@
             "estratto del registro esecuzioni",
             "fallimento"
           ],
-          "antwort": "Ufficio dello Stadtammann e delle esecuzioni."
+          "antwort": "Uffici delle esecuzioni della città di Zurigo."
         },
         "ls": {
           "frage": "Betreibung und Auszug aus dem Register",
@@ -1978,7 +1985,7 @@
             "schulden",
             "register"
           ],
-          "antwort": "Jemand zahlt Ihnen Geld nicht? Sie können eine Betreibung starten. Sie brauchen einen Auszug aus dem Betreibungs-Register? Das macht das Stadtammann- und Betreibungs-Amt."
+          "antwort": "Jemand zahlt Ihnen Geld nicht? Sie können eine Betreibung starten. Sie brauchen einen Auszug aus dem Betreibungs-Register? Das machen die Betreibungs-Ämter."
         }
       },
       "prozesse": [

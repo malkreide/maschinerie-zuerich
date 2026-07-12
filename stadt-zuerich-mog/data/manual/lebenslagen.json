@@ -100,14 +100,14 @@
       "antwort": "Wasserversorgung Zürich." },
 
     { "id": "abfall",              "frage": "Abfallkalender, Sperrgut, Recycling",
-      "stichworte": ["abfall", "sperrgut", "kehricht", "recycling", "altglas", "papier", "tonne"],
-      "zustaendig": "TED-erz-abf",
-      "antwort": "ERZ – Entsorgung + Recycling Zürich, Bereich Abfall." },
+      "stichworte": ["abfall", "sperrgut", "kehricht", "recycling", "altglas", "papier", "tonne", "erz", "entsorgung"],
+      "zustaendig": "TED-erz",
+      "antwort": "Entsorgung + Recycling – Abfuhr, Sperrgut und Recycling." },
 
     { "id": "stadtreinigung",      "frage": "Strassenreinigung, Schneeräumung",
-      "stichworte": ["stadtreinigung", "putzen", "schnee", "schneeräumung", "winterdienst"],
-      "zustaendig": "TED-erz-r",
-      "antwort": "ERZ – Stadtreinigung." },
+      "stichworte": ["stadtreinigung", "putzen", "schnee", "schneeräumung", "winterdienst", "erz"],
+      "zustaendig": "TED-erz",
+      "antwort": "Entsorgung + Recycling – Strassenreinigung und Winterdienst." },
 
     { "id": "öv",                  "frage": "Tram, Bus, ÖV-Abos",
       "stichworte": ["tram", "bus", "öv", "vbz", "abo", "ticket", "verkehrsbetriebe"],
@@ -115,9 +115,9 @@
       "antwort": "VBZ – Verkehrsbetriebe Zürich." },
 
     { "id": "pflegeheim",          "frage": "Pflegeheim, Spitex, Altersbetreuung",
-      "stichworte": ["pflege", "pflegeheim", "altersheim", "spitex", "alterszentrum", "demenz"],
+      "stichworte": ["pflege", "pflegeheim", "altersheim", "spitex", "alterszentrum", "demenz", "pflegezentren"],
       "zustaendig": "GUD-pflege",
-      "antwort": "Pflegezentren / Gesundheitszentren für das Alter." },
+      "antwort": "Gesundheitszentren für das Alter." },
 
     { "id": "spital",              "frage": "Spitalbehandlung",
       "stichworte": ["spital", "krankenhaus", "behandlung", "notfall medizinisch", "stadtspital"],
@@ -157,7 +157,7 @@
     { "id": "betreibung",          "frage": "Betreibung einleiten, Auszug Betreibungsregister",
       "stichworte": ["betreibung", "schulden", "stadtammann", "register", "konkurs"],
       "zustaendig": "PRD-stab",
-      "antwort": "Stadtammann- und Betreibungsamt." },
+      "antwort": "Betreibungsämter der Stadt Zürich." },
 
     { "id": "stadtarchiv",         "frage": "Historische Akten, Familienforschung",
       "stichworte": ["archiv", "geschichte", "familienforschung", "ahnen", "akten"],

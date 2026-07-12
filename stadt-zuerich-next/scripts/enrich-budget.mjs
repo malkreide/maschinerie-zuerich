@@ -68,23 +68,36 @@ async function main() {
   log(`aggregated to ${agg.size} institutions`);
 
   const apply = (item) => {
-    const key = item.odz?.key;
-    if (!key) return;
-    const instAgg = agg.get(key);
-    if (!instAgg) return;
-    
+    // odz.keys = Einheit aggregiert mehrere RPK-Institutionen (Array-Mapping,
+    // z. B. Organigramm 2026: ERZ-Teilbereiche -> 'Entsorgung + Recycling').
+    const keys = item.odz?.keys ?? (item.odz?.key ? [item.odz.key] : []);
+    const instAggs = keys.map(k => agg.get(k)).filter(Boolean);
+    if (!instAggs.length) return;
+
+    // Jahr-weise ueber alle Institutionen der Einheit summieren.
+    const byJahr = new Map();
+    for (const instAgg of instAggs) {
+      for (const [jahr, v] of instAgg.entries()) {
+        if (!byJahr.has(jahr)) byJahr.set(jahr, { aufwand: 0, ertrag: 0 });
+        const b = byJahr.get(jahr);
+        b.aufwand += v.aufwand;
+        b.ertrag  += v.ertrag;
+      }
+    }
+
     const history = [];
-    for (const [jahr, v] of instAgg.entries()) {
+    for (const [jahr, v] of byJahr.entries()) {
       history.push({
         jahr,
         typ: BETRAGS_TYP,
         aufwand: Math.round(v.aufwand),
         ertrag:  Math.round(v.ertrag),
         nettoaufwand: Math.round(v.aufwand - v.ertrag),
+        ...(instAggs.length > 1 ? { _aggregiertAus: instAggs.length } : {}),
       });
     }
     history.sort((a, b) => a.jahr - b.jahr);
-    
+
     if (history.length > 0) {
       item.budgetHistory = history;
       // Get the most recent one for 'budget'

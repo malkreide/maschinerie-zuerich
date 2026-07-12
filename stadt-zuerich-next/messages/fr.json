@@ -279,6 +279,7 @@
     "departement": "Département",
     "dienstabteilung": "Division",
     "stab": "État-major / transversal",
+    "spezial": "Autorité administrative spéciale",
     "verselbst": "Entreprise autonome",
     "beteiligung": "Participation / fondation",
     "konflikt": "Affectation citoyenne ≠ RPK",
@@ -324,6 +325,8 @@
     "unit": "Division",
     "staff": "État-major / transversal",
     "extern": "Entreprise autonome",
+    "spezial": "Autorité administrative spéciale",
+    "committee": "Comité / Commission",
     "beteiligung": "Participation / fondation"
   },
   "Prozesse": {

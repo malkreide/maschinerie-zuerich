@@ -279,6 +279,7 @@
     "departement": "Department",
     "dienstabteilung": "Division",
     "stab": "Staff / cross-cutting",
+    "spezial": "Special administrative authority",
     "verselbst": "Independent operation",
     "beteiligung": "Holding / foundation",
     "konflikt": "Citizen/Audit assignment diverges",
@@ -324,6 +325,8 @@
     "unit": "Division",
     "staff": "Staff unit",
     "extern": "Independent operation",
+    "spezial": "Special administrative authority",
+    "committee": "Committee / Commission",
     "beteiligung": "Holding / foundation"
   },
   "Prozesse": {

@@ -63,7 +63,7 @@ jeweils ein eigenes `scripts/`-Verzeichnis.
 
 ## Datenquellen
 
-- Strukturdaten: [stadt-zuerich.ch](https://www.stadt-zuerich.ch/) (Organigramm)
+- Strukturdaten: [stadt-zuerich.ch](https://www.stadt-zuerich.ch/) (Organigramm «Behörden und Verwaltung», Stand 27. Mai 2026)
 - Budget & Aufwand: [data.stadt-zuerich.ch / fd_rpktool](https://data.stadt-zuerich.ch/dataset/fd_rpktool)
   (API-Key ist öffentlich und Teil der Datensatz-Dokumentation).
   Default-Phase ist `RECHNUNG` (Ist-Werte aus dem

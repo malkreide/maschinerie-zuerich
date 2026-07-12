@@ -83,7 +83,7 @@
         "ls": "Die ERZ (sie holt den Abfall)"
       },
       "type": "behoerde",
-      "einheit_ref": "TED-erz-abf"
+      "einheit_ref": "TED-erz"
     }
   ],
   "steps": [

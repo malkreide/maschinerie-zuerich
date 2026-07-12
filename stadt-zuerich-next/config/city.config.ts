@@ -135,6 +135,9 @@ export interface CityTheme {
     unit: string;
     staff: string;
     extern: string;
+    /** Spezialverwaltungsbehörde mit Dienstabteilungskompetenzen (im
+     *  offiziellen Organigramm: weisse Box), z. B. Betreibungsämter, KESB. */
+    spezial: string;
     beteiligung: string;
     committee: string;
   };
@@ -178,6 +181,7 @@ export function themeCssVars(): string {
     `  --color-node-unit: ${sanitizeColor(t.nodeType.unit)};`,
     `  --color-node-staff: ${sanitizeColor(t.nodeType.staff)};`,
     `  --color-node-extern: ${sanitizeColor(t.nodeType.extern)};`,
+    `  --color-node-spezial: ${sanitizeColor(t.nodeType.spezial)};`,
     `  --color-node-beteiligung: ${sanitizeColor(t.nodeType.beteiligung)};`,
     `  --color-node-committee: ${sanitizeColor(t.nodeType.committee)};`,
     `  --color-konflikt: ${sanitizeColor(t.konflikt)};`,

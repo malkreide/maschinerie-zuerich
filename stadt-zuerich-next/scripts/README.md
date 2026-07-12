@@ -185,18 +185,19 @@ Unit ins `data.json`:
 ```
 
 Solche Konflikte sind **kein Fehler**, sondern bewusst zu entscheiden:
-Bevölkerungsamt z. B. liegt laut RPK unter PRD (zentrale Verwaltungsstelle),
-in unserer bürgerorientierten Sicht aber unter dem Sicherheitsdepartement
-(Pass- und ID-Stelle).
+Die Stadtkanzlei z. B. liegt laut RPK unter BUG (Behörden und
+Gesamtverwaltung), in unserer Sicht beim Präsidialdepartement.
+Bevölkerungsamt (SiD→PRD) und Immobilien (FD→HBD) waren bis zum
+Organigramm 2026 ebenfalls Konflikte — seit dem Struktur-Abgleich
+(Stand 27.05.2026) decken sich dort unsere und die RPK-Zuordnung.
 
-Aktuelle Konflikte (4):
+Aktuelle Konflikte (3):
 
 | Unit | Bürger-Sicht | RPK-Sicht |
 |------|--------------|-----------|
 | PRD-stk (Stadtkanzlei) | PRD | BUG (Behörden und Gesamtverwaltung) |
-| PRD-stab (Betreibungsamt) | PRD | BUG |
-| FD-imm (Immobilien Stadt Zürich) | FD | HBD |
-| SiD-bev (Bevölkerungsamt) | SiD | PRD |
+| PRD-stab (Betreibungsämter) | PRD | BUG |
+| BUG-fnn (Friedensrichterämter) | PRD | BUG |
 
 Im UI sichtbar als orange-gestrichelter Rand am Knoten und als
 ⚠ Zuordnung-Zeile im Detail-Panel.
@@ -277,6 +278,12 @@ Erst-Validierung mit 40 Units, danach Mapping-Lücken geschlossen
 (15 zusätzliche Institutionen aufgenommen: SEB/AZL/LBZ/KEB unter SD,
 HPS/SKB/SFS/V15/FSV/SBMV/SG unter SSD, BZB unter SiD, ERZ in 4 Sub-Einheiten
 gesplittet, Städtische Gesundheitsdienste unter GUD korrigiert).
+
+> **Update Organigramm 2026 (Stand 27.05.2026):** Die damals gesplitteten
+> Einheiten sind wieder aggregiert — ERZ-Teilbereiche zu `TED-erz`
+> (Fernwärme zum ewz), HPS/SKB/SFS zu `SSD-sopaed`, SBMV ins Schulamt,
+> V15 in die Fachschule Viventa. Das Mapping bildet das über Array-Werte ab
+> (siehe `mapping/institution-mapping.json`).
 
 | Departement | Δ vor Mapping-Fix | Δ nach Mapping-Fix |
 |---|---:|---:|
