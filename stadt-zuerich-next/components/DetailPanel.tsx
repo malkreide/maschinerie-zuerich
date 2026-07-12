@@ -8,7 +8,6 @@ import type { StadtData, Department, Unit, Beteiligung, Fte, Budget } from '@/ty
 import { fmtCHF, fmtNumber } from '@/lib/search';
 import {
   computeTotalAufwand,
-  computeTotalNettoaufwand,
   perCapitaCHF,
   budgetSharePercent,
 } from '@/lib/budget-context';
@@ -104,13 +103,11 @@ export default function DetailPanel({
   const searchParams = useSearchParams();
   const selectedId = searchParams.get('focus');
 
-  // Totale über alle Units einmal pro Daten-Snapshot berechnen — Basis für
-  // die Anteils-Anzeige (separat für Brutto-Aufwand und Netto-Aufwand,
-  // damit "Anteil Gesamtbudget" jeweils gegen das passende Total läuft).
-  // Stabil, solange `data` per Referenz unverändert bleibt (typischer Fall:
-  // nur die URL-Query ändert sich).
+  // Total über alle Units einmal pro Daten-Snapshot berechnen — Basis für
+  // die Anteils-Anzeige beim Brutto-Aufwand. Stabil, solange `data` per
+  // Referenz unverändert bleibt (typischer Fall: nur die URL-Query ändert
+  // sich).
   const totalAufwand = useMemo(() => computeTotalAufwand(data), [data]);
-  const totalNetto   = useMemo(() => computeTotalNettoaufwand(data), [data]);
   const population = city.population;
 
   function close() {
@@ -135,7 +132,7 @@ export default function DetailPanel({
     const dep = data.departments.find((d) => d.id === item.parent);
     if (dep) rows.push({ k: t('department'), v: dep.name });
   }
-  if (item.budget) rows.push(...budgetRows(item.budget, t, totalAufwand, totalNetto, population, item.budgetHistory));
+  if (item.budget) rows.push(...budgetRows(item.budget, t, totalAufwand, population, item.budgetHistory));
   if (item.fte)    rows.push(...fteRows(item.fte, t));
   if ('diversity' in item && item.diversity) rows.push(...diversityRows(item.diversity as { womenInManagement: number; menInManagement: number }, t));
   if (item.odz)    rows.push({ k: t('ogdKey'), v: `${item.odz.kurzname} · key ${item.odz.key}` });
@@ -306,7 +303,6 @@ function budgetRows(
   b: Budget,
   t: T,
   totalAufwand: number,
-  totalNetto: number,
   population: number | undefined,
   history?: Budget[]
 ): Row[] {
@@ -331,7 +327,9 @@ function budgetRows(
   rows.push(...auxBudgetRows(b.aufwand, t, totalAufwand, population));
   rows.push({ k: `  ${t('income')}`,     v: <span className="flex items-center justify-end">{fmtCHF(b.ertrag)}{trendErtrag}</span> });
   rows.push({ k: `  ${t('netExpense')}`, v: <span className="flex items-center justify-end">{fmtCHF(b.nettoaufwand)}{trendNetto}</span> });
-  rows.push(...auxBudgetRows(b.nettoaufwand, t, totalNetto, population));
+  // Beim Netto nur Pro-Kopf, kein Anteil: das Stadt-weite Netto liegt nahe
+  // bei null (Steuern zählen als Ertrag), ein Prozentwert dazu wäre absurd.
+  rows.push(...auxBudgetRows(b.nettoaufwand, t, undefined, population));
   if (b._aggregiertAus)
     rows.push({
       k: `  ${t('budgetYear')}`,
@@ -343,13 +341,14 @@ function budgetRows(
 /**
  * Pro-Kopf- und Anteils-Zeilen für einen einzelnen CHF-Betrag. Wird zweimal
  * aufgerufen: einmal nach `aufwand` (Bezug = totalAufwand), einmal nach
- * `nettoaufwand` (Bezug = totalNetto). Liefert leeres Array, wenn weder
- * Pro-Kopf- noch Anteils-Zahl darstellbar sind.
+ * `nettoaufwand` (ohne Bezugsgrösse — dann entfällt die Anteils-Zeile).
+ * Liefert leeres Array, wenn weder Pro-Kopf- noch Anteils-Zahl darstellbar
+ * sind.
  */
 function auxBudgetRows(
   amount: number | null | undefined,
   t: T,
-  total: number,
+  total: number | undefined,
   population: number | undefined,
 ): Row[] {
   const out: Row[] = [];
@@ -360,7 +359,7 @@ function auxBudgetRows(
       v: <span className="text-[var(--color-mute)]">{t('perCapitaValue', { value: pc })}</span>,
     });
   }
-  const sh = budgetSharePercent(amount, total);
+  const sh = total != null ? budgetSharePercent(amount, total) : null;
   if (sh) {
     out.push({
       k: <span title={t('budgetShareTitle')}>{'    ↳ '}{t('budgetShareLabel')}</span>,

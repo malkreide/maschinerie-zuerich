@@ -315,9 +315,7 @@
     "eyebrow": "Budget",
     "eyebrowYear": "Budget {jahr}",
     "aufwandLabel": "Charges",
-    "aufwandTitle": "Charges brutes de la ville — somme des charges de tous les départements ; entre parenthèses, le montant par habitant·e.",
-    "nettoLabel": "Net",
-    "nettoTitle": "Charges nettes (charges moins recettes) — le montant que les contribuables financent effectivement ; entre parenthèses, le montant par habitant·e."
+    "aufwandTitle": "Charges brutes de la ville — somme des charges de tous les départements ; entre parenthèses, le montant par habitant·e."
   },
   "Type": {
     "center": "Exécutif",

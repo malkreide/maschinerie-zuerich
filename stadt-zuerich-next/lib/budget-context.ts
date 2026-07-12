@@ -27,21 +27,11 @@ export function computeTotalAufwand(data: StadtData): number {
   return total;
 }
 
-/**
- * Stadt-weiter Netto-Aufwand (Aufwand minus Ertrag) — Bezugswert für die
- * Anteils-Anzeige beim Nettoaufwand. Im Gegensatz zum Brutto-Aufwand kann
- * der Netto-Wert pro Einheit auch negativ sein (Ertrags-Überschuss); wir
- * summieren trotzdem alle Einheiten, weil das die ehrlichste Bezugsgrösse
- * ist: Stadt-Netto = Summe über alle Einheits-Netto-Werte.
- */
-export function computeTotalNettoaufwand(data: StadtData): number {
-  let total = 0;
-  for (const u of data.units) {
-    const n = u.budget?.nettoaufwand;
-    if (typeof n === 'number') total += n;
-  }
-  return total;
-}
+// Bewusst KEIN computeTotalNettoaufwand: Die Stadt-weite Netto-Summe liegt
+// nahe bei null, weil Steuern und Gebühren als Ertrag zählen (ausgeglichenes
+// Budget). Als Bezugsgrösse für Anteils-Anzeigen wäre sie irreführend —
+// kleine Einheiten bekämen absurde Prozentwerte. Pro Einheit bleibt der
+// Netto-Wert (auch negativ = Ertragsüberschuss) aussagekräftig.
 
 // ─── Formatter ──────────────────────────────────────────────────────────────
 

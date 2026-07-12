@@ -315,9 +315,7 @@
     "eyebrow": "Budget",
     "eyebrowYear": "Budget {jahr}",
     "aufwandLabel": "Spesa",
-    "aufwandTitle": "Spesa lorda della città — somma delle spese di tutti i dipartimenti; tra parentesi l'importo pro capite.",
-    "nettoLabel": "Netto",
-    "nettoTitle": "Spesa netta (spesa meno entrate) — l'importo che i contribuenti finanziano effettivamente; tra parentesi l'importo pro capite."
+    "aufwandTitle": "Spesa lorda della città — somma delle spese di tutti i dipartimenti; tra parentesi l'importo pro capite."
   },
   "Type": {
     "center": "Esecutivo",
