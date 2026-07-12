@@ -33,7 +33,7 @@ Datenschema (`data.json`). Wähle, was zum Anwendungsfall passt.
 
 ## Datenquellen
 
-- Strukturdaten: [stadt-zuerich.ch](https://www.stadt-zuerich.ch/) (Organigramm)
+- Strukturdaten: [stadt-zuerich.ch](https://www.stadt-zuerich.ch/) (Organigramm «Behörden und Verwaltung», Stand 27. Mai 2026)
 - Budget & Aufwand: [data.stadt-zuerich.ch / fd_rpktool](https://data.stadt-zuerich.ch/dataset/fd_rpktool)
   (API-Key ist öffentlich und Teil der Datensatz-Dokumentation)
 - FTE pro Departement: [Rechnung 2025 der Stadt Zürich, S. 30](https://www.stadt-zuerich.ch/content/dam/web/de/aktuell/publikationen/2026/rechnung-2025/rechnung-2025-strb.pdf)
