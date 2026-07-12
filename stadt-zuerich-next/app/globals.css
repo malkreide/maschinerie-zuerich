@@ -103,3 +103,42 @@ html, body { height: 100%; background: var(--color-bg); color: var(--color-ink);
 .liste .meta dd { margin: 0; color: var(--color-ink); }
 .liste .konflikt { color: var(--color-konflikt); }
 .liste .units { margin-left: 18px; }
+
+/* Territory-Karte: Popup-Inhalt (als HTML-String von leaflet.markercluster
+   gebunden, daher ausserhalb des Tailwind-/React-Baums eigenständig gestylt).
+   Leaflet-Popups haben stets weissen Hintergrund — Linkfarbe ist darauf
+   bewusst kontraststark (blue-700, WCAG 2 AA). */
+.tm-pop { font-size: 13px; line-height: 1.4; max-width: 220px; }
+.tm-pop-name { display: block; margin-bottom: 2px; }
+.tm-pop-dept { display: block; font-size: 11px; color: #4b5563; margin-bottom: 8px; }
+.tm-pop-section { font-size: 11px; font-weight: 600; color: #374151; margin-top: 4px; }
+.tm-pop-list { margin: 2px 0 8px; padding-left: 16px; }
+.tm-pop-list li { margin: 1px 0; }
+.tm-pop-list a,
+.tm-pop a.tm-pop-link { color: #1d4ed8; text-decoration: underline; }
+.tm-pop a.tm-pop-link {
+  display: inline-block; margin-top: 2px; font-size: 12px; font-weight: 500;
+}
+.tm-pop a:hover,
+.tm-pop a:focus-visible { color: #1e40af; }
+
+/* Territory-Karte: farbige Marker-Pins und Cluster-Bubbles je Layer.
+   Farbe kommt per --tm-color aus dem JS (LAYER_STYLE). */
+.tm-marker { background: none; border: none; }
+.tm-pin {
+  display: flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  background: var(--tm-color, #1d4ed8);
+  border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.4);
+}
+.tm-pin-emoji { transform: rotate(45deg); font-size: 13px; line-height: 1; }
+.tm-cluster-wrap { background: none; }
+.tm-cluster {
+  display: flex; align-items: center; justify-content: center;
+  width: 38px; height: 38px; border-radius: 50%;
+  background: var(--tm-color, #1d4ed8);
+  color: #fff; font-weight: 700; font-size: 13px;
+  border: 3px solid rgba(255,255,255,.85); box-shadow: 0 1px 5px rgba(0,0,0,.4);
+  font-variant-numeric: tabular-nums;
+}

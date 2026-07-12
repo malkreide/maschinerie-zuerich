@@ -10,16 +10,29 @@
       "https://data.stadt-zuerich.ch/ – Personalstatistik (FTE)"
     ],
     "hinweise": [
-      "Struktur abgeglichen mit dem offiziellen Organigramm, Stand 27. Mai 2026: Bevölkerungsamt neu im PRD, Immobilien im HBD, ERZ-Teilbereiche zu 'Entsorgung + Recycling' konsolidiert (Fernwärme zum ewz), Sonderpädagogik fasst HPS/SKB/SFS zusammen.",
+      "Struktur abgeglichen mit dem offiziellen Organigramm, Stand 27. Mai 2026: Bevölkerungsamt neu im PRD, Immobilien im HBD, ERZ-Teilbereiche zu 'Entsorgung + Recycling' konsolidiert (Fernwärme beim ewz), Sonderpädagogik fasst HPS/SKB/SFS zusammen.",
       "Personen bewusst als Rolle gehalten ('Stadtpräsident:in', 'Stadtrat / Stadträtin') – Namen wechseln, Strukturen bleiben länger stabil.",
-      "Budgetzahlen 2024 (Gemeinderatsbeschluss) in der Struktur 2026: Umhängungen und Konsolidierungen sind budgetseitig erst ab Budget 2027 nativ abgebildet; aggregierte Einheiten sind mit _aggregiertAus markiert.",
-      "Unit-IDs sind stabil und ändern sich bei Umhängungen nicht (Deep-Links, Mapping) – das Departements-Präfix kann daher historisch sein (z. B. SiD-bev im PRD)."
+      "Budget-/FTE-Zahlen stammen aus der Zeit vor dem Organigramm 2026: Umhängungen und Konsolidierungen sind budgetseitig erst ab Budget 2027 nativ abgebildet; aggregierte Einheiten sind mit _aggregiertAus markiert.",
+      "Unit-IDs sind stabil und ändern sich bei Umhängungen nicht (Deep-Links, Mapping) – das Departements-Präfix kann daher historisch sein (z. B. SiD-bev im PRD).",
+      "Per-Departement-Aufwand stammt noch aus Budget 2024 (GEMEINDERAT_BESCHLUSS); FTE pro Departement bereits aus Rechnung 2025. Stadtweite Eckwerte aus Geschäftsbericht 2025 unter '_meta.gesamtstadt'. Per-Departement-Refresh aus RECHNUNG/2025 erfordert nächsten Lauf von 'npm run build -- --force' mit RPK_API_KEY."
     ],
-    "angereichert": "2026-07-12",
+    "angereichert": "2026-04-20",
     "quelleEnrichment": "data.stadt-zuerich.ch / fd_rpktool (rpkk-rs/v1)",
-    "budgetStand": "2024 (GEMEINDERAT_BESCHLUSS)",
+    "budgetStand": "2024 (GEMEINDERAT_BESCHLUSS) – per-Departement; Stadt-Total siehe _meta.gesamtstadt (Rechnung 2025)",
     "fteHinweis": "FTE-Werte sind primär Schätzungen (Personalaufwand / 130'000 CHF). 10 Einheit(en) haben publizierte Werte aus Budget-/Rechnungs-PDFs.",
-    "fteOverridesAus": "data/manual/fte-publiziert.json"
+    "fteOverridesAus": "data/manual/fte-publiziert.json",
+    "gesamtstadt": {
+      "jahr": 2025,
+      "phase": "RECHNUNG",
+      "aufwand": 10978000000,
+      "ertrag": 10955000000,
+      "aufwandueberschuss": 22900000,
+      "quelle": "Medienmitteilung Stadtrat 'Rechnung 2025 mit knappem Minus' (März 2026); Geschäftsbericht 2025 (April 2026)",
+      "quelleUrl": "https://www.stadt-zuerich.ch/de/aktuell/medienmitteilungen/2026/03/rechnung-2025-mit-knappem-minus.html",
+      "kontext": "Geschäftsbericht 2025 publiziert April 2026",
+      "kontextUrl": "https://www.stadt-zuerich.ch/de/aktuell/publikationen/2026/geschaeftsbericht-2025.html",
+      "hinweis": "Stadt-Total aus Pressetext/Geschäftsbericht. Per-Departement-Refresh aus RPK-API (betragsTyp=RECHNUNG, jahr=2025) erfordert lokal 'npm run build -- --force' mit gesetztem RPK_API_KEY – siehe scripts/README.md."
+    }
   },
   "center": {
     "id": "stadtrat",
@@ -37,7 +50,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 97367300,
         "ertrag": -31905300,
-        "nettoaufwand": 65462000,
+        "nettoaufwand": 129272600,
         "_aggregiertAus": 5
       },
       "fte": {
@@ -64,7 +77,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 949425300,
         "ertrag": -4310759200,
-        "nettoaufwand": -3361333900,
+        "nettoaufwand": 5260184500,
         "_aggregiertAus": 4
       },
       "fte": {
@@ -91,7 +104,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 1332631500,
         "ertrag": -720915100,
-        "nettoaufwand": 611716400,
+        "nettoaufwand": 2053546600,
         "_aggregiertAus": 6
       },
       "fte": {
@@ -118,7 +131,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 1388042000,
         "ertrag": -1125033100,
-        "nettoaufwand": 263008900,
+        "nettoaufwand": 2513075100,
         "_aggregiertAus": 4
       },
       "fte": {
@@ -143,10 +156,10 @@
       "budget": {
         "jahr": 2024,
         "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 537167100,
-        "ertrag": -320390000,
-        "nettoaufwand": 216777100,
-        "_aggregiertAus": 4
+        "aufwand": 654995500,
+        "ertrag": -438218400,
+        "nettoaufwand": 1093213900,
+        "_aggregiertAus": 7
       },
       "fte": {
         "schaetzung": 1864.2,
@@ -172,7 +185,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 488593800,
         "ertrag": -532325000,
-        "nettoaufwand": -43731200,
+        "nettoaufwand": 1020918800,
         "_aggregiertAus": 4
       },
       "fte": {
@@ -199,7 +212,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 606003000,
         "ertrag": -274004900,
-        "nettoaufwand": 331998100,
+        "nettoaufwand": 880007900,
         "_aggregiertAus": 5
       },
       "fte": {
@@ -226,8 +239,8 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 1596275900,
         "ertrag": -231477600,
-        "nettoaufwand": 1364798300,
-        "_aggregiertAus": 6
+        "nettoaufwand": 1827753500,
+        "_aggregiertAus": 10
       },
       "fte": {
         "schaetzung": 5587.9,
@@ -251,9 +264,9 @@
       "budget": {
         "jahr": 2024,
         "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 2790579600,
-        "ertrag": -2790579600,
-        "nettoaufwand": 0,
+        "aufwand": 2672751200,
+        "ertrag": -2672751200,
+        "nettoaufwand": 5345502400,
         "_aggregiertAus": 3
       },
       "fte": {
@@ -283,7 +296,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 12610300,
         "ertrag": -2841800,
-        "nettoaufwand": 9768500
+        "nettoaufwand": 15452100
       },
       "fte": {
         "jahr": 2024,
@@ -317,7 +330,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 7711200,
         "ertrag": -75000,
-        "nettoaufwand": 7636200
+        "nettoaufwand": 7786200
       },
       "fte": {
         "jahr": 2024,
@@ -345,7 +358,8 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 30199900,
         "ertrag": -1877000,
-        "nettoaufwand": 28322900
+        "nettoaufwand": 32076900,
+        "_aggregiertAus": 1
       },
       "fte": {
         "jahr": 2024,
@@ -354,7 +368,8 @@
         "vollkostenProFte": 130000,
         "schaetzung": 58,
         "personalaufwand": 7548500,
-        "quelle": "schaetzung"
+        "quelle": "schaetzung",
+        "_aggregiertAus": 1
       },
       "odz": {
         "key": "1505",
@@ -373,7 +388,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 5573000,
         "ertrag": -25000,
-        "nettoaufwand": 5548000
+        "nettoaufwand": 5598000
       },
       "fte": {
         "jahr": 2024,
@@ -401,7 +416,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 2127300,
         "ertrag": -113500,
-        "nettoaufwand": 2013800
+        "nettoaufwand": 2240800
       },
       "fte": {
         "jahr": 2024,
@@ -437,7 +452,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 26896700,
         "ertrag": -22019400,
-        "nettoaufwand": 4877300
+        "nettoaufwand": 48916100
       },
       "fte": {
         "jahr": 2024,
@@ -471,7 +486,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 607760200,
         "ertrag": -612093300,
-        "nettoaufwand": -4333100
+        "nettoaufwand": 1219853500
       },
       "fte": {
         "jahr": 2024,
@@ -499,7 +514,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 70611600,
         "ertrag": -3557095900,
-        "nettoaufwand": -3486484300
+        "nettoaufwand": 3627707500
       },
       "fte": {
         "schaetzung": 222,
@@ -527,7 +542,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 35214100,
         "ertrag": -6676300,
-        "nettoaufwand": 28537800
+        "nettoaufwand": 41890400
       },
       "fte": {
         "jahr": 2024,
@@ -555,7 +570,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 404636500,
         "ertrag": -473098000,
-        "nettoaufwand": -68461500
+        "nettoaufwand": 877734500
       },
       "fte": {
         "jahr": 2024,
@@ -583,7 +598,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 235839400,
         "ertrag": -134893700,
-        "nettoaufwand": 100945700
+        "nettoaufwand": 370733100
       },
       "fte": {
         "jahr": 2024,
@@ -611,7 +626,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 459524900,
         "ertrag": -362208200,
-        "nettoaufwand": 97316700
+        "nettoaufwand": 821733100
       },
       "fte": {
         "jahr": 2024,
@@ -653,7 +668,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 46751900,
         "ertrag": -520000,
-        "nettoaufwand": 46231900
+        "nettoaufwand": 47271900
       },
       "fte": {
         "jahr": 2024,
@@ -681,7 +696,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 666124700,
         "ertrag": -270651200,
-        "nettoaufwand": 395473500
+        "nettoaufwand": 936775900
       },
       "fte": {
         "jahr": 2024,
@@ -709,7 +724,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 25663600,
         "ertrag": -5937500,
-        "nettoaufwand": 19726100
+        "nettoaufwand": 31601100
       },
       "fte": {
         "jahr": 2024,
@@ -737,7 +752,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 19951700,
         "ertrag": -3710500,
-        "nettoaufwand": 16241200
+        "nettoaufwand": 23662200
       },
       "fte": {
         "jahr": 2024,
@@ -765,7 +780,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 114614700,
         "ertrag": -77887700,
-        "nettoaufwand": 36727000
+        "nettoaufwand": 192502400
       },
       "fte": {
         "jahr": 2024,
@@ -793,7 +808,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 724823400,
         "ertrag": -679088900,
-        "nettoaufwand": 45734500
+        "nettoaufwand": 1403912300
       },
       "fte": {
         "jahr": 2024,
@@ -821,7 +836,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 468330400,
         "ertrag": -420348300,
-        "nettoaufwand": 47982100
+        "nettoaufwand": 888678700
       },
       "fte": {
         "jahr": 2024,
@@ -849,7 +864,8 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 143348600,
         "ertrag": -17791000,
-        "nettoaufwand": 125557600
+        "nettoaufwand": 161139600,
+        "_aggregiertAus": 1
       },
       "fte": {
         "jahr": 2024,
@@ -858,7 +874,8 @@
         "vollkostenProFte": 130000,
         "schaetzung": 214,
         "personalaufwand": 27756900,
-        "quelle": "schaetzung"
+        "quelle": "schaetzung",
+        "_aggregiertAus": 1
       },
       "odz": {
         "key": "3010",
@@ -877,7 +894,8 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 51539600,
         "ertrag": -7804900,
-        "nettoaufwand": 43734700
+        "nettoaufwand": 59344500,
+        "_aggregiertAus": 1
       },
       "fte": {
         "jahr": 2024,
@@ -886,7 +904,8 @@
         "vollkostenProFte": 130000,
         "schaetzung": 206,
         "personalaufwand": 26825300,
-        "quelle": "schaetzung"
+        "quelle": "schaetzung",
+        "_aggregiertAus": 1
       },
       "odz": {
         "key": "3045",
@@ -905,7 +924,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 125045700,
         "ertrag": -53756500,
-        "nettoaufwand": 71289200
+        "nettoaufwand": 178802200
       },
       "fte": {
         "jahr": 2024,
@@ -933,7 +952,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 257341700,
         "ertrag": -217336800,
-        "nettoaufwand": 40004900,
+        "nettoaufwand": 474678500,
         "_aggregiertAus": 3
       },
       "fte": {
@@ -941,10 +960,10 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 911,
+        "schaetzung": 910,
         "personalaufwand": 118388700,
-        "_aggregiertAus": 3,
-        "quelle": "schaetzung"
+        "quelle": "schaetzung",
+        "_aggregiertAus": 3
       },
       "odz": {
         "key": "3550",
@@ -968,7 +987,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 13020100,
         "ertrag": -10111000,
-        "nettoaufwand": 2909100
+        "nettoaufwand": 23131100
       },
       "fte": {
         "jahr": 2024,
@@ -996,7 +1015,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 141759600,
         "ertrag": -39185700,
-        "nettoaufwand": 102573900
+        "nettoaufwand": 180945300
       },
       "fte": {
         "jahr": 2024,
@@ -1024,7 +1043,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 31376300,
         "ertrag": -16660000,
-        "nettoaufwand": 14716300
+        "nettoaufwand": 48036300
       },
       "fte": {
         "jahr": 2024,
@@ -1052,7 +1071,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 37206800,
         "ertrag": -26699500,
-        "nettoaufwand": 10507300
+        "nettoaufwand": 63906300
       },
       "fte": {
         "jahr": 2024,
@@ -1080,7 +1099,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 15374200,
         "ertrag": -15867500,
-        "nettoaufwand": -493300
+        "nettoaufwand": 31241700
       },
       "fte": {
         "jahr": 2024,
@@ -1108,7 +1127,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 380475500,
         "ertrag": -125245500,
-        "nettoaufwand": 255230000
+        "nettoaufwand": 505721000
       },
       "fte": {
         "jahr": 2024,
@@ -1136,7 +1155,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 157848900,
         "ertrag": -95924300,
-        "nettoaufwand": 61924600
+        "nettoaufwand": 253773200
       },
       "fte": {
         "jahr": 2024,
@@ -1164,7 +1183,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 51755900,
         "ertrag": -29814800,
-        "nettoaufwand": 21941100
+        "nettoaufwand": 81570700
       },
       "fte": {
         "jahr": 2024,
@@ -1192,7 +1211,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 19705500,
         "ertrag": -24937500,
-        "nettoaufwand": -5232000
+        "nettoaufwand": 44643000
       },
       "fte": {
         "jahr": 2024,
@@ -1220,7 +1239,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 36111100,
         "ertrag": -18303800,
-        "nettoaufwand": 17807300
+        "nettoaufwand": 54414900
       },
       "fte": {
         "jahr": 2024,
@@ -1248,7 +1267,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 11862000,
         "ertrag": -9593800,
-        "nettoaufwand": 2268200
+        "nettoaufwand": 21455800
       },
       "fte": {
         "jahr": 2024,
@@ -1276,7 +1295,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 1271958100,
         "ertrag": -100216300,
-        "nettoaufwand": 1171741800,
+        "nettoaufwand": 1372174400,
         "_aggregiertAus": 2
       },
       "fte": {
@@ -1286,8 +1305,8 @@
         "vollkostenProFte": 130000,
         "schaetzung": 3664,
         "personalaufwand": 476305800,
-        "_aggregiertAus": 2,
-        "quelle": "schaetzung"
+        "quelle": "schaetzung",
+        "_aggregiertAus": 2
       },
       "odz": {
         "key": "5010",
@@ -1310,7 +1329,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 73221200,
         "ertrag": -21551400,
-        "nettoaufwand": 51669800
+        "nettoaufwand": 94772600
       },
       "fte": {
         "jahr": 2024,
@@ -1338,7 +1357,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 29014100,
         "ertrag": -4877600,
-        "nettoaufwand": 24136500
+        "nettoaufwand": 33891700
       },
       "fte": {
         "jahr": 2024,
@@ -1366,7 +1385,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 34650200,
         "ertrag": -34650200,
-        "nettoaufwand": 0,
+        "nettoaufwand": 69300400,
         "_aggregiertAus": 3
       },
       "fte": {
@@ -1374,10 +1393,10 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 196,
+        "schaetzung": 195,
         "personalaufwand": 25454200,
-        "_aggregiertAus": 3,
-        "quelle": "schaetzung"
+        "quelle": "schaetzung",
+        "_aggregiertAus": 3
       },
       "odz": {
         "key": "5030",
@@ -1401,7 +1420,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 38302800,
         "ertrag": -17845200,
-        "nettoaufwand": 20457600,
+        "nettoaufwand": 56148000,
         "_aggregiertAus": 2
       },
       "fte": {
@@ -1411,8 +1430,8 @@
         "vollkostenProFte": 130000,
         "schaetzung": 210,
         "personalaufwand": 27349100,
-        "_aggregiertAus": 2,
-        "quelle": "schaetzung"
+        "quelle": "schaetzung",
+        "_aggregiertAus": 2
       },
       "odz": {
         "key": "5063",
@@ -1435,7 +1454,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 149129500,
         "ertrag": -52336900,
-        "nettoaufwand": 96792600
+        "nettoaufwand": 201466400
       },
       "fte": {
         "jahr": 2024,
@@ -1463,7 +1482,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 1992728500,
         "ertrag": -1992728500,
-        "nettoaufwand": 0,
+        "nettoaufwand": 3985457000,
         "_aggregiertAus": 2
       },
       "fte": {
@@ -1471,10 +1490,10 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 1369,
+        "schaetzung": 1368,
         "personalaufwand": 177947800,
-        "_aggregiertAus": 2,
-        "quelle": "schaetzung"
+        "quelle": "schaetzung",
+        "_aggregiertAus": 2
       },
       "odz": {
         "key": "4530",
@@ -1497,7 +1516,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 94833800,
         "ertrag": -94833800,
-        "nettoaufwand": 0
+        "nettoaufwand": 189667600
       },
       "fte": {
         "jahr": 2024,
@@ -1525,7 +1544,7 @@
         "typ": "GEMEINDERAT_BESCHLUSS",
         "aufwand": 703017300,
         "ertrag": -703017300,
-        "nettoaufwand": 0
+        "nettoaufwand": 1406034600
       },
       "fte": {
         "jahr": 2024,

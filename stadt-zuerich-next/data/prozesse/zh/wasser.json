@@ -1,0 +1,267 @@
+{
+  "$schema": "../../../schemas/opengov-process-schema.json",
+  "schema_version": "0.1.0",
+  "id": "wasser",
+  "lebenslage_ref": "wasser",
+  "city": "zh",
+  "title": {
+    "de": "Trinkwasserqualität einsehen",
+    "en": "Check drinking water quality",
+    "fr": "Consulter la qualité de l'eau potable",
+    "it": "Consultare la qualità dell'acqua potabile",
+    "ls": "Die Qualität vom Trink-Wasser anschauen"
+  },
+  "description": {
+    "de": "Das Zürcher Leitungswasser wird laufend von der Wasserversorgung Zürich kontrolliert und zusätzlich von den unabhängigen kantonalen Laboratorien geprüft. Wer die Qualität nachvollziehen möchte, findet die Messwerte öffentlich – die Rohdaten stehen im Open-Data-Katalog der Stadt.",
+    "en": "Zurich's tap water is continuously monitored by Wasserversorgung Zürich and additionally checked by the independent cantonal laboratories. Anyone wanting to verify the quality can find the measurements publicly – the raw data is available in the city's open data catalogue.",
+    "fr": "L'eau du robinet zurichoise est contrôlée en continu par la Wasserversorgung Zürich et vérifiée en plus par les laboratoires cantonaux indépendants. Qui souhaite vérifier la qualité trouve les mesures publiquement – les données brutes sont dans le catalogue open data de la ville.",
+    "it": "L'acqua del rubinetto di Zurigo è controllata costantemente dalla Wasserversorgung Zürich e verificata inoltre dai laboratori cantonali indipendenti. Chi vuole verificare la qualità trova le misurazioni pubblicamente – i dati grezzi sono nel catalogo open data della città.",
+    "ls": "Das Wasser aus dem Hahn in Zürich wird immer wieder geprüft. Die Wasser-Versorgung Zürich prüft es. Und auch die Labors vom Kanton prüfen es. Sie können die Werte selbst anschauen. Die Daten sind im Open-Data-Katalog der Stadt."
+  },
+  "target_audience": "bevoelkerung",
+  "source_url": "https://www.stadt-zuerich.ch/de/umwelt-und-energie/wasser/trinkwasser/qualitaet-und-kontrolle.html",
+  "retrieved_at": "2026-06-21",
+  "disclaimer_key": "Prozesse.disclaimer",
+  "references": [
+    {
+      "reference_id": 1,
+      "label": {
+        "de": "Laufende Qualitätskontrolle",
+        "en": "Continuous quality monitoring",
+        "fr": "Contrôle qualité continu",
+        "it": "Controllo qualità continuo",
+        "ls": "Das Wasser wird immer wieder geprüft"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/umwelt-und-energie/wasser/trinkwasser/qualitaet-und-kontrolle.html",
+      "source_quote": "Pro Jahr werden im Labor der Wasserversorgung Zürich über 10 000 Wasserproben von den Wasserwerken bis ins Verteilnetz untersucht.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-21"
+    },
+    {
+      "reference_id": 2,
+      "label": {
+        "de": "Unabhängige kantonale Prüfung",
+        "en": "Independent cantonal testing",
+        "fr": "Contrôle cantonal indépendant",
+        "it": "Verifica cantonale indipendente",
+        "ls": "Auch der Kanton prüft das Wasser"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/umwelt-und-energie/wasser/trinkwasser/qualitaet-und-kontrolle.html",
+      "source_quote": "Zusätzlich beproben die unabhängigen Kantonalen Laboratorien das Trinkwasser und kontrollieren die Arbeit der Wasserversorger.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-21"
+    },
+    {
+      "reference_id": 3,
+      "label": {
+        "de": "Rohdaten als Open Data",
+        "en": "Raw data as open data",
+        "fr": "Données brutes en open data",
+        "it": "Dati grezzi come open data",
+        "ls": "Die Daten sind frei verfügbar"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/umwelt-und-energie/wasser/trinkwasser/qualitaet-und-kontrolle.html",
+      "source_quote": "Die Rohdaten sind in maschinenlesbarer Form im Open Data Katalog der Stadt Zürich veröffentlicht",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-21"
+    }
+  ],
+  "actors": [
+    {
+      "id": "person",
+      "label": {
+        "de": "Einwohnerin oder Einwohner",
+        "en": "Resident",
+        "fr": "Habitant·e",
+        "it": "Residente",
+        "ls": "Sie (Sie wohnen in Zürich)"
+      },
+      "type": "antragsteller"
+    },
+    {
+      "id": "wvz",
+      "label": {
+        "de": "Wasserversorgung Zürich (WVZ)",
+        "en": "Zurich water utility (WVZ)",
+        "fr": "Service des eaux de Zurich (WVZ)",
+        "it": "Azienda dell'acqua di Zurigo (WVZ)",
+        "ls": "Die Wasser-Versorgung Zürich"
+      },
+      "type": "behoerde",
+      "einheit_ref": "DIB-wv"
+    },
+    {
+      "id": "kantonslabor",
+      "label": {
+        "de": "Kantonale Laboratorien",
+        "en": "Cantonal laboratories",
+        "fr": "Laboratoires cantonaux",
+        "it": "Laboratori cantonali",
+        "ls": "Die Labors vom Kanton"
+      },
+      "type": "fachstelle"
+    }
+  ],
+  "steps": [
+    {
+      "step_id": 1,
+      "actor": "person",
+      "label": {
+        "de": "Frage zur Trinkwasserqualität",
+        "en": "Question about drinking water quality",
+        "fr": "Question sur la qualité de l'eau potable",
+        "it": "Domanda sulla qualità dell'acqua potabile",
+        "ls": "Sie haben eine Frage zum Trink-Wasser"
+      },
+      "depends_on": [],
+      "type": "start"
+    },
+    {
+      "step_id": 2,
+      "actor": "wvz",
+      "label": {
+        "de": "Wasserversorgung Zürich kontrolliert das Trinkwasser laufend",
+        "en": "Wasserversorgung Zürich continuously monitors the drinking water",
+        "fr": "La Wasserversorgung Zürich contrôle l'eau potable en continu",
+        "it": "La Wasserversorgung Zürich controlla l'acqua potabile costantemente",
+        "ls": "Die Wasser-Versorgung prüft das Wasser immer wieder"
+      },
+      "depends_on": [1],
+      "type": "prozess",
+      "reference_ids": [1],
+      "source_id": "q-wvz-qualitaet"
+    },
+    {
+      "step_id": 3,
+      "actor": "kantonslabor",
+      "label": {
+        "de": "Kantonale Laboratorien prüfen zusätzlich unabhängig",
+        "en": "Cantonal laboratories additionally test independently",
+        "fr": "Les laboratoires cantonaux vérifient en plus de manière indépendante",
+        "it": "I laboratori cantonali verificano inoltre in modo indipendente",
+        "ls": "Die Labors vom Kanton prüfen das Wasser auch"
+      },
+      "depends_on": [2],
+      "type": "prozess",
+      "reference_ids": [2],
+      "source_id": "q-wvz-qualitaet"
+    },
+    {
+      "step_id": 4,
+      "actor": "person",
+      "label": {
+        "de": "Messwerte und Rohdaten einsehen",
+        "en": "View measurements and raw data",
+        "fr": "Consulter les mesures et les données brutes",
+        "it": "Consultare le misurazioni e i dati grezzi",
+        "ls": "Die Werte und Daten anschauen"
+      },
+      "depends_on": [3],
+      "type": "input",
+      "description": {
+        "de": "Die aktuellen Qualitätswerte sind öffentlich; die Rohdaten stehen im Open-Data-Katalog der Stadt zur Verfügung.",
+        "en": "The current quality values are public; the raw data is available in the city's open data catalogue.",
+        "fr": "Les valeurs de qualité actuelles sont publiques ; les données brutes sont disponibles dans le catalogue open data de la ville.",
+        "it": "I valori di qualità attuali sono pubblici; i dati grezzi sono disponibili nel catalogo open data della città.",
+        "ls": "Die Werte sind öffentlich. Die Daten finden Sie im Open-Data-Katalog der Stadt."
+      },
+      "reference_ids": [3],
+      "source_id": "q-odz-trinkwasser"
+    },
+    {
+      "step_id": 5,
+      "actor": "person",
+      "label": {
+        "de": "Trinkwasserqualität nachvollziehbar",
+        "en": "Drinking water quality is transparent",
+        "fr": "Qualité de l'eau potable vérifiable",
+        "it": "Qualità dell'acqua potabile verificabile",
+        "ls": "Fertig: Sie kennen die Qualität vom Wasser"
+      },
+      "depends_on": [4],
+      "type": "ende"
+    }
+  ],
+  "legal_basis": [
+    { "label": "Lebensmittelgesetz (LMG, SR 817.0)" },
+    {
+      "label": "Stadt Zürich – Trinkwasser: Qualität und Kontrolle",
+      "url": "https://www.stadt-zuerich.ch/de/umwelt-und-energie/wasser/trinkwasser/qualitaet-und-kontrolle.html"
+    },
+    {
+      "label": "Open Data Zürich – Trinkwasserqualität (Rohdaten)",
+      "url": "https://data.stadt-zuerich.ch/dataset/dib_wvz_trinkwasserqualitaet"
+    }
+  ],
+  "sources": [
+    {
+      "id": "q-wvz-qualitaet",
+      "title": "Stadt Zürich – Trinkwasser: Qualität und Kontrolle",
+      "url": "https://www.stadt-zuerich.ch/de/umwelt-und-energie/wasser/trinkwasser/qualitaet-und-kontrolle.html",
+      "retrieved_at": "2026-06-21"
+    },
+    {
+      "id": "q-odz-trinkwasser",
+      "title": "Open Data Zürich – Trinkwasserqualität",
+      "url": "https://data.stadt-zuerich.ch/dataset/dib_wvz_trinkwasserqualitaet",
+      "retrieved_at": "2026-06-21"
+    }
+  ],
+  "reife": {
+    "onlineReifegrad": "digital",
+    "medienbrueche": [],
+    "onceOnlyPotenzial": {
+      "de": "Die Qualitätsdaten sind bereits offen und maschinenlesbar – eine adressgenaue Abfrage könnte den Bezug für Einwohner:innen noch direkter machen.",
+      "en": "The quality data is already open and machine-readable – an address-specific query could make it even more directly accessible for residents.",
+      "fr": "Les données de qualité sont déjà ouvertes et lisibles par machine – une requête par adresse pourrait rendre l'accès encore plus direct pour les habitant·es.",
+      "it": "I dati di qualità sono già aperti e leggibili da macchina – una ricerca per indirizzo potrebbe rendere l'accesso ancora più diretto per i residenti.",
+      "ls": "Die Daten sind schon offen. Eine Abfrage nach Adresse wäre noch einfacher."
+    },
+    "nutzergruppen": [
+      {
+        "de": "Einwohner:innen, die wissen wollen, wie gut ihr Leitungswasser ist",
+        "en": "Residents who want to know how good their tap water is",
+        "fr": "Habitant·es qui veulent savoir si leur eau du robinet est bonne",
+        "it": "Residenti che vogliono sapere quanto è buona la loro acqua del rubinetto",
+        "ls": "Menschen, die wissen wollen, wie gut ihr Wasser ist"
+      }
+    ],
+    "painPoints": [
+      {
+        "de": "Die Daten liegen vor, sind aber nicht adressgenau abfragbar.",
+        "en": "The data exists but cannot be queried for a specific address.",
+        "fr": "Les données existent mais ne sont pas consultables par adresse.",
+        "it": "I dati esistono ma non sono consultabili per indirizzo.",
+        "ls": "Die Daten gibt es. Aber nicht für jede einzelne Adresse."
+      }
+    ],
+    "improvementIdeas": [
+      {
+        "de": "Eine einfache Abfrage der Wasserqualität nach Adresse oder Quartier.",
+        "en": "A simple lookup of water quality by address or neighbourhood.",
+        "fr": "Une recherche simple de la qualité de l'eau par adresse ou quartier.",
+        "it": "Una semplice ricerca della qualità dell'acqua per indirizzo o quartiere.",
+        "ls": "Eine einfache Abfrage nach Adresse oder Quartier."
+      }
+    ],
+    "status": "beobachtet",
+    "wirkungKpi": [
+      {
+        "label": {
+          "de": "Datenzugang",
+          "en": "Data access",
+          "fr": "Accès aux données",
+          "it": "Accesso ai dati",
+          "ls": "So kommen Sie an die Daten"
+        },
+        "wert": "öffentlich im Open-Data-Katalog"
+      }
+    ]
+  },
+  "meta": {
+    "erstellt": "2026-06-21",
+    "aktualisiert": "2026-06-21",
+    "maintainer": "malkreide",
+    "lizenz": "CC-BY-4.0"
+  }
+}

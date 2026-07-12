@@ -1,11 +1,12 @@
 'use client';
 
-import { useId, useMemo, useState } from 'react';
+import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { Link, usePathname, useRouter, getPathname } from '@/i18n/navigation';
 import type { Lebenslage, LebenslageLocale } from '@/types/stadt';
 import type { Locale } from '@/i18n/routing';
 import { resolveContent, searchLebenslagen } from '@/lib/search';
+import { normalizeMissQuery } from '@/lib/search-miss';
 
 // Wie viele Fallback-Vorschläge zeigen wir, wenn gar nichts matcht. 4 passt
 // gut unter ein Input-Feld, ohne das Dropdown zu überladen.
@@ -42,6 +43,28 @@ export default function Search({ lebenslagen }: { lebenslagen: Lebenslage[] }) {
   const trimmed = q.trim();
   const showEmptyState = trimmed.length > 1 && matches.length === 0;
 
+  // Nulltreffer datenschutzschonend als Backlog-Signal erfassen: nur wenn die
+  // Suche keinen Treffer hat, der Begriff clientseitig zu einem unbedenklichen
+  // Term normalisiert (keine E-Mail/lange Ziffern) und der/die Nutzer*in eine
+  // Eingabepause macht (Debounce). Pro Sitzung wird jeder Term nur einmal
+  // gemeldet. fetch ist fire-and-forget — Fehler werden ignoriert.
+  const reportedRef = useRef<Set<string>>(new Set());
+  useEffect(() => {
+    if (!showEmptyState) return;
+    const norm = normalizeMissQuery(trimmed);
+    if (!norm || reportedRef.current.has(norm)) return;
+    const handle = setTimeout(() => {
+      reportedRef.current.add(norm);
+      fetch('/api/search-miss', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ q: norm, locale }),
+        keepalive: true,
+      }).catch(() => {});
+    }, 1200);
+    return () => clearTimeout(handle);
+  }, [showEmptyState, trimmed, locale]);
+
   if (pathname === '/liste' || pathname === '/anliegen') return null;
 
   function jump(unitId: string) {
@@ -56,7 +79,7 @@ export default function Search({ lebenslagen }: { lebenslagen: Lebenslage[] }) {
   return (
     <div
       role="search"
-      className="fixed top-[64px] left-3 z-[9] bg-[var(--color-panel)] p-1.5 rounded-lg shadow flex flex-col gap-1 min-w-[320px] max-w-[380px]"
+      className="fixed top-[64px] left-3 z-[9] bg-[var(--color-panel)] p-1.5 rounded-lg shadow flex flex-col gap-1 w-[calc(100vw-24px)] sm:w-auto sm:min-w-[320px] max-w-[380px]"
     >
       <form method="get" action={formAction} className="contents">
         <label htmlFor={id} className="sr-only">{t('label')}</label>
@@ -138,6 +161,9 @@ export default function Search({ lebenslagen }: { lebenslagen: Lebenslage[] }) {
           >
             {t('openFullSearch')}
           </Link>
+          <p className="text-[10px] text-[var(--color-mute)] px-1.5 pt-1.5 leading-snug">
+            {t('missNote')}
+          </p>
         </div>
       )}
     </div>

@@ -1,0 +1,459 @@
+{
+  "$schema": "../../../schemas/opengov-process-schema.json",
+  "schema_version": "0.1.0",
+  "id": "heiraten",
+  "lebenslage_ref": "heiraten",
+  "city": "zh",
+  "title": {
+    "de": "Heiraten: Ehevorbereitung und Trauung",
+    "en": "Get married: marriage preparation and ceremony",
+    "fr": "Se marier : préparation et célébration",
+    "it": "Sposarsi: preparazione e cerimonia",
+    "ls": "Heiraten beim Zivilstandsamt"
+  },
+  "description": {
+    "de": "Wer in der Stadt Zürich heiraten will, durchläuft beim Zivilstandsamt zuerst das Ehevorbereitungsverfahren: Das Paar reicht ein Gesuch mit den nötigen Dokumenten ein, das Amt prüft die Ehefähigkeit. Nach Abschluss der Vorbereitung wird die Trauung in Anwesenheit von zwei volljährigen Trauzeugen durchgeführt; am Ende stellt das Amt die Eheurkunde aus.",
+    "en": "Couples wishing to marry in the City of Zurich first go through the marriage-preparation procedure at the civil registry office: they submit an application with the required documents, and the office checks their capacity to marry. After preparation is complete, the ceremony takes place before two witnesses of legal age; finally the office issues the marriage certificate.",
+    "fr": "Les personnes qui souhaitent se marier en ville de Zurich passent d'abord par la procédure préparatoire du mariage auprès de l'office de l'état civil : le couple dépose une demande avec les documents requis et l'office vérifie la capacité matrimoniale. Une fois la préparation terminée, la célébration a lieu en présence de deux témoins majeurs ; à la fin, l'office délivre l'acte de mariage.",
+    "it": "Chi desidera sposarsi in città di Zurigo segue dapprima la procedura preparatoria del matrimonio presso l'ufficio dello stato civile: la coppia presenta una domanda con i documenti necessari e l'ufficio verifica la capacità matrimoniale. Conclusa la preparazione, la cerimonia si svolge in presenza di due testimoni maggiorenni; al termine l'ufficio rilascia l'atto di matrimonio.",
+    "ls": "Sie wollen heiraten? Das macht das Zivilstandsamt. Zuerst füllen Sie ein Gesuch aus und bringen Papiere. Das Amt prüft, ob Sie heiraten dürfen. Danach ist die Trauung. Dabei sind zwei Trauzeugen dabei. Am Schluss bekommen Sie eine Heirats-Urkunde."
+  },
+  "target_audience": "bevoelkerung",
+  "preconditions": [
+    {
+      "de": "Beide Personen sind ehefähig (volljährig und urteilsfähig) und nicht bereits verheiratet oder in eingetragener Partnerschaft.",
+      "en": "Both persons are eligible to marry (of legal age and capable of judgement) and not already married or in a registered partnership.",
+      "fr": "Les deux personnes ont la capacité matrimoniale (majeures et capables de discernement) et ne sont pas déjà mariées ou liées par un partenariat enregistré.",
+      "it": "Entrambe le persone hanno la capacità matrimoniale (maggiorenni e capaci di discernimento) e non sono già coniugate o vincolate da un'unione domestica registrata.",
+      "ls": "Beide sind alt genug und dürfen heiraten. Beide sind nicht schon verheiratet."
+    }
+  ],
+  "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/heiraten.html",
+  "retrieved_at": "2026-06-22",
+  "disclaimer_key": "Prozesse.disclaimer",
+  "references": [
+    {
+      "reference_id": 1,
+      "label": {
+        "de": "Voraussetzungen der Ehefähigkeit (Mindestalter, Urteilsfähigkeit)",
+        "en": "Requirements for capacity to marry (minimum age, capacity of judgement)",
+        "fr": "Conditions de la capacité matrimoniale (âge minimal, capacité de discernement)",
+        "it": "Condizioni della capacità matrimoniale (età minima, capacità di discernimento)",
+        "ls": "Wer heiraten darf (Alter und mehr)"
+      },
+      "source_url": "https://www.fedlex.admin.ch/eli/cc/24/233_245_233/de",
+      "source_quote": "Die Ehe kann von zwei Personen eingegangen werden, die das 18. Altersjahr zurückgelegt haben und urteilsfähig sind.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-27"
+    },
+    {
+      "reference_id": 2,
+      "label": {
+        "de": "Gültigkeitsfrist des Ehevorbereitungsverfahrens (Zeitfenster für die Trauung)",
+        "en": "Validity period of the marriage-preparation procedure (window for the ceremony)",
+        "fr": "Délai de validité de la procédure préparatoire du mariage (fenêtre pour la célébration)",
+        "it": "Termine di validità della procedura preparatoria del matrimonio (finestra per la cerimonia)",
+        "ls": "Wie lange Sie nach der Vorbereitung Zeit zum Heiraten haben"
+      },
+      "source_url": "https://www.fedlex.admin.ch/eli/cc/24/233_245_233/de",
+      "source_quote": "Die Trauung kann innerhalb von drei Monaten stattfinden, nachdem der Abschluss des Vorbereitungsverfahrens mitgeteilt wurde.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-27"
+    },
+    {
+      "reference_id": 3,
+      "label": {
+        "de": "Gebühren für Ehevorbereitung und Trauung",
+        "en": "Fees for marriage preparation and the ceremony",
+        "fr": "Émoluments pour la préparation du mariage et la célébration",
+        "it": "Emolumenti per la preparazione del matrimonio e la cerimonia",
+        "ls": "Was das Heiraten kostet"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/heiraten/ehevorbereitung.html",
+      "source_quote": "Wir berechnen alle Gebühren für die Ehevorbereitung und die Hochzeit und teilen Ihnen den Gesamtbetrag mit.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-25"
+    }
+  ],
+  "actors": [
+    {
+      "id": "paar",
+      "label": {
+        "de": "Brautpaar / Verlobte",
+        "en": "Couple to be married",
+        "fr": "Couple de fiancés",
+        "it": "Coppia di fidanzati",
+        "ls": "Sie beide (Sie wollen heiraten)"
+      },
+      "type": "antragsteller"
+    },
+    {
+      "id": "zivilstandsamt",
+      "label": {
+        "de": "Zivilstandsamt der Stadt Zürich",
+        "en": "Civil registry office of the City of Zurich",
+        "fr": "Office de l'état civil de la ville de Zurich",
+        "it": "Ufficio dello stato civile della città di Zurigo",
+        "ls": "Das Zivilstandsamt"
+      },
+      "type": "behoerde",
+      "einheit_ref": "SiD-bev"
+    },
+    {
+      "id": "migrationsamt",
+      "label": {
+        "de": "Migrationsamt Kanton Zürich (bei ausländischer Staatsangehörigkeit)",
+        "en": "Cantonal migration office (for foreign nationals)",
+        "fr": "Office cantonal de la migration du canton de Zurich (en cas de nationalité étrangère)",
+        "it": "Ufficio cantonale della migrazione del Cantone di Zurigo (in caso di cittadinanza straniera)",
+        "ls": "Das Migrations-Amt vom Kanton"
+      },
+      "type": "fachstelle"
+    }
+  ],
+  "steps": [
+    {
+      "step_id": 1,
+      "actor": "paar",
+      "label": {
+        "de": "Entscheidung zu heiraten",
+        "en": "Decision to marry",
+        "fr": "Décision de se marier",
+        "it": "Decisione di sposarsi",
+        "ls": "Sie wollen heiraten"
+      },
+      "depends_on": [],
+      "type": "start"
+    },
+    {
+      "step_id": 2,
+      "actor": "paar",
+      "label": {
+        "de": "Gesuch um Ehevorbereitung beim Zivilstandsamt einreichen",
+        "en": "Submit the marriage-preparation request to the registry office",
+        "fr": "Déposer la demande de préparation du mariage auprès de l'office de l'état civil",
+        "it": "Presentare la domanda di preparazione del matrimonio all'ufficio dello stato civile",
+        "ls": "Das Gesuch beim Zivilstandsamt einreichen"
+      },
+      "depends_on": [
+        1
+      ],
+      "reference_ids": [
+        3
+      ],
+      "type": "input",
+      "description": {
+        "de": "Das Paar reicht das Gesuch am Wohnsitz einer der beiden Personen ein. Für ausländische Staatsangehörige sind zusätzliche Nachweise nötig.",
+        "en": "The couple files the request at the place of residence of one partner. Foreign nationals need additional proofs.",
+        "fr": "Le couple dépose la demande au domicile de l'une des deux personnes. Les personnes de nationalité étrangère doivent fournir des justificatifs supplémentaires.",
+        "it": "La coppia presenta la domanda nel luogo di domicilio di una delle due persone. Le persone di cittadinanza straniera devono fornire ulteriori attestazioni.",
+        "ls": "Sie geben das Gesuch dort ab, wo eine Person von Ihnen wohnt. Menschen aus dem Ausland brauchen mehr Papiere."
+      },
+      "documents": [
+        {
+          "label": {
+            "de": "Ausweis (Pass oder Identitätskarte) beider Personen",
+            "en": "Identity document (passport or ID card) of both persons",
+            "fr": "Pièce d'identité (passeport ou carte d'identité) des deux personnes",
+            "it": "Documento d'identità (passaporto o carta d'identità) di entrambe le persone"
+          },
+          "required": true
+        },
+        {
+          "label": {
+            "de": "Wohnsitzbescheinigung",
+            "en": "Proof of residence",
+            "fr": "Attestation de domicile",
+            "it": "Attestazione di domicilio"
+          },
+          "required": true
+        },
+        {
+          "label": {
+            "de": "Personenstandsausweis / Geburtsurkunde",
+            "en": "Civil-status document / birth certificate",
+            "fr": "Acte d'état civil / acte de naissance",
+            "it": "Documento dello stato civile / atto di nascita"
+          },
+          "required": true
+        },
+        {
+          "label": {
+            "de": "Bei ausländischer Staatsangehörigkeit: Ehefähigkeitsnachweis und Aufenthaltsnachweis",
+            "en": "For foreign nationals: proof of capacity to marry and proof of lawful residence",
+            "fr": "En cas de nationalité étrangère : certificat de capacité matrimoniale et justificatif de séjour",
+            "it": "In caso di cittadinanza straniera: certificato di capacità matrimoniale e attestazione di soggiorno"
+          },
+          "required": false
+        }
+      ],
+      "source_id": "q-zsa"
+    },
+    {
+      "step_id": 3,
+      "actor": "zivilstandsamt",
+      "label": {
+        "de": "Ehefähigkeit und Unterlagen prüfen",
+        "en": "Check capacity to marry and documents",
+        "fr": "Vérifier la capacité matrimoniale et les documents",
+        "it": "Verificare la capacità matrimoniale e i documenti",
+        "ls": "Das Amt prüft, ob Sie heiraten dürfen"
+      },
+      "depends_on": [
+        2
+      ],
+      "reference_ids": [
+        1
+      ],
+      "type": "prozess",
+      "description": {
+        "de": "Das Zivilstandsamt prüft, ob beide Personen ehefähig sind und ob die Unterlagen vollständig sind.",
+        "en": "The registry office checks whether both persons are eligible to marry and whether the documents are complete.",
+        "fr": "L'office de l'état civil vérifie si les deux personnes ont la capacité matrimoniale et si les documents sont complets.",
+        "it": "L'ufficio dello stato civile verifica se entrambe le persone hanno la capacità matrimoniale e se i documenti sono completi.",
+        "ls": "Das Amt schaut die Papiere an. Es prüft, ob Sie heiraten dürfen."
+      },
+      "source_id": "q-zsa"
+    },
+    {
+      "step_id": 4,
+      "actor": "zivilstandsamt",
+      "label": {
+        "de": "Ausländische Staatsangehörige ohne gesicherten Aufenthalt?",
+        "en": "Foreign nationals without secured residence?",
+        "fr": "Personnes de nationalité étrangère sans séjour garanti ?",
+        "it": "Persone di cittadinanza straniera senza soggiorno garantito?",
+        "ls": "Kommt eine Person aus dem Ausland ohne sichere Bewilligung?"
+      },
+      "depends_on": [
+        3
+      ],
+      "type": "entscheidung"
+    },
+    {
+      "step_id": 5,
+      "actor": "migrationsamt",
+      "label": {
+        "de": "Rechtmässigen Aufenthalt nachweisen und prüfen",
+        "en": "Prove and check lawful residence",
+        "fr": "Justifier et vérifier le séjour légal",
+        "it": "Comprovare e verificare il soggiorno legale",
+        "ls": "Den rechtmässigen Aufenthalt nachweisen"
+      },
+      "depends_on": [
+        {
+          "step_id": 4,
+          "condition": {
+            "de": "ja",
+            "en": "yes",
+            "fr": "oui",
+            "it": "sì"
+          }
+        }
+      ],
+      "type": "prozess",
+      "description": {
+        "de": "Vor der Trauung muss der rechtmässige Aufenthalt in der Schweiz nachgewiesen werden; das Zivilstandsamt meldet dies dem Migrationsamt.",
+        "en": "Before the ceremony, lawful residence in Switzerland must be proven; the registry office notifies the migration office.",
+        "fr": "Avant la célébration, le séjour légal en Suisse doit être justifié ; l'office de l'état civil l'annonce à l'office de la migration.",
+        "it": "Prima della cerimonia occorre comprovare il soggiorno legale in Svizzera; l'ufficio dello stato civile lo segnala all'ufficio della migrazione.",
+        "ls": "Die Person aus dem Ausland muss zeigen, dass sie hier sein darf."
+      }
+    },
+    {
+      "step_id": 6,
+      "actor": "zivilstandsamt",
+      "label": {
+        "de": "Ehevorbereitung abschliessen und bestätigen",
+        "en": "Complete and confirm marriage preparation",
+        "fr": "Clore et confirmer la préparation du mariage",
+        "it": "Concludere e confermare la preparazione del matrimonio",
+        "ls": "Das Amt schliesst die Vorbereitung ab"
+      },
+      "depends_on": [
+        {
+          "step_id": 4,
+          "condition": {
+            "de": "nein",
+            "en": "no",
+            "fr": "non",
+            "it": "no"
+          }
+        },
+        5
+      ],
+      "reference_ids": [
+        2
+      ],
+      "type": "prozess",
+      "description": {
+        "de": "Das Amt bestätigt, dass die Ehe geschlossen werden kann. Die Bestätigung ist befristet gültig — die Trauung muss innerhalb dieses Zeitfensters stattfinden.",
+        "en": "The office confirms that the marriage may take place. The confirmation is valid for a limited period — the ceremony must occur within that window.",
+        "fr": "L'office confirme que le mariage peut être célébré. La confirmation n'est valable que pour une durée limitée — la célébration doit avoir lieu dans cette fenêtre.",
+        "it": "L'ufficio conferma che il matrimonio può essere celebrato. La conferma è valida solo per un periodo limitato — la cerimonia deve svolgersi entro tale finestra.",
+        "ls": "Das Amt sagt: Sie dürfen heiraten. Jetzt haben Sie eine bestimmte Zeit für die Trauung."
+      },
+      "source_id": "q-zsa"
+    },
+    {
+      "step_id": 7,
+      "actor": "paar",
+      "label": {
+        "de": "Trauungstermin und Trauungslokal vereinbaren",
+        "en": "Arrange the ceremony date and venue",
+        "fr": "Convenir de la date et du lieu de la célébration",
+        "it": "Concordare la data e il luogo della cerimonia",
+        "ls": "Einen Termin und einen Ort für die Trauung abmachen"
+      },
+      "depends_on": [
+        6
+      ],
+      "type": "input"
+    },
+    {
+      "step_id": 8,
+      "actor": "paar",
+      "label": {
+        "de": "Zwei volljährige Trauzeugen bestimmen",
+        "en": "Choose two witnesses of legal age",
+        "fr": "Désigner deux témoins majeurs",
+        "it": "Designare due testimoni maggiorenni",
+        "ls": "Zwei Trauzeugen aussuchen (sie müssen erwachsen sein)"
+      },
+      "depends_on": [
+        6
+      ],
+      "type": "input"
+    },
+    {
+      "step_id": 9,
+      "actor": "zivilstandsamt",
+      "label": {
+        "de": "Zivile Trauung durchführen",
+        "en": "Conduct the civil ceremony",
+        "fr": "Procéder à la célébration civile",
+        "it": "Svolgere la cerimonia civile",
+        "ls": "Die Trauung findet statt"
+      },
+      "depends_on": [
+        7,
+        8
+      ],
+      "reference_ids": [
+        3
+      ],
+      "type": "prozess",
+      "description": {
+        "de": "Die Trauung findet im gewählten Trauungslokal in Anwesenheit der beiden Trauzeugen statt.",
+        "en": "The ceremony takes place at the chosen venue in the presence of the two witnesses.",
+        "fr": "La célébration a lieu dans le lieu choisi, en présence des deux témoins.",
+        "it": "La cerimonia si svolge nel luogo scelto, in presenza dei due testimoni.",
+        "ls": "Sie heiraten im gewählten Raum. Die zwei Trauzeugen sind dabei."
+      },
+      "source_id": "q-zsa"
+    },
+    {
+      "step_id": 10,
+      "actor": "zivilstandsamt",
+      "label": {
+        "de": "Eheurkunde ausstellen",
+        "en": "Issue the marriage certificate",
+        "fr": "Délivrer l'acte de mariage",
+        "it": "Rilasciare l'atto di matrimonio",
+        "ls": "Sie bekommen eine Heirats-Urkunde"
+      },
+      "depends_on": [
+        9
+      ],
+      "type": "prozess"
+    },
+    {
+      "step_id": 11,
+      "actor": "paar",
+      "label": {
+        "de": "Verheiratet",
+        "en": "Married",
+        "fr": "Mariés",
+        "it": "Sposati",
+        "ls": "Fertig: Sie sind verheiratet"
+      },
+      "depends_on": [
+        10
+      ],
+      "type": "ende"
+    }
+  ],
+  "legal_basis": [
+    {
+      "label": "Zivilgesetzbuch (ZGB) Art. 94–104 (Eheschliessung)",
+      "url": "https://www.fedlex.admin.ch/eli/cc/24/233_245_233/de"
+    },
+    {
+      "label": "Zivilstandsverordnung (ZStV)",
+      "url": "https://www.fedlex.admin.ch/eli/cc/2004/720/de"
+    }
+  ],
+  "sources": [
+    {
+      "id": "q-zsa",
+      "title": "Stadt Zürich – Zivilstandsamt / Heirat",
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/heiraten.html",
+      "retrieved_at": "2026-06-22"
+    }
+  ],
+  "reife": {
+    "onlineReifegrad": "teil-digital",
+    "medienbrueche": [
+      "persoenliches-erscheinen",
+      "post"
+    ],
+    "onceOnlyPotenzial": {
+      "de": "Wohnsitz- und Personenstandsdaten liegen den Behörden bereits vor. Bei vollständiger Registerverknüpfung müssten Wohnsitzbescheinigung und Personenstandsausweis nicht separat beschafft werden.",
+      "en": "Residence and civil-status data are already held by the authorities. With full register linkage, the proof of residence and civil-status document would not need to be obtained separately.",
+      "ls": "Das Amt kennt Ihre Adresse und Daten schon. Diese Papiere müssten Sie nicht extra holen."
+    },
+    "nutzergruppen": [
+      {
+        "de": "Paare mit Schweizer Staatsangehörigkeit",
+        "en": "Couples who are Swiss citizens",
+        "ls": "Paare aus der Schweiz"
+      },
+      {
+        "de": "Paare mit ausländischer Staatsangehörigkeit",
+        "en": "Couples with foreign nationality",
+        "ls": "Paare, bei denen jemand aus dem Ausland kommt"
+      }
+    ],
+    "painPoints": [
+      {
+        "de": "Das Gesuch und die Trauung erfordern persönliches Erscheinen am Schalter.",
+        "en": "The application and the ceremony require appearing in person at the counter.",
+        "ls": "Für das Gesuch und die Trauung müssen Sie persönlich hingehen."
+      }
+    ],
+    "improvementIdeas": [
+      {
+        "de": "Online-Voranmeldung der Ehevorbereitung mit automatischer Übernahme der Registerdaten.",
+        "en": "Online pre-registration of the marriage preparation with automatic reuse of register data.",
+        "ls": "Die Vorbereitung soll man im Internet starten können."
+      }
+    ],
+    "status": "beobachtet",
+    "wirkungKpi": [
+      {
+        "label": {
+          "de": "Online-Anteil",
+          "en": "Share online",
+          "ls": "Wie viel geht online"
+        },
+        "wert": "Information online, Verfahren am Schalter"
+      }
+    ]
+  },
+  "meta": {
+    "erstellt": "2026-06-18",
+    "aktualisiert": "2026-06-18",
+    "maintainer": "malkreide",
+    "lizenz": "CC-BY-4.0"
+  }
+}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, Fragment } from 'react';
 import { useTranslations } from 'next-intl';
 import { hierarchy, treemap, type HierarchyRectangularNode } from 'd3-hierarchy';
 import { scaleOrdinal } from 'd3-scale';
@@ -20,6 +20,7 @@ type Datum = {
   konflikt?: boolean;
   isFocus?: boolean;
   children?: Datum[];
+  kurz?: string;
 };
 
 // Departement-Palette kommt aus der Stadt-Konfiguration — andere Städte
@@ -41,6 +42,7 @@ export default function TreemapView({
   const [tooltip, setTooltip] = useState<{
     x: number; y: number; node: Datum; total: number;
   } | null>(null);
+  const [mobileSelected, setMobileSelected] = useState<{ node: Datum; total: number } | null>(null);
   const [size, setSize] = useState({ w: 0, h: 0 });
 
   useEffect(() => {
@@ -119,6 +121,44 @@ export default function TreemapView({
           })}
         </p>
       )}
+      {!isEmpty && !focus && (
+        <p className="text-[11px] text-[var(--color-mute)] mb-2 max-w-[80ch]">
+          {t('committeeNote')}
+        </p>
+      )}
+      <div className="sr-only">
+        <table>
+          <caption>{t('ariaLabel')}</caption>
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Aufwand (CHF)</th>
+              <th scope="col">Nettoaufwand (CHF)</th>
+              <th scope="col">FTE</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tree.children?.map(dep => (
+              <Fragment key={dep.id}>
+                <tr>
+                  <td><strong>{dep.name}</strong></td>
+                  <td suppressHydrationWarning>{dep.value != null ? dep.value.toLocaleString('de-CH') : ''}</td>
+                  <td suppressHydrationWarning>{dep.netto != null ? dep.netto.toLocaleString('de-CH') : ''}</td>
+                  <td suppressHydrationWarning>{dep.fte != null ? dep.fte.toLocaleString('de-CH') : ''}</td>
+                </tr>
+                {dep.children?.map(unit => (
+                  <tr key={unit.id}>
+                    <td>↳ {unit.name}</td>
+                    <td suppressHydrationWarning>{unit.value != null ? unit.value.toLocaleString('de-CH') : ''}</td>
+                    <td suppressHydrationWarning>{unit.netto != null ? unit.netto.toLocaleString('de-CH') : ''}</td>
+                    <td suppressHydrationWarning>{unit.fte != null ? unit.fte.toLocaleString('de-CH') : ''}</td>
+                  </tr>
+                ))}
+              </Fragment>
+            ))}
+          </tbody>
+        </table>
+      </div>
       <div ref={hostRef} className="relative w-full h-[calc(100%-70px)]">
         <svg
           id="treemap-svg"
@@ -126,11 +166,15 @@ export default function TreemapView({
           height={size.h}
           onClick={(e) => { if (e.target === e.currentTarget) setFocus(null); }}
         >
-          {root && renderTree(root, colorOf, !focus, setFocus, setTooltip)}
+          {root && renderTree(root, colorOf, !focus, setFocus, setTooltip, setMobileSelected)}
           {focus && (
-            <g style={{ cursor: 'pointer' }} onClick={() => setFocus(null)}>
-              <rect x={0} y={0} width={200} height={24} fill="rgba(20,30,60,.78)" />
-              <text x={10} y={16} fill="white" fontSize={12}>{t('back')}</text>
+            <g style={{ cursor: 'pointer' }} onClick={() => setFocus(null)}
+               role="button" tabIndex={0} aria-label={t('back')}
+               onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setFocus(null); }}
+               className="focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-[var(--color-accent)]"
+            >
+              <rect x={0} y={0} width={180} height={26} fill="var(--color-ink)" rx={4} />
+              <text x={12} y={17} fill="white" fontSize={12} fontWeight="500">{t('back')}</text>
             </g>
           )}
         </svg>
@@ -169,6 +213,52 @@ export default function TreemapView({
           </div>
         )}
       </div>
+
+      {/* Mobile Bottom Sheet Drawer */}
+      {mobileSelected && (
+        <div className="sm:hidden fixed inset-0 z-[200] flex flex-col justify-end bg-black/40 backdrop-blur-sm transition-opacity"
+             onClick={() => setMobileSelected(null)}>
+          <div className="bg-[var(--color-bg)] rounded-t-2xl p-5 shadow-2xl transform transition-transform"
+               onClick={(e) => e.stopPropagation()}>
+            <div className="flex justify-between items-start mb-3">
+              <h3 className="text-lg font-semibold m-0 leading-tight pr-4">{mobileSelected.node.name}</h3>
+              <button onClick={() => setMobileSelected(null)} className="p-2 -mr-2 -mt-2 text-[var(--color-mute)]" aria-label="Schliessen">
+                ✕
+              </button>
+            </div>
+            
+            <div className="flex flex-col gap-2 mb-6 text-sm">
+              <Row k={t('tooltipExpense')} v={`${fmtNumber(mobileSelected.node.value)} CHF`} />
+              {(() => {
+                const pc = perCapitaCHF(mobileSelected.node.value, population);
+                return pc ? <Row k={t('tooltipPerCapita')} v={`≈ ${pc}`} /> : null;
+              })()}
+              {mobileSelected.node.netto != null && <Row k={t('tooltipNet')} v={`${fmtNumber(mobileSelected.node.netto)} CHF`} />}
+              {mobileSelected.node.netto != null && (() => {
+                const pc = perCapitaCHF(mobileSelected.node.netto, population);
+                return pc ? <Row k={t('tooltipPerCapitaNet')} v={`≈ ${pc}`} /> : null;
+              })()}
+              {mobileSelected.node.fte != null && <Row k={t('tooltipFte')} v={fmtNumber(mobileSelected.node.fte)} />}
+              <Row k={t('tooltipShare')} v={`${(((mobileSelected.node.value ?? 0) / mobileSelected.total) * 100).toFixed(1)} %`} />
+              {(() => {
+                const sh = budgetSharePercent(mobileSelected.node.value, cityTotalAufwand);
+                return sh ? <Row k={t('tooltipShareTotal')} v={`${sh} %`} /> : null;
+              })()}
+              {mobileSelected.node.konflikt && <div className="mt-2 text-[var(--color-konflikt)] text-[13px]">{t('conflictNote')}</div>}
+            </div>
+            
+            <button
+              onClick={() => {
+                if (mobileSelected.node.depId) setFocus(mobileSelected.node.depId);
+                setMobileSelected(null);
+              }}
+              className="w-full bg-[var(--color-accent)] text-white font-semibold py-3 rounded-xl flex justify-center items-center shadow-md active:scale-[0.98] transition-transform"
+            >
+              Departement öffnen
+            </button>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
@@ -197,6 +287,7 @@ function buildHierarchy(
       .filter((u: Unit) => u.parent === dep.id && (u.budget?.aufwand ?? 0) > 0)
       .map((u: Unit) => ({
         name: u.name, id: u.id, depId: dep.id,
+        kurz: u.odz?.kurzname,
         value: u.budget!.aufwand,
         netto: u.budget?.nettoaufwand,
         fte: u.fte?.schaetzung,
@@ -221,7 +312,7 @@ function computeLayout(data: Datum, w: number, h: number, isFocus: boolean) {
   const root = hierarchy<Datum>(data)
     .sum((d) => d.value ?? 0)
     .sort((a, b) => (b.value ?? 0) - (a.value ?? 0));
-  treemap<Datum>().size([w, h]).paddingTop(isFocus ? 0 : 22).paddingInner(2).round(true)(root);
+  treemap<Datum>().size([w, h]).paddingTop(isFocus ? 36 : 22).paddingInner(2).round(true)(root);
   return root as HierarchyRectangularNode<Datum>;
 }
 
@@ -230,14 +321,26 @@ function renderTree(
   colorOf: (key: string) => string,
   showHeaders: boolean,
   onDepClick: (id: string) => void,
-  setTooltip: (t: { x: number; y: number; node: Datum; total: number } | null) => void
+  setTooltip: (t: { x: number; y: number; node: Datum; total: number } | null) => void,
+  setMobileSelected: (t: { node: Datum; total: number } | null) => void
 ) {
   const total = root.value ?? 1;
   return (
     <>
       {showHeaders && root.children?.map((d) => (
         <g key={d.data.id} style={{ cursor: 'pointer' }}
-           onClick={() => d.data.id && onDepClick(d.data.id)}>
+           tabIndex={0}
+           role="button"
+           aria-label={`Departement ${d.data.name} öffnen`}
+           onKeyDown={(e) => {
+             if (e.key === 'Enter' || e.key === ' ') {
+               e.preventDefault();
+               if (d.data.id) onDepClick(d.data.id);
+             }
+           }}
+           onClick={() => d.data.id && onDepClick(d.data.id)}
+           className="focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-[var(--color-accent)]"
+        >
           <rect x={d.x0} y={d.y0} width={d.x1 - d.x0} height={22}
                 fill={colorOf(d.data.id ?? '')} opacity={1} />
           <text x={d.x0 + 6} y={d.y0 + 15} className="dep-label">
@@ -247,42 +350,121 @@ function renderTree(
       ))}
       {root.leaves().map((d, i) => (
         <Leaf key={d.data.id ?? `${d.x0}-${d.y0}-${i}`} d={d} colorOf={colorOf}
-              total={total} setTooltip={setTooltip} />
+              total={total} setTooltip={setTooltip} onDepClick={onDepClick} setMobileSelected={setMobileSelected} />
       ))}
     </>
   );
 }
 
 function Leaf({
-  d, colorOf, total, setTooltip,
+  d, colorOf, total, setTooltip, onDepClick, setMobileSelected,
 }: {
   d: HierarchyRectangularNode<Datum>;
   colorOf: (key: string) => string;
   total: number;
   setTooltip: (t: { x: number; y: number; node: Datum; total: number } | null) => void;
+  onDepClick: (id: string) => void;
+  setMobileSelected: (t: { node: Datum; total: number } | null) => void;
 }) {
   const w = d.x1 - d.x0;
   const h = d.y1 - d.y0;
   const color = colorOf(d.data.depId ?? '');
-  const showName = w > 60 && h > 18;
-  const showValue = h > 32;
-  const maxChars = Math.max(0, Math.floor(w / 6.5) - 1);
-  const name = d.data.name.length > maxChars ? d.data.name.slice(0, maxChars) + '…' : d.data.name;
+
+  const kurz = d.data.kurz || d.data.name.substring(0, 4);
+  const budgetStr = fmtMio(d.value ?? 0);
+
+  let line1 = '';
+  let line2 = '';
+
+  const nameWidth = d.data.name.length * 6.0 + 10;
+  const kurzWidth = kurz.length * 6.5 + 10;
+  const combinedFullWidth = (d.data.name.length + budgetStr.length + 3) * 6.0 + 10;
+  const combinedKurzWidth = (kurz.length + budgetStr.length + 3) * 6.0 + 10;
+
+  if (h >= 30) {
+    if (w >= nameWidth) {
+      line1 = d.data.name;
+      line2 = budgetStr;
+    } else if (w >= kurzWidth) {
+      line1 = kurz;
+      line2 = budgetStr;
+    } else if (w >= 30) {
+      const maxChars = Math.max(0, Math.floor((w - 10) / 6.0));
+      line1 = maxChars > 1 ? d.data.name.slice(0, maxChars) + '…' : '';
+    }
+  } else if (h >= 16) {
+    if (w >= combinedFullWidth) {
+      line1 = `${d.data.name} · ${budgetStr}`;
+    } else if (w >= nameWidth) {
+      line1 = d.data.name;
+    } else if (w >= combinedKurzWidth) {
+      line1 = `${kurz} · ${budgetStr}`;
+    } else if (w >= kurzWidth) {
+      line1 = kurz;
+    } else if (w >= 30) {
+      const maxChars = Math.max(0, Math.floor((w - 10) / 6.0));
+      line1 = maxChars > 1 ? d.data.name.slice(0, maxChars) + '…' : '';
+    }
+  }
+
   return (
     <g
+      tabIndex={0}
+      role="button"
+      aria-label={`${d.data.name} öffnen`}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          if (d.data.depId) onDepClick(d.data.depId);
+        }
+      }}
       onMouseMove={(e) => setTooltip({ x: e.clientX, y: e.clientY, node: d.data, total })}
       onMouseLeave={() => setTooltip(null)}
+      onClick={() => {
+        if (window.innerWidth < 640) {
+          setMobileSelected({ node: d.data, total });
+        } else {
+          if (d.data.depId) {
+            onDepClick(d.data.depId);
+          }
+        }
+      }}
+      style={{ cursor: 'pointer' }}
+      className="focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-[var(--color-accent)]"
     >
       <rect x={d.x0} y={d.y0} width={w} height={h} fill={color} opacity={0.65} />
       {d.data.konflikt && w > 10 && h > 10 && (
         <rect x={d.x0} y={d.y0} width={w} height={h} fill="none"
-              stroke="var(--color-konflikt)" strokeWidth={2} strokeDasharray="4 3" pointerEvents="none" />
+              style={{ stroke: 'var(--color-konflikt)', strokeWidth: 2 }} 
+              strokeDasharray="4 3" pointerEvents="none" />
       )}
-      {showName && <text x={d.x0 + 5} y={d.y0 + 14}>{name}</text>}
-      {showName && showValue && (
-        <text x={d.x0 + 5} y={d.y0 + 28} fontSize={10} opacity={0.85}>
-          {fmtMio(d.value ?? 0)}
-        </text>
+      {(line1 || line2) && (
+        <>
+          {/* Kontrast-sicheres Label-Band: dezenter Streifen in Panel-Farbe
+              hinter der Beschriftung, Text in --color-ink. Garantiert hohen
+              Kontrast (≥12:1) unabhängig von der Departements-Farbe und passt
+              sich Hell/Dunkel an. Verhindert den WCAG-1.4.3-Verstoss, den
+              dunkler Text direkt auf den mittel-dunklen Rects auslöste. */}
+          <rect
+            x={d.x0}
+            y={d.y0 + 2}
+            width={w}
+            height={Math.min(line2 ? 30 : 18, Math.max(0, h - 2))}
+            fill="var(--color-panel)"
+            opacity={0.9}
+            pointerEvents="none"
+          />
+          {line1 && (
+            <text x={d.x0 + 5} y={d.y0 + 14} fill="var(--color-ink)" fontWeight="600" fontSize={12}>
+              {line1}
+            </text>
+          )}
+          {line2 && (
+            <text x={d.x0 + 5} y={d.y0 + 27} fontSize={10} fill="var(--color-ink)">
+              {line2}
+            </text>
+          )}
+        </>
       )}
     </g>
   );
@@ -290,7 +472,8 @@ function Leaf({
 
 function labelDep(d: HierarchyRectangularNode<Datum>, value: number) {
   const w = d.x1 - d.x0;
-  if (w < 60) return '';
-  if (w < 220) return d.data.id ?? '';
+  if (w < 30) return '';
+  if (w < 80) return d.data.id ?? '';
+  if (w < 220) return `${d.data.id} · ${fmtMio(value)}`;
   return `${d.data.name} · ${fmtMio(value)}`;
 }

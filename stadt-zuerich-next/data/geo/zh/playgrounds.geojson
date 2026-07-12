@@ -1,0 +1,2835 @@
+{
+  "type": "FeatureCollection",
+  "_meta": {
+    "demo": false,
+    "layer": "playgrounds",
+    "quelle": "POI öffentliche Spielplätze der Stadt Zürich",
+    "datasetUrl": "https://data.stadt-zuerich.ch/dataset/geo_poi_oeffentliche_spielplaetze",
+    "departmentOverride": null,
+    "lizenz": "CC-BY",
+    "attribution": "Open Data Zürich, Stadt Zürich",
+    "stand": "2026-06-21"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.501338,
+          47.36371
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-0",
+        "name": "Känguruhwiese",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.508115,
+          47.364991
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-1",
+        "name": "Wasserschöpfi",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.513676,
+          47.375908
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-2",
+        "name": "Zurlindenhof I",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.493763,
+          47.376204
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-3",
+        "name": "Süsslerenanlage",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.473959,
+          47.409273
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-4",
+        "name": "Zwischen den Hölzern (Freibad)",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.502526,
+          47.396643
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-5",
+        "name": "Hardeggstrasse",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.572587,
+          47.405421
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-6",
+        "name": "Herzogenmühle",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.513842,
+          47.334825
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-7",
+        "name": "Rebenweg",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.55662,
+          47.369451
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-8",
+        "name": "GZ Hottingen",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.52648,
+          47.350434
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-9",
+        "name": "Muggenbühl",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.539074,
+          47.404876
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-10",
+        "name": "Allenmoos (Freibad)",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.564471,
+          47.359699
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-11",
+        "name": "Drahtzugstrasse",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.489781,
+          47.399153
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-12",
+        "name": "Au-Höngg (Flussbad)",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.520105,
+          47.367186
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-13",
+        "name": "Steinstrasse / ErlachstrasseSteinstrasse / Erlachstrasse",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.472148,
+          47.388139
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-14",
+        "name": "GZ Loogarten",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.596157,
+          47.406177
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-15",
+        "name": "Fil BleuFil Bleu",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.546569,
+          47.369917
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-16",
+        "name": "Villa Tobler",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.558212,
+          47.413143
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-17",
+        "name": "Andreaspark A",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.540747,
+          47.388885
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-18",
+        "name": "Quartiertreff Unterstrass",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.528285,
+          47.345736
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-19",
+        "name": "Manegg KigaManegg Kiga",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.504004,
+          47.366956
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-20",
+        "name": "Heuried Freizeitanlage",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.542917,
+          47.417055
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-21",
+        "name": "Neunbrunnenanlage",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.498412,
+          47.426853
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-22",
+        "name": "Überdeckung KatzenseeÜberdeckung Katzensee",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.540422,
+          47.385513
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-23",
+        "name": "Beckenhof",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.544452,
+          47.41054
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-24",
+        "name": "Marktplatz Oerlikon",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.476694,
+          47.412226
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-25",
+        "name": "Bauspielplatz Rütihütten",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.541812,
+          47.388205
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-26",
+        "name": "TurnerstrasseTurnerstrasse",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.51204,
+          47.376049
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-27",
+        "name": "Fritschiwiese",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.539347,
+          47.380307
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-28",
+        "name": "Platzspitz",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.556137,
+          47.360564
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-29",
+        "name": "SeeburgparkSeeburgpark",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.589921,
+          47.397966
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-30",
+        "name": "Mattenhof",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.563208,
+          47.405522
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-31",
+        "name": "SchörliSchörli",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.50963,
+          47.379541
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-32",
+        "name": "Hardaupark",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.537267,
+          47.414887
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-33",
+        "name": "Oerlikerpark",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.486271,
+          47.376358
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-34",
+        "name": "Bachwiesen GrünzugBachwiesen Grünzug",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.553682,
+          47.358978
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-35",
+        "name": "GZ Riesbach (A)",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.486483,
+          47.38988
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-36",
+        "name": "Lommisweg B",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.571756,
+          47.350278
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-37",
+        "name": "Sportanlage Lengg",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.539237,
+          47.394808
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-38",
+        "name": "WS Birkenhof BWS Birkenhof B",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.573774,
+          47.398665
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-39",
+        "name": "Ziegelhütte",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.546382,
+          47.414134
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-40",
+        "name": "Brache Binzmühlestrasse",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.54642,
+          47.386733
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-41",
+        "name": "Stolzewiese",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.490829,
+          47.37351
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-42",
+        "name": "Langgrüt - Altweg",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.590746,
+          47.358272
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-43",
+        "name": "BerghaldenanlageBerghaldenanlage",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.501492,
+          47.423144
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-44",
+        "name": "Ruggächeranlage",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.505502,
+          47.371315
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-45",
+        "name": "Im Gut",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.545086,
+          47.417439
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-46",
+        "name": "Emil-Oberhänsli-Anlage",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.526193,
+          47.369683
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-47",
+        "name": "Hallwylstreasse / SchimmelstrasseHallwylstreasse / Schimmelstrasse",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.519627,
+          47.379593
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-48",
+        "name": "Erismannhof",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.567235,
+          47.36808
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-49",
+        "name": "Sonnenberg-Terrasse",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.530154,
+          47.377347
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-50",
+        "name": "Kasernenareal",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.536085,
+          47.386544
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-51",
+        "name": "Schindlergut",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.535444,
+          47.349528
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-52",
+        "name": "LandiwieseLandiwiese",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.591533,
+          47.402154
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-53",
+        "name": "GZ Hirzenbach",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.595334,
+          47.405604
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-54",
+        "name": "Buchegg TennisanlageBuchegg Tennisanlage",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.498113,
+          47.396355
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-55",
+        "name": "Hardhof",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.523683,
+          47.369302
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-56",
+        "name": "Weststrasse / WerdstrasseWeststrasse / Werdstrasse",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.524014,
+          47.362389
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-57",
+        "name": "Klopstockwiese",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.520161,
+          47.392847
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-58",
+        "name": "GZ Wipkingen",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.499325,
+          47.370256
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-59",
+        "name": "Triemlifussweg",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.561962,
+          47.371903
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-60",
+        "name": "Wolfbachtobel",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.519154,
+          47.368222
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-61",
+        "name": "Kollerwiese",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.493244,
+          47.381697
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-62",
+        "name": "Koch-ParkKoch-Park",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.505062,
+          47.379632
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-63",
+        "name": "Heiligfeld",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.568314,
+          47.405977
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-64",
+        "name": "Saatlen-Grünzug",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.558293,
+          47.38195
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-65",
+        "name": "Schlössliareal",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.503065,
+          47.36728
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-66",
+        "name": "GZ Heuried Erlebnisgarten",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.5336,
+          47.412511
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-67",
+        "name": "Louis Häfliger Park",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.526868,
+          47.367427
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-68",
+        "name": "Sihlpromenade",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.46701,
+          47.398772
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-69",
+        "name": "Sportanlage Juchhof",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.554334,
+          47.35916
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-70",
+        "name": "GZ Riesbach (B)GZ Riesbach (B)",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.560038,
+          47.413228
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-71",
+        "name": "Andreaspark B",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.516841,
+          47.371626
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-72",
+        "name": "Wiedinghof",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.55499,
+          47.36614
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-73",
+        "name": "Artergut",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.577641,
+          47.405337
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-74",
+        "name": "Roswiesen",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.522712,
+          47.368439
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-75",
+        "name": "Aegerten",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.551396,
+          47.379543
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-76",
+        "name": "Irringersteig",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.508457,
+          47.357542
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-77",
+        "name": "Murmeliwiese",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.497973,
+          47.424089
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-78",
+        "name": "Looächeranlage",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.521446,
+          47.410465
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-79",
+        "name": "Althoos",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.548254,
+          47.428931
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-80",
+        "name": "Eichrain Tennisplatz",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.547005,
+          47.390011
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-81",
+        "name": "Möhrlianlage",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.546562,
+          47.423442
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-82",
+        "name": "Freizeitanlage Seebach",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.524659,
+          47.36914
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-83",
+        "name": "Manessestrasse / WeststrasseManessestrasse / Weststrasse",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.48784,
+          47.384274
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-84",
+        "name": "Saumackerstrasse",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.534855,
+          47.382848
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-85",
+        "name": "Klingenpark",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.535408,
+          47.408941
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-86",
+        "name": "Birchwald",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.50691,
+          47.354239
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-87",
+        "name": "Frauental TennisanlagFrauental Tennisanlag",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.499095,
+          47.379352
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-88",
+        "name": "Letzigraben (Freibad)",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.551249,
+          47.355366
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-89",
+        "name": "Blatterwiese",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.529485,
+          47.359724
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-90",
+        "name": "Quartiertreff Enge",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.525936,
+          47.375879
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-91",
+        "name": "Kanzleiwiese",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.531539,
+          47.359292
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-92",
+        "name": "Rieterpark - Gablerstrasse",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.516937,
+          47.361117
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-93",
+        "name": "BachtoblerparkBachtoblerpark",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.513027,
+          47.416056
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-94",
+        "name": "Im Einfang",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.587444,
+          47.399152
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-95",
+        "name": "Suunige Hof / WeibelackerstrasseSuunige Hof / Weibelackerstrasse",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.591967,
+          47.40248
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-96",
+        "name": "Mobile Spielanimation Schwamendingen",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.48689,
+          47.391002
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-97",
+        "name": "Lommisweg A",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.534492,
+          47.424925
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-98",
+        "name": "Abenteuerspielplatz Buntspecht",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.523655,
+          47.366701
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-99",
+        "name": "Sihlhölzli",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.555856,
+          47.353006
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-100",
+        "name": "Tiefenbrunnen (Strandbad)",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.521888,
+          47.363724
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-101",
+        "name": "Eibenstrasse / ManessestrasseEibenstrasse / Manessestrasse",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.544897,
+          47.424374
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-102",
+        "name": "GZ Seebach",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.487295,
+          47.361146
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-103",
+        "name": "Hohenstein",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.513795,
+          47.37945
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-104",
+        "name": "Bullingerhof",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.529437,
+          47.356368
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-105",
+        "name": "Rieterpark - Scheideggstrasse",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.516304,
+          47.374951
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-106",
+        "name": "Bertahof",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.556243,
+          47.409235
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-107",
+        "name": "Hallenbad Oerlikon",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.511917,
+          47.413322
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-108",
+        "name": "Hagenbrünneli",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.497742,
+          47.401554
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-109",
+        "name": "Sonnegg/Bauherrenstrasse",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.54017,
+          47.40088
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-110",
+        "name": "Steinkluppenanlage",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.537894,
+          47.340783
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-111",
+        "name": "Wollishofen (Strandbad)",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.534088,
+          47.351106
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-112",
+        "name": "TC Mythenquai 2TC Mythenquai 2",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.560213,
+          47.410111
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-113",
+        "name": "Schörli-Grünzug",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.515377,
+          47.403194
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-114",
+        "name": "Waidbad",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.570169,
+          47.357439
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-115",
+        "name": "Buchenweg",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.476924,
+          47.380895
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-116",
+        "name": "Buchlern Sportanlage",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.535639,
+          47.343553
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-117",
+        "name": "Mobile Spielanimation PAZMobile Spielanimation PAZ",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.552384,
+          47.395122
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-118",
+        "name": "Alfred-Altherr-Terrasse",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.584406,
+          47.361406
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-119",
+        "name": "Buchholz",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.532584,
+          47.34048
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-120",
+        "name": "Auf der Egg",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.532853,
+          47.35818
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-121",
+        "name": "Belvoirpark",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.522575,
+          47.385931
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-122",
+        "name": "Josefswiese",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.520757,
+          47.376057
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-123",
+        "name": "Pflanzschulwiese",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.570296,
+          47.407712
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-124",
+        "name": "Auhof (Freibad)",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.516839,
+          47.374051
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-125",
+        "name": "Gertrudplatz",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.540757,
+          47.415771
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-126",
+        "name": "Wahlenpark",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.537023,
+          47.342986
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-127",
+        "name": "Rote Fabrik",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.48651,
+          47.380357
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-128",
+        "name": "GZ Bachwiesen",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.489317,
+          47.402289
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-129",
+        "name": "Hohenklingen Allee",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.569584,
+          47.409966
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-130",
+        "name": "DreispitzDreispitz",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.534439,
+          47.386309
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-131",
+        "name": "Unterer Letten(Freibad)",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.482649,
+          47.417903
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-132",
+        "name": "GrünwaldGrünwald",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.556221,
+          47.417654
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-133",
+        "name": "Leutschenpark",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.509363,
+          47.38299
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-134",
+        "name": "Hardau",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.536363,
+          47.345072
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-135",
+        "name": "GZ Wollishofen",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.527298,
+          47.392096
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-136",
+        "name": "Landenberganlage",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.554028,
+          47.354027
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-137",
+        "name": "Eigenheimstrasse / HeimatstrasseEigenheimstrasse / Heimatstrasse",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.538705,
+          47.395074
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-138",
+        "name": "WS Birkenhof AWS Birkenhof A",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.559096,
+          47.360479
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-139",
+        "name": "Neumünsteranlage",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.552817,
+          47.380795
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-140",
+        "name": "Siriuswiese",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.519777,
+          47.368673
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-141",
+        "name": "Steinstrasse / GotthelfstrasseSteinstrasse / Gotthelfstrasse",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.51269,
+          47.37527
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-142",
+        "name": "Zurlindenhof II",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.472902,
+          47.389646
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-143",
+        "name": "Am Suteracher",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.552004,
+          47.421294
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-144",
+        "name": "Schärenmooswiese",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.569771,
+          47.417875
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-145",
+        "name": "OpfikonstrasseOpfikonstrasse",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.555143,
+          47.404258
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-146",
+        "name": "Waldgarten",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.523583,
+          47.377828
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-147",
+        "name": "Bäckeranlage",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.511141,
+          47.373853
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-148",
+        "name": "Aemtleranlage",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.510488,
+          47.424942
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-149",
+        "name": "GZ Affoltern",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.537629,
+          47.417033
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-150",
+        "name": "Werkhof Zürich Nord",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.52829,
+          47.374564
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-151",
+        "name": "Lutherwiese",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.51241,
+          47.388152
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-152",
+        "name": "Pfingstweidpark",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.530699,
+          47.386658
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-153",
+        "name": "SH Kornhaus BSH Kornhaus B",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.532958,
+          47.381945
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-154",
+        "name": "Klingenhof",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.493727,
+          47.431213
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-155",
+        "name": "Katzensee (Seebad)",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.541158,
+          47.373546
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-156",
+        "name": "Urania",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.534612,
+          47.353445
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-157",
+        "name": "Mythenquai (Strandbad)",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.532737,
+          47.332025
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-158",
+        "name": "GZ Neubühl",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.478592,
+          47.375365
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-159",
+        "name": "Hasenrain",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.545558,
+          47.37199
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-160",
+        "name": "Untere Zäune",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.540423,
+          47.373127
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-161",
+        "name": "Lindenhof",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.534714,
+          47.399717
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-162",
+        "name": "GZ Buchegg",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.479813,
+          47.379841
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-163",
+        "name": "Buchlern",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.544288,
+          47.393761
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-164",
+        "name": "Milchbuckanlage",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.526551,
+          47.356428
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-165",
+        "name": "Rieteranlage",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.511753,
+          47.408128
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-166",
+        "name": "Glaubten-Müsel (Nord)Glaubten-Müsel (Nord)",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.519051,
+          47.415166
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-167",
+        "name": "Bauspielplatz Affoltern",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.547723,
+          47.424448
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-168",
+        "name": "Seebach (Freibad)",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.522107,
+          47.396201
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-169",
+        "name": "Lehenanlage",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.541597,
+          47.405813
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-170",
+        "name": "Föhrenwald",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.522126,
+          47.399611
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-171",
+        "name": "Obere Waidstrasse",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.521638,
+          47.365768
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-172",
+        "name": "ManesseplatzManesseplatz",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.57828,
+          47.354105
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-173",
+        "name": "Balgrist",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.521616,
+          47.361442
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-174",
+        "name": "Staffelstrasse 8Staffelstrasse 8",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.523536,
+          47.389435
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-175",
+        "name": "Quartierpark Schütze (A) Quartierpark Schütze (A)",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.556291,
+          47.376637
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-176",
+        "name": "Kirche Fluntern",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.548775,
+          47.367769
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-177",
+        "name": "Hohe Promenade",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.505875,
+          47.395335
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-178",
+        "name": "Fabrik am Wasser",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.59895,
+          47.369677
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-179",
+        "name": "Loorenkopf",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.506077,
+          47.366955
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-180",
+        "name": "Heuried (Freibad)",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.521989,
+          47.368724
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-181",
+        "name": "Zurlindenstrasse (Eingang SPPL)Zurlindenstrasse (Eingang SPPL)",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.506976,
+          47.398583
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-182",
+        "name": "Kürberganlage",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.497574,
+          47.402831
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-183",
+        "name": "Schärrerwiese",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.523536,
+          47.389435
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-184",
+        "name": "Quartierpark Schütze (B)Quartierpark Schütze (B)",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.536546,
+          47.386914
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-185",
+        "name": "GZ Schindlergut",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.512166,
+          47.40754
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-186",
+        "name": "Glaubten-Müseli (Süd)Glaubten-Müseli (Süd)",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.527518,
+          47.338059
+        ]
+      },
+      "properties": {
+        "id": "playgrounds-187",
+        "name": "Entlisberg/Owenweg",
+        "department": "TED"
+      }
+    }
+  ]
+}

@@ -24,7 +24,7 @@ import { ROOT, readJSON, writeJSON, log } from './_lib.mjs';
 
 const VOLLKOSTEN  = Number(process.env.FTE_VOLLKOSTEN) || 130000;
 const JAHR        = Number(process.env.BUDGET_JAHR) || (new Date().getFullYear() - 1);
-const BETRAGS_TYP = process.env.BUDGET_BETRAGSTYP    || 'GEMEINDERAT_BESCHLUSS';
+const BETRAGS_TYP = process.env.BUDGET_BETRAGSTYP    || 'RECHNUNG';
 
 async function loadAllRows() {
   const dir = resolve(ROOT, 'data/raw');

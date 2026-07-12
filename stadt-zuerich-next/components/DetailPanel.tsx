@@ -13,8 +13,35 @@ import {
   budgetSharePercent,
 } from '@/lib/budget-context';
 import { city, externalSearchUrl } from '@/config/city.config';
+import ParlamentsGeschaefte from './ParlamentsGeschaefte';
+import MicroFeedback from './MicroFeedback';
 
 type T = ReturnType<typeof useTranslations<'Detail'>>;
+
+// Deutsche Anzeige-Labels für die Beteiligungs-Klassifikation. Der Org-Chart-
+// Inhalt (Namen, Departemente) ist durchgängig deutsch; nur die Zeilen-Labels
+// werden via i18n übersetzt — gleiche Konvention wie beim restlichen Panel.
+const RECHTSFORM_DE: Record<string, string> = {
+  ag: 'AG',
+  stiftung: 'Stiftung',
+  genossenschaft: 'Genossenschaft',
+  'oeffentlich-rechtlich': 'Öffentlich-rechtlich',
+  verein: 'Verein',
+};
+const BETEILIGUNGSART_DE: Record<string, string> = {
+  strategisch: 'Strategisch',
+  finanziell: 'Finanziell',
+};
+const SEKTOR_DE: Record<string, string> = {
+  energie: 'Energie',
+  verkehr: 'Verkehr',
+  finanzen: 'Finanzen',
+  wohnen: 'Wohnen',
+  kultur: 'Kultur',
+  soziales: 'Soziales',
+  freizeit: 'Freizeit',
+  gesundheit: 'Gesundheit',
+};
 
 /** Vorberechnetes, server-seitig aufgelöstes Prozess-Bündel pro Einheit.
  *  Bewusst mit bereits resolvtem titel: DetailPanel ist client-seitig,
@@ -25,12 +52,50 @@ export interface RelatedProzess {
   titel: string;
 }
 
+/** Vorberechnete Lebenslage-Referenz pro Einheit (N:M-Reverse). `term` ist der
+ *  Suchbegriff für den Sprung in die Anliegen-Suche. */
+export interface RelatedLebenslage {
+  id: string;
+  frage: string;
+  term: string;
+}
+
+type BudgetNumericalKeys = 'aufwand' | 'ertrag' | 'nettoaufwand';
+
+function Sparkline({ data, dataKey }: { data?: Budget[]; dataKey: BudgetNumericalKeys }) {
+  if (!data || data.length < 2) return null;
+  const w = 40, h = 16;
+  const vals = data.map(d => (d[dataKey] as number) || 0);
+  const max = Math.max(...vals);
+  const min = Math.min(...vals);
+  const range = max - min || 1;
+  const step = w / (data.length - 1);
+  
+  const pts = vals.map((val, i) => {
+    const x = i * step;
+    const y = h - ((val - min) / range) * h;
+    return `${x},${y}`;
+  }).join(' ');
+
+  return (
+    <svg width={w} height={h} className="inline-block align-middle ml-2 opacity-60 overflow-visible" viewBox={`0 0 ${w} ${h}`} preserveAspectRatio="none">
+      <polyline points={pts} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      {/* Title for hover to show the start and end year growth */}
+      <title>
+        Trend {data[0].jahr} ({fmtCHF(data[0][dataKey] as number)}) bis {data[data.length-1].jahr} ({fmtCHF(data[data.length-1][dataKey] as number)})
+      </title>
+    </svg>
+  );
+}
+
 export default function DetailPanel({
   data,
   relatedProzesse,
+  relatedLebenslagen,
 }: {
   data: StadtData;
   relatedProzesse?: Record<string, RelatedProzess[]>;
+  relatedLebenslagen?: Record<string, RelatedLebenslage[]>;
 }) {
   const t = useTranslations('Detail');
   const tType = useTranslations('Type');
@@ -70,9 +135,16 @@ export default function DetailPanel({
     const dep = data.departments.find((d) => d.id === item.parent);
     if (dep) rows.push({ k: t('department'), v: dep.name });
   }
-  if (item.budget) rows.push(...budgetRows(item.budget, t, totalAufwand, totalNetto, population));
+  if (item.budget) rows.push(...budgetRows(item.budget, t, totalAufwand, totalNetto, population, item.budgetHistory));
   if (item.fte)    rows.push(...fteRows(item.fte, t));
+  if ('diversity' in item && item.diversity) rows.push(...diversityRows(item.diversity as { womenInManagement: number; menInManagement: number }, t));
   if (item.odz)    rows.push({ k: t('ogdKey'), v: `${item.odz.kurzname} · key ${item.odz.key}` });
+  if ('verbunden' in item) {
+    const b = item as Beteiligung;
+    if (b.rechtsform)      rows.push({ k: t('rechtsform'), v: RECHTSFORM_DE[b.rechtsform] ?? b.rechtsform });
+    if (b.beteiligungsart) rows.push({ k: t('beteiligungsart'), v: BETEILIGUNGSART_DE[b.beteiligungsart] ?? b.beteiligungsart });
+    if (b.sektor)          rows.push({ k: t('sektor'), v: SEKTOR_DE[b.sektor] ?? b.sektor });
+  }
   if ('konflikt' in item && item.konflikt) {
     rows.push({
       k: <span className="text-[var(--color-konflikt)]">{t('conflictLabel')}</span>,
@@ -90,7 +162,7 @@ export default function DetailPanel({
       role="region"
       aria-label={t('ariaLabel')}
       aria-live="polite"
-      className="fixed bottom-3 right-3 z-[9] w-[320px] bg-[var(--color-panel)] px-4 py-3.5 rounded-lg shadow text-[13px] leading-snug"
+      className="fixed bottom-3 right-3 z-[9] w-[calc(100vw-24px)] sm:w-[320px] bg-[var(--color-panel)] px-4 py-3.5 rounded-lg shadow text-[13px] leading-snug"
     >
       <button
         onClick={close}
@@ -108,11 +180,35 @@ export default function DetailPanel({
           <span className="text-right">{r.v}</span>
         </div>
       ))}
+      {'verbunden' in item && (item as Beteiligung).zweck && (
+        <p className="mt-2 mb-0 text-[var(--color-mute)] text-[12px] leading-snug">
+          {(item as Beteiligung).zweck}
+          {(item as Beteiligung).quelle && (
+            <>
+              {' · '}
+              <a
+                href={(item as Beteiligung).quelle}
+                target="_blank"
+                rel="noopener"
+                className="text-[var(--color-accent)] no-underline hover:underline"
+              >
+                {t('participationSource')} ↗
+              </a>
+            </>
+          )}
+        </p>
+      )}
       <RelatedProzesseSection
         selectedId={selectedId}
         relatedProzesse={relatedProzesse}
         t={t}
       />
+      <RelatedLebenslagenSection
+        selectedId={selectedId}
+        relatedLebenslagen={relatedLebenslagen}
+        t={t}
+      />
+      <ParlamentsGeschaefte departmentName={item.name} />
       <div className="mt-2.5">
         <a
           href={item.odz?.kurzname ? externalSearchUrl(item.name) : city.homepageUrl}
@@ -122,6 +218,7 @@ export default function DetailPanel({
           {city.domain} ↗
         </a>
       </div>
+      <MicroFeedback contextId={item.id} contextName={item.name} />
     </aside>
   );
 }
@@ -161,6 +258,41 @@ function RelatedProzesseSection({
   );
 }
 
+/** N:M-Reverse: Anliegen/Lebenslagen, die diese Einheit betreffen — direkt
+ *  (zuständig) oder über ein verlinktes Verfahren. Link führt in die
+ *  Anliegen-Suche. */
+function RelatedLebenslagenSection({
+  selectedId,
+  relatedLebenslagen,
+  t,
+}: {
+  selectedId: string;
+  relatedLebenslagen?: Record<string, RelatedLebenslage[]>;
+  t: T;
+}) {
+  const list = relatedLebenslagen?.[selectedId];
+  if (!list || list.length === 0) return null;
+  return (
+    <div className="mt-3 pt-2.5 border-t border-[var(--color-line)]">
+      <div className="text-[var(--color-mute)] text-[11px] uppercase tracking-wider mb-1.5">
+        {t('relatedLebenslagenHeading')}
+      </div>
+      <ul className="space-y-1">
+        {list.map((l) => (
+          <li key={l.id}>
+            <Link
+              href={{ pathname: '/anliegen', query: { q: l.term } }}
+              className="text-[var(--color-accent)] no-underline hover:underline"
+            >
+              {l.frage} →
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 function findItem(data: StadtData, id: string): Department | Unit | Beteiligung | null {
   return data.departments.find((d) => d.id === id)
     ?? data.units.find((u) => u.id === id)
@@ -176,6 +308,7 @@ function budgetRows(
   totalAufwand: number,
   totalNetto: number,
   population: number | undefined,
+  history?: Budget[]
 ): Row[] {
   const phase = ({
     GEMEINDERAT_BESCHLUSS: t('phaseBudget'),
@@ -183,7 +316,12 @@ function budgetRows(
     RECHNUNG: t('phaseAccount'),
   } as Record<string, string>)[b.typ] ?? b.typ;
   const rows: Row[] = [{ k: `${phase} ${b.jahr}`, v: '' }];
-  rows.push({ k: `  ${t('expense')}`,    v: fmtCHF(b.aufwand) });
+  
+  const trendAufwand = history ? <Sparkline data={history} dataKey="aufwand" /> : null;
+  const trendErtrag = history ? <Sparkline data={history} dataKey="ertrag" /> : null;
+  const trendNetto = history ? <Sparkline data={history} dataKey="nettoaufwand" /> : null;
+
+  rows.push({ k: `  ${t('expense')}`,    v: <span className="flex items-center justify-end">{fmtCHF(b.aufwand)}{trendAufwand}</span> });
   // Aux-Zeilen direkt unter dem Bezugswert: Pro-Kopf und Anteil. Beide
   // werden nur gerendert, wenn die nötige Bezugsgrösse vorhanden und die
   // berechnete Zahl aussagekräftig ist (sonst würde "0 CHF/Einwohner" oder
@@ -191,8 +329,8 @@ function budgetRows(
   // Daten fehlen). `↳` macht visuell klar, dass die Zeilen sich auf den
   // jeweils darüberstehenden Betrag beziehen.
   rows.push(...auxBudgetRows(b.aufwand, t, totalAufwand, population));
-  rows.push({ k: `  ${t('income')}`,     v: fmtCHF(b.ertrag) });
-  rows.push({ k: `  ${t('netExpense')}`, v: fmtCHF(b.nettoaufwand) });
+  rows.push({ k: `  ${t('income')}`,     v: <span className="flex items-center justify-end">{fmtCHF(b.ertrag)}{trendErtrag}</span> });
+  rows.push({ k: `  ${t('netExpense')}`, v: <span className="flex items-center justify-end">{fmtCHF(b.nettoaufwand)}{trendNetto}</span> });
   rows.push(...auxBudgetRows(b.nettoaufwand, t, totalNetto, population));
   if (b._aggregiertAus)
     rows.push({
@@ -257,4 +395,12 @@ function fteRows(f: Fte, t: T): Row[] {
       </span>
     ),
   }];
+}
+
+function diversityRows(d: { womenInManagement: number; menInManagement: number }, t: T): Row[] {
+  return [
+    { k: <span title={t('detailDiversityDesc')}>{t('detailDiversity')}</span>, v: '' },
+    { k: `  ↳ ${t('detailDiversityWomen')}`, v: <span className="text-[#d946ef] font-semibold">{d.womenInManagement} %</span> },
+    { k: `  ↳ ${t('detailDiversityMen')}`, v: <span className="text-[#0ea5e9] font-semibold">{d.menInManagement} %</span> },
+  ];
 }

@@ -12,12 +12,15 @@ import {
   budgetSharePercent,
 } from '@/lib/budget-context';
 import { city } from '@/config/city.config';
+import ListExportButton from './ListExportButton';
+import ListFocusSync from './ListFocusSync';
 
 type TFn = ReturnType<typeof getT>;
 
 export default function ListView({ data, locale }: { data: StadtData; locale: Locale }) {
   const t = getT(locale, 'List');
   const tDetail = getT(locale, 'Detail');
+  const tExport = getT(locale, 'Export');
   // Bezugswerte für Pro-Kopf- und Anteils-Zeilen. Auf Server-Seite einmalig
   // berechnet — die ganze Liste ist statisch und wird pro Render erneut
   // erzeugt, daher reicht ein lokaler const. Brutto und Netto getrennt,
@@ -35,7 +38,13 @@ export default function ListView({ data, locale }: { data: StadtData; locale: Lo
       className="liste absolute top-14 inset-x-0 bottom-0 px-6 pt-4 pb-10 overflow-y-auto bg-[var(--color-bg)]"
     >
       <h2 className="text-lg font-semibold m-0 mb-1">{t('title')}</h2>
-      <p className="text-[13px] text-[var(--color-mute)] mb-4 max-w-[70ch]">{t('intro')}</p>
+      <p className="text-[13px] text-[var(--color-mute)] mb-1 max-w-[70ch]">{t('intro')}</p>
+      
+      <ListExportButton 
+        data={data} 
+        locale={locale} 
+        label={tExport('csvButton')} 
+      />
 
       {data.departments.map((dep) => (
         <DepDetail
@@ -70,6 +79,8 @@ export default function ListView({ data, locale }: { data: StadtData; locale: Lo
           </div>
         </details>
       )}
+      
+      <ListFocusSync data={data} />
     </main>
   );
 }
@@ -94,7 +105,7 @@ function DepDetail({
   const hasAnyBudget =
     dep.budget?.aufwand != null || units.some((u) => u.budget?.aufwand != null);
   return (
-    <details className="dep">
+    <details className="dep" id={`dep-${dep.id}`}>
       <summary>
         {dep.name}{' '}
         <span className="text-[var(--color-mute)] text-[13px]">({extras.join(', ')})</span>
@@ -146,7 +157,7 @@ function UnitDetail({
   if (unit.budget?.aufwand) extras.push(Math.round(unit.budget.aufwand / 1e6) + ' Mio');
   if (unit.fte?.schaetzung) extras.push(fmtNumber(unit.fte.schaetzung) + ' FTE');
   return (
-    <details className="unit">
+    <details className="unit" id={`unit-${unit.id}`}>
       <summary>
         {unit.name}
         {extras.length > 0 && (
@@ -174,7 +185,7 @@ function BetDetail({
   population: number | undefined;
 }) {
   return (
-    <details className="unit">
+    <details className="unit" id={`bet-${b.id}`}>
       <summary>{b.name}</summary>
       <Meta
         beteiligung={b}

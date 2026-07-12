@@ -61,10 +61,12 @@ der Code liest ausschliesslich über `@/config/city.config`.
 npm run data:fetch         # full pipeline (Adapter entscheidet die Schritte)
 npm run data:fetch:force   # full pipeline, ignoriert Cache
 
-# ENV:
-BUDGET_JAHR=2024 BUDGET_BETRAGSTYP=GEMEINDERAT_BESCHLUSS npm run data:fetch
+# ENV (Defaults: aktuelles Jahr − 1, RECHNUNG):
+BUDGET_JAHR=2025 BUDGET_BETRAGSTYP=RECHNUNG npm run data:fetch
 # Werte werden an den Adapter durchgereicht; Zürich kennt
 # BUDGET_BETRAGSTYP: STADTRAT_ANTRAG | GEMEINDERAT_BESCHLUSS | RECHNUNG
+# RECHNUNG = Ist-Werte aus dem Geschäftsbericht (ab Publikation, ~April).
+# Vor Publikation: BUDGET_BETRAGSTYP=GEMEINDERAT_BESCHLUSS überschreiben.
 ```
 
 Direkt mit Node ohne npm:
@@ -74,6 +76,86 @@ node scripts/build-data.mjs
 node scripts/fetch-rpktool.mjs   # nur Struktur-Schritt
 node scripts/fetch-budget.mjs    # nur Budget-Schritt
 ```
+
+## Link-Check (`check-links.mjs`)
+
+Prüft alle URLs in den offenen Daten (Prozesse, Org-Chart, Katalog, Schemas).
+Zwei Modi:
+
+```bash
+npm run check:links                 # strukturell (kein Netz) — CI-Gate in ci.yml
+npm run check:links:online          # + Live-HTTP, advisory (Exit 0)
+npm run check:links:online:strict   # + Live-HTTP, Exit 1 bei echtem Link-Rot
+```
+
+Der **strukturelle** Modus (Default) verlangt nur wohlgeformte, absolute
+https-URLs und läuft netzfrei — deshalb taugt er als PR-Gate.
+
+Der **Live-Modus** (`--online`) ruft jede eindeutige URL real ab und
+kategorisiert die Befunde, weil „nicht erreichbar" Verschiedenes heisst:
+
+- **tot** (404/410/5xx) — echtes Link-Rot, gehört in den Daten korrigiert.
+- **blockiert** (401/403/429) — Quelle lebt, lehnt aber diesen Client ab
+  (Bot-Schutz, Rate-Limit, IP-Sperre). Kein Datenfehler.
+- **netzfehler** (Timeout/DNS) — aus dieser Umgebung gesperrt (Netzpolicy).
+  Kein Datenfehler.
+
+`--strict` (bzw. `CHECK_LINKS_STRICT=1`) kippt den Lauf nur bei **toten**
+Links; blockiert/netzfehler nie, weil IP-/policy-abhängig. Pro Befund werden
+die betroffenen Datendateien ausgewiesen.
+
+> Grenze: Der Check sieht nur den HTTP-Status. Amtliche JS-SPAs liefern auch
+> bei verschobenem Inhalt ein 200 („soft 404") — ein grüner Live-Check belegt
+> Erreichbarkeit, nicht die inhaltliche Richtigkeit der Belegstelle.
+
+Zeitgesteuert läuft der Live-Modus wöchentlich (advisory) im Workflow
+[`.github/workflows/link-rot.yml`](../../.github/workflows/link-rot.yml); ein
+manueller Lauf (`workflow_dispatch`) kann `strict` einschalten.
+
+## Belegstellen-Kandidaten (`extract-quotes.mjs`)
+
+Schlägt für References **Kandidaten-`source_quote`** vor, indem es die
+verlinkte amtliche Seite holt und die belegenden Passagen extrahiert. Zwei
+Bezugsmodi:
+
+- **`--fetch`** (empfohlen): HTTP-GET + HTML→Text, ohne Browser. Die aktuellen
+  `stadt-zuerich.ch`- und `zh.ch`-Seiten sind **serverseitig gerendert** — der
+  zitierbare Text steht bereits im HTML. Läuft auch hinter dem Agent-Egress-
+  Proxy (der Chromium-Traffic nicht durchlässt) und ist deutlich schneller.
+- **Browser** (Default ohne `--fetch`): rendert mit Chromium/Playwright und
+  liest `document.body.innerText`. Nötig nur für echte JS-SPAs, deren Text erst
+  clientseitig entsteht. Braucht offenen Egress + Chromium.
+
+```bash
+npm run extract:quotes -- --fetch --file steuern.json --only-unverified
+npm run extract:quotes -- --fetch --all-refs --out /tmp/quotes.md
+```
+
+Wichtig — **das Skript schreibt NICHTS in die Daten**. Belegstellen für
+bindende Werte (Fristen, Gebühren) sind die heikelste Stelle der Maschinerie
+(Kardinalregel «Link, don't assert»): Das Skript liefert nur Vorschläge, ein
+**Mensch** wählt das wörtliche Zitat, trägt es als `source_quote` ein und
+setzt `status: "verifiziert"`.
+
+Optionen: `--fetch` (HTTP statt Browser) · `--city <id>` · `--file <prozess.json>` ·
+`--only-unverified` (nur unbelegte References) · `--all-refs` (auch belegte
+gegen die Live-Seite prüfen = Drift-/Re-Verifikations-Check) ·
+`--grep <regex>` (nur passende Segmente — nötig bei riesigen Einzelseiten wie
+dem ganzen ZGB auf einer fedlex-Seite, z. B. `--grep "Ehefähigkeit"`) ·
+`--json` · `--out <pfad>` · `--timeout` · `--concurrency`.
+
+Voraussetzungen:
+- **Netz-Egress** zu den Quell-Domains. `admin.ch` (fedlex, Schweizer Pass) ist
+  in der Standardumgebung gesperrt — diese Quellen lokal oder mit offener
+  Netzpolicy abrufen. `stadt-zuerich.ch`, `zh.ch` und `ch.ch` funktionieren mit
+  `--fetch` bereits durch den Agent-Proxy.
+- Nur Browser-Modus: Chromium (`npx playwright install chromium`, in `ci.yml`
+  ohnehin Teil des a11y-Jobs). `--fetch` braucht keinen Browser.
+
+> Der `--all-refs`-Drift-Check ist **advisory** und strikt verbatim: meldet er
+> «NEIN», kann das echte Drift (Seite geändert) ODER bloss abweichende
+> Zeichensetzung/Whitespace sein — die Kandidatenliste daneben zeigt, was
+> aktuell auf der Seite steht.
 
 ## Mapping
 

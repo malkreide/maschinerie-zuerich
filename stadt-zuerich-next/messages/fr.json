@@ -27,12 +27,70 @@
     "step3Title": "Comprenez le budget",
     "step3Body": "L'onglet « Franc d'impôt » montre où va votre argent — chaque département est une surface, grande = forte dépense. Cliquez sur un département pour zoomer."
   },
+  "Wirkung": {
+    "title": "Impact et maturité",
+    "intro": "Indicateurs dérivés des procédures et situations de vie modélisées — sans suivi. Ils montrent à quel point les démarches sont numériques et simples aujourd'hui, et où la simplification peut commencer.",
+    "source": "Dérivé des données de procédures et de situations de vie",
+    "privacyNote": "Calculé uniquement à partir des données existantes — aucune donnée d'usage ou personnelle.",
+    "kpiHeading": "Indicateurs en bref",
+    "kpiProzesse": "Procédures modélisées",
+    "kpiMedienbrueche": "Ruptures de média au total",
+    "kpiOnceOnly": "Avec potentiel once-only",
+    "kpiImprovements": "Idées d'amélioration",
+    "kpiAbdeckung": "Situations de vie avec démarche",
+    "reifegradHeading": "Maturité numérique des procédures",
+    "statusHeading": "État de la simplification",
+    "medienbruecheHeading": "Ruptures de média les plus fréquentes",
+    "spracheHeading": "Couverture linguistique des situations de vie",
+    "none": "Aucune enregistrée",
+    "klimaHeading": "Climat & objectif de la ville",
+    "klimaZielBis": "d'ici {jahr}",
+    "klimaProvenance": "Les valeurs CO₂ par département sont des estimations indicatives ; l'objectif zéro net est l'objectif officiel de la ville.",
+    "klimaHotspots": "Départements à forte pertinence CO₂",
+    "klimaInvest": "Part moy. d'investissement climat",
+    "klimaCo2Heading": "Pertinence CO₂ par département (indicatif, 0–100)",
+    "kompassHeading": "Boussole des compétences",
+    "kompassIntro": "Agrégé sur l'ensemble des procédures — caractéristiques structurelles de la modélisation, sans valeur juridique.",
+    "kompassGeteilt": "Procédures à compétence partagée",
+    "kompassRekurs": "Procédures avec instance de recours",
+    "kompassBehoerden": "Autorités impliquées (total)",
+    "kompassPflichtdokumente": "Documents obligatoires au total",
+    "komplexHeading": "Complexité des procédures",
+    "colProzess": "Procédure",
+    "colSchritte": "Étapes",
+    "colAkteure": "Acteurs",
+    "colEntscheidungen": "Décisions",
+    "colMedienbrueche": "Ruptures",
+    "bewertungHeading": "Évaluation (portfolio)",
+    "bewertungIntro": "Part des indicateurs remplis sur tous les processus modélisés — un instantané des données du modèle, pas un degré officiel de numérisation. « inconnu » n’est pas compté comme non rempli.",
+    "bewertungDigital": "Numérisation",
+    "bewertungNutzend": "Orientation usagers",
+    "bewertungGesamt": "Rempli au total",
+    "bewertungKeinScore": "pas de score",
+    "bewertungUnbekanntKurz": "inc."
+  },
+  "Territory": {
+    "title": "Emplacements",
+    "intro": "Emplacements municipaux sur la carte. Choisissez une catégorie.",
+    "layerSchools": "Établissements scolaires",
+    "layerRecycling": "Déchets",
+    "layerPlaygrounds": "Aires de jeux",
+    "layerAmtshaeuser": "Bâtiments administratifs",
+    "popupTitle": "Département",
+    "linkToChart": "Voir dans l'organigramme",
+    "verfahren": "Procédures compétentes",
+    "noLayer": "Aucune couche sélectionnée – choisissez au moins une catégorie ci-dessus."
+  },
   "Nav": {
     "graph": "Mécanique",
     "tax": "Franc d'impôt",
     "simulator": "Simulateur",
     "list": "Liste",
     "prozesse": "Procédures",
+    "roadmap": "Feuille de route",
+    "wirkung": "Impact",
+    "quartier": "Arrondissements",
+    "territory": "Emplacements",
     "darkOn": "Activer le thème sombre",
     "darkOff": "Activer le thème clair",
     "darkLabelLight": "☼ Clair",
@@ -41,7 +99,12 @@
     "skipToList": "Vers l'aperçu textuel (lecteurs d'écran)",
     "language": "Langue",
     "expandAll": "Tout déplier",
-    "collapseAll": "Tout replier"
+    "collapseAll": "Tout replier",
+    "climateToggle": "🌡️ Indicateur du budget climatique",
+    "climateToggleTitle": "Affiche une indication en direct de l'impact climatique",
+    "diversityToggle": "👥 Diversité & cadres (personnel)",
+    "diversityToggleTitle": "Affiche la part des femmes et des hommes parmi les cadres de chaque unité organisationnelle sous forme de diagramme en anneau",
+    "portfolio": "Portfolio"
   },
   "Search": {
     "label": "Chercher un service ou une démarche",
@@ -54,7 +117,74 @@
     "noMatchesTitle": "Aucune suggestion rapide pour „{query}\"",
     "noMatchesHint": "Vouliez-vous dire :",
     "popularFallback": "Démarches courantes",
-    "openFullSearch": "Ouvrir la recherche complète →"
+    "openFullSearch": "Ouvrir la recherche complète →",
+    "missNote": "Les termes de recherche anonymes sans résultat nous aident à repérer les sujets manquants. Nous n'enregistrons aucune donnée personnelle."
+  },
+  "Zielgruppen": {
+    "filterLabel": "Filtrer par public",
+    "all": "Tous",
+    "einwohner": "Habitant·e",
+    "unternehmen": "Entreprise",
+    "familie": "Famille",
+    "alter": "Seniors",
+    "schule": "École",
+    "migration": "Migration",
+    "mobilitaet": "Mobilité",
+    "wohnen": "Logement",
+    "gesundheit": "Santé"
+  },
+  "Feedback": {
+    "question": "Cette information était-elle utile ?",
+    "yes": "Oui, utile",
+    "no": "Non, pas vraiment",
+    "thanks": "Merci pour votre retour !",
+    "formIntro": "Quel était le problème ?",
+    "category": {
+      "zustaendigkeit": "Mauvaise compétence",
+      "unklar": "Information peu claire",
+      "umstaendlich": "Démarche trop compliquée",
+      "veraltet": "Données obsolètes",
+      "barriere": "Obstacle d'accessibilité",
+      "vorschlag": "Suggestion"
+    },
+    "commentLabel": "Commentaire (facultatif)",
+    "commentPlaceholder": "Facultatif : décrivez brièvement — sans données personnelles.",
+    "privacy": "Merci de ne pas saisir de données personnelles. Nous n'enregistrons ni noms, ni e-mails, ni adresses IP ; les e-mails et longs numéros sont supprimés automatiquement.",
+    "skip": "Envoyer sans détails",
+    "submit": "Envoyer"
+  },
+  "Roadmap": {
+    "title": "Feuille de route",
+    "intro": "Ce que deviennent les retours et suggestions — par statut, depuis les issues publiques GitHub. Sans noms ni données personnelles.",
+    "status": {
+      "eingegangen": "Reçu",
+      "geprueft": "Examiné",
+      "in-umsetzung": "En cours",
+      "umgesetzt": "Réalisé"
+    },
+    "empty": "Aucune entrée publique pour l'instant.",
+    "columnEmpty": "Rien ici.",
+    "unavailable": "La feuille de route est actuellement indisponible.",
+    "viewOnGithub": "Voir sur GitHub →"
+  },
+  "Explorer": {
+    "regionLabel": "Rechercher dans l'administration",
+    "intro": "Cherchez un service ou parcourez les départements. Touchez une entrée pour les détails.",
+    "searchLabel": "Rechercher un service ou département",
+    "searchPlaceholder": "p. ex. office des impôts, école, VBZ …",
+    "resultsCount": "{count, plural, one {# résultat} other {# résultats}} pour « {query} »",
+    "noResults": "Aucun résultat. Essayez un autre terme.",
+    "anliegenHeading": "Demandes correspondantes",
+    "anliegenZustaendig": "Compétent",
+    "department": "Département",
+    "beteiligung": "Participation",
+    "beteiligungenHeading": "Participations",
+    "vorsteher": "Direction",
+    "id": "Code",
+    "budget": "Charges",
+    "netExpense": "Charges nettes",
+    "fte": "Postes (EPT)",
+    "relatedProcesses": "Procédures liées"
   },
   "Anliegen": {
     "title": "Chercher une démarche",
@@ -63,7 +193,9 @@
     "noResultsFallbackHeading": "Ce que d'autres recherchent souvent",
     "resultsCount": "{count, plural, one {# résultat} other {# résultats}} pour „{query}\"",
     "popularHeading": "Démarches courantes",
-    "placeholder": "p. ex. inscrire chien, passeport, aide sociale…"
+    "placeholder": "p. ex. inscrire chien, passeport, aide sociale…",
+    "relatedProcess": "Voir la démarche",
+    "weitereStellen": "Autres services impliqués"
   },
   "Treemap": {
     "title": "Où va mon franc d'impôt ?",
@@ -84,7 +216,8 @@
     "emptyBody": "Aucun service n'a encore enregistré de charges. Essayez plutôt la {listLink}, ou utilisez la {searchLink}.",
     "emptyListLink": "liste des services",
     "emptySearchLink": "recherche de démarches",
-    "hiddenDepartments": "{count, plural, one {# département n'est} other {# départements ne sont}} pas affiché{count, plural, one {} other {s}} — aucune donnée budgétaire pour : {names}."
+    "hiddenDepartments": "{count, plural, one {# département n'est pas visible} other {# départements ne sont pas visibles}} — aucune donnée budgétaire pour : {names}.",
+    "committeeNote": "Astuce : Les lignes pointillées indiquent les services dont la commission de contrôle parlementaire diffère du rattachement organisationnel."
   },
   "List": {
     "title": "Administration de la {cityName} – aperçu hiérarchique",
@@ -100,6 +233,10 @@
     "vorsteher": "Responsable",
     "department": "Département",
     "ogdKey": "Clé OGD",
+    "rechtsform": "Forme juridique",
+    "beteiligungsart": "Type de participation",
+    "sektor": "Secteur",
+    "participationSource": "Rapport sur les participations",
     "abbreviation": "Sigle",
     "expense": "Charge",
     "income": "Recette",
@@ -120,12 +257,17 @@
     "fteUnitPublished": "{value} {einheit} (publié)",
     "fteEstimateText": "~{value} (estimation : charges de personnel ÷ {amount} CHF)",
     "relatedProzesseHeading": "Impliqué dans les démarches suivantes",
+    "relatedLebenslagenHeading": "Démarches qui mènent ici",
     "perCapitaLabel": "Par habitant·e",
     "perCapitaValue": "≈ {value}",
     "perCapitaTitle": "Charges par habitant·e — charges divisées par la population résidente de la ville",
     "budgetShareLabel": "Part du budget total",
     "budgetShareValue": "{percent} %",
-    "budgetShareTitle": "Part de ce poste dans les charges totales de la ville"
+    "budgetShareTitle": "Part de ce poste dans les charges totales de la ville",
+    "detailDiversity": "Diversité & cadres",
+    "detailDiversityDesc": "Part des femmes et des hommes parmi les cadres",
+    "detailDiversityWomen": "Femmes",
+    "detailDiversityMen": "Hommes"
   },
   "Legend": {
     "headingTop": "Conseil municipal et départements",
@@ -140,7 +282,8 @@
     "spezial": "Autorité administrative spéciale",
     "verselbst": "Entreprise autonome",
     "beteiligung": "Participation / fondation",
-    "konflikt": "Affectation citoyenne ≠ RPK"
+    "konflikt": "Affectation citoyenne ≠ RPK",
+    "committee": "Comité / Commission"
   },
   "Hint": "Survol = explorer · Clic = sélectionner · Molette = zoomer · La recherche connaît aussi les démarches",
   "Simulator": {
@@ -183,18 +326,72 @@
     "staff": "État-major / transversal",
     "extern": "Entreprise autonome",
     "spezial": "Autorité administrative spéciale",
+    "committee": "Comité / Commission",
     "beteiligung": "Participation / fondation"
   },
   "Prozesse": {
     "title": "Procédures administratives",
-    "intro": "Organigrammes typés selon l'OpenGov-Process-Schema. Chaque procédure montre les étapes, les acteurs impliqués et les durées estimées — afin que la population comprenne ce qu'une démarche implique réellement.",
+    "intro": "Organigrammes typés selon l’OpenGov-Process-Schema. Chaque procédure montre les étapes et les acteurs impliqués — afin que la population comprenne ce qu’une démarche implique réellement.",
     "empty": "Aucune procédure enregistrée pour l'instant.",
     "city": "Ville de {city}",
+    "relatedLebenslagenHeading": "Démarches courantes menant ici",
     "stepsHeading": "Étapes (texte)",
+    "legendeHeading": "Übersetzung ausstehend — Legende",
+    "schritteAnzahl": "{count, plural, one {# étape} other {# étapes}}",
     "legalHeading": "Bases légales",
     "sourcesHeading": "Sources",
     "retrieved": "consulté le {date}",
     "goToUnit": "Vers l'unité : {name}",
+    "reifeHeading": "Maturité numérique & simplification",
+    "kompass": {
+      "heading": "Boussole du processus",
+      "intro": "Diagnostic structurel de cette procédure — déduit de la modélisation, sans valeur juridique.",
+      "zustaendigkeitHeading": "Compétence",
+      "keineBehoerde": "Aucune autorité enregistrée.",
+      "geteilt": "Compétence partagée",
+      "geteiltHint": "plusieurs services impliqués, souvent peu transparent pour les citoyens",
+      "rekurs": "Instance de recours",
+      "aufwandHeading": "Charge pour les citoyens",
+      "pflichtdokumente": "{count, plural, one {# document obligatoire} other {# documents obligatoires}}",
+      "entscheidungen": "{count, plural, one {# point de décision} other {# points de décision}}",
+      "keinAufwand": "Aucun obstacle particulier enregistré.",
+      "vereinfachungHeading": "Potentiel de simplification",
+      "verbesserungen": "{count, plural, one {# idée d'amélioration} other {# idées d'amélioration}}",
+      "keinePotenziale": "Aucun potentiel enregistré pour l'instant.",
+      "detailsLink": "Détails ci-dessous"
+    },
+    "reifegradLabel": "Maturité en ligne",
+    "filterReifegradHeading": "Filtrer par maturité en ligne",
+    "filterAlle": "Toutes",
+    "filterLeer": "Aucune procédure avec cette maturité en ligne.",
+    "medienbruecheHeading": "Ruptures de média",
+    "onceOnlyHeading": "Données déjà disponibles (once-only)",
+    "nutzergruppenHeading": "Groupes d'usagers",
+    "painPointsHeading": "Points de friction",
+    "improvementsHeading": "Pistes d'amélioration",
+    "kpiHeading": "Impact & indicateurs",
+    "statusLabel": "Statut",
+    "reifegrad": {
+      "offline": "Hors ligne",
+      "teil-digital": "Partiellement numérique",
+      "digital": "Numérique",
+      "end-to-end": "Entièrement numérique"
+    },
+    "medienbruch": {
+      "drucken": "Impression",
+      "post": "Envoi postal",
+      "persoenliches-erscheinen": "Présence en personne",
+      "separate-zahlung": "Paiement séparé",
+      "erneute-dateneingabe": "Ressaisie des données",
+      "unterschrift-handschriftlich": "Signature manuscrite"
+    },
+    "status": {
+      "beobachtet": "Observé",
+      "validiert": "Validé",
+      "vorgeschlagen": "Proposé",
+      "in-umsetzung": "En cours",
+      "umgesetzt": "Réalisé"
+    },
     "schrittTyp": {
       "start": "Début",
       "input": "Entrée",
@@ -203,6 +400,129 @@
       "loop": "Boucle",
       "warten": "Attente",
       "ende": "Fin"
+    },
+    "disclaimer": "Übersetzung ausstehend — Inoffizielle, vereinfachte Darstellung — keine amtliche Auskunft. Massgeblich sind allein die verlinkten Quellen der Stadt Zürich (siehe Quellen mit Abrufdatum).",
+    "disclaimerHochrisiko": "Übersetzung ausstehend — Hochrisiko-Fall mit rechtlicher Tragweite: Hier geht es um verbindliche Fristen, Gebühren oder Rechtsmittel mit erheblichen Folgen. Diese Darstellung ist inoffiziell und vereinfacht — rechtlich verbindlich sind allein die amtlichen Quellen der Stadt Zürich. Prüfen Sie verbindliche Angaben dort und holen Sie im Zweifel persönliche Beratung ein.",
+    "disclaimerHochrisikoLabel": "Übersetzung ausstehend — Hochrisiko-Hinweis",
+    "voraussetzungenHeading": "Übersetzung ausstehend — Voraussetzungen",
+    "referenzenHeading": "Übersetzung ausstehend — Verbindliche Werte (Fristen & Gebühren)",
+    "referenzenHint": "Übersetzung ausstehend — Verbindliche Zahlen stehen bewusst nicht im Diagramm — sie gelten nur so, wie sie in der amtlichen Quelle stehen. Jeder Eintrag verlinkt auf die exakte Stelle.",
+    "referenzUnverifiziert": "Übersetzung ausstehend — Belegstelle noch nicht wörtlich übernommen",
+    "translationPending": "Traduction en attente — contenu affiché en allemand.",
+    "bewertung": {
+      "heading": "Évaluation : numérisation & orientation usagers",
+      "intro": "Métadonnées dérivées — pas une affirmation faisant autorité. Chaque indicateur est soit calculé de manière déterministe à partir du modèle de processus, soit attesté par la source officielle. Sans preuve ni dérivation, un indicateur reste « inconnu » — il n’est jamais deviné.",
+      "scoreLabel": "Indicateurs remplis",
+      "scoreWert": "{erfuellt} sur {bekannt}",
+      "keinScore": "Aucun indicateur connu pour l’instant",
+      "unbekanntHinweis": "{count, plural, one {# indicateur inconnu} other {# indicateurs inconnus}} — non évalué faute de preuve (pas compté comme « non rempli »).",
+      "kategorie": {
+        "digitalisierung": "Numérisation",
+        "nutzendenorientierung": "Orientation usagers"
+      },
+      "status": {
+        "erfuellt": "rempli",
+        "nicht-erfuellt": "non rempli",
+        "unbekannt": "inconnu"
+      },
+      "indikator": {
+        "online-antrag": "Demande en ligne possible",
+        "online-bezahlung": "Paiement en ligne possible",
+        "statusverfolgung": "Suivi du statut en ligne",
+        "medienbruchfrei": "Sans rupture de média",
+        "digital-abschliessbar": "Entièrement réalisable en ligne",
+        "leichte-sprache": "Version en langage simplifié",
+        "mehrsprachigkeit": "Multilingue (en/fr/it)",
+        "voraussetzungen-genannt": "Conditions clairement indiquées",
+        "fristen-kosten-verlinkt": "Délais/émoluments liés de façon transparente",
+        "once-only": "Once-only (pas de double saisie)",
+        "barrierefreiheit": "Accessible (WCAG 2.1 AA)",
+        "nicht-digitaler-alternativweg": "Voie alternative non numérique",
+        "eid-moeglich": "Login/eID possible"
+      },
+      "evidenz": {
+        "toggle": "Preuve",
+        "belegLabel": "Attesté",
+        "berechnetLabel": "Calculé",
+        "unbekanntText": "Aucune preuve enregistrée — marqué comme inconnu, pas comme non rempli.",
+        "berechnet": {
+          "leichte-sprache": "{zahl} sur {von} textes (titre + étapes) en langage simplifié",
+          "mehrsprachigkeit": "{zahl} sur {von} langues (en/fr/it) entièrement couvertes",
+          "voraussetzungen-genannt": "{zahl, plural, =0 {aucune condition indiquée} one {# condition indiquée} other {# conditions indiquées}}",
+          "fristen-kosten-verlinkt": "{zahl, plural, =0 {aucune source liée} one {# source liée pour les valeurs contraignantes} other {# sources liées pour les valeurs contraignantes}}"
+        }
+      },
+      "kennzahlenHeading": "Indicateurs calculés (à partir du graphe)",
+      "kennzahl": {
+        "schritte": "{count, plural, one {# étape} other {# étapes}}",
+        "akteurswechsel": "{count, plural, one {# changement d’acteur} other {# changements d’acteur}}",
+        "behoerden": "{count, plural, one {# autorité} other {# autorités}}",
+        "pflichtdokumente": "{count, plural, one {# document obligatoire} other {# documents obligatoires}}",
+        "entscheidungspunkte": "{count, plural, one {# point de décision} other {# points de décision}}"
+      },
+      "ja": "oui",
+      "nein": "non",
+      "informativ": "informatif",
+      "ankerLabel": "Ancrage stratégique",
+      "ankerStaerke": {
+        "direkt": "ancré directement",
+        "schwach": "faiblement ancré",
+        "kein": "défini en propre"
+      }
     }
+  },
+  "GraphTable": {
+    "caption": "Données du graphe du réseau (nœuds actuellement visibles)",
+    "colName": "Unité organisationnelle",
+    "colType": "Type",
+    "colParent": "Unité supérieure",
+    "colBudget": "Charge (CHF)",
+    "colFte": "Postes (EPT)"
+  },
+  "Export": {
+    "csvButton": "Exporter la vue actuelle au format CSV"
+  },
+  "RIS": {
+    "heading": "Affaires parlementaires",
+    "viewAll": "Voir toutes les affaires →",
+    "loading": "Chargement des affaires...",
+    "error": "Erreur lors du chargement des affaires.",
+    "noData": "Aucune affaire récente trouvée."
+  },
+  "Quartier": {
+    "title": "Répartition spatiale",
+    "intro": "Chiffres par arrondissement : surface depuis la géométrie des arrondissements et nombre d'équipements publics (Open Data Zürich). La qualité des données est indiquée dans le badge.",
+    "selectLabel": "Indicateur :",
+    "metricArea": "Surface",
+    "unitLocations": "équipements",
+    "tooltipValue": "{value} {unit}",
+    "noData": "Pas encore de données d'équipements pour cet indicateur — chargez-les avec `npm run data:fetch-geo`.",
+    "noGeo": "Géométrie des arrondissements indisponible."
+  },
+  "Portfolio": {
+    "title": "Portefeuille : processus × dimensions",
+    "intro": "La vue d’ensemble de tous les processus : une procédure par ligne, un indicateur de numérisation ou d’orientation usager par colonne, la couleur indique le degré de réalisation. Métadonnées dérivées — pas une affirmation faisant autorité. Chaque cellule renvoie au processus et à ses preuves.",
+    "source": "Dérivé des indicateurs de processus (lib/bewertung.ts)",
+    "privacyNote": "Généré de manière déterministe à partir des données de processus existantes — aucune donnée d’usage ou personnelle, aucune valeur inventée pour combler les lacunes.",
+    "empty": "Aucun processus enregistré pour l’instant.",
+    "caption": "Carte de chaleur : processus (lignes) × indicateurs (colonnes)",
+    "colProzess": "Processus",
+    "scoreGroup": "Score (% atteint)",
+    "scoreDigital": "Num.",
+    "scoreNutzend": "Usager",
+    "scoreGesamt": "Total",
+    "scoreDigitalLong": "Numérisation — part des indicateurs atteints",
+    "scoreNutzendLong": "Orientation usager — part des indicateurs atteints",
+    "scoreGesamtLong": "Total — part des indicateurs atteints",
+    "scoreNa": "pas de score",
+    "legendHeading": "Légende",
+    "legendInformativ": "informatif (oui/non, ne compte pas dans le score)",
+    "cellTitle": "{indikator} : {status}",
+    "detailLink": "Vers le processus « {titel} » — détails et preuves",
+    "belegLuecke": "Preuves en attente",
+    "belegLueckeTitle": "Aucune preuve de numérisation enregistrée — les colonnes numériques restent « inconnu », pas « non atteint ».",
+    "coverageNote": "{ohne, plural, =0 {Les {total} processus disposent tous d’indicateurs de numérisation étayés.} one {# processus sur {total} n’a pas encore d’indicateurs de numérisation étayés — les colonnes numériques restent « inconnu », pas « non atteint ».} other {# processus sur {total} n’ont pas encore d’indicateurs de numérisation étayés — les colonnes numériques restent « inconnu », pas « non atteint ».}}",
+    "summaryHeading": "Réalisation par indicateur (sur tous les processus)",
+    "summaryZeile": "{erfuellt} atteint · {nichtErfuellt} non atteint · {unbekannt} inconnu"
   }
 }

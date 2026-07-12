@@ -13,10 +13,10 @@ jobs:
       run:
         working-directory: stadt-zuerich-next
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v6
         with:
-          node-version: 24.15.0
+          node-version: 24.18.0
           cache: npm
           cache-dependency-path: stadt-zuerich-next/package-lock.json
       - run: npm ci
@@ -26,54 +26,143 @@ jobs:
   data-validation:
     name: org-chart.json + lebenslagen.json validieren
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: stadt-zuerich-next
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v6
         with:
-          node-version: 24.15.0
-      # Pfade spiegeln die data/zh/-Struktur (scaffold:city legt dieselbe
-      # Form für jede weitere Stadt an). Früher lagen diese Dateien in
-      # stadt-zuerich-next/data.json bzw. data/manual/lebenslagen.json —
-      # der Job lief seitdem ins Leere. Siehe PR #29.
-      - name: Syntax-Check (JSON)
-        run: |
-          node -e "JSON.parse(require('fs').readFileSync('stadt-zuerich-next/data/zh/org-chart.json','utf8'))"
-          node -e "JSON.parse(require('fs').readFileSync('stadt-zuerich-next/data/zh/lebenslagen.json','utf8'))"
-      - name: Lebenslagen-IDs gegen org-chart.json prüfen
-        run: |
-          node -e "
-            const d = JSON.parse(require('fs').readFileSync('stadt-zuerich-next/data/zh/org-chart.json','utf8'));
-            const l = JSON.parse(require('fs').readFileSync('stadt-zuerich-next/data/zh/lebenslagen.json','utf8'));
-            const ids = new Set([
-              d.center?.id,
-              ...d.departments.map(x => x.id),
-              ...d.units.map(u => u.id),
-              ...(d.beteiligungen ?? []).map(b => b.id),
-            ].filter(Boolean));
-            const problems = [];
-            for (const e of l.lebenslagen) {
-              if (!ids.has(e.zustaendig)) problems.push(e.id + ': unbekannte zustaendig ' + e.zustaendig);
-              if (!e.i18n?.de?.frage || !Array.isArray(e.i18n?.de?.stichworte)) problems.push(e.id + ': fehlt i18n.de.frage oder .stichworte');
-            }
-            if (problems.length) { console.error('Probleme:\n  ' + problems.join('\n  ')); process.exit(1); }
-            console.log('✓ Alle ' + l.lebenslagen.length + ' Lebenslagen haben i18n.de und gültige zustaendig (' + ids.size + ' bekannte IDs in org-chart)');
-          "
+          node-version: 24.18.0
+      # Die Prüfregeln leben in scripts/validate-lebenslagen.mjs (stdlib-only,
+      # auch lokal via `npm run validate:lebenslagen` ausführbar). Früher war
+      # dieselbe Logik als node -e-Heredoc hier eingebettet — zwei Wahrheiten,
+      # die auseinanderdriften konnten.
+      - name: Lebenslagen gegen Org-Chart + Prozessdaten prüfen
+        run: node scripts/validate-lebenslagen.mjs
 
-  prozesse-validation:
-    name: OpenGov-Process-Schema validieren
+  schema-validation:
+    name: OpenGov-Schemas validieren (Org-Chart + Prozesse)
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: stadt-zuerich-next
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v6
         with:
-          node-version: 24.15.0
+          node-version: 24.18.0
           cache: npm
           cache-dependency-path: stadt-zuerich-next/package-lock.json
       - run: npm ci
+      - name: org-chart.json gegen opengov-machinery-schema.json validieren
+        run: npm run validate:org
+        env:
+          NO_COLOR: '1'
       - name: Schema + semantic validation für data/prozesse/**/*.json
         run: npm run validate:prozesse
         env:
           NO_COLOR: '1'
+      - name: Portfolio-Aggregat synchron mit den Prozessdaten (Drift-Gate)
+        run: npm run check:portfolio
+        env:
+          NO_COLOR: '1'
+      - name: OpenAPI + Datenkatalog validieren
+        run: npm run validate:catalog
+      - name: Links in den Daten prüfen (strukturell)
+        run: npm run check:links
+
+  unit-tests:
+    name: Unit-Tests (Bewertungs-Ableitung)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: stadt-zuerich-next
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24.18.0
+      # Keine npm-Abhängigkeiten nötig: die reine Ableitungs-Funktion
+      # importiert nur node:test + type-only Typen (Node-Type-Stripping).
+      - run: npm run test:unit
+
+  prozess-regression:
+    name: Prozess-Daten Regression-Guard (i18n + description)
+    # Braucht eine Basis-Version zum Vergleich → nur auf Pull Requests.
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: stadt-zuerich-next
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          # Volle Historie, damit origin/<base> für den Vergleich verfügbar ist.
+          fetch-depth: 0
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24.18.0
+      - name: Basis-Branch holen
+        run: git fetch --no-tags origin "$GITHUB_BASE_REF"
+      - name: Handgepflegte Texte gegen Basis schützen
+        run: npm run check:regression
+        env:
+          NO_COLOR: '1'
+
+  referenz-gate:
+    name: Referenzen-Gate (Liveness + Verbatim für geänderte References)
+    # Prüft nur die im PR neu hinzugefügten/geänderten References live gegen
+    # ihre Quelle (toter Deep-Link bzw. source_quote nicht wörtlich auf der
+    # Seite → Fehler). Bestandsdaten deckt der wöchentliche link-rot.yml ab.
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: stadt-zuerich-next
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24.18.0
+      - name: Basis-Branch holen
+        run: git fetch --no-tags origin "$GITHUB_BASE_REF"
+      - name: Neue/geänderte References live prüfen
+        run: npm run check:refs
+        env:
+          NO_COLOR: '1'
+
+  a11y:
+    name: Accessibility (Playwright + axe-core)
+    runs-on: ubuntu-latest
+    # Sicherheitsnetz: hängende Schritte (z. B. ein nicht beendeter Server-
+    # Prozess) sollen den Runner nicht bis zum 6h-Default blockieren.
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: stadt-zuerich-next
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24.18.0
+          cache: npm
+          cache-dependency-path: stadt-zuerich-next/package-lock.json
+      - run: npm ci
+      - name: Playwright-Browser installieren
+        run: npx playwright install --with-deps chromium
+      - name: Production-Build
+        run: npm run build
+      - name: Bundle-Budget der Startseite (First-Load JS)
+        run: npm run check:bundle
+      - name: a11y-Smoke (WCAG A/AA, serious+critical = Gate)
+        run: npm run test:a11y
+      - name: Playwright-Report hochladen
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: playwright-report
+          path: stadt-zuerich-next/playwright-report/
+          retention-days: 7

@@ -24,6 +24,12 @@ export interface CityConfig {
   /** Kürzere Form ohne "Stadt/City/…"-Präfix, für Fliesstext wie
    *  "in {shortName}". */
   shortName: Record<Locale, string>;
+  /** Typ der Organisation in der Föderation */
+  type: 'city' | 'canton' | 'federal' | 'other';
+  /** Föderation: Übergeordnete Organisation (z.B. Kanton) */
+  parentOrganizationId?: string;
+  /** Föderation: URL zur Instanz der übergeordneten Organisation */
+  parentOrganizationUrl?: string;
   /** Offizielle Domain der Stadt (ohne Protokoll/Pfad). */
   domain: string;
   /** Ständige Wohnbevölkerung der Stadt — Basis für die Pro-Kopf-Anzeigen
@@ -49,6 +55,17 @@ export interface CityConfig {
   /** Pfad zur Lebenslagen-/Anliegen-JSON (Bürger-Anliegen → Unit-Mapping).
    *  Konvention: 'data/<id>/lebenslagen.json'. */
   lebenslagenPath: string;
+  /** Optionales städtisches Klimaziel (z. B. Netto-Null 2040). Verknüpft die
+   *  klima-Werte der Einheiten (org-chart) mit dem offiziellen Strategieziel.
+   *  Weggelassen = keine Klima-Sektion im Wirkungs-Dashboard. */
+  klimaziel?: {
+    name: Record<Locale, string>;
+    /** Zieljahr (z. B. 2040). */
+    jahr: number;
+    /** Link zur offiziellen Klimastrategie der Stadt. */
+    url: string;
+    beschreibung: Record<Locale, string>;
+  };
   /** Optionales Brand-Glyph für den Header. Weggelassen = nur Text im
    *  Header (Default-Layout). Für Zürich verwenden wir bewusst ein
    *  abstraktes Org-Graph-Icon, NICHT das offizielle Wappen — das wäre
@@ -80,6 +97,26 @@ export interface CityConfig {
    *  (siehe themeCssVars()) und zusätzlich direkt von Komponenten gelesen,
    *  die einen JS-Array oder Cytoscape-Stylesheet brauchen. */
   theme: CityTheme;
+  /** BCP-47-Sprach-Tags pro Locale für `<html lang>` (z. B. de → de-CH).
+   *  Stadt-/länderspezifisch — ein Nicht-Schweizer Fork nutzt andere
+   *  Regions-Tags. Fehlt der Block, wird der rohe Locale-Code verwendet. */
+  htmlLang?: Record<Locale, string>;
+  /** Attributions-Text der offenen API (X-Data-Attribution-Header).
+   *  Fehlt er, wird generisch aus dem Stadtnamen abgeleitet. */
+  attribution?: string;
+  /** Raw-URL des (Fork-)Repos für Schema-Deep-Links in den API-Headern.
+   *  Fehlt sie, verweisen die Links auf das kanonische Upstream-Schema. */
+  repoRawUrl?: string;
+  /** Geo-Einstellungen für Karten-Features (Territory-/Quartier-Ansicht). */
+  geo?: {
+    /** Bounding-Box des Stadtgebiets — für Demo-/Platzhalter-Koordinaten,
+     *  wenn kein echter Geo-Snapshot vorliegt. Fehlt sie, werden keine
+     *  Demo-Punkte erzeugt. */
+    boundingBox?: { minLat: number; maxLat: number; minLng: number; maxLng: number };
+    /** Pfad zur Stadtkreis-/Quartier-GeoJSON relativ zum Projekt-Root.
+     *  Fehlt er, rendert die Quartier-Ansicht ohne Grenzen-Overlay. */
+    stadtkreiseGeoJsonPath?: string;
+  };
 }
 
 /** City-spezifisches Farb-Theme. Alle Werte sind CSS-Farb-Strings (Hex,
@@ -102,6 +139,7 @@ export interface CityTheme {
      *  offiziellen Organigramm: weisse Box), z. B. Betreibungsämter, KESB. */
     spezial: string;
     beteiligung: string;
+    committee: string;
   };
   /** Warn-Farbe für Konflikte (Bürger- vs. RPK-Zuordnung). */
   konflikt: string;
@@ -118,6 +156,17 @@ export function externalSearchUrl(query: string): string {
   return city.externalSearchUrlTemplate.replace('{q}', encodeURIComponent(query));
 }
 
+/** 
+ * Defense in Depth: Sanitizer für CSS-Farbwerte.
+ * Verhindert XSS durch Entfernen gefährlicher Zeichen (wie <, >, ", ', ;, {}, usw.)
+ * und erlaubt nur Zeichen, die für legitime CSS-Farbwerte (Hex, RGB, HSL, var) benötigt werden.
+ */
+function sanitizeColor(value: string): string {
+  if (typeof value !== 'string') return '';
+  // Erlaube nur Alphanumerisch, #, Komma, Punkt, Prozent, Klammern, Bindestrich und Leerzeichen.
+  return value.replace(/[^a-zA-Z0-9#,\.% \(\)\-]/g, '').trim();
+}
+
 /** Baut den `<style>`-Inhalt mit den theme-CSS-Variablen, die das Layout
  *  als Inline-Stylesheet in den `<head>` setzt. Damit gelten die Stadt-
  *  Farben noch vor dem ersten Paint — kein Flash-of-Wrong-Brand. */
@@ -125,16 +174,17 @@ export function themeCssVars(): string {
   const t = city.theme;
   return [
     `:root {`,
-    `  --color-accent: ${t.accent};`,
-    `  --color-node-stadtpraesidium: ${t.nodeType.stadtpraesidium};`,
-    `  --color-node-stadtrat: ${t.nodeType.stadtrat};`,
-    `  --color-node-department: ${t.nodeType.department};`,
-    `  --color-node-unit: ${t.nodeType.unit};`,
-    `  --color-node-staff: ${t.nodeType.staff};`,
-    `  --color-node-extern: ${t.nodeType.extern};`,
-    `  --color-node-spezial: ${t.nodeType.spezial};`,
-    `  --color-node-beteiligung: ${t.nodeType.beteiligung};`,
-    `  --color-konflikt: ${t.konflikt};`,
+    `  --color-accent: ${sanitizeColor(t.accent)};`,
+    `  --color-node-stadtpraesidium: ${sanitizeColor(t.nodeType.stadtpraesidium)};`,
+    `  --color-node-stadtrat: ${sanitizeColor(t.nodeType.stadtrat)};`,
+    `  --color-node-department: ${sanitizeColor(t.nodeType.department)};`,
+    `  --color-node-unit: ${sanitizeColor(t.nodeType.unit)};`,
+    `  --color-node-staff: ${sanitizeColor(t.nodeType.staff)};`,
+    `  --color-node-extern: ${sanitizeColor(t.nodeType.extern)};`,
+    `  --color-node-spezial: ${sanitizeColor(t.nodeType.spezial)};`,
+    `  --color-node-beteiligung: ${sanitizeColor(t.nodeType.beteiligung)};`,
+    `  --color-node-committee: ${sanitizeColor(t.nodeType.committee)};`,
+    `  --color-konflikt: ${sanitizeColor(t.konflikt)};`,
     `}`,
   ].join('\n');
 }

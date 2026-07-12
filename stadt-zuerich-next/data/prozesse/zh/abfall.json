@@ -1,0 +1,453 @@
+{
+  "$schema": "../../../schemas/opengov-process-schema.json",
+  "schema_version": "0.1.0",
+  "id": "abfall",
+  "lebenslage_ref": "abfall",
+  "city": "zh",
+  "title": {
+    "de": "Abfall entsorgen: Kehricht, Recycling, Sperrgut",
+    "en": "Dispose of waste: refuse, recycling, bulky waste",
+    "fr": "Éliminer les déchets : ordures, recyclage, encombrants",
+    "it": "Smaltire i rifiuti: spazzatura, riciclaggio, ingombranti",
+    "ls": "Abfall richtig entsorgen"
+  },
+  "description": {
+    "de": "Wer in der Stadt Zürich Abfall entsorgt, trennt nach Abfallart: Hauskehricht kommt in den offiziellen, gebührenpflichtigen Abfallsack und wird am Abfuhrtag abgeholt; Wertstoffe wie Papier, Karton, Glas und Metall werden getrennt gesammelt; Sperrgut und Sonderabfall haben eigene Wege. Die Abfuhrtage stehen im Abfallkalender von ERZ – Entsorgung + Recycling Zürich.",
+    "en": "Anyone disposing of waste in the City of Zurich separates it by type: household refuse goes in the official, chargeable waste bag and is collected on the collection day; recyclables such as paper, cardboard, glass and metal are collected separately; bulky and hazardous waste have their own routes. Collection days are listed in the waste calendar of ERZ – Disposal + Recycling Zurich.",
+    "fr": "Toute personne qui élimine des déchets dans la Ville de Zurich les trie par type : les ordures ménagères vont dans le sac à ordures officiel et payant et sont collectées le jour de la levée ; les matières recyclables comme le papier, le carton, le verre et le métal sont collectées séparément ; les encombrants et les déchets spéciaux ont leurs propres filières. Les jours de levée figurent dans le calendrier des déchets d'ERZ – Élimination + Recyclage Zurich.",
+    "it": "Chi smaltisce rifiuti nella Città di Zurigo li separa per tipo: la spazzatura domestica va nel sacco ufficiale a pagamento e viene raccolta nel giorno di raccolta; i materiali riciclabili come carta, cartone, vetro e metallo vengono raccolti separatamente; i rifiuti ingombranti e quelli speciali hanno percorsi propri. I giorni di raccolta sono indicati nel calendario dei rifiuti di ERZ – Smaltimento + Riciclaggio Zurigo.",
+    "ls": "Sie wollen Abfall wegwerfen? Trennen Sie den Abfall. Normaler Müll kommt in den offiziellen Abfall-Sack. Den Sack stellen Sie am Abfuhr-Tag an die Strasse. Glas, Papier und Metall sammeln Sie getrennt. Für grosse Sachen (Sperr-Gut) gibt es einen eigenen Weg. Wann der Müll geholt wird, steht im Abfall-Kalender."
+  },
+  "target_audience": "bevoelkerung",
+  "preconditions": [
+    {
+      "de": "Sie wohnen in der Stadt Zürich und möchten Abfall entsorgen.",
+      "en": "You live in the City of Zurich and want to dispose of waste.",
+      "fr": "Vous habitez dans la Ville de Zurich et souhaitez éliminer des déchets.",
+      "it": "Lei abita nella Città di Zurigo e desidera smaltire dei rifiuti.",
+      "ls": "Sie wohnen in Zürich. Sie haben Abfall."
+    }
+  ],
+  "source_url": "https://www.stadt-zuerich.ch/de/umwelt-und-energie/entsorgung.html",
+  "retrieved_at": "2026-06-18",
+  "disclaimer_key": "Prozesse.disclaimer",
+  "references": [
+    {
+      "reference_id": 1,
+      "label": {
+        "de": "Gebühr für den offiziellen Abfallsack (vorgezogene Entsorgungsgebühr)",
+        "en": "Fee for the official waste bag (advance disposal charge)",
+        "fr": "Taxe pour le sac à ordures officiel (taxe d'élimination anticipée)",
+        "it": "Tassa per il sacco ufficiale dei rifiuti (tassa di smaltimento anticipata)",
+        "ls": "Was der offizielle Abfall-Sack kostet"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/umwelt-und-energie/entsorgung/zueri-sack.html",
+      "source_quote": "Fr. 0.37 pro 10-Liter-Sack Fr. 0.63 pro 17-Liter-Sack Fr. 1.30 pro 35-Liter-Sack Fr. 2.22 pro 60-Liter-Sack Fr. 4.07 pro 110-Liter-Sack",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-27"
+    },
+    {
+      "reference_id": 2,
+      "label": {
+        "de": "Gebühr für die Sperrgut-Abholung am Strassenrand",
+        "en": "Fee for kerbside bulky-waste collection",
+        "fr": "Taxe pour la collecte des encombrants au bord de la route",
+        "it": "Tassa per la raccolta degli ingombranti a bordo strada",
+        "ls": "Was das Abholen von grossen Sachen kostet"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/umwelt-und-energie/entsorgung/wo-und-wann-entsorgen/abfuhr-sperrgut-metall-elektro-grubengut.html",
+      "source_quote": "Ab Strassenrand Anfahrt, 15 Min. aufladen, entsorgen, pauschal Fr. 86.50 pro weitere 15 Min. (bis max. 60 Min.) Fr. 86.50",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-27"
+    }
+  ],
+  "actors": [
+    {
+      "id": "person",
+      "label": {
+        "de": "Einwohner:in",
+        "en": "Resident",
+        "fr": "Habitant·e",
+        "it": "Residente",
+        "ls": "Sie (Sie haben Abfall)"
+      },
+      "type": "antragsteller"
+    },
+    {
+      "id": "erz",
+      "label": {
+        "de": "ERZ – Entsorgung + Recycling Zürich (Abfall)",
+        "en": "ERZ – Disposal + Recycling Zurich (waste)",
+        "fr": "ERZ – Élimination + Recyclage Zurich (déchets)",
+        "it": "ERZ – Smaltimento + Riciclaggio Zurigo (rifiuti)",
+        "ls": "Die ERZ (sie holt den Abfall)"
+      },
+      "type": "behoerde",
+      "einheit_ref": "TED-erz"
+    }
+  ],
+  "steps": [
+    {
+      "step_id": 1,
+      "actor": "person",
+      "label": {
+        "de": "Abfall fällt an",
+        "en": "Waste arises",
+        "fr": "Des déchets se présentent",
+        "it": "Si producono rifiuti",
+        "ls": "Sie haben Abfall"
+      },
+      "depends_on": [],
+      "type": "start"
+    },
+    {
+      "step_id": 2,
+      "actor": "person",
+      "label": {
+        "de": "Welche Abfallart?",
+        "en": "Which type of waste?",
+        "fr": "Quel type de déchet ?",
+        "it": "Quale tipo di rifiuto?",
+        "ls": "Was für Abfall ist es?"
+      },
+      "depends_on": [
+        1
+      ],
+      "type": "entscheidung",
+      "description": {
+        "de": "Hauskehricht, Wertstoffe (Papier, Karton, Glas, Metall), Sperrgut oder Sonderabfall werden unterschiedlich entsorgt.",
+        "en": "Household refuse, recyclables (paper, cardboard, glass, metal), bulky waste or hazardous waste are disposed of differently.",
+        "fr": "Les ordures ménagères, les matières recyclables (papier, carton, verre, métal), les encombrants ou les déchets spéciaux s'éliminent différemment.",
+        "it": "La spazzatura domestica, i materiali riciclabili (carta, cartone, vetro, metallo), gli ingombranti o i rifiuti speciali si smaltiscono in modo diverso.",
+        "ls": "Es gibt verschiedene Arten von Abfall. Jede Art kommt woanders hin."
+      }
+    },
+    {
+      "step_id": 3,
+      "actor": "person",
+      "label": {
+        "de": "Abfuhrtermine im Abfallkalender prüfen",
+        "en": "Check collection dates in the waste calendar",
+        "fr": "Vérifier les dates de levée dans le calendrier des déchets",
+        "it": "Verificare le date di raccolta nel calendario dei rifiuti",
+        "ls": "Im Abfall-Kalender nachschauen, wann der Müll geholt wird"
+      },
+      "depends_on": [
+        {
+          "step_id": 2,
+          "condition": {
+            "de": "Hauskehricht",
+            "en": "household refuse",
+            "fr": "ordures ménagères",
+            "it": "spazzatura domestica"
+          }
+        }
+      ],
+      "type": "input",
+      "source_id": "q-kalender"
+    },
+    {
+      "step_id": 4,
+      "actor": "person",
+      "label": {
+        "de": "Kehricht im offiziellen Sack am Abfuhrtag bereitstellen",
+        "en": "Put out refuse in the official bag on collection day",
+        "fr": "Déposer les ordures dans le sac officiel le jour de la levée",
+        "it": "Mettere fuori la spazzatura nel sacco ufficiale nel giorno di raccolta",
+        "ls": "Den Müll im offiziellen Sack am Abfuhr-Tag an die Strasse stellen"
+      },
+      "depends_on": [
+        3
+      ],
+      "reference_ids": [
+        1
+      ],
+      "type": "input",
+      "description": {
+        "de": "Hauskehricht muss im offiziellen Abfallsack der Stadt bereitgestellt werden; die Entsorgungsgebühr ist im Sackpreis enthalten.",
+        "en": "Household refuse must be presented in the city's official waste bag; the disposal fee is included in the bag price.",
+        "fr": "Les ordures ménagères doivent être déposées dans le sac à ordures officiel de la ville ; la taxe d'élimination est comprise dans le prix du sac.",
+        "it": "La spazzatura domestica deve essere messa fuori nel sacco ufficiale della città; la tassa di smaltimento è compresa nel prezzo del sacco.",
+        "ls": "Der Müll muss im offiziellen Sack sein. Im Preis vom Sack ist die Gebühr schon dabei."
+      },
+      "source_id": "q-erz"
+    },
+    {
+      "step_id": 5,
+      "actor": "erz",
+      "label": {
+        "de": "ERZ holt den Hauskehricht ab",
+        "en": "ERZ collects the household refuse",
+        "fr": "ERZ collecte les ordures ménagères",
+        "it": "ERZ raccoglie la spazzatura domestica",
+        "ls": "Die ERZ holt den Müll ab"
+      },
+      "depends_on": [
+        4
+      ],
+      "type": "prozess"
+    },
+    {
+      "step_id": 6,
+      "actor": "person",
+      "label": {
+        "de": "Wertstoffe trennen (Papier, Karton, Glas, Metall)",
+        "en": "Separate recyclables (paper, cardboard, glass, metal)",
+        "fr": "Trier les matières recyclables (papier, carton, verre, métal)",
+        "it": "Separare i materiali riciclabili (carta, cartone, vetro, metallo)",
+        "ls": "Glas, Papier, Karton und Metall getrennt sammeln"
+      },
+      "depends_on": [
+        {
+          "step_id": 2,
+          "condition": {
+            "de": "Wertstoffe",
+            "en": "recyclables",
+            "fr": "matières recyclables",
+            "it": "materiali riciclabili"
+          }
+        }
+      ],
+      "type": "input",
+      "source_id": "q-erz"
+    },
+    {
+      "step_id": 7,
+      "actor": "person",
+      "label": {
+        "de": "Abholung oder Sammelstelle?",
+        "en": "Kerbside collection or drop-off point?",
+        "fr": "Collecte au bord de la route ou point de collecte ?",
+        "it": "Raccolta a bordo strada o punto di raccolta?",
+        "ls": "Wird es abgeholt? Oder bringen Sie es hin?"
+      },
+      "depends_on": [
+        6
+      ],
+      "type": "entscheidung"
+    },
+    {
+      "step_id": 8,
+      "actor": "person",
+      "label": {
+        "de": "Papier und Karton am Sammeltag bereitstellen",
+        "en": "Put out paper and cardboard on the collection day",
+        "fr": "Déposer le papier et le carton le jour de la collecte",
+        "it": "Mettere fuori carta e cartone nel giorno di raccolta",
+        "ls": "Papier und Karton am Sammel-Tag an die Strasse stellen"
+      },
+      "depends_on": [
+        {
+          "step_id": 7,
+          "condition": {
+            "de": "Abholung",
+            "en": "kerbside collection",
+            "fr": "collecte au bord de la route",
+            "it": "raccolta a bordo strada"
+          }
+        }
+      ],
+      "type": "input",
+      "source_id": "q-kalender"
+    },
+    {
+      "step_id": 9,
+      "actor": "person",
+      "label": {
+        "de": "Glas und Metall zur Quartier-Sammelstelle bringen",
+        "en": "Take glass and metal to the neighbourhood drop-off point",
+        "fr": "Apporter le verre et le métal au point de collecte du quartier",
+        "it": "Portare vetro e metallo al punto di raccolta del quartiere",
+        "ls": "Glas und Metall zur Sammel-Stelle im Quartier bringen"
+      },
+      "depends_on": [
+        {
+          "step_id": 7,
+          "condition": {
+            "de": "Sammelstelle",
+            "en": "drop-off point",
+            "fr": "point de collecte",
+            "it": "punto di raccolta"
+          }
+        }
+      ],
+      "type": "input"
+    },
+    {
+      "step_id": 10,
+      "actor": "erz",
+      "label": {
+        "de": "ERZ verwertet die Wertstoffe",
+        "en": "ERZ recycles the recyclables",
+        "fr": "ERZ valorise les matières recyclables",
+        "it": "ERZ ricicla i materiali riciclabili",
+        "ls": "Die ERZ verwertet die Wertstoffe"
+      },
+      "depends_on": [
+        8,
+        9
+      ],
+      "type": "prozess"
+    },
+    {
+      "step_id": 11,
+      "actor": "person",
+      "label": {
+        "de": "Sperrgut-Abholung bestellen oder zum Recyclinghof bringen",
+        "en": "Order bulky-waste collection or take it to the recycling yard",
+        "fr": "Commander la collecte des encombrants ou les apporter à la déchèterie",
+        "it": "Ordinare la raccolta degli ingombranti o portarli al centro di riciclaggio",
+        "ls": "Die Abholung von grossen Sachen bestellen oder selbst hinbringen"
+      },
+      "depends_on": [
+        {
+          "step_id": 2,
+          "condition": {
+            "de": "Sperrgut",
+            "en": "bulky waste",
+            "fr": "encombrants",
+            "it": "ingombranti"
+          }
+        }
+      ],
+      "reference_ids": [
+        2
+      ],
+      "type": "input",
+      "description": {
+        "de": "Sperrgut wird kostenpflichtig bei ERZ zur Abholung am Strassenrand bestellt oder selbst zum Recyclinghof gebracht.",
+        "en": "Bulky waste is ordered from ERZ for kerbside collection for a charge, or taken to the recycling yard yourself.",
+        "fr": "Les encombrants sont commandés auprès d'ERZ pour une collecte payante au bord de la route, ou apportés soi-même à la déchèterie.",
+        "it": "Gli ingombranti si ordinano presso ERZ per una raccolta a pagamento a bordo strada, oppure si portano da sé al centro di riciclaggio.",
+        "ls": "Sie bestellen die Abholung bei der ERZ. Das kostet etwas. Oder Sie bringen die Sachen selbst zum Recyclinghof."
+      },
+      "source_id": "q-erz"
+    },
+    {
+      "step_id": 12,
+      "actor": "person",
+      "label": {
+        "de": "Sonderabfall zum Sammelpunkt oder Schadstoffmobil bringen",
+        "en": "Take hazardous waste to a collection point or mobile unit",
+        "fr": "Apporter les déchets spéciaux à un point de collecte ou au véhicule mobile",
+        "it": "Portare i rifiuti speciali a un punto di raccolta o al veicolo mobile",
+        "ls": "Gift und Chemie zu einer besonderen Sammel-Stelle bringen"
+      },
+      "depends_on": [
+        {
+          "step_id": 2,
+          "condition": {
+            "de": "Sonderabfall",
+            "en": "hazardous waste",
+            "fr": "déchets spéciaux",
+            "it": "rifiuti speciali"
+          }
+        }
+      ],
+      "type": "input",
+      "description": {
+        "de": "Sonderabfall (z. B. Farben, Chemikalien, Batterien) gehört nicht in den Hauskehricht und wird an speziellen Sammelpunkten abgegeben.",
+        "en": "Hazardous waste (e.g. paints, chemicals, batteries) must not go in household refuse and is handed in at special collection points.",
+        "fr": "Les déchets spéciaux (p. ex. peintures, produits chimiques, piles) ne vont pas dans les ordures ménagères et sont remis à des points de collecte spéciaux.",
+        "it": "I rifiuti speciali (ad es. vernici, prodotti chimici, batterie) non vanno nella spazzatura domestica e si consegnano in punti di raccolta speciali.",
+        "ls": "Gift, Farben oder Batterien dürfen nicht in den normalen Müll. Dafür gibt es besondere Sammel-Stellen."
+      }
+    },
+    {
+      "step_id": 13,
+      "actor": "person",
+      "label": {
+        "de": "Abfall korrekt entsorgt",
+        "en": "Waste disposed of correctly",
+        "fr": "Déchets éliminés correctement",
+        "it": "Rifiuti smaltiti correttamente",
+        "ls": "Fertig: Der Abfall ist richtig entsorgt"
+      },
+      "depends_on": [
+        5,
+        10,
+        11,
+        12
+      ],
+      "type": "ende"
+    }
+  ],
+  "legal_basis": [
+    {
+      "label": "Umweltschutzgesetz (USG) / Verordnung über die Vermeidung und die Entsorgung von Abfällen (VVEA)",
+      "url": "https://www.fedlex.admin.ch/eli/cc/1984/1122_1122_1122/de"
+    },
+    {
+      "label": "Abfallverordnung / Abfallreglement der Stadt Zürich",
+      "url": "https://www.stadt-zuerich.ch/de/umwelt-und-energie/entsorgung.html"
+    }
+  ],
+  "sources": [
+    {
+      "id": "q-erz",
+      "title": "Stadt Zürich – ERZ Entsorgung + Recycling Zürich",
+      "url": "https://www.stadt-zuerich.ch/de/umwelt-und-energie/entsorgung.html",
+      "retrieved_at": "2026-06-18"
+    },
+    {
+      "id": "q-kalender",
+      "title": "Stadt Zürich – Abfuhrdaten / Abfallkalender",
+      "url": "https://www.stadt-zuerich.ch/de/umwelt-und-energie/entsorgung/entsorgungskalender.html",
+      "retrieved_at": "2026-06-18"
+    }
+  ],
+  "reife": {
+    "onlineReifegrad": "teil-digital",
+    "medienbrueche": [
+      "persoenliches-erscheinen"
+    ],
+    "onceOnlyPotenzial": {
+      "de": "Die Abfuhrtage hängen von der Wohnadresse ab und liegen ERZ bereits vor. Ein personalisierter Abfallkalender mit Erinnerung könnte ohne erneute Adresseingabe direkt bereitstehen.",
+      "en": "Collection days depend on the residential address, which ERZ already holds. A personalised waste calendar with reminders could be available without re-entering the address.",
+      "ls": "Wann der Müll geholt wird, hängt von Ihrer Adresse ab. Die ERZ kennt die Adresse schon."
+    },
+    "nutzergruppen": [
+      {
+        "de": "Neu Zugezogene",
+        "en": "People who just moved in",
+        "ls": "Menschen, die neu in Zürich sind"
+      },
+      {
+        "de": "Haushalte mit Sperrgut oder Sonderabfall",
+        "en": "Households with bulky or hazardous waste",
+        "ls": "Menschen mit grossen oder gefährlichen Sachen"
+      }
+    ],
+    "painPoints": [
+      {
+        "de": "Wertstoffe und Sonderabfall erfordern oft den Gang zu einer Sammelstelle.",
+        "en": "Recyclables and hazardous waste often require a trip to a drop-off point.",
+        "ls": "Für manche Sachen müssen Sie zu einer Sammel-Stelle gehen."
+      }
+    ],
+    "improvementIdeas": [
+      {
+        "de": "Personalisierter Abfallkalender mit Push-Erinnerung pro Abfuhrart.",
+        "en": "Personalised waste calendar with push reminders per waste type.",
+        "ls": "Ein Kalender, der Sie erinnert, wann welcher Abfall geholt wird."
+      }
+    ],
+    "status": "beobachtet",
+    "wirkungKpi": [
+      {
+        "label": {
+          "de": "Online-Anteil",
+          "en": "Share online",
+          "ls": "Wie viel geht online"
+        },
+        "wert": "Kalender online, Entsorgung physisch"
+      }
+    ]
+  },
+  "meta": {
+    "erstellt": "2026-06-18",
+    "aktualisiert": "2026-06-18",
+    "maintainer": "malkreide",
+    "lizenz": "CC-BY-4.0"
+  }
+}

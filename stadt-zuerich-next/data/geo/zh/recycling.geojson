@@ -1,0 +1,5490 @@
+{
+  "type": "FeatureCollection",
+  "_meta": {
+    "demo": false,
+    "layer": "recycling",
+    "quelle": "ERZ Kehrichtcontainer im öffentlichen Raum",
+    "datasetUrl": "https://data.stadt-zuerich.ch/dataset/geo_erz_kehrichtcontainer_im_oeffentlichen_raum",
+    "departmentOverride": null,
+    "lizenz": "CC-BY",
+    "attribution": "Open Data Zürich, Stadt Zürich",
+    "stand": "2026-06-21"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.538612,
+          47.3726
+        ]
+      },
+      "properties": {
+        "id": "recycling-0",
+        "name": "Sammelstelle 1",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.4812,
+          47.385136
+        ]
+      },
+      "properties": {
+        "id": "recycling-1",
+        "name": "Sammelstelle 2",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.540387,
+          47.368735
+        ]
+      },
+      "properties": {
+        "id": "recycling-2",
+        "name": "Sammelstelle 3",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.54392,
+          47.375935
+        ]
+      },
+      "properties": {
+        "id": "recycling-3",
+        "name": "Sammelstelle 4",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.540684,
+          47.368314
+        ]
+      },
+      "properties": {
+        "id": "recycling-4",
+        "name": "Sammelstelle 5",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.559808,
+          47.360108
+        ]
+      },
+      "properties": {
+        "id": "recycling-5",
+        "name": "Sammelstelle 6",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.481125,
+          47.390938
+        ]
+      },
+      "properties": {
+        "id": "recycling-6",
+        "name": "Sammelstelle 7",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.540634,
+          47.368481
+        ]
+      },
+      "properties": {
+        "id": "recycling-7",
+        "name": "Sammelstelle 8",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.540191,
+          47.368287
+        ]
+      },
+      "properties": {
+        "id": "recycling-8",
+        "name": "Sammelstelle 9",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.543106,
+          47.372172
+        ]
+      },
+      "properties": {
+        "id": "recycling-9",
+        "name": "Sammelstelle 10",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.531534,
+          47.389457
+        ]
+      },
+      "properties": {
+        "id": "recycling-10",
+        "name": "Sammelstelle 11",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.533399,
+          47.362345
+        ]
+      },
+      "properties": {
+        "id": "recycling-11",
+        "name": "Sammelstelle 12",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.560917,
+          47.363642
+        ]
+      },
+      "properties": {
+        "id": "recycling-12",
+        "name": "Sammelstelle 13",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.531379,
+          47.384589
+        ]
+      },
+      "properties": {
+        "id": "recycling-13",
+        "name": "Sammelstelle 14",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.526266,
+          47.391502
+        ]
+      },
+      "properties": {
+        "id": "recycling-14",
+        "name": "Sammelstelle 15",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.521872,
+          47.37376
+        ]
+      },
+      "properties": {
+        "id": "recycling-15",
+        "name": "Sammelstelle 16",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.540116,
+          47.368688
+        ]
+      },
+      "properties": {
+        "id": "recycling-16",
+        "name": "Sammelstelle 17",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.543133,
+          47.372971
+        ]
+      },
+      "properties": {
+        "id": "recycling-17",
+        "name": "Sammelstelle 18",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.544178,
+          47.375556
+        ]
+      },
+      "properties": {
+        "id": "recycling-18",
+        "name": "Sammelstelle 19",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.540096,
+          47.368541
+        ]
+      },
+      "properties": {
+        "id": "recycling-19",
+        "name": "Sammelstelle 20",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.53549,
+          47.333821
+        ]
+      },
+      "properties": {
+        "id": "recycling-20",
+        "name": "Sammelstelle 21",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.523082,
+          47.367353
+        ]
+      },
+      "properties": {
+        "id": "recycling-21",
+        "name": "Sammelstelle 22",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.563265,
+          47.36048
+        ]
+      },
+      "properties": {
+        "id": "recycling-22",
+        "name": "Sammelstelle 23",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.535471,
+          47.333844
+        ]
+      },
+      "properties": {
+        "id": "recycling-23",
+        "name": "Sammelstelle 24",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.535924,
+          47.356748
+        ]
+      },
+      "properties": {
+        "id": "recycling-24",
+        "name": "Sammelstelle 25",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.522095,
+          47.362984
+        ]
+      },
+      "properties": {
+        "id": "recycling-25",
+        "name": "Sammelstelle 26",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.517115,
+          47.403242
+        ]
+      },
+      "properties": {
+        "id": "recycling-26",
+        "name": "Sammelstelle 27",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.526916,
+          47.357746
+        ]
+      },
+      "properties": {
+        "id": "recycling-27",
+        "name": "Sammelstelle 28",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.540721,
+          47.402391
+        ]
+      },
+      "properties": {
+        "id": "recycling-28",
+        "name": "Sammelstelle 29",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.526931,
+          47.359368
+        ]
+      },
+      "properties": {
+        "id": "recycling-29",
+        "name": "Sammelstelle 30",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.563685,
+          47.360417
+        ]
+      },
+      "properties": {
+        "id": "recycling-30",
+        "name": "Sammelstelle 31",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.543148,
+          47.370979
+        ]
+      },
+      "properties": {
+        "id": "recycling-31",
+        "name": "Sammelstelle 32",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.506478,
+          47.365707
+        ]
+      },
+      "properties": {
+        "id": "recycling-32",
+        "name": "Sammelstelle 33",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.527776,
+          47.389126
+        ]
+      },
+      "properties": {
+        "id": "recycling-33",
+        "name": "Sammelstelle 34",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.549609,
+          47.381784
+        ]
+      },
+      "properties": {
+        "id": "recycling-34",
+        "name": "Sammelstelle 35",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.540112,
+          47.368499
+        ]
+      },
+      "properties": {
+        "id": "recycling-35",
+        "name": "Sammelstelle 36",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.521853,
+          47.364943
+        ]
+      },
+      "properties": {
+        "id": "recycling-36",
+        "name": "Sammelstelle 37",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.532894,
+          47.382333
+        ]
+      },
+      "properties": {
+        "id": "recycling-37",
+        "name": "Sammelstelle 38",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.539955,
+          47.424067
+        ]
+      },
+      "properties": {
+        "id": "recycling-38",
+        "name": "Sammelstelle 39",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.524917,
+          47.370038
+        ]
+      },
+      "properties": {
+        "id": "recycling-39",
+        "name": "Sammelstelle 40",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.556274,
+          47.378405
+        ]
+      },
+      "properties": {
+        "id": "recycling-40",
+        "name": "Sammelstelle 41",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.520195,
+          47.393439
+        ]
+      },
+      "properties": {
+        "id": "recycling-41",
+        "name": "Sammelstelle 42",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.545352,
+          47.376899
+        ]
+      },
+      "properties": {
+        "id": "recycling-42",
+        "name": "Sammelstelle 43",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.481013,
+          47.390788
+        ]
+      },
+      "properties": {
+        "id": "recycling-43",
+        "name": "Sammelstelle 44",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.519099,
+          47.371447
+        ]
+      },
+      "properties": {
+        "id": "recycling-44",
+        "name": "Sammelstelle 45",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.540556,
+          47.368254
+        ]
+      },
+      "properties": {
+        "id": "recycling-45",
+        "name": "Sammelstelle 46",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.543463,
+          47.373688
+        ]
+      },
+      "properties": {
+        "id": "recycling-46",
+        "name": "Sammelstelle 47",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.563526,
+          47.365896
+        ]
+      },
+      "properties": {
+        "id": "recycling-47",
+        "name": "Sammelstelle 48",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.544378,
+          47.372116
+        ]
+      },
+      "properties": {
+        "id": "recycling-48",
+        "name": "Sammelstelle 49",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.548958,
+          47.363392
+        ]
+      },
+      "properties": {
+        "id": "recycling-49",
+        "name": "Sammelstelle 50",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.54037,
+          47.368229
+        ]
+      },
+      "properties": {
+        "id": "recycling-50",
+        "name": "Sammelstelle 51",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.540499,
+          47.36875
+        ]
+      },
+      "properties": {
+        "id": "recycling-51",
+        "name": "Sammelstelle 52",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.53211,
+          47.35018
+        ]
+      },
+      "properties": {
+        "id": "recycling-52",
+        "name": "Sammelstelle 53",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.553209,
+          47.36197
+        ]
+      },
+      "properties": {
+        "id": "recycling-53",
+        "name": "Sammelstelle 54",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.539598,
+          47.371731
+        ]
+      },
+      "properties": {
+        "id": "recycling-54",
+        "name": "Sammelstelle 55",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.52796,
+          47.388989
+        ]
+      },
+      "properties": {
+        "id": "recycling-55",
+        "name": "Sammelstelle 56",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.531406,
+          47.359614
+        ]
+      },
+      "properties": {
+        "id": "recycling-56",
+        "name": "Sammelstelle 57",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.544504,
+          47.375528
+        ]
+      },
+      "properties": {
+        "id": "recycling-57",
+        "name": "Sammelstelle 58",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.543408,
+          47.371566
+        ]
+      },
+      "properties": {
+        "id": "recycling-58",
+        "name": "Sammelstelle 59",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.534113,
+          47.369334
+        ]
+      },
+      "properties": {
+        "id": "recycling-59",
+        "name": "Sammelstelle 60",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.540555,
+          47.368742
+        ]
+      },
+      "properties": {
+        "id": "recycling-60",
+        "name": "Sammelstelle 61",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.518128,
+          47.378855
+        ]
+      },
+      "properties": {
+        "id": "recycling-61",
+        "name": "Sammelstelle 62",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.555097,
+          47.370411
+        ]
+      },
+      "properties": {
+        "id": "recycling-62",
+        "name": "Sammelstelle 63",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.526521,
+          47.410027
+        ]
+      },
+      "properties": {
+        "id": "recycling-63",
+        "name": "Sammelstelle 64",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.517551,
+          47.38538
+        ]
+      },
+      "properties": {
+        "id": "recycling-64",
+        "name": "Sammelstelle 65",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.545305,
+          47.41492
+        ]
+      },
+      "properties": {
+        "id": "recycling-65",
+        "name": "Sammelstelle 66",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.543232,
+          47.373718
+        ]
+      },
+      "properties": {
+        "id": "recycling-66",
+        "name": "Sammelstelle 67",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.528803,
+          47.378688
+        ]
+      },
+      "properties": {
+        "id": "recycling-67",
+        "name": "Sammelstelle 68",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.546864,
+          47.372904
+        ]
+      },
+      "properties": {
+        "id": "recycling-68",
+        "name": "Sammelstelle 69",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.530397,
+          47.407955
+        ]
+      },
+      "properties": {
+        "id": "recycling-69",
+        "name": "Sammelstelle 70",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.517997,
+          47.369836
+        ]
+      },
+      "properties": {
+        "id": "recycling-70",
+        "name": "Sammelstelle 71",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.528228,
+          47.363664
+        ]
+      },
+      "properties": {
+        "id": "recycling-71",
+        "name": "Sammelstelle 72",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.525465,
+          47.380482
+        ]
+      },
+      "properties": {
+        "id": "recycling-72",
+        "name": "Sammelstelle 73",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.546054,
+          47.371526
+        ]
+      },
+      "properties": {
+        "id": "recycling-73",
+        "name": "Sammelstelle 74",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.545451,
+          47.411792
+        ]
+      },
+      "properties": {
+        "id": "recycling-74",
+        "name": "Sammelstelle 75",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.525493,
+          47.380467
+        ]
+      },
+      "properties": {
+        "id": "recycling-75",
+        "name": "Sammelstelle 76",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.526981,
+          47.372461
+        ]
+      },
+      "properties": {
+        "id": "recycling-76",
+        "name": "Sammelstelle 77",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.529043,
+          47.372636
+        ]
+      },
+      "properties": {
+        "id": "recycling-77",
+        "name": "Sammelstelle 78",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.530306,
+          47.374587
+        ]
+      },
+      "properties": {
+        "id": "recycling-78",
+        "name": "Sammelstelle 79",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.530201,
+          47.375336
+        ]
+      },
+      "properties": {
+        "id": "recycling-79",
+        "name": "Sammelstelle 80",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.523761,
+          47.376523
+        ]
+      },
+      "properties": {
+        "id": "recycling-80",
+        "name": "Sammelstelle 81",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.528558,
+          47.376971
+        ]
+      },
+      "properties": {
+        "id": "recycling-81",
+        "name": "Sammelstelle 82",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.528708,
+          47.375456
+        ]
+      },
+      "properties": {
+        "id": "recycling-82",
+        "name": "Sammelstelle 83",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.526308,
+          47.379636
+        ]
+      },
+      "properties": {
+        "id": "recycling-83",
+        "name": "Sammelstelle 84",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.521691,
+          47.378374
+        ]
+      },
+      "properties": {
+        "id": "recycling-84",
+        "name": "Sammelstelle 85",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.522055,
+          47.37707
+        ]
+      },
+      "properties": {
+        "id": "recycling-85",
+        "name": "Sammelstelle 86",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.525677,
+          47.370014
+        ]
+      },
+      "properties": {
+        "id": "recycling-86",
+        "name": "Sammelstelle 87",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.529376,
+          47.37121
+        ]
+      },
+      "properties": {
+        "id": "recycling-87",
+        "name": "Sammelstelle 88",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.526235,
+          47.373709
+        ]
+      },
+      "properties": {
+        "id": "recycling-88",
+        "name": "Sammelstelle 89",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.525258,
+          47.386313
+        ]
+      },
+      "properties": {
+        "id": "recycling-89",
+        "name": "Sammelstelle 90",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.519921,
+          47.372921
+        ]
+      },
+      "properties": {
+        "id": "recycling-90",
+        "name": "Sammelstelle 91",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.518163,
+          47.371818
+        ]
+      },
+      "properties": {
+        "id": "recycling-91",
+        "name": "Sammelstelle 92",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.514882,
+          47.376064
+        ]
+      },
+      "properties": {
+        "id": "recycling-92",
+        "name": "Sammelstelle 93",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.517534,
+          47.375286
+        ]
+      },
+      "properties": {
+        "id": "recycling-93",
+        "name": "Sammelstelle 94",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.518228,
+          47.3746
+        ]
+      },
+      "properties": {
+        "id": "recycling-94",
+        "name": "Sammelstelle 95",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.527401,
+          47.386501
+        ]
+      },
+      "properties": {
+        "id": "recycling-95",
+        "name": "Sammelstelle 96",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.523667,
+          47.386558
+        ]
+      },
+      "properties": {
+        "id": "recycling-96",
+        "name": "Sammelstelle 97",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.536198,
+          47.380462
+        ]
+      },
+      "properties": {
+        "id": "recycling-97",
+        "name": "Sammelstelle 98",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.52577,
+          47.380547
+        ]
+      },
+      "properties": {
+        "id": "recycling-98",
+        "name": "Sammelstelle 99",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.546896,
+          47.37109
+        ]
+      },
+      "properties": {
+        "id": "recycling-99",
+        "name": "Sammelstelle 100",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.545702,
+          47.371735
+        ]
+      },
+      "properties": {
+        "id": "recycling-100",
+        "name": "Sammelstelle 101",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.54337,
+          47.374052
+        ]
+      },
+      "properties": {
+        "id": "recycling-101",
+        "name": "Sammelstelle 102",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.545671,
+          47.371083
+        ]
+      },
+      "properties": {
+        "id": "recycling-102",
+        "name": "Sammelstelle 103",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.543029,
+          47.372438
+        ]
+      },
+      "properties": {
+        "id": "recycling-103",
+        "name": "Sammelstelle 104",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.543035,
+          47.371102
+        ]
+      },
+      "properties": {
+        "id": "recycling-104",
+        "name": "Sammelstelle 105",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.54415,
+          47.369733
+        ]
+      },
+      "properties": {
+        "id": "recycling-105",
+        "name": "Sammelstelle 106",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.543635,
+          47.36947
+        ]
+      },
+      "properties": {
+        "id": "recycling-106",
+        "name": "Sammelstelle 107",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.546627,
+          47.369748
+        ]
+      },
+      "properties": {
+        "id": "recycling-107",
+        "name": "Sammelstelle 108",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.544557,
+          47.368574
+        ]
+      },
+      "properties": {
+        "id": "recycling-108",
+        "name": "Sammelstelle 109",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.546156,
+          47.368083
+        ]
+      },
+      "properties": {
+        "id": "recycling-109",
+        "name": "Sammelstelle 110",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.544502,
+          47.376351
+        ]
+      },
+      "properties": {
+        "id": "recycling-110",
+        "name": "Sammelstelle 111",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.544787,
+          47.375547
+        ]
+      },
+      "properties": {
+        "id": "recycling-111",
+        "name": "Sammelstelle 112",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.544484,
+          47.374849
+        ]
+      },
+      "properties": {
+        "id": "recycling-112",
+        "name": "Sammelstelle 113",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.543917,
+          47.374455
+        ]
+      },
+      "properties": {
+        "id": "recycling-113",
+        "name": "Sammelstelle 114",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.546038,
+          47.37394
+        ]
+      },
+      "properties": {
+        "id": "recycling-114",
+        "name": "Sammelstelle 115",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.545116,
+          47.373555
+        ]
+      },
+      "properties": {
+        "id": "recycling-115",
+        "name": "Sammelstelle 116",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.534313,
+          47.380605
+        ]
+      },
+      "properties": {
+        "id": "recycling-116",
+        "name": "Sammelstelle 117",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.541769,
+          47.371488
+        ]
+      },
+      "properties": {
+        "id": "recycling-117",
+        "name": "Sammelstelle 118",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.540125,
+          47.372409
+        ]
+      },
+      "properties": {
+        "id": "recycling-118",
+        "name": "Sammelstelle 119",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.540588,
+          47.370211
+        ]
+      },
+      "properties": {
+        "id": "recycling-119",
+        "name": "Sammelstelle 120",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.539158,
+          47.371913
+        ]
+      },
+      "properties": {
+        "id": "recycling-120",
+        "name": "Sammelstelle 121",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.539011,
+          47.373961
+        ]
+      },
+      "properties": {
+        "id": "recycling-121",
+        "name": "Sammelstelle 122",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.539691,
+          47.383774
+        ]
+      },
+      "properties": {
+        "id": "recycling-122",
+        "name": "Sammelstelle 123",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.519184,
+          47.374015
+        ]
+      },
+      "properties": {
+        "id": "recycling-123",
+        "name": "Sammelstelle 124",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.520408,
+          47.371034
+        ]
+      },
+      "properties": {
+        "id": "recycling-124",
+        "name": "Sammelstelle 125",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.522115,
+          47.369792
+        ]
+      },
+      "properties": {
+        "id": "recycling-125",
+        "name": "Sammelstelle 126",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.525548,
+          47.369549
+        ]
+      },
+      "properties": {
+        "id": "recycling-126",
+        "name": "Sammelstelle 127",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.525289,
+          47.369727
+        ]
+      },
+      "properties": {
+        "id": "recycling-127",
+        "name": "Sammelstelle 128",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.517774,
+          47.380809
+        ]
+      },
+      "properties": {
+        "id": "recycling-128",
+        "name": "Sammelstelle 129",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.544755,
+          47.378227
+        ]
+      },
+      "properties": {
+        "id": "recycling-129",
+        "name": "Sammelstelle 130",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.543515,
+          47.377687
+        ]
+      },
+      "properties": {
+        "id": "recycling-130",
+        "name": "Sammelstelle 131",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.533889,
+          47.367368
+        ]
+      },
+      "properties": {
+        "id": "recycling-131",
+        "name": "Sammelstelle 132",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.547806,
+          47.378362
+        ]
+      },
+      "properties": {
+        "id": "recycling-132",
+        "name": "Sammelstelle 133",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.531461,
+          47.369482
+        ]
+      },
+      "properties": {
+        "id": "recycling-133",
+        "name": "Sammelstelle 134",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.532419,
+          47.388064
+        ]
+      },
+      "properties": {
+        "id": "recycling-134",
+        "name": "Sammelstelle 135",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.532785,
+          47.369925
+        ]
+      },
+      "properties": {
+        "id": "recycling-135",
+        "name": "Sammelstelle 136",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.531188,
+          47.368046
+        ]
+      },
+      "properties": {
+        "id": "recycling-136",
+        "name": "Sammelstelle 137",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.560541,
+          47.365915
+        ]
+      },
+      "properties": {
+        "id": "recycling-137",
+        "name": "Sammelstelle 138",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.532445,
+          47.37008
+        ]
+      },
+      "properties": {
+        "id": "recycling-138",
+        "name": "Sammelstelle 139",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.526352,
+          47.378314
+        ]
+      },
+      "properties": {
+        "id": "recycling-139",
+        "name": "Sammelstelle 140",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.533402,
+          47.382085
+        ]
+      },
+      "properties": {
+        "id": "recycling-140",
+        "name": "Sammelstelle 141",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.545767,
+          47.37512
+        ]
+      },
+      "properties": {
+        "id": "recycling-141",
+        "name": "Sammelstelle 142",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.516455,
+          47.375932
+        ]
+      },
+      "properties": {
+        "id": "recycling-142",
+        "name": "Sammelstelle 143",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.556895,
+          47.356824
+        ]
+      },
+      "properties": {
+        "id": "recycling-143",
+        "name": "Sammelstelle 144",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.550491,
+          47.404661
+        ]
+      },
+      "properties": {
+        "id": "recycling-144",
+        "name": "Sammelstelle 145",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.539355,
+          47.423001
+        ]
+      },
+      "properties": {
+        "id": "recycling-145",
+        "name": "Sammelstelle 146",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.526537,
+          47.41004
+        ]
+      },
+      "properties": {
+        "id": "recycling-146",
+        "name": "Sammelstelle 147",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.539951,
+          47.424046
+        ]
+      },
+      "properties": {
+        "id": "recycling-147",
+        "name": "Sammelstelle 148",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.51215,
+          47.378758
+        ]
+      },
+      "properties": {
+        "id": "recycling-148",
+        "name": "Sammelstelle 149",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.508974,
+          47.392226
+        ]
+      },
+      "properties": {
+        "id": "recycling-149",
+        "name": "Sammelstelle 150",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.515635,
+          47.370371
+        ]
+      },
+      "properties": {
+        "id": "recycling-150",
+        "name": "Sammelstelle 151",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.514429,
+          47.370681
+        ]
+      },
+      "properties": {
+        "id": "recycling-151",
+        "name": "Sammelstelle 152",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.520273,
+          47.36671
+        ]
+      },
+      "properties": {
+        "id": "recycling-152",
+        "name": "Sammelstelle 153",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.545076,
+          47.36662
+        ]
+      },
+      "properties": {
+        "id": "recycling-153",
+        "name": "Sammelstelle 154",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.516504,
+          47.370831
+        ]
+      },
+      "properties": {
+        "id": "recycling-154",
+        "name": "Sammelstelle 155",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.526917,
+          47.390849
+        ]
+      },
+      "properties": {
+        "id": "recycling-155",
+        "name": "Sammelstelle 156",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.524526,
+          47.392089
+        ]
+      },
+      "properties": {
+        "id": "recycling-156",
+        "name": "Sammelstelle 157",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.530174,
+          47.3937
+        ]
+      },
+      "properties": {
+        "id": "recycling-157",
+        "name": "Sammelstelle 158",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.526442,
+          47.393559
+        ]
+      },
+      "properties": {
+        "id": "recycling-158",
+        "name": "Sammelstelle 159",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.517038,
+          47.395511
+        ]
+      },
+      "properties": {
+        "id": "recycling-159",
+        "name": "Sammelstelle 160",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.520628,
+          47.396784
+        ]
+      },
+      "properties": {
+        "id": "recycling-160",
+        "name": "Sammelstelle 161",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.516223,
+          47.398145
+        ]
+      },
+      "properties": {
+        "id": "recycling-161",
+        "name": "Sammelstelle 162",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.522768,
+          47.398089
+        ]
+      },
+      "properties": {
+        "id": "recycling-162",
+        "name": "Sammelstelle 163",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.524775,
+          47.397376
+        ]
+      },
+      "properties": {
+        "id": "recycling-163",
+        "name": "Sammelstelle 164",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.546532,
+          47.378617
+        ]
+      },
+      "properties": {
+        "id": "recycling-164",
+        "name": "Sammelstelle 165",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.545645,
+          47.379963
+        ]
+      },
+      "properties": {
+        "id": "recycling-165",
+        "name": "Sammelstelle 166",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.545231,
+          47.380518
+        ]
+      },
+      "properties": {
+        "id": "recycling-166",
+        "name": "Sammelstelle 167",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.542024,
+          47.381741
+        ]
+      },
+      "properties": {
+        "id": "recycling-167",
+        "name": "Sammelstelle 168",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.543619,
+          47.380202
+        ]
+      },
+      "properties": {
+        "id": "recycling-168",
+        "name": "Sammelstelle 169",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.522395,
+          47.37605
+        ]
+      },
+      "properties": {
+        "id": "recycling-169",
+        "name": "Sammelstelle 170",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.538544,
+          47.387029
+        ]
+      },
+      "properties": {
+        "id": "recycling-170",
+        "name": "Sammelstelle 171",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.539884,
+          47.387091
+        ]
+      },
+      "properties": {
+        "id": "recycling-171",
+        "name": "Sammelstelle 172",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.540606,
+          47.386406
+        ]
+      },
+      "properties": {
+        "id": "recycling-172",
+        "name": "Sammelstelle 173",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.540511,
+          47.387727
+        ]
+      },
+      "properties": {
+        "id": "recycling-173",
+        "name": "Sammelstelle 174",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.542846,
+          47.386751
+        ]
+      },
+      "properties": {
+        "id": "recycling-174",
+        "name": "Sammelstelle 175",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.543584,
+          47.383398
+        ]
+      },
+      "properties": {
+        "id": "recycling-175",
+        "name": "Sammelstelle 176",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.545361,
+          47.38163
+        ]
+      },
+      "properties": {
+        "id": "recycling-176",
+        "name": "Sammelstelle 177",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.54779,
+          47.383474
+        ]
+      },
+      "properties": {
+        "id": "recycling-177",
+        "name": "Sammelstelle 178",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.545168,
+          47.38665
+        ]
+      },
+      "properties": {
+        "id": "recycling-178",
+        "name": "Sammelstelle 179",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.549428,
+          47.390068
+        ]
+      },
+      "properties": {
+        "id": "recycling-179",
+        "name": "Sammelstelle 180",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.557552,
+          47.37091
+        ]
+      },
+      "properties": {
+        "id": "recycling-180",
+        "name": "Sammelstelle 181",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.555479,
+          47.367684
+        ]
+      },
+      "properties": {
+        "id": "recycling-181",
+        "name": "Sammelstelle 182",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.555124,
+          47.364594
+        ]
+      },
+      "properties": {
+        "id": "recycling-182",
+        "name": "Sammelstelle 183",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.548596,
+          47.386917
+        ]
+      },
+      "properties": {
+        "id": "recycling-183",
+        "name": "Sammelstelle 184",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.571826,
+          47.361024
+        ]
+      },
+      "properties": {
+        "id": "recycling-184",
+        "name": "Sammelstelle 185",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.524557,
+          47.379565
+        ]
+      },
+      "properties": {
+        "id": "recycling-185",
+        "name": "Sammelstelle 186",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.539283,
+          47.371078
+        ]
+      },
+      "properties": {
+        "id": "recycling-186",
+        "name": "Sammelstelle 187",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.565332,
+          47.361019
+        ]
+      },
+      "properties": {
+        "id": "recycling-187",
+        "name": "Sammelstelle 188",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.571985,
+          47.360818
+        ]
+      },
+      "properties": {
+        "id": "recycling-188",
+        "name": "Sammelstelle 189",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.547906,
+          47.363197
+        ]
+      },
+      "properties": {
+        "id": "recycling-189",
+        "name": "Sammelstelle 190",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.548975,
+          47.363397
+        ]
+      },
+      "properties": {
+        "id": "recycling-190",
+        "name": "Sammelstelle 191",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.535608,
+          47.38223
+        ]
+      },
+      "properties": {
+        "id": "recycling-191",
+        "name": "Sammelstelle 192",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.551103,
+          47.361522
+        ]
+      },
+      "properties": {
+        "id": "recycling-192",
+        "name": "Sammelstelle 193",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.553315,
+          47.363794
+        ]
+      },
+      "properties": {
+        "id": "recycling-193",
+        "name": "Sammelstelle 194",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.57294,
+          47.359073
+        ]
+      },
+      "properties": {
+        "id": "recycling-194",
+        "name": "Sammelstelle 195",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.527811,
+          47.357383
+        ]
+      },
+      "properties": {
+        "id": "recycling-195",
+        "name": "Sammelstelle 196",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.532209,
+          47.359846
+        ]
+      },
+      "properties": {
+        "id": "recycling-196",
+        "name": "Sammelstelle 197",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.526585,
+          47.361441
+        ]
+      },
+      "properties": {
+        "id": "recycling-197",
+        "name": "Sammelstelle 198",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.531412,
+          47.359559
+        ]
+      },
+      "properties": {
+        "id": "recycling-198",
+        "name": "Sammelstelle 199",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.541775,
+          47.383272
+        ]
+      },
+      "properties": {
+        "id": "recycling-199",
+        "name": "Sammelstelle 200",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.523311,
+          47.370553
+        ]
+      },
+      "properties": {
+        "id": "recycling-200",
+        "name": "Sammelstelle 201",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.555717,
+          47.358934
+        ]
+      },
+      "properties": {
+        "id": "recycling-201",
+        "name": "Sammelstelle 202",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.551279,
+          47.392455
+        ]
+      },
+      "properties": {
+        "id": "recycling-202",
+        "name": "Sammelstelle 203",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.5442,
+          47.385831
+        ]
+      },
+      "properties": {
+        "id": "recycling-203",
+        "name": "Sammelstelle 204",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.582148,
+          47.351922
+        ]
+      },
+      "properties": {
+        "id": "recycling-204",
+        "name": "Sammelstelle 205",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.575389,
+          47.35452
+        ]
+      },
+      "properties": {
+        "id": "recycling-205",
+        "name": "Sammelstelle 206",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.526869,
+          47.354243
+        ]
+      },
+      "properties": {
+        "id": "recycling-206",
+        "name": "Sammelstelle 207",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.52689,
+          47.354116
+        ]
+      },
+      "properties": {
+        "id": "recycling-207",
+        "name": "Sammelstelle 208",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.553246,
+          47.369559
+        ]
+      },
+      "properties": {
+        "id": "recycling-208",
+        "name": "Sammelstelle 209",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.550466,
+          47.361206
+        ]
+      },
+      "properties": {
+        "id": "recycling-209",
+        "name": "Sammelstelle 210",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.552306,
+          47.359388
+        ]
+      },
+      "properties": {
+        "id": "recycling-210",
+        "name": "Sammelstelle 211",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.551037,
+          47.360783
+        ]
+      },
+      "properties": {
+        "id": "recycling-211",
+        "name": "Sammelstelle 212",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.572824,
+          47.355259
+        ]
+      },
+      "properties": {
+        "id": "recycling-212",
+        "name": "Sammelstelle 213",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.55802,
+          47.35608
+        ]
+      },
+      "properties": {
+        "id": "recycling-213",
+        "name": "Sammelstelle 214",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.526911,
+          47.353989
+        ]
+      },
+      "properties": {
+        "id": "recycling-214",
+        "name": "Sammelstelle 215",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.556781,
+          47.354349
+        ]
+      },
+      "properties": {
+        "id": "recycling-215",
+        "name": "Sammelstelle 216",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.555975,
+          47.355262
+        ]
+      },
+      "properties": {
+        "id": "recycling-216",
+        "name": "Sammelstelle 217",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.555286,
+          47.357423
+        ]
+      },
+      "properties": {
+        "id": "recycling-217",
+        "name": "Sammelstelle 218",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.560656,
+          47.361535
+        ]
+      },
+      "properties": {
+        "id": "recycling-218",
+        "name": "Sammelstelle 219",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.553062,
+          47.357093
+        ]
+      },
+      "properties": {
+        "id": "recycling-219",
+        "name": "Sammelstelle 220",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.530021,
+          47.408284
+        ]
+      },
+      "properties": {
+        "id": "recycling-220",
+        "name": "Sammelstelle 221",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.544072,
+          47.391082
+        ]
+      },
+      "properties": {
+        "id": "recycling-221",
+        "name": "Sammelstelle 222",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.559744,
+          47.372628
+        ]
+      },
+      "properties": {
+        "id": "recycling-222",
+        "name": "Sammelstelle 223",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.540712,
+          47.402398
+        ]
+      },
+      "properties": {
+        "id": "recycling-223",
+        "name": "Sammelstelle 224",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.538715,
+          47.398427
+        ]
+      },
+      "properties": {
+        "id": "recycling-224",
+        "name": "Sammelstelle 225",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.543156,
+          47.393676
+        ]
+      },
+      "properties": {
+        "id": "recycling-225",
+        "name": "Sammelstelle 226",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.534395,
+          47.393
+        ]
+      },
+      "properties": {
+        "id": "recycling-226",
+        "name": "Sammelstelle 227",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.539151,
+          47.383514
+        ]
+      },
+      "properties": {
+        "id": "recycling-227",
+        "name": "Sammelstelle 228",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.532388,
+          47.39616
+        ]
+      },
+      "properties": {
+        "id": "recycling-228",
+        "name": "Sammelstelle 229",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.543309,
+          47.373415
+        ]
+      },
+      "properties": {
+        "id": "recycling-229",
+        "name": "Sammelstelle 230",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.538667,
+          47.409752
+        ]
+      },
+      "properties": {
+        "id": "recycling-230",
+        "name": "Sammelstelle 231",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.5455,
+          47.411415
+        ]
+      },
+      "properties": {
+        "id": "recycling-231",
+        "name": "Sammelstelle 232",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.554134,
+          47.364185
+        ]
+      },
+      "properties": {
+        "id": "recycling-232",
+        "name": "Sammelstelle 233",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.555457,
+          47.375341
+        ]
+      },
+      "properties": {
+        "id": "recycling-233",
+        "name": "Sammelstelle 234",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.550974,
+          47.381553
+        ]
+      },
+      "properties": {
+        "id": "recycling-234",
+        "name": "Sammelstelle 235",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.599747,
+          47.357827
+        ]
+      },
+      "properties": {
+        "id": "recycling-235",
+        "name": "Sammelstelle 236",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.578853,
+          47.356688
+        ]
+      },
+      "properties": {
+        "id": "recycling-236",
+        "name": "Sammelstelle 237",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.525053,
+          47.369921
+        ]
+      },
+      "properties": {
+        "id": "recycling-237",
+        "name": "Sammelstelle 238",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.546675,
+          47.409242
+        ]
+      },
+      "properties": {
+        "id": "recycling-238",
+        "name": "Sammelstelle 239",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.54977,
+          47.370517
+        ]
+      },
+      "properties": {
+        "id": "recycling-239",
+        "name": "Sammelstelle 240",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.532059,
+          47.364684
+        ]
+      },
+      "properties": {
+        "id": "recycling-240",
+        "name": "Sammelstelle 241",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.539106,
+          47.369144
+        ]
+      },
+      "properties": {
+        "id": "recycling-241",
+        "name": "Sammelstelle 242",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.538661,
+          47.375824
+        ]
+      },
+      "properties": {
+        "id": "recycling-242",
+        "name": "Sammelstelle 243",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.536001,
+          47.369285
+        ]
+      },
+      "properties": {
+        "id": "recycling-243",
+        "name": "Sammelstelle 244",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.505357,
+          47.417939
+        ]
+      },
+      "properties": {
+        "id": "recycling-244",
+        "name": "Sammelstelle 245",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.525001,
+          47.411707
+        ]
+      },
+      "properties": {
+        "id": "recycling-245",
+        "name": "Sammelstelle 246",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.52441,
+          47.412192
+        ]
+      },
+      "properties": {
+        "id": "recycling-246",
+        "name": "Sammelstelle 247",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.560494,
+          47.366957
+        ]
+      },
+      "properties": {
+        "id": "recycling-247",
+        "name": "Sammelstelle 248",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.538217,
+          47.376267
+        ]
+      },
+      "properties": {
+        "id": "recycling-248",
+        "name": "Sammelstelle 249",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.499114,
+          47.401561
+        ]
+      },
+      "properties": {
+        "id": "recycling-249",
+        "name": "Sammelstelle 250",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.562274,
+          47.383154
+        ]
+      },
+      "properties": {
+        "id": "recycling-250",
+        "name": "Sammelstelle 251",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.526286,
+          47.369686
+        ]
+      },
+      "properties": {
+        "id": "recycling-251",
+        "name": "Sammelstelle 252",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.530162,
+          47.398371
+        ]
+      },
+      "properties": {
+        "id": "recycling-252",
+        "name": "Sammelstelle 253",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.490725,
+          47.401652
+        ]
+      },
+      "properties": {
+        "id": "recycling-253",
+        "name": "Sammelstelle 254",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.486155,
+          47.403642
+        ]
+      },
+      "properties": {
+        "id": "recycling-254",
+        "name": "Sammelstelle 255",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.489902,
+          47.403779
+        ]
+      },
+      "properties": {
+        "id": "recycling-255",
+        "name": "Sammelstelle 256",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.48537,
+          47.405801
+        ]
+      },
+      "properties": {
+        "id": "recycling-256",
+        "name": "Sammelstelle 257",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.563966,
+          47.381964
+        ]
+      },
+      "properties": {
+        "id": "recycling-257",
+        "name": "Sammelstelle 258",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.556128,
+          47.38626
+        ]
+      },
+      "properties": {
+        "id": "recycling-258",
+        "name": "Sammelstelle 259",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.529699,
+          47.372729
+        ]
+      },
+      "properties": {
+        "id": "recycling-259",
+        "name": "Sammelstelle 260",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.479783,
+          47.389137
+        ]
+      },
+      "properties": {
+        "id": "recycling-260",
+        "name": "Sammelstelle 261",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.572705,
+          47.358034
+        ]
+      },
+      "properties": {
+        "id": "recycling-261",
+        "name": "Sammelstelle 262",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.50177,
+          47.400695
+        ]
+      },
+      "properties": {
+        "id": "recycling-262",
+        "name": "Sammelstelle 263",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.512632,
+          47.39702
+        ]
+      },
+      "properties": {
+        "id": "recycling-263",
+        "name": "Sammelstelle 264",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.489542,
+          47.370604
+        ]
+      },
+      "properties": {
+        "id": "recycling-264",
+        "name": "Sammelstelle 265",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.498397,
+          47.385042
+        ]
+      },
+      "properties": {
+        "id": "recycling-265",
+        "name": "Sammelstelle 266",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.490019,
+          47.404317
+        ]
+      },
+      "properties": {
+        "id": "recycling-266",
+        "name": "Sammelstelle 267",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.505845,
+          47.398655
+        ]
+      },
+      "properties": {
+        "id": "recycling-267",
+        "name": "Sammelstelle 268",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.544282,
+          47.366779
+        ]
+      },
+      "properties": {
+        "id": "recycling-268",
+        "name": "Sammelstelle 269",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.509389,
+          47.369688
+        ]
+      },
+      "properties": {
+        "id": "recycling-269",
+        "name": "Sammelstelle 270",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.494993,
+          47.367151
+        ]
+      },
+      "properties": {
+        "id": "recycling-270",
+        "name": "Sammelstelle 271",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.494324,
+          47.403144
+        ]
+      },
+      "properties": {
+        "id": "recycling-271",
+        "name": "Sammelstelle 272",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.519839,
+          47.366213
+        ]
+      },
+      "properties": {
+        "id": "recycling-272",
+        "name": "Sammelstelle 273",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.513122,
+          47.370391
+        ]
+      },
+      "properties": {
+        "id": "recycling-273",
+        "name": "Sammelstelle 274",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.508758,
+          47.353921
+        ]
+      },
+      "properties": {
+        "id": "recycling-274",
+        "name": "Sammelstelle 275",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.519162,
+          47.334071
+        ]
+      },
+      "properties": {
+        "id": "recycling-275",
+        "name": "Sammelstelle 276",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.513614,
+          47.334108
+        ]
+      },
+      "properties": {
+        "id": "recycling-276",
+        "name": "Sammelstelle 277",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.513387,
+          47.396385
+        ]
+      },
+      "properties": {
+        "id": "recycling-277",
+        "name": "Sammelstelle 278",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.532229,
+          47.349605
+        ]
+      },
+      "properties": {
+        "id": "recycling-278",
+        "name": "Sammelstelle 279",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.535162,
+          47.33425
+        ]
+      },
+      "properties": {
+        "id": "recycling-279",
+        "name": "Sammelstelle 280",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.51462,
+          47.336218
+        ]
+      },
+      "properties": {
+        "id": "recycling-280",
+        "name": "Sammelstelle 281",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.544159,
+          47.375567
+        ]
+      },
+      "properties": {
+        "id": "recycling-281",
+        "name": "Sammelstelle 282",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.529468,
+          47.338245
+        ]
+      },
+      "properties": {
+        "id": "recycling-282",
+        "name": "Sammelstelle 283",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.522211,
+          47.338938
+        ]
+      },
+      "properties": {
+        "id": "recycling-283",
+        "name": "Sammelstelle 284",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.540432,
+          47.370419
+        ]
+      },
+      "properties": {
+        "id": "recycling-284",
+        "name": "Sammelstelle 285",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.543274,
+          47.372205
+        ]
+      },
+      "properties": {
+        "id": "recycling-285",
+        "name": "Sammelstelle 286",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.543142,
+          47.372846
+        ]
+      },
+      "properties": {
+        "id": "recycling-286",
+        "name": "Sammelstelle 287",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.530687,
+          47.344614
+        ]
+      },
+      "properties": {
+        "id": "recycling-287",
+        "name": "Sammelstelle 288",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.523342,
+          47.370566
+        ]
+      },
+      "properties": {
+        "id": "recycling-288",
+        "name": "Sammelstelle 289",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.506498,
+          47.365711
+        ]
+      },
+      "properties": {
+        "id": "recycling-289",
+        "name": "Sammelstelle 290",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.52693,
+          47.358188
+        ]
+      },
+      "properties": {
+        "id": "recycling-290",
+        "name": "Sammelstelle 291",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.520735,
+          47.370214
+        ]
+      },
+      "properties": {
+        "id": "recycling-291",
+        "name": "Sammelstelle 292",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.530216,
+          47.375328
+        ]
+      },
+      "properties": {
+        "id": "recycling-292",
+        "name": "Sammelstelle 293",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.544263,
+          47.372308
+        ]
+      },
+      "properties": {
+        "id": "recycling-293",
+        "name": "Sammelstelle 294",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.547736,
+          47.366588
+        ]
+      },
+      "properties": {
+        "id": "recycling-294",
+        "name": "Sammelstelle 295",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.524348,
+          47.369946
+        ]
+      },
+      "properties": {
+        "id": "recycling-295",
+        "name": "Sammelstelle 296",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.52533,
+          47.369797
+        ]
+      },
+      "properties": {
+        "id": "recycling-296",
+        "name": "Sammelstelle 297",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.516808,
+          47.370923
+        ]
+      },
+      "properties": {
+        "id": "recycling-297",
+        "name": "Sammelstelle 298",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.517125,
+          47.374195
+        ]
+      },
+      "properties": {
+        "id": "recycling-298",
+        "name": "Sammelstelle 299",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.529904,
+          47.384697
+        ]
+      },
+      "properties": {
+        "id": "recycling-299",
+        "name": "Sammelstelle 300",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.532071,
+          47.373705
+        ]
+      },
+      "properties": {
+        "id": "recycling-300",
+        "name": "Sammelstelle 301",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.548511,
+          47.384785
+        ]
+      },
+      "properties": {
+        "id": "recycling-301",
+        "name": "Sammelstelle 302",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.547799,
+          47.366598
+        ]
+      },
+      "properties": {
+        "id": "recycling-302",
+        "name": "Sammelstelle 303",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.551117,
+          47.361527
+        ]
+      },
+      "properties": {
+        "id": "recycling-303",
+        "name": "Sammelstelle 304",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.544034,
+          47.36835
+        ]
+      },
+      "properties": {
+        "id": "recycling-304",
+        "name": "Sammelstelle 305",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.531068,
+          47.382938
+        ]
+      },
+      "properties": {
+        "id": "recycling-305",
+        "name": "Sammelstelle 306",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.572892,
+          47.35909
+        ]
+      },
+      "properties": {
+        "id": "recycling-306",
+        "name": "Sammelstelle 307",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.524042,
+          47.378415
+        ]
+      },
+      "properties": {
+        "id": "recycling-307",
+        "name": "Sammelstelle 308",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.540812,
+          47.368156
+        ]
+      },
+      "properties": {
+        "id": "recycling-308",
+        "name": "Sammelstelle 309",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.571747,
+          47.358271
+        ]
+      },
+      "properties": {
+        "id": "recycling-309",
+        "name": "Sammelstelle 310",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.554705,
+          47.400539
+        ]
+      },
+      "properties": {
+        "id": "recycling-310",
+        "name": "Sammelstelle 311",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.54039,
+          47.369644
+        ]
+      },
+      "properties": {
+        "id": "recycling-311",
+        "name": "Sammelstelle 312",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.540189,
+          47.368067
+        ]
+      },
+      "properties": {
+        "id": "recycling-312",
+        "name": "Sammelstelle 313",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.54173,
+          47.397773
+        ]
+      },
+      "properties": {
+        "id": "recycling-313",
+        "name": "Sammelstelle 314",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.560656,
+          47.361581
+        ]
+      },
+      "properties": {
+        "id": "recycling-314",
+        "name": "Sammelstelle 315",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.524335,
+          47.393207
+        ]
+      },
+      "properties": {
+        "id": "recycling-315",
+        "name": "Sammelstelle 316",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.538681,
+          47.375876
+        ]
+      },
+      "properties": {
+        "id": "recycling-316",
+        "name": "Sammelstelle 317",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.543132,
+          47.372954
+        ]
+      },
+      "properties": {
+        "id": "recycling-317",
+        "name": "Sammelstelle 318",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.562948,
+          47.35496
+        ]
+      },
+      "properties": {
+        "id": "recycling-318",
+        "name": "Sammelstelle 319",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.542242,
+          47.367849
+        ]
+      },
+      "properties": {
+        "id": "recycling-319",
+        "name": "Sammelstelle 320",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.540918,
+          47.378989
+        ]
+      },
+      "properties": {
+        "id": "recycling-320",
+        "name": "Sammelstelle 321",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.535228,
+          47.37584
+        ]
+      },
+      "properties": {
+        "id": "recycling-321",
+        "name": "Sammelstelle 322",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.523551,
+          47.377786
+        ]
+      },
+      "properties": {
+        "id": "recycling-322",
+        "name": "Sammelstelle 323",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.54788,
+          47.360697
+        ]
+      },
+      "properties": {
+        "id": "recycling-323",
+        "name": "Sammelstelle 324",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.535901,
+          47.36114
+        ]
+      },
+      "properties": {
+        "id": "recycling-324",
+        "name": "Sammelstelle 325",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.546215,
+          47.363942
+        ]
+      },
+      "properties": {
+        "id": "recycling-325",
+        "name": "Sammelstelle 326",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.544012,
+          47.368334
+        ]
+      },
+      "properties": {
+        "id": "recycling-326",
+        "name": "Sammelstelle 327",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.513554,
+          47.370067
+        ]
+      },
+      "properties": {
+        "id": "recycling-327",
+        "name": "Sammelstelle 328",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.554119,
+          47.365021
+        ]
+      },
+      "properties": {
+        "id": "recycling-328",
+        "name": "Sammelstelle 329",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.53285,
+          47.398489
+        ]
+      },
+      "properties": {
+        "id": "recycling-329",
+        "name": "Sammelstelle 330",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.54342,
+          47.371512
+        ]
+      },
+      "properties": {
+        "id": "recycling-330",
+        "name": "Sammelstelle 331",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.49323,
+          47.398746
+        ]
+      },
+      "properties": {
+        "id": "recycling-331",
+        "name": "Sammelstelle 332",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.546395,
+          47.368805
+        ]
+      },
+      "properties": {
+        "id": "recycling-332",
+        "name": "Sammelstelle 333",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.54527,
+          47.411708
+        ]
+      },
+      "properties": {
+        "id": "recycling-333",
+        "name": "Sammelstelle 334",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.544533,
+          47.372171
+        ]
+      },
+      "properties": {
+        "id": "recycling-334",
+        "name": "Sammelstelle 335",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.521906,
+          47.373799
+        ]
+      },
+      "properties": {
+        "id": "recycling-335",
+        "name": "Sammelstelle 336",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.540151,
+          47.368694
+        ]
+      },
+      "properties": {
+        "id": "recycling-336",
+        "name": "Sammelstelle 337",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.53816,
+          47.376074
+        ]
+      },
+      "properties": {
+        "id": "recycling-337",
+        "name": "Sammelstelle 338",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.546515,
+          47.370896
+        ]
+      },
+      "properties": {
+        "id": "recycling-338",
+        "name": "Sammelstelle 339",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.510293,
+          47.413698
+        ]
+      },
+      "properties": {
+        "id": "recycling-339",
+        "name": "Sammelstelle 340",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.543179,
+          47.372744
+        ]
+      },
+      "properties": {
+        "id": "recycling-340",
+        "name": "Sammelstelle 341",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.541808,
+          47.397802
+        ]
+      },
+      "properties": {
+        "id": "recycling-341",
+        "name": "Sammelstelle 342",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.549961,
+          47.422972
+        ]
+      },
+      "properties": {
+        "id": "recycling-342",
+        "name": "Sammelstelle 343",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.555257,
+          47.357458
+        ]
+      },
+      "properties": {
+        "id": "recycling-343",
+        "name": "Sammelstelle 344",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.514926,
+          47.372376
+        ]
+      },
+      "properties": {
+        "id": "recycling-344",
+        "name": "Sammelstelle 345",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.543404,
+          47.384707
+        ]
+      },
+      "properties": {
+        "id": "recycling-345",
+        "name": "Sammelstelle 346",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.558677,
+          47.384839
+        ]
+      },
+      "properties": {
+        "id": "recycling-346",
+        "name": "Sammelstelle 347",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.552712,
+          47.383544
+        ]
+      },
+      "properties": {
+        "id": "recycling-347",
+        "name": "Sammelstelle 348",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.544408,
+          47.37665
+        ]
+      },
+      "properties": {
+        "id": "recycling-348",
+        "name": "Sammelstelle 349",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.547406,
+          47.407403
+        ]
+      },
+      "properties": {
+        "id": "recycling-349",
+        "name": "Sammelstelle 350",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.541341,
+          47.374515
+        ]
+      },
+      "properties": {
+        "id": "recycling-350",
+        "name": "Sammelstelle 351",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.543111,
+          47.37138
+        ]
+      },
+      "properties": {
+        "id": "recycling-351",
+        "name": "Sammelstelle 352",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.516125,
+          47.375223
+        ]
+      },
+      "properties": {
+        "id": "recycling-352",
+        "name": "Sammelstelle 353",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.528962,
+          47.38502
+        ]
+      },
+      "properties": {
+        "id": "recycling-353",
+        "name": "Sammelstelle 354",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.547681,
+          47.365795
+        ]
+      },
+      "properties": {
+        "id": "recycling-354",
+        "name": "Sammelstelle 355",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.547681,
+          47.365795
+        ]
+      },
+      "properties": {
+        "id": "recycling-355",
+        "name": "Sammelstelle 356",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.556944,
+          47.354835
+        ]
+      },
+      "properties": {
+        "id": "recycling-356",
+        "name": "Sammelstelle 357",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.522088,
+          47.363022
+        ]
+      },
+      "properties": {
+        "id": "recycling-357",
+        "name": "Sammelstelle 358",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.52012,
+          47.364694
+        ]
+      },
+      "properties": {
+        "id": "recycling-358",
+        "name": "Sammelstelle 359",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.534298,
+          47.380734
+        ]
+      },
+      "properties": {
+        "id": "recycling-359",
+        "name": "Sammelstelle 360",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.489487,
+          47.386988
+        ]
+      },
+      "properties": {
+        "id": "recycling-360",
+        "name": "Sammelstelle 361",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.530343,
+          47.38418
+        ]
+      },
+      "properties": {
+        "id": "recycling-361",
+        "name": "Sammelstelle 362",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.541776,
+          47.383263
+        ]
+      },
+      "properties": {
+        "id": "recycling-362",
+        "name": "Sammelstelle 363",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.522235,
+          47.376224
+        ]
+      },
+      "properties": {
+        "id": "recycling-363",
+        "name": "Sammelstelle 364",
+        "department": "TED"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.522039,
+          47.363363
+        ]
+      },
+      "properties": {
+        "id": "recycling-364",
+        "name": "Sammelstelle 365",
+        "department": "TED"
+      }
+    }
+  ]
+}

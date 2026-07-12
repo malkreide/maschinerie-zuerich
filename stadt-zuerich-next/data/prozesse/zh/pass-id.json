@@ -1,0 +1,507 @@
+{
+  "$schema": "../../../schemas/opengov-process-schema.json",
+  "schema_version": "0.1.0",
+  "id": "pass-id",
+  "lebenslage_ref": "pass-id",
+  "city": "zh",
+  "title": {
+    "de": "Pass oder Identitätskarte beantragen",
+    "en": "Apply for a passport or identity card",
+    "fr": "Demander un passeport ou une carte d'identité",
+    "it": "Richiedere passaporto o carta d'identità",
+    "ls": "Pass oder Identitäts-Karte beantragen"
+  },
+  "description": {
+    "de": "Wer in der Stadt Zürich wohnt und einen Schweizer Pass oder eine Identitätskarte (ID) braucht, beantragt diese über das eidgenössische Antragsportal. Pass und das Kombi-Angebot (Pass + ID) erfordern eine biometrische Erfassung im kantonalen Biometriezentrum; eine ID allein kann ohne Biometrie beim Bevölkerungsamt bestellt werden. Die Ausweise werden zentral produziert und per Post zugestellt.",
+    "en": "Residents of the City of Zurich who need a Swiss passport or an identity card (ID) apply via the federal application portal. The passport and the combined offer (passport + ID) require a biometric capture at the cantonal biometrics centre; an ID on its own can be ordered without biometrics at the population office. The documents are produced centrally and delivered by post.",
+    "fr": "Les personnes domiciliées en ville de Zurich qui ont besoin d'un passeport suisse ou d'une carte d'identité (CI) en font la demande via le portail fédéral de demande. Le passeport et l'offre combinée (passeport + CI) nécessitent une saisie biométrique au centre cantonal de biométrie; une carte d'identité seule peut être commandée sans biométrie auprès du service de la population. Les documents sont produits de manière centralisée et envoyés par la poste.",
+    "it": "Chi risiede nella città di Zurigo e ha bisogno di un passaporto svizzero o di una carta d'identità (CI) ne fa richiesta tramite il portale federale delle domande. Il passaporto e l'offerta combinata (passaporto + CI) richiedono una rilevazione biometrica presso il centro cantonale di biometria; una sola carta d'identità può essere ordinata senza biometria presso l'ufficio della popolazione. I documenti vengono prodotti in modo centralizzato e recapitati per posta.",
+    "ls": "Sie brauchen einen Pass oder eine Identitäts-Karte? Die Identitäts-Karte heisst auch ID. Sie melden sich im Internet an. Für den Pass gehen Sie zu einem Termin. Dort macht man ein Foto und nimmt Ihre Finger-Abdrücke. Den Ausweis bekommen Sie dann mit der Post."
+  },
+  "target_audience": "bevoelkerung",
+  "preconditions": [
+    {
+      "de": "Sie sind Schweizer Staatsangehörige:r und haben Ihren Wohnsitz in der Stadt Zürich.",
+      "en": "You are a Swiss citizen with residence in the City of Zurich.",
+      "fr": "Vous êtes de nationalité suisse et avez votre domicile en ville de Zurich.",
+      "it": "Lei è cittadina o cittadino svizzero e ha il domicilio nella città di Zurigo.",
+      "ls": "Sie sind Schweizerin oder Schweizer. Sie wohnen in der Stadt Zürich."
+    }
+  ],
+  "source_url": "https://www.ch.ch/de/gultigkeit-kosten-pass-identitatskarte/",
+  "retrieved_at": "2026-06-22",
+  "disclaimer_key": "Prozesse.disclaimer",
+  "references": [
+    {
+      "reference_id": 1,
+      "label": {
+        "de": "Gebühr für den Schweizer Pass (Erwachsene und Kinder unterschiedlich)",
+        "en": "Fee for the Swiss passport (different for adults and children)",
+        "fr": "Émolument pour le passeport suisse (différent pour les adultes et les enfants)",
+        "it": "Emolumento per il passaporto svizzero (diverso per adulti e bambini)",
+        "ls": "Was der Pass kostet"
+      },
+      "source_url": "https://www.ch.ch/de/gultigkeit-kosten-pass-identitatskarte/",
+      "source_quote": "Preise Identitätskarte Pass Kombiangebot Provisorischer Pass Provisorischer Pass, wenn am Flughafen ausgestellt Erwachsene 65.- CHF + 5.- CHF Porto 140.- CHF + 5.- CHF Porto 148.- CHF + 10.- CHF Porto Mind. 100.- CHF Mind. 150.- CHF Kinder und Jugendliche bis 18 Jahre 30.- CHF + 5.- CHF Porto 60.- CHF + 5.- CHF Porto 68.- CHF + 10.- CHF Porto Mind. 100.- CHF Mind. 150.- CHF",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-27"
+    },
+    {
+      "reference_id": 2,
+      "label": {
+        "de": "Gebühr für die Identitätskarte (Erwachsene und Kinder unterschiedlich)",
+        "en": "Fee for the identity card (different for adults and children)",
+        "fr": "Émolument pour la carte d'identité (différent pour les adultes et les enfants)",
+        "it": "Emolumento per la carta d'identità (diverso per adulti e bambini)",
+        "ls": "Was die Identitäts-Karte kostet"
+      },
+      "source_url": "https://www.ch.ch/de/gultigkeit-kosten-pass-identitatskarte/",
+      "source_quote": "Preise Identitätskarte Pass Kombiangebot Provisorischer Pass Provisorischer Pass, wenn am Flughafen ausgestellt Erwachsene 65.- CHF + 5.- CHF Porto 140.- CHF + 5.- CHF Porto 148.- CHF + 10.- CHF Porto Mind. 100.- CHF Mind. 150.- CHF Kinder und Jugendliche bis 18 Jahre 30.- CHF + 5.- CHF Porto 60.- CHF + 5.- CHF Porto 68.- CHF + 10.- CHF Porto Mind. 100.- CHF Mind. 150.- CHF",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-27"
+    },
+    {
+      "reference_id": 3,
+      "label": {
+        "de": "Gültigkeitsdauer von Pass und Identitätskarte (Erwachsene und Kinder unterschiedlich)",
+        "en": "Validity period of passport and identity card (different for adults and children)",
+        "fr": "Durée de validité du passeport et de la carte d'identité (différente pour les adultes et les enfants)",
+        "it": "Durata di validità del passaporto e della carta d'identità (diversa per adulti e bambini)",
+        "ls": "Wie lange Pass und Identitäts-Karte gültig sind"
+      },
+      "source_url": "https://www.ch.ch/de/gultigkeit-kosten-pass-identitatskarte/",
+      "source_quote": "Der Pass und die Identitätskarte von Erwachsenen sind 10 Jahre gültig, bei Kindern und Jugendlichen bis zum vollendeten 18. Lebensjahr sind es fünf Jahre.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-25"
+    },
+    {
+      "reference_id": 4,
+      "label": {
+        "de": "Produktions- und Zustellzeit nach der Erfassung",
+        "en": "Production and delivery time after the capture",
+        "fr": "Délai de production et de livraison après la saisie",
+        "it": "Tempo di produzione e di recapito dopo la rilevazione",
+        "ls": "Wie lange Sie auf den Ausweis warten"
+      },
+      "source_url": "https://www.ch.ch/de/reisen-und-auswandern/ins-ausland-reisen/pass-und-identitatskarte/pass-und-identitatskarte-bestellen/",
+      "source_quote": "Rechnen Sie mit ungefähr 10 Arbeitstagen, bis Sie die Ausweise erhalten. Auslandschweizerinnen und Auslandschweizer sollten mit 30 Tagen rechnen.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-27"
+    }
+  ],
+  "actors": [
+    {
+      "id": "person",
+      "label": {
+        "de": "Antragstellende Person",
+        "en": "Applicant",
+        "fr": "Personne requérante",
+        "it": "Persona richiedente",
+        "ls": "Sie (Sie brauchen einen Ausweis)"
+      },
+      "type": "antragsteller"
+    },
+    {
+      "id": "bev",
+      "label": {
+        "de": "Bevölkerungsamt der Stadt Zürich",
+        "en": "Population Office of the City of Zurich",
+        "fr": "Service de la population de la ville de Zurich",
+        "it": "Ufficio della popolazione della città di Zurigo",
+        "ls": "Das Bevölkerungs-Amt"
+      },
+      "type": "behoerde",
+      "einheit_ref": "SiD-bev"
+    },
+    {
+      "id": "biometrie",
+      "label": {
+        "de": "Kantonales Biometriezentrum (Pass- und Legitimationsbüro)",
+        "en": "Cantonal biometrics centre (passport office)",
+        "fr": "Centre cantonal de biométrie (bureau des passeports et des pièces de légitimation)",
+        "it": "Centro cantonale di biometria (ufficio passaporti e documenti di legittimazione)",
+        "ls": "Das Biometrie-Zentrum vom Kanton"
+      },
+      "type": "fachstelle"
+    },
+    {
+      "id": "bund",
+      "label": {
+        "de": "Eidgenössische Ausweisproduktion (fedpol)",
+        "en": "Federal document production (fedpol)",
+        "fr": "Production fédérale des documents d'identité (fedpol)",
+        "it": "Produzione federale dei documenti d'identità (fedpol)",
+        "ls": "Die Stelle vom Bund, die den Ausweis druckt"
+      },
+      "type": "dritte"
+    }
+  ],
+  "steps": [
+    {
+      "step_id": 1,
+      "actor": "person",
+      "label": {
+        "de": "Pass oder Identitätskarte wird benötigt",
+        "en": "Passport or identity card is needed",
+        "fr": "Un passeport ou une carte d'identité est nécessaire",
+        "it": "Serve un passaporto o una carta d'identità",
+        "ls": "Sie brauchen einen neuen Ausweis"
+      },
+      "depends_on": [],
+      "type": "start"
+    },
+    {
+      "step_id": 2,
+      "actor": "person",
+      "label": {
+        "de": "Welcher Ausweis?",
+        "en": "Which document?",
+        "fr": "Quel document?",
+        "it": "Quale documento?",
+        "ls": "Welchen Ausweis wollen Sie?"
+      },
+      "depends_on": [
+        1
+      ],
+      "type": "entscheidung",
+      "description": {
+        "de": "Zur Wahl stehen der Pass, die Identitätskarte (ID) oder das Kombi-Angebot Pass + ID. Pass und Kombi-Angebot erfordern eine biometrische Erfassung, die ID allein nicht.",
+        "en": "The options are the passport, the identity card (ID) or the combined passport + ID offer. The passport and the combined offer require a biometric capture, the ID on its own does not.",
+        "fr": "Vous avez le choix entre le passeport, la carte d'identité (CI) ou l'offre combinée passeport + CI. Le passeport et l'offre combinée nécessitent une saisie biométrique, la carte d'identité seule non.",
+        "it": "Si può scegliere tra il passaporto, la carta d'identità (CI) o l'offerta combinata passaporto + CI. Il passaporto e l'offerta combinata richiedono una rilevazione biometrica, la sola carta d'identità no.",
+        "ls": "Sie können wählen: nur Pass, nur Identitäts-Karte oder beides. Für den Pass brauchen Sie einen Termin."
+      },
+      "source_id": "q-schweizpass"
+    },
+    {
+      "step_id": 3,
+      "actor": "person",
+      "label": {
+        "de": "Antrag online im eidgenössischen Antragsportal erfassen",
+        "en": "Submit the application in the federal online portal",
+        "fr": "Saisir la demande en ligne dans le portail fédéral de demande",
+        "it": "Inoltrare la domanda online nel portale federale delle domande",
+        "ls": "Sich im Internet anmelden"
+      },
+      "depends_on": [
+        2
+      ],
+      "reference_ids": [
+        1,
+        2
+      ],
+      "type": "input",
+      "description": {
+        "de": "Im Antragsportal werden die Personendaten erfasst und die gewünschten Ausweise gewählt. Die Gebühr richtet sich nach Ausweisart und Alter.",
+        "en": "The application portal captures personal data and lets you select the documents. The fee depends on the type of document and the applicant's age.",
+        "fr": "Dans le portail de demande, les données personnelles sont saisies et les documents souhaités sont sélectionnés. L'émolument dépend du type de document et de l'âge.",
+        "it": "Nel portale delle domande vengono registrati i dati personali e scelti i documenti desiderati. L'emolumento dipende dal tipo di documento e dall'età.",
+        "ls": "Sie geben Ihre Daten im Internet ein. Sie wählen den Ausweis. Dann sehen Sie, was es kostet."
+      },
+      "documents": [
+        {
+          "label": {
+            "de": "Bisheriger Pass oder bisherige Identitätskarte (falls vorhanden)",
+            "en": "Previous passport or identity card (if available)",
+            "fr": "Ancien passeport ou ancienne carte d'identité (si disponible)",
+            "it": "Passaporto o carta d'identità precedente (se disponibile)"
+          },
+          "required": false
+        },
+        {
+          "label": {
+            "de": "Angaben zur Wohnadresse in der Stadt Zürich",
+            "en": "Details of the residential address in the City of Zurich",
+            "fr": "Indications relatives à l'adresse de domicile en ville de Zurich",
+            "it": "Indicazioni sull'indirizzo di domicilio nella città di Zurigo"
+          },
+          "required": true
+        }
+      ],
+      "source_id": "q-schweizpass"
+    },
+    {
+      "step_id": 4,
+      "actor": "person",
+      "label": {
+        "de": "Biometrische Erfassung nötig?",
+        "en": "Biometric capture required?",
+        "fr": "Saisie biométrique nécessaire?",
+        "it": "Serve una rilevazione biometrica?",
+        "ls": "Brauchen Sie einen Termin?"
+      },
+      "depends_on": [
+        3
+      ],
+      "type": "entscheidung"
+    },
+    {
+      "step_id": 5,
+      "actor": "biometrie",
+      "label": {
+        "de": "Termin im Biometriezentrum wahrnehmen",
+        "en": "Attend the appointment at the biometrics centre",
+        "fr": "Se présenter au rendez-vous au centre de biométrie",
+        "it": "Presentarsi all'appuntamento presso il centro di biometria",
+        "ls": "Zum Termin gehen"
+      },
+      "depends_on": [
+        {
+          "step_id": 4,
+          "condition": {
+            "de": "Pass oder Kombi-Angebot",
+            "en": "passport or combined offer",
+            "fr": "passeport ou offre combinée",
+            "it": "passaporto o offerta combinata"
+          }
+        }
+      ],
+      "type": "input",
+      "description": {
+        "de": "Im kantonalen Biometriezentrum werden Foto, Fingerabdrücke und Unterschrift erfasst. Dazu wird ein gültiges Ausweisdokument vorgelegt.",
+        "en": "At the cantonal biometrics centre, photo, fingerprints and signature are captured. A valid identity document is presented.",
+        "fr": "Au centre cantonal de biométrie, la photo, les empreintes digitales et la signature sont saisies. Un document d'identité valable est présenté à cette occasion.",
+        "it": "Presso il centro cantonale di biometria vengono rilevati la fotografia, le impronte digitali e la firma. A tale scopo si presenta un documento d'identità valido.",
+        "ls": "Im Biometrie-Zentrum macht man ein Foto. Man nimmt Ihre Finger-Abdrücke. Sie schreiben Ihre Unterschrift."
+      },
+      "documents": [
+        {
+          "label": {
+            "de": "Gültiges Ausweisdokument zur Identifikation",
+            "en": "Valid identity document for identification",
+            "fr": "Document d'identité valable pour l'identification",
+            "it": "Documento d'identità valido per l'identificazione"
+          },
+          "required": true
+        }
+      ],
+      "source_id": "q-schweizpass"
+    },
+    {
+      "step_id": 6,
+      "actor": "bev",
+      "label": {
+        "de": "Identitätskarte ohne Biometrie beim Bevölkerungsamt bestellen",
+        "en": "Order the ID without biometrics at the population office",
+        "fr": "Commander la carte d'identité sans biométrie auprès du service de la population",
+        "it": "Ordinare la carta d'identità senza biometria presso l'ufficio della popolazione",
+        "ls": "Die Identitäts-Karte beim Bevölkerungs-Amt bestellen"
+      },
+      "depends_on": [
+        {
+          "step_id": 4,
+          "condition": {
+            "de": "nur Identitätskarte",
+            "en": "ID only",
+            "fr": "carte d'identité uniquement",
+            "it": "solo carta d'identità"
+          }
+        }
+      ],
+      "type": "prozess",
+      "description": {
+        "de": "Eine Identitätskarte ohne Pass kann ohne Erfassung im Biometriezentrum bei der Wohngemeinde bestellt werden.",
+        "en": "An identity card without a passport can be ordered at the municipality of residence without a capture at the biometrics centre.",
+        "fr": "Une carte d'identité sans passeport peut être commandée auprès de la commune de domicile sans saisie au centre de biométrie.",
+        "it": "Una carta d'identità senza passaporto può essere ordinata presso il comune di domicilio senza rilevazione presso il centro di biometria.",
+        "ls": "Wenn Sie nur die Identitäts-Karte wollen, brauchen Sie keinen Termin im Biometrie-Zentrum."
+      },
+      "source_id": "q-stz-ausweise"
+    },
+    {
+      "step_id": 7,
+      "actor": "bund",
+      "label": {
+        "de": "Ausweis zentral produzieren",
+        "en": "Produce the document centrally",
+        "fr": "Produire le document de manière centralisée",
+        "it": "Produrre il documento in modo centralizzato",
+        "ls": "Der Ausweis wird gedruckt"
+      },
+      "depends_on": [
+        5,
+        6
+      ],
+      "reference_ids": [
+        4
+      ],
+      "type": "prozess",
+      "description": {
+        "de": "Die eidgenössische Ausweisproduktion stellt den Pass bzw. die Identitätskarte her.",
+        "en": "The federal document production manufactures the passport or identity card.",
+        "fr": "La production fédérale des documents d'identité fabrique le passeport ou la carte d'identité.",
+        "it": "La produzione federale dei documenti d'identità fabbrica il passaporto o la carta d'identità.",
+        "ls": "Eine Stelle vom Bund druckt den Ausweis."
+      },
+      "source_id": "q-schweizpass"
+    },
+    {
+      "step_id": 8,
+      "actor": "bund",
+      "label": {
+        "de": "Ausweis per Post zustellen",
+        "en": "Deliver the document by post",
+        "fr": "Envoyer le document par la poste",
+        "it": "Recapitare il documento per posta",
+        "ls": "Der Ausweis kommt mit der Post"
+      },
+      "depends_on": [
+        7
+      ],
+      "reference_ids": [
+        4
+      ],
+      "type": "prozess",
+      "description": {
+        "de": "Der fertige Ausweis wird an die Wohnadresse zugestellt.",
+        "en": "The finished document is delivered to the residential address.",
+        "fr": "Le document terminé est envoyé à l'adresse de domicile.",
+        "it": "Il documento finito viene recapitato all'indirizzo di domicilio.",
+        "ls": "Sie bekommen den Ausweis nach Hause geschickt."
+      },
+      "source_id": "q-schweizpass"
+    },
+    {
+      "step_id": 9,
+      "actor": "person",
+      "label": {
+        "de": "Pass oder Identitätskarte erhalten",
+        "en": "Passport or identity card received",
+        "fr": "Passeport ou carte d'identité reçu",
+        "it": "Passaporto o carta d'identità ricevuto",
+        "ls": "Fertig: Sie haben Ihren Ausweis"
+      },
+      "depends_on": [
+        8
+      ],
+      "reference_ids": [
+        3
+      ],
+      "type": "ende",
+      "description": {
+        "de": "Der Ausweis ist gültig; die Gültigkeitsdauer richtet sich nach Ausweisart und Alter.",
+        "en": "The document is valid; the validity period depends on the type of document and the applicant's age.",
+        "fr": "Le document est valable; la durée de validité dépend du type de document et de l'âge.",
+        "it": "Il documento è valido; la durata di validità dipende dal tipo di documento e dall'età.",
+        "ls": "Ihr Ausweis ist jetzt gültig. Er gilt eine bestimmte Zeit."
+      }
+    }
+  ],
+  "legal_basis": [
+    {
+      "label": "Bundesgesetz über die Ausweise für Schweizer Staatsangehörige (Ausweisgesetz, AwG)",
+      "url": "https://www.fedlex.admin.ch/eli/cc/2002/142/de"
+    },
+    {
+      "label": "Verordnung über die Ausweise für Schweizer Staatsangehörige (VAwG)",
+      "url": "https://www.fedlex.admin.ch/eli/cc/2002/143/de"
+    }
+  ],
+  "sources": [
+    {
+      "id": "q-schweizpass",
+      "title": "Schweizer Pass und Identitätskarte – ch.ch (Bundesportal)",
+      "url": "https://www.ch.ch/de/reisen-und-auswandern/ins-ausland-reisen/pass-und-identitatskarte/pass-und-identitatskarte-bestellen/",
+      "retrieved_at": "2026-06-22"
+    },
+    {
+      "id": "q-stz-ausweise",
+      "title": "Stadt Zürich – Einwohner-Services, Identitätskarte (CH-Bürger*innen)",
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/ausweise/identitaetskarte.html",
+      "retrieved_at": "2026-06-22"
+    }
+  ],
+  "reife": {
+    "onlineReifegrad": "teil-digital",
+    "medienbrueche": [
+      "persoenliches-erscheinen",
+      "post"
+    ],
+    "onceOnlyPotenzial": {
+      "de": "Personendaten liegen im Einwohnerregister und in früheren Ausweisanträgen bereits vor. Bei einer Verlängerung könnten Foto- und Unterschriftsdaten aus dem bestehenden Ausweis übernommen werden, sofern die biometrischen Vorgaben dies zulassen.",
+      "en": "Personal data is already held in the residents' register and in earlier document applications. For a renewal, photo and signature data could be reused from the existing document where biometric rules allow.",
+      "ls": "Das Amt kennt viele Ihrer Angaben schon. Diese müssten Sie nicht neu eingeben."
+    },
+    "nutzergruppen": [
+      {
+        "de": "Personen mit abgelaufenem oder bald ablaufendem Ausweis",
+        "en": "People with an expired or soon-to-expire document",
+        "ls": "Menschen, deren Ausweis nicht mehr gültig ist"
+      },
+      {
+        "de": "Eltern, die Ausweise für Kinder beantragen",
+        "en": "Parents applying for documents for their children",
+        "ls": "Eltern, die einen Ausweis für ihr Kind brauchen"
+      },
+      {
+        "de": "Personen mit verlorenem oder gestohlenem Ausweis",
+        "en": "People with a lost or stolen document",
+        "ls": "Menschen, die ihren Ausweis verloren haben"
+      }
+    ],
+    "painPoints": [
+      {
+        "de": "Für den Pass ist ein persönlicher Termin im Biometriezentrum nötig.",
+        "en": "The passport requires an in-person appointment at the biometrics centre.",
+        "ls": "Für den Pass müssen Sie persönlich zu einem Termin."
+      },
+      {
+        "de": "Der Ausweis wird per Post zugestellt und nicht am Schalter ausgehändigt.",
+        "en": "The document is delivered by post rather than handed out at the counter.",
+        "ls": "Den Ausweis bekommen Sie mit der Post."
+      }
+    ],
+    "improvementIdeas": [
+      {
+        "de": "Wiederverwendung von Foto und Unterschrift bei Verlängerungen ohne neuen Biometrietermin.",
+        "en": "Reuse of photo and signature for renewals without a new biometric appointment.",
+        "ls": "Bei einem neuen Ausweis sollen Foto und Unterschrift wiederverwendet werden."
+      }
+    ],
+    "status": "beobachtet",
+    "wirkungKpi": [
+      {
+        "label": {
+          "de": "Online-Anteil",
+          "en": "Share online",
+          "ls": "Wie viel geht online"
+        },
+        "wert": "Antrag online, Erfassung und Zustellung mit Medienbruch"
+      }
+    ]
+  },
+  "bewertung": {
+    "indikatoren": [
+      {
+        "key": "online-antrag",
+        "wert": true,
+        "source_url": "https://www.zh.ch/de/mobilitaet/pass-identitaetskarte/pass-kombi-beantragen.html",
+        "source_quote": "Eine Erfassung der Daten ohne vorherigen Antrag (online oder telefonisch) ist nicht möglich. Vor Ort im Passbüro werden keine Anträge entgegen genommen.",
+        "status": "verifiziert",
+        "retrieved_at": "2026-07-04"
+      },
+      {
+        "key": "digital-abschliessbar",
+        "wert": false,
+        "source_url": "https://www.zh.ch/de/mobilitaet/pass-identitaetskarte/pass-kombi-beantragen.html",
+        "source_quote": "Am vereinbarten Termin erfassen wir Ihre biometrischen Daten (Foto und Fingerabdrücke).",
+        "status": "verifiziert",
+        "retrieved_at": "2026-07-04"
+      },
+      {
+        "key": "nicht-digitaler-alternativweg",
+        "wert": true,
+        "source_url": "https://www.zh.ch/de/mobilitaet/pass-identitaetskarte/pass-kombi-beantragen.html",
+        "source_quote": "Eine Erfassung der Daten ohne vorherigen Antrag (online oder telefonisch) ist nicht möglich.",
+        "status": "verifiziert",
+        "retrieved_at": "2026-07-04"
+      }
+    ]
+  },
+  "meta": {
+    "erstellt": "2026-06-18",
+    "aktualisiert": "2026-07-04",
+    "maintainer": "malkreide",
+    "lizenz": "CC-BY-4.0"
+  }
+}

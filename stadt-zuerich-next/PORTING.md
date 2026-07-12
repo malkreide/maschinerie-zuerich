@@ -45,6 +45,9 @@ Referenz nebenher laufen lassen, bis deine Stadt steht.
 - `homepageUrl` → `https://www.ville-ge.ch/`
 - `externalSearchUrlTemplate` → `https://www.ville-ge.ch/recherche?q={q}`
 - `name` + `shortName` → passende Übersetzungen pro Locale (Genève/Genf/Geneva/Ginevra)
+- `type` → `city` (oder `canton`, `federal`, je nach Ebene)
+- `parentOrganizationId` (optional) → z.B. `ch.ge.kanton`, wenn diese Stadt mit der Kantons-Instanz föderiert sein soll.
+- `parentOrganizationUrl` (optional) → URL zur Maschinerie-Instanz des übergeordneten Kantons.
 - `dataSources` → die API(s) deiner Stadt; siehe nächster Schritt
 - `theme.accent` etc. → Farben des städtischen Corporate Design (oder lass ZH-Farben stehen — bis auf das Wappen ist Theme-Branding rechtlich unkritisch)
 
@@ -109,9 +112,16 @@ eine Datei pro Verwaltungsprozess. Als erste Zeile:
 Dein Editor gibt dir dann Autocomplete. `npm run validate:prozesse` checkt
 Formal- und Graph-Konsistenz. Siehe
 [`schemas/README.md`](schemas/README.md) für den vollständigen Feld-Guide
-und `data/prozesse/zh/anwohnerparkkarte.json` als Beispiel.
+und `data/prozesse/zh/parkplatz.json` als Beispiel.
 
-### 6. Brand-Glyph ersetzen (optional)
+### 6. Föderation (Machinery of Everything) konfigurieren
+
+Um "Maschinerie of Everything" zu erreichen, können Instanzen miteinander föderiert werden. 
+
+1. **Globale Verknüpfung:** In der `city.config.json` definierst du mit `parentOrganizationUrl` den übergeordneten Layer (z.B. die Kantonsebene). Dadurch erscheint global in der Navigation ein "↑ Übergeordnet"-Link, der es den Bürgern ermöglicht, die Navigationsebenen fließend zu wechseln.
+2. **Knoten-basierte Föderation:** Du kannst auf Ebene von Departementen oder Units das Feld `federationLinks` (Typ: `[{ targetId, targetUrl, label }]`) befüllen. So kann beispielsweise ein städtisches Gericht direkt auf das kantonale Obergericht verweisen.
+
+### 7. Brand-Glyph ersetzen (optional)
 
 `public/brand/ge-logo.svg` ist eine Kopie des Zürich-Glyphs (drei-Knoten-
 Graph). Ersetze es durch ein abstraktes Symbol deiner Wahl — **nicht** das
@@ -119,7 +129,7 @@ offizielle Stadtwappen, das ist in allen Kantonen rechtlich geschützt.
 Wenn du gar keinen Header-Glyph willst, entferne `brand` aus der Config
 und lösche die SVG.
 
-### 7. ZH-Altlasten aufräumen
+### 8. ZH-Altlasten aufräumen
 
 Wenn deine Stadt-Config steht und `npm run build` grün ist, kannst du die
 Referenz-Daten löschen:
@@ -133,7 +143,7 @@ spezifische Beispiele (z.B. Quellenhinweise in Tooltips). Die Stadt-Namen
 selbst kommen über `{cityName}` aus der Config — die musst du nicht
 anfassen.
 
-### 8. Final-Check
+### 9. Final-Check
 
 ```bash
 npm run typecheck

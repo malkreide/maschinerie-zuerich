@@ -1,0 +1,62 @@
+name: Link-Rot (Live-HTTP)
+
+# Spürt Link-Rot in den offenen Daten auf, indem es jede URL real abruft.
+# Bewusst KEIN PR-Gate: Erreichbarkeit hängt von Netzwerkpolicy, Bot-Schutz und
+# IP-Sperren der Quellen ab — das gehört nicht in den Merge-Pfad. Stattdessen:
+#
+#   • wöchentlich (schedule) als advisory-Alarm — der Befund landet im
+#     Job-Summary, blockierte/nicht erreichbare Quellen kippen den Lauf NICHT.
+#   • manuell (workflow_dispatch) mit optionalem strict-Modus, der bei echten
+#     toten Links (404/410/5xx) rot wird.
+#
+# Der strukturelle Check (npm run check:links) bleibt im normalen CI-Gate
+# (ci.yml) und läuft netzfrei bei jedem PR.
+
+on:
+  schedule:
+    # Montags 06:17 UTC — ungerade Minute, um die Runner-Spitze zur vollen
+    # Stunde zu meiden.
+    - cron: '17 6 * * 1'
+  workflow_dispatch:
+    inputs:
+      strict:
+        description: 'Bei echten toten Links (404/410/5xx) rot werden'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  link-rot:
+    name: URLs live abrufen
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: stadt-zuerich-next
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24.18.0
+          cache: npm
+          cache-dependency-path: stadt-zuerich-next/package-lock.json
+      - run: npm ci
+      - name: Live-HTTP-Link-Check
+        env:
+          # Manueller Lauf kann strict einfordern; der Wochen-Lauf bleibt advisory.
+          CHECK_LINKS_STRICT: ${{ github.event.inputs.strict == 'true' && '1' || '' }}
+          NO_COLOR: '1'
+        run: |
+          set -o pipefail
+          npm run check:links:online | tee link-rot.txt
+      - name: Befund ins Job-Summary schreiben
+        if: ${{ !cancelled() }}
+        run: |
+          {
+            echo '## Link-Rot-Befund'
+            echo ''
+            echo '```'
+            cat link-rot.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

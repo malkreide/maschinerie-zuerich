@@ -27,12 +27,70 @@
     "step3Title": "Verstehen Sie das Geld",
     "step3Body": "Im Tab «Steuerfranken» sehen Sie: Wofür gibt die Stadt Ihr Geld aus? Ein grosses Feld bedeutet: Hier gibt die Stadt viel Geld aus."
   },
+  "Wirkung": {
+    "title": "Wie gut sind die Abläufe?",
+    "intro": "Diese Zahlen kommen aus den Abläufen und Lebens-Lagen. Sie zeigen: Wie viel geht schon online? Wo ist es noch schwierig? Wir sammeln keine Daten über Sie.",
+    "source": "Aus den Daten der Abläufe und Lebens-Lagen",
+    "privacyNote": "Nur aus den Daten berechnet. Keine Daten über Personen.",
+    "kpiHeading": "Die Zahlen auf einen Blick",
+    "kpiProzesse": "Abläufe im Modell",
+    "kpiMedienbrueche": "Brüche gesamt",
+    "kpiOnceOnly": "Daten sind schon da",
+    "kpiImprovements": "Ideen zum Verbessern",
+    "kpiAbdeckung": "Lebens-Lagen mit Ablauf",
+    "reifegradHeading": "Wie viel geht online?",
+    "statusHeading": "Stand beim Vereinfachen",
+    "medienbruecheHeading": "Häufige Brüche",
+    "spracheHeading": "Sprachen bei den Lebens-Lagen",
+    "none": "Nichts erfasst",
+    "klimaHeading": "Klima und Stadt-Ziel",
+    "klimaZielBis": "bis {jahr}",
+    "klimaProvenance": "Die CO₂-Zahlen sind nur Schätzungen. Das Ziel «kein CO₂ mehr» ist aber ein echtes Ziel der Stadt.",
+    "klimaHotspots": "Departemente mit viel CO₂",
+    "klimaInvest": "Geld fürs Klima (Schnitt)",
+    "klimaCo2Heading": "Wie viel CO₂ je Departement (Schätzung, 0–100)",
+    "kompassHeading": "Kompass: Wer ist zuständig?",
+    "kompassIntro": "Hier zählen wir über alle Abläufe zusammen. Das ist keine amtliche Auskunft.",
+    "kompassGeteilt": "Abläufe mit mehreren zuständigen Stellen",
+    "kompassRekurs": "Abläufe mit einer Stelle für Beschwerden",
+    "kompassBehoerden": "Beteiligte Stellen (alle zusammen)",
+    "kompassPflichtdokumente": "Papiere, die man braucht (alle zusammen)",
+    "komplexHeading": "Wie schwierig ist ein Ablauf?",
+    "colProzess": "Ablauf",
+    "colSchritte": "Schritte",
+    "colAkteure": "Beteiligte",
+    "colEntscheidungen": "Entscheide",
+    "colMedienbrueche": "Brüche",
+    "bewertungHeading": "Bewertung (alle Prozesse)",
+    "bewertungIntro": "So viele Punkte sind über alle Prozesse erfüllt. Das ist eine Momentaufnahme aus unseren Daten, keine amtliche Zahl. «unbekannt» heisst nicht «nein».",
+    "bewertungDigital": "Geht es online?",
+    "bewertungNutzend": "Ist es einfach?",
+    "bewertungGesamt": "Insgesamt erfüllt",
+    "bewertungKeinScore": "kein Wert",
+    "bewertungUnbekanntKurz": "unbek."
+  },
+  "Territory": {
+    "title": "Standorte",
+    "intro": "Orte der Stadt auf der Karte. Wählen Sie eine Gruppe.",
+    "layerSchools": "Schulen",
+    "layerRecycling": "Entsorgung",
+    "layerPlaygrounds": "Spielplätze",
+    "layerAmtshaeuser": "Amts-Häuser",
+    "popupTitle": "Abteilung",
+    "linkToChart": "Im Organigramm zeigen",
+    "verfahren": "Diese Ämter machen das",
+    "noLayer": "Sie haben nichts ausgewählt. Bitte wählen Sie oben mindestens eine Gruppe."
+  },
   "Nav": {
     "graph": "Bild",
     "tax": "Geld",
     "simulator": "Geld-Spiel",
     "list": "Liste",
     "prozesse": "Abläufe",
+    "roadmap": "Verbesserungen",
+    "wirkung": "Nutzen",
+    "quartier": "Stadtteile",
+    "territory": "Orte",
     "darkOn": "Dunkles Bild einschalten",
     "darkOff": "Helles Bild einschalten",
     "darkLabelLight": "☼ Hell",
@@ -41,7 +99,12 @@
     "skipToList": "Zur Liste springen. Die Liste ist gut für Sprach-Programme.",
     "language": "Sprache",
     "expandAll": "Alles aufklappen",
-    "collapseAll": "Alles zuklappen"
+    "collapseAll": "Alles zuklappen",
+    "climateToggle": "🌡️ Klima-Anzeige",
+    "climateToggleTitle": "Zeigt an: So wirkt sich das Geld auf das Klima aus.",
+    "diversityToggle": "👥 Frauen und Männer in der Leitung",
+    "diversityToggleTitle": "Zeigt für jeden Bereich: So viele Frauen und Männer sind in der Leitung. Als Kreis-Bild.",
+    "portfolio": "Überblick"
   },
   "Search": {
     "label": "Wonach suchen Sie?",
@@ -54,7 +117,74 @@
     "noMatchesTitle": "Keine Vorschläge für „{query}\"",
     "noMatchesHint": "Meinten Sie vielleicht das?",
     "popularFallback": "Das suchen viele Leute",
-    "openFullSearch": "Alle Treffer zeigen →"
+    "openFullSearch": "Alle Treffer zeigen →",
+    "missNote": "Sie finden nichts? Wir merken uns nur das Such-Wort. Ohne Ihren Namen. So sehen wir, was fehlt."
+  },
+  "Zielgruppen": {
+    "filterLabel": "Wählen Sie eine Gruppe",
+    "all": "Alle",
+    "einwohner": "Menschen in Zürich",
+    "unternehmen": "Firmen",
+    "familie": "Familie",
+    "alter": "Alte Menschen",
+    "schule": "Schule",
+    "migration": "Neu in der Schweiz",
+    "mobilitaet": "Unterwegs",
+    "wohnen": "Wohnen",
+    "gesundheit": "Gesundheit"
+  },
+  "Feedback": {
+    "question": "War diese Info hilfreich?",
+    "yes": "Ja",
+    "no": "Nein",
+    "thanks": "Danke für Ihre Rückmeldung!",
+    "formIntro": "Was war das Problem?",
+    "category": {
+      "zustaendigkeit": "Falsche Stelle",
+      "unklar": "Info ist unklar",
+      "umstaendlich": "Zu kompliziert",
+      "veraltet": "Info ist alt",
+      "barriere": "Hürde oder Barriere",
+      "vorschlag": "Ich habe eine Idee"
+    },
+    "commentLabel": "Kommentar (freiwillig)",
+    "commentPlaceholder": "Freiwillig: kurz schreiben. Bitte keinen Namen.",
+    "privacy": "Bitte schreiben Sie keine persönlichen Daten. Wir speichern keinen Namen, keine E-Mail und keine IP-Adresse.",
+    "skip": "Ohne Text senden",
+    "submit": "Senden"
+  },
+  "Roadmap": {
+    "title": "Was wir verbessern",
+    "intro": "Hier sehen Sie, was aus Rückmeldungen wird. Geordnet nach Stand. Ohne Namen. Die Daten kommen von GitHub.",
+    "status": {
+      "eingegangen": "Neu",
+      "geprueft": "Geprüft",
+      "in-umsetzung": "Wird gemacht",
+      "umgesetzt": "Fertig"
+    },
+    "empty": "Noch nichts da.",
+    "columnEmpty": "Hier ist nichts.",
+    "unavailable": "Die Liste ist gerade nicht da.",
+    "viewOnGithub": "Auf GitHub ansehen →"
+  },
+  "Explorer": {
+    "regionLabel": "Verwaltung suchen",
+    "intro": "Suchen Sie eine Stelle. Oder schauen Sie bei den Departementen. Tippen Sie auf einen Eintrag. Dann sehen Sie mehr.",
+    "searchLabel": "Stelle oder Departement suchen",
+    "searchPlaceholder": "zum Beispiel: Steueramt, Schule, VBZ",
+    "resultsCount": "{count, plural, one {# Treffer} other {# Treffer}} für „{query}\"",
+    "noResults": "Nichts gefunden. Bitte ein anderes Wort versuchen.",
+    "anliegenHeading": "Passende Anliegen",
+    "anliegenZustaendig": "Diese Stelle hilft",
+    "department": "Departement",
+    "beteiligung": "Beteiligung",
+    "beteiligungenHeading": "Beteiligungen",
+    "vorsteher": "Leitung",
+    "id": "Kürzel",
+    "budget": "Ausgaben",
+    "netExpense": "Netto-Ausgaben",
+    "fte": "Stellen",
+    "relatedProcesses": "Passende Abläufe"
   },
   "Anliegen": {
     "title": "Was wollen Sie tun?",
@@ -63,7 +193,9 @@
     "noResultsFallbackHeading": "Das suchen viele Leute",
     "resultsCount": "{count, plural, one {# Treffer} other {# Treffer}} für „{query}\"",
     "popularHeading": "Das suchen viele Leute",
-    "placeholder": "Schreiben Sie hier ein Wort"
+    "placeholder": "Schreiben Sie hier ein Wort",
+    "relatedProcess": "So geht es Schritt für Schritt",
+    "weitereStellen": "Weitere Stellen sind dabei"
   },
   "Treemap": {
     "title": "Wofür gibt die Stadt Geld aus?",
@@ -84,7 +216,8 @@
     "emptyBody": "Für keine Stelle gibt es Zahlen. Schauen Sie in die {listLink}. Oder nutzen Sie die {searchLink}.",
     "emptyListLink": "Liste der Stellen",
     "emptySearchLink": "Suche",
-    "hiddenDepartments": "{count, plural, one {# Bereich wird} other {# Bereiche werden}} nicht gezeigt. Dafür gibt es keine Zahlen: {names}."
+    "hiddenDepartments": "{count, plural, one {# Bereich wird} other {# Bereiche werden}} nicht gezeigt. Dafür gibt es keine Zahlen: {names}.",
+    "committeeNote": "Hinweis: Ein gestrichelter Rahmen bedeutet, dass die Aufsicht durch die Politik hier anders geregelt ist."
   },
   "List": {
     "title": "Die Stadt-Verwaltung in einer Liste",
@@ -100,6 +233,10 @@
     "vorsteher": "Chef oder Chefin",
     "department": "Bereich",
     "ogdKey": "Code für offene Daten",
+    "rechtsform": "Rechts-Form",
+    "beteiligungsart": "Art der Beteiligung",
+    "sektor": "Bereich",
+    "participationSource": "Bericht zu Beteiligungen",
     "abbreviation": "Kurzwort",
     "expense": "Ausgaben",
     "income": "Einnahmen",
@@ -116,16 +253,21 @@
     "phaseBudget": "Geplant",
     "phaseProposal": "Vorschlag",
     "phaseAccount": "Wirklich ausgegeben",
+    "fteUnitFallback": "Stellen",
+    "fteUnitPublished": "{value} {einheit} (sichere Zahl)",
+    "fteEstimateText": "Etwa {value} Stellen (Schätzung: Lohn geteilt durch {amount} Franken)",
+    "relatedProzesseHeading": "Diese Stelle hilft bei diesen Abläufen",
+    "relatedLebenslagenHeading": "Diese Anliegen passen zu dieser Stelle",
     "perCapitaLabel": "Pro Person",
     "perCapitaValue": "≈ {value}",
     "perCapitaTitle": "So viel Geld pro Person. Wir teilen das Geld durch alle Menschen, die in der Stadt wohnen.",
     "budgetShareLabel": "Anteil vom ganzen Geld",
     "budgetShareValue": "{percent} %",
     "budgetShareTitle": "So viel Prozent vom ganzen Geld der Stadt geht hierher.",
-    "fteUnitFallback": "Stellen",
-    "fteUnitPublished": "{value} {einheit} (sichere Zahl)",
-    "fteEstimateText": "Etwa {value} Stellen (Schätzung: Lohn geteilt durch {amount} Franken)",
-    "relatedProzesseHeading": "Diese Stelle hilft bei diesen Abläufen"
+    "detailDiversity": "Frauen und Männer in der Leitung",
+    "detailDiversityDesc": "So viele Frauen und Männer sind in der Leitung",
+    "detailDiversityWomen": "Frauen",
+    "detailDiversityMen": "Männer"
   },
   "Legend": {
     "headingTop": "Die Chefs der Stadt",
@@ -140,7 +282,8 @@
     "spezial": "Besondere Behörde",
     "verselbst": "Eigene Firma der Stadt",
     "beteiligung": "Stiftung oder Beteiligung",
-    "konflikt": "Hier passt etwas nicht zusammen."
+    "konflikt": "Hier passt etwas nicht zusammen.",
+    "committee": "Ausschuss / Kommission"
   },
   "Hint": "Mit der Maus über die Bilder fahren · Klicken: auswählen · Mit dem Rad gross machen · Sie können auch nach Wörtern suchen",
   "Simulator": {
@@ -183,18 +326,72 @@
     "staff": "Hilfs-Stelle",
     "extern": "Eigene Firma der Stadt",
     "spezial": "Besondere Behörde",
+    "committee": "Ausschuss / Kommission",
     "beteiligung": "Stiftung oder Beteiligung"
   },
   "Prozesse": {
     "title": "Abläufe in der Stadt",
-    "intro": "Hier sehen Sie: So läuft ein Antrag ab. Zum Beispiel: Wenn Sie ein Haus bauen wollen. Sie sehen jeden Schritt. Sie sehen: Wer macht was. Sie sehen: Wie lange dauert es.",
+    "intro": "Hier sehen Sie: So läuft ein Antrag ab. Zum Beispiel: Wenn Sie ein Haus bauen wollen. Sie sehen jeden Schritt. Sie sehen: Wer macht was. Wichtige Zahlen wie Geld und Fristen stehen bei der Stadt. Dafür gibt es Links.",
     "empty": "Noch keine Abläufe.",
     "city": "Stadt {city}",
+    "relatedLebenslagenHeading": "Diese Anliegen passen dazu",
     "stepsHeading": "Die Schritte",
+    "legendeHeading": "Was die Formen bedeuten",
+    "schritteAnzahl": "{count, plural, one {# Schritt} other {# Schritte}}",
     "legalHeading": "Gesetze",
     "sourcesHeading": "Woher sind die Informationen?",
     "retrieved": "geholt am {date}",
     "goToUnit": "Zu dieser Stelle: {name}",
+    "reifeHeading": "Wie digital ist das? Was kann besser werden?",
+    "kompass": {
+      "heading": "Kompass: Der Ablauf auf einen Blick",
+      "intro": "Hier sehen Sie, wie der Ablauf aufgebaut ist. Das ist keine amtliche Auskunft.",
+      "zustaendigkeitHeading": "Wer ist zuständig?",
+      "keineBehoerde": "Keine Stelle erfasst.",
+      "geteilt": "Mehrere Stellen",
+      "geteiltHint": "mehr als eine Stelle ist zuständig. Das ist oft verwirrend.",
+      "rekurs": "Stelle für Beschwerden",
+      "aufwandHeading": "Was Sie tun müssen",
+      "pflichtdokumente": "{count, plural, one {# Papier, das Sie brauchen} other {# Papiere, die Sie brauchen}}",
+      "entscheidungen": "{count, plural, one {# Stelle, wo etwas entschieden wird} other {# Stellen, wo etwas entschieden wird}}",
+      "keinAufwand": "Keine besonderen Hürden.",
+      "vereinfachungHeading": "Was einfacher werden könnte",
+      "verbesserungen": "{count, plural, one {# Idee, wie es besser geht} other {# Ideen, wie es besser geht}}",
+      "keinePotenziale": "Noch keine Ideen erfasst.",
+      "detailsLink": "Mehr weiter unten"
+    },
+    "reifegradLabel": "Wie viel geht online?",
+    "filterReifegradHeading": "Abläufe sortieren: Wie viel geht online?",
+    "filterAlle": "Alle",
+    "filterLeer": "Kein Ablauf mit dieser Stufe.",
+    "medienbruecheHeading": "Das geht nicht digital",
+    "onceOnlyHeading": "Das Amt weiss es schon",
+    "nutzergruppenHeading": "Für wen ist das?",
+    "painPointsHeading": "Das ist schwierig",
+    "improvementsHeading": "So wird es besser",
+    "kpiHeading": "Zahlen dazu",
+    "statusLabel": "Stand",
+    "reifegrad": {
+      "offline": "Nur auf Papier",
+      "teil-digital": "Teils online",
+      "digital": "Meistens online",
+      "end-to-end": "Ganz online"
+    },
+    "medienbruch": {
+      "drucken": "Sie müssen etwas drucken",
+      "post": "Sie müssen etwas per Post schicken",
+      "persoenliches-erscheinen": "Sie müssen hingehen",
+      "separate-zahlung": "Sie zahlen extra",
+      "erneute-dateneingabe": "Sie tippen Daten noch einmal",
+      "unterschrift-handschriftlich": "Sie müssen mit der Hand unterschreiben"
+    },
+    "status": {
+      "beobachtet": "Wird beobachtet",
+      "validiert": "Geprüft",
+      "vorgeschlagen": "Vorgeschlagen",
+      "in-umsetzung": "Wird gemacht",
+      "umgesetzt": "Fertig"
+    },
     "schrittTyp": {
       "start": "Start",
       "input": "Sie geben etwas ab",
@@ -203,6 +400,129 @@
       "loop": "Nochmal zurück",
       "warten": "Warten",
       "ende": "Ende"
+    },
+    "disclaimer": "Wichtig: Das hier ist keine offizielle Seite von der Stadt. Es ist eine einfache Erklärung. Was wirklich gilt, steht auf den Seiten von der Stadt Zürich. Die Links sind unten bei: Quellen.",
+    "disclaimerHochrisiko": "Wichtig: Bei diesem Thema geht es um Geld, um Fristen oder um Ihre Rechte. Ein Fehler kann grosse Folgen haben. Das hier ist keine offizielle Seite von der Stadt. Verlassen Sie sich nur auf die Seiten von der Stadt Zürich. Die Links sind unten bei: Quellen. Fragen Sie im Zweifel eine Fach-Person.",
+    "disclaimerHochrisikoLabel": "Wichtiger Hinweis",
+    "voraussetzungenHeading": "Das brauchen Sie",
+    "referenzenHeading": "Wichtige Zahlen: Geld und Fristen",
+    "referenzenHint": "Zahlen wie Geld und Fristen stehen nicht im Bild. Sie stehen bei der Stadt. Klicken Sie auf den Link.",
+    "referenzUnverifiziert": "Diese Angabe ist noch nicht geprüft.",
+    "translationPending": "Diesen Text gibt es noch nicht in Leichter Sprache. Sie sehen den deutschen Text.",
+    "bewertung": {
+      "heading": "Bewertung: Geht es online? Ist es einfach?",
+      "intro": "Diese Angaben rechnet das Programm aus dem Modell aus oder belegt sie mit einer Quelle. Wenn es keinen Beleg gibt, steht «unbekannt». Wir raten nicht.",
+      "scoreLabel": "Erfüllte Punkte",
+      "scoreWert": "{erfuellt} von {bekannt}",
+      "keinScore": "Noch keine bekannten Punkte",
+      "unbekanntHinweis": "{count, plural, one {# Punkt ist unbekannt} other {# Punkte sind unbekannt}}. Es gibt dazu keinen Beleg. Wir bewerten das nicht.",
+      "kategorie": {
+        "digitalisierung": "Geht es online?",
+        "nutzendenorientierung": "Ist es einfach?"
+      },
+      "status": {
+        "erfuellt": "ja",
+        "nicht-erfuellt": "nein",
+        "unbekannt": "unbekannt"
+      },
+      "indikator": {
+        "online-antrag": "Antrag geht online",
+        "online-bezahlung": "Bezahlen geht online",
+        "statusverfolgung": "Sie sehen online, wie weit es ist",
+        "medienbruchfrei": "Kein Wechsel zu Papier oder Post",
+        "digital-abschliessbar": "Alles geht online",
+        "leichte-sprache": "Es gibt Leichte Sprache",
+        "mehrsprachigkeit": "Es gibt mehrere Sprachen (en/fr/it)",
+        "voraussetzungen-genannt": "Die Voraussetzungen stehen klar da",
+        "fristen-kosten-verlinkt": "Fristen und Kosten sind verlinkt",
+        "once-only": "Sie geben Daten nur einmal ein",
+        "barrierefreiheit": "Ohne Hindernisse nutzbar (WCAG 2.1 AA)",
+        "nicht-digitaler-alternativweg": "Es geht auch ohne Computer",
+        "eid-moeglich": "Login mit eID ist möglich"
+      },
+      "evidenz": {
+        "toggle": "Beleg",
+        "belegLabel": "Belegt",
+        "berechnetLabel": "Berechnet",
+        "unbekanntText": "Es gibt keinen Beleg. Darum steht hier «unbekannt». Das heisst nicht «nein».",
+        "berechnet": {
+          "leichte-sprache": "{zahl} von {von} Texten sind in Leichter Sprache",
+          "mehrsprachigkeit": "{zahl} von {von} Sprachen (en/fr/it) sind ganz da",
+          "voraussetzungen-genannt": "{zahl, plural, =0 {keine Voraussetzung steht da} one {# Voraussetzung steht da} other {# Voraussetzungen stehen da}}",
+          "fristen-kosten-verlinkt": "{zahl, plural, =0 {kein Link zu einer Quelle} one {# Link zu einer Quelle} other {# Links zu Quellen}}"
+        }
+      },
+      "kennzahlenHeading": "Berechnete Zahlen",
+      "kennzahl": {
+        "schritte": "{count, plural, one {# Schritt} other {# Schritte}}",
+        "akteurswechsel": "{count, plural, one {# Mal wechselt die Stelle} other {# Mal wechselt die Stelle}}",
+        "behoerden": "{count, plural, one {# Behörde} other {# Behörden}}",
+        "pflichtdokumente": "{count, plural, one {# Dokument} other {# Dokumente}}",
+        "entscheidungspunkte": "{count, plural, one {# Entscheidung} other {# Entscheidungen}}"
+      },
+      "ja": "ja",
+      "nein": "nein",
+      "informativ": "nur Info",
+      "ankerLabel": "Das steht in einer Strategie",
+      "ankerStaerke": {
+        "direkt": "steht klar in der Strategie",
+        "schwach": "steht ungefähr in der Strategie",
+        "kein": "wir haben es selbst gewählt"
+      }
     }
+  },
+  "GraphTable": {
+    "caption": "Tabelle mit den Daten aus dem Schau-Bild",
+    "colName": "Bereich oder Amt",
+    "colType": "Art",
+    "colParent": "Gehört zu",
+    "colBudget": "Ausgaben (CHF)",
+    "colFte": "Stellen"
+  },
+  "Export": {
+    "csvButton": "Alles als CSV-Liste herunter-laden"
+  },
+  "RIS": {
+    "heading": "Entscheidungen im Parlament",
+    "viewAll": "Alle Entscheidungen ansehen →",
+    "loading": "Wird geladen...",
+    "error": "Laden hat nicht geklappt.",
+    "noData": "Es gibt gerade keine neuen Entscheidungen."
+  },
+  "Quartier": {
+    "title": "Verteilung in der Stadt",
+    "intro": "Die Karte zeigt für jeden Stadt-Kreis Zahlen: die Fläche und die Anzahl Orte (zum Beispiel Spielplätze). Wie gut die Daten sind, steht im Badge.",
+    "selectLabel": "Zahl auswählen:",
+    "metricArea": "Fläche",
+    "unitLocations": "Orte",
+    "tooltipValue": "{value} {unit}",
+    "noData": "Für diese Zahl gibt es noch keine Orts-Daten. Laden Sie sie mit `npm run data:fetch-geo`.",
+    "noGeo": "Die Karten-Daten fehlen."
+  },
+  "Portfolio": {
+    "title": "Überblick: alle Prozesse",
+    "intro": "Hier sehen Sie alle Prozesse auf einen Blick. Jede Zeile ist ein Prozess. Jede Spalte ist eine Frage: Geht es digital? Ist es einfach für die Menschen? Die Farbe zeigt die Antwort. Tippen Sie auf ein Feld, dann sehen Sie den Prozess und die Belege.",
+    "source": "Berechnet aus den Prozess-Daten",
+    "privacyNote": "Alles wird aus den Prozess-Daten berechnet. Wir sammeln keine Daten über Sie. Wir erfinden keine Werte.",
+    "empty": "Es gibt noch keine Prozesse.",
+    "caption": "Tabelle: Prozesse (Zeilen) und Fragen (Spalten)",
+    "colProzess": "Prozess",
+    "scoreGroup": "Wert (Prozent erfüllt)",
+    "scoreDigital": "Digital",
+    "scoreNutzend": "Einfach",
+    "scoreGesamt": "Total",
+    "scoreDigitalLong": "Digital — wie viel ist erfüllt",
+    "scoreNutzendLong": "Einfach für die Menschen — wie viel ist erfüllt",
+    "scoreGesamtLong": "Total — wie viel ist erfüllt",
+    "scoreNa": "kein Wert",
+    "legendHeading": "Was die Farben bedeuten",
+    "legendInformativ": "nur eine Info (ja/nein, zählt nicht zum Wert)",
+    "cellTitle": "{indikator}: {status}",
+    "detailLink": "Zum Prozess «{titel}» — mehr und Belege",
+    "belegLuecke": "Belege fehlen noch",
+    "belegLueckeTitle": "Für diesen Prozess fehlen noch Belege. Darum steht in den Digital-Spalten «unbekannt». Das heisst nicht «nicht erfüllt».",
+    "coverageNote": "{ohne, plural, =0 {Alle {total} Prozesse haben Belege.} one {# von {total} Prozessen hat noch keine Belege. Darum steht «unbekannt». Das heisst nicht «nicht erfüllt».} other {# von {total} Prozessen haben noch keine Belege. Darum steht «unbekannt». Das heisst nicht «nicht erfüllt».}}",
+    "summaryHeading": "Antworten je Frage (über alle Prozesse)",
+    "summaryZeile": "{erfuellt} erfüllt · {nichtErfuellt} nicht erfüllt · {unbekannt} unbekannt"
   }
 }

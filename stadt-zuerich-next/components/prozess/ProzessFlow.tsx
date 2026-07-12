@@ -16,12 +16,13 @@ import {
   Background,
   Controls,
   MiniMap,
+  MarkerType,
   type Edge,
   type Node,
   type ColorMode,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
-import { nodeTypes, type ProzessNodeData } from './ProzessNodes';
+import { nodeTypes, type ProzessNodeData, type ProzessNodeReferenz } from './ProzessNodes';
 import type { Layout, LayoutLane } from '@/lib/prozess-layout';
 import type { SchrittTyp } from '@/types/prozess';
 
@@ -31,8 +32,8 @@ export interface ProzessFlowSchritt {
   akteurId: string;
   label: string;
   beschreibung?: string;
-  dauer?: string;
-  kosten?: string;
+  /** Bindende Werte des Schritts — nur als Label + Link (Kardinalregel). */
+  referenzen?: ProzessNodeReferenz[];
   akteurLabel: string;
   /** Wenn der Akteur per einheit_ref auf eine Org-Chart-Einheit verweist:
    *  href zur Hauptansicht mit ?focus=<id>. Sonst undefined. */
@@ -47,6 +48,10 @@ export interface ProzessFlowKante {
   nach: string;
   label?: string;
   bedingung?: string;
+  /** 'forward' = normale Ablauf-Kante aus depends_on (Default).
+   *  'loop' = Rücksprung-Hinweis aus loops_back_to (nicht Teil des DAG) —
+   *  eigens gestrichelt/animiert gezeichnet. */
+  kind?: 'forward' | 'loop';
 }
 
 export interface ProzessFlowAkteur {
@@ -61,6 +66,15 @@ export interface ProzessFlowAkteur {
   einheitName?: string;
 }
 
+/** Ein Eintrag der Diagramm-Legende: ein Schritt-Typ und sein bereits
+ *  i18n-aufgelöstes Label. Server-seitig gefüllt (nur die tatsächlich im
+ *  Prozess vorkommenden Typen), damit die Client-Komponente next-intl-frei
+ *  bleibt. */
+export interface ProzessLegendeItem {
+  typ: SchrittTyp;
+  label: string;
+}
+
 export interface ProzessFlowProps {
   titel: string;
   schritte: ProzessFlowSchritt[];
@@ -72,6 +86,50 @@ export interface ProzessFlowProps {
    *  Swimlane. Erhält {name} als Platzhalter und wird via String.replace
    *  gefüllt — so bleibt die Client-Komponente frei von next-intl. */
   goToUnitLabelTemplate?: string;
+  /** Legende: Überschrift + die im Prozess vorkommenden Schritt-Typen.
+   *  Erklärt die Formen-Sprache des Diagramms (Pille = Start/Ende,
+   *  Raute = Entscheidung, gestrichelt = Rücksprung …). */
+  legendeHeading?: string;
+  legende?: ProzessLegendeItem[];
+  /** i18n-Wort für unverifizierte Referenzen (z. B. „ungeprüft") — server-seitig
+   *  aufgelöst und in die Node-Daten gereicht, damit der Client next-intl-frei
+   *  bleibt. */
+  referenzUnverifiziertLabel?: string;
+}
+
+/** Lage eines Ziels relativ zum Entscheidungs-Knoten (Toleranz 8px). */
+type RelPos = 'above' | 'level' | 'below';
+function relPos(targetCenterY: number, sourceCenterY: number): RelPos {
+  if (targetCenterY > sourceCenterY + 8) return 'below';
+  if (targetCenterY < sourceCenterY - 8) return 'above';
+  return 'level';
+}
+
+/** Verteilt die nach Ziel-Höhe sortierten Zweige einer Entscheidung auf die
+ *  drei Quell-Handles (oben/rechts/unten), so dass keine zwei Zweige denselben
+ *  Ausgang teilen und die vertikale Reihenfolge erhalten bleibt (kein
+ *  Zurück-Knick). Eingabe: relative Lage je Zweig in Sortier-Reihenfolge.
+ *  Ausgabe: Handle-Id ('up' | 'right' | 'down') je Zweig. */
+function assignDecisionSlots(positions: RelPos[]): string[] {
+  const n = positions.length;
+  if (n === 0) return [];
+  if (n === 1) {
+    const p = positions[0];
+    return [p === 'below' ? 'down' : p === 'above' ? 'up' : 'right'];
+  }
+  if (n === 2) {
+    // Oberer Zweig nie nach unten, unterer nie nach oben.
+    let a = positions[0] === 'above' ? 'up' : 'right';
+    let b = positions[1] === 'below' ? 'down' : 'right';
+    if (a === b) {
+      a = 'up';
+      b = 'down';
+    }
+    return [a, b];
+  }
+  // 3+ Zweige: erster oben, letzter unten, Mittlere rechts (teilen sich bei >3
+  // das rechte Handle — in der v0-Praxis nicht erwartet).
+  return positions.map((_, i) => (i === 0 ? 'up' : i === n - 1 ? 'down' : 'right'));
 }
 
 export default function ProzessFlow(props: ProzessFlowProps) {
@@ -82,9 +140,9 @@ export default function ProzessFlow(props: ProzessFlowProps) {
   );
 }
 
-function ProzessFlowInner({ titel, schritte, kanten, akteure, layout, colorMode = 'light', goToUnitLabelTemplate }: ProzessFlowProps) {
+function ProzessFlowInner({ titel, schritte, kanten, akteure, layout, colorMode = 'light', goToUnitLabelTemplate, legendeHeading, legende, referenzUnverifiziertLabel }: ProzessFlowProps) {
   const nodes = useMemo<Node<ProzessNodeData>[]>(() => {
-    return schritte.map((s) => {
+    const processNodes: Node<ProzessNodeData>[] = schritte.map((s) => {
       const ln = layout.nodes.find((n) => n.id === s.id);
       return {
         id: s.id,
@@ -94,38 +152,117 @@ function ProzessFlowInner({ titel, schritte, kanten, akteure, layout, colorMode 
           label: s.label,
           beschreibung: s.beschreibung,
           akteurLabel: s.akteurLabel,
-          dauer: s.dauer,
-          kosten: s.kosten,
+          referenzen: s.referenzen,
+          referenzUnverifiziertLabel,
           typ: s.typ,
         },
         draggable: false,
       };
     });
-  }, [schritte, layout.nodes]);
+
+    // Unsichtbare Boundary-Nodes einfügen, damit 'fitView' den linken Rand
+    // für die Swimlane-Labels und den unteren Rand für die Controls freihält.
+    processNodes.push(
+      {
+        id: 'boundary-tl',
+        type: 'start',
+        position: { x: 0, y: 0 },
+        data: { label: '', typ: 'start' as SchrittTyp, akteurLabel: '' },
+        style: { opacity: 0, pointerEvents: 'none' },
+        selectable: false,
+        draggable: false,
+      },
+      {
+        id: 'boundary-br',
+        type: 'start',
+        position: { x: layout.width, y: layout.height + 60 },
+        data: { label: '', typ: 'start' as SchrittTyp, akteurLabel: '' },
+        style: { opacity: 0, pointerEvents: 'none' },
+        selectable: false,
+        draggable: false,
+      }
+    );
+
+    return processNodes;
+  }, [schritte, layout, referenzUnverifiziertLabel]);
 
   const edges = useMemo<Edge[]>(() => {
-    return kanten.map((k) => ({
-      id: k.id,
-      source: k.von,
-      target: k.nach,
-      label: k.label ?? k.bedingung,
-      labelStyle: { fontSize: 11, fill: 'var(--color-mute)' },
-      labelBgStyle: { fill: 'var(--color-bg)' },
-      animated: k.bedingung === 'ja' || k.bedingung === 'nein' ? false : false,
-      sourceHandle: k.bedingung === 'nein' ? 'nein' : undefined,
-      style: {
-        stroke: k.bedingung === 'nein' ? 'var(--color-mute)' : 'var(--color-ink)',
-        strokeDasharray: k.bedingung === 'nein' ? '4 4' : undefined,
-      },
-    }));
-  }, [kanten]);
+    // Knoten-Typ + Position je id — für die geometrie-basierte Handle-Wahl an
+    // Entscheidungs-Knoten (Ziel in tieferer Swimlane → unten, höhere → oben,
+    // gleiche → rechts), damit mehrwertige Verzweigungen sich nicht überlagern.
+    const typById = new Map(schritte.map((s) => [s.id, s.typ]));
+    const posById = new Map(layout.nodes.map((n) => [n.id, n]));
+    const centerY = (id: string) => {
+      const n = posById.get(id);
+      return n ? n.y + n.height / 2 : 0;
+    };
+
+    // Handle-Zuweisung je Entscheidungs-Kante VORBERECHNEN: alle Vorwärts-Kanten
+    // eines Entscheidungs-Knotens werden zusammen betrachtet, nach Ziel-Höhe
+    // sortiert und auf verschiedene Handles (up/right/down) verteilt — auch wenn
+    // mehrere Zweige in dieselbe Richtung zeigen, teilen sie sich so nicht
+    // denselben Ausgangspunkt (Folge von #118). Kein Zurück-Knick: ein höher
+    // liegendes Ziel bekommt nie ein tieferes Handle als ein tieferes Ziel.
+    const handleByEdge = new Map<string, string>();
+    const decisionGroups = new Map<string, ProzessFlowKante[]>();
+    for (const k of kanten) {
+      if (k.kind === 'loop') continue;
+      if (typById.get(k.von) !== 'entscheidung') continue;
+      const group = decisionGroups.get(k.von) ?? [];
+      group.push(k);
+      decisionGroups.set(k.von, group);
+    }
+    for (const [vonId, group] of decisionGroups) {
+      const sc = centerY(vonId);
+      const sorted = [...group].sort((a, b) => centerY(a.nach) - centerY(b.nach));
+      const slots = assignDecisionSlots(sorted.map((k) => relPos(centerY(k.nach), sc)));
+      sorted.forEach((k, i) => handleByEdge.set(k.id, slots[i]));
+    }
+
+    return kanten.map((k) => {
+      if (k.kind === 'loop') {
+        // Rücksprung: deutlich abgesetzt (gestrichelt, animiert, eigene Farbe,
+        // Pfeil) und vom Top-Handle des Loop-Knotens — nie mit einer
+        // Entscheidungs-„nein"-Kante zu verwechseln.
+        return {
+          id: k.id,
+          source: k.von,
+          target: k.nach,
+          sourceHandle: 'loop-out',
+          label: k.label,
+          labelStyle: { fontSize: 11, fill: 'var(--color-mute)' },
+          labelBgStyle: { fill: 'var(--color-bg)' },
+          animated: true,
+          markerEnd: { type: MarkerType.ArrowClosed, color: 'var(--color-mute)' },
+          style: { stroke: 'var(--color-mute)', strokeDasharray: '5 4' },
+        } satisfies Edge;
+      }
+
+      const istEntscheidung = typById.get(k.von) === 'entscheidung';
+      return {
+        id: k.id,
+        source: k.von,
+        target: k.nach,
+        sourceHandle: istEntscheidung ? (handleByEdge.get(k.id) ?? 'right') : undefined,
+        label: k.label ?? k.bedingung,
+        labelStyle: { fontSize: 11, fill: 'var(--color-mute)' },
+        labelBgStyle: { fill: 'var(--color-bg)' },
+        markerEnd: { type: MarkerType.ArrowClosed, color: 'var(--color-ink)' },
+        style: { stroke: 'var(--color-ink)' },
+      } satisfies Edge;
+    });
+  }, [kanten, schritte, layout]);
 
   return (
-    <div
-      className="relative w-full h-[calc(100vh-12rem)] min-h-[520px] border border-[var(--color-line)] rounded-lg overflow-hidden bg-[var(--color-bg)]"
-      role="application"
-      aria-label={`Prozess-Diagramm: ${titel}`}
-    >
+    <div>
+      {legende && legende.length > 0 && (
+        <ProzessLegende heading={legendeHeading} items={legende} />
+      )}
+      <div
+        className="relative w-full h-[calc(100vh-12rem)] min-h-[520px] border border-[var(--color-line)] rounded-lg overflow-hidden bg-[var(--color-bg)]"
+        role="application"
+        aria-label={`Prozess-Diagramm: ${titel}`}
+      >
       <SwimlaneOverlay
         lanes={layout.lanes}
         akteure={akteure}
@@ -147,11 +284,62 @@ function ProzessFlowInner({ titel, schritte, kanten, akteure, layout, colorMode 
         proOptions={{ hideAttribution: false }}
       >
         <Background gap={24} />
-        <Controls showInteractive={false} />
-        <MiniMap pannable zoomable ariaLabel="Übersichtskarte" />
+        <Controls showInteractive={false} position="bottom-right" className="sm:mb-0 mb-4" />
+        {/* MiniMap oben rechts (nicht unten rechts — dort sitzen die Controls)
+            und auf kleinen Screens ausgeblendet, wo sie nur Platz und Knoten
+            verdeckt. */}
+        <MiniMap pannable zoomable ariaLabel="Übersichtskarte" position="top-right" className="max-sm:!hidden" />
       </ReactFlow>
+      </div>
     </div>
   );
+}
+
+/** Legende: erklärt die Formen-Sprache des Diagramms. Reine Darstellung,
+ *  daher mit kleinen Form-Swatches (aria-hidden) plus dem i18n-Label je
+ *  Schritt-Typ. Wird über der Zeichenfläche gerendert, damit sie weder die
+ *  Swimlane-Labels (links) noch Controls/MiniMap (unten rechts) überdeckt. */
+function ProzessLegende({ heading, items }: { heading?: string; items: ProzessLegendeItem[] }) {
+  return (
+    <div
+      className="mb-2 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[12px] text-[var(--color-mute)]"
+      role="group"
+      aria-label={heading}
+    >
+      {heading && (
+        <span className="text-[11px] uppercase tracking-wider font-semibold">{heading}</span>
+      )}
+      {items.map((it) => (
+        <span key={it.typ} className="inline-flex items-center gap-1.5">
+          <LegendeSwatch typ={it.typ} />
+          <span className="text-[var(--color-ink)]">{it.label}</span>
+        </span>
+      ))}
+    </div>
+  );
+}
+
+/** Kleines Form-Symbol je Schritt-Typ, das die Node-Optik aus ProzessNodes
+ *  spiegelt (Pille, Raute, gestrichelt …). Rein dekorativ → aria-hidden. */
+function LegendeSwatch({ typ }: { typ: SchrittTyp }) {
+  const common = 'inline-block w-3.5 h-3.5 border';
+  switch (typ) {
+    case 'start':
+      return <span aria-hidden className={`${common} rounded-full border-[var(--color-accent)] bg-[var(--color-accent)]`} />;
+    case 'ende':
+      return <span aria-hidden className={`${common} rounded-full border-[var(--color-line)] bg-[var(--color-bg)]`} />;
+    case 'input':
+      return <span aria-hidden className={`${common} rounded-sm border-[var(--color-line)] border-l-[3px] border-l-[var(--color-accent)] bg-[var(--color-panel)]`} />;
+    case 'entscheidung':
+      return <span aria-hidden className="inline-block w-3 h-3 rotate-45 border border-[var(--color-accent)] bg-[var(--color-panel)]" />;
+    case 'loop':
+      return <span aria-hidden className={`${common} rounded-sm border-dashed border-[var(--color-mute)] bg-[var(--color-panel)]`} />;
+    case 'warten':
+      return <span aria-hidden className={`${common} rounded-sm border-[var(--color-line)] bg-[var(--color-panel)] italic`} />;
+    case 'prozess':
+    default:
+      return <span aria-hidden className={`${common} rounded-sm border-[var(--color-line)] bg-[var(--color-panel)]`} />;
+  }
 }
 
 /** Swimlane-Überlagerung: horizontale Bänder mit Akteur-Label links.
@@ -207,7 +395,7 @@ function SwimlaneOverlay({
               borderColor: 'var(--color-line)',
             }}
           >
-            <div className="absolute left-2 top-2 text-[11px] font-semibold uppercase tracking-wider text-[var(--color-mute)] max-w-[140px] leading-tight">
+            <div className="absolute left-2 top-2 text-[9px] sm:text-[11px] font-semibold uppercase tracking-wider text-[var(--color-mute)] max-w-[80px] sm:max-w-[140px] leading-tight break-words">
               {inner}
             </div>
           </div>

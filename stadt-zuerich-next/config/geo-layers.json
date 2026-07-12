@@ -1,0 +1,75 @@
+{
+  "_doc": [
+    "Single Source of Truth für die Geo-Layer der Territory-Ansicht.",
+    "Genutzt von scripts/fetch-geo.mjs (ETL) und app/api/geo/route.ts (Auslieferung).",
+    "",
+    "Ablauf: 'npm run data:fetch-geo' lädt je Layer das GeoJSON von Open Data",
+    "Zürich, normalisiert es und schreibt einen committe-baren Snapshot nach",
+    "data/geo/<city>/<id>.geojson. Liegt ein Snapshot vor, liefert /api/geo echte",
+    "Daten (Badge 'publiziert'); fehlt er, fällt die Route auf Demo-Punkte zurück",
+    "(Badge 'Demodaten').",
+    "",
+    "fetch-geo.mjs ermittelt das echte GeoJSON automatisch: aus der datasetUrl",
+    "via CKAN den WFS-Endpunkt, daraus per GetCapabilities den FeatureType-",
+    "Namen (Geometrie-View), dann GetFeature als GeoJSON (mehrere outputFormat-",
+    "Kandidaten). Die 'geodaten/download'-Seiten sind eine SPA (liefern HTML) und",
+    "taugen NICHT als direkte Quelle. Optional erzwingt source.geojsonUrl eine",
+    "feste URL. Voraussetzung: data/ogd.stadt-zuerich.ch erreichbar (lokal i. d. R.",
+    "problemlos; in abgeschotteten CI-/Sandbox-Umgebungen blockiert die Allowlist)."
+  ],
+  "city": "zh",
+  "license": "CC-BY",
+  "attribution": "Open Data Zürich, Stadt Zürich",
+  "layers": [
+    {
+      "id": "schools",
+      "label": "Schulanlagen",
+      "department": "SSD",
+      "namePrefix": "Schulanlage",
+      "demoCount": 40,
+      "source": {
+        "title": "Schulanlagen der Stadt Zürich",
+        "datasetUrl": "https://data.stadt-zuerich.ch/dataset/geo_schulanlagen",
+        "nameField": "name"
+      }
+    },
+    {
+      "id": "recycling",
+      "label": "Entsorgung (Kehrichtcontainer im öffentlichen Raum)",
+      "department": "TED",
+      "namePrefix": "Sammelstelle",
+      "demoCount": 30,
+      "source": {
+        "title": "ERZ Kehrichtcontainer im öffentlichen Raum",
+        "datasetUrl": "https://data.stadt-zuerich.ch/dataset/geo_erz_kehrichtcontainer_im_oeffentlichen_raum",
+        "nameField": "name"
+      }
+    },
+    {
+      "id": "playgrounds",
+      "label": "Öffentliche Spielplätze",
+      "department": "TED",
+      "namePrefix": "Spielplatz",
+      "demoCount": 60,
+      "source": {
+        "title": "POI öffentliche Spielplätze der Stadt Zürich",
+        "datasetUrl": "https://data.stadt-zuerich.ch/dataset/geo_poi_oeffentliche_spielplaetze",
+        "nameField": "name"
+      }
+    },
+    {
+      "id": "amtshaeuser",
+      "label": "Amtshäuser / Anlaufstellen",
+      "department": "BUG",
+      "namePrefix": "Amtshaus",
+      "demoCount": 12,
+      "source": {
+        "title": "Standorte der Amtshäuser in der Stadt Zürich",
+        "datasetUrl": "https://data.stadt-zuerich.ch/dataset/geo_amtshaus",
+        "nameField": "name",
+        "keyField": "poi_id",
+        "departmentOverride": "data/geo/zh/amtshaeuser-departments.json"
+      }
+    }
+  ]
+}

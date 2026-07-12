@@ -4,14 +4,22 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 import { usePathname, useRouter } from '@/i18n/navigation';
-import type cytoscape from 'cytoscape';
 import type { Core, ElementDefinition, LayoutOptions, NodeSingular } from 'cytoscape';
+import cytoscape from 'cytoscape';
+import fcose from 'cytoscape-fcose';
 import type { StadtData } from '@/types/stadt';
 import { city } from '@/config/city.config';
+import LiveClimateWidget from './LiveClimateWidget';
+
+try {
+  cytoscape.use(fcose);
+} catch {
+  // Already registered
+}
 
 type Layout = 'radial' | 'force';
 
-export default function GraphView({ data }: { data: StadtData }) {
+export default function GraphView({ data, locale }: { data: StadtData; locale?: string }) {
   const t = useTranslations();
   const tNav = useTranslations('Nav');
   const router = useRouter();
@@ -22,13 +30,10 @@ export default function GraphView({ data }: { data: StadtData }) {
   const hostRef = useRef<HTMLDivElement>(null);
   const cyRef = useRef<Core | null>(null);
   const [layout, setLayout] = useState<Layout>('radial');
+  const [klimaModus, setKlimaModus] = useState(false);
+  const [diversityModus, setDiversityModus] = useState(false);
+  const [gudBudgetDelta, setGudBudgetDelta] = useState(0);
 
-  // Progressive Disclosure: beim Start nur Stadtrat + Departemente sichtbar.
-  // `expanded` enthält die IDs der Departemente, deren Unter-Einheiten
-  // (units, staff, externe, beteiligungen) im Graphen gerendert werden.
-  // Initial leer — User klickt sich gezielt rein. Bei Deep-Link via
-  // ?focus=<unit-id> aber direkt das Eltern-Departement aufklappen, sonst
-  // ist das Ziel beim Landen unsichtbar.
   const initialExpanded = useMemo<Set<string>>(() => {
     const set = new Set<string>();
     if (focusId) {
@@ -39,35 +44,56 @@ export default function GraphView({ data }: { data: StadtData }) {
     }
     return set;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // initial-only: Folge-Fokus-Wechsel werden im focusId-Effekt behandelt
+  }, []);
   const [expanded, setExpanded] = useState<Set<string>>(initialExpanded);
 
-  // Mitgeführter, aktueller Fokus — die Event-Handler werden nur einmal
-  // registriert (im `[data]`-Effekt) und würden sonst den Wert aus der
-  // Mount-Render-Closure verwenden. Ein Ref hält den Stand synchron.
   const focusIdRef = useRef<string | null>(focusId);
-  // Signalisiert dem focusId-Effekt, dass die Änderung aus einem Klick im
-  // Graphen selbst stammt — Highlights wurden dann schon im Tap-Handler
-  // gesetzt und das Viewport muss nicht neu eingezoomt werden.
   const suppressFocusEffectRef = useRef(false);
-  // Live-Ref auf `expanded`, damit der einmalig registrierte Tap-Handler
-  // die aktuelle Toggle-Logik kennt, ohne neu registriert zu werden.
-  // Update läuft in einem useEffect (nicht synchron im Render-Body), damit
-  // die `react-hooks/refs`-Regel zufrieden ist und Concurrent-Mode-sauber.
   const expandedRef = useRef<Set<string>>(initialExpanded);
   useEffect(() => { expandedRef.current = expanded; }, [expanded]);
+
+  const expandedWithFocus = useMemo<Set<string>>(() => {
+    if (!focusId) return expanded;
+    const u = data.units.find((x) => x.id === focusId);
+    const b = data.beteiligungen.find((x) => x.id === focusId);
+    const parent = u?.parent ?? b?.verbunden;
+    if (parent && !expanded.has(parent)) {
+      const next = new Set(expanded);
+      next.add(parent);
+      return next;
+    }
+    return expanded;
+  }, [expanded, focusId, data]);
+
+  const tableNodes = useMemo(() => {
+    const isLs = locale === 'ls';
+    const list: Array<{ id: string; name: string; type: string; parent: string | null; budget?: typeof data.departments[0]['budget']; fte?: typeof data.departments[0]['fte'] }> = [];
+    list.push({ id: data.center.id, name: data.center.name, type: 'center', parent: null });
+    const depMap = new Map(data.departments.map(d => [d.id, d.name]));
+    for (const d of data.departments) {
+      list.push({ id: d.id, name: d.name, type: 'department', parent: data.center.name, budget: d.budget, fte: d.fte });
+    }
+    for (const u of data.units) {
+      if (!expandedWithFocus.has(u.parent)) continue;
+      if (isLs && u.kind !== 'unit') continue;
+      list.push({ id: u.id, name: u.name, type: u.kind, parent: depMap.get(u.parent) ?? u.parent, budget: u.budget, fte: u.fte });
+    }
+    if (!isLs) {
+      for (const b of data.beteiligungen) {
+        if (!expandedWithFocus.has(b.verbunden)) continue;
+        list.push({ id: b.id, name: b.name, type: 'beteiligung', parent: depMap.get(b.verbunden) ?? b.verbunden, budget: b.budget, fte: b.fte });
+      }
+    }
+    return list;
+  }, [data, expandedWithFocus, locale]);
 
   function setFocus(id: string | null) {
     const params = new URLSearchParams(searchParams.toString());
     if (id) params.set('focus', id); else params.delete('focus');
     const qs = params.toString();
-    // i18n-Router erhält locale-Prefix automatisch; Query-String anhängen.
     router.replace((qs ? `${pathname}?${qs}` : pathname) as Parameters<typeof router.replace>[0], { scroll: false });
   }
 
-  // Hilfsfunktion: Fokus-Markierung (gefadet + Nachbarschaft hervorgehoben)
-  // auf einen Knoten anwenden. Wird sowohl vom Tap-Handler als auch vom
-  // Mouseout-Handler (zum Wiederherstellen nach Hover) genutzt.
   function applyFocusHighlight(cy: Core, id: string) {
     const target = cy.getElementById(id);
     if (!target || target.length === 0) return;
@@ -77,35 +103,42 @@ export default function GraphView({ data }: { data: StadtData }) {
     target.addClass('search-hit');
   }
 
-  // Initialisierung
   useEffect(() => {
     let canceled = false;
-    (async () => {
-      const cytoscape = (await import('cytoscape')).default;
-      const fcose = (await import('cytoscape-fcose')).default;
-      try { cytoscape.use(fcose); } catch { /* schon registriert */ }
-      if (canceled || !hostRef.current) return;
+    let observer: ResizeObserver | null = null;
 
-      const elements = buildElements(data, expandedRef.current);
+    const initCy = () => {
+      if (canceled || !hostRef.current || cyRef.current) return;
+      
+      const width = hostRef.current.clientWidth;
+      const height = hostRef.current.clientHeight;
+
+      if (width === 0 || height === 0) {
+        if (!observer) {
+          observer = new ResizeObserver(() => {
+            if (hostRef.current && hostRef.current.clientWidth > 0 && hostRef.current.clientHeight > 0) {
+              observer?.disconnect();
+              observer = null;
+              initCy();
+            }
+          });
+          observer.observe(hostRef.current);
+        }
+        return;
+      }
+
+      const elements = buildElements(data, expandedRef.current, locale, layout);
       const cy = cytoscape({
         container: hostRef.current,
         elements,
-        style: GRAPH_STYLE,
-        // Erst-Layout ohne Animation: das frühere "Hineinfliegen von links"
-        // hat die Seite unruhig wirken lassen. Knoten erscheinen jetzt
-        // direkt an der Zielposition. Layout-Wechsel (siehe zweiter Effekt)
-        // animieren weiterhin, weil dort der Positionssprung nützlich ist.
+        style: getGraphStyle(locale, klimaModus, gudBudgetDelta, diversityModus),
         layout: layoutOptions('radial', false),
-        // Cytoscape default (1) zoomt mit vernünftiger Geschwindigkeit.
-        // Ältere Werte von 0.2 zwangen Nutzer:innen zu langem Scrollen,
-        // um überhaupt reinzukommen.
-        wheelSensitivity: 1,
-        minZoom: 0.2,
+        wheelSensitivity: 0.2,
+        minZoom: 0.15,
         maxZoom: 4,
       });
+
       cy.on('mouseover', 'node', (e) => {
-        // Temporärer Hover: überschreibt einen vorhandenen Klick-Fokus,
-        // wird beim Mouseout wiederhergestellt.
         const nb = e.target.closedNeighborhood();
         cy.elements().removeClass('highlighted').removeClass('search-hit');
         cy.elements().addClass('faded');
@@ -113,8 +146,6 @@ export default function GraphView({ data }: { data: StadtData }) {
       });
       cy.on('mouseout', 'node', () => {
         cy.elements().removeClass('faded').removeClass('highlighted').removeClass('search-hit');
-        // Persistente Auswahl nach Klick nicht verlieren, wenn die Maus
-        // den Knoten verlässt — stattdessen den Fokus-Highlight neu setzen.
         const fid = focusIdRef.current;
         if (fid) applyFocusHighlight(cy, fid);
       });
@@ -122,9 +153,6 @@ export default function GraphView({ data }: { data: StadtData }) {
         const id = e.target.id();
         const type = e.target.data('type');
         const childCount = (e.target.data('childCount') as number | undefined) ?? 0;
-        // Klick auf ein Departement mit Kindern: Drill-down ein/aus.
-        // Tap auf Endknoten (units, beteiligungen, center) toggelt nichts —
-        // dort öffnet nur das Detail-Panel.
         if (type === 'department' && childCount > 0) {
           const cur = expandedRef.current;
           const next = new Set(cur);
@@ -132,8 +160,6 @@ export default function GraphView({ data }: { data: StadtData }) {
           else next.add(id);
           setExpanded(next);
         }
-        // Highlight sofort anwenden und den nachfolgenden focusId-Effekt
-        // dazu bringen, das Viewport nicht neu zu zentrieren/zoomen.
         suppressFocusEffectRef.current = true;
         focusIdRef.current = id;
         applyFocusHighlight(cy, id);
@@ -148,56 +174,70 @@ export default function GraphView({ data }: { data: StadtData }) {
         }
       });
       cyRef.current = cy;
-      // Startansicht: etwas mehr Padding unten, damit die äusseren Knoten
-      // die Fusszeilen-Hinweise (Hover=... und Legend) nicht überdecken,
-      // und dann deutlich näher reinzoomen — die Labels auf den Departements-
-      // Knoten sind sonst unlesbar klein.
       cy.ready(() => {
         cy.fit(undefined, 40);
-        cy.zoom({ level: cy.zoom() * 1.45, renderedPosition: { x: cy.width() / 2, y: cy.height() / 2 } });
-        // Bei Deep-Link via ?focus=... den Highlight direkt anwenden.
         const initialFocus = focusIdRef.current;
         if (initialFocus) applyFocusHighlight(cy, initialFocus);
       });
-    })();
+    };
+    
+    const handleReset = () => {
+      const cy = cyRef.current;
+      if (!cy) return;
+      setExpanded(new Set());
+      suppressFocusEffectRef.current = true;
+      focusIdRef.current = null;
+      cy.elements().removeClass('faded').removeClass('highlighted').removeClass('search-hit');
+      setFocus(null);
+      cy.animate({ center: { eles: cy.getElementById('stadtrat') }, zoom: 1 }, { duration: 500 });
+    };
+    window.addEventListener('mog:graph:reset', handleReset);
+    
+    initCy();
+    
     return () => {
       canceled = true;
+      observer?.disconnect();
+      window.removeEventListener('mog:graph:reset', handleReset);
       cyRef.current?.destroy();
       cyRef.current = null;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
-  // Layout-Wechsel
-  useEffect(() => {
-    cyRef.current?.layout(layoutOptions(layout, true)).run();
-  }, [layout]);
 
-  // Drill-down-Sync: beim Auf-/Zuklappen Knoten und Kanten dem Soll-Zustand
-  // angleichen, danach Layout neu rechnen, ohne die Kamera zurückzusetzen
-  // (`fit: false`). Das frische Re-Position der Knoten ist nötig, damit neu
-  // hinzugefügte Units nicht alle bei (0,0) übereinander liegen.
+
   useEffect(() => {
     const cy = cyRef.current;
     if (!cy) return;
-    const target = buildElements(data, expanded);
+    cy.style(getGraphStyle(locale, klimaModus, gudBudgetDelta, diversityModus));
+  }, [klimaModus, locale, gudBudgetDelta, diversityModus]);
+
+  useEffect(() => {
+    const cy = cyRef.current;
+    if (!cy) return;
+    const target = buildElements(data, expandedWithFocus, locale, layout);
     syncElements(cy, target);
-    cy.layout({ ...layoutOptions(layout, true), fit: false } as LayoutOptions).run();
-    // Highlight nach Sync wiederherstellen — neu hinzugekommene Geschwister
-    // brauchen eventuell die `faded`-Klasse, der fokussierte Knoten wieder
-    // den Highlight-Rahmen.
+    const layoutConfig = cy.layout({ ...layoutOptions(layout, true), fit: true } as LayoutOptions);
+    
     const fid = focusIdRef.current;
-    if (fid) {
+    if (fid && !suppressFocusEffectRef.current) {
+      cy.one('layoutstop', () => {
+        const t = cy.getElementById(fid);
+        if (t && t.length > 0) {
+          applyFocusHighlight(cy, fid);
+          cy.animate({ center: { eles: t }, zoom: 1.5 }, { duration: 600 });
+        }
+      });
+    } else if (fid) {
       const t = cy.getElementById(fid);
       if (t && t.length > 0) applyFocusHighlight(cy, fid);
     }
+    
+    layoutConfig.run();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [expanded]);
+  }, [expandedWithFocus, layout]);
 
-  // Auf URL-Fokus reagieren (Search → Sprung zu Knoten via Deep-Link).
-  // Wird bei User-Klicks übersprungen, da der Tap-Handler dort schon alles
-  // inkl. Highlight erledigt hat — ein zusätzlicher center/zoom-Animate
-  // würde sich wie das ungeliebte "Hineinfliegen" anfühlen.
   useEffect(() => {
     focusIdRef.current = focusId;
     if (suppressFocusEffectRef.current) {
@@ -210,18 +250,10 @@ export default function GraphView({ data }: { data: StadtData }) {
       cy.elements().removeClass('faded').removeClass('highlighted').removeClass('search-hit');
       return;
     }
-    // Wenn das Ziel hinter einem zugeklappten Departement liegt: erst Eltern
-    // aufklappen, dann macht der `[expanded]`-Effekt den Highlight nach Sync.
     const u = data.units.find((x) => x.id === focusId);
     const b = data.beteiligungen.find((x) => x.id === focusId);
     const parentToOpen = u?.parent ?? b?.verbunden;
-    if (parentToOpen && !expanded.has(parentToOpen)) {
-      // Bewusst setState aus dem Effekt heraus: wir synchronisieren mit der
-      // externen URL-Quelle (`?focus=…`). Wenn das Ziel im aktuell zu-
-      // geklappten Zweig liegt, müssen wir dieses Eltern-Departement öffnen,
-      // bevor das Highlight gesetzt werden kann. Der nachfolgende
-      // `[expanded]`-Effekt rendert das Element und erledigt den Highlight.
-      // eslint-disable-next-line react-hooks/set-state-in-effect
+    if (parentToOpen && !expandedRef.current.has(parentToOpen)) {
       setExpanded((prev) => {
         const next = new Set(prev);
         next.add(parentToOpen);
@@ -231,38 +263,71 @@ export default function GraphView({ data }: { data: StadtData }) {
     }
     const target = cy.getElementById(focusId);
     if (!target || target.length === 0) return;
+    
     applyFocusHighlight(cy, focusId);
-    cy.animate({ center: { eles: target }, zoom: 1.6 }, { duration: 500 });
-  }, [focusId, data, expanded]);
+    cy.stop(true, true);
+    cy.animate({ center: { eles: target }, zoom: 1.5 }, { duration: 600 });
+  }, [focusId, data]);
 
   return (
     <>
       <div
         ref={hostRef}
-        className="absolute top-14 inset-x-0 bottom-0 cy-host"
-        role="img"
-        aria-label="Interaktiver Graph der Stadtverwaltung – nicht barrierefrei. Bitte zur Liste wechseln."
+        className="absolute inset-0 cy-host focus:outline-none"
+        aria-hidden="true"
       />
+      
+      <div className="sr-only">
+        <table>
+          <caption>{t('GraphTable.caption')}</caption>
+          <thead>
+            <tr>
+              <th scope="col">{t('GraphTable.colName')}</th>
+              <th scope="col">{t('GraphTable.colType')}</th>
+              <th scope="col">{t('GraphTable.colParent')}</th>
+              <th scope="col">{t('GraphTable.colBudget')}</th>
+              <th scope="col">{t('GraphTable.colFte')}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tableNodes.map(n => (
+              <tr key={n.id}>
+                <td>{n.name}</td>
+                <td>{t.has(`Type.${n.type}`) ? t(`Type.${n.type}`) : n.type}</td>
+                <td>{n.parent ?? '-'}</td>
+                <td suppressHydrationWarning>{n.budget?.aufwand != null ? n.budget.aufwand.toLocaleString('de-CH') : ''}</td>
+                <td suppressHydrationWarning>{n.fte?.schaetzung != null ? n.fte.schaetzung.toLocaleString('de-CH') : ''}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      
       <Toolbar
+        onExportCSV={() => {
+          import('@/lib/export').then(({ downloadNodesAsCSV }) => {
+            downloadNodesAsCSV(tableNodes);
+          });
+        }}
         layout={layout}
         onLayoutChange={setLayout}
         onCenter={() => {
           const cy = cyRef.current;
           if (!cy) return;
+          setExpanded(new Set());
+          suppressFocusEffectRef.current = true;
+          focusIdRef.current = null;
+          cy.elements().removeClass('faded').removeClass('highlighted').removeClass('search-hit');
+          setFocus(null);
           cy.animate({ center: { eles: cy.getElementById('stadtrat') }, zoom: 1 }, { duration: 500 });
         }}
         onFit={() => cyRef.current?.fit(undefined, 40)}
-        // Drill-down-Steuerung — alle Departemente auf einmal öffnen oder
-        // zuklappen. `allExpanded` bestimmt das Label auf dem Toggle-Button.
         allExpanded={
           data.departments.length > 0 && expanded.size === data.departments.length
         }
         onExpandAll={() => setExpanded(new Set(data.departments.map((d) => d.id)))}
         onCollapseAll={() => {
           setExpanded(new Set());
-          // Wenn der Fokus auf einer Unter-Einheit lag, würde diese gleich
-          // unsichtbar — sonst zeigt das Detail-Panel weiter eine Einheit,
-          // die im Graphen gar nicht mehr existiert.
           const fid = focusIdRef.current;
           if (fid) {
             const stillVisible =
@@ -272,17 +337,30 @@ export default function GraphView({ data }: { data: StadtData }) {
         }}
         labelExpandAll={tNav('expandAll')}
         labelCollapseAll={tNav('collapseAll')}
+        labelExportCSV={t('Export.csvButton')}
+        klimaModus={klimaModus}
+        onChangeKlimaModus={setKlimaModus}
+        labelKlimaToggle={tNav('climateToggle')}
+        titleKlimaToggle={tNav('climateToggleTitle')}
+        diversityModus={diversityModus}
+        onChangeDiversityModus={setDiversityModus}
+        labelDiversityToggle={tNav('diversityToggle')}
+        titleDiversityToggle={tNav('diversityToggleTitle')}
       />
-      <div className="fixed bottom-3 left-1/2 -translate-x-1/2 text-[11px] text-[var(--color-mute)] pointer-events-none z-[8] bg-[var(--color-panel)]/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow border border-[var(--color-line)] whitespace-nowrap max-w-[90vw] overflow-hidden text-ellipsis">
-        {t('Hint')}
-      </div>
+      {klimaModus && (
+        <LiveClimateWidget 
+          gudBudgetDelta={gudBudgetDelta} 
+          onGudBudgetDeltaChange={setGudBudgetDelta} 
+        />
+      )}
     </>
   );
 }
 
 function Toolbar({
-  layout, onLayoutChange, onCenter, onFit,
-  allExpanded, onExpandAll, onCollapseAll, labelExpandAll, labelCollapseAll,
+  layout, onLayoutChange, onCenter, onFit, allExpanded, onExpandAll, onCollapseAll, labelExpandAll, labelCollapseAll, labelExportCSV, onExportCSV,
+  klimaModus, onChangeKlimaModus, labelKlimaToggle, titleKlimaToggle,
+  diversityModus, onChangeDiversityModus, labelDiversityToggle, titleDiversityToggle
 }: {
   layout: Layout;
   onLayoutChange: (l: Layout) => void;
@@ -293,6 +371,16 @@ function Toolbar({
   onCollapseAll: () => void;
   labelExpandAll: string;
   labelCollapseAll: string;
+  labelExportCSV: string;
+  onExportCSV: () => void;
+  klimaModus?: boolean;
+  onChangeKlimaModus?: (k: boolean) => void;
+  labelKlimaToggle?: string;
+  titleKlimaToggle?: string;
+  diversityModus?: boolean;
+  onChangeDiversityModus?: (d: boolean) => void;
+  labelDiversityToggle?: string;
+  titleDiversityToggle?: string;
 }) {
   const btn = (active: boolean) =>
     'px-2.5 py-1.5 text-xs rounded border ' +
@@ -301,7 +389,7 @@ function Toolbar({
       : 'bg-transparent text-[var(--color-ink)] border-[var(--color-line)] hover:bg-[var(--color-bg)]');
   return (
     <div role="toolbar" aria-label="Diagramm-Werkzeuge"
-         className="fixed top-[64px] right-3 z-[9] flex flex-col gap-1.5 items-end">
+         className="fixed top-[124px] sm:top-[64px] right-3 z-[9] flex flex-col sm:flex-col gap-1.5 items-end pointer-events-none [&>*]:pointer-events-auto">
       <div role="group" aria-label="Layout"
            className="flex gap-1.5 bg-[var(--color-panel)] p-1.5 rounded-lg shadow">
         <button className={btn(layout === 'radial')} aria-pressed={layout === 'radial'}
@@ -312,13 +400,9 @@ function Toolbar({
       <div role="group" aria-label="Ansicht"
            className="flex gap-1.5 bg-[var(--color-panel)] p-1.5 rounded-lg shadow">
         <button className={btn(false)} onClick={onCenter}
-                aria-label="Diagramm auf Stadtrat zentrieren">Zentrieren</button>
+                aria-label="Auswahl aufheben und Ansicht zurücksetzen">↻ Zurücksetzen</button>
         <button className={btn(false)} onClick={onFit}
                 aria-label="Alle Knoten ins Sichtfeld einpassen">Alles zeigen</button>
-        {/* Drill-down-Toggle: ein Button, der zwischen Auf-/Zuklappen
-            wechselt — abhängig davon, ob bereits alle Departemente offen
-            sind. Hält die Toolbar schmal und fühlt sich wie ein "Master-
-            Schalter" an. */}
         <button
           className={btn(false)}
           onClick={allExpanded ? onCollapseAll : onExpandAll}
@@ -328,113 +412,153 @@ function Toolbar({
           {allExpanded ? labelCollapseAll : labelExpandAll}
         </button>
       </div>
+      
+      {onChangeKlimaModus && (
+        <div role="group" aria-label="Klima" className="flex gap-1.5 bg-[var(--color-panel)] p-1.5 rounded-lg shadow mt-2">
+          <button 
+            className={btn(klimaModus ?? false)} 
+            onClick={() => {
+              if (klimaModus && onChangeDiversityModus) onChangeDiversityModus(false); // mutually exclusive
+              onChangeKlimaModus(!(klimaModus ?? false));
+            }}
+            aria-pressed={klimaModus ?? false}
+            title={titleKlimaToggle}
+          >
+            {labelKlimaToggle}
+          </button>
+        </div>
+      )}
+
+      {onChangeDiversityModus && (
+        <div role="group" aria-label="Diversity" className="flex gap-1.5 bg-[var(--color-panel)] p-1.5 rounded-lg shadow mt-2">
+          <button 
+            className={btn(diversityModus ?? false)} 
+            onClick={() => {
+              if (!diversityModus && onChangeKlimaModus) onChangeKlimaModus(false); // mutually exclusive
+              onChangeDiversityModus(!(diversityModus ?? false));
+            }}
+            aria-pressed={diversityModus ?? false}
+            title={titleDiversityToggle}
+          >
+            {labelDiversityToggle}
+          </button>
+        </div>
+      )}
+
+      <div role="group" aria-label="Export" className="flex gap-1.5 bg-[var(--color-panel)] p-1.5 rounded-lg shadow mt-2">
+        <button className={btn(false)} onClick={onExportCSV} aria-label={labelExportCSV}>
+          {labelExportCSV}
+        </button>
+      </div>
     </div>
   );
 }
 
-/* -------- Helpers -------- */
-
-/**
- * Erzeugt die Elementliste für Cytoscape unter Berücksichtigung der
- * Drill-down-Maske: Center und Departemente sind immer sichtbar; units,
- * staff, externe und beteiligungen erscheinen nur, wenn ihr Eltern-
- * Departement in `expanded` enthalten ist.
- *
- * Departement-Labels werden mit einem Chevron versehen, der den
- * Aufklapp-Status visualisiert (▾ offen, ▸ zu) plus eine Zahl der
- * verborgenen Kinder, wenn zugeklappt — so wissen Bürger:innen ohne Klick,
- * was hinter dem Knoten steckt.
- */
-function buildElements(d: StadtData, expanded: Set<string>): ElementDefinition[] {
+function buildElements(d: StadtData, expanded: Set<string>, locale: string | undefined, layout: Layout): ElementDefinition[] {
   const nodes: ElementDefinition[] = [];
   const edges: ElementDefinition[] = [];
+  const isLs = locale === 'ls';
 
-  nodes.push({ data: { id: d.center.id, label: d.center.name, type: 'center', level: 0 } });
+  nodes.push({ data: { id: d.center.id, label: d.center.name, type: 'center', level: 0, color: TC.nodeType.stadtpraesidium } });
 
-  // Vorberechnen, wie viele Kinder jedes Departement hat — Units, Staff,
-  // Externe und Beteiligungen zusammen. Wird sowohl fürs Label als auch
-  // für die "Klick lohnt sich"-Logik im Tap-Handler genutzt.
   const childCount = new Map<string, number>();
-  for (const u of d.units) childCount.set(u.parent, (childCount.get(u.parent) ?? 0) + 1);
+  for (const u of d.units) {
+    if (isLs && u.kind !== 'unit') continue;
+    childCount.set(u.parent, (childCount.get(u.parent) ?? 0) + 1);
+  }
   for (const b of d.beteiligungen) {
+    if (isLs) continue;
     childCount.set(b.verbunden, (childCount.get(b.verbunden) ?? 0) + 1);
   }
 
-  for (const dep of d.departments) {
+  const depColors = new Map<string, string>();
+
+  for (let i = 0; i < d.departments.length; i++) {
+    const dep = d.departments[i];
     const n = childCount.get(dep.id) ?? 0;
     const isOpen = expanded.has(dep.id);
-    const label =
-      n === 0 ? dep.name
-      : isOpen ? `▾ ${dep.name}`
-      : `▸ ${dep.name} (${n})`;
+    const label = n > 0 ? `${dep.name}\n(${n})` : dep.name;
+    const color = TC.departmentPalette[i % TC.departmentPalette.length];
+    depColors.set(dep.id, color);
+
     nodes.push({
       data: {
         id: dep.id, label, fullName: dep.name, abbr: dep.id,
         vorsteher: dep.vorsteher, type: 'department', level: 1,
         budget: dep.budget, fte: dep.fte, odz: dep.odz,
-        // Markierung für Tap-Handler und ggf. Style-Selektoren.
         childCount: n,
         expanded: isOpen,
+        klima: (dep as unknown as Record<string, unknown>).klima,
+        diversity: (dep as unknown as Record<string, unknown>).diversity,
+        color
       },
     });
-    edges.push({ data: { id: `e-${d.center.id}-${dep.id}`, source: d.center.id, target: dep.id } });
+    edges.push({ data: { id: `e-${d.center.id}-${dep.id}`, source: d.center.id, target: dep.id, color } });
   }
 
   for (const u of d.units) {
     if (!expanded.has(u.parent)) continue;
+    if (isLs && u.kind !== 'unit') continue;
     const lvl = u.kind === 'extern' ? 3 : 2;
+    const isCompound = u.kind !== 'extern' && layout === 'force';
+    const color = depColors.get(u.parent) ?? TC.nodeType.unit;
     nodes.push({
       data: {
         id: u.id, label: u.name, type: u.kind, level: lvl, parentDep: u.parent,
+        parent: isCompound ? u.parent : undefined,
         budget: u.budget, fte: u.fte, odz: u.odz, konflikt: u.konflikt,
+        klima: (u as unknown as Record<string, unknown>).klima,
+        diversity: (u as unknown as Record<string, unknown>).diversity,
+        color
       },
     });
-    edges.push({ data: { id: `e-${u.parent}-${u.id}`, source: u.parent, target: u.id } });
+    if (!isCompound) {
+      edges.push({ data: { id: `e-${u.parent}-${u.id}`, source: u.parent, target: u.id, color } });
+    }
   }
 
   for (const b of d.beteiligungen) {
+    if (isLs) continue;
     if (!expanded.has(b.verbunden)) continue;
+    const color = depColors.get(b.verbunden) ?? TC.nodeType.beteiligung;
     nodes.push({
       data: {
         id: b.id, label: b.name, type: 'beteiligung', level: 4, parentDep: b.verbunden,
         budget: b.budget, fte: b.fte, odz: b.odz,
+        klima: (b as unknown as Record<string, unknown>).klima,
+        diversity: (b as unknown as Record<string, unknown>).diversity,
+        color
       },
     });
     edges.push({
-      data: { id: `e-${b.verbunden}-${b.id}`, source: b.verbunden, target: b.id, dashed: true },
+      data: { id: `e-${b.verbunden}-${b.id}`, source: b.verbunden, target: b.id, dashed: true, color },
     });
   }
 
   return [...nodes, ...edges];
 }
 
-/**
- * Bringt den Cytoscape-Graphen in Übereinstimmung mit der Soll-Elementliste.
- * Statt `cy.json({elements})` zu verwenden (würde alle Positionen verlieren),
- * fahren wir einen In-Place-Diff: bestehende Knoten behalten ihre Position,
- * neu hinzukommende werden vom anschliessend laufenden Layout positioniert,
- * verschwundene werden entfernt. Mutable Felder (z. B. das Departement-Label
- * mit Chevron) werden auf vorhandenen Knoten aktualisiert.
- */
 function syncElements(cy: Core, target: ElementDefinition[]): void {
   const targetById = new Map<string, ElementDefinition>();
   for (const el of target) {
     if (el.data?.id) targetById.set(el.data.id, el);
   }
   cy.batch(() => {
-    // 1) Entfernen, was nicht mehr gewünscht ist.
     cy.elements().forEach((ele) => {
       if (!targetById.has(ele.id())) ele.remove();
     });
-    // 2) Hinzufügen, was fehlt; Daten existierender Knoten/Kanten updaten.
     const toAdd: ElementDefinition[] = [];
     for (const [id, def] of targetById) {
       const existing = cy.getElementById(id);
       if (existing.length === 0) {
         toAdd.push(def);
       } else if (def.data) {
+        const oldParent = existing.isNode() ? existing.data('parent') : undefined;
         for (const key of Object.keys(def.data)) {
           existing.data(key, (def.data as Record<string, unknown>)[key]);
+        }
+        if (existing.isNode() && def.data.parent !== oldParent) {
+          existing.move({ parent: def.data.parent || null });
         }
       }
     }
@@ -444,64 +568,140 @@ function syncElements(cy: Core, target: ElementDefinition[]): void {
 
 function layoutOptions(name: Layout, animate: boolean): LayoutOptions {
   if (name === 'force') {
-    // fcose-spezifische Optionen (nicht in den Cytoscape-Core-Typen)
     return {
-      name: 'fcose', quality: 'default', animate, animationDuration: 800,
-      nodeRepulsion: 6000, idealEdgeLength: 60, gravity: 0.15, nestingFactor: 0.6, randomize: false,
+      name: 'fcose', quality: 'proof', animate, animationDuration: 800,
+      nodeDimensionsIncludeLabels: true,
+      nodeRepulsion: 400000, idealEdgeLength: 150, gravity: 0.05, nestingFactor: 0.6, randomize: true,
+      fit: true, padding: 60,
     } as unknown as LayoutOptions;
   }
   return {
-    name: 'concentric',
-    concentric: (n: NodeSingular) => 10 - (n.data('level') as number),
-    levelWidth: () => 1,
-    // Engere Ringe + dichtere Knoten: die vorherigen 28/1.25 ließen die
-    // Ringe so weit auseinander, dass bei Start fast nur leere Fläche
-    // zu sehen war.
-    minNodeSpacing: 14,
-    spacingFactor: 0.75,
+    name: 'breadthfirst',
+    circle: true,
+    roots: '[type = "center"]',
+    nodeDimensionsIncludeLabels: true,
+    spacingFactor: 0.95,
+    fit: true, padding: 40,
     avoidOverlap: true, animate, animationDuration: 600,
-  };
+  } as unknown as LayoutOptions;
 }
 
-// Cytoscape kann CSS-Variablen nicht direkt lesen (Canvas-Renderer); daher
-// lesen wir die Farben aus dem Stadt-Config direkt als Hex-Werte ein.
-// Tenant-Override: city.config.json → theme.
 const TC = city.theme;
-const GRAPH_STYLE: cytoscape.StylesheetStyle[] = [
-  { selector: 'node', style: {
-      'label': 'data(label)', 'font-size': 9,
-      'text-valign': 'center', 'text-halign': 'center',
-      'color': '#1a1f2e', 'text-outline-color': '#fff', 'text-outline-width': 2,
-      'border-width': 1, 'border-color': 'rgba(0,0,0,.2)', 'width': 18, 'height': 18 } },
-  { selector: 'node[type = "center"]', style: {
-      'background-color': TC.nodeType.stadtpraesidium, 'shape': 'ellipse',
-      'width': 70, 'height': 70, 'font-size': 13, 'color': '#fff',
-      'text-outline-color': TC.nodeType.stadtpraesidium } },
-  { selector: 'node[type = "department"]', style: {
-      'background-color': TC.nodeType.department, 'shape': 'round-rectangle',
-      'width': 130, 'height': 54, 'font-size': 10, 'font-weight': 'bold',
-      'color': '#fff', 'text-outline-color': TC.nodeType.department,
-      'text-wrap': 'wrap', 'text-max-width': '120', 'padding': '4' } },
-  { selector: 'node[type = "unit"]', style: {
-      'background-color': TC.nodeType.unit, 'shape': 'round-rectangle', 'width': 22, 'height': 16 } },
-  { selector: 'node[type = "staff"]', style: {
-      'background-color': TC.nodeType.staff, 'shape': 'round-rectangle', 'width': 22, 'height': 16 } },
-  // Spezialverwaltungsbehörde: weisse Box mit kräftiger Kontur — spiegelt
-  // die Darstellung im offiziellen Organigramm der Stadt.
-  { selector: 'node[type = "spezial"]', style: {
-      'background-color': TC.nodeType.spezial, 'shape': 'round-rectangle',
-      'width': 22, 'height': 16, 'border-width': 1.5, 'border-color': '#475569' } },
-  { selector: 'node[type = "extern"]', style: {
-      'background-color': TC.nodeType.extern, 'shape': 'diamond', 'width': 22, 'height': 22 } },
-  { selector: 'node[type = "beteiligung"]', style: {
-      'background-color': TC.nodeType.beteiligung, 'shape': 'diamond', 'width': 18, 'height': 18 } },
-  { selector: 'edge', style: {
-      'width': 1, 'line-color': '#c8cdda', 'curve-style': 'bezier',
-      'target-arrow-shape': 'none', 'opacity': 0.6 } },
-  { selector: 'edge[?dashed]', style: { 'line-style': 'dashed', 'opacity': 0.45 } },
-  { selector: '.faded',       style: { 'opacity': 0.12, 'text-opacity': 0.1 } },
-  { selector: '.highlighted', style: { 'border-width': 3, 'border-color': TC.accent, 'opacity': 1 } },
-  { selector: '.search-hit',  style: { 'border-width': 4, 'border-color': '#ff4081' } },
-  { selector: 'node[?konflikt]', style: {
-      'border-width': 2.5, 'border-color': TC.konflikt, 'border-style': 'dashed' } },
-];
+function getGraphStyle(locale?: string, klimaModus?: boolean, gudBudgetDelta: number = 0, diversityModus?: boolean): cytoscape.StylesheetStyle[] {
+  const isLs = locale === 'ls';
+  const mul = isLs ? 1.5 : 1;
+  const gudScale = 1 + (gudBudgetDelta / 100);
+
+  const styles: cytoscape.StylesheetStyle[] = [
+    { selector: 'node', style: {
+        'label': 'data(label)', 'font-size': 9 * mul,
+        'text-valign': 'bottom', 'text-halign': 'center',
+        'text-margin-y': 4 * mul,
+        'color': '#1a1f2e', 'text-outline-color': '#fff', 'text-outline-width': 2 * mul,
+        'border-width': 1 * mul, 'border-color': 'rgba(0,0,0,.2)', 'width': 18 * mul, 'height': 18 * mul } },
+    { selector: 'node[type = "center"]', style: {
+        'background-color': 'data(color)', 'shape': 'ellipse',
+        'width': 64 * mul, 'height': 64 * mul, 'font-size': 12 * mul, 'color': '#fff',
+        'text-valign': 'center', 'text-margin-y': 0,
+        'text-outline-color': 'data(color)' } },
+    { selector: 'node[type = "department"]', style: {
+        'background-color': 'data(color)', 'shape': 'round-rectangle',
+        'width': 120 * mul, 'height': 52 * mul, 'font-size': 11 * mul, 'font-weight': 'bold',
+        'color': '#fff', 'text-outline-color': 'data(color)',
+        'text-valign': 'center', 'text-margin-y': 0,
+        'text-wrap': 'wrap', 'text-max-width': String(112 * mul), 'padding': String(4 * mul) } },
+    { selector: 'node[type = "department"]:parent', style: {
+        'background-color': 'rgba(255, 255, 255, 0.65)',
+        'border-width': 2 * mul, 'border-color': 'data(color)',
+        'shape': 'round-rectangle', 'padding': String(16 * mul),
+        'text-valign': 'top', 'text-halign': 'center',
+        'color': 'data(color)', 'text-outline-width': 0,
+        'font-size': 11 * mul, 'text-margin-y': -8 * mul,
+    } },
+    { selector: 'node[type = "unit"]', style: {
+        'background-color': 'data(color)', 'shape': 'round-rectangle', 'width': 22 * mul, 'height': 16 * mul } },
+    { selector: 'node[type = "staff"]', style: {
+        'background-color': 'data(color)', 'shape': 'round-rectangle', 'width': 22 * mul, 'height': 16 * mul } },
+    // Spezialverwaltungsbehörde: weisse Box mit kräftiger Kontur — spiegelt
+    // die Darstellung im offiziellen Organigramm der Stadt.
+    { selector: 'node[type = "spezial"]', style: {
+        'background-color': TC.nodeType.spezial, 'shape': 'round-rectangle',
+        'width': 22 * mul, 'height': 16 * mul,
+        'border-width': 1.5 * mul, 'border-color': '#475569' } },
+    { selector: 'node[type = "extern"]', style: {
+        'background-color': 'data(color)', 'shape': 'diamond', 'width': 22 * mul, 'height': 22 * mul } },
+    { selector: 'node[type = "beteiligung"]', style: {
+        'background-color': 'data(color)', 'shape': 'diamond', 'width': 18 * mul, 'height': 18 * mul } },
+    { selector: 'edge', style: {
+        'width': 1 * mul, 'line-color': 'data(color)', 'curve-style': 'bezier',
+        'target-arrow-shape': 'none', 'opacity': 0.6 } },
+    { selector: 'edge[?dashed]', style: { 'line-style': 'dashed', 'opacity': 0.45 } },
+    { selector: '.faded',       style: { 'opacity': 0.6, 'text-opacity': 0.8 } },
+    { selector: '.highlighted', style: { 'border-width': 3 * mul, 'border-color': TC.accent, 'opacity': 1 } },
+    { selector: '.search-hit',  style: { 'border-width': 4 * mul, 'border-color': TC.accent } },
+    { selector: 'node[?konflikt]', style: {
+        'border-width': 2.5 * mul, 'border-color': TC.konflikt, 'border-style': 'dashed' } },
+  ];
+
+  if (klimaModus) {
+    styles.push({
+      selector: 'node[type="department"], node[type="unit"], node[type="staff"]',
+      style: {
+        'background-color': (ele: NodeSingular) => {
+          const klima = ele.data('klima');
+          if (klima && klima.co2Score > 50) return '#ef4444'; // red-500
+          if (klima && klima.co2Score > 20) return '#eab308'; // yellow-500
+          return '#22c55e'; // green-500
+        },
+        'border-width': 4 * mul,
+        'border-color': '#cbd5e1'
+      } as cytoscape.Css.Node
+    });
+
+    if (gudBudgetDelta !== 0) {
+      styles.push({
+        selector: 'node[id="GUD"], node[parentDep="GUD"], node[parent="GUD"]',
+        style: {
+          'width': (ele: NodeSingular) => {
+             const baseW = ele.data('type') === 'department' ? 130 : 22;
+             return baseW * mul * gudScale;
+          },
+          'height': (ele: NodeSingular) => {
+             const baseH = ele.data('type') === 'department' ? 54 : 16;
+             return baseH * mul * gudScale;
+          },
+          'font-size': (ele: NodeSingular) => {
+             const baseFS = ele.data('type') === 'department' ? 10 : 9;
+             return baseFS * mul * Math.max(0.5, Math.min(gudScale, 1.5));
+          },
+          'border-width': 4 * mul,
+          'border-color': gudBudgetDelta > 0 ? '#ef4444' : '#22c55e', 
+          'transition-property': 'width, height, font-size, border-color',
+          'transition-duration': 300
+        } as cytoscape.Css.Node
+      });
+    }
+  }
+
+  if (diversityModus) {
+    styles.push({
+      selector: 'node[type="department"], node[type="unit"]',
+      style: {
+        'pie-size': '100%',
+        'pie-1-background-color': '#d946ef', // fuchsia-500 (women)
+        'pie-1-background-size': (ele: NodeSingular) => {
+           const div = ele.data('diversity');
+           return div ? div.womenInManagement : 0;
+        },
+        'pie-2-background-color': '#0ea5e9', // sky-500 (men)
+        'pie-2-background-size': (ele: NodeSingular) => {
+           const div = ele.data('diversity');
+           return div ? div.menInManagement : 0;
+        },
+        'background-opacity': 0 // hide original solid color
+      } as cytoscape.Css.Node
+    });
+  }
+
+  return styles;
+}

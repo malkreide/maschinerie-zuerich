@@ -2,98 +2,128 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://raw.githubusercontent.com/malkreide/maschinerie-zuerich/main/stadt-zuerich-next/schemas/opengov-process-schema.json",
   "title": "OpenGov-Process-Schema",
-  "description": "Portables Schema zur Beschreibung von Verwaltungsprozessen (Antragsverfahren, Bewilligungen, Meldungen). Zielpublikum: Bevölkerung + Behörden + Forschung. Ein Prozess = gerichteter Graph aus typisierten Schritten mit klaren Akteuren und geschätzten Dauern.",
+  "description": "Kanonischer Prozess-Datenvertrag (siehe docs/process-data-contract.md im Repo-Root). Ein Prozess = DAG aus Schritten mit depends_on-Vorgängern. Kardinalregel: bindende Werte (Fristen, Gebühren) erscheinen NUR als Reference (Label + Deep-Link + wörtliches source_quote), nie als Klartext-Zahl. Feldnamen englisch (Vertrag), Inhalte/Enum-Werte deutsch (eCH). Als Erweiterung markierte Felder sind additiv und für reine Vertrags-Konsumenten ignorierbar.",
   "type": "object",
-  "required": ["id", "version", "city", "titel", "akteure", "schritte", "flow"],
+  "required": ["schema_version", "id", "lebenslage_ref", "city", "title", "target_audience", "steps", "source_url", "retrieved_at", "disclaimer_key"],
+  "additionalProperties": false,
   "properties": {
+    "$schema": { "type": "string" },
+    "schema_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Vertragsversion (SemVer), z.B. '0.1.0'. Breaking Changes erhöhen MAJOR."
+    },
     "id": {
       "type": "string",
       "pattern": "^[a-z0-9-]+$",
-      "description": "Stabile ID des Prozesses, z.B. 'baubewilligung-ordentlich'."
+      "description": "Stabile Prozess-ID. MUSS gleich lebenslage_ref sein (CI-geprüft)."
     },
-    "version": {
+    "lebenslage_ref": {
       "type": "string",
-      "pattern": "^\\d+\\.\\d+\\.\\d+$",
-      "description": "SemVer der Prozessbeschreibung. Breaking Changes am Flow erhöhen MAJOR."
+      "pattern": "^[a-z0-9-]+$",
+      "description": "ID der Lebenslage in data/<city>/lebenslagen.json. CI prüft Existenz, Rückverlinkung (lebenslage.prozesse[] enthält '<city>/<id>') und id == lebenslage_ref."
     },
     "city": {
       "type": "string",
       "pattern": "^[a-z]{2,}$",
-      "description": "Stadt-/Gemeindekennung (ISO-ähnlich, Kleinbuchstaben). 'zh' für Zürich, 'be' für Bern, 'basel' für Basel, etc."
+      "description": "Erweiterung: Stadt-/Gemeindekennung ('zh', 'be', …) — Dateiablage und URL-Slug <city>/<id>."
     },
-    "titel": { "$ref": "#/definitions/i18nString" },
-    "kurzbeschreibung": { "$ref": "#/definitions/i18nString" },
-    "rechtsgrundlagen": {
+    "title": { "$ref": "#/definitions/i18nString" },
+    "description": {
+      "$ref": "#/definitions/i18nString",
+      "description": "Erweiterung: Kurzbeschreibung."
+    },
+    "target_audience": {
+      "type": "string",
+      "enum": ["bevoelkerung", "wirtschaft", "behoerden"],
+      "description": "Primäre Zielgruppe nach eCH-0073."
+    },
+    "preconditions": {
       "type": "array",
-      "items": {
-        "type": "object",
-        "required": ["bezeichnung"],
-        "properties": {
-          "bezeichnung": { "type": "string", "description": "z.B. 'PBG §§ 309–341'" },
-          "url": { "type": "string", "format": "uri" }
-        }
-      }
+      "description": "Voraussetzungen vor Prozessstart. Kardinalregel-Lint gilt.",
+      "items": { "$ref": "#/definitions/i18nString" }
     },
-    "quellen": {
-      "type": "array",
-      "description": "Belegquellen (Merkblätter, Gesetze, Behördenseiten). Jeder Schritt kann per 'quelle'-Feld auf diese Liste referenzieren.",
-      "items": {
-        "type": "object",
-        "required": ["id", "titel"],
-        "properties": {
-          "id": { "type": "string" },
-          "titel": { "type": "string" },
-          "url": { "type": "string", "format": "uri" },
-          "abgerufen": { "type": "string", "format": "date" }
-        }
-      }
-    },
-    "akteure": {
+    "steps": {
       "type": "array",
       "minItems": 1,
-      "description": "Beteiligte Rollen/Organisationen. Werden in der Visualisierung zu Swimlanes.",
+      "description": "Schritte des Prozesses. Der Ablauf ergibt sich aus depends_on (DAG).",
+      "items": { "$ref": "#/definitions/Step" }
+    },
+    "references": {
+      "type": "array",
+      "description": "Bindende Werte (Fristen, Gebühren, Steuern, Rekursfristen) — NUR hier, als Label + Deep-Link + wörtliches Zitat. Nie als Klartext-Zahl in Labels (Kardinalregel).",
+      "items": { "$ref": "#/definitions/Reference" }
+    },
+    "source_url": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https?://",
+      "description": "Primäre amtliche Quelle des Prozesses."
+    },
+    "retrieved_at": {
+      "type": "string",
+      "format": "date",
+      "description": "Abrufdatum der primären Quelle (ISO 8601)."
+    },
+    "disclaimer_key": {
+      "type": "string",
+      "description": "i18n-Key des Inoffiziell-Hinweises, z.B. 'Prozesse.disclaimer'."
+    },
+    "actors": {
+      "type": "array",
+      "description": "Erweiterung: Akteurs-Tabelle (Swimlanes, Org-Chart-Brücke). steps[].actor referenziert actors[].id.",
       "items": {
         "type": "object",
-        "required": ["id", "label", "typ"],
+        "required": ["id", "label", "type"],
+        "additionalProperties": false,
         "properties": {
           "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
           "label": { "$ref": "#/definitions/i18nString" },
-          "typ": {
+          "type": {
             "type": "string",
             "enum": ["antragsteller", "behoerde", "fachstelle", "gericht", "dritte"]
           },
           "einheit_ref": {
             "type": "string",
-            "description": "Optional: ID einer Organisationseinheit aus data.json (z.B. 'u-hba' für Hochbauamt), um Prozess und Org-Chart zu verknüpfen."
+            "description": "Optional: ID einer Organisationseinheit aus data/<city>/org-chart.json — verknüpft Prozess und Org-Chart."
           }
         }
       }
     },
-    "schritte": {
+    "legal_basis": {
       "type": "array",
-      "minItems": 1,
-      "description": "Alle Knoten des Prozess-Graphen. Reihenfolge in der Datei ist semantisch bedeutungslos — der Ablauf ergibt sich aus 'flow'.",
-      "items": { "$ref": "#/definitions/Schritt" }
-    },
-    "flow": {
-      "type": "array",
-      "description": "Kanten des Graphen (von-nach). Bedingungen nur bei Entscheidungsknoten.",
+      "description": "Erweiterung: Rechtsgrundlagen.",
       "items": {
         "type": "object",
-        "required": ["von", "nach"],
+        "required": ["label"],
+        "additionalProperties": false,
         "properties": {
-          "von": { "type": "string" },
-          "nach": { "type": "string" },
-          "bedingung": {
-            "type": "string",
-            "description": "Bei Entscheidungs-Schritten: maschinenlesbare Bedingung oder Label ('ja', 'nein', 'unvollstaendig')."
-          },
-          "label": { "$ref": "#/definitions/i18nString" }
+          "label": { "type": "string", "description": "z.B. 'PBG §§ 309–341'" },
+          "url": { "type": "string", "format": "uri" }
         }
       }
     },
+    "sources": {
+      "type": "array",
+      "description": "Erweiterung: weitere Belegquellen neben source_url. steps[].source_id referenziert sources[].id.",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "url", "retrieved_at"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "url": { "type": "string", "format": "uri" },
+          "retrieved_at": { "type": "string", "format": "date" }
+        }
+      }
+    },
+    "reife": { "$ref": "#/definitions/Reife" },
+    "bewertung": { "$ref": "#/definitions/Bewertung" },
     "meta": {
       "type": "object",
+      "description": "Erweiterung: Metadaten.",
+      "additionalProperties": false,
       "properties": {
         "erstellt": { "type": "string", "format": "date" },
         "aktualisiert": { "type": "string", "format": "date" },
@@ -104,75 +134,182 @@
   },
   "definitions": {
     "i18nString": {
+      "type": "object",
+      "description": "Mehrsprachiger String. 'de' ist Pflicht und nicht-leer; en/fr/it/ls optional ('Übersetzung ausstehend' — nicht maschinell raten). 'ls' = Leichte Sprache (entspricht 'leichte_sprache' im tessera-Entwurf). Andere Schlüssel sind unzulässig.",
+      "required": ["de"],
+      "additionalProperties": false,
+      "properties": {
+        "de": { "type": "string", "minLength": 1 },
+        "en": { "type": "string" },
+        "fr": { "type": "string" },
+        "it": { "type": "string" },
+        "ls": { "type": "string", "description": "Leichte Sprache" }
+      }
+    },
+    "DependsOn": {
       "oneOf": [
-        { "type": "string", "description": "Einsprachig (Kurzform): Fallback-Sprache = defaultLocale der App." },
+        { "type": "integer", "description": "Vorgänger-step_id." },
         {
           "type": "object",
-          "description": "Mehrsprachige Variante. 'de' ist Pflicht, weitere Locales optional.",
-          "required": ["de"],
+          "description": "Additive Objekt-Variante: Vorgänger mit Bedingungs-Label (z.B. ja/nein an Entscheidungs-Schritten). Reine DAG-Konsumenten reduzieren auf step_id.",
+          "required": ["step_id"],
+          "additionalProperties": false,
           "properties": {
-            "de": { "type": "string" },
-            "en": { "type": "string" },
-            "fr": { "type": "string" },
-            "it": { "type": "string" },
-            "ls": { "type": "string", "description": "Leichte Sprache" }
+            "step_id": { "type": "integer" },
+            "condition": { "$ref": "#/definitions/i18nString" }
           }
         }
       ]
     },
-    "Dauer": {
+    "Step": {
       "type": "object",
-      "description": "Zeitschätzung für einen Schritt. Min/max in Arbeitstagen oder Stunden. 'typ' regelt, ob es eine Bearbeitungsdauer (amtsseitig) oder eine Durchlaufzeit (wall clock) ist.",
-      "required": ["min", "max", "einheit"],
+      "required": ["step_id", "actor", "label", "depends_on"],
+      "additionalProperties": false,
       "properties": {
-        "min": { "type": "number", "minimum": 0 },
-        "max": { "type": "number", "minimum": 0 },
-        "einheit": { "type": "string", "enum": ["minuten", "stunden", "arbeitstage", "kalendertage", "wochen", "monate"] },
-        "typ": { "type": "string", "enum": ["bearbeitung", "durchlauf"], "default": "durchlauf" },
-        "anmerkung": { "$ref": "#/definitions/i18nString" }
-      }
-    },
-    "Schritt": {
-      "type": "object",
-      "required": ["id", "typ", "akteur", "label"],
-      "properties": {
-        "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
-        "typ": {
+        "step_id": { "type": "integer", "minimum": 1, "description": "Eindeutig je Prozess." },
+        "actor": {
           "type": "string",
-          "enum": ["start", "input", "prozess", "entscheidung", "loop", "warten", "ende"],
-          "description": "start/ende = Terminals. input = Antragsteller liefert Unterlagen. prozess = Behörde arbeitet. entscheidung = Verzweigung (erwartet mehrere ausgehende 'flow'-Kanten mit 'bedingung'). loop = Rücksprung (z.B. Nachbesserung). warten = Fristen/Wartezeit ohne aktive Handlung."
-        },
-        "akteur": {
-          "type": "string",
-          "description": "ID aus 'akteure' — bestimmt die Swimlane."
+          "description": "Handelnde Rolle. Referenziert actors[].id, falls 'actors' vorhanden — bestimmt die Swimlane."
         },
         "label": { "$ref": "#/definitions/i18nString" },
-        "beschreibung": { "$ref": "#/definitions/i18nString" },
-        "dauer_est": { "$ref": "#/definitions/Dauer" },
-        "kosten_chf": {
-          "type": "object",
-          "properties": {
-            "min": { "type": "number", "minimum": 0 },
-            "max": { "type": "number", "minimum": 0 },
-            "anmerkung": { "$ref": "#/definitions/i18nString" }
-          }
-        },
-        "unterlagen": {
+        "depends_on": {
           "type": "array",
-          "description": "Nur für 'input'-Schritte sinnvoll: Liste der benötigten Dokumente/Formulare.",
+          "description": "Vorgänger-step_ids; leer = Start-Schritt. Der Graph über depends_on muss azyklisch sein (DAG).",
+          "items": { "$ref": "#/definitions/DependsOn" }
+        },
+        "reference_ids": {
+          "type": "array",
+          "description": "Verweise auf references[].reference_id — bindende Werte dieses Schritts.",
+          "items": { "type": "integer" }
+        },
+        "type": {
+          "type": "string",
+          "enum": ["start", "input", "prozess", "entscheidung", "loop", "warten", "ende"],
+          "description": "Erweiterung (Render-Hint): start/ende = Terminals. input = Antragsteller liefert. prozess = Behörde arbeitet. entscheidung = Verzweigung (condition-Kanten). loop = Schritt mit Rücksprung-Hinweis (loops_back_to). warten = Wartezeit."
+        },
+        "description": { "$ref": "#/definitions/i18nString" },
+        "documents": {
+          "type": "array",
+          "description": "Erweiterung: benötigte Unterlagen (für input-Schritte).",
           "items": {
             "type": "object",
             "required": ["label"],
+            "additionalProperties": false,
             "properties": {
               "label": { "$ref": "#/definitions/i18nString" },
               "url": { "type": "string", "format": "uri" },
-              "pflicht": { "type": "boolean", "default": true }
+              "required": { "type": "boolean", "default": true }
             }
           }
         },
-        "quelle": {
+        "source_id": {
           "type": "string",
-          "description": "ID einer Quelle aus 'quellen'-Liste."
+          "description": "Erweiterung: ID einer Quelle aus 'sources'."
+        },
+        "loops_back_to": {
+          "type": "array",
+          "description": "Erweiterung: Rücksprung-Hinweis (Nachbesserung/Rekurs) fürs Rendering. NICHT Teil des DAG; nur an Schritten mit type 'loop' erlaubt.",
+          "items": { "type": "integer" }
+        }
+      }
+    },
+    "Reference": {
+      "type": "object",
+      "description": "Ein bindender Wert als Verweis: Label OHNE die Zahl als behaupteten Fakt, Deep-Link auf die exakte Stelle, wörtliche Belegstelle (Grounding-Gate). status 'unverifiziert' erlaubt ein leeres source_quote (CI-Warnung) — für Altbestand und Arbeitsstände.",
+      "required": ["reference_id", "label", "source_url", "retrieved_at"],
+      "additionalProperties": false,
+      "properties": {
+        "reference_id": { "type": "integer", "minimum": 1 },
+        "label": { "$ref": "#/definitions/i18nString" },
+        "source_url": { "type": "string", "format": "uri", "pattern": "^https?://" },
+        "source_quote": {
+          "type": "string",
+          "description": "Wörtliche Belegstelle von der verlinkten Seite. Pflicht (nicht-leer) bei status 'verifiziert'."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["verifiziert", "unverifiziert"],
+          "default": "verifiziert",
+          "description": "Erweiterung: Verifikationsstand des Zitats."
+        },
+        "retrieved_at": { "type": "string", "format": "date" }
+      }
+    },
+    "Bewertung": {
+      "type": "object",
+      "description": "Erweiterung (additiv, optional): belegte Bewertungs-Indikatoren zu Digitalisierung & Nutzendenorientierung. NUR Indikatoren, die NICHT deterministisch aus dem Prozess-Graphen ableitbar sind (z.B. ob ein Online-Antrag existiert), werden hier mit Beleg hinterlegt — exakt wie References: Deep-Link + wörtliches source_quote. Graph-ableitbare Indikatoren (Locale-Abdeckung, Schrittzahl, Akteurswechsel …) berechnet die App selbst und gehören NICHT hierher. Kardinalregel: ein Indikator beschreibt eine strukturelle Eigenschaft (true/false), NIE einen bindenden Wert (Frist/Gebühr).",
+      "additionalProperties": false,
+      "properties": {
+        "indikatoren": {
+          "type": "array",
+          "description": "Belegte Einzelindikatoren. Fehlt ein Indikator-Key, gilt er in der App als 'unbekannt' (nicht als 'nicht erfüllt').",
+          "items": { "$ref": "#/definitions/BewertungIndikator" }
+        }
+      }
+    },
+    "BewertungIndikator": {
+      "type": "object",
+      "description": "Ein belegter Bewertungs-Indikator. 'wert' ist die belegte Ausprägung der Eigenschaft (true = Eigenschaft trifft zu). Grounding-Gate wie bei References: bei status 'verifiziert' ist ein nicht-leeres source_quote Pflicht.",
+      "required": ["key", "wert", "source_url", "retrieved_at"],
+      "additionalProperties": false,
+      "properties": {
+        "key": {
+          "type": "string",
+          "enum": ["online-antrag", "online-bezahlung", "statusverfolgung", "medienbruchfrei", "digital-abschliessbar", "once-only", "barrierefreiheit", "nicht-digitaler-alternativweg", "eid-moeglich"],
+          "description": "Indikator-Kennung (wert true = nutzendenfreundliche Ausprägung). Digitalisierungs-Score: online-antrag, online-bezahlung, statusverfolgung, medienbruchfrei, digital-abschliessbar, once-only. Nutzendenorientierungs-Score (belegpflichtig): barrierefreiheit (WCAG 2.1 AA), nicht-digitaler-alternativweg. eid-moeglich ist rein informativ (zählt nicht). Strategiebezug je Indikator: docs/bewertung-strategiebezug.md."
+        },
+        "wert": {
+          "type": "boolean",
+          "description": "Belegte Ausprägung der strukturellen Eigenschaft. KEIN bindender Wert."
+        },
+        "source_url": { "type": "string", "format": "uri", "pattern": "^https?://" },
+        "source_quote": {
+          "type": "string",
+          "description": "Wörtliche Belegstelle von der verlinkten Seite. Pflicht (nicht-leer) bei status 'verifiziert'."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["verifiziert", "unverifiziert"],
+          "default": "verifiziert"
+        },
+        "retrieved_at": { "type": "string", "format": "date" }
+      }
+    },
+    "Reife": {
+      "type": "object",
+      "description": "Erweiterung (experimentell): Digitale Reife & Vereinfachungspotenzial. Unverändert aus Schema-Generation 1/2 übernommen; Normalisierung der Feldnamen folgt später.",
+      "additionalProperties": false,
+      "properties": {
+        "onlineReifegrad": {
+          "type": "string",
+          "enum": ["offline", "teil-digital", "digital", "end-to-end"]
+        },
+        "medienbrueche": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["drucken", "post", "persoenliches-erscheinen", "separate-zahlung", "erneute-dateneingabe", "unterschrift-handschriftlich"]
+          }
+        },
+        "onceOnlyPotenzial": { "$ref": "#/definitions/i18nString" },
+        "nutzergruppen": { "type": "array", "items": { "$ref": "#/definitions/i18nString" } },
+        "painPoints": { "type": "array", "items": { "$ref": "#/definitions/i18nString" } },
+        "improvementIdeas": { "type": "array", "items": { "$ref": "#/definitions/i18nString" } },
+        "status": {
+          "type": "string",
+          "enum": ["beobachtet", "validiert", "vorgeschlagen", "in-umsetzung", "umgesetzt"]
+        },
+        "wirkungKpi": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["label"],
+            "additionalProperties": false,
+            "properties": {
+              "label": { "$ref": "#/definitions/i18nString" },
+              "wert": { "type": "string" }
+            }
+          }
         }
       }
     }

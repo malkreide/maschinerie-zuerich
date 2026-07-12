@@ -29,20 +29,27 @@ async function fetchStructure({ force = false } = {}) {
 /** /sachkonto2stellig pro Departement → data/raw/ */
 async function fetchBudget({
   force = false,
-  jahr = Number(process.env.BUDGET_JAHR) || (new Date().getFullYear() - 1),
-  betragstyp = process.env.BUDGET_BETRAGSTYP || 'GEMEINDERAT_BESCHLUSS',
+  betragstyp = process.env.BUDGET_BETRAGSTYP || 'RECHNUNG',
 } = {}) {
   const dep = await readJSON('data/raw/rpktool-departemente.json');
-  log(`fetching budget – jahr=${jahr}, betragsTyp=${betragstyp}`);
+  
+  // Historical data fetch: 2018 to recent year
+  const recentJahr = Number(process.env.BUDGET_JAHR) || (new Date().getFullYear() - 1);
+  const years = [2018, 2019, 2020, 2021, 2022, 2023, recentJahr];
+  // Deduplicate in case recentJahr is already in the list
+  const uniqueYears = Array.from(new Set(years)).sort();
 
-  for (const d of dep.value) {
-    const ep = `/sachkonto2stellig?departement=${d.key}&jahr=${jahr}&betragsTyp=${betragstyp}`;
-    const cache = `data/raw/rpktool-budget-${d.kurzname.trim()}-${jahr}-${betragstyp}.json`;
-    try {
-      const r = await fetchRpk(ep, { cachePath: cache, force });
-      log(`  ${d.kurzname.padEnd(4)} ${(d.bezeichnung).padEnd(40)} → ${r.value.length} rows`);
-    } catch (err) {
-      log(`  ${d.kurzname} FEHLER: ${err.message.split('\n')[0]}`);
+  for (const jahr of uniqueYears) {
+    log(`fetching budget – jahr=${jahr}, betragsTyp=${betragstyp}`);
+    for (const d of dep.value) {
+      const ep = `/sachkonto2stellig?departement=${d.key}&jahr=${jahr}&betragsTyp=${betragstyp}`;
+      const cache = `data/raw/rpktool-budget-${d.kurzname.trim()}-${jahr}-${betragstyp}.json`;
+      try {
+        const r = await fetchRpk(ep, { cachePath: cache, force });
+        log(`  ${d.kurzname.padEnd(4)} ${(d.bezeichnung).padEnd(40)} → ${r.value.length} rows`);
+      } catch (err) {
+        log(`  ${d.kurzname} FEHLER: ${err.message.split('\n')[0]}`);
+      }
     }
   }
 }

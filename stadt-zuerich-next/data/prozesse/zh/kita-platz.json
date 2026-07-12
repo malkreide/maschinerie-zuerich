@@ -1,0 +1,635 @@
+{
+  "$schema": "../../../schemas/opengov-process-schema.json",
+  "schema_version": "0.1.0",
+  "id": "kita-platz",
+  "lebenslage_ref": "kita-platz",
+  "city": "zh",
+  "title": {
+    "de": "Kita-Platz & Betreuungsgutschein",
+    "en": "Daycare place & childcare subsidy voucher",
+    "fr": "Place en crèche & bon de garde",
+    "it": "Posto all'asilo nido & buono per la custodia",
+    "ls": "Kita-Platz und Betreuungs-Gutschein"
+  },
+  "description": {
+    "de": "Eltern in der Stadt Zürich suchen einen Platz in einer Kindertagesstätte und beantragen einen einkommensabhängigen Betreuungsbeitrag, der den Elternbeitrag senkt. Die Zuständigkeit ist geteilt: Der einkommensabhängige Beitragsfaktor wird über das Schul- und Sportdepartement (Schulamt) bestimmt, die Finanzierung und Auszahlung der Subvention an die Kita läuft über das Sozialdepartement.",
+    "en": "Parents in the City of Zurich find a daycare place and apply for an income-based childcare subsidy that lowers their contribution. Responsibility is split: the income-based contribution factor is determined via the School and Sports Department (school office), while financing and payment of the subsidy to the daycare centre runs through the Social Welfare Department.",
+    "fr": "Les parents en ville de Zurich cherchent une place dans une crèche et demandent une contribution de garde dépendant du revenu, qui réduit la participation parentale. La compétence est partagée: le facteur de contribution dépendant du revenu est déterminé par le Département des écoles et du sport (office des écoles), tandis que le financement et le versement de la subvention à la crèche passent par le Département des affaires sociales.",
+    "it": "I genitori in città di Zurigo cercano un posto in un asilo nido e richiedono un contributo per la custodia dipendente dal reddito, che riduce la partecipazione dei genitori. La competenza è ripartita: il fattore di contribuzione dipendente dal reddito viene determinato dal Dipartimento delle scuole e dello sport (ufficio delle scuole), mentre il finanziamento e il versamento della sovvenzione all'asilo nido avvengono tramite il Dipartimento sociale.",
+    "ls": "Sie brauchen einen Platz für Ihr Kind in einer Kita? Sie suchen zuerst einen Platz. Dann beantragen Sie einen Beitrag. Das macht die Kita günstiger. Wie viel Sie bekommen, hängt von Ihrem Lohn ab. Zwei Stellen sind dafür zuständig: das Schul-Amt für die Berechnung und das Sozial-Departement für das Geld an die Kita."
+  },
+  "target_audience": "bevoelkerung",
+  "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/betreuungskosten-und-subventionen.html",
+  "retrieved_at": "2026-06-06",
+  "disclaimer_key": "Prozesse.disclaimer",
+  "references": [
+    {
+      "reference_id": 1,
+      "label": {
+        "de": "Kita-Tarif und einkommensabhängiger Elternbeitrag (Betreuungsgutschein)",
+        "en": "Childcare tariff and income-based parental contribution (childcare voucher)",
+        "fr": "Tarif de crèche et participation parentale dépendant du revenu (bon de garde)",
+        "it": "Tariffa dell'asilo nido e partecipazione dei genitori dipendente dal reddito (buono per la custodia)"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/betreuungskosten-und-subventionen.html",
+      "source_quote": "Mit dem Beitragsfaktor rechnen wir aus, wie viel Subventionen Sie bekommen. Das hängt davon ab, wie viel Sie verdienen und wie viel Vermögen Sie haben.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-10"
+    },
+    {
+      "reference_id": 2,
+      "label": {
+        "de": "Maximale Weitersubventionierung bei freiwilliger Abwesenheit des Kindes",
+        "en": "",
+        "fr": "",
+        "it": ""
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/faq.html",
+      "source_quote": "Bei subventionierten Kindern werden bei freiwilliger Abwesenheit maximal 7 Wochen weiter subventioniert.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-07-01"
+    }
+  ],
+  "actors": [
+    {
+      "id": "eltern",
+      "label": {
+        "de": "Eltern / Erziehungsberechtigte",
+        "en": "Parents / legal guardians",
+        "fr": "Parents / représentants légaux",
+        "it": "Genitori / tutori legali",
+        "ls": "Sie (die Eltern)"
+      },
+      "type": "antragsteller"
+    },
+    {
+      "id": "kita",
+      "label": {
+        "de": "Kindertagesstätte (subventioniert)",
+        "en": "Daycare centre (subsidised)",
+        "fr": "Crèche (subventionnée)",
+        "it": "Asilo nido (sovvenzionato)",
+        "ls": "Die Kita"
+      },
+      "type": "dritte"
+    },
+    {
+      "id": "schulamt",
+      "label": {
+        "de": "Schulamt (Schul- und Sportdepartement) – Beitragsfaktor",
+        "en": "School Office (School and Sports Dept.) – contribution factor",
+        "fr": "Office des écoles (Département des écoles et du sport) – facteur de contribution",
+        "it": "Ufficio delle scuole (Dipartimento delle scuole e dello sport) – fattore di contribuzione",
+        "ls": "Das Schul-Amt (es berechnet den Beitrag)"
+      },
+      "type": "behoerde",
+      "einheit_ref": "SSD-schule"
+    },
+    {
+      "id": "sozialdept",
+      "label": {
+        "de": "Sozialdepartement – Kita-Finanzierung und Subventionsauszahlung",
+        "en": "Social Welfare Department – daycare financing and subsidy payment",
+        "fr": "Département des affaires sociales – financement de la crèche et versement de la subvention",
+        "it": "Dipartimento sociale – finanziamento dell'asilo nido e versamento della sovvenzione",
+        "ls": "Das Sozial-Departement (es zahlt das Geld an die Kita)"
+      },
+      "type": "behoerde",
+      "einheit_ref": "SD"
+    },
+    {
+      "id": "bezirksrat",
+      "label": {
+        "de": "Bezirksrat Zürich (Rekursinstanz)",
+        "en": "District council (appeals body)",
+        "fr": "Conseil de district de Zurich (instance de recours)",
+        "it": "Consiglio distrettuale di Zurigo (istanza di ricorso)",
+        "ls": "Eine Stelle vom Kanton für Beschwerden"
+      },
+      "type": "gericht"
+    }
+  ],
+  "steps": [
+    {
+      "step_id": 1,
+      "actor": "eltern",
+      "label": {
+        "de": "Betreuungsbedarf für das Kind",
+        "en": "Childcare needed",
+        "fr": "Besoin de garde pour l'enfant",
+        "it": "Necessità di custodia per il bambino",
+        "ls": "Sie brauchen einen Betreuungs-Platz"
+      },
+      "depends_on": [],
+      "type": "start"
+    },
+    {
+      "step_id": 2,
+      "actor": "eltern",
+      "label": {
+        "de": "Freien Kita-Platz suchen",
+        "en": "Find an available daycare place",
+        "fr": "Chercher une place de crèche disponible",
+        "it": "Cercare un posto libero all'asilo nido",
+        "ls": "Einen freien Platz in einer Kita suchen"
+      },
+      "depends_on": [
+        1
+      ],
+      "type": "input",
+      "description": {
+        "de": "Eltern suchen selbst einen Platz in einer subventionierten Kita. Nur Plätze in subventionierten Einrichtungen sind gutscheinberechtigt.",
+        "en": "Parents look for a place in a subsidised daycare centre themselves. Only places in subsidised facilities qualify for a voucher.",
+        "fr": "Les parents cherchent eux-mêmes une place dans une crèche subventionnée. Seules les places dans des établissements subventionnés donnent droit à un bon de garde.",
+        "it": "I genitori cercano da soli un posto in un asilo nido sovvenzionato. Solo i posti in strutture sovvenzionate danno diritto a un buono per la custodia.",
+        "ls": "Sie suchen selbst eine Kita. Nur bestimmte Kitas bekommen einen Gutschein."
+      },
+      "source_id": "q-stz-kita"
+    },
+    {
+      "step_id": 3,
+      "actor": "eltern",
+      "label": {
+        "de": "Platz frei?",
+        "en": "Place available?",
+        "fr": "Place disponible?",
+        "it": "Posto disponibile?",
+        "ls": "Ist ein Platz frei?"
+      },
+      "depends_on": [
+        2
+      ],
+      "type": "entscheidung"
+    },
+    {
+      "step_id": 4,
+      "actor": "kita",
+      "label": {
+        "de": "Auf Warteliste bleiben",
+        "en": "Stay on the waiting list",
+        "fr": "Rester sur la liste d'attente",
+        "it": "Rimanere sulla lista d'attesa",
+        "ls": "Sie warten auf einen Platz"
+      },
+      "depends_on": [
+        {
+          "step_id": 3,
+          "condition": {
+            "de": "kein Platz",
+            "en": "no place",
+            "fr": "pas de place",
+            "it": "nessun posto"
+          }
+        }
+      ],
+      "type": "loop",
+      "description": {
+        "de": "In vielen Quartieren übersteigt die Nachfrage das Angebot — Wartezeiten von mehreren Monaten sind häufig.",
+        "en": "In many neighbourhoods demand exceeds supply — waiting times of several months are common.",
+        "fr": "Dans de nombreux quartiers, la demande dépasse l'offre — des temps d'attente de plusieurs mois sont fréquents.",
+        "it": "In molti quartieri la domanda supera l'offerta — tempi d'attesa di diversi mesi sono frequenti."
+      },
+      "loops_back_to": [
+        2
+      ],
+      "documents": [
+        {
+          "label": {
+            "de": "Beitragsfaktorbestätigung",
+            "ls": "Die Beitragsfaktorbestätigung."
+          },
+          "required": true
+        }
+      ]
+    },
+    {
+      "step_id": 5,
+      "actor": "eltern",
+      "label": {
+        "de": "Betreuungsvertrag mit der Kita abschliessen",
+        "en": "Sign a care contract with the daycare centre",
+        "fr": "Conclure un contrat de garde avec la crèche",
+        "it": "Concludere un contratto di custodia con l'asilo nido",
+        "ls": "Sie machen einen Vertrag mit der Kita"
+      },
+      "depends_on": [
+        {
+          "step_id": 3,
+          "condition": {
+            "de": "Platz frei",
+            "en": "place available",
+            "fr": "place disponible",
+            "it": "posto disponibile"
+          }
+        }
+      ],
+      "reference_ids": [
+        1
+      ],
+      "type": "input"
+    },
+    {
+      "step_id": 6,
+      "actor": "eltern",
+      "label": {
+        "de": "Betreuungsgutschein online beantragen",
+        "en": "Apply for the childcare voucher online",
+        "fr": "Demander le bon de garde en ligne",
+        "it": "Richiedere il buono per la custodia online",
+        "ls": "Den Gutschein im Internet beantragen"
+      },
+      "depends_on": [
+        5
+      ],
+      "type": "input",
+      "description": {
+        "de": "Antrag beim Schulamt mit Nachweis von Einkommen und Beschäftigungs-/Ausbildungssituation beider Elternteile.",
+        "en": "Application to the school office with proof of income and the employment/education situation of both parents.",
+        "fr": "Demande auprès de l'office des écoles avec justificatif du revenu et de la situation professionnelle ou de formation des deux parents.",
+        "it": "Richiesta all'ufficio delle scuole con la prova del reddito e della situazione lavorativa o formativa di entrambi i genitori.",
+        "ls": "Sie zeigen, wie viel Sie verdienen und wie viel Sie arbeiten."
+      },
+      "documents": [
+        {
+          "label": {
+            "de": "Betreuungsvertrag der Kita",
+            "en": "Daycare care contract",
+            "fr": "Contrat de garde de la crèche",
+            "it": "Contratto di custodia dell'asilo nido"
+          },
+          "required": true
+        },
+        {
+          "label": {
+            "de": "Einkommensnachweis (Lohnausweis / Steuerunterlagen)",
+            "en": "Proof of income (salary statement / tax documents)",
+            "fr": "Justificatif de revenu (certificat de salaire / documents fiscaux)",
+            "it": "Prova del reddito (certificato di salario / documenti fiscali)"
+          },
+          "required": true
+        },
+        {
+          "label": {
+            "de": "Nachweis Erwerbstätigkeit oder Ausbildung beider Eltern",
+            "en": "Proof of employment or education of both parents",
+            "fr": "Justificatif d'activité lucrative ou de formation des deux parents",
+            "it": "Prova dell'attività lavorativa o della formazione di entrambi i genitori"
+          },
+          "required": true
+        }
+      ],
+      "source_id": "q-stz-bg"
+    },
+    {
+      "step_id": 7,
+      "actor": "schulamt",
+      "label": {
+        "de": "Anspruch und Einkommen prüfen",
+        "en": "Assess eligibility and income",
+        "fr": "Vérifier le droit et le revenu",
+        "it": "Verificare il diritto e il reddito",
+        "ls": "Das Sozialdepartement prüft, wie viele Tage Sie Betreuung brauchen. Dann bekommen Sie die SBU-Bestätigung."
+      },
+      "depends_on": [
+        6
+      ],
+      "type": "prozess",
+      "description": {
+        "de": "Das Schulamt prüft Wohnsitz, Erwerbs-/Ausbildungspensum und das massgebende Einkommen.",
+        "en": "The school office checks residence, employment/education level and the relevant income.",
+        "fr": "L'office des écoles vérifie le domicile, le taux d'activité ou de formation et le revenu déterminant.",
+        "it": "L'ufficio delle scuole verifica il domicilio, il grado di occupazione o formazione e il reddito determinante."
+      }
+    },
+    {
+      "step_id": 8,
+      "actor": "schulamt",
+      "label": {
+        "de": "Anspruchsberechtigt?",
+        "en": "Eligible?",
+        "fr": "Droit reconnu?",
+        "it": "Diritto riconosciuto?",
+        "ls": "Haben Sie Anspruch?"
+      },
+      "depends_on": [
+        7
+      ],
+      "type": "entscheidung",
+      "documents": [
+        {
+          "label": {
+            "de": "Beitragsfaktorbestätigung",
+            "ls": "Die Beitragsfaktorbestätigung."
+          },
+          "required": true
+        },
+        {
+          "label": {
+            "de": "Bestätigung über den subventionsberechtigten Betreuungsumfang (SBU)",
+            "ls": "Die SBU-Bestätigung."
+          },
+          "required": true
+        }
+      ]
+    },
+    {
+      "step_id": 9,
+      "actor": "schulamt",
+      "label": {
+        "de": "Gutscheinhöhe nach Einkommen bemessen",
+        "en": "Calculate voucher amount based on income",
+        "fr": "Calculer le montant du bon de garde selon le revenu",
+        "it": "Calcolare l'importo del buono in base al reddito",
+        "ls": "Das Amt rechnet aus, wie hoch der Gutschein ist"
+      },
+      "depends_on": [
+        {
+          "step_id": 8,
+          "condition": {
+            "de": "ja"
+          }
+        }
+      ],
+      "type": "prozess",
+      "description": {
+        "de": "Die Höhe richtet sich nach massgebendem Einkommen, Beschäftigungsgrad und Betreuungsumfang.",
+        "en": "The amount depends on relevant income, employment level and care volume.",
+        "fr": "Le montant dépend du revenu déterminant, du taux d'activité et de l'ampleur de la garde.",
+        "it": "L'importo dipende dal reddito determinante, dal grado di occupazione e dall'entità della custodia."
+      },
+      "reference_ids": [
+        1
+      ]
+    },
+    {
+      "step_id": 10,
+      "actor": "schulamt",
+      "label": {
+        "de": "Beitragsfaktor verfügen (Entscheid an Eltern)",
+        "en": "Issue contribution-factor decision (to parents)",
+        "fr": "Statuer sur le facteur de contribution (décision aux parents)",
+        "it": "Decidere il fattore di contribuzione (decisione ai genitori)",
+        "ls": "Das Schul-Amt entscheidet, wie hoch der Beitrag ist"
+      },
+      "depends_on": [
+        9
+      ],
+      "type": "prozess",
+      "description": {
+        "de": "Das Schulamt verfügt den einkommensabhängigen Beitragsfaktor. Dieser bestimmt, wie stark der Elternbeitrag subventioniert wird.",
+        "en": "The school office grants the income-based contribution factor, which determines how much the parental contribution is subsidised.",
+        "fr": "L'office des écoles statue sur le facteur de contribution dépendant du revenu. Celui-ci détermine dans quelle mesure la participation parentale est subventionnée.",
+        "it": "L'ufficio delle scuole decide il fattore di contribuzione dipendente dal reddito. Questo determina in quale misura la partecipazione dei genitori viene sovvenzionata."
+      },
+      "source_id": "q-stz-betreuungskosten"
+    },
+    {
+      "step_id": 11,
+      "actor": "sozialdept",
+      "label": {
+        "de": "Subvention finanzieren und an Kita auszahlen",
+        "en": "Finance and pay the subsidy to the daycare centre",
+        "fr": "Financer la subvention et la verser à la crèche",
+        "it": "Finanziare la sovvenzione e versarla all'asilo nido",
+        "ls": "Das Sozial-Departement zahlt das Geld an die Kita"
+      },
+      "depends_on": [
+        10
+      ],
+      "type": "prozess",
+      "description": {
+        "de": "Auf Basis des verfügten Beitragsfaktors finanziert das Sozialdepartement die Subvention und richtet sie der Kita aus, sodass sich der von den Eltern zu zahlende Beitrag reduziert.",
+        "en": "Based on the granted contribution factor, the Social Welfare Department finances the subsidy and pays it to the daycare centre, reducing the amount the parents pay.",
+        "fr": "Sur la base du facteur de contribution arrêté, le Département des affaires sociales finance la subvention et la verse à la crèche, de sorte que la participation à payer par les parents diminue.",
+        "it": "Sulla base del fattore di contribuzione stabilito, il Dipartimento sociale finanzia la sovvenzione e la versa all'asilo nido, riducendo così la partecipazione a carico dei genitori."
+      },
+      "source_id": "q-stz-kitafin"
+    },
+    {
+      "step_id": 12,
+      "actor": "eltern",
+      "label": {
+        "de": "Betreuungsgutschein bewilligt",
+        "en": "Childcare voucher granted",
+        "fr": "Bon de garde accordé",
+        "it": "Buono per la custodia concesso",
+        "ls": "Fertig: Sie haben den Gutschein"
+      },
+      "depends_on": [
+        11
+      ],
+      "type": "ende"
+    },
+    {
+      "step_id": 13,
+      "actor": "schulamt",
+      "label": {
+        "de": "Antrag ablehnen (mit Begründung)",
+        "en": "Reject application (with reasons)",
+        "fr": "Rejeter la demande (avec motifs)",
+        "it": "Respingere la richiesta (con motivazione)",
+        "ls": "Das Amt sagt: Nein. Und schreibt warum."
+      },
+      "depends_on": [
+        {
+          "step_id": 8,
+          "condition": {
+            "de": "nein"
+          }
+        }
+      ],
+      "type": "prozess"
+    },
+    {
+      "step_id": 14,
+      "actor": "eltern",
+      "label": {
+        "de": "Rekurs einreichen?",
+        "en": "File an appeal?",
+        "fr": "Déposer un recours?",
+        "it": "Presentare un ricorso?",
+        "ls": "Wollen Sie sich beschweren?"
+      },
+      "depends_on": [
+        13
+      ],
+      "type": "entscheidung"
+    },
+    {
+      "step_id": 15,
+      "actor": "bezirksrat",
+      "label": {
+        "de": "Rekurs beim Bezirksrat",
+        "en": "Appeal to the district council",
+        "fr": "Recours auprès du conseil de district",
+        "it": "Ricorso al consiglio distrettuale",
+        "ls": "Beschwerde bei der Kantonsstelle"
+      },
+      "depends_on": [
+        {
+          "step_id": 14,
+          "condition": {
+            "de": "ja"
+          }
+        }
+      ],
+      "type": "loop",
+      "loops_back_to": [
+        8
+      ]
+    },
+    {
+      "step_id": 16,
+      "actor": "eltern",
+      "label": {
+        "de": "Antrag rechtskräftig abgelehnt",
+        "en": "Application rejected (final)",
+        "fr": "Demande rejetée (définitif)",
+        "it": "Richiesta respinta (definitivo)",
+        "ls": "Sie bekommen keinen Gutschein"
+      },
+      "depends_on": [
+        {
+          "step_id": 14,
+          "condition": {
+            "de": "nein"
+          }
+        }
+      ],
+      "type": "ende"
+    }
+  ],
+  "legal_basis": [
+    {
+      "label": "Verordnung über die familien- und schulergänzende Kinderbetreuung der Stadt Zürich",
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/betreuungskosten-und-subventionen.html"
+    },
+    {
+      "label": "Kinderbetreuungsgesetz des Kantons Zürich (KibeG)",
+      "url": "https://www.zh.ch/de/familie/angebote-fuer-familien-mit-kindern.html"
+    }
+  ],
+  "sources": [
+    {
+      "id": "q-stz-bg",
+      "title": "Stadt Zürich – Betreuungsgutscheine",
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/betreuungskosten-und-subventionen.html",
+      "retrieved_at": "2026-06-06"
+    },
+    {
+      "id": "q-stz-kita",
+      "title": "Stadt Zürich – Kinderbetreuung / Kitas finden",
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung.html",
+      "retrieved_at": "2026-06-06"
+    },
+    {
+      "id": "q-stz-betreuungskosten",
+      "title": "Stadt Zürich – Betreuungskosten und Subventionen (Beitragsfaktor)",
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/betreuungskosten-und-subventionen.html",
+      "retrieved_at": "2026-06-06"
+    },
+    {
+      "id": "q-stz-kitafin",
+      "title": "Stadt Zürich – Subventionen für Kitas (Finanzierung/Auszahlung)",
+      "url": "https://www.stadt-zuerich.ch/de/stadtleben/wirtschaft-und-gewerbe/fuer-kitas/subventionen.html",
+      "retrieved_at": "2026-06-06"
+    }
+  ],
+  "reife": {
+    "onlineReifegrad": "teil-digital",
+    "medienbrueche": [
+      "erneute-dateneingabe"
+    ],
+    "onceOnlyPotenzial": {
+      "de": "Das massgebende Einkommen liegt dem Steueramt bereits vor. Bei einer Registerverknüpfung müsste es nicht erneut belegt werden, und der Gutschein könnte jährlich automatisch neu bemessen werden.",
+      "en": "The relevant income is already held by the tax office. With register linkage it would not need to be re-submitted, and the voucher could be re-assessed automatically each year.",
+      "ls": "Das Steuer-Amt kennt Ihren Lohn schon. Diese Angabe müssten Sie nicht jedes Jahr neu schicken."
+    },
+    "nutzergruppen": [
+      {
+        "de": "Erwerbstätige Eltern mit kleinen Kindern",
+        "en": "Working parents with young children",
+        "ls": "Eltern, die arbeiten und kleine Kinder haben"
+      },
+      {
+        "de": "Eltern in Ausbildung",
+        "en": "Parents in education",
+        "ls": "Eltern, die eine Ausbildung machen"
+      },
+      {
+        "de": "Alleinerziehende",
+        "en": "Single parents",
+        "ls": "Eltern, die alleine erziehen"
+      }
+    ],
+    "painPoints": [
+      {
+        "de": "Die Platzsuche liegt vollständig bei den Eltern; in vielen Quartieren gibt es lange Wartelisten.",
+        "en": "Finding a place is entirely up to the parents; many neighbourhoods have long waiting lists.",
+        "ls": "Sie müssen selbst eine Kita suchen. Oft müssen Sie lange warten."
+      },
+      {
+        "de": "Einkommens- und Erwerbsnachweise müssen jährlich neu eingereicht werden.",
+        "en": "Income and employment proofs must be re-submitted every year.",
+        "ls": "Sie müssen jedes Jahr wieder Papiere schicken."
+      },
+      {
+        "de": "Geteilte Zuständigkeit: Beitragsfaktor beim Schulamt, Finanzierung/Auszahlung beim Sozialdepartement — für Eltern wenig transparent.",
+        "en": "Split responsibility: contribution factor at the school office, financing/payment at the social welfare department — opaque for parents.",
+        "ls": "Zwei Stellen sind zuständig. Das ist für Eltern verwirrend."
+      }
+    ],
+    "improvementIdeas": [
+      {
+        "de": "Eine gemeinsame Anlaufstelle für Beitragsfaktor und Kita-Finanzierung.",
+        "en": "A single point of contact for contribution factor and daycare financing.",
+        "ls": "Nur eine Stelle für alles rund um den Kita-Beitrag."
+      },
+      {
+        "de": "Zentrale Platzvermittlung statt individueller Suche.",
+        "en": "Central placement service instead of individual search.",
+        "ls": "Eine Stelle, die für alle einen Platz sucht."
+      },
+      {
+        "de": "Automatische jährliche Neubemessung über die Verknüpfung mit den Steuerdaten (Once-Only).",
+        "en": "Automatic annual re-assessment via linkage with tax data (once-only).",
+        "ls": "Der Gutschein wird jedes Jahr automatisch neu berechnet."
+      }
+    ],
+    "status": "beobachtet",
+    "wirkungKpi": [
+      {
+        "label": {
+          "de": "Online-Anteil",
+          "en": "Share online",
+          "ls": "Wie viel geht online"
+        },
+        "wert": "Gutschein-Antrag online, Platzsuche und Vertrag offline"
+      }
+    ]
+  },
+  "meta": {
+    "erstellt": "2026-06-06",
+    "aktualisiert": "2026-06-10",
+    "maintainer": "malkreide",
+    "lizenz": "CC-BY-4.0"
+  },
+  "preconditions": [
+    {
+      "de": "Sie müssen in der Stadt Zürich wohnen.",
+      "ls": "Sie wohnen in der Stadt Zürich."
+    },
+    {
+      "de": "Ihre Kita muss einen Vertrag für Subventionen (Kontrakt) haben.",
+      "ls": "Ihre Kita hat einen Vertrag für Subventionen mit der Stadt."
+    },
+    {
+      "de": "Sie müssen niedrige bis mittlere Einkommens- und Vermögensverhältnisse nachweisen.",
+      "ls": "Ihr Einkommen und Ihr Vermögen sind niedrig bis mittel."
+    },
+    {
+      "de": "Sie müssen angeben, in welchem Umfang (wie viele Tage pro Woche) Sie auf die Kinderbetreuung angewiesen sind.",
+      "ls": "Sie sagen, wie viele Tage pro Woche Sie Betreuung brauchen."
+    }
+  ]
+}

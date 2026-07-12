@@ -1,0 +1,537 @@
+{
+  "$schema": "../../../schemas/opengov-process-schema.json",
+  "schema_version": "0.1.0",
+  "id": "veranstaltung",
+  "lebenslage_ref": "veranstaltung",
+  "city": "zh",
+  "title": {
+    "de": "Veranstaltung bewilligen (Nutzung öffentlicher Grund)",
+    "en": "Event permit (use of public ground)",
+    "fr": "Autorisation de manifestation (usage du domaine public)",
+    "it": "Autorizzazione per eventi (uso del suolo pubblico)",
+    "ls": "Fest oder Veranstaltung anmelden (Bewilligung)"
+  },
+  "description": {
+    "de": "Wer in der Stadt Zürich eine Veranstaltung auf öffentlichem Grund durchführt (Fest, Markt, Strassenfest, Boulevardgastronomie, Demo), braucht eine Bewilligung der Stadtpolizei. Je nach Vorhaben werden Fachstellen (Lärm, Verkehr, Entsorgung, Ausschank) einbezogen.",
+    "en": "Anyone holding an event on public ground in the City of Zurich (festival, market, street party, outdoor catering, demonstration) needs a permit from the city police. Depending on the plan, specialist offices (noise, traffic, waste, alcohol) are involved.",
+    "fr": "Quiconque organise une manifestation sur le domaine public de la Ville de Zurich (fête, marché, fête de rue, terrasse de restaurant, manifestation) a besoin d'une autorisation de la police municipale. Selon le projet, des services spécialisés (bruit, circulation, gestion des déchets, débit de boissons) sont impliqués.",
+    "it": "Chi organizza una manifestazione sul suolo pubblico nella Città di Zurigo (festa, mercato, festa di strada, ristorazione all'aperto, dimostrazione) necessita di un'autorizzazione della polizia municipale. A seconda del progetto vengono coinvolti servizi specializzati (rumore, traffico, smaltimento, mescita).",
+    "ls": "Sie wollen ein Fest auf der Strasse oder einem Platz machen? Dann brauchen Sie eine Bewilligung von der Stadt-Polizei. Andere Ämter prüfen mit: Lärm, Verkehr, Abfall, Getränke."
+  },
+  "target_audience": "bevoelkerung",
+  "source_url": "https://www.stadt-zuerich.ch/de/stadtleben/veranstaltungen-und-bewilligungen/veranstaltungen.html",
+  "retrieved_at": "2026-06-06",
+  "disclaimer_key": "Prozesse.disclaimerHochrisiko",
+  "references": [
+    {
+      "reference_id": 1,
+      "label": {
+        "de": "Empfohlene Vorlaufzeit für Bewilligungsgesuche (je nach Anlassgrösse)",
+        "en": "Recommended lead time for permit applications (depends on event size)",
+        "fr": "Délai recommandé pour les demandes d'autorisation (selon la taille de la manifestation)",
+        "it": "Tempo di preavviso consigliato per le domande di autorizzazione (a seconda delle dimensioni della manifestazione)",
+        "ls": "So früh sollten Sie das Gesuch schicken: Das hängt von der Grösse vom Fest ab"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/stadtleben/veranstaltungen-und-bewilligungen/veranstaltungen/fest-sportveranstaltung-quartierfest.html",
+      "source_quote": "Bitte informieren Sie sich ausführlich, bevor Sie das Gesuch ausfüllen und reichen Sie dieses spätestens vier Wochen vor dem Veranstaltungsbeginn ein.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-10"
+    },
+    {
+      "reference_id": 2,
+      "label": {
+        "de": "Mindest-Vorlaufzeit fuer die Planung eines Sanitaetsdienstes durch Schutz & Rettung Zuerich",
+        "en": "",
+        "fr": "",
+        "it": ""
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/stadtleben/veranstaltungen-und-bewilligungen/veranstaltungen/infrastruktur-sicherheit.html",
+      "source_quote": "dass für die Planung von Sanitätsdiensten an Veranstaltungen eine Vorlaufzeit von mindestens 6 Wochen benötigt wird.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-07-04"
+    }
+  ],
+  "actors": [
+    {
+      "id": "veranstalter",
+      "label": {
+        "de": "Veranstalter:in",
+        "en": "Event organiser",
+        "fr": "Organisateur",
+        "it": "Organizzatore",
+        "ls": "Sie (Sie machen das Fest)"
+      },
+      "type": "antragsteller"
+    },
+    {
+      "id": "stapo-bew",
+      "label": {
+        "de": "Stadtpolizei Zürich, Bewilligungen",
+        "en": "Zurich City Police, permits office",
+        "fr": "Police municipale de Zurich, service des autorisations",
+        "it": "Polizia municipale di Zurigo, servizio autorizzazioni",
+        "ls": "Die Stadt-Polizei (Bewilligungen)"
+      },
+      "type": "behoerde",
+      "einheit_ref": "SiD-stapo"
+    },
+    {
+      "id": "fachstellen",
+      "label": {
+        "de": "Fachstellen (Lärm, Verkehr, Entsorgung, Ausschank)",
+        "en": "Specialist offices (noise, traffic, waste, alcohol)",
+        "fr": "Services spécialisés (bruit, circulation, gestion des déchets, débit de boissons)",
+        "it": "Servizi specializzati (rumore, traffico, smaltimento, mescita)",
+        "ls": "Andere Ämter (Lärm, Verkehr, Abfall, Getränke)"
+      },
+      "type": "fachstelle"
+    },
+    {
+      "id": "statthalter",
+      "label": {
+        "de": "Statthalteramt (Rekursinstanz)",
+        "en": "District governor's office (appeals)",
+        "fr": "Préfecture (instance de recours)",
+        "it": "Prefettura (istanza di ricorso)",
+        "ls": "Eine Stelle vom Kanton für Beschwerden"
+      },
+      "type": "gericht"
+    }
+  ],
+  "steps": [
+    {
+      "step_id": 1,
+      "actor": "veranstalter",
+      "label": {
+        "de": "Veranstaltung auf öffentlichem Grund geplant",
+        "en": "Event on public ground planned",
+        "fr": "Manifestation prévue sur le domaine public",
+        "it": "Manifestazione pianificata sul suolo pubblico",
+        "ls": "Sie planen ein Fest auf der Strasse"
+      },
+      "depends_on": [],
+      "type": "start"
+    },
+    {
+      "step_id": 2,
+      "actor": "veranstalter",
+      "label": {
+        "de": "Vorlauffrist beachten (rechtzeitig einreichen)",
+        "en": "Mind the lead time (apply early)",
+        "fr": "Respecter le délai de préavis (déposer à temps)",
+        "it": "Rispettare il termine di preavviso (presentare per tempo)",
+        "ls": "Wichtig: Früh genug anmelden"
+      },
+      "depends_on": [
+        1
+      ],
+      "reference_ids": [
+        1
+      ],
+      "type": "input",
+      "description": {
+        "de": "Gesuche müssen je nach Grösse mehrere Wochen im Voraus eingereicht werden (Grossanlässe deutlich früher).",
+        "en": "Depending on size, applications must be submitted several weeks in advance (large events much earlier).",
+        "fr": "Selon la taille, les demandes doivent être déposées plusieurs semaines à l'avance (les grandes manifestations nettement plus tôt).",
+        "it": "A seconda delle dimensioni, le domande devono essere presentate con diverse settimane di anticipo (le grandi manifestazioni nettamente prima).",
+        "ls": "Melden Sie das Fest früh an. Grosse Feste brauchen mehr Zeit."
+      },
+      "source_id": "q-stz-bewilligungen",
+      "documents": [
+        {
+          "label": {
+            "de": "Plan mit aller Infrastruktur (Buehnen, Baenke, Tische, Zelte)"
+          },
+          "required": true
+        }
+      ]
+    },
+    {
+      "step_id": 3,
+      "actor": "veranstalter",
+      "label": {
+        "de": "Gesuch online einreichen",
+        "en": "Submit application online",
+        "fr": "Déposer la demande en ligne",
+        "it": "Presentare la domanda online",
+        "ls": "Sie füllen das Gesuch im Internet aus"
+      },
+      "depends_on": [
+        2
+      ],
+      "type": "input",
+      "description": {
+        "de": "Angaben zu Ort, Datum, erwarteter Teilnehmerzahl, Aufbau, Lärm/Musik, Ausschank und Entsorgung.",
+        "en": "Details on location, date, expected attendance, setup, noise/music, alcohol and waste.",
+        "fr": "Indications sur le lieu, la date, le nombre de participants attendu, le montage, le bruit/la musique, le débit de boissons et la gestion des déchets.",
+        "it": "Indicazioni su luogo, data, numero di partecipanti previsto, allestimento, rumore/musica, mescita e smaltimento.",
+        "ls": "Wo, wann, wie viele Leute, Musik, Getränke, Abfall."
+      },
+      "documents": [
+        {
+          "label": {
+            "de": "Situationsplan / Aufbauplan",
+            "en": "Site/setup plan",
+            "fr": "Plan de situation / plan de montage",
+            "it": "Piano di situazione / piano di allestimento"
+          },
+          "required": true
+        },
+        {
+          "label": {
+            "de": "Programm und Zeitplan",
+            "en": "Programme and schedule",
+            "fr": "Programme et horaire",
+            "it": "Programma e orario"
+          },
+          "required": true
+        },
+        {
+          "label": {
+            "de": "Bei Ausschank: Angaben zum Getränkeangebot",
+            "en": "For alcohol service: details of the offering",
+            "fr": "En cas de débit de boissons: indications sur l'offre de boissons",
+            "it": "In caso di mescita: indicazioni sull'offerta di bevande"
+          },
+          "required": false
+        }
+      ],
+      "source_id": "q-stz-bewilligungen"
+    },
+    {
+      "step_id": 4,
+      "actor": "stapo-bew",
+      "label": {
+        "de": "Gesuch prüfen, Fachstellen einholen",
+        "en": "Review application, consult specialist offices",
+        "fr": "Examiner la demande, consulter les services spécialisés",
+        "it": "Esaminare la domanda, consultare i servizi specializzati",
+        "ls": "Die Stadt-Polizei prüft das Gesuch und fragt andere Ämter"
+      },
+      "depends_on": [
+        3
+      ],
+      "type": "prozess",
+      "reference_ids": [
+        1
+      ]
+    },
+    {
+      "step_id": 5,
+      "actor": "fachstellen",
+      "label": {
+        "de": "Fachstellen-Mitberichte (Lärm, Verkehr, Entsorgung, Ausschank)",
+        "en": "Specialist reports (noise, traffic, waste, alcohol)",
+        "fr": "Préavis des services spécialisés (bruit, circulation, gestion des déchets, débit de boissons)",
+        "it": "Pareri dei servizi specializzati (rumore, traffico, smaltimento, mescita)",
+        "ls": "Andere Ämter prüfen mit"
+      },
+      "depends_on": [
+        4
+      ],
+      "type": "prozess"
+    },
+    {
+      "step_id": 6,
+      "actor": "stapo-bew",
+      "label": {
+        "de": "Unterlagen vollständig / Auflagen klar?",
+        "en": "Documents complete / conditions clear?",
+        "fr": "Documents complets / conditions claires?",
+        "it": "Documenti completi / condizioni chiare?",
+        "ls": "Sind alle Angaben da?"
+      },
+      "depends_on": [
+        5
+      ],
+      "type": "entscheidung"
+    },
+    {
+      "step_id": 7,
+      "actor": "veranstalter",
+      "label": {
+        "de": "Unterlagen oder Anpassungen nachreichen",
+        "en": "Submit missing documents or adjustments",
+        "fr": "Soumettre les documents ou adaptations manquants",
+        "it": "Presentare i documenti o gli adeguamenti mancanti",
+        "ls": "Fehlendes nachreichen"
+      },
+      "depends_on": [
+        {
+          "step_id": 6,
+          "condition": {
+            "de": "unvollständig",
+            "en": "incomplete",
+            "fr": "incomplet",
+            "it": "incompleto"
+          }
+        }
+      ],
+      "type": "loop",
+      "loops_back_to": [
+        4
+      ]
+    },
+    {
+      "step_id": 8,
+      "actor": "stapo-bew",
+      "label": {
+        "de": "Bewilligt?",
+        "en": "Approved?",
+        "fr": "Autorisé?",
+        "it": "Autorizzato?",
+        "ls": "Bekommen Sie die Bewilligung?"
+      },
+      "depends_on": [
+        {
+          "step_id": 6,
+          "condition": {
+            "de": "vollständig",
+            "en": "complete",
+            "fr": "complet",
+            "it": "completo"
+          }
+        }
+      ],
+      "type": "entscheidung"
+    },
+    {
+      "step_id": 9,
+      "actor": "stapo-bew",
+      "label": {
+        "de": "Bewilligung mit Auflagen verfügen",
+        "en": "Issue permit with conditions",
+        "fr": "Délivrer l'autorisation assortie de conditions",
+        "it": "Rilasciare l'autorizzazione con condizioni",
+        "ls": "Sie bekommen die Bewilligung mit Regeln"
+      },
+      "depends_on": [
+        {
+          "step_id": 8,
+          "condition": {
+            "de": "ja"
+          }
+        }
+      ],
+      "type": "prozess",
+      "description": {
+        "de": "Bewilligung mit Auflagen (Lärmzeiten, Sicherheit, Reinigung, Verkehr) und Gebühr.",
+        "en": "Permit with conditions (noise hours, safety, cleaning, traffic) and fee.",
+        "fr": "Autorisation assortie de conditions (horaires de bruit, sécurité, nettoyage, circulation) et émolument.",
+        "it": "Autorizzazione con condizioni (orari del rumore, sicurezza, pulizia, traffico) e tassa.",
+        "ls": "Sie bekommen die Erlaubnis mit Regeln. Zum Beispiel: Wann darf es laut sein? Wer räumt auf? Die Bewilligung kostet eine Gebühr."
+      }
+    },
+    {
+      "step_id": 10,
+      "actor": "veranstalter",
+      "label": {
+        "de": "Gebühr bezahlen",
+        "en": "Pay the fee",
+        "fr": "Payer l'émolument",
+        "it": "Pagare la tassa",
+        "ls": "Sie zahlen die Gebühr"
+      },
+      "depends_on": [
+        9
+      ],
+      "type": "input"
+    },
+    {
+      "step_id": 11,
+      "actor": "veranstalter",
+      "label": {
+        "de": "Veranstaltung bewilligt",
+        "en": "Event approved",
+        "fr": "Manifestation autorisée",
+        "it": "Manifestazione autorizzata",
+        "ls": "Fertig: Das Fest ist erlaubt"
+      },
+      "depends_on": [
+        10
+      ],
+      "type": "ende"
+    },
+    {
+      "step_id": 12,
+      "actor": "stapo-bew",
+      "label": {
+        "de": "Gesuch ablehnen (mit Begründung)",
+        "en": "Reject application (with reasons)",
+        "fr": "Rejeter la demande (avec motivation)",
+        "it": "Respingere la domanda (con motivazione)",
+        "ls": "Die Stadt-Polizei sagt: Nein. Und schreibt warum."
+      },
+      "depends_on": [
+        {
+          "step_id": 8,
+          "condition": {
+            "de": "nein"
+          }
+        }
+      ],
+      "type": "prozess"
+    },
+    {
+      "step_id": 13,
+      "actor": "veranstalter",
+      "label": {
+        "de": "Rekurs einreichen?",
+        "en": "File an appeal?",
+        "fr": "Déposer un recours?",
+        "it": "Presentare ricorso?",
+        "ls": "Wollen Sie sich beschweren?"
+      },
+      "depends_on": [
+        12
+      ],
+      "type": "entscheidung"
+    },
+    {
+      "step_id": 14,
+      "actor": "statthalter",
+      "label": {
+        "de": "Rekurs beim Statthalteramt",
+        "en": "Appeal to the district governor",
+        "fr": "Recours auprès de la préfecture",
+        "it": "Ricorso presso la prefettura",
+        "ls": "Beschwerde bei der Kantonsstelle"
+      },
+      "depends_on": [
+        {
+          "step_id": 13,
+          "condition": {
+            "de": "ja"
+          }
+        }
+      ],
+      "type": "loop",
+      "loops_back_to": [
+        8
+      ]
+    },
+    {
+      "step_id": 15,
+      "actor": "veranstalter",
+      "label": {
+        "de": "Gesuch rechtskräftig abgelehnt",
+        "en": "Application rejected (final)",
+        "fr": "Demande rejetée (définitif)",
+        "it": "Domanda respinta (definitivo)",
+        "ls": "Das Fest ist nicht erlaubt"
+      },
+      "depends_on": [
+        {
+          "step_id": 13,
+          "condition": {
+            "de": "nein"
+          }
+        }
+      ],
+      "type": "ende"
+    }
+  ],
+  "legal_basis": [
+    {
+      "label": "Vorschriften über die Benützung des öffentlichen Grundes der Stadt Zürich",
+      "url": "https://www.stadt-zuerich.ch/de/stadtleben/veranstaltungen-und-bewilligungen/veranstaltungen.html"
+    },
+    {
+      "label": "Gastgewerbegesetz des Kantons Zürich (für Ausschank/Patente)",
+      "url": "https://www.zh.ch/de/wirtschaft-arbeit/gewerbe-betriebsbewilligungen/gastwirtschaftspatent.html"
+    }
+  ],
+  "sources": [
+    {
+      "id": "q-stz-bewilligungen",
+      "title": "Stadtpolizei Zürich – Bewilligungen",
+      "url": "https://www.stadt-zuerich.ch/de/stadtleben/veranstaltungen-und-bewilligungen/veranstaltungen.html",
+      "retrieved_at": "2026-06-06"
+    }
+  ],
+  "reife": {
+    "onlineReifegrad": "teil-digital",
+    "medienbrueche": [
+      "separate-zahlung",
+      "erneute-dateneingabe"
+    ],
+    "onceOnlyPotenzial": {
+      "de": "Veranstalter-Stammdaten und wiederkehrende Anlässe könnten gespeichert werden, sodass Folgegesuche nicht alles neu erfassen müssen.",
+      "en": "Organiser master data and recurring events could be stored so that follow-up applications need not re-enter everything.",
+      "ls": "Wenn Sie öfter ein Fest machen, müssten Sie die Angaben nicht jedes Mal neu schreiben."
+    },
+    "nutzergruppen": [
+      {
+        "de": "Vereine und Quartierorganisationen",
+        "en": "Associations and neighbourhood groups",
+        "ls": "Vereine und Quartier-Gruppen"
+      },
+      {
+        "de": "Gewerbe / Gastronomie",
+        "en": "Businesses / catering",
+        "ls": "Geschäfte und Restaurants"
+      },
+      {
+        "de": "Private Veranstalter:innen",
+        "en": "Private organisers",
+        "ls": "Einzelne Menschen, die ein Fest machen"
+      }
+    ],
+    "painPoints": [
+      {
+        "de": "Mehrere Fachstellen müssen koordiniert werden; lange Vorlaufzeit.",
+        "en": "Several specialist offices must be coordinated; long lead time.",
+        "ls": "Viele Ämter prüfen mit. Das dauert."
+      },
+      {
+        "de": "Zahlung erfolgt separat per Rechnung.",
+        "en": "Payment happens separately by invoice.",
+        "ls": "Sie zahlen erst später mit einer Rechnung."
+      }
+    ],
+    "improvementIdeas": [
+      {
+        "de": "Ein-Fenster-Gesuch, das alle Fachstellen automatisch einbezieht.",
+        "en": "One-window application that automatically involves all specialist offices.",
+        "ls": "Ein Antrag für alle Ämter auf einmal."
+      },
+      {
+        "de": "Wiederkehrende-Anlass-Profil mit vorbefüllten Angaben.",
+        "en": "Recurring-event profile with pre-filled data.",
+        "ls": "Ein gespeichertes Profil für Feste, die Sie öfter machen."
+      }
+    ],
+    "status": "beobachtet",
+    "wirkungKpi": [
+      {
+        "label": {
+          "de": "Online-Anteil",
+          "en": "Share online",
+          "ls": "Wie viel geht online"
+        },
+        "wert": "Gesuch online, Zahlung separat"
+      }
+    ]
+  },
+  "meta": {
+    "erstellt": "2026-06-06",
+    "aktualisiert": "2026-06-10",
+    "maintainer": "malkreide",
+    "lizenz": "CC-BY-4.0"
+  },
+  "preconditions": [
+    {
+      "de": "Sie planen, oeffentlichen Grund zu benuetzen.",
+      "ls": "Sie wollen oeffentlichen Grund benutzen."
+    },
+    {
+      "de": "Sie planen, im Freien Lautsprecher einzusetzen."
+    },
+    {
+      "de": "Sie planen, auf oeffentlichem Grund Infrastruktur jeglicher Art aufzubauen (Zelte, Buehnen, Schaustellgeschaefte usw.)."
+    },
+    {
+      "de": "Sie planen, Getraenke und Speisen zu verkaufen."
+    }
+  ]
+}

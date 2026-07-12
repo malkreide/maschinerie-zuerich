@@ -1,0 +1,694 @@
+{
+  "$schema": "../../../schemas/opengov-process-schema.json",
+  "schema_version": "0.1.0",
+  "id": "umzug-melden",
+  "lebenslage_ref": "umzug-melden",
+  "city": "zh",
+  "title": {
+    "de": "Umzug / Adressänderung melden",
+    "en": "Report a move / change of address",
+    "fr": "Annoncer un déménagement / changement d'adresse",
+    "it": "Notificare un trasloco / cambio di indirizzo",
+    "ls": "Umzug melden (neue Adresse)"
+  },
+  "description": {
+    "de": "Wer in die Stadt Zürich zieht oder innerhalb der Stadt umzieht, muss sich innert der gesetzlichen Meldefrist beim Bevölkerungsamt an- bzw. ummelden. Für Schweizer:innen weitgehend online über eUmzugCH; für ausländische Staatsangehörige gelten Zusatzschritte.",
+    "en": "Anyone moving to or within the City of Zurich must register or update their address with the population office within the statutory deadline. Largely online via eUmzugCH for Swiss citizens; foreign nationals have additional steps.",
+    "fr": "Toute personne qui emménage dans la ville de Zurich ou qui déménage à l'intérieur de la ville doit s'annoncer ou faire mettre à jour son adresse auprès du contrôle des habitants dans le délai légal d'annonce. En grande partie en ligne via eUmzugCH pour les ressortissant-e-s suisses; des étapes supplémentaires s'appliquent aux ressortissant-e-s étrangers.",
+    "it": "Chi si trasferisce nella città di Zurigo o trasloca all'interno della città deve annunciarsi o aggiornare il proprio indirizzo presso il controllo abitanti entro il termine legale di notifica. In gran parte online tramite eUmzugCH per i cittadini svizzeri; per i cittadini stranieri valgono passaggi aggiuntivi.",
+    "ls": "Sie ziehen in die Stadt Zürich? Oder Sie ziehen in eine neue Wohnung in der Stadt? Dann müssen Sie das melden. Melden Sie das schnell. Es gibt eine Frist. Das macht das Bevölkerungs-Amt. Schweizerinnen und Schweizer können das im Internet machen."
+  },
+  "target_audience": "bevoelkerung",
+  "preconditions": [
+    {
+      "de": "Sie ziehen neu in die Stadt Zürich oder innerhalb der Stadt um.",
+      "fr": "Vous emménagez dans la ville de Zurich ou vous déménagez à l'intérieur de la ville.",
+      "it": "Vi trasferite nella città di Zurigo o traslocate all'interno della città.",
+      "ls": "Sie ziehen nach Zürich. Oder Sie ziehen in Zürich um."
+    },
+    {
+      "de": "Beim Zuzug aus einer anderen Schweizer Gemeinde müssen Sie sich zuerst bei Ihrer bisherigen Wohnsitzgemeinde abmelden.",
+      "fr": "En cas d'arrivée depuis une autre commune suisse, vous devez d'abord vous désinscrire auprès de votre commune de domicile précédente.",
+      "it": "In caso di arrivo da un altro Comune svizzero, dovete prima disdire la vostra residenza presso il Comune di domicilio precedente.",
+      "ls": "Sie kommen aus einer anderen Gemeinde? Melden Sie sich dort zuerst ab."
+    },
+    {
+      "de": "Für die Online-Umzugsmeldung innerhalb der Stadt müssen Sie bereits in der Stadt Zürich angemeldet sowie volljährig und handlungsfähig sein.",
+      "fr": "Pour l'annonce de déménagement en ligne à l'intérieur de la ville, vous devez déjà être annoncé-e dans la ville de Zurich, être majeur-e et capable de discernement.",
+      "it": "Per la notifica di trasloco online all'interno della città, dovete essere già annunciati nella città di Zurigo, maggiorenni e capaci di agire."
+    }
+  ],
+  "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/zuzug.html",
+  "retrieved_at": "2026-06-06",
+  "disclaimer_key": "Prozesse.disclaimer",
+  "references": [
+    {
+      "reference_id": 1,
+      "label": {
+        "de": "Allfällige Gebühren bei der An-/Ummeldung (insb. Bewilligungsnachführung für ausländische Staatsangehörige)",
+        "en": "Possible fees for registration (esp. residence-permit updates for foreign nationals)",
+        "fr": "Émoluments éventuels lors de l'annonce ou de la mise à jour (notamment mise à jour de l'autorisation pour les ressortissant-e-s étrangers)",
+        "it": "Eventuali emolumenti per l'annuncio o l'aggiornamento (in particolare aggiornamento del permesso per i cittadini stranieri)",
+        "ls": "Frist für die Anmeldung beim Zuzug"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/zuzug.html",
+      "source_quote": "Migrationsamtliche Gebühren (je nach Art der Bewilligung unterschiedlich)",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-10"
+    },
+    {
+      "reference_id": 2,
+      "label": {
+        "de": "Gesetzliche Meldefrist für die An-/Ummeldung nach Einzug",
+        "en": "Statutory deadline for registering after moving in",
+        "fr": "Délai légal d'annonce pour s'annoncer ou se mettre à jour après l'emménagement",
+        "it": "Termine legale di notifica per annunciarsi o aggiornarsi dopo l'arrivo",
+        "ls": "Wie viel Zeit Sie für die Meldung haben"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/zuzug.html",
+      "source_quote": "Sie müssen sich innerhalb von 14 Tagen bei der Stadt Zürich anmelden (Meldepflicht).",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-10"
+    },
+    {
+      "reference_id": 3,
+      "label": {
+        "de": "Erforderliche Dokumente für die Anmeldung",
+        "en": "Documents required for registration",
+        "fr": "Documents requis pour s'annoncer",
+        "it": "Documenti necessari per l'annuncio",
+        "ls": "Was Sie für die Anmeldung brauchen"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/zuzug.html",
+      "source_quote": "Pass oder Identitätskarte; Mietvertrag, Wohnungsausweis oder Untermietvertrag; Krankenkassenkarte (aller Familienmitglieder)",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-29"
+    },
+    {
+      "reference_id": 4,
+      "label": {
+        "de": "Meldefrist bei Adressänderung (Umzug innerhalb der Stadt)",
+        "en": "Notification deadline for a change of address (move within the city)",
+        "fr": "Délai d'annonce en cas de changement d'adresse (déménagement à l'intérieur de la ville)",
+        "it": "Termine di notifica in caso di cambio di indirizzo (trasloco all'interno della città)",
+        "ls": "Frist beim Umzug in der Stadt"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/umzug.html",
+      "source_quote": "Die Meldepflicht Ihrer Adressänderung beträgt 14 Tage ab Umzug.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-28"
+    },
+    {
+      "reference_id": 5,
+      "label": {
+        "de": "Früheste Meldemöglichkeit vor Einzug bei Umzug innerhalb der Stadt",
+        "en": "Earliest possible notification before moving in for a move within the city",
+        "fr": "Date d'annonce la plus précoce avant l'emménagement en cas de déménagement à l'intérieur de la ville",
+        "it": "Prima possibilità di notifica prima dell'arrivo in caso di trasloco all'interno della città",
+        "ls": "Wann Sie den Umzug frühestens melden können"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/umzug.html",
+      "source_quote": "Die Adressänderung können Sie uns **online frühestens 30 Tage vor Einzug** melden.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-28"
+    },
+    {
+      "reference_id": 6,
+      "label": {
+        "de": "Meldefrist bei Wegzug",
+        "en": "Notification deadline when moving away",
+        "fr": "Délai d'annonce en cas de départ",
+        "it": "Termine di notifica in caso di partenza",
+        "ls": "Frist beim Wegzug"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/wegzug.html",
+      "source_quote": "melden Sie Ihren Wegzug innerhalb von 14 Tagen nach Ihrem Auszug (Meldepflicht).",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-28"
+    },
+    {
+      "reference_id": 7,
+      "label": {
+        "de": "Früheste Entgegennahme der Wegzugsmeldung vor Auszug",
+        "en": "Earliest acceptance of the departure notification before moving out",
+        "fr": "Réception la plus précoce de l'annonce de départ avant le déménagement",
+        "it": "Prima accettazione della notifica di partenza prima del trasloco",
+        "ls": "Wann Sie den Wegzug frühestens melden können"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/wegzug.html",
+      "source_quote": "Das Personenmeldeamt nimmt Ihre Wegzugsmeldung frühestens 30 Tage vor Ihrem geplanten Auszug entgegen.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-28"
+    },
+    {
+      "reference_id": 8,
+      "label": {
+        "de": "Gebühr für Abmeldebestätigung / Wohnsitzattest",
+        "en": "Fee for confirmation of deregistration / certificate of residence",
+        "fr": "Émolument pour l'attestation de désinscription / attestation de domicile",
+        "it": "Emolumento per la conferma di disdetta / attestato di domicilio",
+        "ls": "Gebühr für die Abmeldebestätigung"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/wegzug.html",
+      "source_quote": "Fr. 20.– für eine Abmeldebestätigung / Wohnsitzattest (bevorzugt: Karte und Twint)",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-28"
+    }
+  ],
+  "actors": [
+    {
+      "id": "person",
+      "label": {
+        "de": "Zuziehende / umziehende Person",
+        "en": "Person moving in or within the city",
+        "fr": "Personne qui emménage ou déménage",
+        "it": "Persona che si trasferisce",
+        "ls": "Sie (Sie ziehen um)"
+      },
+      "type": "antragsteller"
+    },
+    {
+      "id": "bev",
+      "label": {
+        "de": "Bevölkerungsamt der Stadt Zürich",
+        "en": "Population Office of the City of Zurich",
+        "fr": "Contrôle des habitants de la ville de Zurich",
+        "it": "Controllo abitanti della città di Zurigo",
+        "ls": "Das Bevölkerungs-Amt"
+      },
+      "type": "behoerde",
+      "einheit_ref": "SiD-bev"
+    },
+    {
+      "id": "wegzugsgemeinde",
+      "label": {
+        "de": "Bisherige Wohngemeinde (bei Zuzug)",
+        "en": "Previous municipality (when moving in)",
+        "fr": "Commune de domicile précédente (en cas d'arrivée)",
+        "it": "Comune di domicilio precedente (in caso di arrivo)",
+        "ls": "Ihre alte Gemeinde"
+      },
+      "type": "dritte"
+    },
+    {
+      "id": "migrationsamt",
+      "label": {
+        "de": "Migrationsamt Kanton Zürich (bei ausländischer Staatsangehörigkeit)",
+        "en": "Cantonal Migration Office (for foreign nationals)",
+        "fr": "Office des migrations du canton de Zurich (en cas de nationalité étrangère)",
+        "it": "Ufficio della migrazione del Cantone di Zurigo (in caso di nazionalità straniera)",
+        "ls": "Das Migrations-Amt vom Kanton"
+      },
+      "type": "fachstelle"
+    }
+  ],
+  "steps": [
+    {
+      "step_id": 1,
+      "actor": "person",
+      "label": {
+        "de": "Umzug steht bevor oder ist erfolgt",
+        "en": "Move is upcoming or completed",
+        "fr": "Le déménagement est imminent ou a eu lieu",
+        "it": "Il trasloco è imminente o è avvenuto",
+        "ls": "Sie ziehen um"
+      },
+      "depends_on": [],
+      "type": "start"
+    },
+    {
+      "step_id": 2,
+      "actor": "person",
+      "label": {
+        "de": "Meldefrist beachten",
+        "en": "Note the registration deadline",
+        "fr": "Respecter le délai d'annonce",
+        "it": "Rispettare il termine di notifica",
+        "ls": "Wichtig: Melden Sie den Umzug schnell. Es gibt eine Frist."
+      },
+      "depends_on": [
+        1
+      ],
+      "reference_ids": [
+        2
+      ],
+      "type": "input",
+      "description": {
+        "de": "Die An-/Ummeldung muss innert der gesetzlichen Meldefrist ab Einzug erfolgen. Verspätung kann gebührenpflichtig sein.",
+        "en": "Registration must happen within the statutory deadline after moving in. Late notification may incur a fee.",
+        "fr": "L'annonce ou la mise à jour doit se faire dans le délai légal d'annonce à compter de l'emménagement. Un retard peut être soumis à émolument.",
+        "it": "L'annuncio o l'aggiornamento deve avvenire entro il termine legale di notifica a partire dall'arrivo. Un ritardo può comportare un emolumento.",
+        "ls": "Melden Sie den Umzug schnell. Sonst kostet es vielleicht Geld."
+      },
+      "source_id": "q-stz-umzug"
+    },
+    {
+      "step_id": 3,
+      "actor": "person",
+      "label": {
+        "de": "Wie melden?",
+        "en": "How to register?",
+        "fr": "Comment s'annoncer?",
+        "it": "Come annunciarsi?",
+        "ls": "Wie wollen Sie melden?"
+      },
+      "depends_on": [
+        2
+      ],
+      "type": "entscheidung",
+      "reference_ids": [
+        3
+      ]
+    },
+    {
+      "step_id": 4,
+      "actor": "person",
+      "label": {
+        "de": "Online melden über eUmzugCH",
+        "en": "Register online via eUmzugCH",
+        "fr": "S'annoncer en ligne via eUmzugCH",
+        "it": "Annunciarsi online tramite eUmzugCH",
+        "ls": "Im Internet melden (eUmzug)"
+      },
+      "depends_on": [
+        {
+          "step_id": 3,
+          "condition": {
+            "de": "online (eUmzug)",
+            "en": "online (eUmzug)",
+            "fr": "en ligne (eUmzug)",
+            "it": "online (eUmzug)"
+          }
+        }
+      ],
+      "type": "input",
+      "description": {
+        "de": "Für Schweizer:innen und niedergelassene Personen ohne offene Spezialfälle. Die alte Gemeinde wird automatisch über den Wegzug informiert.",
+        "en": "For Swiss citizens and settled residents without special cases. The previous municipality is informed of the departure automatically.",
+        "fr": "Pour les ressortissant-e-s suisses et les personnes établies sans cas particulier en suspens. La commune précédente est informée automatiquement du départ.",
+        "it": "Per i cittadini svizzeri e le persone domiciliate senza casi particolari in sospeso. Il Comune precedente viene informato automaticamente della partenza.",
+        "ls": "Das geht am Computer. Ihre alte Gemeinde erfährt das automatisch."
+      },
+      "documents": [
+        {
+          "label": {
+            "de": "Mietvertrag oder Wohnungsnachweis",
+            "en": "Tenancy agreement or proof of residence",
+            "fr": "Contrat de bail ou justificatif de logement",
+            "it": "Contratto di locazione o attestato di alloggio"
+          },
+          "required": true
+        },
+        {
+          "label": {
+            "de": "Angaben zu allen umziehenden Haushaltsmitgliedern",
+            "en": "Details of all household members moving",
+            "fr": "Indications sur tous les membres du ménage qui déménagent",
+            "it": "Indicazioni su tutti i membri dell'economia domestica che traslocano"
+          },
+          "required": true
+        },
+        {
+          "label": {
+            "de": "Krankenkassen-Police (Nachweis Versicherung)",
+            "en": "Health insurance policy",
+            "fr": "Police d'assurance-maladie (justificatif d'assurance)",
+            "it": "Polizza della cassa malati (attestato di assicurazione)"
+          },
+          "required": false
+        }
+      ],
+      "source_id": "q-eumzug",
+      "reference_ids": [
+        3
+      ]
+    },
+    {
+      "step_id": 5,
+      "actor": "person",
+      "label": {
+        "de": "Persönlich am Schalter melden",
+        "en": "Register in person at the counter",
+        "fr": "S'annoncer en personne au guichet",
+        "it": "Annunciarsi di persona allo sportello",
+        "ls": "Beim Amt vorbeigehen"
+      },
+      "depends_on": [
+        {
+          "step_id": 3,
+          "condition": {
+            "de": "persönlich",
+            "en": "in person",
+            "fr": "en personne",
+            "it": "di persona"
+          }
+        }
+      ],
+      "type": "input",
+      "description": {
+        "de": "Erforderlich u. a. für ausländische Staatsangehörige (Ausweispapiere, ggf. Heimatschein/Heimatausweis im Original).",
+        "en": "Required e.g. for foreign nationals (ID documents, originals of place-of-origin papers if applicable).",
+        "fr": "Requis notamment pour les ressortissant-e-s étrangers (pièces d'identité, le cas échéant acte d'origine au format original).",
+        "it": "Necessario in particolare per i cittadini stranieri (documenti d'identità, se del caso atto d'origine in originale).",
+        "ls": "Manche Menschen müssen persönlich kommen. Zum Beispiel Menschen aus dem Ausland."
+      },
+      "documents": [
+        {
+          "label": {
+            "de": "Ausweis (ID/Pass)",
+            "en": "Identity document (ID/passport)",
+            "fr": "Pièce d'identité (carte d'identité/passeport)",
+            "it": "Documento d'identità (carta d'identità/passaporto)"
+          },
+          "required": true
+        },
+        {
+          "label": {
+            "de": "Heimatschein / Heimatausweis (CH) bzw. Ausländerausweis",
+            "en": "Place-of-origin certificate (CH) or foreigner's permit",
+            "fr": "Acte d'origine (CH) ou titre de séjour pour étrangers",
+            "it": "Atto d'origine (CH) o permesso per stranieri"
+          },
+          "required": true
+        },
+        {
+          "label": {
+            "de": "Mietvertrag oder Wohnungsnachweis",
+            "en": "Tenancy agreement or proof of residence",
+            "fr": "Contrat de bail ou justificatif de logement",
+            "it": "Contratto di locazione o attestato di alloggio"
+          },
+          "required": true
+        }
+      ],
+      "source_id": "q-stz-umzug",
+      "reference_ids": [
+        4,
+        5
+      ]
+    },
+    {
+      "step_id": 6,
+      "actor": "bev",
+      "label": {
+        "de": "Meldung und Unterlagen prüfen",
+        "en": "Check registration and documents",
+        "fr": "Vérifier l'annonce et les documents",
+        "it": "Verificare l'annuncio e i documenti",
+        "ls": "Sie ziehen in eine andere Gemeinde? Sie melden sich ab."
+      },
+      "depends_on": [
+        4,
+        5
+      ],
+      "type": "prozess",
+      "description": {
+        "de": "Das Bevölkerungsamt prüft die Angaben und gleicht sie mit dem kantonalen Personenregister ab.",
+        "en": "The population office verifies the data and matches it against the cantonal person register.",
+        "fr": "Le contrôle des habitants vérifie les indications et les compare avec le registre cantonal des personnes.",
+        "it": "Il controllo abitanti verifica le indicazioni e le confronta con il registro cantonale delle persone."
+      },
+      "reference_ids": [
+        6,
+        7
+      ]
+    },
+    {
+      "step_id": 7,
+      "actor": "bev",
+      "label": {
+        "de": "Unterlagen vollständig?",
+        "en": "Documents complete?",
+        "fr": "Documents complets?",
+        "it": "Documenti completi?",
+        "ls": "Sind alle Papiere da?"
+      },
+      "depends_on": [
+        6
+      ],
+      "type": "entscheidung",
+      "reference_ids": [
+        6,
+        8
+      ]
+    },
+    {
+      "step_id": 8,
+      "actor": "person",
+      "label": {
+        "de": "Fehlende Unterlagen nachreichen",
+        "en": "Submit missing documents",
+        "fr": "Fournir les documents manquants",
+        "it": "Inoltrare i documenti mancanti",
+        "ls": "Fehlendes nachreichen"
+      },
+      "depends_on": [
+        {
+          "step_id": 7,
+          "condition": {
+            "de": "unvollständig",
+            "en": "incomplete",
+            "fr": "incomplet",
+            "it": "incompleto"
+          }
+        }
+      ],
+      "type": "loop",
+      "loops_back_to": [
+        6
+      ],
+      "reference_ids": [
+        8
+      ]
+    },
+    {
+      "step_id": 9,
+      "actor": "bev",
+      "label": {
+        "de": "Ausländische Staatsangehörigkeit?",
+        "en": "Foreign nationality?",
+        "fr": "Nationalité étrangère?",
+        "it": "Nazionalità straniera?",
+        "ls": "Kommen Sie aus dem Ausland?"
+      },
+      "depends_on": [
+        {
+          "step_id": 7,
+          "condition": {
+            "de": "vollständig",
+            "en": "complete",
+            "fr": "complet",
+            "it": "completo"
+          }
+        }
+      ],
+      "type": "entscheidung"
+    },
+    {
+      "step_id": 10,
+      "actor": "migrationsamt",
+      "label": {
+        "de": "Meldung an das Migrationsamt / Bewilligung anpassen",
+        "en": "Notify migration office / update permit",
+        "fr": "Annonce à l'office des migrations / adaptation de l'autorisation",
+        "it": "Notifica all'ufficio della migrazione / adeguamento del permesso",
+        "ls": "Das Migrations-Amt wird informiert"
+      },
+      "depends_on": [
+        {
+          "step_id": 9,
+          "condition": {
+            "de": "ja",
+            "fr": "oui",
+            "it": "si"
+          }
+        }
+      ],
+      "type": "prozess",
+      "description": {
+        "de": "Bei Zuzug aus einer anderen Gemeinde/Land wird der Ausländerausweis auf die neue Adresse nachgeführt.",
+        "en": "When moving from another municipality/country, the foreigner's permit is updated to the new address.",
+        "fr": "En cas d'arrivée depuis une autre commune ou un autre pays, le titre de séjour pour étrangers est mis à jour avec la nouvelle adresse.",
+        "it": "In caso di arrivo da un altro Comune o Paese, il permesso per stranieri viene aggiornato con il nuovo indirizzo."
+      }
+    },
+    {
+      "step_id": 11,
+      "actor": "bev",
+      "label": {
+        "de": "Eintrag im Einwohnerregister nachführen",
+        "en": "Update entry in the residents' register",
+        "fr": "Mettre à jour l'inscription au registre des habitants",
+        "it": "Aggiornare l'iscrizione nel registro degli abitanti",
+        "ls": "Ihre neue Adresse kommt ins Register"
+      },
+      "depends_on": [
+        {
+          "step_id": 9,
+          "condition": {
+            "de": "nein",
+            "fr": "non",
+            "it": "no"
+          }
+        },
+        10
+      ],
+      "reference_ids": [
+        1
+      ],
+      "type": "prozess",
+      "description": {
+        "de": "Die neue Adresse wird im Einwohnerregister hinterlegt; bei Zuzug wird der Heimatschein abgelegt.",
+        "en": "The new address is recorded in the residents' register; for new arrivals the place-of-origin certificate is deposited.",
+        "fr": "La nouvelle adresse est enregistrée dans le registre des habitants; en cas d'arrivée, l'acte d'origine est déposé.",
+        "it": "Il nuovo indirizzo viene registrato nel registro degli abitanti; in caso di arrivo, l'atto d'origine viene depositato."
+      }
+    },
+    {
+      "step_id": 12,
+      "actor": "bev",
+      "label": {
+        "de": "Anmeldebestätigung / Wohnsitznachweis ausstellen",
+        "en": "Issue confirmation of registration / proof of residence",
+        "fr": "Délivrer l'attestation d'annonce / l'attestation de domicile",
+        "it": "Rilasciare la conferma di annuncio / l'attestato di domicilio",
+        "ls": "Sie bekommen eine Bestätigung"
+      },
+      "depends_on": [
+        11
+      ],
+      "type": "prozess",
+      "description": {
+        "de": "Auf Wunsch als Wohnsitzbescheinigung — wird oft für Verträge, Schule oder Behördengänge gebraucht.",
+        "en": "On request as a certificate of residence — often needed for contracts, schools or other administrative matters.",
+        "fr": "Sur demande sous forme d'attestation de domicile — souvent nécessaire pour des contrats, l'école ou des démarches administratives.",
+        "it": "Su richiesta come attestato di domicilio — spesso necessario per contratti, scuola o pratiche amministrative."
+      }
+    },
+    {
+      "step_id": 13,
+      "actor": "person",
+      "label": {
+        "de": "An neuer Adresse angemeldet",
+        "en": "Registered at the new address",
+        "fr": "Annoncé-e à la nouvelle adresse",
+        "it": "Annunciati al nuovo indirizzo",
+        "ls": "Fertig: Ihre neue Adresse ist gemeldet"
+      },
+      "depends_on": [
+        12
+      ],
+      "type": "ende"
+    }
+  ],
+  "legal_basis": [
+    {
+      "label": "Registerharmonisierungsgesetz (RHG) Art. 11",
+      "url": "https://www.fedlex.admin.ch/eli/cc/2006/828/de"
+    },
+    {
+      "label": "Meldegesetz des Kantons Zürich (MeldeG)",
+      "url": "https://www.zh.ch/de/migration-integration.html"
+    },
+    {
+      "label": "Zivilgesetzbuch (ZGB) Art. 23 ff. (Wohnsitz)",
+      "url": "https://www.fedlex.admin.ch/eli/cc/24/233_245_233/de"
+    }
+  ],
+  "sources": [
+    {
+      "id": "q-stz-umzug",
+      "title": "Stadt Zürich – An-, Ab- und Ummeldung",
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/zuzug.html",
+      "retrieved_at": "2026-06-06"
+    },
+    {
+      "id": "q-eumzug",
+      "title": "eUmzugCH – Umzug online melden",
+      "url": "https://www.eumzugch.ch/",
+      "retrieved_at": "2026-06-06"
+    }
+  ],
+  "reife": {
+    "onlineReifegrad": "teil-digital",
+    "medienbrueche": [
+      "persoenliches-erscheinen",
+      "erneute-dateneingabe"
+    ],
+    "onceOnlyPotenzial": {
+      "de": "Die Wegzugsgemeinde kennt die meisten Personendaten bereits. Über eUmzugCH werden sie teilweise übernommen — bei vollständiger Registerverknüpfung müssten Mietvertrag und Personendaten nicht erneut erfasst werden.",
+      "en": "The previous municipality already holds most personal data. eUmzugCH reuses some of it — full register linkage would avoid re-entering tenancy and personal data.",
+      "ls": "Ihre alte Gemeinde hat viele Angaben schon. Diese müssten Sie nicht neu schreiben."
+    },
+    "nutzergruppen": [
+      {
+        "de": "Zuziehende aus anderen Gemeinden",
+        "en": "People moving in from other municipalities",
+        "ls": "Menschen, die neu nach Zürich ziehen"
+      },
+      {
+        "de": "Personen mit Umzug innerhalb der Stadt",
+        "en": "People moving within the city",
+        "ls": "Menschen, die innerhalb von Zürich umziehen"
+      },
+      {
+        "de": "Ausländische Staatsangehörige",
+        "en": "Foreign nationals",
+        "ls": "Menschen aus dem Ausland"
+      }
+    ],
+    "painPoints": [
+      {
+        "de": "Ausländische Staatsangehörige müssen oft persönlich am Schalter erscheinen.",
+        "en": "Foreign nationals frequently have to appear in person at the counter.",
+        "ls": "Menschen aus dem Ausland müssen oft persönlich kommen."
+      },
+      {
+        "de": "Mietvertrag und Personendaten werden erneut erfasst, obwohl Register existieren.",
+        "en": "Tenancy and personal data are re-entered although registers exist.",
+        "ls": "Sie müssen Angaben neu schreiben, die das Amt fast schon hat."
+      }
+    ],
+    "improvementIdeas": [
+      {
+        "de": "Durchgängiger Online-Weg auch für Niederlassungsbewilligungen (ohne Schaltertermin).",
+        "en": "End-to-end online path including residence permits (no counter appointment).",
+        "ls": "Auch Menschen aus dem Ausland sollen alles online machen können."
+      },
+      {
+        "de": "Automatische Datenübernahme von der Wegzugsgemeinde (Once-Only).",
+        "en": "Automatic data transfer from the previous municipality (once-only).",
+        "ls": "Die Angaben kommen automatisch von der alten Gemeinde."
+      }
+    ],
+    "status": "beobachtet",
+    "wirkungKpi": [
+      {
+        "label": {
+          "de": "Online-Anteil",
+          "en": "Share online",
+          "ls": "Wie viel geht online"
+        },
+        "wert": "online für CH-Bürger:innen, Schalter für viele Ausländer:innen"
+      }
+    ]
+  },
+  "bewertung": {
+    "indikatoren": [
+      {
+        "key": "online-antrag",
+        "wert": true,
+        "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/zuzug.html",
+        "source_quote": "Melden Sie Ihren Umzug nach Zürich online via eUmzugCH",
+        "status": "verifiziert",
+        "retrieved_at": "2026-07-01"
+      }
+    ]
+  },
+  "meta": {
+    "erstellt": "2026-06-06",
+    "aktualisiert": "2026-06-10",
+    "maintainer": "malkreide",
+    "lizenz": "CC-BY-4.0"
+  }
+}

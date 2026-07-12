@@ -1,0 +1,603 @@
+{
+  "$schema": "../../../schemas/opengov-process-schema.json",
+  "schema_version": "0.1.0",
+  "id": "parkplatz",
+  "lebenslage_ref": "parkplatz",
+  "city": "zh",
+  "title": {
+    "de": "Anwohnerparkkarte (blaue Zone)",
+    "en": "Resident parking permit (blue zone)",
+    "fr": "Carte de stationnement pour riverains (zone bleue)",
+    "it": "Carta di parcheggio per residenti (zona blu)",
+    "ls": "Park-Karte für deine Strasse (blaue Zone)"
+  },
+  "description": {
+    "de": "Ablauf für den Bezug einer Anwohnerparkkarte in der Stadt Zürich. Berechtigt zum Dauerparkieren in der eigenen blauen Zone. Seit 2023 rein digital: das Kontrollschild wird im System hinterlegt, es gibt keine physische Karte mehr.",
+    "en": "Process for obtaining a resident parking permit in the City of Zurich. Grants permanent parking rights within one's own blue zone. Fully digital since 2023 — the licence plate is registered in the control system, no physical badge.",
+    "fr": "Procédure pour l'obtention d'une carte de stationnement pour riverains dans la ville de Zurich. Elle donne droit au stationnement permanent dans sa propre zone bleue. Entièrement numérique depuis 2023 : la plaque de contrôle est enregistrée dans le système, il n'y a plus de carte physique.",
+    "it": "Procedura per ottenere una carta di posteggio per residenti nella città di Zurigo. Dà diritto al posteggio permanente nella propria zona blu. Completamente digitale dal 2023: la targa di controllo viene registrata nel sistema, non esiste più alcuna carta fisica.",
+    "ls": "Du wohnst in einer blauen Zone. Du hast ein Auto. Dann kannst du eine Park-Karte kaufen. Damit darfst du in deiner Strasse parkieren, so lange du willst. Die Karte ist digital. Die Polizei liest dein Kennzeichen."
+  },
+  "target_audience": "bevoelkerung",
+  "source_url": "https://www.stadt-zuerich.ch/de/mobilitaet/parkieren/parkbewilligungen.html",
+  "retrieved_at": "2026-04-24",
+  "disclaimer_key": "Prozesse.disclaimer",
+  "references": [
+    {
+      "reference_id": 1,
+      "label": {
+        "de": "Jahresgebühr der Anwohnerparkkarte (tarifabhängig nach Fahrzeug, anteilig bei kürzerer Dauer)",
+        "en": "Annual fee for the resident parking permit (tariff depends on vehicle; pro-rated)",
+        "fr": "Taxe annuelle de la carte de stationnement pour riverains (selon le tarif du véhicule, calculée au prorata pour une durée plus courte)",
+        "it": "Tassa annuale della carta di posteggio per residenti (dipendente dalla tariffa del veicolo, calcolata pro rata per durate più brevi)",
+        "ls": "Die Karte kostet Geld pro Jahr."
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/mobilitaet/parkieren/parkbewilligungen/anwohnerparkkarte.html",
+      "source_quote": "Gebühr: 300 Franken pro Kalenderjahr. … Angebrochene Monate werden voll in Rechnung gestellt. Bei Rückgabe der Parkkarte wird die Gebühr für alle nicht angebrochenen Monate zurückerstattet.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-10"
+    },
+    {
+      "reference_id": 2,
+      "label": {
+        "de": "Gültigkeitsdauer der Anwohnerparkkarte",
+        "en": "Validity period of the resident parking permit",
+        "fr": "Durée de validité de la carte de stationnement pour riverains",
+        "it": "Durata di validità della carta di posteggio per residenti",
+        "ls": "Bei Rueckgabe bekommen Sie Geld zurueck fuer ganze Monate."
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/mobilitaet/parkieren/parkbewilligungen/anwohnerparkkarte.html",
+      "source_quote": "Die Parkkarte des*der Halter*in des Fahrzeuges wird jährlich automatisch erneuert.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-10"
+    },
+    {
+      "reference_id": 3,
+      "label": {
+        "de": "Verrechnung angebrochener Monate bei Rueckgabe",
+        "en": "Charging of started months upon return",
+        "fr": "Facturation des mois entamés en cas de restitution",
+        "it": "Fatturazione dei mesi iniziati in caso di restituzione"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/mobilitaet/parkieren/parkbewilligungen/anwohnerparkkarte.html",
+      "source_quote": "Angebrochene Monate werden voll in Rechnung gestellt. Bei Rückgabe der Parkkarte wird die Gebühr für alle nicht angebrochenen Monate zurückerstattet.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-28"
+    }
+  ],
+  "actors": [
+    {
+      "id": "halter",
+      "label": {
+        "de": "Fahrzeughalter:in (Anwohner:in)",
+        "en": "Vehicle holder (resident)",
+        "fr": "Détenteur du véhicule (riverain)",
+        "it": "Detentore del veicolo (residente)",
+        "ls": "Du (du wohnst hier und hast ein Auto)"
+      },
+      "type": "antragsteller"
+    },
+    {
+      "id": "dav",
+      "label": {
+        "de": "Dienstabteilung Verkehr (DAV), Parkkartenservice",
+        "en": "Traffic Services Division (DAV), permit office",
+        "fr": "Service de la circulation (DAV), service des cartes de stationnement",
+        "it": "Servizio della circolazione (DAV), servizio carte di posteggio",
+        "ls": "Das Verkehrs-Amt der Stadt"
+      },
+      "type": "behoerde",
+      "einheit_ref": "SiD-dav"
+    },
+    {
+      "id": "stapo",
+      "label": {
+        "de": "Stadtpolizei Zürich (Verkehrskontrolle)",
+        "en": "Zurich City Police (enforcement)",
+        "fr": "Police municipale de Zurich (contrôle de la circulation)",
+        "it": "Polizia comunale di Zurigo (controllo del traffico)",
+        "ls": "Die Stadt-Polizei"
+      },
+      "type": "behoerde",
+      "einheit_ref": "SiD-stapo"
+    },
+    {
+      "id": "statthalter",
+      "label": {
+        "de": "Statthalteramt / Bezirksrat Zürich",
+        "en": "District governor's office (appeals)",
+        "fr": "Préfecture / Conseil de district de Zurich",
+        "it": "Prefettura / Consiglio distrettuale di Zurigo",
+        "ls": "Eine Stelle vom Kanton für Beschwerden"
+      },
+      "type": "gericht"
+    }
+  ],
+  "steps": [
+    {
+      "step_id": 1,
+      "actor": "halter",
+      "label": {
+        "de": "Wohnsitz in blauer Zone + Auto",
+        "en": "Residence in blue zone + vehicle",
+        "fr": "Domicile en zone bleue + véhicule",
+        "it": "Domicilio in zona blu + veicolo",
+        "ls": "Du wohnst in einer blauen Zone und hast ein Auto"
+      },
+      "depends_on": [],
+      "type": "start",
+      "reference_ids": [
+        1
+      ]
+    },
+    {
+      "step_id": 2,
+      "actor": "halter",
+      "label": {
+        "de": "Voraussetzungen selbst prüfen",
+        "en": "Self-check eligibility",
+        "fr": "Vérifier soi-même les conditions",
+        "it": "Verificare personalmente i requisiti",
+        "ls": "Du schaust: Passt das für dich?"
+      },
+      "depends_on": [
+        1
+      ],
+      "type": "input",
+      "description": {
+        "de": "Hauptwohnsitz in der blauen Zone (Meldebestätigung); Halter:in oder Dauernutzer:in des Fahrzeugs; Fahrzeug muss zugelassen sein.",
+        "en": "Main residence in the blue zone, vehicle holder or permanent user, vehicle registered with licence plate.",
+        "fr": "Domicile principal dans la zone bleue (attestation de domicile) ; détenteur ou utilisateur permanent du véhicule ; le véhicule doit être immatriculé.",
+        "it": "Domicilio principale nella zona blu (attestazione di domicilio); detentore o utilizzatore permanente del veicolo; il veicolo deve essere immatricolato.",
+        "ls": "Du brauchst: Deine Wohn-Adresse in der blauen Zone. Du bist Besitzer vom Auto. Das Auto hat ein Kontrollschild."
+      },
+      "source_id": "q-stz-parkkarten"
+    },
+    {
+      "step_id": 3,
+      "actor": "halter",
+      "label": {
+        "de": "Antrag online stellen",
+        "en": "Submit application online",
+        "fr": "Déposer la demande en ligne",
+        "it": "Presentare la domanda online",
+        "ls": "Du füllst das Formular im Internet aus"
+      },
+      "depends_on": [
+        2
+      ],
+      "type": "input",
+      "description": {
+        "de": "Über das Online-Portal der Dienstabteilung Verkehr. Papiereingabe weiterhin möglich, dauert aber länger.",
+        "en": "Via the DAV online portal. Paper submission still possible but slower.",
+        "fr": "Via le portail en ligne du Service de la circulation. Le dépôt sur papier reste possible, mais prend plus de temps.",
+        "it": "Tramite il portale online del Servizio della circolazione. La presentazione cartacea resta possibile, ma richiede più tempo."
+      },
+      "documents": [
+        {
+          "label": {
+            "de": "Kopie Fahrzeugausweis",
+            "en": "Copy of vehicle registration",
+            "fr": "Copie du permis de circulation",
+            "it": "Copia della licenza di circolazione"
+          },
+          "required": true
+        },
+        {
+          "label": {
+            "de": "Meldebestätigung / Wohnsitznachweis",
+            "en": "Proof of residence",
+            "fr": "Attestation de domicile / justificatif de domicile",
+            "it": "Attestazione di domicilio / prova di residenza"
+          },
+          "required": true
+        },
+        {
+          "label": {
+            "de": "Bei Firmenfahrzeug: Bestätigung des Dauernutzungsrechts",
+            "en": "For company cars: permanent-use confirmation",
+            "fr": "Pour un véhicule d'entreprise : confirmation du droit d'utilisation permanente",
+            "it": "Per veicolo aziendale: conferma del diritto di utilizzo permanente"
+          },
+          "required": false
+        }
+      ],
+      "source_id": "q-stz-online",
+      "reference_ids": [
+        2
+      ]
+    },
+    {
+      "step_id": 4,
+      "actor": "dav",
+      "label": {
+        "de": "Antrag prüfen (Wohnsitz, Halterschaft, Zone)",
+        "en": "Check application (residence, holdership, zone)",
+        "fr": "Examiner la demande (domicile, détention, zone)",
+        "it": "Esaminare la domanda (domicilio, detenzione, zona)",
+        "ls": "Sie waehlen, wie Sie bezahlen wollen."
+      },
+      "depends_on": [
+        3
+      ],
+      "type": "prozess",
+      "description": {
+        "de": "Die DAV gleicht die Angaben mit dem Einwohnerregister und dem Fahrzeugregister ab. Bei klaren Fällen vollautomatisiert.",
+        "en": "The DAV cross-checks the data against the population register and the vehicle register. Fully automated in clear cases.",
+        "fr": "Le DAV vérifie les indications avec le registre des habitants et le registre des véhicules. Entièrement automatisé dans les cas clairs.",
+        "it": "Il DAV confronta le indicazioni con il registro degli abitanti e il registro dei veicoli. Completamente automatizzato nei casi chiari."
+      }
+    },
+    {
+      "step_id": 5,
+      "actor": "dav",
+      "label": {
+        "de": "Unterlagen vollständig?",
+        "en": "Application complete?",
+        "fr": "Documents complets ?",
+        "it": "Documenti completi?",
+        "ls": "Sind alle Angaben da?"
+      },
+      "depends_on": [
+        4
+      ],
+      "type": "entscheidung",
+      "reference_ids": [
+        1,
+        2
+      ]
+    },
+    {
+      "step_id": 6,
+      "actor": "halter",
+      "label": {
+        "de": "Fehlende Unterlagen nachliefern",
+        "en": "Submit missing documents",
+        "fr": "Fournir les documents manquants",
+        "it": "Fornire i documenti mancanti",
+        "ls": "Fehlendes nachreichen"
+      },
+      "depends_on": [
+        {
+          "step_id": 5,
+          "condition": {
+            "de": "unvollständig",
+            "en": "incomplete",
+            "fr": "incomplet",
+            "it": "incompleto"
+          }
+        }
+      ],
+      "type": "loop",
+      "loops_back_to": [
+        4
+      ]
+    },
+    {
+      "step_id": 7,
+      "actor": "dav",
+      "label": {
+        "de": "Berechtigt?",
+        "en": "Entitled?",
+        "fr": "Ayant droit ?",
+        "it": "Avente diritto?",
+        "ls": "Darfst du die Karte bekommen?"
+      },
+      "depends_on": [
+        {
+          "step_id": 5,
+          "condition": {
+            "de": "vollständig",
+            "en": "complete",
+            "fr": "complet",
+            "it": "completo"
+          }
+        }
+      ],
+      "type": "entscheidung"
+    },
+    {
+      "step_id": 8,
+      "actor": "dav",
+      "label": {
+        "de": "Rechnung zustellen",
+        "en": "Issue invoice",
+        "fr": "Envoyer la facture",
+        "it": "Inviare la fattura",
+        "ls": "Du bekommst eine Rechnung"
+      },
+      "depends_on": [
+        {
+          "step_id": 7,
+          "condition": {
+            "de": "ja"
+          }
+        }
+      ],
+      "reference_ids": [
+        1
+      ],
+      "type": "prozess"
+    },
+    {
+      "step_id": 9,
+      "actor": "halter",
+      "label": {
+        "de": "Rechnung bezahlen",
+        "en": "Pay invoice",
+        "fr": "Payer la facture",
+        "it": "Pagare la fattura",
+        "ls": "Du zahlst die Rechnung"
+      },
+      "depends_on": [
+        8
+      ],
+      "type": "input",
+      "reference_ids": [
+        3
+      ]
+    },
+    {
+      "step_id": 10,
+      "actor": "dav",
+      "label": {
+        "de": "Kennzeichen im Parkkartensystem aktivieren",
+        "en": "Activate licence plate in permit system",
+        "fr": "Activer la plaque de contrôle dans le système des cartes de stationnement",
+        "it": "Attivare la targa di controllo nel sistema delle carte di posteggio",
+        "ls": "Dein Kontrollschild kommt in den Computer"
+      },
+      "depends_on": [
+        9
+      ],
+      "type": "prozess",
+      "description": {
+        "de": "Ab Aktivierung ist das Fahrzeug in der registrierten Zone dauerparkberechtigt. Kontrollen erfolgen durch Kennzeichen-Abgleich mit dem System.",
+        "en": "Once activated, the vehicle is permanently authorised in the registered zone; enforcement is done via plate matching.",
+        "fr": "Dès l'activation, le véhicule est autorisé à stationner en permanence dans la zone enregistrée. Les contrôles s'effectuent par comparaison de la plaque de contrôle avec le système.",
+        "it": "Dall'attivazione, il veicolo è autorizzato al posteggio permanente nella zona registrata. I controlli avvengono mediante confronto della targa con il sistema."
+      }
+    },
+    {
+      "step_id": 11,
+      "actor": "dav",
+      "label": {
+        "de": "Antrag ablehnen (mit Begründung)",
+        "en": "Reject application (with reasons)",
+        "fr": "Rejeter la demande (avec motivation)",
+        "it": "Respingere la domanda (con motivazione)",
+        "ls": "Das Amt sagt: Nein. Und schreibt warum."
+      },
+      "depends_on": [
+        {
+          "step_id": 7,
+          "condition": {
+            "de": "nein"
+          }
+        }
+      ],
+      "type": "prozess"
+    },
+    {
+      "step_id": 12,
+      "actor": "halter",
+      "label": {
+        "de": "Rekurs einreichen?",
+        "en": "File appeal?",
+        "fr": "Déposer un recours ?",
+        "it": "Presentare ricorso?",
+        "ls": "Willst du dich beschweren?"
+      },
+      "depends_on": [
+        11
+      ],
+      "type": "entscheidung"
+    },
+    {
+      "step_id": 13,
+      "actor": "statthalter",
+      "label": {
+        "de": "Rekurs beim Statthalteramt",
+        "en": "Appeal to district governor",
+        "fr": "Recours auprès de la préfecture",
+        "it": "Ricorso presso la prefettura",
+        "ls": "Beschwerde bei der Kantonsstelle"
+      },
+      "depends_on": [
+        {
+          "step_id": 12,
+          "condition": {
+            "de": "ja"
+          }
+        }
+      ],
+      "type": "loop",
+      "loops_back_to": [
+        7
+      ]
+    },
+    {
+      "step_id": 14,
+      "actor": "stapo",
+      "label": {
+        "de": "Laufende Kontrolle durch Stadtpolizei",
+        "en": "Ongoing police enforcement",
+        "fr": "Contrôle continu par la police municipale",
+        "it": "Controllo continuo da parte della polizia comunale",
+        "ls": "Die Polizei schaut immer wieder, ob dein Auto eingetragen ist"
+      },
+      "depends_on": [
+        10
+      ],
+      "type": "warten",
+      "description": {
+        "de": "Über Kennzeichen-Scanner. Keine separate Handlung der Halter:in nötig — die Parkberechtigung gilt einfach.",
+        "en": "Via licence-plate scanners. No separate action by the holder needed — the parking authorisation simply applies.",
+        "fr": "Au moyen de scanners de plaques de contrôle. Aucune démarche distincte du détenteur n'est nécessaire — l'autorisation de stationner s'applique simplement.",
+        "it": "Tramite scanner delle targhe di controllo. Non è necessaria alcuna azione separata da parte del detentore — l'autorizzazione al posteggio è semplicemente valida."
+      }
+    },
+    {
+      "step_id": 15,
+      "actor": "halter",
+      "label": {
+        "de": "Parkkarte aktiv",
+        "en": "Permit active",
+        "fr": "Carte de stationnement active",
+        "it": "Carta di posteggio attiva",
+        "ls": "Ihre Park-Karte funktioniert jetzt."
+      },
+      "depends_on": [
+        14
+      ],
+      "reference_ids": [
+        2
+      ],
+      "type": "ende"
+    },
+    {
+      "step_id": 16,
+      "actor": "halter",
+      "label": {
+        "de": "Antrag rechtskräftig abgelehnt",
+        "en": "Application rejected (final)",
+        "fr": "Demande rejetée de manière définitive",
+        "it": "Domanda respinta in via definitiva",
+        "ls": "Du bekommst keine Park-Karte"
+      },
+      "depends_on": [
+        {
+          "step_id": 12,
+          "condition": {
+            "de": "nein"
+          }
+        }
+      ],
+      "type": "ende"
+    }
+  ],
+  "legal_basis": [
+    {
+      "label": "Verkehrsreglement der Stadt Zürich (VRSZ)",
+      "url": "https://www.stadt-zuerich.ch/dav"
+    },
+    {
+      "label": "SVG Art. 3 (Strassenverkehrsgesetz)",
+      "url": "https://www.fedlex.admin.ch/eli/cc/1959/679_705_725/de"
+    },
+    {
+      "label": "Signalisationsverordnung SSV Art. 48",
+      "url": "https://www.fedlex.admin.ch/eli/cc/1979/1961_1961_1961/de"
+    }
+  ],
+  "sources": [
+    {
+      "id": "q-stz-parkkarten",
+      "title": "Stadt Zürich – Parkkarten-Angebote",
+      "url": "https://www.stadt-zuerich.ch/de/mobilitaet/parkieren/parkbewilligungen.html",
+      "retrieved_at": "2026-04-24"
+    },
+    {
+      "id": "q-stz-online",
+      "title": "Stadt Zürich – Parkkarten-Online-Portal",
+      "url": "https://www.stadt-zuerich.ch/de/mobilitaet/parkieren/parkbewilligungen/anwohnerparkkarte.html",
+      "retrieved_at": "2026-04-24"
+    }
+  ],
+  "reife": {
+    "onlineReifegrad": "digital",
+    "medienbrueche": [
+      "erneute-dateneingabe",
+      "separate-zahlung"
+    ],
+    "onceOnlyPotenzial": {
+      "de": "Wohnsitz (Einwohnerregister) und Halterschaft (Fahrzeugregister) liegen der Verwaltung bereits vor — bei vollständiger Verknüpfung könnten Nachweise automatisch geprüft statt hochgeladen werden.",
+      "en": "Residence (population register) and vehicle holdership (vehicle register) are already held by the administration — full linking could verify eligibility automatically instead of requiring uploads.",
+      "ls": "Die Stadt weiss schon, wo Sie wohnen. Und dass das Auto Ihnen gehört. Diese Angaben könnte das Amt selbst prüfen."
+    },
+    "nutzergruppen": [
+      {
+        "de": "Anwohner:innen mit Auto",
+        "en": "Residents with a car",
+        "ls": "Menschen mit Auto in einer blauen Zone"
+      }
+    ],
+    "painPoints": [
+      {
+        "de": "Fahrzeugausweis und Wohnsitznachweis müssen manuell hochgeladen werden, obwohl die Daten vorliegen.",
+        "en": "Vehicle registration and proof of residence must be uploaded manually although the data exists.",
+        "ls": "Sie müssen Papiere hochladen, die das Amt schon hat."
+      },
+      {
+        "de": "Zahlung erfolgt separat per Rechnung — kein direkter Online-Abschluss.",
+        "en": "Payment happens separately by invoice — no direct online completion.",
+        "ls": "Sie zahlen erst später mit einer Rechnung."
+      }
+    ],
+    "improvementIdeas": [
+      {
+        "de": "Automatischer Abgleich mit Einwohner- und Fahrzeugregister (Once-Only) statt Upload.",
+        "en": "Automatic matching against population and vehicle registers (once-only) instead of upload.",
+        "ls": "Das Amt prüft selbst, ohne dass Sie Papiere schicken."
+      },
+      {
+        "de": "Direkte Online-Zahlung am Ende des Antrags.",
+        "en": "Direct online payment at the end of the application.",
+        "ls": "Sie zahlen gleich online."
+      }
+    ],
+    "status": "beobachtet",
+    "wirkungKpi": [
+      {
+        "label": {
+          "de": "Online-Anteil",
+          "en": "Share online",
+          "ls": "Wie viel geht online"
+        },
+        "wert": "Antrag online, Zahlung separat"
+      }
+    ]
+  },
+  "meta": {
+    "erstellt": "2026-04-24",
+    "aktualisiert": "2026-06-10",
+    "maintainer": "malkreide",
+    "lizenz": "CC-BY-4.0"
+  },
+  "preconditions": [
+    {
+      "de": "Fahrzeughalter*innen mit Zuercher Nummernschildern und registrierte Gewerbebetriebe koennen die Parkkarten online, telefonisch oder schriftlich anfordern.",
+      "fr": "Les détenteurs de véhicules avec des plaques zurichoises et les entreprises enregistrées peuvent demander les cartes de stationnement en ligne, par téléphone ou par écrit.",
+      "it": "I detentori di veicoli con targhe zurighesi e le aziende registrate possono richiedere le carte di posteggio online, per telefono o per iscritto.",
+      "ls": "Sie haben ein Auto mit Zuercher Nummernschild. Dann koennen Sie eine Parkkarte beantragen."
+    },
+    {
+      "de": "Wochenaufenthalter*innen, Halter*innen von Fahrzeugen mit ausserkantonalen oder auslaendischen Nummernschildern und Gewerbebetriebe muessen die Parkkarten schriftlich beantragen.",
+      "fr": "Les résidents à la semaine, les détenteurs de véhicules avec des plaques hors canton ou étrangères et les entreprises doivent demander les cartes de stationnement par écrit.",
+      "it": "I residenti settimanali, i detentori di veicoli con targhe extracantonali o estere e le aziende devono richiedere le carte di posteggio per iscritto."
+    },
+    {
+      "de": "Bei Carsharing darf kein Mitglied der Gruppe Halter*in eines weiteren leichten Motorfahrzeugs sein.",
+      "fr": "En cas d'autopartage, aucun membre du groupe ne doit être détenteur d'un autre véhicule automobile léger.",
+      "it": "In caso di car sharing, nessun membro del gruppo può essere detentore di un altro veicolo a motore leggero.",
+      "ls": "Sie bekommen keinen festen Parkplatz."
+    },
+    {
+      "de": "Mit dem Erwerb einer Anwohnerparkkarte entsteht kein Anspruch auf einen Parkplatz in der Blauen Zone.",
+      "fr": "L'acquisition d'une carte de stationnement pour riverains ne donne aucun droit à une place de stationnement dans la zone bleue.",
+      "it": "L'acquisto di una carta di posteggio per residenti non dà alcun diritto a un posteggio nella zona blu."
+    }
+  ],
+  "bewertung": {
+    "indikatoren": [
+      {
+        "key": "online-antrag",
+        "wert": true,
+        "source_url": "https://www.stadt-zuerich.ch/de/mobilitaet/parkieren/parkbewilligungen/anwohnerparkkarte.html",
+        "source_quote": "Fahrzeughalter*innen mit Zürcher Nummernschildern und registrierte Gewerbebetriebe können die Parkkarten online, telefonisch oder schriftlich bei der Bewilligungsstelle anfordern.",
+        "status": "verifiziert",
+        "retrieved_at": "2026-07-01"
+      }
+    ]
+  }
+}

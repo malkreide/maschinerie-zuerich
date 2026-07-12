@@ -33,7 +33,7 @@ installieren:
 [![Use this template](https://img.shields.io/badge/Use%20this%20template-2ea44f?logo=github)](https://github.com/malkreide/maschinerie-zuerich/generate)
 
 - **Vercel** — Fork + Live-Preview unter eigener Subdomain, Build in ~2 Min.
-- **Codespaces** — fertige Dev-Umgebung im Browser (Node 20 vorinstalliert,
+- **Codespaces** — fertige Dev-Umgebung im Browser (Node 24 vorinstalliert,
   Port 3000 automatisch weitergeleitet). Nach dem Start einfach
   `cd stadt-zuerich-next && npm run dev`.
 - **Use this template** — neues Repo mit der Maschinerie als Basis,
@@ -44,7 +44,8 @@ Oder lokal:
 
 ## Quickstart
 
-Node ≥ 20.20.2 vorausgesetzt. Die aktuelle Datenbasis (Organigramm,
+Node ≥ 24.16.0 vorausgesetzt (siehe `package.json` → `engines`; CI und
+Docker laufen auf derselben Version). Die aktuelle Datenbasis (Organigramm,
 Budget, FTE, Lebenslagen) liegt bereits im Repo unter `data/zh/` —
 die App startet also ohne vorheriges ETL:
 
@@ -97,6 +98,24 @@ gehen.
 Für Production-Deploys (Vercel/Netlify/eigener Server) ist Docker
 optional — `output: 'standalone'` in `next.config.ts` funktioniert
 überall.
+
+## Offene API
+
+Lesende Open-Government-Endpunkte (JSON, kein Auth, CORS offen):
+
+| Endpunkt | Inhalt |
+|---|---|
+| `GET /api/v1` | Discovery-Index (Version, Lizenz, Verweise) |
+| `GET /api/v1/org` | Organisationsstruktur (OpenGov-Machinery-Schema) |
+| `GET /api/v1/prozesse` | Index der Verwaltungsprozesse (OpenGov-Process-Schema) |
+
+Antworten tragen Version, Lizenz und Schema-Verweis in HTTP-Headern
+(`X-Api-Version`, `X-Data-License`, `Link rel=describedby`) sowie
+`Cache-Control` + `ETag` (bedingte Requests via `If-None-Match` → `304`).
+
+- **OpenAPI 3.1:** [`/openapi.json`](public/openapi.json)
+- **Datenkatalog** (Datensätze, Quellen, Lizenz, Aktualisierung): [`/data-catalog.json`](public/data-catalog.json)
+- Lizenz der Daten: **CC-BY-4.0** · CI prüft beide via `npm run validate:catalog`.
 
 ## White-Label — ein Code, viele Städte
 
@@ -202,7 +221,7 @@ gleiche Fuzzy-Suche, aber mit deinen Daten.
 - **Cytoscape.js** + cytoscape-fcose (radialer + force-directed Graph)
 - **D3** (`d3-hierarchy`, `d3-scale` — nur die benötigten Module)
 - **Fuse.js 7** — Fuzzy-Suche mit Synonym-Cluster-Expansion
-- ETL-Skripte aus `scripts/` (Node 20+, stdlib-only)
+- ETL-Skripte aus `scripts/` (Node 24+, stdlib-only)
 
 ## Architektur
 
@@ -340,8 +359,8 @@ data/zh/org-chart.json  ──►  lib/data.ts  ──►  app/[locale]/page.tsx
 |----------|----------|---------|-----------|
 | `RPK_API_KEY` | (siehe .env.example) | Auth für `data.stadt-zuerich.ch` RPK-Endpunkt | `.env.local` (lokal), Docker `.env.local` (ETL-Service) |
 | `NEXT_PUBLIC_SITE_URL` | `https://maschinerie-zuerich.vercel.app` | Basis-URL für `/sitemap.xml`, `/robots.txt`, JSON-LD | Production-Env (Vercel Project Settings, Docker-Env) |
-| `BUDGET_JAHR` | `2024` | Optional: Budget-Jahr übersteuern beim ETL-Lauf | `docker compose --profile etl run etl` oder `.env.local` |
-| `BUDGET_BETRAGSTYP` | `budgetiert` | Optional: Betragstyp-Filter für Budget-ETL | dto. |
+| `BUDGET_JAHR` | `2025` | Optional: Budget-Jahr übersteuern beim ETL-Lauf (Default: aktuelles Jahr − 1) | `docker compose --profile etl run etl` oder `.env.local` |
+| `BUDGET_BETRAGSTYP` | `RECHNUNG` | Optional: Betragstyp-Filter für Budget-ETL (Default: `RECHNUNG` = Ist-Werte aus dem Geschäftsbericht) | dto. |
 
 ## Internationalisierung
 

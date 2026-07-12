@@ -1,0 +1,550 @@
+{
+  "$schema": "../../../schemas/opengov-process-schema.json",
+  "schema_version": "0.1.0",
+  "id": "sozialhilfe",
+  "lebenslage_ref": "sozialhilfe",
+  "city": "zh",
+  "title": {
+    "de": "Sozialhilfe beantragen (Erstantrag)",
+    "en": "Apply for social assistance (first application)",
+    "fr": "Demander l'aide sociale (première demande)",
+    "it": "Richiedere l'aiuto sociale (prima domanda)",
+    "ls": "Sozial-Hilfe beantragen"
+  },
+  "description": {
+    "de": "Wer den eigenen Lebensunterhalt nicht aus eigenen Mitteln decken kann, kann bei den Sozialen Diensten der Stadt Zürich wirtschaftliche Sozialhilfe beantragen. Zuständig ist das Sozialzentrum des Wohnquartiers. Höhe und Anspruch richten sich nach den SKOS-Richtlinien und dem kantonalen Sozialhilfegesetz.",
+    "en": "People who cannot cover their living costs from their own means can apply for social assistance at the City of Zurich's Social Services. The social centre of one's residential district is responsible. Amount and entitlement follow the SKOS guidelines and the cantonal social assistance act.",
+    "fr": "Les personnes qui ne peuvent pas couvrir leurs frais de subsistance par leurs propres moyens peuvent demander l'aide sociale économique auprès des Services sociaux de la Ville de Zurich. Le centre social du quartier de domicile est compétent. Le montant et le droit à l'aide sont régis par les normes CSIAS et la loi cantonale sur l'aide sociale.",
+    "it": "Chi non riesce a coprire le proprie spese di sostentamento con mezzi propri può richiedere l'aiuto sociale economico presso i Servizi sociali della Città di Zurigo. È competente il centro sociale del quartiere di domicilio. L'importo e il diritto all'aiuto sono retti dalle norme COSAS e dalla legge cantonale sull'aiuto sociale.",
+    "ls": "Sie haben zu wenig Geld zum Leben? Dann können Sie Sozial-Hilfe beantragen. Das machen die Sozialen Dienste der Stadt. Sie gehen zum Sozial-Zentrum in Ihrem Quartier. Dort wird geprüft, ob Sie Hilfe bekommen und wie viel."
+  },
+  "target_audience": "bevoelkerung",
+  "source_url": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/stadtverwaltung/sd/sod.html",
+  "retrieved_at": "2026-06-06",
+  "disclaimer_key": "Prozesse.disclaimerHochrisiko",
+  "actors": [
+    {
+      "id": "person",
+      "label": {
+        "de": "Hilfesuchende Person",
+        "en": "Person seeking assistance",
+        "fr": "Personne demandant de l'aide",
+        "it": "Persona che chiede aiuto",
+        "ls": "Sie (Sie brauchen Hilfe)"
+      },
+      "type": "antragsteller"
+    },
+    {
+      "id": "sozialzentrum",
+      "label": {
+        "de": "Soziale Dienste – Sozialzentrum des Wohnquartiers",
+        "en": "Social Services – social centre of the residential district",
+        "fr": "Services sociaux – centre social du quartier de domicile",
+        "it": "Servizi sociali – centro sociale del quartiere di domicilio",
+        "ls": "Das Sozial-Zentrum in Ihrem Quartier"
+      },
+      "type": "behoerde",
+      "einheit_ref": "SD-soz"
+    },
+    {
+      "id": "bezirksrat",
+      "label": {
+        "de": "Bezirksrat Zürich (Rekursinstanz)",
+        "en": "District council (appeals body)",
+        "fr": "Conseil de district de Zurich (instance de recours)",
+        "it": "Consiglio distrettuale di Zurigo (istanza di ricorso)",
+        "ls": "Eine Stelle vom Kanton für Beschwerden"
+      },
+      "type": "gericht"
+    }
+  ],
+  "steps": [
+    {
+      "step_id": 1,
+      "actor": "person",
+      "label": {
+        "de": "Lebensunterhalt nicht gedeckt",
+        "en": "Living costs not covered",
+        "fr": "Frais de subsistance non couverts",
+        "it": "Spese di sostentamento non coperte",
+        "ls": "Ihr Geld reicht nicht zum Leben"
+      },
+      "depends_on": [],
+      "type": "start"
+    },
+    {
+      "step_id": 2,
+      "actor": "person",
+      "label": {
+        "de": "Beim Sozialzentrum anmelden (Termin)",
+        "en": "Register at the social centre (appointment)",
+        "fr": "S'annoncer au centre social (rendez-vous)",
+        "it": "Annunciarsi al centro sociale (appuntamento)",
+        "ls": "Sie melden sich beim Sozial-Zentrum und bekommen einen Termin"
+      },
+      "depends_on": [
+        1
+      ],
+      "type": "input",
+      "description": {
+        "de": "Anmeldung beim für das Wohnquartier zuständigen Sozialzentrum, telefonisch oder vor Ort. Die Anmeldung ist weitgehend noch nicht digital.",
+        "en": "Registration at the social centre responsible for the residential district, by phone or in person. Largely not yet digital.",
+        "fr": "Annonce auprès du centre social compétent pour le quartier de domicile, par téléphone ou sur place. La démarche n'est encore guère numérique.",
+        "it": "Annuncio presso il centro sociale competente per il quartiere di domicilio, per telefono o di persona. La procedura non è ancora in gran parte digitale.",
+        "ls": "Sie rufen an oder gehen hin. Das geht noch nicht im Internet."
+      },
+      "source_id": "q-stz-sozialhilfe"
+    },
+    {
+      "step_id": 3,
+      "actor": "sozialzentrum",
+      "label": {
+        "de": "Erstgespräch / Abklärung der Situation",
+        "en": "Intake interview / situation assessment",
+        "fr": "Premier entretien / clarification de la situation",
+        "it": "Primo colloquio / chiarimento della situazione",
+        "ls": "Ein Gespräch über Ihre Lage"
+      },
+      "depends_on": [
+        2
+      ],
+      "type": "prozess",
+      "description": {
+        "de": "Persönliches Gespräch: Klärung der Notlage, vorrangiger Ansprüche (z. B. Arbeitslosen-, IV-, Ergänzungsleistungen) und des weiteren Vorgehens.",
+        "en": "In-person interview: clarifying the situation, priority entitlements (e.g. unemployment, disability, supplementary benefits) and next steps.",
+        "fr": "Entretien personnel : clarification de la situation de détresse, des droits prioritaires (p. ex. assurance-chômage, AI, prestations complémentaires) et de la suite de la démarche.",
+        "it": "Colloquio personale: chiarimento dello stato di bisogno, dei diritti prioritari (p. es. assicurazione contro la disoccupazione, AI, prestazioni complementari) e del seguito della procedura.",
+        "ls": "Sie sprechen mit einer Fachperson. Es geht um Ihre Lage. Und um die Frage: Bekommen Sie zuerst anderes Geld? Zum Beispiel von der Arbeitslosen-Versicherung oder der IV."
+      }
+    },
+    {
+      "step_id": 4,
+      "actor": "person",
+      "label": {
+        "de": "Unterlagen und Belege einreichen",
+        "en": "Submit documents and evidence",
+        "fr": "Remettre les documents et les justificatifs",
+        "it": "Presentare i documenti e i giustificativi",
+        "ls": "Sie bringen viele Papiere"
+      },
+      "depends_on": [
+        3
+      ],
+      "type": "input",
+      "description": {
+        "de": "Umfangreiche Nachweise zu Einkommen, Vermögen, Wohnkosten und Familiensituation. Häufig in Papierform.",
+        "en": "Extensive proof of income, assets, housing costs and family situation — frequently on paper.",
+        "fr": "Justificatifs détaillés concernant le revenu, la fortune, les frais de logement et la situation familiale. Souvent sur papier.",
+        "it": "Giustificativi dettagliati su reddito, sostanza, spese abitative e situazione familiare. Spesso in forma cartacea.",
+        "ls": "Sie zeigen, wie viel Geld Sie haben und ausgeben. Das sind viele Papiere."
+      },
+      "documents": [
+        {
+          "label": {
+            "de": "Ausweis und Wohnsitznachweis",
+            "en": "ID and proof of residence",
+            "fr": "Pièce d'identité et attestation de domicile",
+            "it": "Documento d'identità e attestato di domicilio"
+          },
+          "required": true
+        },
+        {
+          "label": {
+            "de": "Mietvertrag und Nebenkostenabrechnung",
+            "en": "Tenancy agreement and utility statement",
+            "fr": "Contrat de bail et décompte des charges",
+            "it": "Contratto di locazione e conteggio delle spese accessorie"
+          },
+          "required": true
+        },
+        {
+          "label": {
+            "de": "Kontoauszüge der letzten Monate",
+            "en": "Recent bank statements",
+            "fr": "Extraits de compte des derniers mois",
+            "it": "Estratti conto degli ultimi mesi"
+          },
+          "required": true
+        },
+        {
+          "label": {
+            "de": "Nachweise zu Einkommen / vorrangigen Leistungen",
+            "en": "Proof of income / priority benefits",
+            "fr": "Justificatifs de revenu / prestations prioritaires",
+            "it": "Giustificativi di reddito / prestazioni prioritarie"
+          },
+          "required": true
+        },
+        {
+          "label": {
+            "de": "Krankenkassen-Police",
+            "en": "Health insurance policy",
+            "fr": "Police d'assurance-maladie",
+            "it": "Polizza della cassa malati"
+          },
+          "required": false
+        }
+      ],
+      "source_id": "q-zh-shg"
+    },
+    {
+      "step_id": 5,
+      "actor": "sozialzentrum",
+      "label": {
+        "de": "Anspruch und Unterstützungsbudget prüfen",
+        "en": "Assess entitlement and support budget",
+        "fr": "Examiner le droit et le budget d'aide",
+        "it": "Verificare il diritto e il budget di sostegno",
+        "ls": "Das Amt prüft: Wie viel Hilfe brauchen Sie?"
+      },
+      "depends_on": [
+        4
+      ],
+      "type": "prozess",
+      "description": {
+        "de": "Das Sozialzentrum prüft die Bedürftigkeit und berechnet das Unterstützungsbudget nach SKOS-Richtlinien (Grundbedarf, Wohnkosten, medizinische Grundversorgung).",
+        "en": "The social centre checks neediness and calculates the support budget according to SKOS guidelines (basic needs, housing costs, basic medical care).",
+        "fr": "Le centre social examine l'état de besoin et calcule le budget d'aide selon les normes CSIAS (besoins de base, frais de logement, soins médicaux de base).",
+        "it": "Il centro sociale verifica lo stato di bisogno e calcola il budget di sostegno secondo le norme COSAS (fabbisogno di base, spese abitative, assistenza medica di base).",
+        "ls": "Das Sozial-Zentrum prüft: Wie viel Geld brauchen Sie zum Leben? Dafür gibt es Regeln. Gezählt werden: Essen und Alltag, Wohnung und Arzt-Kosten."
+      }
+    },
+    {
+      "step_id": 6,
+      "actor": "sozialzentrum",
+      "label": {
+        "de": "Unterlagen vollständig?",
+        "en": "Documents complete?",
+        "fr": "Documents complets ?",
+        "it": "Documenti completi?",
+        "ls": "Sind alle Papiere da?"
+      },
+      "depends_on": [
+        5
+      ],
+      "type": "entscheidung"
+    },
+    {
+      "step_id": 7,
+      "actor": "person",
+      "label": {
+        "de": "Fehlende Unterlagen nachreichen",
+        "en": "Submit missing documents",
+        "fr": "Compléter les documents manquants",
+        "it": "Integrare i documenti mancanti",
+        "ls": "Fehlendes nachreichen"
+      },
+      "depends_on": [
+        {
+          "step_id": 6,
+          "condition": {
+            "de": "unvollständig",
+            "en": "incomplete",
+            "fr": "incomplet",
+            "it": "incompleto"
+          }
+        }
+      ],
+      "type": "loop",
+      "loops_back_to": [
+        5
+      ]
+    },
+    {
+      "step_id": 8,
+      "actor": "sozialzentrum",
+      "label": {
+        "de": "Anspruchsberechtigt?",
+        "en": "Entitled?",
+        "fr": "Droit à l'aide ?",
+        "it": "Diritto all'aiuto?",
+        "ls": "Haben Sie Anspruch auf Hilfe?"
+      },
+      "depends_on": [
+        {
+          "step_id": 6,
+          "condition": {
+            "de": "vollständig",
+            "en": "complete",
+            "fr": "complet",
+            "it": "completo"
+          }
+        }
+      ],
+      "type": "entscheidung"
+    },
+    {
+      "step_id": 9,
+      "actor": "sozialzentrum",
+      "label": {
+        "de": "Unterstützung verfügen (Höhe und Auflagen)",
+        "en": "Grant support (amount and conditions)",
+        "fr": "Octroyer l'aide (montant et conditions)",
+        "it": "Disporre il sostegno (importo e oneri)",
+        "ls": "Das Amt entscheidet: Sie bekommen Hilfe"
+      },
+      "depends_on": [
+        {
+          "step_id": 8,
+          "condition": {
+            "de": "ja"
+          }
+        }
+      ],
+      "type": "prozess",
+      "description": {
+        "de": "Schriftliche Verfügung über die laufende Unterstützung, allfällige Auflagen (z. B. Stellensuche) und die Mitwirkungspflichten.",
+        "en": "Written decision on the ongoing support, any conditions (e.g. job search) and the duties to cooperate.",
+        "fr": "Décision écrite sur l'aide courante, les éventuelles conditions (p. ex. recherche d'emploi) et les obligations de collaborer.",
+        "it": "Decisione scritta sul sostegno corrente, sugli eventuali oneri (p. es. ricerca di un impiego) e sugli obblighi di collaborazione.",
+        "ls": "Sie bekommen einen Brief. Darin steht: So viel Hilfe bekommen Sie. Und das müssen Sie dafür tun. Zum Beispiel: Arbeit suchen."
+      }
+    },
+    {
+      "step_id": 10,
+      "actor": "sozialzentrum",
+      "label": {
+        "de": "Monatliche Auszahlung und Begleitung",
+        "en": "Monthly payment and case support",
+        "fr": "Versement mensuel et accompagnement",
+        "it": "Versamento mensile e accompagnamento",
+        "ls": "Sie bekommen jeden Monat Geld und Begleitung"
+      },
+      "depends_on": [
+        9
+      ],
+      "type": "prozess",
+      "description": {
+        "de": "Laufende Auszahlung der wirtschaftlichen Hilfe; persönliche Beratung und periodische Überprüfung der Situation.",
+        "en": "Ongoing payment of economic assistance; personal counselling and periodic review of the situation.",
+        "fr": "Versement courant de l'aide économique ; conseil personnel et réexamen périodique de la situation.",
+        "it": "Versamento corrente dell'aiuto economico; consulenza personale e riesame periodico della situazione.",
+        "ls": "Sie bekommen das Geld regelmässig. Eine Fachperson berät Sie. Das Amt schaut immer wieder: Hat sich Ihre Lage geändert?"
+      }
+    },
+    {
+      "step_id": 11,
+      "actor": "person",
+      "label": {
+        "de": "Sozialhilfe läuft",
+        "en": "Social assistance in place",
+        "fr": "L'aide sociale est en cours",
+        "it": "L'aiuto sociale è in corso",
+        "ls": "Fertig: Sie bekommen Sozial-Hilfe"
+      },
+      "depends_on": [
+        10
+      ],
+      "type": "ende"
+    },
+    {
+      "step_id": 12,
+      "actor": "sozialzentrum",
+      "label": {
+        "de": "Antrag ablehnen (mit Begründung)",
+        "en": "Reject application (with reasons)",
+        "fr": "Rejeter la demande (avec motivation)",
+        "it": "Respingere la domanda (con motivazione)",
+        "ls": "Das Amt sagt: Nein. Und schreibt warum."
+      },
+      "depends_on": [
+        {
+          "step_id": 8,
+          "condition": {
+            "de": "nein"
+          }
+        }
+      ],
+      "type": "prozess"
+    },
+    {
+      "step_id": 13,
+      "actor": "person",
+      "label": {
+        "de": "Rekurs einreichen?",
+        "en": "File an appeal?",
+        "fr": "Déposer un recours ?",
+        "it": "Presentare ricorso?",
+        "ls": "Wollen Sie sich beschweren?"
+      },
+      "depends_on": [
+        12
+      ],
+      "type": "entscheidung"
+    },
+    {
+      "step_id": 14,
+      "actor": "bezirksrat",
+      "label": {
+        "de": "Rekurs beim Bezirksrat",
+        "en": "Appeal to the district council",
+        "fr": "Recours auprès du Conseil de district",
+        "it": "Ricorso al Consiglio distrettuale",
+        "ls": "Beschwerde bei der Kantonsstelle"
+      },
+      "depends_on": [
+        {
+          "step_id": 13,
+          "condition": {
+            "de": "ja"
+          }
+        }
+      ],
+      "reference_ids": [
+        1
+      ],
+      "type": "loop",
+      "loops_back_to": [
+        8
+      ]
+    },
+    {
+      "step_id": 15,
+      "actor": "person",
+      "label": {
+        "de": "Antrag rechtskräftig abgelehnt",
+        "en": "Application rejected (final)",
+        "fr": "Demande rejetée (décision définitive)",
+        "it": "Domanda respinta (decisione definitiva)",
+        "ls": "Sie bekommen keine Sozial-Hilfe"
+      },
+      "depends_on": [
+        {
+          "step_id": 13,
+          "condition": {
+            "de": "nein"
+          }
+        }
+      ],
+      "type": "ende"
+    }
+  ],
+  "references": [
+    {
+      "reference_id": 1,
+      "label": {
+        "de": "Rekursfrist für den Rekurs an den Bezirksrat",
+        "en": "Time limit for appealing to the district council",
+        "fr": "Délai de recours pour le recours au Conseil de district",
+        "it": "Termine di ricorso per il ricorso al Consiglio distrettuale",
+        "ls": "Wie viel Zeit Sie haben, um sich zu beschweren"
+      },
+      "source_url": "https://www.zh.ch/de/soziales/sozialhilfe/sozialhilfehandbuch/flexdata-definition/1-grundlagen/1-2-verwaltung-und-rechtsmittelverfahren-im-kanton-zuerich/1-2-02-rechtsmittelverfahren-im-kantonalen-sozialhilferecht.html",
+      "source_quote": "Frist: 30 Tage nach Mitteilung. Die Frist beginnt am Tag nach der Zustellung zu laufen.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-17"
+    }
+  ],
+  "legal_basis": [
+    {
+      "label": "Sozialhilfegesetz des Kantons Zürich (SHG)",
+      "url": "https://www.zh.ch/de/soziales/sozialhilfe.html"
+    },
+    {
+      "label": "SKOS-Richtlinien (Schweizerische Konferenz für Sozialhilfe)",
+      "url": "https://skos.ch/skos-richtlinien"
+    },
+    {
+      "label": "Bundesverfassung Art. 12 (Recht auf Hilfe in Notlagen)",
+      "url": "https://www.fedlex.admin.ch/eli/cc/1999/404/de"
+    }
+  ],
+  "sources": [
+    {
+      "id": "q-stz-sozialhilfe",
+      "title": "Stadt Zürich – Soziale Dienste / wirtschaftliche Hilfe",
+      "url": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/stadtverwaltung/sd/sod.html",
+      "retrieved_at": "2026-06-06"
+    },
+    {
+      "id": "q-zh-shg",
+      "title": "Kanton Zürich – Sozialhilfe (Anspruch und Verfahren)",
+      "url": "https://www.zh.ch/de/soziales/sozialhilfe.html",
+      "retrieved_at": "2026-06-06"
+    }
+  ],
+  "reife": {
+    "onlineReifegrad": "offline",
+    "medienbrueche": [
+      "persoenliches-erscheinen",
+      "drucken",
+      "erneute-dateneingabe"
+    ],
+    "onceOnlyPotenzial": {
+      "de": "Einkommens-, Vermögens- und Mietdaten liegen teils bei anderen Stellen vor (Steueramt, Ausgleichskasse). Aus Datenschutz- und Verhältnismässigkeitsgründen ist eine Automatisierung hier heikel, könnte aber die mehrfache Belegerhebung reduzieren.",
+      "en": "Income, asset and rent data are partly held by other bodies (tax office, compensation fund). Automation is sensitive here for data-protection reasons, but could reduce repeated evidence gathering.",
+      "ls": "Manche Angaben hat die Stadt schon. Aber bei der Sozial-Hilfe muss man dabei besonders auf den Datenschutz achten."
+    },
+    "nutzergruppen": [
+      {
+        "de": "Menschen in finanzieller Notlage",
+        "en": "People in financial hardship",
+        "ls": "Menschen mit zu wenig Geld"
+      },
+      {
+        "de": "Working Poor / Aufstockende",
+        "en": "Working poor / income top-up cases",
+        "ls": "Menschen, die arbeiten und trotzdem zu wenig Geld haben"
+      },
+      {
+        "de": "Personen nach Aussteuerung",
+        "en": "People after unemployment benefits end",
+        "ls": "Menschen ohne Arbeitslosen-Geld"
+      }
+    ],
+    "painPoints": [
+      {
+        "de": "Anmeldung und Gespräche erfordern persönliches Erscheinen; kein durchgängiger Online-Weg.",
+        "en": "Registration and interviews require appearing in person; no end-to-end online path.",
+        "ls": "Sie müssen persönlich hingehen. Online geht es nicht."
+      },
+      {
+        "de": "Sehr umfangreiche Belegpflicht, oft in Papierform.",
+        "en": "Very extensive documentation duties, often on paper.",
+        "ls": "Sie müssen sehr viele Papiere bringen."
+      },
+      {
+        "de": "Hürde und Stigmatisierung halten Berechtigte teils von der Beantragung ab.",
+        "en": "Barriers and stigma sometimes deter eligible people from applying.",
+        "ls": "Manche Menschen trauen sich nicht, Hilfe zu holen."
+      }
+    ],
+    "improvementIdeas": [
+      {
+        "de": "Digitale Erstanmeldung und sicherer Dokument-Upload als Ergänzung zum persönlichen Gespräch.",
+        "en": "Digital initial registration and secure document upload to complement the in-person interview.",
+        "ls": "Eine erste Anmeldung im Internet, zusätzlich zum Gespräch."
+      },
+      {
+        "de": "Klare, mehrsprachige Übersicht über benötigte Unterlagen vorab.",
+        "en": "Clear multilingual overview of required documents in advance.",
+        "ls": "Vorher klar sagen, welche Papiere man braucht — in mehreren Sprachen."
+      }
+    ],
+    "status": "beobachtet",
+    "wirkungKpi": [
+      {
+        "label": {
+          "de": "Zeit bis erste Auszahlung",
+          "en": "Time to first payment",
+          "ls": "Wie lange bis zum ersten Geld"
+        },
+        "wert": "wenige Wochen (situationsabhängig)"
+      },
+      {
+        "label": {
+          "de": "Online-Anteil",
+          "en": "Share online",
+          "ls": "Wie viel geht online"
+        },
+        "wert": "kein durchgängiger Online-Weg"
+      }
+    ]
+  },
+  "meta": {
+    "erstellt": "2026-06-06",
+    "aktualisiert": "2026-06-10",
+    "maintainer": "malkreide",
+    "lizenz": "CC-BY-4.0"
+  }
+}

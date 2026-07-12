@@ -14,6 +14,8 @@
     "it": "Zurigo",
     "ls": "Zürich"
   },
+  "type": "city",
+  "parentOrganizationId": "ch.zh.kanton",
   "domain": "stadt-zuerich.ch",
   "population": 442047,
   "populationStand": "2024",
@@ -22,6 +24,24 @@
   "homepageUrl": "https://www.stadt-zuerich.ch/",
   "orgChartPath": "data/zh/org-chart.json",
   "lebenslagenPath": "data/zh/lebenslagen.json",
+  "klimaziel": {
+    "name": {
+      "de": "Netto-Null 2040",
+      "en": "Net zero 2040",
+      "fr": "Zéro net 2040",
+      "it": "Zero netto 2040",
+      "ls": "Kein schädliches CO₂ mehr ab 2040"
+    },
+    "jahr": 2040,
+    "url": "https://www.stadt-zuerich.ch/de/umwelt-und-energie/klima/klimaschutz.html",
+    "beschreibung": {
+      "de": "Die Stadt Zürich will bis 2040 netto keine Treibhausgase mehr ausstossen — das Ziel ist in der Gemeindeordnung verankert.",
+      "en": "The City of Zurich aims for net-zero greenhouse gas emissions by 2040 — anchored in the municipal code.",
+      "fr": "La Ville de Zurich vise zéro émission nette de gaz à effet de serre d'ici 2040 — inscrit dans le règlement communal.",
+      "it": "La Città di Zurigo punta a zero emissioni nette di gas serra entro il 2040 — sancito nel regolamento comunale.",
+      "ls": "Die Stadt Zürich will ab dem Jahr 2040 kein schädliches CO₂ mehr in die Luft geben."
+    }
+  },
   "brand": {
     "logoPath": "/brand/zh-logo.svg",
     "logoAlt": {
@@ -39,21 +59,47 @@
     }
   },
   "theme": {
-    "accent": "#1f3a8a",
+    "accent": "#0F05A0",
     "nodeType": {
-      "stadtpraesidium": "#7a1f2b",
-      "stadtrat": "#c0392b",
-      "department": "#e67e22",
-      "unit": "#3b6ea5",
-      "staff": "#8b5cf6",
-      "extern": "#16a085",
-    "spezial": "#ffffff",
-      "beteiligung": "#f1c40f"
+      "stadtpraesidium": "#0F05A0",
+      "stadtrat": "#070250",
+      "department": "#1485BD",
+      "unit": "#116091",
+      "staff": "#737373",
+      "extern": "#646464",
+      "spezial": "#ffffff",
+      "beteiligung": "#0E7574",
+      "committee": "#4D4D4D"
     },
-    "konflikt": "#e67e22",
+    "konflikt": "#c00d23",
     "departmentPalette": [
-      "#c0392b", "#e67e22", "#f1c40f", "#16a085", "#3b6ea5",
-      "#8b5cf6", "#7a1f2b", "#2c7a7b", "#d35400"
+      "#0F05A0",
+      "#1485BD",
+      "#0E7574",
+      "#116091",
+      "#084645",
+      "#070250",
+      "#0C4F71",
+      "#23355B",
+      "#3b5998"
     ]
+  },
+  "htmlLang": {
+    "de": "de-CH",
+    "en": "en",
+    "fr": "fr-CH",
+    "it": "it-CH",
+    "ls": "de-CH"
+  },
+  "attribution": "Maschinerie der Stadt Zürich",
+  "repoRawUrl": "https://raw.githubusercontent.com/malkreide/maschinerie-zuerich/main/stadt-zuerich-next",
+  "geo": {
+    "boundingBox": {
+      "minLat": 47.35,
+      "maxLat": 47.41,
+      "minLng": 8.48,
+      "maxLng": 8.58
+    },
+    "stadtkreiseGeoJsonPath": "public/data/stadtkreise.geojson"
   }
 }

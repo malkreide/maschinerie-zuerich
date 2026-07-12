@@ -19,7 +19,7 @@
     "dontShowAgain": "Nicht wieder zeigen",
     "step1Eyebrow": "1 · Suchen",
     "step1Title": "Suche dein Anliegen",
-    "step1Body": "Tippe oben links ein Stichwort ein — etwa «Hund anmelden», «Pass» oder «Sozialhilfe». Die Suche zeigt sofort die zuständige Stelle.",
+    "step1Body": "Tippe ein Stichwort in die Suche ein — etwa «Hund anmelden», «Pass» oder «Sozialhilfe». Die Suche zeigt sofort die zuständige Stelle.",
     "step2Eyebrow": "2 · Erkunden",
     "step2Title": "Erkunde die Ämter",
     "step2Body": "In der «Maschinerie» siehst du die ganze Stadtverwaltung als Netzwerk. Hover hebt eine Stelle samt Verbindungen hervor, Klick fixiert die Auswahl und öffnet das Detail.",
@@ -27,12 +27,70 @@
     "step3Title": "Verstehe das Budget",
     "step3Body": "Im Tab «Steuerfranken» wird sichtbar, wohin dein Geld fliesst — jedes Departement als Fläche, gross = viel Aufwand. Klick auf ein Departement zoomt hinein."
   },
+  "Wirkung": {
+    "title": "Wirkung & Reife",
+    "intro": "Kennzahlen, abgeleitet aus den modellierten Prozessen und Lebenslagen — ohne Tracking. Sie zeigen, wie digital und wie einfach die Verfahren heute sind und wo Vereinfachung ansetzen kann.",
+    "source": "Abgeleitet aus Prozess- und Lebenslagen-Daten",
+    "privacyNote": "Rein aus den vorhandenen Daten berechnet — keine Nutzungs- oder Personendaten.",
+    "kpiHeading": "Kennzahlen im Überblick",
+    "kpiProzesse": "Modellierte Prozesse",
+    "kpiMedienbrueche": "Medienbrüche gesamt",
+    "kpiOnceOnly": "Mit Once-Only-Potenzial",
+    "kpiImprovements": "Verbesserungsideen",
+    "kpiAbdeckung": "Lebenslagen mit Verfahren",
+    "reifegradHeading": "Online-Reifegrad der Prozesse",
+    "statusHeading": "Stand der Vereinfachung",
+    "medienbruecheHeading": "Häufigste Medienbrüche",
+    "spracheHeading": "Sprachabdeckung der Lebenslagen",
+    "none": "Keine erfasst",
+    "klimaHeading": "Klima & Stadtziel",
+    "klimaZielBis": "bis {jahr}",
+    "klimaProvenance": "Die CO₂-Werte je Departement sind indikative Schätzungen; das Netto-Null-Ziel ist das offizielle Stadtziel.",
+    "klimaHotspots": "Departemente mit hoher CO₂-Relevanz",
+    "klimaInvest": "Ø Klima-Investitionsanteil",
+    "klimaCo2Heading": "CO₂-Relevanz je Departement (indikativ, 0–100)",
+    "kompassHeading": "Zuständigkeits-Kompass",
+    "kompassIntro": "Aggregiert über alle Prozesse — strukturelle Merkmale der Modellierung, keine rechtsverbindlichen Angaben.",
+    "kompassGeteilt": "Prozesse mit geteilter Zuständigkeit",
+    "kompassRekurs": "Prozesse mit Rekursinstanz",
+    "kompassBehoerden": "Beteiligte Behörden (Summe)",
+    "kompassPflichtdokumente": "Pflichtdokumente gesamt",
+    "komplexHeading": "Prozesskomplexität",
+    "colProzess": "Prozess",
+    "colSchritte": "Schritte",
+    "colAkteure": "Beteiligte",
+    "colEntscheidungen": "Entscheide",
+    "colMedienbrueche": "Brüche",
+    "bewertungHeading": "Bewertung (Portfolio)",
+    "bewertungIntro": "Anteil erfüllter Indikatoren über alle modellierten Prozesse — ein Ist-Schnappschuss der Modelldaten, kein amtlicher Digitalisierungsgrad. «unbekannt» zählt nicht als nicht erfüllt.",
+    "bewertungDigital": "Digitalisierung",
+    "bewertungNutzend": "Nutzendenorientierung",
+    "bewertungGesamt": "Gesamt erfüllt",
+    "bewertungKeinScore": "kein Score",
+    "bewertungUnbekanntKurz": "unbek."
+  },
+  "Territory": {
+    "title": "Standorte",
+    "intro": "Städtische Standorte auf der Karte. Wählen Sie eine Kategorie.",
+    "layerSchools": "Schulanlagen",
+    "layerRecycling": "Entsorgung",
+    "layerPlaygrounds": "Spielplätze",
+    "layerAmtshaeuser": "Amtshäuser / Anlaufstellen",
+    "popupTitle": "Departement",
+    "linkToChart": "Im Organigramm zeigen",
+    "verfahren": "Zuständige Verfahren",
+    "noLayer": "Kein Layer ausgewählt – wählen Sie oben mindestens eine Kategorie."
+  },
   "Nav": {
     "graph": "Maschinerie",
     "tax": "Steuerfranken",
     "simulator": "Simulator",
     "list": "Liste",
     "prozesse": "Prozesse",
+    "roadmap": "Roadmap",
+    "wirkung": "Wirkung",
+    "quartier": "Stadtkreise",
+    "territory": "Standorte",
     "darkOn": "Dunkles Theme aktivieren",
     "darkOff": "Helles Theme aktivieren",
     "darkLabelLight": "☼ Hell",
@@ -41,7 +99,12 @@
     "skipToList": "Zur textuellen Übersicht (für Screenreader)",
     "language": "Sprache",
     "expandAll": "Alle ausklappen",
-    "collapseAll": "Alle einklappen"
+    "collapseAll": "Alle einklappen",
+    "climateToggle": "🌡️ Klimabudget-Indikator",
+    "climateToggleTitle": "Zeigt eine Live-Indikation der klimatischen Auswirkungen",
+    "diversityToggle": "👥 Diversity & Kader (Mitarbeitende)",
+    "diversityToggleTitle": "Zeigt den Geschlechteranteil im Kader pro Organisationseinheit als Ringdiagramm",
+    "portfolio": "Portfolio"
   },
   "Search": {
     "label": "Stelle oder Anliegen suchen",
@@ -54,7 +117,74 @@
     "noMatchesTitle": "Keine schnellen Vorschläge für „{query}\"",
     "noMatchesHint": "Meintest du vielleicht einen dieser Begriffe?",
     "popularFallback": "Häufige Anliegen",
-    "openFullSearch": "Vollständige Suche öffnen →"
+    "openFullSearch": "Vollständige Suche öffnen →",
+    "missNote": "Anonyme Suchbegriffe ohne Treffer helfen uns, fehlende Anliegen zu erkennen. Wir speichern keine persönlichen Daten."
+  },
+  "Zielgruppen": {
+    "filterLabel": "Nach Zielgruppe filtern",
+    "all": "Alle",
+    "einwohner": "Einwohner*in",
+    "unternehmen": "Unternehmen",
+    "familie": "Familie",
+    "alter": "Alter",
+    "schule": "Schule",
+    "migration": "Migration",
+    "mobilitaet": "Mobilität",
+    "wohnen": "Wohnen",
+    "gesundheit": "Gesundheit"
+  },
+  "Feedback": {
+    "question": "War diese Information hilfreich?",
+    "yes": "Ja, hilfreich",
+    "no": "Nein, eher nicht",
+    "thanks": "Danke für Ihr Feedback!",
+    "formIntro": "Was war das Problem?",
+    "category": {
+      "zustaendigkeit": "Zuständigkeit falsch",
+      "unklar": "Information unklar",
+      "umstaendlich": "Prozess umständlich",
+      "veraltet": "Daten veraltet",
+      "barriere": "Barriere",
+      "vorschlag": "Verbesserungsvorschlag"
+    },
+    "commentLabel": "Kommentar (optional)",
+    "commentPlaceholder": "Optional: kurz beschreiben – ohne persönliche Daten.",
+    "privacy": "Bitte keine persönlichen Daten eingeben. Wir speichern keine Namen, E-Mail- oder IP-Adressen; E-Mails und längere Zahlen werden automatisch entfernt.",
+    "skip": "Ohne Angabe senden",
+    "submit": "Absenden"
+  },
+  "Roadmap": {
+    "title": "Roadmap",
+    "intro": "Was aus Rückmeldungen und Vorschlägen wird – statusbasiert aus den öffentlichen GitHub-Issues. Ohne Namen oder persönliche Daten.",
+    "status": {
+      "eingegangen": "Eingegangen",
+      "geprueft": "Geprüft",
+      "in-umsetzung": "In Umsetzung",
+      "umgesetzt": "Umgesetzt"
+    },
+    "empty": "Noch keine öffentlichen Einträge.",
+    "columnEmpty": "Nichts hier.",
+    "unavailable": "Die Roadmap ist momentan nicht abrufbar.",
+    "viewOnGithub": "Auf GitHub ansehen →"
+  },
+  "Explorer": {
+    "regionLabel": "Verwaltung durchsuchen",
+    "intro": "Suchen Sie eine Stelle oder blättern Sie durch die Departemente. Tippen Sie auf einen Eintrag für Details.",
+    "searchLabel": "Stelle oder Departement suchen",
+    "searchPlaceholder": "z. B. Steueramt, Schule, VBZ …",
+    "resultsCount": "{count, plural, one {# Treffer} other {# Treffer}} für „{query}\"",
+    "noResults": "Keine Treffer. Versuchen Sie einen anderen Begriff.",
+    "anliegenHeading": "Passende Anliegen",
+    "anliegenZustaendig": "Zuständig",
+    "department": "Departement",
+    "beteiligung": "Beteiligung",
+    "beteiligungenHeading": "Beteiligungen",
+    "vorsteher": "Leitung",
+    "id": "Kürzel",
+    "budget": "Aufwand",
+    "netExpense": "Nettoaufwand",
+    "fte": "Stellen (FTE)",
+    "relatedProcesses": "Verwandte Prozesse"
   },
   "Anliegen": {
     "title": "Anliegen suchen",
@@ -63,7 +193,9 @@
     "noResultsFallbackHeading": "Das suchen andere häufig",
     "resultsCount": "{count, plural, one {# Treffer} other {# Treffer}} für „{query}\"",
     "popularHeading": "Häufige Anliegen",
-    "placeholder": "z. B. Hund anmelden, Pass, Sozialhilfe…"
+    "placeholder": "z. B. Hund anmelden, Pass, Sozialhilfe…",
+    "relatedProcess": "Verfahren ansehen",
+    "weitereStellen": "Weitere beteiligte Stellen"
   },
   "Treemap": {
     "title": "Wohin geht mein Steuerfranken?",
@@ -84,7 +216,8 @@
     "emptyBody": "Für kein Amt sind Aufwände erfasst. Schauen Sie stattdessen in die {listLink} oder probieren Sie die {searchLink}.",
     "emptyListLink": "Liste der Ämter",
     "emptySearchLink": "Anliegen-Suche",
-    "hiddenDepartments": "{count, plural, one {# Departement ist} other {# Departemente sind}} nicht sichtbar — für diese sind keine Budgetdaten hinterlegt: {names}."
+    "hiddenDepartments": "{count, plural, one {# Departement ist} other {# Departemente sind}} nicht sichtbar — für diese sind keine Budgetdaten hinterlegt: {names}.",
+    "committeeNote": "Tipp: Gestrichelte Linien markieren Ämter, bei denen die parlamentarische Aufsicht (RPK) von der organisatorischen Zuordnung abweicht."
   },
   "List": {
     "title": "Verwaltung der {cityName} – Hierarchische Übersicht",
@@ -100,6 +233,10 @@
     "vorsteher": "Vorsteher:in",
     "department": "Departement",
     "ogdKey": "OGD-Schlüssel",
+    "rechtsform": "Rechtsform",
+    "beteiligungsart": "Beteiligungsart",
+    "sektor": "Sektor",
+    "participationSource": "Beteiligungsbericht",
     "abbreviation": "Kürzel",
     "expense": "Aufwand",
     "income": "Ertrag",
@@ -120,12 +257,17 @@
     "fteUnitPublished": "{value} {einheit} (publiziert)",
     "fteEstimateText": "~{value} (Schätzung: Personalaufwand ÷ {amount} CHF)",
     "relatedProzesseHeading": "An folgenden Verfahren beteiligt",
+    "relatedLebenslagenHeading": "Anliegen, die hierher führen",
     "perCapitaLabel": "Pro Einwohner",
     "perCapitaValue": "≈ {value}",
     "perCapitaTitle": "Aufwand pro Kopf — Aufwand geteilt durch ständige Wohnbevölkerung der Stadt",
     "budgetShareLabel": "Anteil Gesamtbudget",
     "budgetShareValue": "{percent} %",
-    "budgetShareTitle": "Anteil dieser Position am gesamten städtischen Aufwand"
+    "budgetShareTitle": "Anteil dieser Position am gesamten städtischen Aufwand",
+    "detailDiversity": "Diversity & Kader",
+    "detailDiversityDesc": "Frauen- und Männeranteil im Kader",
+    "detailDiversityWomen": "Frauen",
+    "detailDiversityMen": "Männer"
   },
   "Legend": {
     "headingTop": "Stadtrat & Departemente",
@@ -140,7 +282,8 @@
     "spezial": "Spezialverwaltungsbehörde",
     "verselbst": "Verselbständigter Betrieb",
     "beteiligung": "Beteiligung / Stiftung",
-    "konflikt": "Bürger-/RPK-Zuordnung divergiert"
+    "konflikt": "Bürger-/RPK-Zuordnung divergiert",
+    "committee": "Ausschuss / Kommission"
   },
   "Hint": "Hover = erkunden · Klick = auswählen · Scroll = zoomen · Suche kennt auch Anliegen",
   "Simulator": {
@@ -183,18 +326,72 @@
     "staff": "Stab- / Querschnittsstelle",
     "extern": "Verselbständigter Betrieb",
     "spezial": "Spezialverwaltungsbehörde",
+    "committee": "Ausschuss / Kommission",
     "beteiligung": "Beteiligung / Stiftung"
   },
   "Prozesse": {
     "title": "Verwaltungsprozesse",
-    "intro": "Typisierte Ablaufdiagramme nach dem OpenGov-Process-Schema. Jeder Prozess zeigt Schritte, beteiligte Stellen und geschätzte Dauern — damit die Bevölkerung sieht, was ein Verfahren wirklich umfasst.",
+    "intro": "Typisierte Ablaufdiagramme nach dem OpenGov-Process-Schema. Jeder Prozess zeigt Schritte und beteiligte Stellen; verbindliche Werte (Fristen, Gebühren) sind als Links auf die amtlichen Quellen hinterlegt — damit die Bevölkerung sieht, was ein Verfahren wirklich umfasst.",
     "empty": "Noch keine Prozesse erfasst.",
     "city": "Stadt {city}",
+    "relatedLebenslagenHeading": "Häufige Anliegen, die hierher führen",
     "stepsHeading": "Schritte (textuell)",
+    "legendeHeading": "Legende",
+    "schritteAnzahl": "{count, plural, one {# Schritt} other {# Schritte}}",
     "legalHeading": "Rechtsgrundlagen",
     "sourcesHeading": "Quellen",
     "retrieved": "abgerufen {date}",
     "goToUnit": "Zur Einheit: {name}",
+    "reifeHeading": "Digitale Reife & Vereinfachung",
+    "kompass": {
+      "heading": "Prozess-Kompass",
+      "intro": "Strukturelle Diagnose dieses Verfahrens — abgeleitet aus der Modellierung, keine rechtsverbindliche Angabe.",
+      "zustaendigkeitHeading": "Zuständigkeit",
+      "keineBehoerde": "Keine Behörde erfasst.",
+      "geteilt": "Geteilte Zuständigkeit",
+      "geteiltHint": "mehrere Stellen beteiligt, für Bürger:innen oft wenig transparent",
+      "rekurs": "Rekursinstanz",
+      "aufwandHeading": "Aufwand für Bürger:innen",
+      "pflichtdokumente": "{count, plural, one {# Pflichtdokument} other {# Pflichtdokumente}}",
+      "entscheidungen": "{count, plural, one {# Entscheidungspunkt} other {# Entscheidungspunkte}}",
+      "keinAufwand": "Keine besonderen Hürden erfasst.",
+      "vereinfachungHeading": "Vereinfachungs-Potenzial",
+      "verbesserungen": "{count, plural, one {# Verbesserungsidee} other {# Verbesserungsideen}}",
+      "keinePotenziale": "Noch keine Potenziale erfasst.",
+      "detailsLink": "Details unten"
+    },
+    "reifegradLabel": "Online-Reifegrad",
+    "filterReifegradHeading": "Nach Online-Reifegrad filtern",
+    "filterAlle": "Alle",
+    "filterLeer": "Keine Prozesse mit diesem Online-Reifegrad.",
+    "medienbruecheHeading": "Medienbrüche",
+    "onceOnlyHeading": "Daten liegen bereits vor (Once-Only)",
+    "nutzergruppenHeading": "Nutzergruppen",
+    "painPointsHeading": "Wo es hakt",
+    "improvementsHeading": "Verbesserungsideen",
+    "kpiHeading": "Wirkung & Kennzahlen",
+    "statusLabel": "Status",
+    "reifegrad": {
+      "offline": "Offline",
+      "teil-digital": "Teil-digital",
+      "digital": "Digital",
+      "end-to-end": "Durchgängig digital"
+    },
+    "medienbruch": {
+      "drucken": "Ausdrucken",
+      "post": "Postversand",
+      "persoenliches-erscheinen": "Persönliches Erscheinen",
+      "separate-zahlung": "Separate Zahlung",
+      "erneute-dateneingabe": "Erneute Dateneingabe",
+      "unterschrift-handschriftlich": "Handschriftliche Unterschrift"
+    },
+    "status": {
+      "beobachtet": "Beobachtet",
+      "validiert": "Validiert",
+      "vorgeschlagen": "Vorgeschlagen",
+      "in-umsetzung": "In Umsetzung",
+      "umgesetzt": "Umgesetzt"
+    },
     "schrittTyp": {
       "start": "Start",
       "input": "Eingabe",
@@ -203,6 +400,129 @@
       "loop": "Rücksprung",
       "warten": "Wartezeit",
       "ende": "Ende"
+    },
+    "disclaimer": "Inoffizielle, vereinfachte Darstellung — keine amtliche Auskunft. Massgeblich sind allein die verlinkten Quellen der Stadt Zürich (siehe Quellen mit Abrufdatum).",
+    "disclaimerHochrisiko": "Hochrisiko-Fall mit rechtlicher Tragweite: Hier geht es um verbindliche Fristen, Gebühren oder Rechtsmittel mit erheblichen Folgen. Diese Darstellung ist inoffiziell und vereinfacht — rechtlich verbindlich sind allein die amtlichen Quellen der Stadt Zürich. Prüfen Sie verbindliche Angaben dort und holen Sie im Zweifel persönliche Beratung ein.",
+    "disclaimerHochrisikoLabel": "Hochrisiko-Hinweis",
+    "voraussetzungenHeading": "Voraussetzungen",
+    "referenzenHeading": "Verbindliche Werte (Fristen & Gebühren)",
+    "referenzenHint": "Verbindliche Zahlen stehen bewusst nicht im Diagramm — sie gelten nur so, wie sie in der amtlichen Quelle stehen. Jeder Eintrag verlinkt auf die exakte Stelle.",
+    "referenzUnverifiziert": "Belegstelle noch nicht wörtlich übernommen",
+    "translationPending": "Übersetzung ausstehend — Inhalte werden auf Deutsch angezeigt.",
+    "bewertung": {
+      "heading": "Bewertung: Digitalisierung & Nutzendenorientierung",
+      "intro": "Abgeleitete Metadaten — keine autoritative Aussage. Jeder Indikator ist entweder deterministisch aus dem Prozess-Modell berechnet oder aus der amtlichen Quelle belegt. Ohne Beleg oder Ableitung bleibt ein Indikator «unbekannt» — er wird nicht geraten.",
+      "scoreLabel": "Erfüllte Indikatoren",
+      "scoreWert": "{erfuellt} von {bekannt}",
+      "keinScore": "Noch keine bekannten Indikatoren",
+      "unbekanntHinweis": "{count, plural, one {# Indikator unbekannt} other {# Indikatoren unbekannt}} — mangels Beleg nicht bewertet (nicht als «nicht erfüllt» gewertet).",
+      "kategorie": {
+        "digitalisierung": "Digitalisierung",
+        "nutzendenorientierung": "Nutzendenorientierung"
+      },
+      "status": {
+        "erfuellt": "erfüllt",
+        "nicht-erfuellt": "nicht erfüllt",
+        "unbekannt": "unbekannt"
+      },
+      "indikator": {
+        "online-antrag": "Online-Antrag möglich",
+        "online-bezahlung": "Online-Bezahlung möglich",
+        "statusverfolgung": "Statusverfolgung online",
+        "medienbruchfrei": "Ohne Medienbruch",
+        "digital-abschliessbar": "Vollständig digital abschliessbar",
+        "leichte-sprache": "Leichte Sprache vorhanden",
+        "mehrsprachigkeit": "Mehrsprachig (en/fr/it)",
+        "voraussetzungen-genannt": "Voraussetzungen klar genannt",
+        "fristen-kosten-verlinkt": "Fristen/Kosten transparent verlinkt",
+        "once-only": "Once-only (keine Mehrfacheingabe)",
+        "barrierefreiheit": "Barrierefrei (WCAG 2.1 AA)",
+        "nicht-digitaler-alternativweg": "Nicht-digitaler Alternativweg",
+        "eid-moeglich": "Login/eID möglich"
+      },
+      "evidenz": {
+        "toggle": "Evidenz",
+        "belegLabel": "Belegt",
+        "berechnetLabel": "Berechnet",
+        "unbekanntText": "Kein Beleg hinterlegt — als unbekannt geflaggt, nicht als nicht erfüllt.",
+        "berechnet": {
+          "leichte-sprache": "{zahl} von {von} Texten (Titel + Schritte) in Leichter Sprache",
+          "mehrsprachigkeit": "{zahl} von {von} Sprachen (en/fr/it) vollständig abgedeckt",
+          "voraussetzungen-genannt": "{zahl, plural, =0 {keine Voraussetzung genannt} one {# Voraussetzung genannt} other {# Voraussetzungen genannt}}",
+          "fristen-kosten-verlinkt": "{zahl, plural, =0 {keine verlinkte Quelle} one {# verlinkte Quelle für bindende Werte} other {# verlinkte Quellen für bindende Werte}}"
+        }
+      },
+      "kennzahlenHeading": "Berechnete Kennzahlen (aus dem Graphen)",
+      "kennzahl": {
+        "schritte": "{count, plural, one {# Schritt} other {# Schritte}}",
+        "akteurswechsel": "{count, plural, one {# Akteurswechsel} other {# Akteurswechsel}}",
+        "behoerden": "{count, plural, one {# Behörde} other {# Behörden}}",
+        "pflichtdokumente": "{count, plural, one {# Pflichtdokument} other {# Pflichtdokumente}}",
+        "entscheidungspunkte": "{count, plural, one {# Entscheidungspunkt} other {# Entscheidungspunkte}}"
+      },
+      "ja": "ja",
+      "nein": "nein",
+      "informativ": "informativ",
+      "ankerLabel": "Strategischer Bezug",
+      "ankerStaerke": {
+        "direkt": "direkt verankert",
+        "schwach": "schwach verankert",
+        "kein": "selbst gesetzt"
+      }
     }
+  },
+  "GraphTable": {
+    "caption": "Daten des Netzwerkgraphen (aktuell sichtbare Knoten)",
+    "colName": "Organisationseinheit",
+    "colType": "Typ",
+    "colParent": "Übergeordnet",
+    "colBudget": "Aufwand (CHF)",
+    "colFte": "Stellen (FTE)"
+  },
+  "Export": {
+    "csvButton": "Aktuelle Ansicht als CSV exportieren"
+  },
+  "RIS": {
+    "heading": "Parlamentarische Geschäfte",
+    "viewAll": "Alle Geschäfte anzeigen →",
+    "loading": "Geschäfte werden geladen...",
+    "error": "Fehler beim Laden der Geschäfte.",
+    "noData": "Keine aktuellen Geschäfte gefunden."
+  },
+  "Quartier": {
+    "title": "Verteilung im Stadtgebiet",
+    "intro": "Kennzahlen je Stadtkreis: Fläche aus der Stadtkreis-Geometrie und Anzahl öffentlicher Standorte (Open Data Zürich). Die Datenqualität steht im Badge.",
+    "selectLabel": "Kennzahl:",
+    "metricArea": "Fläche",
+    "unitLocations": "Standorte",
+    "tooltipValue": "{value} {unit}",
+    "noData": "Für diese Kennzahl liegen noch keine Standortdaten vor — mit `npm run data:fetch-geo` laden.",
+    "noGeo": "Stadtkreis-Geometrie nicht verfügbar."
+  },
+  "Portfolio": {
+    "title": "Portfolio: Prozesse × Dimensionen",
+    "intro": "Das Big Picture über alle Prozesse: je Zeile ein Verfahren, je Spalte ein Indikator für Digitalisierung oder Nutzendenorientierung, die Farbe zeigt den Erfüllungsgrad. Abgeleitete Metadaten — keine autoritative Aussage. Jede Zelle verlinkt auf den Prozess und seine Evidenz.",
+    "source": "Abgeleitet aus den Prozess-Indikatoren (lib/bewertung.ts)",
+    "privacyNote": "Deterministisch aus den vorhandenen Prozessdaten erzeugt — keine Nutzungs- oder Personendaten, keine erfundenen Werte zum Lückenfüllen.",
+    "empty": "Noch keine Prozesse erfasst.",
+    "caption": "Heatmap: Prozesse (Zeilen) × Indikatoren (Spalten)",
+    "colProzess": "Prozess",
+    "scoreGroup": "Score (% erfüllt)",
+    "scoreDigital": "Dig.",
+    "scoreNutzend": "Nutz.",
+    "scoreGesamt": "Ges.",
+    "scoreDigitalLong": "Digitalisierung — Anteil erfüllter Indikatoren",
+    "scoreNutzendLong": "Nutzendenorientierung — Anteil erfüllter Indikatoren",
+    "scoreGesamtLong": "Gesamt — Anteil erfüllter Indikatoren",
+    "scoreNa": "kein Score",
+    "legendHeading": "Legende",
+    "legendInformativ": "informativ (ja/nein, zählt nicht in den Score)",
+    "cellTitle": "{indikator}: {status}",
+    "detailLink": "Zum Prozess «{titel}» — Details und Evidenz",
+    "belegLuecke": "Belege ausstehend",
+    "belegLueckeTitle": "Noch keine Digitalisierungs-Belege hinterlegt — die Digital-Spalten bleiben «unbekannt», nicht «nicht erfüllt».",
+    "coverageNote": "{ohne, plural, =0 {Alle {total} Prozesse haben belegte Digitalisierungs-Indikatoren.} one {# von {total} Prozessen hat noch keine belegten Digitalisierungs-Indikatoren — die Digital-Spalten bleiben «unbekannt», nicht «nicht erfüllt».} other {# von {total} Prozessen haben noch keine belegten Digitalisierungs-Indikatoren — die Digital-Spalten bleiben «unbekannt», nicht «nicht erfüllt».}}",
+    "summaryHeading": "Erfüllung je Indikator (über alle Prozesse)",
+    "summaryZeile": "{erfuellt} erfüllt · {nichtErfuellt} nicht erfüllt · {unbekannt} unbekannt"
   }
 }

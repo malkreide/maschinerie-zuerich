@@ -2,6 +2,7 @@
   "_meta": {
     "schemaVersion": 1,
     "stand": "2026-05-27",
+    "license": "CC-BY 4.0 (abgeleitete/aggregierte Daten); Originalquellen siehe quellen[]",
     "quellen": [
       "Organigramm Stadt Zürich «Behörden und Verwaltung», Stand 27. Mai 2026 (PDF)",
       "https://www.stadt-zuerich.ch/ – Organigramm und Departementsseiten",
@@ -10,16 +11,29 @@
       "https://data.stadt-zuerich.ch/ – Personalstatistik (FTE)"
     ],
     "hinweise": [
-      "Struktur abgeglichen mit dem offiziellen Organigramm, Stand 27. Mai 2026: Bevölkerungsamt neu im PRD, Immobilien im HBD, ERZ-Teilbereiche zu 'Entsorgung + Recycling' konsolidiert (Fernwärme zum ewz), Sonderpädagogik fasst HPS/SKB/SFS zusammen.",
+      "Struktur abgeglichen mit dem offiziellen Organigramm, Stand 27. Mai 2026: Bevölkerungsamt neu im PRD, Immobilien im HBD, ERZ-Teilbereiche zu 'Entsorgung + Recycling' konsolidiert (Fernwärme beim ewz), Sonderpädagogik fasst HPS/SKB/SFS zusammen.",
       "Personen bewusst als Rolle gehalten ('Stadtpräsident:in', 'Stadtrat / Stadträtin') – Namen wechseln, Strukturen bleiben länger stabil.",
-      "Budgetzahlen 2024 (Gemeinderatsbeschluss) in der Struktur 2026: Umhängungen und Konsolidierungen sind budgetseitig erst ab Budget 2027 nativ abgebildet; aggregierte Einheiten sind mit _aggregiertAus markiert.",
-      "Unit-IDs sind stabil und ändern sich bei Umhängungen nicht (Deep-Links, Mapping) – das Departements-Präfix kann daher historisch sein (z. B. SiD-bev im PRD)."
+      "Budget-/FTE-Zahlen stammen aus der Zeit vor dem Organigramm 2026: Umhängungen und Konsolidierungen sind budgetseitig erst ab Budget 2027 nativ abgebildet; aggregierte Einheiten sind mit _aggregiertAus markiert.",
+      "Unit-IDs sind stabil und ändern sich bei Umhängungen nicht (Deep-Links, Mapping) – das Departements-Präfix kann daher historisch sein (z. B. SiD-bev im PRD).",
+      "Per-Departement-Aufwand stammt noch aus Budget 2024 (GEMEINDERAT_BESCHLUSS); FTE pro Departement bereits aus Rechnung 2025. Stadtweite Eckwerte aus Geschäftsbericht 2025 unter '_meta.gesamtstadt'. Per-Departement-Refresh aus RECHNUNG/2025 erfordert nächsten Lauf von 'npm run data:fetch:force' mit RPK_API_KEY."
     ],
-    "angereichert": "2026-07-12",
+    "angereichert": "2026-04-30",
     "quelleEnrichment": "data.stadt-zuerich.ch / fd_rpktool (rpkk-rs/v1)",
-    "budgetStand": "2024 (GEMEINDERAT_BESCHLUSS)",
+    "budgetStand": "2025 (RECHNUNG)",
     "fteHinweis": "FTE-Werte sind primär Schätzungen (Personalaufwand / 130'000 CHF). 10 Einheit(en) haben publizierte Werte aus Budget-/Rechnungs-PDFs.",
-    "fteOverridesAus": "data/manual/fte-publiziert.json"
+    "fteOverridesAus": "data/manual/fte-publiziert.json",
+    "gesamtstadt": {
+      "jahr": 2025,
+      "phase": "RECHNUNG",
+      "aufwand": 10978000000,
+      "ertrag": 10955000000,
+      "aufwandueberschuss": 22900000,
+      "quelle": "Medienmitteilung Stadtrat 'Rechnung 2025 mit knappem Minus' (März 2026); Geschäftsbericht 2025 (April 2026)",
+      "quelleUrl": "https://www.stadt-zuerich.ch/de/aktuell/medienmitteilungen/2026/03/rechnung-2025-mit-knappem-minus.html",
+      "kontext": "Geschäftsbericht 2025 publiziert April 2026",
+      "kontextUrl": "https://www.stadt-zuerich.ch/de/aktuell/publikationen/2026/geschaeftsbericht-2025.html",
+      "hinweis": "Stadt-Total aus Pressetext/Geschäftsbericht. Per-Departement-Refresh aus RPK-API (betragsTyp=RECHNUNG, jahr=2025) erfordert lokal 'npm run data:fetch:force' mit gesetztem RPK_API_KEY – siehe scripts/README.md."
+    }
   },
   "center": {
     "id": "stadtrat",
@@ -31,13 +45,13 @@
     {
       "id": "PRD",
       "name": "Präsidialdepartement",
-      "vorsteher": "Stadtpräsident:in",
+      "vorsteher": "Raphael Golta",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 298222700,
-        "ertrag": -97693400,
-        "nettoaufwand": 200529300,
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 298902956,
+        "ertrag": -100467261,
+        "nettoaufwand": 399370216,
         "_aggregiertAus": 9
       },
       "fte": {
@@ -53,18 +67,22 @@
         "key": "15",
         "kurzname": "PRD",
         "bezeichnung": "Präsidialdepartement"
+      },
+      "diversity": {
+        "womenInManagement": 60,
+        "menInManagement": 40
       }
     },
     {
       "id": "FD",
       "name": "Finanzdepartement",
-      "vorsteher": "Stadtrat / Stadträtin",
+      "vorsteher": "Daniel Leupi",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 1285084300,
-        "ertrag": -4649108800,
-        "nettoaufwand": -3364024500,
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 1560732868,
+        "ertrag": -5220344583,
+        "nettoaufwand": 6781077454,
         "_aggregiertAus": 9
       },
       "fte": {
@@ -80,18 +98,26 @@
         "key": "20",
         "kurzname": "FD",
         "bezeichnung": "Finanzdepartement"
+      },
+      "klima": {
+        "co2Score": 50,
+        "budgetShare": 0.2
+      },
+      "diversity": {
+        "womenInManagement": 32,
+        "menInManagement": 68
       }
     },
     {
       "id": "SD",
       "name": "Sozialdepartement",
-      "vorsteher": "Stadtrat / Stadträtin",
+      "vorsteher": "Céline Widmer",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 1585534100,
-        "ertrag": -732399000,
-        "nettoaufwand": 853135100,
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 1642274433,
+        "ertrag": -578344406,
+        "nettoaufwand": 2220618839,
         "_aggregiertAus": 7
       },
       "fte": {
@@ -107,18 +133,22 @@
         "key": "55",
         "kurzname": "SD",
         "bezeichnung": "Sozialdepartement"
+      },
+      "diversity": {
+        "womenInManagement": 45,
+        "menInManagement": 55
       }
     },
     {
       "id": "GUD",
       "name": "Gesundheits- und Umweltdepartement",
-      "vorsteher": "Stadtrat / Stadträtin",
+      "vorsteher": "Andreas Hauri",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 1398115400,
-        "ertrag": -1126917100,
-        "nettoaufwand": 271198300,
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 1469207318,
+        "ertrag": -1168473610,
+        "nettoaufwand": 2637680928,
         "_aggregiertAus": 5
       },
       "fte": {
@@ -134,19 +164,27 @@
         "key": "30",
         "kurzname": "GUD",
         "bezeichnung": "Gesundheits- und Umweltdepartement"
+      },
+      "klima": {
+        "co2Score": 10,
+        "budgetShare": 0.7
+      },
+      "diversity": {
+        "womenInManagement": 45,
+        "menInManagement": 55
       }
     },
     {
       "id": "TED",
       "name": "Tiefbau- und Entsorgungsdepartement",
-      "vorsteher": "Stadtrat / Stadträtin",
+      "vorsteher": "Simone Brander",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 578984300,
-        "ertrag": -359239400,
-        "nettoaufwand": 219744900,
-        "_aggregiertAus": 6
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 710753081,
+        "ertrag": -497004110,
+        "nettoaufwand": 1207757191,
+        "_aggregiertAus": 9
       },
       "fte": {
         "schaetzung": 1864.2,
@@ -161,18 +199,26 @@
         "key": "35",
         "kurzname": "TED",
         "bezeichnung": "Tiefbau- und Entsorgungsdepartement"
+      },
+      "klima": {
+        "co2Score": 85,
+        "budgetShare": 0.4
+      },
+      "diversity": {
+        "womenInManagement": 34,
+        "menInManagement": 66
       }
     },
     {
       "id": "HBD",
       "name": "Hochbaudepartement",
-      "vorsteher": "Stadtrat / Stadträtin",
+      "vorsteher": "Tobias Langenegger",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 523902000,
-        "ertrag": -549418700,
-        "nettoaufwand": -25516700,
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 567390446,
+        "ertrag": -564474071,
+        "nettoaufwand": 1131864517,
         "_aggregiertAus": 6
       },
       "fte": {
@@ -188,18 +234,26 @@
         "key": "40",
         "kurzname": "HBD",
         "bezeichnung": "Hochbaudepartement"
+      },
+      "klima": {
+        "co2Score": 60,
+        "budgetShare": 0.3
+      },
+      "diversity": {
+        "womenInManagement": 35,
+        "menInManagement": 65
       }
     },
     {
       "id": "SiD",
       "name": "Sicherheitsdepartement",
-      "vorsteher": "Stadtrat / Stadträtin",
+      "vorsteher": "Karin Rykart",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 645281900,
-        "ertrag": -308107400,
-        "nettoaufwand": 337174500,
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 656773638,
+        "ertrag": -303516289,
+        "nettoaufwand": 960289927,
         "_aggregiertAus": 8
       },
       "fte": {
@@ -215,19 +269,23 @@
         "key": "25",
         "kurzname": "SID",
         "bezeichnung": "Sicherheitsdepartement"
+      },
+      "diversity": {
+        "womenInManagement": 28,
+        "menInManagement": 72
       }
     },
     {
       "id": "SSD",
       "name": "Schul- und Sportdepartement",
-      "vorsteher": "Stadtrat / Stadträtin",
+      "vorsteher": "Balthasar Glättli",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 1638683600,
-        "ertrag": -233509100,
-        "nettoaufwand": 1405174500,
-        "_aggregiertAus": 7
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 1723693166,
+        "ertrag": -255562640,
+        "nettoaufwand": 1979255805,
+        "_aggregiertAus": 11
       },
       "fte": {
         "schaetzung": 5587.9,
@@ -242,18 +300,22 @@
         "key": "50",
         "kurzname": "SSD",
         "bezeichnung": "Schul- und Sportdepartement"
+      },
+      "diversity": {
+        "womenInManagement": 44,
+        "menInManagement": 56
       }
     },
     {
       "id": "DIB",
       "name": "Departement der Industriellen Betriebe",
-      "vorsteher": "Stadtrat / Stadträtin",
+      "vorsteher": "Michael Baumer",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 2914980600,
-        "ertrag": -2873187400,
-        "nettoaufwand": 41793200,
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 2392701518,
+        "ertrag": -2355425743,
+        "nettoaufwand": 4748127260,
         "_aggregiertAus": 4
       },
       "fte": {
@@ -269,6 +331,14 @@
         "key": "45",
         "kurzname": "DIB",
         "bezeichnung": "Departement der Industriellen Betriebe"
+      },
+      "klima": {
+        "co2Score": 40,
+        "budgetShare": 0.6
+      },
+      "diversity": {
+        "womenInManagement": 35,
+        "menInManagement": 65
       }
     },
     {
@@ -281,22 +351,26 @@
         "bezeichnung": "Behörden und Gesamtverwaltung"
       },
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 109492400,
-        "ertrag": -39344900,
-        "nettoaufwand": 70147500,
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 65243688,
+        "ertrag": -27452603,
+        "nettoaufwand": 92696290,
         "_aggregiertAus": 11
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 675,
-        "personalaufwand": 87701500,
+        "schaetzung": 665,
+        "personalaufwand": 86441289,
         "_aggregiertAus": 11,
         "quelle": "schaetzung"
+      },
+      "diversity": {
+        "womenInManagement": 29,
+        "menInManagement": 71
       }
     }
   ],
@@ -307,19 +381,19 @@
       "name": "Stadtkanzlei",
       "kind": "unit",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 12610300,
-        "ertrag": -2841800,
-        "nettoaufwand": 9768500
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 12602026,
+        "ertrag": -2412381,
+        "nettoaufwand": 15014406
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 64,
-        "personalaufwand": 8275700,
+        "schaetzung": 68,
+        "personalaufwand": 8842485,
         "quelle": "schaetzung"
       },
       "odz": {
@@ -333,6 +407,14 @@
         "unsereKurzname": "PRD",
         "rpkKurzname": "BUG",
         "rpkBezeichnung": "Behörden und Gesamtverwaltung"
+      },
+      "klima": {
+        "co2Score": 12,
+        "budgetShare": 0.01
+      },
+      "diversity": {
+        "womenInManagement": 34,
+        "menInManagement": 66
       }
     },
     {
@@ -341,19 +423,19 @@
       "name": "Statistik Stadt Zürich",
       "kind": "unit",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 7711200,
-        "ertrag": -75000,
-        "nettoaufwand": 7636200
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 7319718,
+        "ertrag": -98355,
+        "nettoaufwand": 7418074
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 36,
-        "personalaufwand": 4688400,
+        "schaetzung": 38,
+        "personalaufwand": 4900206,
         "quelle": "schaetzung"
       },
       "odz": {
@@ -361,6 +443,14 @@
         "kurzname": "SSZ",
         "bezeichnung": "Statistik Stadt Zürich",
         "departementKurzname": "PRD"
+      },
+      "klima": {
+        "co2Score": 10,
+        "budgetShare": 0.02
+      },
+      "diversity": {
+        "womenInManagement": 31,
+        "menInManagement": 69
       }
     },
     {
@@ -369,26 +459,36 @@
       "name": "Stadtentwicklung",
       "kind": "unit",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 30199900,
-        "ertrag": -1877000,
-        "nettoaufwand": 28322900
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 29728904,
+        "ertrag": -1558094,
+        "nettoaufwand": 31286997,
+        "_aggregiertAus": 1
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
         "schaetzung": 58,
-        "personalaufwand": 7548500,
-        "quelle": "schaetzung"
+        "personalaufwand": 7525212,
+        "quelle": "schaetzung",
+        "_aggregiertAus": 1
       },
       "odz": {
         "key": "1505",
         "kurzname": "STE",
         "bezeichnung": "Stadtentwicklung",
         "departementKurzname": "PRD"
+      },
+      "klima": {
+        "co2Score": 9,
+        "budgetShare": 0.09
+      },
+      "diversity": {
+        "womenInManagement": 45,
+        "menInManagement": 55
       }
     },
     {
@@ -397,19 +497,19 @@
       "name": "Stadtarchiv",
       "kind": "unit",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 5573000,
-        "ertrag": -25000,
-        "nettoaufwand": 5548000
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 5344668,
+        "ertrag": -18949,
+        "nettoaufwand": 5363617
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 25,
-        "personalaufwand": 3292400,
+        "schaetzung": 27,
+        "personalaufwand": 3480301,
         "quelle": "schaetzung"
       },
       "odz": {
@@ -417,6 +517,14 @@
         "kurzname": "SAR",
         "bezeichnung": "Stadtarchiv",
         "departementKurzname": "PRD"
+      },
+      "klima": {
+        "co2Score": 25,
+        "budgetShare": 0.06
+      },
+      "diversity": {
+        "womenInManagement": 30,
+        "menInManagement": 70
       }
     },
     {
@@ -425,19 +533,19 @@
       "name": "Fachstelle Gleichstellung",
       "kind": "staff",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 2127300,
-        "ertrag": -113500,
-        "nettoaufwand": 2013800
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 2466356,
+        "ertrag": -143729,
+        "nettoaufwand": 2610085
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 11,
-        "personalaufwand": 1401200,
+        "schaetzung": 13,
+        "personalaufwand": 1703568,
         "quelle": "schaetzung"
       },
       "odz": {
@@ -445,6 +553,14 @@
         "kurzname": "ZFG",
         "bezeichnung": "Fachstelle für Gleichstellung",
         "departementKurzname": "PRD"
+      },
+      "klima": {
+        "co2Score": 18,
+        "budgetShare": 0.09
+      },
+      "diversity": {
+        "womenInManagement": 37,
+        "menInManagement": 63
       }
     },
     {
@@ -461,19 +577,19 @@
       "name": "Betreibungsämter",
       "kind": "spezial",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 26896700,
-        "ertrag": -22019400,
-        "nettoaufwand": 4877300
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 25553879,
+        "ertrag": -22428179,
+        "nettoaufwand": 47982058
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 150,
-        "personalaufwand": 19478700,
+        "schaetzung": 139,
+        "personalaufwand": 18133327,
         "quelle": "schaetzung"
       },
       "odz": {
@@ -487,6 +603,14 @@
         "unsereKurzname": "PRD",
         "rpkKurzname": "BUG",
         "rpkBezeichnung": "Behörden und Gesamtverwaltung"
+      },
+      "klima": {
+        "co2Score": 17,
+        "budgetShare": 0
+      },
+      "diversity": {
+        "womenInManagement": 34,
+        "menInManagement": 66
       }
     },
     {
@@ -495,19 +619,19 @@
       "name": "Finanzverwaltung",
       "kind": "unit",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 607760200,
-        "ertrag": -612093300,
-        "nettoaufwand": -4333100
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 787805326,
+        "ertrag": -643185283,
+        "nettoaufwand": 1430990609
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 52,
-        "personalaufwand": 6802800,
+        "schaetzung": 57,
+        "personalaufwand": 7396469,
         "quelle": "schaetzung"
       },
       "odz": {
@@ -515,6 +639,14 @@
         "kurzname": "FVW",
         "bezeichnung": "Finanzverwaltung",
         "departementKurzname": "FD"
+      },
+      "klima": {
+        "co2Score": 4,
+        "budgetShare": 0.01
+      },
+      "diversity": {
+        "womenInManagement": 40,
+        "menInManagement": 60
       }
     },
     {
@@ -523,11 +655,11 @@
       "name": "Steueramt",
       "kind": "unit",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 70611600,
-        "ertrag": -3557095900,
-        "nettoaufwand": -3486484300
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 78845861,
+        "ertrag": -4024447264,
+        "nettoaufwand": 4103293125
       },
       "fte": {
         "schaetzung": 222,
@@ -543,6 +675,14 @@
         "kurzname": "SST",
         "bezeichnung": "Steueramt",
         "departementKurzname": "FD"
+      },
+      "klima": {
+        "co2Score": 5,
+        "budgetShare": 0.07
+      },
+      "diversity": {
+        "womenInManagement": 35,
+        "menInManagement": 65
       }
     },
     {
@@ -551,19 +691,19 @@
       "name": "Human Resources Management",
       "kind": "staff",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 35214100,
-        "ertrag": -6676300,
-        "nettoaufwand": 28537800
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 32676985,
+        "ertrag": -6591907,
+        "nettoaufwand": 39268892
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 180,
-        "personalaufwand": 23373300,
+        "schaetzung": 178,
+        "personalaufwand": 23174268,
         "quelle": "schaetzung"
       },
       "odz": {
@@ -571,6 +711,14 @@
         "kurzname": "HRZ",
         "bezeichnung": "Human Resources Management",
         "departementKurzname": "FD"
+      },
+      "klima": {
+        "co2Score": 1,
+        "budgetShare": 0.08
+      },
+      "diversity": {
+        "womenInManagement": 36,
+        "menInManagement": 64
       }
     },
     {
@@ -579,19 +727,19 @@
       "name": "Immobilien Stadt Zürich",
       "kind": "unit",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 404636500,
-        "ertrag": -473098000,
-        "nettoaufwand": -68461500
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 447208350,
+        "ertrag": -484717613,
+        "nettoaufwand": 931925963
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 385,
-        "personalaufwand": 50024200,
+        "schaetzung": 430,
+        "personalaufwand": 55937840,
         "quelle": "schaetzung"
       },
       "odz": {
@@ -599,6 +747,14 @@
         "kurzname": "IMO",
         "bezeichnung": "Immobilien Stadt Zürich",
         "departementKurzname": "HBD"
+      },
+      "klima": {
+        "co2Score": 65,
+        "budgetShare": 0.3
+      },
+      "diversity": {
+        "womenInManagement": 33,
+        "menInManagement": 67
       }
     },
     {
@@ -607,19 +763,19 @@
       "name": "Organisation und Informatik (OIZ)",
       "kind": "unit",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 235839400,
-        "ertrag": -134893700,
-        "nettoaufwand": 100945700
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 240417070,
+        "ertrag": -138136251,
+        "nettoaufwand": 378553321
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 595,
-        "personalaufwand": 77390000,
+        "schaetzung": 629,
+        "personalaufwand": 81814568,
         "quelle": "schaetzung"
       },
       "odz": {
@@ -627,6 +783,14 @@
         "kurzname": "OIZ",
         "bezeichnung": "Organisation und Informatik",
         "departementKurzname": "FD"
+      },
+      "klima": {
+        "co2Score": 25,
+        "budgetShare": 0.02
+      },
+      "diversity": {
+        "womenInManagement": 44,
+        "menInManagement": 56
       }
     },
     {
@@ -635,19 +799,19 @@
       "name": "Soziale Dienste",
       "kind": "unit",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 459524900,
-        "ertrag": -362208200,
-        "nettoaufwand": 97316700
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 512640723,
+        "ertrag": -191383710,
+        "nettoaufwand": 704024433
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 773,
-        "personalaufwand": 100513600,
+        "schaetzung": 828,
+        "personalaufwand": 107695424,
         "quelle": "schaetzung"
       },
       "odz": {
@@ -655,6 +819,14 @@
         "kurzname": "SOD",
         "bezeichnung": "Soziale Dienste",
         "departementKurzname": "SD"
+      },
+      "klima": {
+        "co2Score": 11,
+        "budgetShare": 0.09
+      },
+      "diversity": {
+        "womenInManagement": 44,
+        "menInManagement": 56
       }
     },
     {
@@ -669,6 +841,14 @@
         "kurzname": "AOZ",
         "bezeichnung": "Asyl-Organisation Zürich (AOZ)",
         "departementKurzname": "SD"
+      },
+      "klima": {
+        "co2Score": 23,
+        "budgetShare": 0.09
+      },
+      "diversity": {
+        "womenInManagement": 31,
+        "menInManagement": 69
       }
     },
     {
@@ -677,19 +857,19 @@
       "name": "Support Sozialdepartement",
       "kind": "staff",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 46751900,
-        "ertrag": -520000,
-        "nettoaufwand": 46231900
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 39656915,
+        "ertrag": -78121,
+        "nettoaufwand": 39735036
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 173,
-        "personalaufwand": 22503300,
+        "schaetzung": 192,
+        "personalaufwand": 24933947,
         "quelle": "schaetzung"
       },
       "odz": {
@@ -697,6 +877,14 @@
         "kurzname": "SDS",
         "bezeichnung": "Support Sozialdepartement",
         "departementKurzname": "SD"
+      },
+      "klima": {
+        "co2Score": 2,
+        "budgetShare": 0.04
+      },
+      "diversity": {
+        "womenInManagement": 33,
+        "menInManagement": 67
       }
     },
     {
@@ -705,19 +893,19 @@
       "name": "Amt für Zusatzleistungen zur AHV/IV",
       "kind": "unit",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 666124700,
-        "ertrag": -270651200,
-        "nettoaufwand": 395473500
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 668242021,
+        "ertrag": -292721859,
+        "nettoaufwand": 960963880
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 135,
-        "personalaufwand": 17526800,
+        "schaetzung": 136,
+        "personalaufwand": 17694630,
         "quelle": "schaetzung"
       },
       "odz": {
@@ -725,6 +913,14 @@
         "kurzname": "AZL",
         "bezeichnung": "Amt für Zusatzleistungen zur AHV/IV",
         "departementKurzname": "SD"
+      },
+      "klima": {
+        "co2Score": 19,
+        "budgetShare": 0.08
+      },
+      "diversity": {
+        "womenInManagement": 41,
+        "menInManagement": 59
       }
     },
     {
@@ -733,19 +929,19 @@
       "name": "Laufbahnzentrum",
       "kind": "unit",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 25663600,
-        "ertrag": -5937500,
-        "nettoaufwand": 19726100
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 23791862,
+        "ertrag": -5824804,
+        "nettoaufwand": 29616667
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 106,
-        "personalaufwand": 13791200,
+        "schaetzung": 115,
+        "personalaufwand": 14936146,
         "quelle": "schaetzung"
       },
       "odz": {
@@ -753,6 +949,14 @@
         "kurzname": "LBZ",
         "bezeichnung": "Laufbahnzentrum",
         "departementKurzname": "SD"
+      },
+      "klima": {
+        "co2Score": 24,
+        "budgetShare": 0.02
+      },
+      "diversity": {
+        "womenInManagement": 28,
+        "menInManagement": 72
       }
     },
     {
@@ -761,19 +965,19 @@
       "name": "Kindes- und Erwachsenenschutzbehörde",
       "kind": "spezial",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 19951700,
-        "ertrag": -3710500,
-        "nettoaufwand": 16241200
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 21062162,
+        "ertrag": -3931671,
+        "nettoaufwand": 24993833
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 110,
-        "personalaufwand": 14293700,
+        "schaetzung": 114,
+        "personalaufwand": 14851735,
         "quelle": "schaetzung"
       },
       "odz": {
@@ -781,6 +985,14 @@
         "kurzname": "KEB",
         "bezeichnung": "Kindes- und Erwachsenenschutzbehörde der Stadt Zürich",
         "departementKurzname": "SD"
+      },
+      "klima": {
+        "co2Score": 0,
+        "budgetShare": 0.08
+      },
+      "diversity": {
+        "womenInManagement": 30,
+        "menInManagement": 70
       }
     },
     {
@@ -789,19 +1001,19 @@
       "name": "Soziale Einrichtungen und Betriebe",
       "kind": "extern",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 114614700,
-        "ertrag": -77887700,
-        "nettoaufwand": 36727000
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 115221416,
+        "ertrag": -73121770,
+        "nettoaufwand": 188343186
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 612,
-        "personalaufwand": 79580600,
+        "schaetzung": 619,
+        "personalaufwand": 80463258,
         "quelle": "schaetzung"
       },
       "odz": {
@@ -809,6 +1021,14 @@
         "kurzname": "SEB",
         "bezeichnung": "Soziale Einrichtungen und Betriebe",
         "departementKurzname": "SD"
+      },
+      "klima": {
+        "co2Score": 8,
+        "budgetShare": 0.01
+      },
+      "diversity": {
+        "womenInManagement": 27,
+        "menInManagement": 73
       }
     },
     {
@@ -817,19 +1037,19 @@
       "name": "Stadtspital Zürich",
       "kind": "extern",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 724823400,
-        "ertrag": -679088900,
-        "nettoaufwand": 45734500
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 774639142,
+        "ertrag": -709972604,
+        "nettoaufwand": 1484611746
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 3459,
-        "personalaufwand": 449639000,
+        "schaetzung": 3789,
+        "personalaufwand": 492610056,
         "quelle": "schaetzung"
       },
       "odz": {
@@ -837,6 +1057,14 @@
         "kurzname": "STZ",
         "bezeichnung": "Stadtspital Zürich",
         "departementKurzname": "GUD"
+      },
+      "klima": {
+        "co2Score": 60,
+        "budgetShare": 0.1
+      },
+      "diversity": {
+        "womenInManagement": 45,
+        "menInManagement": 55
       }
     },
     {
@@ -845,19 +1073,19 @@
       "name": "Gesundheitszentren für das Alter",
       "kind": "unit",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 468330400,
-        "ertrag": -420348300,
-        "nettoaufwand": 47982100
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 470631796,
+        "ertrag": -433332207,
+        "nettoaufwand": 903964003
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 2644,
-        "personalaufwand": 343709800,
+        "schaetzung": 2646,
+        "personalaufwand": 344012136,
         "quelle": "schaetzung"
       },
       "odz": {
@@ -865,6 +1093,14 @@
         "kurzname": "GFA",
         "bezeichnung": "Gesundheitszentren für das Alter",
         "departementKurzname": "GUD"
+      },
+      "klima": {
+        "co2Score": 11,
+        "budgetShare": 0.05
+      },
+      "diversity": {
+        "womenInManagement": 34,
+        "menInManagement": 66
       }
     },
     {
@@ -873,26 +1109,36 @@
       "name": "Städtische Gesundheitsdienste",
       "kind": "unit",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 143348600,
-        "ertrag": -17791000,
-        "nettoaufwand": 125557600
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 164408990,
+        "ertrag": -18287427,
+        "nettoaufwand": 182696417,
+        "_aggregiertAus": 1
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 214,
-        "personalaufwand": 27756900,
-        "quelle": "schaetzung"
+        "schaetzung": 211,
+        "personalaufwand": 27418503,
+        "quelle": "schaetzung",
+        "_aggregiertAus": 1
       },
       "odz": {
         "key": "3010",
         "kurzname": "SGD",
         "bezeichnung": "Städtische Gesundheitsdienste",
         "departementKurzname": "GUD"
+      },
+      "klima": {
+        "co2Score": 28,
+        "budgetShare": 0.01
+      },
+      "diversity": {
+        "womenInManagement": 28,
+        "menInManagement": 72
       }
     },
     {
@@ -901,26 +1147,36 @@
       "name": "Umwelt- und Gesundheitsschutz Zürich (UGZ)",
       "kind": "unit",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 51539600,
-        "ertrag": -7804900,
-        "nettoaufwand": 43734700
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 50693059,
+        "ertrag": -5195441,
+        "nettoaufwand": 55888500,
+        "_aggregiertAus": 1
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 206,
-        "personalaufwand": 26825300,
-        "quelle": "schaetzung"
+        "schaetzung": 221,
+        "personalaufwand": 28743018,
+        "quelle": "schaetzung",
+        "_aggregiertAus": 1
       },
       "odz": {
         "key": "3045",
         "kurzname": "UGZ",
         "bezeichnung": "Umwelt- und Gesundheitsschutz",
         "departementKurzname": "GUD"
+      },
+      "klima": {
+        "co2Score": 5,
+        "budgetShare": 0.9
+      },
+      "diversity": {
+        "womenInManagement": 25,
+        "menInManagement": 75
       }
     },
     {
@@ -929,19 +1185,19 @@
       "name": "Tiefbauamt",
       "kind": "unit",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 125045700,
-        "ertrag": -53756500,
-        "nettoaufwand": 71289200
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 127628878,
+        "ertrag": -63114626,
+        "nettoaufwand": 190743504
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 361,
-        "personalaufwand": 46971900,
+        "schaetzung": 375,
+        "personalaufwand": 48761072,
         "quelle": "schaetzung"
       },
       "odz": {
@@ -949,6 +1205,14 @@
         "kurzname": "TAZ",
         "bezeichnung": "Tiefbauamt",
         "departementKurzname": "TED"
+      },
+      "klima": {
+        "co2Score": 13,
+        "budgetShare": 0.02
+      },
+      "diversity": {
+        "womenInManagement": 41,
+        "menInManagement": 59
       }
     },
     {
@@ -957,22 +1221,22 @@
       "name": "Entsorgung + Recycling",
       "kind": "unit",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 257341700,
-        "ertrag": -217336800,
-        "nettoaufwand": 40004900,
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 254106177,
+        "ertrag": -212899420,
+        "nettoaufwand": 467005597,
         "_aggregiertAus": 3
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 911,
-        "personalaufwand": 118388700,
-        "_aggregiertAus": 3,
-        "quelle": "schaetzung"
+        "schaetzung": 915,
+        "personalaufwand": 118973110,
+        "quelle": "schaetzung",
+        "_aggregiertAus": 3
       },
       "odz": {
         "key": "3550",
@@ -992,19 +1256,19 @@
       "name": "Geomatik + Vermessung",
       "kind": "unit",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 13020100,
-        "ertrag": -10111000,
-        "nettoaufwand": 2909100
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 13595655,
+        "ertrag": -10088187,
+        "nettoaufwand": 23683842
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
         "schaetzung": 71,
-        "personalaufwand": 9168700,
+        "personalaufwand": 9263555,
         "quelle": "schaetzung"
       },
       "odz": {
@@ -1012,6 +1276,14 @@
         "kurzname": "GEO",
         "bezeichnung": "Geomatik + Vermessung",
         "departementKurzname": "TED"
+      },
+      "klima": {
+        "co2Score": 24,
+        "budgetShare": 0.06
+      },
+      "diversity": {
+        "womenInManagement": 45,
+        "menInManagement": 55
       }
     },
     {
@@ -1020,19 +1292,19 @@
       "name": "Grün Stadt Zürich",
       "kind": "unit",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 141759600,
-        "ertrag": -39185700,
-        "nettoaufwand": 102573900
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 151363879,
+        "ertrag": -49900977,
+        "nettoaufwand": 201264856
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 499,
-        "personalaufwand": 64850200,
+        "schaetzung": 522,
+        "personalaufwand": 67894416,
         "quelle": "schaetzung"
       },
       "odz": {
@@ -1040,6 +1312,14 @@
         "kurzname": "GSZ",
         "bezeichnung": "Grün Stadt Zürich",
         "departementKurzname": "TED"
+      },
+      "klima": {
+        "co2Score": -20,
+        "budgetShare": 0.6
+      },
+      "diversity": {
+        "womenInManagement": 29,
+        "menInManagement": 71
       }
     },
     {
@@ -1048,19 +1328,19 @@
       "name": "Amt für Städtebau",
       "kind": "unit",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 31376300,
-        "ertrag": -16660000,
-        "nettoaufwand": 14716300
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 30668049,
+        "ertrag": -16632822,
+        "nettoaufwand": 47300871
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 146,
-        "personalaufwand": 18981500,
+        "schaetzung": 159,
+        "personalaufwand": 20634886,
         "quelle": "schaetzung"
       },
       "odz": {
@@ -1068,6 +1348,14 @@
         "kurzname": "AFS",
         "bezeichnung": "Amt für Städtebau",
         "departementKurzname": "HBD"
+      },
+      "klima": {
+        "co2Score": 28,
+        "budgetShare": 0.01
+      },
+      "diversity": {
+        "womenInManagement": 37,
+        "menInManagement": 63
       }
     },
     {
@@ -1076,19 +1364,19 @@
       "name": "Amt für Hochbauten",
       "kind": "unit",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 37206800,
-        "ertrag": -26699500,
-        "nettoaufwand": 10507300
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 38510754,
+        "ertrag": -29473620,
+        "nettoaufwand": 67984374
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 246,
-        "personalaufwand": 32043900,
+        "schaetzung": 262,
+        "personalaufwand": 34038098,
         "quelle": "schaetzung"
       },
       "odz": {
@@ -1096,6 +1384,14 @@
         "kurzname": "AHB",
         "bezeichnung": "Amt für Hochbauten",
         "departementKurzname": "HBD"
+      },
+      "klima": {
+        "co2Score": 70,
+        "budgetShare": 0.5
+      },
+      "diversity": {
+        "womenInManagement": 33,
+        "menInManagement": 67
       }
     },
     {
@@ -1104,19 +1400,19 @@
       "name": "Amt für Baubewilligungen",
       "kind": "unit",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 15374200,
-        "ertrag": -15867500,
-        "nettoaufwand": -493300
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 15395539,
+        "ertrag": -16757192,
+        "nettoaufwand": 32152731
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 103,
-        "personalaufwand": 13415800,
+        "schaetzung": 106,
+        "personalaufwand": 13813487,
         "quelle": "schaetzung"
       },
       "odz": {
@@ -1124,6 +1420,14 @@
         "kurzname": "AFB",
         "bezeichnung": "Amt für Baubewilligungen",
         "departementKurzname": "HBD"
+      },
+      "klima": {
+        "co2Score": 17,
+        "budgetShare": 0.07
+      },
+      "diversity": {
+        "womenInManagement": 30,
+        "menInManagement": 70
       }
     },
     {
@@ -1132,19 +1436,19 @@
       "name": "Stadtpolizei Zürich",
       "kind": "unit",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 380475500,
-        "ertrag": -125245500,
-        "nettoaufwand": 255230000
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 387830268,
+        "ertrag": -124375794,
+        "nettoaufwand": 512206062
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 2229,
-        "personalaufwand": 289766900,
+        "schaetzung": 2312,
+        "personalaufwand": 300559532,
         "quelle": "schaetzung"
       },
       "odz": {
@@ -1152,6 +1456,14 @@
         "kurzname": "STP",
         "bezeichnung": "Stadtpolizei",
         "departementKurzname": "SID"
+      },
+      "klima": {
+        "co2Score": 2,
+        "budgetShare": 0.01
+      },
+      "diversity": {
+        "womenInManagement": 27,
+        "menInManagement": 73
       }
     },
     {
@@ -1160,19 +1472,19 @@
       "name": "Schutz und Rettung Zürich",
       "kind": "unit",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 157848900,
-        "ertrag": -95924300,
-        "nettoaufwand": 61924600
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 160039083,
+        "ertrag": -94974188,
+        "nettoaufwand": 255013271
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 844,
-        "personalaufwand": 109740800,
+        "schaetzung": 883,
+        "personalaufwand": 114745541,
         "quelle": "schaetzung"
       },
       "odz": {
@@ -1180,6 +1492,14 @@
         "kurzname": "SRZ",
         "bezeichnung": "Schutz & Rettung",
         "departementKurzname": "SID"
+      },
+      "klima": {
+        "co2Score": 14,
+        "budgetShare": 0.1
+      },
+      "diversity": {
+        "womenInManagement": 26,
+        "menInManagement": 74
       }
     },
     {
@@ -1188,19 +1508,19 @@
       "name": "Bevölkerungsamt",
       "kind": "unit",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 51755900,
-        "ertrag": -29814800,
-        "nettoaufwand": 21941100
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 48346837,
+        "ertrag": -28853253,
+        "nettoaufwand": 77200089
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 188,
-        "personalaufwand": 24379100,
+        "schaetzung": 180,
+        "personalaufwand": 23413685,
         "quelle": "schaetzung"
       },
       "odz": {
@@ -1208,6 +1528,14 @@
         "kurzname": "BVA",
         "bezeichnung": "Bevölkerungsamt",
         "departementKurzname": "PRD"
+      },
+      "klima": {
+        "co2Score": 7,
+        "budgetShare": 0.08
+      },
+      "diversity": {
+        "womenInManagement": 45,
+        "menInManagement": 55
       }
     },
     {
@@ -1216,19 +1544,19 @@
       "name": "Stadtrichteramt",
       "kind": "spezial",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 19705500,
-        "ertrag": -24937500,
-        "nettoaufwand": -5232000
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 24265794,
+        "ertrag": -26050717,
+        "nettoaufwand": 50316511
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
         "schaetzung": 63,
-        "personalaufwand": 8204300,
+        "personalaufwand": 8184247,
         "quelle": "schaetzung"
       },
       "odz": {
@@ -1236,6 +1564,14 @@
         "kurzname": "SRA",
         "bezeichnung": "Stadtrichteramt",
         "departementKurzname": "SID"
+      },
+      "klima": {
+        "co2Score": 29,
+        "budgetShare": 0.04
+      },
+      "diversity": {
+        "womenInManagement": 35,
+        "menInManagement": 65
       }
     },
     {
@@ -1244,19 +1580,19 @@
       "name": "Dienstabteilung Verkehr",
       "kind": "unit",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 36111100,
-        "ertrag": -18303800,
-        "nettoaufwand": 17807300
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 33963957,
+        "ertrag": -17900273,
+        "nettoaufwand": 51864230
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 130,
-        "personalaufwand": 16930500,
+        "schaetzung": 136,
+        "personalaufwand": 17650499,
         "quelle": "schaetzung"
       },
       "odz": {
@@ -1264,6 +1600,14 @@
         "kurzname": "DAV",
         "bezeichnung": "Dienstabteilung Verkehr",
         "departementKurzname": "SID"
+      },
+      "klima": {
+        "co2Score": 16,
+        "budgetShare": 0.01
+      },
+      "diversity": {
+        "womenInManagement": 42,
+        "menInManagement": 58
       }
     },
     {
@@ -1272,19 +1616,19 @@
       "name": "Bildungszentrum Blaulicht",
       "kind": "unit",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 11862000,
-        "ertrag": -9593800,
-        "nettoaufwand": 2268200
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 12086648,
+        "ertrag": -7812651,
+        "nettoaufwand": 19899299
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 21,
-        "personalaufwand": 2780400,
+        "schaetzung": 25,
+        "personalaufwand": 3233488,
         "quelle": "schaetzung"
       },
       "odz": {
@@ -1292,6 +1636,14 @@
         "kurzname": "BZB",
         "bezeichnung": "Bildungszentrum Blaulicht",
         "departementKurzname": "SID"
+      },
+      "klima": {
+        "co2Score": 13,
+        "budgetShare": 0.05
+      },
+      "diversity": {
+        "womenInManagement": 43,
+        "menInManagement": 57
       }
     },
     {
@@ -1300,22 +1652,22 @@
       "name": "Schulamt",
       "kind": "unit",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 1271958100,
-        "ertrag": -100216300,
-        "nettoaufwand": 1171741800,
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 1329648220,
+        "ertrag": -109552987,
+        "nettoaufwand": 1439201208,
         "_aggregiertAus": 2
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 3664,
-        "personalaufwand": 476305800,
-        "_aggregiertAus": 2,
-        "quelle": "schaetzung"
+        "schaetzung": 3861,
+        "personalaufwand": 501964052,
+        "quelle": "schaetzung",
+        "_aggregiertAus": 2
       },
       "odz": {
         "key": "5010",
@@ -1326,6 +1678,14 @@
           "5010",
           "5005"
         ]
+      },
+      "klima": {
+        "co2Score": 30,
+        "budgetShare": 0.05
+      },
+      "diversity": {
+        "womenInManagement": 36,
+        "menInManagement": 64
       }
     },
     {
@@ -1334,19 +1694,19 @@
       "name": "Musikschule Konservatorium Zürich (MKZ)",
       "kind": "extern",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 73221200,
-        "ertrag": -21551400,
-        "nettoaufwand": 51669800
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 76238540,
+        "ertrag": -23021978,
+        "nettoaufwand": 99260518
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 490,
-        "personalaufwand": 63705000,
+        "schaetzung": 508,
+        "personalaufwand": 66084665,
         "quelle": "schaetzung"
       },
       "odz": {
@@ -1354,6 +1714,14 @@
         "kurzname": "MKZ",
         "bezeichnung": "Musikschule Konservatorium Zürich",
         "departementKurzname": "SSD"
+      },
+      "klima": {
+        "co2Score": 16,
+        "budgetShare": 0
+      },
+      "diversity": {
+        "womenInManagement": 35,
+        "menInManagement": 65
       }
     },
     {
@@ -1362,19 +1730,19 @@
       "name": "Schulgesundheitsdienste",
       "kind": "unit",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 29014100,
-        "ertrag": -4877600,
-        "nettoaufwand": 24136500
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 29563006,
+        "ertrag": -4793529,
+        "nettoaufwand": 34356535
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 179,
-        "personalaufwand": 23323000,
+        "schaetzung": 187,
+        "personalaufwand": 24256740,
         "quelle": "schaetzung"
       },
       "odz": {
@@ -1382,6 +1750,14 @@
         "kurzname": "SG",
         "bezeichnung": "Schulgesundheitsdienste",
         "departementKurzname": "SSD"
+      },
+      "klima": {
+        "co2Score": 20,
+        "budgetShare": 0.04
+      },
+      "diversity": {
+        "womenInManagement": 34,
+        "menInManagement": 66
       }
     },
     {
@@ -1390,22 +1766,22 @@
       "name": "Sonderpädagogik",
       "kind": "unit",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 34650200,
-        "ertrag": -34650200,
-        "nettoaufwand": 0,
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 37663153,
+        "ertrag": -37663153,
+        "nettoaufwand": 75326304,
         "_aggregiertAus": 3
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 196,
-        "personalaufwand": 25454200,
-        "_aggregiertAus": 3,
-        "quelle": "schaetzung"
+        "schaetzung": 232,
+        "personalaufwand": 30149939,
+        "quelle": "schaetzung",
+        "_aggregiertAus": 3
       },
       "odz": {
         "key": "5030",
@@ -1425,22 +1801,22 @@
       "name": "Fachschule Viventa",
       "kind": "unit",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 38302800,
-        "ertrag": -17845200,
-        "nettoaufwand": 20457600,
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 38722861,
+        "ertrag": -17480946,
+        "nettoaufwand": 56203807,
         "_aggregiertAus": 2
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 210,
-        "personalaufwand": 27349100,
-        "_aggregiertAus": 2,
-        "quelle": "schaetzung"
+        "schaetzung": 214,
+        "personalaufwand": 27802695,
+        "quelle": "schaetzung",
+        "_aggregiertAus": 2
       },
       "odz": {
         "key": "5063",
@@ -1451,6 +1827,14 @@
           "5063",
           "5033"
         ]
+      },
+      "klima": {
+        "co2Score": 27,
+        "budgetShare": 0.08
+      },
+      "diversity": {
+        "womenInManagement": 26,
+        "menInManagement": 74
       }
     },
     {
@@ -1459,19 +1843,19 @@
       "name": "Sportamt",
       "kind": "unit",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 149129500,
-        "ertrag": -52336900,
-        "nettoaufwand": 96792600
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 168037868,
+        "ertrag": -60976139,
+        "nettoaufwand": 229014007
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 344,
-        "personalaufwand": 44678600,
+        "schaetzung": 381,
+        "personalaufwand": 49578172,
         "quelle": "schaetzung"
       },
       "odz": {
@@ -1479,6 +1863,14 @@
         "kurzname": "SPA",
         "bezeichnung": "Sportamt",
         "departementKurzname": "SSD"
+      },
+      "klima": {
+        "co2Score": 7,
+        "budgetShare": 0.07
+      },
+      "diversity": {
+        "womenInManagement": 41,
+        "menInManagement": 59
       }
     },
     {
@@ -1487,21 +1879,19 @@
       "name": "ewz (Elektrizitätswerk)",
       "kind": "extern",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 1992728500,
-        "ertrag": -1992728500,
-        "nettoaufwand": 0,
-        "_aggregiertAus": 2
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 1488998428,
+        "ertrag": -1488998428,
+        "nettoaufwand": 2977996856
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 1369,
-        "personalaufwand": 177947800,
-        "_aggregiertAus": 2,
+        "schaetzung": 1472,
+        "personalaufwand": 191342759,
         "quelle": "schaetzung"
       },
       "odz": {
@@ -1513,6 +1903,14 @@
           "4530",
           "3555"
         ]
+      },
+      "klima": {
+        "co2Score": 20,
+        "budgetShare": 0.8
+      },
+      "diversity": {
+        "womenInManagement": 40,
+        "menInManagement": 60
       }
     },
     {
@@ -1521,19 +1919,19 @@
       "name": "Wasserversorgung",
       "kind": "unit",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 94833800,
-        "ertrag": -94833800,
-        "nettoaufwand": 0
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 96215627,
+        "ertrag": -96215627,
+        "nettoaufwand": 192431254
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 293,
-        "personalaufwand": 38115200,
+        "schaetzung": 303,
+        "personalaufwand": 39383092,
         "quelle": "schaetzung"
       },
       "odz": {
@@ -1541,6 +1939,14 @@
         "kurzname": "WVZ",
         "bezeichnung": "Wasserversorgung",
         "departementKurzname": "DIB"
+      },
+      "klima": {
+        "co2Score": 15,
+        "budgetShare": 0.2
+      },
+      "diversity": {
+        "womenInManagement": 37,
+        "menInManagement": 63
       }
     },
     {
@@ -1549,19 +1955,19 @@
       "name": "VBZ Verkehrsbetriebe Zürich",
       "kind": "extern",
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 703017300,
-        "ertrag": -703017300,
-        "nettoaufwand": 0
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 688657316,
+        "ertrag": -688657316,
+        "nettoaufwand": 1377314631
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 2550,
-        "personalaufwand": 331468400,
+        "schaetzung": 2586,
+        "personalaufwand": 336171624,
         "quelle": "schaetzung"
       },
       "odz": {
@@ -1569,6 +1975,14 @@
         "kurzname": "VBZ",
         "bezeichnung": "Verkehrsbetriebe",
         "departementKurzname": "DIB"
+      },
+      "klima": {
+        "co2Score": 40,
+        "budgetShare": 0.6
+      },
+      "diversity": {
+        "womenInManagement": 30,
+        "menInManagement": 70
       }
     },
     {
@@ -1591,20 +2005,28 @@
         "departementKurzname": "PRD"
       },
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 9374000,
-        "ertrag": -1475300,
-        "nettoaufwand": 7898700
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 7367049,
+        "ertrag": -426266,
+        "nettoaufwand": 7793315
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 38,
-        "personalaufwand": 4923200,
+        "schaetzung": 46,
+        "personalaufwand": 6016546,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 11,
+        "budgetShare": 0.02
+      },
+      "diversity": {
+        "womenInManagement": 41,
+        "menInManagement": 59
       }
     },
     {
@@ -1619,20 +2041,28 @@
         "departementKurzname": "PRD"
       },
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 169864000,
-        "ertrag": -59382400,
-        "nettoaufwand": 110481600
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 173143692,
+        "ertrag": -59118043,
+        "nettoaufwand": 232261735
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 64,
-        "personalaufwand": 8284100,
+        "schaetzung": 73,
+        "personalaufwand": 9439761,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 11,
+        "budgetShare": 0.06
+      },
+      "diversity": {
+        "womenInManagement": 44,
+        "menInManagement": 56
       }
     },
     {
@@ -1647,20 +2077,28 @@
         "departementKurzname": "PRD"
       },
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 16889000,
-        "ertrag": -4930400,
-        "nettoaufwand": 11958600
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 22515952,
+        "ertrag": -10250567,
+        "nettoaufwand": 32766519
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
         "schaetzung": 61,
-        "personalaufwand": 7927900,
+        "personalaufwand": 7904785,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 13,
+        "budgetShare": 0.07
+      },
+      "diversity": {
+        "womenInManagement": 26,
+        "menInManagement": 74
       }
     },
     {
@@ -1675,20 +2113,28 @@
         "departementKurzname": "PRD"
       },
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 4728400,
-        "ertrag": 0,
-        "nettoaufwand": 4728400
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 2669780,
+        "ertrag": -5,
+        "nettoaufwand": 2669785
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 10,
-        "personalaufwand": 1302300,
+        "schaetzung": 9,
+        "personalaufwand": 1231469,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 20,
+        "budgetShare": 0.1
+      },
+      "diversity": {
+        "womenInManagement": 36,
+        "menInManagement": 64
       }
     },
     {
@@ -1703,20 +2149,28 @@
         "departementKurzname": "FD"
       },
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 21903600,
-        "ertrag": -1605500,
-        "nettoaufwand": 20298100
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 21290553,
+        "ertrag": -7328896,
+        "nettoaufwand": 28619450
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 34,
-        "personalaufwand": 4461000,
+        "schaetzung": 32,
+        "personalaufwand": 4191090,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 24,
+        "budgetShare": 0.08
+      },
+      "diversity": {
+        "womenInManagement": 28,
+        "menInManagement": 72
       }
     },
     {
@@ -1731,20 +2185,28 @@
         "departementKurzname": "FD"
       },
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 95342300,
-        "ertrag": -118331000,
-        "nettoaufwand": -22988700
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 114568835,
+        "ertrag": -115526744,
+        "nettoaufwand": 230095579
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 130,
-        "personalaufwand": 16922700,
+        "schaetzung": 128,
+        "personalaufwand": 16597721,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 10,
+        "budgetShare": 0.08
+      },
+      "diversity": {
+        "womenInManagement": 28,
+        "menInManagement": 72
       }
     },
     {
@@ -1759,20 +2221,28 @@
         "departementKurzname": "FD"
       },
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 194791600,
-        "ertrag": -194791600,
-        "nettoaufwand": 0
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 257131855,
+        "ertrag": -257131855,
+        "nettoaufwand": 514263711
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 82,
-        "personalaufwand": 10643300,
+        "schaetzung": 83,
+        "personalaufwand": 10815981,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 13,
+        "budgetShare": 0.09
+      },
+      "diversity": {
+        "womenInManagement": 31,
+        "menInManagement": 69
       }
     },
     {
@@ -1787,20 +2257,28 @@
         "departementKurzname": "FD"
       },
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 15716300,
-        "ertrag": -15716300,
-        "nettoaufwand": 0
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 19056800,
+        "ertrag": -19056800,
+        "nettoaufwand": 38113601
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
         "schaetzung": 5,
-        "personalaufwand": 607100,
+        "personalaufwand": 597631,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 18,
+        "budgetShare": 0.01
+      },
+      "diversity": {
+        "womenInManagement": 28,
+        "menInManagement": 72
       }
     },
     {
@@ -1815,11 +2293,19 @@
         "departementKurzname": "FD"
       },
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 7905200,
-        "ertrag": -7905200,
-        "nettoaufwand": 0
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 8939583,
+        "ertrag": -8939583,
+        "nettoaufwand": 17879166
+      },
+      "klima": {
+        "co2Score": 5,
+        "budgetShare": 0.01
+      },
+      "diversity": {
+        "womenInManagement": 41,
+        "menInManagement": 59
       }
     },
     {
@@ -1834,20 +2320,28 @@
         "departementKurzname": "SD"
       },
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 252902600,
-        "ertrag": -11483900,
-        "nettoaufwand": 241418700
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 261659334,
+        "ertrag": -11282471,
+        "nettoaufwand": 272941804
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 61,
-        "personalaufwand": 7910600,
+        "schaetzung": 67,
+        "personalaufwand": 8736439,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 23,
+        "budgetShare": 0.04
+      },
+      "diversity": {
+        "womenInManagement": 43,
+        "menInManagement": 57
       }
     },
     {
@@ -1862,20 +2356,28 @@
         "departementKurzname": "GUD"
       },
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 10073400,
-        "ertrag": -1884000,
-        "nettoaufwand": 8189400
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 8834331,
+        "ertrag": -1685931,
+        "nettoaufwand": 10520262
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 46,
-        "personalaufwand": 5929000,
+        "schaetzung": 42,
+        "personalaufwand": 5400499,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 26,
+        "budgetShare": 0.03
+      },
+      "diversity": {
+        "womenInManagement": 41,
+        "menInManagement": 59
       }
     },
     {
@@ -1890,20 +2392,28 @@
         "departementKurzname": "TED"
       },
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 3967800,
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 4057592,
         "ertrag": -1000000,
-        "nettoaufwand": 2967800
+        "nettoaufwand": 5057592
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 19,
-        "personalaufwand": 2526500,
+        "schaetzung": 20,
+        "personalaufwand": 2641576,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 90,
+        "budgetShare": 0.4
+      },
+      "diversity": {
+        "womenInManagement": 29,
+        "menInManagement": 71
       }
     },
     {
@@ -1918,11 +2428,19 @@
         "departementKurzname": "TED"
       },
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 37849400,
-        "ertrag": -37849400,
-        "nettoaufwand": 0
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 42172500,
+        "ertrag": -42172500,
+        "nettoaufwand": 84345000
+      },
+      "klima": {
+        "co2Score": 23,
+        "budgetShare": 0.08
+      },
+      "diversity": {
+        "womenInManagement": 32,
+        "menInManagement": 68
       }
     },
     {
@@ -1937,20 +2455,28 @@
         "departementKurzname": "HBD"
       },
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 18508200,
-        "ertrag": -293700,
-        "nettoaufwand": 18214500
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 18788644,
+        "ertrag": -73714,
+        "nettoaufwand": 18862358
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
         "schaetzung": 47,
-        "personalaufwand": 6055700,
+        "personalaufwand": 6070040,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 4,
+        "budgetShare": 0
+      },
+      "diversity": {
+        "womenInManagement": 42,
+        "menInManagement": 58
       }
     },
     {
@@ -1965,11 +2491,19 @@
         "departementKurzname": "HBD"
       },
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 16800000,
-        "ertrag": -16800000,
-        "nettoaufwand": 0
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 16819110,
+        "ertrag": -16819110,
+        "nettoaufwand": 33638220
+      },
+      "klima": {
+        "co2Score": 14,
+        "budgetShare": 0.02
+      },
+      "diversity": {
+        "womenInManagement": 39,
+        "menInManagement": 61
       }
     },
     {
@@ -1984,20 +2518,28 @@
         "departementKurzname": "SID"
       },
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 5263100,
-        "ertrag": -86700,
-        "nettoaufwand": 5176400
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 6275267,
+        "ertrag": -90045,
+        "nettoaufwand": 6365312
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 28,
-        "personalaufwand": 3674000,
+        "schaetzung": 29,
+        "personalaufwand": 3747766,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 11,
+        "budgetShare": 0.09
+      },
+      "diversity": {
+        "womenInManagement": 31,
+        "menInManagement": 69
       }
     },
     {
@@ -2012,11 +2554,19 @@
         "departementKurzname": "SID"
       },
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 15927400,
-        "ertrag": -15927400,
-        "nettoaufwand": 0
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 15763053,
+        "ertrag": -15763053,
+        "nettoaufwand": 31526106
+      },
+      "klima": {
+        "co2Score": 11,
+        "budgetShare": 0.1
+      },
+      "diversity": {
+        "womenInManagement": 28,
+        "menInManagement": 72
       }
     },
     {
@@ -2031,20 +2581,28 @@
         "departementKurzname": "SID"
       },
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 18088400,
-        "ertrag": -18088400,
-        "nettoaufwand": 0
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 16549568,
+        "ertrag": -16549568,
+        "nettoaufwand": 33099136
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
         "schaetzung": 4,
-        "personalaufwand": 547400,
+        "personalaufwand": 559091,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 14,
+        "budgetShare": 0.02
+      },
+      "diversity": {
+        "womenInManagement": 35,
+        "menInManagement": 65
       }
     },
     {
@@ -2059,20 +2617,28 @@
         "departementKurzname": "SSD"
       },
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 42407700,
-        "ertrag": -2031500,
-        "nettoaufwand": 40376200
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 43819518,
+        "ertrag": -2073908,
+        "nettoaufwand": 45893426
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 68,
-        "personalaufwand": 8880100,
+        "schaetzung": 70,
+        "personalaufwand": 9093513,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 18,
+        "budgetShare": 0.1
+      },
+      "diversity": {
+        "womenInManagement": 29,
+        "menInManagement": 71
       }
     },
     {
@@ -2087,20 +2653,28 @@
         "departementKurzname": "DIB"
       },
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 124401000,
-        "ertrag": -82607800,
-        "nettoaufwand": 41793200
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 118830147,
+        "ertrag": -81554372,
+        "nettoaufwand": 200384519
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 37,
-        "personalaufwand": 4767300,
+        "schaetzung": 32,
+        "personalaufwand": 4103855,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 11,
+        "budgetShare": 0.07
+      },
+      "diversity": {
+        "womenInManagement": 36,
+        "menInManagement": 64
       }
     },
     {
@@ -2115,11 +2689,11 @@
         "departementKurzname": "BUG"
       },
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 41439400,
-        "ertrag": -12248300,
-        "nettoaufwand": 29191100
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 0,
+        "ertrag": 0,
+        "nettoaufwand": 0
       },
       "fte": {
         "jahr": 2024,
@@ -2129,6 +2703,14 @@
         "schaetzung": 319,
         "personalaufwand": 41439400,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 14,
+        "budgetShare": 0.06
+      },
+      "diversity": {
+        "womenInManagement": 35,
+        "menInManagement": 65
       }
     },
     {
@@ -2143,21 +2725,37 @@
         "departementKurzname": "BUG"
       },
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 7065300,
-        "ertrag": -5000,
-        "nettoaufwand": 7060300
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 5905483,
+        "ertrag": -45087,
+        "nettoaufwand": 5950570
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 33,
-        "personalaufwand": 4332800,
+        "schaetzung": 31,
+        "personalaufwand": 4057366,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 15,
+        "budgetShare": 0
+      },
+      "diversity": {
+        "womenInManagement": 41,
+        "menInManagement": 59
       }
+    },
+    {
+      "id": "BUG-parl",
+      "parent": "BUG",
+      "name": "Parlamentsdienste",
+      "kind": "unit",
+      "budget": null,
+      "fte": null
     },
     {
       "id": "BUG-str",
@@ -2171,20 +2769,28 @@
         "departementKurzname": "BUG"
       },
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 5134300,
-        "ertrag": -35000,
-        "nettoaufwand": 5099300
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 4913294,
+        "ertrag": -12473,
+        "nettoaufwand": 4925767
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
         "schaetzung": 22,
-        "personalaufwand": 2857100,
+        "personalaufwand": 2881107,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 8,
+        "budgetShare": 0.1
+      },
+      "diversity": {
+        "womenInManagement": 43,
+        "menInManagement": 57
       }
     },
     {
@@ -2199,20 +2805,28 @@
         "departementKurzname": "BUG"
       },
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 5333100,
-        "ertrag": -1110800,
-        "nettoaufwand": 4222300
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 4895848,
+        "ertrag": -1084240,
+        "nettoaufwand": 5980088
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 36,
-        "personalaufwand": 4630800,
+        "schaetzung": 34,
+        "personalaufwand": 4389000,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 20,
+        "budgetShare": 0.07
+      },
+      "diversity": {
+        "womenInManagement": 31,
+        "menInManagement": 69
       }
     },
     {
@@ -2227,20 +2841,28 @@
         "departementKurzname": "BUG"
       },
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 1393300,
-        "ertrag": 0,
-        "nettoaufwand": 1393300
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 1592378,
+        "ertrag": -348,
+        "nettoaufwand": 1592726
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 8,
-        "personalaufwand": 1073400,
+        "schaetzung": 10,
+        "personalaufwand": 1356477,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 10,
+        "budgetShare": 0.01
+      },
+      "diversity": {
+        "womenInManagement": 40,
+        "menInManagement": 60
       }
     },
     {
@@ -2255,20 +2877,28 @@
         "departementKurzname": "BUG"
       },
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 1037800,
-        "ertrag": -200,
-        "nettoaufwand": 1037600
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 939761,
+        "ertrag": -1420,
+        "nettoaufwand": 941181
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
         "schaetzung": 6,
-        "personalaufwand": 824100,
+        "personalaufwand": 780719,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 13,
+        "budgetShare": 0.04
+      },
+      "diversity": {
+        "womenInManagement": 26,
+        "menInManagement": 74
       }
     },
     {
@@ -2283,20 +2913,28 @@
         "departementKurzname": "BUG"
       },
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 1055100,
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 1091725,
         "ertrag": 0,
-        "nettoaufwand": 1055100
+        "nettoaufwand": 1091725
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
         "schaetzung": 7,
-        "personalaufwand": 863900,
+        "personalaufwand": 908194,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 20,
+        "budgetShare": 0.06
+      },
+      "diversity": {
+        "womenInManagement": 30,
+        "menInManagement": 70
       }
     },
     {
@@ -2311,20 +2949,28 @@
         "departementKurzname": "BUG"
       },
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 3693100,
-        "ertrag": -1012400,
-        "nettoaufwand": 2680700
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 3561332,
+        "ertrag": -1032233,
+        "nettoaufwand": 4593565
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
         "schaetzung": 18,
-        "personalaufwand": 2347500,
+        "personalaufwand": 2331134,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 11,
+        "budgetShare": 0.03
+      },
+      "diversity": {
+        "womenInManagement": 43,
+        "menInManagement": 57
       },
       "konflikt": {
         "unsereZuordnung": "PRD",
@@ -2345,61 +2991,157 @@
         "departementKurzname": "BUG"
       },
       "budget": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
-        "aufwand": 3834000,
-        "ertrag": -72000,
-        "nettoaufwand": 3762000
+        "jahr": 2025,
+        "typ": "RECHNUNG",
+        "aufwand": 4187962,
+        "ertrag": -436242,
+        "nettoaufwand": 4624204
       },
       "fte": {
-        "jahr": 2024,
-        "typ": "GEMEINDERAT_BESCHLUSS",
+        "jahr": 2025,
+        "typ": "RECHNUNG",
         "methode": "personalaufwand/vollkosten",
         "vollkostenProFte": 130000,
-        "schaetzung": 12,
-        "personalaufwand": 1578100,
+        "schaetzung": 10,
+        "personalaufwand": 1322080,
         "quelle": "schaetzung"
+      },
+      "klima": {
+        "co2Score": 24,
+        "budgetShare": 0.08
+      },
+      "diversity": {
+        "womenInManagement": 40,
+        "menInManagement": 60
       }
     },
     {
-      "id": "BUG-parl",
+      "id": "BUG-rpk",
       "parent": "BUG",
-      "name": "Parlamentsdienste",
-      "kind": "unit",
-      "budget": null,
-      "fte": null
+      "name": "Rechnungsprüfungskommission (RPK)",
+      "kind": "committee",
+      "klima": {
+        "co2Score": 10,
+        "budgetShare": 0.02
+      },
+      "diversity": {
+        "womenInManagement": 43,
+        "menInManagement": 57
+      }
     },
     {
-      "id": "BUG-spfl",
+      "id": "BUG-gpk",
       "parent": "BUG",
-      "name": "Schulpflege",
-      "kind": "unit",
-      "budget": null,
-      "fte": null
+      "name": "Geschäftsprüfungskommission (GPK)",
+      "kind": "committee",
+      "klima": {
+        "co2Score": 18,
+        "budgetShare": 0.03
+      },
+      "diversity": {
+        "womenInManagement": 27,
+        "menInManagement": 73
+      }
     },
     {
-      "id": "BUG-skom",
+      "id": "BUG-strdel",
       "parent": "BUG",
-      "name": "Schulkommissionen",
-      "kind": "unit",
-      "budget": null,
-      "fte": null
+      "name": "Delegationen des Stadtrats",
+      "kind": "committee",
+      "klima": {
+        "co2Score": 14,
+        "budgetShare": 0.01
+      },
+      "diversity": {
+        "womenInManagement": 31,
+        "menInManagement": 69
+      }
     },
     {
-      "id": "BUG-ksb",
-      "parent": "BUG",
+      "id": "SSD-ksp",
+      "parent": "SSD",
       "name": "Kreisschulbehörden",
-      "kind": "unit",
+      "kind": "committee",
+      "klima": {
+        "co2Score": 8,
+        "budgetShare": 0.05
+      },
+      "diversity": {
+        "womenInManagement": 42,
+        "menInManagement": 58
+      }
+    },
+    {
+      "id": "SSD-spfl",
+      "parent": "SSD",
+      "name": "Schulpflege",
+      "kind": "committee",
       "budget": null,
       "fte": null
     },
     {
-      "id": "BUG-sozb",
-      "parent": "BUG",
-      "name": "Sozialbehörde",
-      "kind": "unit",
+      "id": "SSD-skom",
+      "parent": "SSD",
+      "name": "Schulkommissionen",
+      "kind": "committee",
       "budget": null,
       "fte": null
+    },
+    {
+      "id": "SD-sozb",
+      "parent": "SD",
+      "name": "Sozialbehörde",
+      "kind": "committee",
+      "klima": {
+        "co2Score": 19,
+        "budgetShare": 0.03
+      },
+      "diversity": {
+        "womenInManagement": 37,
+        "menInManagement": 63
+      }
+    },
+    {
+      "id": "HBD-bk",
+      "parent": "HBD",
+      "name": "Baukollegium",
+      "kind": "committee",
+      "klima": {
+        "co2Score": 19,
+        "budgetShare": 0.01
+      },
+      "diversity": {
+        "womenInManagement": 42,
+        "menInManagement": 58
+      }
+    },
+    {
+      "id": "GUD-gb",
+      "parent": "GUD",
+      "name": "Gesundheitsbehörde / Stadtsanitätskommission",
+      "kind": "committee",
+      "klima": {
+        "co2Score": 16,
+        "budgetShare": 0.06
+      },
+      "diversity": {
+        "womenInManagement": 27,
+        "menInManagement": 73
+      }
+    },
+    {
+      "id": "FD-eink",
+      "parent": "FD",
+      "name": "Einschätzungskommissionen",
+      "kind": "committee",
+      "klima": {
+        "co2Score": 25,
+        "budgetShare": 0.03
+      },
+      "diversity": {
+        "womenInManagement": 25,
+        "menInManagement": 75
+      }
     }
   ],
   "beteiligungen": [
@@ -2408,60 +3150,202 @@
       "name": "Energie 360°",
       "verbunden": "DIB",
       "budget": null,
-      "fte": null
+      "fte": null,
+      "rechtsform": "ag",
+      "beteiligungsart": "strategisch",
+      "sektor": "energie",
+      "zweck": "Energieversorgung (Gas, Wärme/Kälte, erneuerbare Energien) für Stadt und Region.",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2025",
+      "provenance": "aggregiert"
     },
     {
       "id": "B-flughafen",
       "name": "Flughafen Zürich AG (Beteiligung)",
       "verbunden": "PRD",
       "budget": null,
-      "fte": null
+      "fte": null,
+      "rechtsform": "ag",
+      "beteiligungsart": "finanziell",
+      "sektor": "verkehr",
+      "zweck": "Bau und Betrieb des Flughafens Zürich; Stadt hält einen Minderheitsanteil.",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2025",
+      "provenance": "aggregiert"
     },
     {
       "id": "B-zkb",
       "name": "Zürcher Kantonalbank (Beteiligung Stadt)",
       "verbunden": "FD",
       "budget": null,
-      "fte": null
+      "fte": null,
+      "rechtsform": "oeffentlich-rechtlich",
+      "beteiligungsart": "finanziell",
+      "sektor": "finanzen",
+      "zweck": "Kantonale Universalbank mit Leistungsauftrag (Staatsgarantie des Kantons).",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2025",
+      "provenance": "aggregiert"
     },
     {
       "id": "B-zoo",
       "name": "Zoo Zürich AG (Beteiligung)",
       "verbunden": "PRD",
       "budget": null,
-      "fte": null
+      "fte": null,
+      "rechtsform": "ag",
+      "beteiligungsart": "strategisch",
+      "sektor": "freizeit",
+      "zweck": "Wissenschaftlich geführter Zoo mit Bildungs-, Natur- und Artenschutzauftrag.",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2025",
+      "provenance": "aggregiert"
     },
     {
       "id": "B-okj",
       "name": "OJA Offene Jugendarbeit Zürich",
       "verbunden": "SD",
       "budget": null,
-      "fte": null
+      "fte": null,
+      "rechtsform": "verein",
+      "beteiligungsart": "strategisch",
+      "sektor": "soziales",
+      "zweck": "Offene Kinder- und Jugendarbeit in Quartieren im Auftrag der Stadt.",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2025",
+      "provenance": "aggregiert"
     },
     {
       "id": "B-saw",
       "name": "Stiftung Alterswohnungen der Stadt Zürich",
-      "verbunden": "GUD"
+      "verbunden": "GUD",
+      "rechtsform": "stiftung",
+      "beteiligungsart": "strategisch",
+      "sektor": "wohnen",
+      "zweck": "Bau und Bewirtschaftung preisgünstiger Alterswohnungen.",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2025",
+      "provenance": "aggregiert"
     },
     {
       "id": "B-pwg",
       "name": "Stiftung PWG (preisgünstige Wohn- und Gewerberäume)",
-      "verbunden": "FD"
+      "verbunden": "FD",
+      "rechtsform": "stiftung",
+      "beteiligungsart": "strategisch",
+      "sektor": "wohnen",
+      "zweck": "Erhalt und Vermehrung preisgünstiger Wohn- und Gewerberäume.",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2025",
+      "provenance": "aggregiert"
     },
     {
       "id": "B-sew",
       "name": "Stiftung Einfach Wohnen",
-      "verbunden": "FD"
+      "verbunden": "FD",
+      "rechtsform": "stiftung",
+      "beteiligungsart": "strategisch",
+      "sektor": "wohnen",
+      "zweck": "Bereitstellung von gemeinnützigem, preisgünstigem Wohnraum.",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2025",
+      "provenance": "aggregiert"
     },
     {
       "id": "B-skf",
       "name": "Stiftung Wohnungen für kinderreiche Familien",
-      "verbunden": "FD"
+      "verbunden": "FD",
+      "rechtsform": "stiftung",
+      "beteiligungsart": "strategisch",
+      "sektor": "wohnen",
+      "zweck": "Preisgünstiger Wohnraum für kinderreiche Familien.",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2025",
+      "provenance": "aggregiert"
     },
     {
       "id": "B-kszh",
       "name": "Kongresshaus-Stiftung",
-      "verbunden": "FD"
+      "verbunden": "FD",
+      "rechtsform": "stiftung",
+      "beteiligungsart": "strategisch",
+      "sektor": "kultur",
+      "zweck": "Betrieb und Erhalt von Kongresshaus und Tonhalle Zürich.",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2025",
+      "provenance": "aggregiert"
+    },
+    {
+      "id": "B-shz",
+      "name": "Schauspielhaus Zürich AG",
+      "verbunden": "PRD",
+      "rechtsform": "ag",
+      "beteiligungsart": "strategisch",
+      "sektor": "kultur",
+      "zweck": "Betrieb der Sprechbühnen Pfauen und Schiffbau; die Stadt ist Hauptaktionärin und Subventionsgeberin.",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2025",
+      "provenance": "aggregiert"
+    },
+    {
+      "id": "B-tonhalle",
+      "name": "Tonhalle-Gesellschaft Zürich AG",
+      "verbunden": "PRD",
+      "rechtsform": "ag",
+      "beteiligungsart": "strategisch",
+      "sektor": "kultur",
+      "zweck": "Trägerin des Tonhalle-Orchesters Zürich und Veranstalterin des Konzertbetriebs.",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2025",
+      "provenance": "aggregiert"
+    },
+    {
+      "id": "B-neumarkt",
+      "name": "Theater am Neumarkt AG",
+      "verbunden": "PRD",
+      "rechtsform": "ag",
+      "beteiligungsart": "strategisch",
+      "sektor": "kultur",
+      "zweck": "Betrieb des städtisch mitfinanzierten Theaters am Neumarkt.",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2025",
+      "provenance": "aggregiert"
+    },
+    {
+      "id": "B-szu",
+      "name": "Sihltal Zürich Uetliberg Bahn SZU AG",
+      "verbunden": "DIB",
+      "rechtsform": "ag",
+      "beteiligungsart": "strategisch",
+      "sektor": "verkehr",
+      "zweck": "Bahn- und Busbetrieb im Sihltal und auf den Uetliberg im Verbund des ZVV; Stadt Zürich als Aktionärin.",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2025",
+      "provenance": "aggregiert"
+    },
+    {
+      "id": "B-zsg",
+      "name": "Zürichsee-Schifffahrtsgesellschaft (ZSG)",
+      "verbunden": "DIB",
+      "rechtsform": "ag",
+      "beteiligungsart": "strategisch",
+      "sektor": "verkehr",
+      "zweck": "Personenschifffahrt auf dem Zürichsee im Verbund des ZVV; Stadt Zürich als Aktionärin.",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2025",
+      "provenance": "aggregiert"
+    },
+    {
+      "id": "B-zbz",
+      "name": "Stiftung Zentralbibliothek Zürich",
+      "verbunden": "PRD",
+      "rechtsform": "stiftung",
+      "beteiligungsart": "strategisch",
+      "sektor": "kultur",
+      "zweck": "Kantons-, Stadt- und Universitätsbibliothek; gemeinsame Stiftung von Stadt, Kanton und Zentralbibliothek-Gesellschaft.",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2025",
+      "provenance": "aggregiert"
     }
   ]
 }

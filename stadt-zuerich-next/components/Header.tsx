@@ -7,13 +7,17 @@ import { useT } from '@/lib/i18n-client';
 import type { DataStandInfo } from '@/lib/data-meta';
 import Brand from './Brand';
 import LanguageSwitcher from './LanguageSwitcher';
-import { REOPEN_EVENT as ONBOARDING_REOPEN } from './Onboarding';
+import { city } from '@/config/city.config';
 
 const ROUTES = [
   { href: '/',              key: 'graph' },
   { href: '/steuerfranken', key: 'tax' },
   { href: '/simulator',     key: 'simulator' },
+  { href: '/territory',     key: 'territory' },
   { href: '/prozesse',      key: 'prozesse' },
+  { href: '/portfolio',     key: 'portfolio' },
+  { href: '/wirkung',       key: 'wirkung' },
+  { href: '/roadmap',       key: 'roadmap' },
   { href: '/liste',         key: 'list' },
 ] as const;
 
@@ -45,84 +49,108 @@ export default function Header({ dataStand }: { dataStand: DataStandInfo }) {
   }
 
   return (
-    <header className="fixed inset-x-0 top-0 h-14 z-10 flex items-center px-4
-                       bg-[var(--color-accent)] text-white">
-      <Brand className="mr-2.5 shrink-0" />
-      <h1 className="text-base font-semibold m-0">{t('title')}</h1>
-      <span className="ml-3 text-xs opacity-85 hidden sm:inline">{t('subtitle')}</span>
-      {dataStand.jahr && (
-        <span
-          // role="status" macht die Freshness-Info für Screenreader auffindbar,
-          // ohne sie in den Nav-Flow zu ziehen. title-Attribut liefert die
-          // detaillierten Angaben (Phase + Stand-Datum) beim Hover.
-          role="status"
-          title={
-            dataStand.phase
-              ? t('dataStandTitle', {
-                  jahr: dataStand.jahr,
-                  phase: dataStand.phase,
-                  stand: dataStand.stand,
-                })
-              : t('dataStandTitleNoPhase', {
-                  jahr: dataStand.jahr,
-                  stand: dataStand.stand,
-                })
-          }
-          className="ml-3 text-[11px] px-2 py-0.5 rounded-full bg-white/15 border border-white/25 text-white whitespace-nowrap"
+    <header className="fixed inset-x-0 top-0 h-14 z-10 flex items-center px-2 sm:px-4
+                       bg-[var(--color-accent)] text-white overflow-hidden">
+      <div className="flex items-center shrink-0 min-w-0">
+        <Link
+          href="/"
+          onClick={() => window.dispatchEvent(new Event('mog:graph:reset'))}
+          className="flex items-center no-underline text-white hover:opacity-85 transition-opacity"
         >
-          <span className="hidden md:inline">{t('dataStand', { jahr: dataStand.jahr })}</span>
-          <span className="md:hidden">{t('dataStandShort', { jahr: dataStand.jahr })}</span>
-        </span>
-      )}
-      <span className="flex-1" />
-      <nav role="tablist" aria-label={tNav('graph')} className="flex gap-1 mr-3">
-        {ROUTES.map((r) => {
-          // Sub-Routen (z.B. /prozesse/zh/...) aktivieren den übergeordneten
-          // Tab, damit der Navigationszustand auch in der Detail-Seite stimmt.
-          const active =
-            pathname === r.href ||
-            (r.href !== '/' && pathname.startsWith(r.href + '/'));
-          return (
-            <Link
-              key={r.href}
-              href={r.href}
-              role="tab"
-              aria-selected={active}
-              prefetch
-              className={
-                'px-3.5 py-1.5 rounded-md text-xs border border-white/20 no-underline ' +
-                (active
-                  ? 'bg-white text-[var(--color-accent)] font-semibold'
-                  : 'bg-white/10 hover:bg-white/20 text-white')
-              }
-            >
-              {tNav(r.key)}
-            </Link>
-          );
-        })}
-      </nav>
-      <LanguageSwitcher />
-      <button
-        type="button"
-        aria-label={t('helpButton')}
-        title={t('helpButton')}
-        // CustomEvent statt globaler Store: Onboarding-Komponente lebt im
-        // selben Tree, hört im useEffect mit. Hält den Header schlank.
-        onClick={() => window.dispatchEvent(new Event(ONBOARDING_REOPEN))}
-        className="ml-1 mr-1 px-2.5 py-1.5 rounded-md text-xs border border-white/20 bg-white/10 hover:bg-white/20 font-semibold"
-      >
-        ?
-        <span className="sr-only">{t('helpButtonLabel')}</span>
-      </button>
-      <button
-        type="button"
-        aria-pressed={dark ?? false}
-        aria-label={dark ? tNav('darkOff') : tNav('darkOn')}
-        onClick={toggleTheme}
-        className="px-2.5 py-1.5 rounded-md text-xs border border-white/20 bg-white/10 hover:bg-white/20"
-      >
-        {dark === null ? tNav('darkLabelLoading') : dark ? tNav('darkLabelLight') : tNav('darkLabelDark')}
-      </button>
+          <Brand className="mr-2 sm:mr-2.5 shrink-0" />
+          <h1 className="text-sm sm:text-base font-semibold m-0 hidden xs:block sm:block truncate">{t('title')}</h1>
+        </Link>
+        <span className="ml-3 text-xs opacity-85 hidden sm:inline">{t('subtitle')}</span>
+        {dataStand.jahr && (
+          <span
+            // role="status" macht die Freshness-Info für Screenreader auffindbar,
+            // ohne sie in den Nav-Flow zu ziehen. title-Attribut liefert die
+            // detaillierten Angaben (Phase + Stand-Datum) beim Hover.
+            role="status"
+            title={
+              dataStand.phase
+                ? t('dataStandTitle', {
+                    jahr: dataStand.jahr,
+                    phase: dataStand.phase,
+                    stand: dataStand.stand,
+                  })
+                : t('dataStandTitleNoPhase', {
+                    jahr: dataStand.jahr,
+                    stand: dataStand.stand,
+                  })
+            }
+            className="ml-2 sm:ml-3 text-[10px] sm:text-[11px] px-2 py-0.5 rounded-full bg-white/15 border border-white/25 text-white whitespace-nowrap shrink-0"
+          >
+            <span className="hidden md:inline">{t('dataStand', { jahr: dataStand.jahr })}</span>
+            <span className="md:hidden">{t('dataStandShort', { jahr: dataStand.jahr })}</span>
+          </span>
+        )}
+      </div>
+      <span className="flex-1 min-w-2" />
+      <div className="relative flex items-center shrink-0 min-w-0 max-w-full">
+        <div className="flex items-center overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden pr-4 sm:pr-1 shrink-0 max-w-full">
+          <nav aria-label={tNav('graph')} className="flex gap-1 mr-1 sm:mr-3 shrink-0">
+            {city.parentOrganizationUrl && (
+              <a
+                href={city.parentOrganizationUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-2.5 sm:px-3.5 py-1.5 rounded-md text-xs border border-white/40 bg-white/20 hover:bg-white/30 text-white no-underline whitespace-nowrap flex items-center mr-2 shrink-0"
+                title={`Wechseln zu ${city.parentOrganizationId}`}
+              >
+                <span className="mr-1">↑</span> Übergeordnet
+              </a>
+            )}
+            {ROUTES.map((r) => {
+              // Sub-Routen (z.B. /prozesse/zh/...) aktivieren den übergeordneten
+              // Link, damit der Navigationszustand auch in der Detail-Seite stimmt.
+              const active =
+                pathname === r.href ||
+                (r.href !== '/' && pathname.startsWith(r.href + '/'));
+              return (
+                <Link
+                  key={r.href}
+                  href={r.href}
+                  aria-current={active ? 'page' : undefined}
+                  prefetch
+                  className={
+                    'px-2.5 sm:px-3.5 py-1.5 rounded-md text-xs border border-white/20 no-underline whitespace-nowrap ' +
+                    (active
+                      ? 'bg-white text-[var(--color-accent)] font-semibold '
+                      : 'bg-white/10 hover:bg-white/20 text-white ') +
+                    (r.key === 'list' ? 'hidden sm:block' : '')
+                  }
+                >
+                  {tNav(r.key)}
+                </Link>
+              );
+            })}
+          </nav>
+          <LanguageSwitcher />
+          <button
+            type="button"
+            aria-label={t('helpButton')}
+            title={t('helpButton')}
+            // CustomEvent statt globaler Store: Onboarding-Komponente lebt im
+            // selben Tree, hört im useEffect mit. Hält den Header schlank.
+            onClick={() => window.dispatchEvent(new Event('mog:onboarding:reopen'))}
+            className="ml-1 mr-1 px-2.5 py-1.5 rounded-md text-xs border border-white/20 bg-white/10 hover:bg-white/20 font-semibold shrink-0"
+          >
+            ?
+            <span className="sr-only">{t('helpButtonLabel')}</span>
+          </button>
+          <button
+            type="button"
+            aria-pressed={dark ?? false}
+            aria-label={dark ? tNav('darkOff') : tNav('darkOn')}
+            onClick={toggleTheme}
+            className="px-2.5 py-1.5 rounded-md text-xs border border-white/20 bg-white/10 hover:bg-white/20 shrink-0 whitespace-nowrap"
+          >
+            {dark === null ? tNav('darkLabelLoading') : dark ? tNav('darkLabelLight') : tNav('darkLabelDark')}
+          </button>
+        </div>
+        <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-[var(--color-accent)] to-transparent sm:hidden" aria-hidden="true" />
+      </div>
     </header>
   );
 }

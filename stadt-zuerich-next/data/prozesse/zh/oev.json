@@ -1,0 +1,304 @@
+{
+  "$schema": "../../../schemas/opengov-process-schema.json",
+  "schema_version": "0.1.0",
+  "id": "oev",
+  "lebenslage_ref": "oev",
+  "city": "zh",
+  "title": {
+    "de": "ÖV-Abo oder Ticket beziehen",
+    "en": "Get a public transport pass or ticket",
+    "fr": "Obtenir un abonnement ou un billet de transports publics",
+    "it": "Ottenere un abbonamento o un biglietto dei trasporti pubblici",
+    "ls": "Ein Ticket oder ein Abo für Tram und Bus kaufen"
+  },
+  "description": {
+    "de": "Tram und Bus in Zürich betreiben die Verkehrsbetriebe Zürich (VBZ); Tickets und Abos gelten im Tarifverbund ZVV. Gekauft wird online im ZVV-Shop oder mit persönlicher Beratung an den VBZ-Beratungsstellen. Persönliche Abos werden auf dem SwissPass gespeichert.",
+    "en": "Trams and buses in Zurich are operated by Verkehrsbetriebe Zürich (VBZ); tickets and passes apply within the ZVV fare network. They are bought online in the ZVV shop or with personal advice at the VBZ advisory centres. Personal passes are stored on the SwissPass.",
+    "fr": "Les trams et bus de Zurich sont exploités par les Verkehrsbetriebe Zürich (VBZ) ; les billets et abonnements sont valables dans la communauté tarifaire ZVV. L'achat se fait en ligne dans la boutique ZVV ou avec un conseil personnel aux points de vente VBZ. Les abonnements personnels sont enregistrés sur le SwissPass.",
+    "it": "Tram e bus a Zurigo sono gestiti dalle Verkehrsbetriebe Zürich (VBZ); biglietti e abbonamenti valgono nella comunità tariffaria ZVV. L'acquisto avviene online nel negozio ZVV o con consulenza personale presso i punti vendita VBZ. Gli abbonamenti personali sono memorizzati sul SwissPass.",
+    "ls": "Tram und Bus in Zürich fahren die VBZ. Tickets und Abos gelten im ZVV. Sie kaufen online im ZVV-Shop. Oder Sie lassen sich bei einer VBZ-Stelle beraten. Ihr persönliches Abo wird auf dem SwissPass gespeichert."
+  },
+  "target_audience": "bevoelkerung",
+  "source_url": "https://www.stadt-zuerich.ch/vbz/de/tickets.html",
+  "retrieved_at": "2026-06-21",
+  "disclaimer_key": "Prozesse.disclaimer",
+  "references": [
+    {
+      "reference_id": 1,
+      "label": {
+        "de": "Tickets und Abos im ZVV-Shop kaufen",
+        "en": "Buy tickets and passes in the ZVV shop",
+        "fr": "Acheter billets et abonnements dans la boutique ZVV",
+        "it": "Acquistare biglietti e abbonamenti nel negozio ZVV",
+        "ls": "Tickets und Abos im ZVV-Shop kaufen"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/vbz/de/tickets.html",
+      "source_quote": "Kaufen Sie Ihr Ticket oder Abonnement im Online-Shop des ZVV.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-21"
+    },
+    {
+      "reference_id": 2,
+      "label": {
+        "de": "Persönliche Beratung an den VBZ-Stellen",
+        "en": "Personal advice at the VBZ centres",
+        "fr": "Conseil personnel aux points VBZ",
+        "it": "Consulenza personale presso i punti VBZ",
+        "ls": "Beratung an einer VBZ-Stelle"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/zvv-contact/verkaufsstellen.html",
+      "source_quote": "Alle Fragen rund um den öffentlichen Verkehr beantworten Ihnen unsere Spezialistinnen und Spezialisten freundlich und kompetent.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-21"
+    },
+    {
+      "reference_id": 3,
+      "label": {
+        "de": "Abo auf dem SwissPass",
+        "en": "Pass on the SwissPass",
+        "fr": "Abonnement sur le SwissPass",
+        "it": "Abbonamento sul SwissPass",
+        "ls": "Das Abo auf dem SwissPass"
+      },
+      "source_url": "https://www.zvv.ch/de/service/leichte-sprache/ticket--und-abokauf.html",
+      "source_quote": "Auf dem SwissPass können persönliche Jahresabos und Monatsabos gespeichert werden.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-21"
+    },
+    {
+      "reference_id": 4,
+      "label": {
+        "de": "SwissPass als öV-Karte",
+        "en": "SwissPass as the public transport card",
+        "fr": "SwissPass comme carte de transports publics",
+        "it": "SwissPass come carta dei trasporti pubblici",
+        "ls": "Der SwissPass ist die Karte für den öV"
+      },
+      "source_url": "https://www.zvv.ch/de/service/leichte-sprache/ticket--und-abokauf.html",
+      "source_quote": "Der SwissPass ist eine persönliche Karte für den öV.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-06-21"
+    }
+  ],
+  "actors": [
+    {
+      "id": "fahrgast",
+      "label": {
+        "de": "Fahrgast",
+        "en": "Passenger",
+        "fr": "Voyageur·euse",
+        "it": "Passeggero",
+        "ls": "Sie (Sie fahren mit Tram oder Bus)"
+      },
+      "type": "antragsteller"
+    },
+    {
+      "id": "vbz",
+      "label": {
+        "de": "Verkehrsbetriebe Zürich (VBZ)",
+        "en": "Zurich public transport (VBZ)",
+        "fr": "Transports publics zurichois (VBZ)",
+        "it": "Trasporti pubblici di Zurigo (VBZ)",
+        "ls": "Die Verkehrs-Betriebe Zürich (VBZ)"
+      },
+      "type": "behoerde",
+      "einheit_ref": "DIB-vbz"
+    },
+    {
+      "id": "zvv",
+      "label": {
+        "de": "Zürcher Verkehrsverbund (ZVV)",
+        "en": "Zurich transport network (ZVV)",
+        "fr": "Communauté tarifaire zurichoise (ZVV)",
+        "it": "Comunità tariffaria di Zurigo (ZVV)",
+        "ls": "Der Zürcher Verkehrs-Verbund (ZVV)"
+      },
+      "type": "dritte"
+    }
+  ],
+  "steps": [
+    {
+      "step_id": 1,
+      "actor": "fahrgast",
+      "label": {
+        "de": "Sie brauchen ein Ticket oder Abo für Tram und Bus",
+        "en": "You need a ticket or pass for tram and bus",
+        "fr": "Vous avez besoin d'un billet ou d'un abonnement pour le tram et le bus",
+        "it": "Vi serve un biglietto o un abbonamento per tram e bus",
+        "ls": "Sie brauchen ein Ticket oder ein Abo"
+      },
+      "depends_on": [],
+      "type": "start"
+    },
+    {
+      "step_id": 2,
+      "actor": "fahrgast",
+      "label": {
+        "de": "Passendes Ticket oder Abo wählen",
+        "en": "Choose the right ticket or pass",
+        "fr": "Choisir le billet ou l'abonnement adapté",
+        "it": "Scegliere il biglietto o l'abbonamento giusto",
+        "ls": "Das richtige Ticket oder Abo aussuchen"
+      },
+      "depends_on": [1],
+      "type": "input"
+    },
+    {
+      "step_id": 3,
+      "actor": "fahrgast",
+      "label": {
+        "de": "Online im ZVV-Shop kaufen oder an einer VBZ-Beratungsstelle",
+        "en": "Buy online in the ZVV shop or at a VBZ advisory centre",
+        "fr": "Acheter en ligne dans la boutique ZVV ou à un point VBZ",
+        "it": "Acquistare online nel negozio ZVV o presso un punto VBZ",
+        "ls": "Online im ZVV-Shop kaufen oder bei einer VBZ-Stelle"
+      },
+      "depends_on": [2],
+      "type": "input",
+      "description": {
+        "de": "Kauf im ZVV-Online-Shop – oder mit persönlicher Beratung an einer VBZ-Beratungsstelle.",
+        "en": "Purchase in the ZVV online shop – or with personal advice at a VBZ advisory centre.",
+        "fr": "Achat dans la boutique en ligne ZVV – ou avec un conseil personnel à un point de vente VBZ.",
+        "it": "Acquisto nel negozio online ZVV – o con consulenza personale presso un punto vendita VBZ.",
+        "ls": "Sie kaufen im ZVV-Online-Shop. Oder Sie gehen zu einer VBZ-Stelle und lassen sich helfen."
+      },
+      "reference_ids": [1, 2],
+      "source_id": "q-vbz-tickets"
+    },
+    {
+      "step_id": 4,
+      "actor": "zvv",
+      "label": {
+        "de": "Persönliches Abo wird auf dem SwissPass hinterlegt",
+        "en": "Personal pass is stored on the SwissPass",
+        "fr": "L'abonnement personnel est enregistré sur le SwissPass",
+        "it": "L'abbonamento personale viene memorizzato sul SwissPass",
+        "ls": "Das persönliche Abo kommt auf den SwissPass"
+      },
+      "depends_on": [3],
+      "type": "prozess",
+      "reference_ids": [3, 4],
+      "source_id": "q-zvv-ls"
+    },
+    {
+      "step_id": 5,
+      "actor": "fahrgast",
+      "label": {
+        "de": "Mit Tram und Bus unterwegs",
+        "en": "Travelling by tram and bus",
+        "fr": "En route en tram et en bus",
+        "it": "In viaggio con tram e bus",
+        "ls": "Fertig: Sie fahren mit Tram und Bus"
+      },
+      "depends_on": [4],
+      "type": "ende"
+    }
+  ],
+  "legal_basis": [
+    { "label": "Personenbeförderungsgesetz (PBG, SR 745.1)" },
+    {
+      "label": "ZVV – Ticket- und Abokauf",
+      "url": "https://www.zvv.ch/de/service/leichte-sprache/ticket--und-abokauf.html"
+    },
+    {
+      "label": "VBZ – Abos & Tickets",
+      "url": "https://www.stadt-zuerich.ch/vbz/de/tickets.html"
+    }
+  ],
+  "sources": [
+    {
+      "id": "q-vbz-tickets",
+      "title": "VBZ – Abos & Tickets",
+      "url": "https://www.stadt-zuerich.ch/vbz/de/tickets.html",
+      "retrieved_at": "2026-06-21"
+    },
+    {
+      "id": "q-vbz-verkaufsstellen",
+      "title": "VBZ – ZVV-Contact und VBZ-Beratungsstellen",
+      "url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/zvv-contact/verkaufsstellen.html",
+      "retrieved_at": "2026-06-21"
+    },
+    {
+      "id": "q-zvv-ls",
+      "title": "ZVV – Ticket- und Abokauf (Leichte Sprache)",
+      "url": "https://www.zvv.ch/de/service/leichte-sprache/ticket--und-abokauf.html",
+      "retrieved_at": "2026-06-21"
+    }
+  ],
+  "reife": {
+    "onlineReifegrad": "digital",
+    "medienbrueche": [],
+    "onceOnlyPotenzial": {
+      "de": "Der SwissPass bündelt Abos bereits personenbezogen; ein durchgängig digitaler Bezug ohne Kartenversand könnte den Erstkauf weiter vereinfachen.",
+      "en": "The SwissPass already bundles passes per person; a fully digital purchase without card dispatch could further simplify the first purchase.",
+      "fr": "Le SwissPass regroupe déjà les abonnements par personne ; un achat entièrement numérique sans envoi de carte pourrait simplifier davantage le premier achat.",
+      "it": "Lo SwissPass raggruppa già gli abbonamenti per persona; un acquisto completamente digitale senza invio della carta potrebbe semplificare ulteriormente il primo acquisto.",
+      "ls": "Der SwissPass speichert schon alle Abos. Ein ganz digitaler Kauf ohne Karten-Versand wäre noch einfacher."
+    },
+    "nutzergruppen": [
+      {
+        "de": "Personen, die regelmässig Tram und Bus nutzen",
+        "en": "People who regularly use tram and bus",
+        "fr": "Personnes qui utilisent régulièrement le tram et le bus",
+        "it": "Persone che usano regolarmente tram e bus",
+        "ls": "Menschen, die oft mit Tram und Bus fahren"
+      },
+      {
+        "de": "Neuzuziehende, die zum ersten Mal ein Abo brauchen",
+        "en": "Newcomers who need a pass for the first time",
+        "fr": "Nouvelles personnes arrivées qui ont besoin d'un abonnement pour la première fois",
+        "it": "Nuovi arrivati che hanno bisogno di un abbonamento per la prima volta",
+        "ls": "Menschen, die neu hier sind und zum ersten Mal ein Abo brauchen"
+      }
+    ],
+    "painPoints": [
+      {
+        "de": "Tickets und Abos sind ZVV-Tarifverbund-Produkte – die Zuständigkeit verteilt sich auf VBZ (Betrieb) und ZVV (Tarif).",
+        "en": "Tickets and passes are ZVV fare-network products – responsibility is split between VBZ (operations) and ZVV (fares).",
+        "fr": "Les billets et abonnements sont des produits de la communauté tarifaire ZVV – la compétence se partage entre VBZ (exploitation) et ZVV (tarifs).",
+        "it": "Biglietti e abbonamenti sono prodotti della comunità tariffaria ZVV – la competenza è divisa tra VBZ (esercizio) e ZVV (tariffe).",
+        "ls": "Die VBZ fahren die Tram und Bus. Der ZVV macht die Preise. Das sind zwei Stellen."
+      }
+    ],
+    "improvementIdeas": [
+      {
+        "de": "Ein durchgängig digitaler Kauf inklusive SwissPass ohne separaten Kartenversand.",
+        "en": "A fully digital purchase including SwissPass without separate card dispatch.",
+        "fr": "Un achat entièrement numérique incluant le SwissPass sans envoi de carte séparé.",
+        "it": "Un acquisto completamente digitale incluso lo SwissPass senza invio separato della carta.",
+        "ls": "Ein ganz digitaler Kauf mit SwissPass, ohne dass eine Karte verschickt wird."
+      }
+    ],
+    "status": "beobachtet",
+    "wirkungKpi": [
+      {
+        "label": {
+          "de": "Kaufkanal",
+          "en": "Purchase channel",
+          "fr": "Canal d'achat",
+          "it": "Canale d'acquisto",
+          "ls": "So kaufen Sie"
+        },
+        "wert": "online im ZVV-Shop oder an einer VBZ-Beratungsstelle"
+      }
+    ]
+  },
+  "bewertung": {
+    "indikatoren": [
+      {
+        "key": "online-antrag",
+        "wert": true,
+        "source_url": "https://www.stadt-zuerich.ch/vbz/de/tickets.html",
+        "source_quote": "Kaufen Sie Ihr Ticket oder Abonnement im Online-Shop des ZVV.",
+        "status": "verifiziert",
+        "retrieved_at": "2026-07-04"
+      }
+    ]
+  },
+  "meta": {
+    "erstellt": "2026-06-21",
+    "aktualisiert": "2026-07-04",
+    "maintainer": "malkreide",
+    "lizenz": "CC-BY-4.0"
+  }
+}

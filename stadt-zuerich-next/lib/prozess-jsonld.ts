@@ -53,8 +53,8 @@ export function prozessToJsonLd(prozess: Prozess, opts: {
 
   // Provider = alle Akteure mit typ 'behoerde' oder 'fachstelle'.
   // schema.org kennt GovernmentOrganization als Unter-Typ von Organization.
-  const providers = prozess.akteure
-    .filter((a) => a.typ === 'behoerde' || a.typ === 'fachstelle')
+  const providers = (prozess.actors ?? [])
+    .filter((a) => a.type === 'behoerde' || a.type === 'fachstelle')
     .map((a) => ({
       '@type': 'GovernmentOrganization',
       name: resolveI18n(a.label, loc),
@@ -62,23 +62,16 @@ export function prozessToJsonLd(prozess: Prozess, opts: {
 
   // Rechtsgrundlage mit URL → termsOfService. schema.org erlaubt hier
   // genau ein URL-Feld, also nehmen wir die erste mit URL.
-  const termsOfService = prozess.rechtsgrundlagen?.find((r) => r.url)?.url;
+  const termsOfService = prozess.legal_basis?.find((r) => r.url)?.url;
 
-  // Kosten: schema.org GovernmentService kennt `feesAndCommissionsSpecification`
-  // als Text. Wir aggregieren Kosten aus allen Schritten.
-  const kostenTotal = prozess.schritte
-    .map((s) => s.kosten_chf)
-    .filter((k): k is NonNullable<typeof k> => k !== undefined);
-  let feesText: string | undefined;
-  if (kostenTotal.length > 0) {
-    const min = kostenTotal.reduce((acc, k) => acc + (k.min ?? 0), 0);
-    const max = kostenTotal.reduce((acc, k) => acc + (k.max ?? k.min ?? 0), 0);
-    feesText = min === max ? `CHF ${min}` : `CHF ${min}–${max}`;
-  }
+  // Gebühren: schema.org erlaubt für `feesAndCommissionsSpecification` Text
+  // ODER URL. Kardinalregel (docs/process-data-contract.md): wir behaupten
+  // keine Zahl, sondern verlinken die amtliche Quelle der ersten Referenz.
+  const feesUrl = prozess.references?.find((r) => r.source_url)?.source_url;
 
   // Zielgruppe: wer ist der Antragsteller? Nehmen wir das Label des
   // ersten Akteurs mit typ 'antragsteller'.
-  const antragsteller = prozess.akteure.find((a) => a.typ === 'antragsteller');
+  const antragsteller = (prozess.actors ?? []).find((a) => a.type === 'antragsteller');
 
   // areaServed = die Stadt. AdministrativeArea mit Name aus city.config
   // (locale-korrekt, kein Hardcode).
@@ -88,8 +81,8 @@ export function prozessToJsonLd(prozess: Prozess, opts: {
     '@context': 'https://schema.org',
     '@type': 'GovernmentService',
     '@id': canonicalUrl,
-    name: mlString(prozess.titel),
-    description: mlString(prozess.kurzbeschreibung),
+    name: mlString(prozess.title),
+    description: mlString(prozess.description),
     serviceType: 'CivicService',
     areaServed: {
       '@type': 'AdministrativeArea',
@@ -101,7 +94,7 @@ export function prozessToJsonLd(prozess: Prozess, opts: {
     },
     mainEntityOfPage: canonicalUrl,
     inLanguage: (['de', 'en', 'fr', 'it'] as const)
-      .filter((k) => (typeof prozess.titel === 'object' ? prozess.titel[k] : k === 'de'))
+      .filter((k) => (typeof prozess.title === 'object' ? prozess.title[k] : k === 'de'))
       .map((k) => LOCALE_TO_BCP47[k]),
   };
 
@@ -109,7 +102,7 @@ export function prozessToJsonLd(prozess: Prozess, opts: {
   else if (providers.length > 1) ld.provider = providers;
 
   if (termsOfService) ld.termsOfService = termsOfService;
-  if (feesText) ld.feesAndCommissionsSpecification = feesText;
+  if (feesUrl) ld.feesAndCommissionsSpecification = feesUrl;
   if (antragsteller) {
     ld.audience = {
       '@type': 'Audience',
@@ -130,4 +123,13 @@ export function prozessToJsonLd(prozess: Prozess, opts: {
   if (prozess.meta?.erstellt)     ld.dateCreated  = prozess.meta.erstellt;
 
   return ld;
+}
+
+/** Serialisiert JSON-LD für ein Inline-`<script>` XSS-sicher.
+ *  `JSON.stringify` escaped `<` nicht — ein `</script><script>…` in einem
+ *  Datenfeld (Prozess-Titel/-Beschreibung aus tessera-PRs) würde aus dem
+ *  Script-Tag ausbrechen. Die Escape-Sequenz `\u003c` ist in JSON dasselbe
+ *  Zeichen wie `<`, für den HTML-Parser aber harmlos. */
+export function serializeJsonLd(ld: Record<string, unknown>): string {
+  return JSON.stringify(ld).replace(/</g, '\\u003c');
 }

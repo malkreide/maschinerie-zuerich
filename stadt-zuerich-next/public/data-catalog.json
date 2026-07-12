@@ -1,0 +1,103 @@
+{
+  "name": "Maschinerie der Stadt Zürich – Datenkatalog",
+  "description": "Offene Datensätze zur Verwaltungsstruktur, zu Verwaltungsprozessen und zu Lebenslagen. Abgeleitete/aggregierte Daten; Originalquellen je Datensatz angegeben.",
+  "license": "CC-BY-4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+  "attribution": "Maschinerie der Stadt Zürich",
+  "homepage": "https://maschinerie-zuerich.vercel.app",
+  "repository": "https://github.com/malkreide/maschinerie-zuerich",
+  "api": { "version": "1", "base": "/api/v1", "openapi": "/openapi.json" },
+  "provenanceVocabulary": {
+    "publiziert": "Direkt aus einer offiziellen Publikation/Quelle übernommen.",
+    "aggregiert": "Aus mehreren echten Quellen zusammengeführt.",
+    "geschaetzt": "Aus echten Quellen abgeleitet/geschätzt.",
+    "manuell": "Manuell modelliert/erfasst (z. B. aus Merkblättern).",
+    "api": "Per API abgerufen.",
+    "pdf": "Aus PDF-Dokumenten extrahiert.",
+    "demo": "Illustrative Platzhalterdaten, keine echte Stadtinformation."
+  },
+  "datasets": [
+    {
+      "id": "org-chart",
+      "provenance": "aggregiert",
+      "title": "Organisationsstruktur",
+      "description": "Departemente, Dienstabteilungen/Einheiten und Beteiligungen der Stadt Zürich inkl. Budget- und FTE-Angaben.",
+      "endpoint": "/api/v1/org",
+      "formats": ["application/json"],
+      "schema": "https://raw.githubusercontent.com/malkreide/maschinerie-zuerich/main/stadt-zuerich-next/schemas/opengov-machinery-schema.json",
+      "schemaPath": "schemas/opengov-machinery-schema.json",
+      "license": "CC-BY-4.0",
+      "stand": "2026-04-20",
+      "budgetStand": "2025 (RECHNUNG)",
+      "refresh": "manuell (npm run data:fetch); per-Departement-Refresh via RPK-API",
+      "sources": [
+        "stadt-zuerich.ch – Organigramm und Departementsseiten",
+        "Geschäftsbericht Stadt Zürich – Aufwand pro Dienstabteilung",
+        "Beteiligungsbericht Stadt Zürich",
+        "data.stadt-zuerich.ch – Personalstatistik (FTE)"
+      ],
+      "qualityWarnings": [
+        "Strukturdaten sind prototypisch – vor Go-Live mit aktuellem Organigramm abgleichen.",
+        "FTE-Werte sind primär Schätzungen; nur einzelne Einheiten haben publizierte Werte.",
+        "Beteiligungen tragen aktuell keine Budget-/FTE-Werte.",
+        "Beteiligungen sind kategorial klassifiziert (Rechtsform, Beteiligungsart, Sektor, Zweck); exakte Eigentumsanteile sind bewusst nicht erfasst."
+      ]
+    },
+    {
+      "id": "prozesse",
+      "provenance": "manuell",
+      "title": "Verwaltungsprozesse",
+      "description": "Modellierte Behördengänge nach dem OpenGov-Process-Schema (Schritte, Akteure, Dauern, Medienbrüche, digitale Reife). Der Index-Endpunkt liefert die Kurzform; Detailmodelle liegen pro Prozess im Repository.",
+      "endpoint": "/api/v1/prozesse",
+      "formats": ["application/json"],
+      "schema": "https://raw.githubusercontent.com/malkreide/maschinerie-zuerich/main/stadt-zuerich-next/schemas/opengov-process-schema.json",
+      "schemaPath": "schemas/opengov-process-schema.json",
+      "license": "CC-BY-4.0",
+      "refresh": "manuell (Repository-Daten unter data/prozesse/<city>/)",
+      "sources": [
+        "Merkblätter und Behördenseiten der Stadt Zürich",
+        "Rechtsgrundlagen (PBG, VRSZ, etc.) – je Prozess referenziert"
+      ],
+      "qualityWarnings": [
+        "Demonstrator: bislang wenige Prozesse modelliert; wird schrittweise erweitert."
+      ]
+    },
+    {
+      "id": "lebenslagen",
+      "provenance": "manuell",
+      "title": "Lebenslagen",
+      "description": "Mapping von Alltagsanliegen auf zuständige Stellen, mehrsprachig (de/en/fr/it + Leichte Sprache) und nach Zielgruppen getaggt. In der App integriert (Suche, /anliegen); aktuell kein eigener öffentlicher API-Endpunkt.",
+      "endpoint": null,
+      "formats": ["application/json"],
+      "schema": null,
+      "schemaPath": "data/zh/lebenslagen.json",
+      "license": "CC-BY-4.0",
+      "refresh": "manuell (Repository-Daten unter data/zh/lebenslagen.json)",
+      "sources": ["Eigene Zuordnung gegen das Organigramm (org-chart.json)"],
+      "qualityWarnings": [
+        "en/fr/it/ls sind erstbefüllt (aus de abgeleitet); Native-Speaker-/Fachreview willkommen."
+      ]
+    },
+    {
+      "id": "geo-standorte",
+      "provenance": "publiziert",
+      "title": "Geo-Standorte (Schulen, Sammelstellen, Spielplätze)",
+      "description": "Punkt-Layer für die Territory-Karte. Liefert echte Standorte aus committe-baren Open-Data-Zürich-Snapshots (data/geo/zh/<layer>.geojson, erzeugt via 'npm run data:fetch-geo'). Fehlt ein Snapshot, fällt der Layer auf zufällige Demo-Punkte zurück (im Response über _meta.demo gekennzeichnet).",
+      "endpoint": "/api/geo",
+      "formats": ["application/geo+json"],
+      "schema": null,
+      "license": "CC-BY",
+      "refresh": "npm run data:fetch-geo (ODZ-Hosts müssen erreichbar sein)",
+      "sources": [
+        "Open Data Zürich – Schul- und Sportanlagen",
+        "Open Data Zürich – Sammelstellen",
+        "Open Data Zürich – Spielplätze"
+      ],
+      "qualityWarnings": [
+        "Ohne erzeugten Snapshot liefert /api/geo zufällige Demo-Punkte (_meta.demo=true).",
+        "Quell-URLs/typenames in config/geo-layers.json sind als verifiziert:false markiert und vor dem ersten Abruf zu prüfen.",
+        "ODZ-WFS liefert teils LV95 (EPSG:2056); Reprojektion auf WGS84 ggf. nötig."
+      ]
+    }
+  ]
+}

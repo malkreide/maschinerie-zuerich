@@ -27,12 +27,70 @@
     "step3Title": "Understand the budget",
     "step3Body": "The «Tax franc» tab shows where your money goes — each department as an area, larger = more spending. Click a department to zoom in."
   },
+  "Wirkung": {
+    "title": "Impact & Maturity",
+    "intro": "Figures derived from the modelled processes and life events — without tracking. They show how digital and how simple the procedures are today and where simplification can start.",
+    "source": "Derived from process and life-event data",
+    "privacyNote": "Computed purely from existing data — no usage or personal data.",
+    "kpiHeading": "Figures at a glance",
+    "kpiProzesse": "Modelled processes",
+    "kpiMedienbrueche": "Media breaks total",
+    "kpiOnceOnly": "With once-only potential",
+    "kpiImprovements": "Improvement ideas",
+    "kpiAbdeckung": "Life events with a procedure",
+    "reifegradHeading": "Online maturity of processes",
+    "statusHeading": "Simplification status",
+    "medienbruecheHeading": "Most frequent media breaks",
+    "spracheHeading": "Language coverage of life events",
+    "none": "None recorded",
+    "klimaHeading": "Climate & city goal",
+    "klimaZielBis": "by {jahr}",
+    "klimaProvenance": "The per-department CO₂ values are indicative estimates; the net-zero target is the official city goal.",
+    "klimaHotspots": "Departments with high CO₂ relevance",
+    "klimaInvest": "Avg. climate investment share",
+    "klimaCo2Heading": "CO₂ relevance per department (indicative, 0–100)",
+    "kompassHeading": "Responsibility compass",
+    "kompassIntro": "Aggregated across all processes — structural features of the model, not legally binding information.",
+    "kompassGeteilt": "Processes with split responsibility",
+    "kompassRekurs": "Processes with an appeals body",
+    "kompassBehoerden": "Authorities involved (total)",
+    "kompassPflichtdokumente": "Required documents in total",
+    "komplexHeading": "Process complexity",
+    "colProzess": "Process",
+    "colSchritte": "Steps",
+    "colAkteure": "Actors",
+    "colEntscheidungen": "Decisions",
+    "colMedienbrueche": "Breaks",
+    "bewertungHeading": "Assessment (portfolio)",
+    "bewertungIntro": "Share of indicators met across all modelled processes — a snapshot of the model data, not an official digitalisation level. «unknown» is not counted as not met.",
+    "bewertungDigital": "Digitalisation",
+    "bewertungNutzend": "User-centricity",
+    "bewertungGesamt": "Overall met",
+    "bewertungKeinScore": "no score",
+    "bewertungUnbekanntKurz": "unkn."
+  },
+  "Territory": {
+    "title": "Locations",
+    "intro": "City locations on the map. Pick a category.",
+    "layerSchools": "School facilities",
+    "layerRecycling": "Waste disposal",
+    "layerPlaygrounds": "Playgrounds",
+    "layerAmtshaeuser": "Administrative buildings",
+    "popupTitle": "Department",
+    "linkToChart": "Show in org chart",
+    "verfahren": "Responsible procedures",
+    "noLayer": "No layer selected – pick at least one category above."
+  },
   "Nav": {
     "graph": "Machinery",
     "tax": "Tax franc",
     "simulator": "Simulator",
     "list": "List",
     "prozesse": "Processes",
+    "roadmap": "Roadmap",
+    "wirkung": "Impact",
+    "quartier": "City Districts",
+    "territory": "Locations",
     "darkOn": "Activate dark theme",
     "darkOff": "Activate light theme",
     "darkLabelLight": "☼ Light",
@@ -41,7 +99,12 @@
     "skipToList": "Skip to textual overview (for screen readers)",
     "language": "Language",
     "expandAll": "Expand all",
-    "collapseAll": "Collapse all"
+    "collapseAll": "Collapse all",
+    "climateToggle": "🌡️ Climate budget indicator",
+    "climateToggleTitle": "Shows a live indication of climate impact",
+    "diversityToggle": "👥 Diversity & management (staff)",
+    "diversityToggleTitle": "Shows the gender balance in management for each organisational unit as a ring chart",
+    "portfolio": "Portfolio"
   },
   "Search": {
     "label": "Search for an office or a concern",
@@ -54,7 +117,74 @@
     "noMatchesTitle": "No quick matches for „{query}\"",
     "noMatchesHint": "Did you mean one of these?",
     "popularFallback": "Common concerns",
-    "openFullSearch": "Open full search →"
+    "openFullSearch": "Open full search →",
+    "missNote": "Anonymous search terms without results help us spot missing topics. We don't store any personal data."
+  },
+  "Zielgruppen": {
+    "filterLabel": "Filter by audience",
+    "all": "All",
+    "einwohner": "Resident",
+    "unternehmen": "Business",
+    "familie": "Family",
+    "alter": "Older age",
+    "schule": "School",
+    "migration": "Migration",
+    "mobilitaet": "Mobility",
+    "wohnen": "Housing",
+    "gesundheit": "Health"
+  },
+  "Feedback": {
+    "question": "Was this information helpful?",
+    "yes": "Yes, helpful",
+    "no": "No, not really",
+    "thanks": "Thanks for your feedback!",
+    "formIntro": "What was the problem?",
+    "category": {
+      "zustaendigkeit": "Wrong responsibility",
+      "unklar": "Information unclear",
+      "umstaendlich": "Process too cumbersome",
+      "veraltet": "Data outdated",
+      "barriere": "Accessibility barrier",
+      "vorschlag": "Suggestion"
+    },
+    "commentLabel": "Comment (optional)",
+    "commentPlaceholder": "Optional: briefly describe — no personal data.",
+    "privacy": "Please don't enter personal data. We don't store names, email or IP addresses; emails and longer numbers are removed automatically.",
+    "skip": "Send without details",
+    "submit": "Send"
+  },
+  "Roadmap": {
+    "title": "Roadmap",
+    "intro": "What happens to feedback and suggestions — by status, from the public GitHub issues. No names or personal data.",
+    "status": {
+      "eingegangen": "Received",
+      "geprueft": "Reviewed",
+      "in-umsetzung": "In progress",
+      "umgesetzt": "Done"
+    },
+    "empty": "No public entries yet.",
+    "columnEmpty": "Nothing here.",
+    "unavailable": "The roadmap is currently unavailable.",
+    "viewOnGithub": "View on GitHub →"
+  },
+  "Explorer": {
+    "regionLabel": "Search the administration",
+    "intro": "Search for an office or browse the departments. Tap an entry for details.",
+    "searchLabel": "Search office or department",
+    "searchPlaceholder": "e.g. tax office, school, VBZ …",
+    "resultsCount": "{count, plural, one {# result} other {# results}} for “{query}”",
+    "noResults": "No results. Try a different term.",
+    "anliegenHeading": "Matching concerns",
+    "anliegenZustaendig": "Responsible",
+    "department": "Department",
+    "beteiligung": "Holding",
+    "beteiligungenHeading": "Holdings",
+    "vorsteher": "Lead",
+    "id": "Code",
+    "budget": "Expense",
+    "netExpense": "Net expense",
+    "fte": "Positions (FTE)",
+    "relatedProcesses": "Related processes"
   },
   "Anliegen": {
     "title": "Search citizen concerns",
@@ -63,7 +193,9 @@
     "noResultsFallbackHeading": "What others commonly look for",
     "resultsCount": "{count, plural, one {# result} other {# results}} for „{query}\"",
     "popularHeading": "Common concerns",
-    "placeholder": "e.g. register dog, passport, social aid…"
+    "placeholder": "e.g. register dog, passport, social aid…",
+    "relatedProcess": "View process",
+    "weitereStellen": "Other offices involved"
   },
   "Treemap": {
     "title": "Where does my tax franc go?",
@@ -84,7 +216,8 @@
     "emptyBody": "No office has recorded expenses yet. Try the {listLink} instead, or use the {searchLink}.",
     "emptyListLink": "list of offices",
     "emptySearchLink": "concern search",
-    "hiddenDepartments": "{count, plural, one {# department is} other {# departments are}} not shown — no budget data available for: {names}."
+    "hiddenDepartments": "{count, plural, one {# department is} other {# departments are}} not shown — no budget data available for: {names}.",
+    "committeeNote": "Tip: Dashed lines indicate departments where the parliamentary audit committee differs from the organizational assignment."
   },
   "List": {
     "title": "{cityName} administration – hierarchical overview",
@@ -100,6 +233,10 @@
     "vorsteher": "Head",
     "department": "Department",
     "ogdKey": "OGD key",
+    "rechtsform": "Legal form",
+    "beteiligungsart": "Holding type",
+    "sektor": "Sector",
+    "participationSource": "Holdings report",
     "abbreviation": "Code",
     "expense": "Expense",
     "income": "Income",
@@ -120,12 +257,17 @@
     "fteUnitPublished": "{value} {einheit} (published)",
     "fteEstimateText": "~{value} (estimate: personnel expense ÷ {amount} CHF)",
     "relatedProzesseHeading": "Involved in the following procedures",
+    "relatedLebenslagenHeading": "Concerns that lead here",
     "perCapitaLabel": "Per resident",
     "perCapitaValue": "≈ {value}",
     "perCapitaTitle": "Expense per capita — expense divided by the city's resident population",
     "budgetShareLabel": "Share of total budget",
     "budgetShareValue": "{percent} %",
-    "budgetShareTitle": "Share of this item in the city's total expense"
+    "budgetShareTitle": "Share of this item in the city's total expense",
+    "detailDiversity": "Diversity & management",
+    "detailDiversityDesc": "Share of women and men in management",
+    "detailDiversityWomen": "Women",
+    "detailDiversityMen": "Men"
   },
   "Legend": {
     "headingTop": "City council & departments",
@@ -140,7 +282,8 @@
     "spezial": "Special administrative authority",
     "verselbst": "Independent operation",
     "beteiligung": "Holding / foundation",
-    "konflikt": "Citizen vs. RPK assignment differs"
+    "konflikt": "Citizen/Audit assignment diverges",
+    "committee": "Committee / Commission"
   },
   "Hint": "Hover = explore · Click = select · Scroll = zoom · Search also knows concerns",
   "Simulator": {
@@ -183,18 +326,72 @@
     "staff": "Staff unit",
     "extern": "Independent operation",
     "spezial": "Special administrative authority",
+    "committee": "Committee / Commission",
     "beteiligung": "Holding / foundation"
   },
   "Prozesse": {
     "title": "Administrative processes",
-    "intro": "Typed flowcharts following the OpenGov-Process-Schema. Each process shows steps, involved actors and estimated durations — so residents can see what a procedure actually entails.",
+    "intro": "Typed flowcharts following the OpenGov-Process-Schema. Each process shows steps and involved actors — so residents can see what a procedure actually entails.",
     "empty": "No processes yet.",
     "city": "City {city}",
+    "relatedLebenslagenHeading": "Common concerns that lead here",
     "stepsHeading": "Steps (textual)",
+    "legendeHeading": "Übersetzung ausstehend — Legende",
+    "schritteAnzahl": "{count, plural, one {# step} other {# steps}}",
     "legalHeading": "Legal basis",
     "sourcesHeading": "Sources",
     "retrieved": "retrieved {date}",
     "goToUnit": "Go to unit: {name}",
+    "reifeHeading": "Digital maturity & simplification",
+    "kompass": {
+      "heading": "Process compass",
+      "intro": "Structural diagnosis of this procedure — derived from the model, not legally binding information.",
+      "zustaendigkeitHeading": "Responsibility",
+      "keineBehoerde": "No authority recorded.",
+      "geteilt": "Split responsibility",
+      "geteiltHint": "several bodies involved, often opaque for citizens",
+      "rekurs": "Appeals body",
+      "aufwandHeading": "Burden on citizens",
+      "pflichtdokumente": "{count, plural, one {# required document} other {# required documents}}",
+      "entscheidungen": "{count, plural, one {# decision point} other {# decision points}}",
+      "keinAufwand": "No particular hurdles recorded.",
+      "vereinfachungHeading": "Simplification potential",
+      "verbesserungen": "{count, plural, one {# improvement idea} other {# improvement ideas}}",
+      "keinePotenziale": "No potential recorded yet.",
+      "detailsLink": "Details below"
+    },
+    "reifegradLabel": "Online maturity",
+    "filterReifegradHeading": "Filter by online maturity",
+    "filterAlle": "All",
+    "filterLeer": "No processes with this online maturity.",
+    "medienbruecheHeading": "Media breaks",
+    "onceOnlyHeading": "Data already on file (once-only)",
+    "nutzergruppenHeading": "User groups",
+    "painPointsHeading": "Pain points",
+    "improvementsHeading": "Improvement ideas",
+    "kpiHeading": "Impact & metrics",
+    "statusLabel": "Status",
+    "reifegrad": {
+      "offline": "Offline",
+      "teil-digital": "Partly digital",
+      "digital": "Digital",
+      "end-to-end": "Fully digital"
+    },
+    "medienbruch": {
+      "drucken": "Printing",
+      "post": "Postal mail",
+      "persoenliches-erscheinen": "In-person visit",
+      "separate-zahlung": "Separate payment",
+      "erneute-dateneingabe": "Re-entering data",
+      "unterschrift-handschriftlich": "Handwritten signature"
+    },
+    "status": {
+      "beobachtet": "Observed",
+      "validiert": "Validated",
+      "vorgeschlagen": "Proposed",
+      "in-umsetzung": "In progress",
+      "umgesetzt": "Done"
+    },
     "schrittTyp": {
       "start": "Start",
       "input": "Input",
@@ -203,6 +400,129 @@
       "loop": "Loop",
       "warten": "Wait",
       "ende": "End"
+    },
+    "disclaimer": "Übersetzung ausstehend — Inoffizielle, vereinfachte Darstellung — keine amtliche Auskunft. Massgeblich sind allein die verlinkten Quellen der Stadt Zürich (siehe Quellen mit Abrufdatum).",
+    "disclaimerHochrisiko": "Übersetzung ausstehend — Hochrisiko-Fall mit rechtlicher Tragweite: Hier geht es um verbindliche Fristen, Gebühren oder Rechtsmittel mit erheblichen Folgen. Diese Darstellung ist inoffiziell und vereinfacht — rechtlich verbindlich sind allein die amtlichen Quellen der Stadt Zürich. Prüfen Sie verbindliche Angaben dort und holen Sie im Zweifel persönliche Beratung ein.",
+    "disclaimerHochrisikoLabel": "Übersetzung ausstehend — Hochrisiko-Hinweis",
+    "voraussetzungenHeading": "Übersetzung ausstehend — Voraussetzungen",
+    "referenzenHeading": "Übersetzung ausstehend — Verbindliche Werte (Fristen & Gebühren)",
+    "referenzenHint": "Übersetzung ausstehend — Verbindliche Zahlen stehen bewusst nicht im Diagramm — sie gelten nur so, wie sie in der amtlichen Quelle stehen. Jeder Eintrag verlinkt auf die exakte Stelle.",
+    "referenzUnverifiziert": "Übersetzung ausstehend — Belegstelle noch nicht wörtlich übernommen",
+    "translationPending": "Translation pending — content is shown in German.",
+    "bewertung": {
+      "heading": "Assessment: digitalisation & user-centricity",
+      "intro": "Derived metadata — not an authoritative statement. Each indicator is either deterministically computed from the process model or evidenced from the official source. Without evidence or derivation an indicator stays \"unknown\" — it is never guessed.",
+      "scoreLabel": "Indicators met",
+      "scoreWert": "{erfuellt} of {bekannt}",
+      "keinScore": "No known indicators yet",
+      "unbekanntHinweis": "{count, plural, one {# indicator unknown} other {# indicators unknown}} — not assessed for lack of evidence (not counted as \"not met\").",
+      "kategorie": {
+        "digitalisierung": "Digitalisation",
+        "nutzendenorientierung": "User-centricity"
+      },
+      "status": {
+        "erfuellt": "met",
+        "nicht-erfuellt": "not met",
+        "unbekannt": "unknown"
+      },
+      "indikator": {
+        "online-antrag": "Online application available",
+        "online-bezahlung": "Online payment available",
+        "statusverfolgung": "Online status tracking",
+        "medienbruchfrei": "No media break",
+        "digital-abschliessbar": "Can be completed fully digitally",
+        "leichte-sprache": "Easy-language version available",
+        "mehrsprachigkeit": "Multilingual (en/fr/it)",
+        "voraussetzungen-genannt": "Preconditions clearly stated",
+        "fristen-kosten-verlinkt": "Deadlines/fees transparently linked",
+        "once-only": "Once-only (no re-entry of data)",
+        "barrierefreiheit": "Accessible (WCAG 2.1 AA)",
+        "nicht-digitaler-alternativweg": "Non-digital alternative path",
+        "eid-moeglich": "Login/eID available"
+      },
+      "evidenz": {
+        "toggle": "Evidence",
+        "belegLabel": "Evidenced",
+        "berechnetLabel": "Computed",
+        "unbekanntText": "No evidence on file — flagged as unknown, not as not met.",
+        "berechnet": {
+          "leichte-sprache": "{zahl} of {von} texts (title + steps) in easy language",
+          "mehrsprachigkeit": "{zahl} of {von} languages (en/fr/it) fully covered",
+          "voraussetzungen-genannt": "{zahl, plural, =0 {no preconditions stated} one {# precondition stated} other {# preconditions stated}}",
+          "fristen-kosten-verlinkt": "{zahl, plural, =0 {no linked source} one {# linked source for binding values} other {# linked sources for binding values}}"
+        }
+      },
+      "kennzahlenHeading": "Computed metrics (from the graph)",
+      "kennzahl": {
+        "schritte": "{count, plural, one {# step} other {# steps}}",
+        "akteurswechsel": "{count, plural, one {# actor handover} other {# actor handovers}}",
+        "behoerden": "{count, plural, one {# authority} other {# authorities}}",
+        "pflichtdokumente": "{count, plural, one {# required document} other {# required documents}}",
+        "entscheidungspunkte": "{count, plural, one {# decision point} other {# decision points}}"
+      },
+      "ja": "yes",
+      "nein": "no",
+      "informativ": "informational",
+      "ankerLabel": "Strategic basis",
+      "ankerStaerke": {
+        "direkt": "directly anchored",
+        "schwach": "weakly anchored",
+        "kein": "self-defined"
+      }
     }
+  },
+  "GraphTable": {
+    "caption": "Data of the network graph (currently visible nodes)",
+    "colName": "Organisational unit",
+    "colType": "Type",
+    "colParent": "Parent unit",
+    "colBudget": "Expense (CHF)",
+    "colFte": "Positions (FTE)"
+  },
+  "Export": {
+    "csvButton": "Export current view as CSV"
+  },
+  "RIS": {
+    "heading": "Parliamentary Business",
+    "viewAll": "View all business →",
+    "loading": "Loading business...",
+    "error": "Error loading business.",
+    "noData": "No recent business found."
+  },
+  "Quartier": {
+    "title": "Spatial Distribution",
+    "intro": "Figures per city district: area from the district geometry and the number of public facilities (Open Data Zürich). Data quality is shown in the badge.",
+    "selectLabel": "Metric:",
+    "metricArea": "Area",
+    "unitLocations": "facilities",
+    "tooltipValue": "{value} {unit}",
+    "noData": "No facility data yet for this metric — load it with `npm run data:fetch-geo`.",
+    "noGeo": "District geometry not available."
+  },
+  "Portfolio": {
+    "title": "Portfolio: processes × dimensions",
+    "intro": "The big picture across all processes: one procedure per row, one indicator for digitalisation or user-orientation per column, colour shows the degree of fulfilment. Derived metadata — not an authoritative statement. Every cell links to the process and its evidence.",
+    "source": "Derived from the process indicators (lib/bewertung.ts)",
+    "privacyNote": "Generated deterministically from the existing process data — no usage or personal data, no invented values to fill gaps.",
+    "empty": "No processes recorded yet.",
+    "caption": "Heatmap: processes (rows) × indicators (columns)",
+    "colProzess": "Process",
+    "scoreGroup": "Score (% fulfilled)",
+    "scoreDigital": "Dig.",
+    "scoreNutzend": "User",
+    "scoreGesamt": "Total",
+    "scoreDigitalLong": "Digitalisation — share of fulfilled indicators",
+    "scoreNutzendLong": "User-orientation — share of fulfilled indicators",
+    "scoreGesamtLong": "Total — share of fulfilled indicators",
+    "scoreNa": "no score",
+    "legendHeading": "Legend",
+    "legendInformativ": "informational (yes/no, does not count towards the score)",
+    "cellTitle": "{indikator}: {status}",
+    "detailLink": "Go to process “{titel}” — details and evidence",
+    "belegLuecke": "Evidence pending",
+    "belegLueckeTitle": "No digitalisation evidence on file yet — the digital columns stay “unknown”, not “not fulfilled”.",
+    "coverageNote": "{ohne, plural, =0 {All {total} processes have substantiated digitalisation indicators.} one {# of {total} processes has no substantiated digitalisation indicators yet — the digital columns stay “unknown”, not “not fulfilled”.} other {# of {total} processes have no substantiated digitalisation indicators yet — the digital columns stay “unknown”, not “not fulfilled”.}}",
+    "summaryHeading": "Fulfilment per indicator (across all processes)",
+    "summaryZeile": "{erfuellt} fulfilled · {nichtErfuellt} not fulfilled · {unbekannt} unknown"
   }
 }

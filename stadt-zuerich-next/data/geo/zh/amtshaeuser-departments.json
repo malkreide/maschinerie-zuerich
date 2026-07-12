@@ -1,0 +1,118 @@
+{
+  "_meta": {
+    "_doc": [
+      "Belegte, reviewte Zuordnung Amtshaus (poi_id) → zuständiges Departement.",
+      "Füllt Follow-up #2 (Klick-Detail → Verfahren) für den Amtshäuser-Layer.",
+      "",
+      "Generiert von scripts/build-amtshaus-departments.mjs. Quelle ist",
+      "ausschliesslich der ODZ-Datensatz geo_amtshaus, kreuzreferenziert gegen",
+      "die kanonische Org-Chart (data/zh/org-chart.json). Priorität: www-Slug,",
+      "dann dep (ohne Eigentümer-Default HBD), dann da/postadresse gegen",
+      "Org-Chart-Einheitsnamen (ohne generische Datenpfleger wie",
+      "\"Immobilien Stadt Zürich\"). Für einzelne Standorte ohne ODZ-Signal greift",
+      "eine belegte Zweitquelle (MANUAL_OVERRIDE, amtliche Standortangaben",
+      "ausserhalb des ODZ-Datensatzes). Ohne Treffer bleibt department=null und",
+      "der Layer-Default (BUG) greift — KEINE Verfahrens-Behauptung (Kardinalregel).",
+      "",
+      "Aktualisieren mit: npm run data:build-amtshaus-departments",
+      "Danach npm run data:fetch-geo, um den Snapshot neu zu schreiben."
+    ],
+    "quelle": "Open Data Zürich – geo_amtshaus (poi_amtshaus_view) + data/zh/org-chart.json",
+    "datasetUrl": "https://data.stadt-zuerich.ch/dataset/geo_amtshaus",
+    "lizenz": "CC-BY",
+    "stand": "2026-06-21",
+    "keyField": "poi_id"
+  },
+  "entries": {
+    "ah004": {
+      "name": "Amtshaus II (Bahnhofquai)",
+      "department": "SiD",
+      "beleg": "ODZ-Feld postadresse=\"Stadtpolizei Zürich\" → Org-Chart-Einheit → SiD"
+    },
+    "ah006": {
+      "name": "Amtshaus IV (Uraniastrasse)",
+      "department": "HBD",
+      "beleg": "ODZ-Feld www=https://www.stadt-zuerich.ch/hbd"
+    },
+    "ah012": {
+      "name": "Amtshaus V",
+      "department": "TED",
+      "beleg": "Zweitquelle (amtlich, ausserhalb ODZ): Tiefbauamt, Werdmühleplatz 3, Amtshaus V (Kontakt-/Postadresse des Tiefbauamts, TED) — https://www.stadt-zuerich.ch/misc/de/standards-stadtraeume/service/kontakt.html"
+    },
+    "ah007": {
+      "name": "Amtshaus IV (Lindenhofstrasse)",
+      "department": "HBD",
+      "beleg": "ODZ-Feld www=https://www.stadt-zuerich.ch/hbd"
+    },
+    "ah013": {
+      "name": "Amtshaus Parkring",
+      "department": "SSD",
+      "beleg": "ODZ-Feld www=https://www.stadt-zuerich.ch/ssd"
+    },
+    "ah003": {
+      "name": "Amtshaus II (Beatenplatz)",
+      "department": "SiD",
+      "beleg": "Zweitquelle (amtlich, ausserhalb ODZ): Schutz und Rettung Zürich (Feuerpolizei) am Beatenplatz 1 — Standortplan SiD — https://www.stadt-zuerich.ch/content/dam/web/de/politik-verwaltung/stadtverwaltung/sid/plan_standorte_schutz_und_rettung.pdf"
+    },
+    "ah014": {
+      "name": "Verwaltungszentrum Werd",
+      "department": "SD",
+      "beleg": "Zweitquelle (amtlich, ausserhalb ODZ): Umzug des Sozialdepartements ins Verwaltungszentrum Werd (Medienmitteilung 2004) — https://stored-data.stadt-zuerich.ch/internet/mm/home/mm_04/12_04/mm_08.html"
+    },
+    "ah011": {
+      "name": "Bürohaus Walche (GWA)",
+      "department": "GUD",
+      "beleg": "ODZ-Feld www=https://www.stadt-zuerich.ch/gud"
+    },
+    "ah9382": {
+      "name": "Smart City Lab",
+      "department": "PRD",
+      "beleg": "ODZ-Feld dep=Präsidialdepartement (PRD)"
+    },
+    "ah001": {
+      "name": "Stadthaus",
+      "department": "PRD",
+      "beleg": "ODZ-Feld da=Stadtkanzlei → Org-Chart-Einheit → PRD"
+    },
+    "ah10301": {
+      "name": "Haus der Industriellen Betriebe",
+      "department": "GUD",
+      "beleg": "ODZ-Feld dep=Gesundheits- und Umweltdepartement (GUD)"
+    },
+    "ah8101": {
+      "name": "Amtshaus Werdplatz",
+      "department": "HBD",
+      "beleg": "ODZ-Feld da=Amt für Städtebau → Org-Chart-Einheit → HBD"
+    },
+    "ah002": {
+      "name": "Amtshaus I",
+      "department": "SiD",
+      "beleg": "ODZ-Feld www=https://www.stadt-zuerich.ch/stadtpolizei"
+    },
+    "ah005": {
+      "name": "Amtshaus III",
+      "department": "HBD",
+      "beleg": "ODZ-Feld www=https://www.stadt-zuerich.ch/hbd"
+    },
+    "ah008": {
+      "name": "Amtshaus Helvetiaplatz",
+      "department": "SD",
+      "beleg": "ODZ-Feld www=https://www.stadt-zuerich.ch/sd"
+    },
+    "ah8221": {
+      "name": "Haus zum Rech",
+      "department": "HBD",
+      "beleg": "ODZ-Feld da=Amt für Städtebau → Org-Chart-Einheit → HBD"
+    },
+    "ah10284": {
+      "name": "Haus der Industriellen Betriebe",
+      "department": "GUD",
+      "beleg": "ODZ-Feld dep=Gesundheits- und Umweltdepartement (GUD)"
+    },
+    "ah11821": {
+      "name": "Verwaltungszentrum Eggbühl",
+      "department": "GUD",
+      "beleg": "ODZ-Feld dep=Gesundheits- und Umweltdepartement (GUD)"
+    }
+  }
+}
