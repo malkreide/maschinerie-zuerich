@@ -52,9 +52,28 @@
     "beteiligungen": {
       "type": "array",
       "items": { "$ref": "#/definitions/Beteiligung" }
+    },
+    "relationships": {
+      "type": "array",
+      "description": "Nicht-hierarchische Verknüpfungen zwischen Einheiten — z.B. Wahl/Aufsicht ohne Verwaltungsunterstellung. Ergänzt die hierarchische parent-Beziehung, ersetzt sie nicht.",
+      "items": { "$ref": "#/definitions/Relationship" }
     }
   },
   "definitions": {
+    "Relationship": {
+      "type": "object",
+      "required": ["from", "to", "type"],
+      "properties": {
+        "from": { "type": "string", "description": "ID der ausführenden/aufsehenden Einheit (Department- oder Unit-ID)." },
+        "to": { "type": "string", "description": "ID der verknüpften Einheit (Department- oder Unit-ID)." },
+        "type": {
+          "type": "string",
+          "enum": ["wahl_und_aufsicht", "fachlich_politische_verknuepfung"],
+          "description": "wahl_und_aufsicht = Wahl und Aufsicht ohne Verwaltungsunterstellung (z.B. Gemeinderat über Ombudsstelle); fachlich_politische_verknuepfung = fachliche/politische Verknüpfung ohne Unterstellung (z.B. Departement ↔ verwaltungsunabhängige Behörde)."
+        },
+        "description": { "type": "string", "description": "Kurze Erläuterung der Beziehung (de)." }
+      }
+    },
     "Budget": {
       "type": "object",
       "required": ["jahr", "typ", "aufwand", "ertrag", "nettoaufwand"],

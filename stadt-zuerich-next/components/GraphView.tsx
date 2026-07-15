@@ -535,6 +535,21 @@ function buildElements(d: StadtData, expanded: Set<string>, locale: string | und
     });
   }
 
+  // Nicht-hierarchische Aufsichts-/Verknüpfungs-Kanten (verwaltungsunabhängige
+  // Behörden). Nur zeichnen, wenn beide Endpunkte gerade gerendert sind —
+  // sonst würde Cytoscape eine Kante ohne Knoten erzeugen.
+  const renderedIds = new Set<string>();
+  for (const n of nodes) if (n.data?.id) renderedIds.add(n.data.id as string);
+  for (const rel of d.relationships ?? []) {
+    if (!renderedIds.has(rel.from) || !renderedIds.has(rel.to)) continue;
+    edges.push({
+      data: {
+        id: `r-${rel.from}-${rel.to}`, source: rel.from, target: rel.to,
+        dashed: true, rel: true, color: TC.konflikt,
+      },
+    });
+  }
+
   return [...nodes, ...edges];
 }
 
@@ -636,6 +651,12 @@ function getGraphStyle(locale?: string, klimaModus?: boolean, gudBudgetDelta: nu
         'width': 1 * mul, 'line-color': 'data(color)', 'curve-style': 'bezier',
         'target-arrow-shape': 'none', 'opacity': 0.6 } },
     { selector: 'edge[?dashed]', style: { 'line-style': 'dashed', 'opacity': 0.45 } },
+    // Aufsichts-/Verknüpfungs-Kante (verwaltungsunabhängig): gestrichelt in der
+    // Konflikt-Farbe mit Pfeil zur beaufsichtigten/verknüpften Einheit.
+    { selector: 'edge[?rel]', style: {
+        'line-style': 'dashed', 'line-color': TC.konflikt,
+        'target-arrow-shape': 'triangle', 'target-arrow-color': TC.konflikt,
+        'width': 1.2 * mul, 'opacity': 0.5 } },
     { selector: '.faded',       style: { 'opacity': 0.6, 'text-opacity': 0.8 } },
     { selector: '.highlighted', style: { 'border-width': 3 * mul, 'border-color': TC.accent, 'opacity': 1 } },
     { selector: '.search-hit',  style: { 'border-width': 4 * mul, 'border-color': TC.accent } },

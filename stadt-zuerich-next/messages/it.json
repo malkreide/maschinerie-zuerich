@@ -267,7 +267,10 @@
     "detailDiversity": "Diversità & quadri",
     "detailDiversityDesc": "Percentuale di donne e uomini nei quadri",
     "detailDiversityWomen": "Donne",
-    "detailDiversityMen": "Uomini"
+    "detailDiversityMen": "Uomini",
+    "independentLabel": "Indipendente dall'amministrazione",
+    "independentOversight": "Eletto e vigilato da {from}",
+    "independentLink": "Collegato a {from}, senza subordinazione"
   },
   "Legend": {
     "headingTop": "Consiglio municipale e dipartimenti",
@@ -283,7 +286,8 @@
     "verselbst": "Azienda autonoma",
     "beteiligung": "Partecipazione / fondazione",
     "konflikt": "Assegnazione cittadini ≠ RPK",
-    "committee": "Comitato / Commissione"
+    "committee": "Comitato / Commissione",
+    "aufsicht": "Vigilanza senza subordinazione"
   },
   "Hint": "Hover = esplorare · Clic = selezionare · Rotella = zoom · La ricerca conosce anche le pratiche",
   "Simulator": {

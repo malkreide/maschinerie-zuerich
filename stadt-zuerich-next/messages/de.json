@@ -267,7 +267,10 @@
     "detailDiversity": "Diversity & Kader",
     "detailDiversityDesc": "Frauen- und Männeranteil im Kader",
     "detailDiversityWomen": "Frauen",
-    "detailDiversityMen": "Männer"
+    "detailDiversityMen": "Männer",
+    "independentLabel": "Verwaltungsunabhängig",
+    "independentOversight": "Wahl & Aufsicht durch {from}",
+    "independentLink": "Mit {from} verknüpft, ohne Unterstellung"
   },
   "Legend": {
     "headingTop": "Stadtrat & Departemente",
@@ -283,7 +286,8 @@
     "verselbst": "Verselbständigter Betrieb",
     "beteiligung": "Beteiligung / Stiftung",
     "konflikt": "Bürger-/RPK-Zuordnung divergiert",
-    "committee": "Ausschuss / Kommission"
+    "committee": "Ausschuss / Kommission",
+    "aufsicht": "Aufsicht ohne Unterstellung"
   },
   "Hint": "Hover = erkunden · Klick = auswählen · Scroll = zoomen · Suche kennt auch Anliegen",
   "Simulator": {

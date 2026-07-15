@@ -267,7 +267,10 @@
     "detailDiversity": "Diversité & cadres",
     "detailDiversityDesc": "Part des femmes et des hommes parmi les cadres",
     "detailDiversityWomen": "Femmes",
-    "detailDiversityMen": "Hommes"
+    "detailDiversityMen": "Hommes",
+    "independentLabel": "Indépendant de l'administration",
+    "independentOversight": "Élu·e et supervisé·e par {from}",
+    "independentLink": "Lié à {from}, sans subordination"
   },
   "Legend": {
     "headingTop": "Conseil municipal et départements",
@@ -283,7 +286,8 @@
     "verselbst": "Entreprise autonome",
     "beteiligung": "Participation / fondation",
     "konflikt": "Affectation citoyenne ≠ RPK",
-    "committee": "Comité / Commission"
+    "committee": "Comité / Commission",
+    "aufsicht": "Surveillance sans subordination"
   },
   "Hint": "Survol = explorer · Clic = sélectionner · Molette = zoomer · La recherche connaît aussi les démarches",
   "Simulator": {

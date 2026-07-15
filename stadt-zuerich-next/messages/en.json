@@ -267,7 +267,10 @@
     "detailDiversity": "Diversity & management",
     "detailDiversityDesc": "Share of women and men in management",
     "detailDiversityWomen": "Women",
-    "detailDiversityMen": "Men"
+    "detailDiversityMen": "Men",
+    "independentLabel": "Administratively independent",
+    "independentOversight": "Elected & supervised by {from}",
+    "independentLink": "Linked to {from}, not subordinate"
   },
   "Legend": {
     "headingTop": "City council & departments",
@@ -283,7 +286,8 @@
     "verselbst": "Independent operation",
     "beteiligung": "Holding / foundation",
     "konflikt": "Citizen/Audit assignment diverges",
-    "committee": "Committee / Commission"
+    "committee": "Committee / Commission",
+    "aufsicht": "Oversight without subordination"
   },
   "Hint": "Hover = explore · Click = select · Scroll = zoom · Search also knows concerns",
   "Simulator": {

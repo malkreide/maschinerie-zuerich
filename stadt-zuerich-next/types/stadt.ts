@@ -148,6 +148,24 @@ export interface Center {
   note?: string;
 }
 
+// Nicht-hierarchische Beziehungen zwischen Einheiten. Ergänzen die
+// hierarchische `parent`-Zuordnung (organisatorische Gruppierung) um die
+// rechtliche/politische Realität: verwaltungsunabhängige Behörden sind einem
+// Departement zugeordnet, ihm aber *nicht* unterstellt. Spiegelt den
+// `relationships`-Block des offiziellen Stadt-Organigramms.
+export const RELATIONSHIP_TYPES = [
+  'wahl_und_aufsicht',                 // Wahl/Aufsicht ohne Verwaltungsunterstellung (z.B. Gemeinderat → Ombudsstelle)
+  'fachlich_politische_verknuepfung',  // fachlich/politisch verknüpft, ohne Unterstellung (z.B. SSD ↔ Schulbehörden)
+] as const;
+export type RelationshipType = (typeof RELATIONSHIP_TYPES)[number];
+
+export interface Relationship {
+  from: string;              // Department- oder Unit-ID der aufsehenden/verknüpften Seite
+  to: string;                // Department- oder Unit-ID der verwaltungsunabhängigen Einheit
+  type: RelationshipType;
+  description?: string;      // Kurze Erläuterung (de)
+}
+
 // Lokalisierbarer Content einer Lebenslage. Schlüssel wie bisher:
 // frage = Kurz-Frage, stichworte = Suchbegriffe, antwort = Kurzerklärung.
 export interface LebenslageContent {
@@ -239,5 +257,6 @@ export interface StadtData {
   departments: Department[];
   units: Unit[];
   beteiligungen: Beteiligung[];
+  relationships?: Relationship[];  // nicht-hierarchische Verknüpfungen (optional)
   lebenslagen?: Lebenslage[];  // optional, wird zur Laufzeit beigeladen
 }

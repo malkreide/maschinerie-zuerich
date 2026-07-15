@@ -267,7 +267,10 @@
     "detailDiversity": "Frauen und Männer in der Leitung",
     "detailDiversityDesc": "So viele Frauen und Männer sind in der Leitung",
     "detailDiversityWomen": "Frauen",
-    "detailDiversityMen": "Männer"
+    "detailDiversityMen": "Männer",
+    "independentLabel": "Unabhängig von der Verwaltung",
+    "independentOversight": "Gewählt und beaufsichtigt von: {from}",
+    "independentLink": "Arbeitet mit {from} zusammen. Aber nicht unterstellt."
   },
   "Legend": {
     "headingTop": "Die Chefs der Stadt",
@@ -283,7 +286,8 @@
     "verselbst": "Eigene Firma der Stadt",
     "beteiligung": "Stiftung oder Beteiligung",
     "konflikt": "Hier passt etwas nicht zusammen.",
-    "committee": "Ausschuss / Kommission"
+    "committee": "Ausschuss / Kommission",
+    "aufsicht": "Aufsicht, aber nicht unterstellt"
   },
   "Hint": "Mit der Maus über die Bilder fahren · Klicken: auswählen · Mit dem Rad gross machen · Sie können auch nach Wörtern suchen",
   "Simulator": {
