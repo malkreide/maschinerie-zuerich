@@ -51,6 +51,13 @@ const SEKTOR_DE: Record<string, string> = {
   freizeit: 'Freizeit',
   gesundheit: 'Gesundheit',
 };
+const BEZIEHUNG_TYP_DE: Record<string, string> = {
+  traegerschaft: 'Trägerschaft',
+  mit_traegerschaft: 'Gemeinsame Trägerschaft',
+  vr_vertretung: 'Verwaltungsrat',
+  subvention: 'Subvention',
+  leistungsauftrag: 'Leistungsauftrag',
+};
 
 /** Vorberechnetes, server-seitig aufgelöstes Prozess-Bündel pro Einheit.
  *  Bewusst mit bereits resolvtem titel: DetailPanel ist client-seitig,
@@ -151,6 +158,37 @@ export default function DetailPanel({
     if (b.rechtsform)      rows.push({ k: t('rechtsform'), v: RECHTSFORM_DE[b.rechtsform] ?? b.rechtsform });
     if (b.beteiligungsart) rows.push({ k: t('beteiligungsart'), v: BETEILIGUNGSART_DE[b.beteiligungsart] ?? b.beteiligungsart });
     if (b.sektor)          rows.push({ k: t('sektor'), v: SEKTOR_DE[b.sektor] ?? b.sektor });
+    // Typisierte Beziehungen der Stadt (Trägerschaft, VR-Vertretung, Subvention …).
+    // Bindende Werte bleiben verlinkt, nie gerendert (Kardinalregel).
+    if (b.beziehungen?.length) {
+      rows.push({
+        k: t('relations'),
+        v: (
+          <span>
+            {b.beziehungen.map((bz, i) => (
+              <span key={i} className="block">
+                {BEZIEHUNG_TYP_DE[bz.typ] ?? bz.typ}
+                {bz.rolle ? `: ${bz.rolle}` : ''}
+                {bz.mittraeger?.length ? ` (mit ${bz.mittraeger.join(', ')})` : ''}
+                {bz.referenz ? (
+                  <>
+                    {' · '}
+                    <a
+                      href={bz.referenz.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[var(--color-accent)] underline underline-offset-2"
+                    >
+                      {bz.referenz.label}
+                    </a>
+                  </>
+                ) : null}
+              </span>
+            ))}
+          </span>
+        ),
+      });
+    }
   }
   if ('konflikt' in item && item.konflikt) {
     rows.push({

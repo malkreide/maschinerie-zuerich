@@ -275,7 +275,8 @@
     "independentOversight": "Gewählt und beaufsichtigt von: {from}",
     "independentLink": "Arbeitet mit {from} zusammen. Aber nicht unterstellt.",
     "locations": "Orte",
-    "locationsLink": "Auf der Karte anschauen"
+    "locationsLink": "Auf der Karte anschauen",
+    "relations": "Verbindung zur Stadt"
   },
   "Legend": {
     "headingTop": "Die Chefs der Stadt",

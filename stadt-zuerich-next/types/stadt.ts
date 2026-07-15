@@ -123,6 +123,28 @@ export const PROVENANCE = [
 ] as const;
 export type Provenance = (typeof PROVENANCE)[number];
 
+// Typisierte Beziehung der Stadt zu einer assoziierten Organisation — jenseits
+// der reinen Kapitalbeteiligung, die schon durch die Zugehörigkeit zu
+// `beteiligungen` ausgedrückt ist. Macht Trägerschaften, Verwaltungsrats-
+// Vertretungen, Subventions- und Leistungsverträge sichtbar. Bindende Werte
+// (Quoten, Beträge) werden NICHT gerendert — nur als `referenz`-Deep-Link auf
+// die amtliche Quelle (Kardinalregel «Link, don't assert»).
+export const BETEILIGUNG_BEZIEHUNGS_TYPEN = [
+  'traegerschaft',      // öffentlich-rechtliche Trägerschaft/Stifterin (public_law_sponsorship)
+  'mit_traegerschaft',  // gemeinsame Trägerschaft, z. B. mit dem Kanton (joint_sponsorship)
+  'vr_vertretung',      // Vertretung in Verwaltungs-/Stiftungsrat (board_representation)
+  'subvention',         // Subventions-/Leistungsvertrag mit Beitrag (subsidy_contract)
+  'leistungsauftrag',   // Leistungsauftrag ohne Subventionscharakter (service_mandate)
+] as const;
+export type BeteiligungBeziehungsTyp = (typeof BETEILIGUNG_BEZIEHUNGS_TYPEN)[number];
+
+export interface BeteiligungBeziehung {
+  typ: BeteiligungBeziehungsTyp;
+  rolle?: string;              // z. B. «Trägerin bzw. Stifterin», «Mehrheitsaktionärin»
+  mittraeger?: string[];       // Mit-Träger bei gemeinsamer Trägerschaft, z. B. ["Kanton Zürich"]
+  referenz?: { label: string; url: string }; // Deep-Link auf amtliche Grundlage (kein gerenderter Wert)
+}
+
 export interface Beteiligung {
   id: string;
   name: string;
@@ -139,6 +161,7 @@ export interface Beteiligung {
   quelle?: string;      // Beleg-URL (z. B. Beteiligungsbericht)
   stand?: string;       // Datenstand (Jahr oder ISO-Datum)
   provenance?: Provenance; // maschinenlesbare Datenherkunft
+  beziehungen?: BeteiligungBeziehung[]; // typisierte Beziehungen der Stadt (optional, additiv)
 }
 
 export interface Center {

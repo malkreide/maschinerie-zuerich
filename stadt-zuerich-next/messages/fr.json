@@ -275,7 +275,8 @@
     "independentOversight": "Élu·e et supervisé·e par {from}",
     "independentLink": "Lié à {from}, sans subordination",
     "locations": "Emplacements",
-    "locationsLink": "Voir sur la carte"
+    "locationsLink": "Voir sur la carte",
+    "relations": "Relation avec la ville"
   },
   "Legend": {
     "headingTop": "Conseil municipal et départements",

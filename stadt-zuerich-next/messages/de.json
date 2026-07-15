@@ -275,7 +275,8 @@
     "independentOversight": "Wahl & Aufsicht durch {from}",
     "independentLink": "Mit {from} verknüpft, ohne Unterstellung",
     "locations": "Standorte",
-    "locationsLink": "Auf der Karte ansehen"
+    "locationsLink": "Auf der Karte ansehen",
+    "relations": "Beziehung zur Stadt"
   },
   "Legend": {
     "headingTop": "Stadtrat & Departemente",

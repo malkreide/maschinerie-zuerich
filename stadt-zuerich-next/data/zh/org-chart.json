@@ -3225,7 +3225,21 @@
       "zweck": "Wissenschaftlich geführter Zoo mit Bildungs-, Natur- und Artenschutzauftrag.",
       "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
       "stand": "2025",
-      "provenance": "aggregiert"
+      "provenance": "aggregiert",
+      "beziehungen": [
+        {
+          "typ": "vr_vertretung",
+          "rolle": "Vertretung in den strategischen Organen"
+        },
+        {
+          "typ": "subvention",
+          "rolle": "Kulturbeitrag 2026/2027",
+          "referenz": {
+            "label": "Kulturbeiträge 2026 und 2027 (STRB 2026-2258)",
+            "url": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/politik-und-recht/stadtratsbeschluesse/2026/06/stzh-strb-2026-2258.html"
+          }
+        }
+      ]
     },
     {
       "id": "B-okj",
@@ -3251,7 +3265,17 @@
       "zweck": "Bau und Bewirtschaftung preisgünstiger Alterswohnungen.",
       "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
       "stand": "2025",
-      "provenance": "aggregiert"
+      "provenance": "aggregiert",
+      "beziehungen": [
+        {
+          "typ": "traegerschaft",
+          "rolle": "Trägerin bzw. Stifterin",
+          "referenz": {
+            "label": "Beteiligungsübersicht der Stadt",
+            "url": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html"
+          }
+        }
+      ]
     },
     {
       "id": "B-pwg",
@@ -3263,7 +3287,17 @@
       "zweck": "Erhalt und Vermehrung preisgünstiger Wohn- und Gewerberäume.",
       "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
       "stand": "2025",
-      "provenance": "aggregiert"
+      "provenance": "aggregiert",
+      "beziehungen": [
+        {
+          "typ": "traegerschaft",
+          "rolle": "Trägerin bzw. Stifterin",
+          "referenz": {
+            "label": "Beteiligungsübersicht der Stadt",
+            "url": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html"
+          }
+        }
+      ]
     },
     {
       "id": "B-sew",
@@ -3275,7 +3309,17 @@
       "zweck": "Bereitstellung von gemeinnützigem, preisgünstigem Wohnraum.",
       "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
       "stand": "2025",
-      "provenance": "aggregiert"
+      "provenance": "aggregiert",
+      "beziehungen": [
+        {
+          "typ": "traegerschaft",
+          "rolle": "Trägerin bzw. Stifterin",
+          "referenz": {
+            "label": "Beteiligungsübersicht der Stadt",
+            "url": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html"
+          }
+        }
+      ]
     },
     {
       "id": "B-skf",
@@ -3287,7 +3331,17 @@
       "zweck": "Preisgünstiger Wohnraum für kinderreiche Familien.",
       "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
       "stand": "2025",
-      "provenance": "aggregiert"
+      "provenance": "aggregiert",
+      "beziehungen": [
+        {
+          "typ": "traegerschaft",
+          "rolle": "Trägerin bzw. Stifterin",
+          "referenz": {
+            "label": "Beteiligungsübersicht der Stadt",
+            "url": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html"
+          }
+        }
+      ]
     },
     {
       "id": "B-kszh",
@@ -3299,7 +3353,17 @@
       "zweck": "Betrieb und Erhalt von Kongresshaus und Tonhalle Zürich.",
       "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
       "stand": "2025",
-      "provenance": "aggregiert"
+      "provenance": "aggregiert",
+      "beziehungen": [
+        {
+          "typ": "traegerschaft",
+          "rolle": "Trägerin bzw. Stifterin",
+          "referenz": {
+            "label": "Beteiligungsübersicht der Stadt",
+            "url": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html"
+          }
+        }
+      ]
     },
     {
       "id": "B-shz",
@@ -3311,7 +3375,21 @@
       "zweck": "Betrieb der Sprechbühnen Pfauen und Schiffbau; die Stadt ist Hauptaktionärin und Subventionsgeberin.",
       "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
       "stand": "2025",
-      "provenance": "aggregiert"
+      "provenance": "aggregiert",
+      "beziehungen": [
+        {
+          "typ": "vr_vertretung",
+          "rolle": "Vertretung in den strategischen Organen"
+        },
+        {
+          "typ": "subvention",
+          "rolle": "Subventionsvertrag",
+          "referenz": {
+            "label": "Subventionsvertrag (AS 444.130)",
+            "url": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/politik-und-recht/amtliche-sammlung/4/444/130.html"
+          }
+        }
+      ]
     },
     {
       "id": "B-tonhalle",
@@ -3323,7 +3401,21 @@
       "zweck": "Trägerin des Tonhalle-Orchesters Zürich und Veranstalterin des Konzertbetriebs.",
       "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
       "stand": "2025",
-      "provenance": "aggregiert"
+      "provenance": "aggregiert",
+      "beziehungen": [
+        {
+          "typ": "vr_vertretung",
+          "rolle": "Vertretung in den strategischen Organen"
+        },
+        {
+          "typ": "subvention",
+          "rolle": "Subventionsvertrag",
+          "referenz": {
+            "label": "Subventionsvertrag (AS 444.110)",
+            "url": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/politik-und-recht/amtliche-sammlung/4/444/110.html"
+          }
+        }
+      ]
     },
     {
       "id": "B-neumarkt",
@@ -3335,7 +3427,21 @@
       "zweck": "Betrieb des städtisch mitfinanzierten Theaters am Neumarkt.",
       "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
       "stand": "2025",
-      "provenance": "aggregiert"
+      "provenance": "aggregiert",
+      "beziehungen": [
+        {
+          "typ": "vr_vertretung",
+          "rolle": "Vertretung in den strategischen Organen"
+        },
+        {
+          "typ": "subvention",
+          "rolle": "Subventionsvertrag",
+          "referenz": {
+            "label": "Subventionsvertrag (AS 444.140)",
+            "url": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/politik-und-recht/amtliche-sammlung/4/444/140/140-v11.html"
+          }
+        }
+      ]
     },
     {
       "id": "B-szu",
@@ -3347,7 +3453,13 @@
       "zweck": "Bahn- und Busbetrieb im Sihltal und auf den Uetliberg im Verbund des ZVV; Stadt Zürich als Aktionärin.",
       "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
       "stand": "2025",
-      "provenance": "aggregiert"
+      "provenance": "aggregiert",
+      "beziehungen": [
+        {
+          "typ": "vr_vertretung",
+          "rolle": "Vertretung in den strategischen Organen"
+        }
+      ]
     },
     {
       "id": "B-zsg",
@@ -3359,7 +3471,13 @@
       "zweck": "Personenschifffahrt auf dem Zürichsee im Verbund des ZVV; Stadt Zürich als Aktionärin.",
       "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
       "stand": "2025",
-      "provenance": "aggregiert"
+      "provenance": "aggregiert",
+      "beziehungen": [
+        {
+          "typ": "vr_vertretung",
+          "rolle": "Vertretung in den strategischen Organen"
+        }
+      ]
     },
     {
       "id": "B-zbz",
@@ -3371,7 +3489,141 @@
       "zweck": "Kantons-, Stadt- und Universitätsbibliothek; gemeinsame Stiftung von Stadt, Kanton und Zentralbibliothek-Gesellschaft.",
       "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
       "stand": "2025",
-      "provenance": "aggregiert"
+      "provenance": "aggregiert",
+      "beziehungen": [
+        {
+          "typ": "vr_vertretung",
+          "rolle": "Vertretung im Stiftungsrat"
+        }
+      ]
+    },
+    {
+      "id": "B-kongresshaus-ag",
+      "name": "Kongresshaus Zürich AG",
+      "verbunden": "PRD",
+      "rechtsform": "ag",
+      "beteiligungsart": "strategisch",
+      "sektor": "kultur",
+      "zweck": "Betrieb des Kongresshauses Zürich; die Stadt ist Mehrheitsaktionärin.",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2023",
+      "provenance": "publiziert",
+      "beziehungen": [
+        {
+          "typ": "vr_vertretung",
+          "rolle": "Mehrheitsaktionärin mit Vertretung in Verwaltungsrat und Generalversammlung",
+          "referenz": {
+            "label": "Eigentümerstrategie 2023–2026",
+            "url": "https://www.stadt-zuerich.ch/content/dam/web/de/aktuell/publikationen/2023/beteiligungen/eigentuemerstrategie-kongresshaus-ag.pdf"
+          }
+        }
+      ]
+    },
+    {
+      "id": "B-hallenstadion",
+      "name": "AG Hallenstadion Zürich",
+      "verbunden": "PRD",
+      "rechtsform": "ag",
+      "beteiligungsart": "strategisch",
+      "sektor": "freizeit",
+      "zweck": "Betrieb des Hallenstadions; die Stadt ist grösste Aktionärin (Minderheitsbeteiligung).",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2021",
+      "provenance": "publiziert",
+      "beziehungen": [
+        {
+          "typ": "vr_vertretung",
+          "rolle": "Grösste Aktionärin mit Vertretung in den strategischen Leitungsorganen",
+          "referenz": {
+            "label": "Eigentümerstrategie 2021–2024",
+            "url": "https://www.stadt-zuerich.ch/content/dam/web/de/aktuell/publikationen/2021/beteiligungen/eigentuemerstrategie-hallenstadion.pdf"
+          }
+        }
+      ]
+    },
+    {
+      "id": "B-pkzh",
+      "name": "Pensionskasse Stadt Zürich (PKZH)",
+      "verbunden": "FD",
+      "rechtsform": "stiftung",
+      "beteiligungsart": "strategisch",
+      "sektor": "finanzen",
+      "zweck": "Berufliche Vorsorge für das Personal der Stadt Zürich.",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2026",
+      "provenance": "publiziert",
+      "beziehungen": [
+        {
+          "typ": "traegerschaft",
+          "rolle": "Trägerin bzw. Stifterin",
+          "referenz": {
+            "label": "Stiftungsurkunde PKZH (AS 177.210)",
+            "url": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/politik-und-recht/amtliche-sammlung/1/177/210.html"
+          }
+        }
+      ]
+    },
+    {
+      "id": "B-for",
+      "name": "Forensisches Institut Zürich (FOR)",
+      "verbunden": "SiD",
+      "rechtsform": "oeffentlich-rechtlich",
+      "beteiligungsart": "strategisch",
+      "zweck": "Forensische Dienstleistungen; gemeinsame Anstalt von Stadt und Kanton Zürich.",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/politik-und-recht/amtliche-sammlung/5/551/600.html",
+      "stand": "2026",
+      "provenance": "publiziert",
+      "beziehungen": [
+        {
+          "typ": "mit_traegerschaft",
+          "rolle": "Gemeinsame Trägerin",
+          "mittraeger": [
+            "Kanton Zürich"
+          ],
+          "referenz": {
+            "label": "Vereinbarung Stadt/Kanton über das FOR",
+            "url": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/politik-und-recht/amtliche-sammlung/5/551/600.html"
+          }
+        },
+        {
+          "typ": "leistungsauftrag",
+          "rolle": "Leistungsauftrag 2026–2029",
+          "referenz": {
+            "label": "Leistungsauftrag 2026–2029 (STRB 2025-3960)",
+            "url": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/politik-und-recht/stadtratsbeschluesse/2025/12/stzh-strb-2025-3960.html"
+          }
+        }
+      ]
+    },
+    {
+      "id": "B-zkj",
+      "name": "Stiftung Zürcher Kinder- und Jugendheime (ZKJ)",
+      "verbunden": "SD",
+      "rechtsform": "stiftung",
+      "beteiligungsart": "strategisch",
+      "sektor": "soziales",
+      "zweck": "Betrieb von Kinder- und Jugendheimen.",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2023",
+      "provenance": "publiziert"
+    },
+    {
+      "id": "B-parking",
+      "name": "Parking Zürich AG",
+      "verbunden": "FD",
+      "rechtsform": "ag",
+      "beteiligungsart": "strategisch",
+      "sektor": "verkehr",
+      "zweck": "Betrieb öffentlicher Parkhäuser.",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2023",
+      "provenance": "publiziert",
+      "beziehungen": [
+        {
+          "typ": "vr_vertretung",
+          "rolle": "Vertretung in den strategischen Organen"
+        }
+      ]
     }
   ],
   "relationships": [

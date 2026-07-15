@@ -275,7 +275,8 @@
     "independentOversight": "Elected & supervised by {from}",
     "independentLink": "Linked to {from}, not subordinate",
     "locations": "Locations",
-    "locationsLink": "View on the map"
+    "locationsLink": "View on the map",
+    "relations": "Relationship to the city"
   },
   "Legend": {
     "headingTop": "City council & departments",
