@@ -19,7 +19,10 @@
       "Budget-/FTE-Zahlen stammen aus der Zeit vor dem Organigramm 2026: Umhängungen und Konsolidierungen sind budgetseitig erst ab Budget 2027 nativ abgebildet; aggregierte Einheiten sind mit _aggregiertAus markiert.",
       "Unit-IDs sind stabil und ändern sich bei Umhängungen nicht (Deep-Links, Mapping) – das Departements-Präfix kann daher historisch sein (z. B. SiD-bev im PRD).",
       "Per-Departement-Aufwand stammt noch aus Budget 2024 (GEMEINDERAT_BESCHLUSS); FTE pro Departement bereits aus Rechnung 2025. Stadtweite Eckwerte aus Geschäftsbericht 2025 unter '_meta.gesamtstadt'. Per-Departement-Refresh aus RECHNUNG/2025 erfordert nächsten Lauf von 'npm run data:fetch:force' mit RPK_API_KEY.",
-      "Nettoaufwand = Aufwand + Ertrag (Ertrag ist in den RPK-Rohdaten negativ gespeichert); negative Netto-Werte bedeuten Ertragsüberschuss."
+      "Nettoaufwand = Aufwand + Ertrag (Ertrag ist in den RPK-Rohdaten negativ gespeichert); negative Netto-Werte bedeuten Ertragsüberschuss.",
+      "Verwaltungsunabhängige Behörden (Ombudsstelle, Finanzkontrolle, Datenschutzstelle, Schulpflege, Kreisschulbehörden, Schulkommissionen, Sozialbehörde) sind einem Departement bzw. der Sammelposition BUG nur zur Gruppierung zugeordnet (parent). Die tatsächliche Beziehung — Wahl/Aufsicht durch den Gemeinderat bzw. fachlich-politische Verknüpfung ohne Verwaltungsunterstellung — steht maschinenlesbar unter 'relationships'.",
+      "Stadtkanzlei (PRD-stk) wird neu unter BUG (Behörden und Gesamtverwaltung) statt PRD geführt — zusammen mit der Abteilung Rechtskonsulent bildet sie die 'Allgemeine Verwaltung' direkt unter dem Stadtrat. Die organisatorische Zuordnung stimmt damit mit der RPK-Zuordnung (BUG) überein; ihr Aufwand verschiebt sich entsprechend von PRD nach BUG.",
+      "Verselbständigte Betriebe, die im offiziellen Organigramm als Dienstabteilungen geführt sind (Stadtspital, Museum Rietberg, Musikschule Konservatorium, Soziale Einrichtungen und Betriebe, ewz, VBZ), sind hier als kind 'unit' (Dienstabteilung) klassifiziert. Rechtlich eigenständige externe Organisationen (z.B. AOZ) bleiben 'extern'."
     ],
     "angereichert": "2026-04-30",
     "quelleEnrichment": "data.stadt-zuerich.ch / fd_rpktool (rpkk-rs/v1)",
@@ -382,7 +385,7 @@
   "units": [
     {
       "id": "PRD-stk",
-      "parent": "PRD",
+      "parent": "BUG",
       "name": "Stadtkanzlei",
       "kind": "unit",
       "budget": {
@@ -406,12 +409,6 @@
         "kurzname": "SKZ",
         "bezeichnung": "Stadtkanzlei",
         "departementKurzname": "BUG"
-      },
-      "konflikt": {
-        "unsereZuordnung": "PRD",
-        "unsereKurzname": "PRD",
-        "rpkKurzname": "BUG",
-        "rpkBezeichnung": "Behörden und Gesamtverwaltung"
       },
       "klima": {
         "co2Score": 12,
@@ -1004,7 +1001,7 @@
       "id": "SD-seb",
       "parent": "SD",
       "name": "Soziale Einrichtungen und Betriebe",
-      "kind": "extern",
+      "kind": "unit",
       "budget": {
         "jahr": 2025,
         "typ": "RECHNUNG",
@@ -1040,7 +1037,7 @@
       "id": "GUD-spital",
       "parent": "GUD",
       "name": "Stadtspital Zürich",
-      "kind": "extern",
+      "kind": "unit",
       "budget": {
         "jahr": 2025,
         "typ": "RECHNUNG",
@@ -1697,7 +1694,7 @@
       "id": "SSD-mkz",
       "parent": "SSD",
       "name": "Musikschule Konservatorium Zürich (MKZ)",
-      "kind": "extern",
+      "kind": "unit",
       "budget": {
         "jahr": 2025,
         "typ": "RECHNUNG",
@@ -1890,7 +1887,7 @@
       "id": "DIB-ewz",
       "parent": "DIB",
       "name": "ewz (Elektrizitätswerk)",
-      "kind": "extern",
+      "kind": "unit",
       "budget": {
         "jahr": 2025,
         "typ": "RECHNUNG",
@@ -1966,7 +1963,7 @@
       "id": "DIB-vbz",
       "parent": "DIB",
       "name": "VBZ Verkehrsbetriebe Zürich",
-      "kind": "extern",
+      "kind": "unit",
       "budget": {
         "jahr": 2025,
         "typ": "RECHNUNG",
@@ -2082,7 +2079,7 @@
       "id": "PRD-mrz",
       "parent": "PRD",
       "name": "Museum Rietberg",
-      "kind": "extern",
+      "kind": "unit",
       "odz": {
         "key": "1520",
         "kurzname": "MRZ",
@@ -3375,6 +3372,50 @@
       "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
       "stand": "2025",
       "provenance": "aggregiert"
+    }
+  ],
+  "relationships": [
+    {
+      "from": "BUG-grz",
+      "to": "BUG-omb",
+      "type": "wahl_und_aufsicht",
+      "description": "Vom Gemeinderat gewählt und beaufsichtigt, aber nicht der Verwaltung unterstellt."
+    },
+    {
+      "from": "BUG-grz",
+      "to": "BUG-zfk",
+      "type": "wahl_und_aufsicht",
+      "description": "Vom Gemeinderat gewählt und beaufsichtigt, aber nicht der Verwaltung unterstellt."
+    },
+    {
+      "from": "BUG-grz",
+      "to": "BUG-das",
+      "type": "wahl_und_aufsicht",
+      "description": "Vom Gemeinderat gewählt und beaufsichtigt, aber nicht der Verwaltung unterstellt."
+    },
+    {
+      "from": "SSD",
+      "to": "SSD-spfl",
+      "type": "fachlich_politische_verknuepfung",
+      "description": "Fachlich und politisch mit dem Schul- und Sportdepartement verknüpft, aber nicht der Verwaltung unterstellt."
+    },
+    {
+      "from": "SSD",
+      "to": "SSD-ksp",
+      "type": "fachlich_politische_verknuepfung",
+      "description": "Fachlich und politisch mit dem Schul- und Sportdepartement verknüpft, aber nicht der Verwaltung unterstellt."
+    },
+    {
+      "from": "SSD",
+      "to": "SSD-skom",
+      "type": "fachlich_politische_verknuepfung",
+      "description": "Fachlich und politisch mit dem Schul- und Sportdepartement verknüpft, aber nicht der Verwaltung unterstellt."
+    },
+    {
+      "from": "SD",
+      "to": "SD-sozb",
+      "type": "fachlich_politische_verknuepfung",
+      "description": "Fachlich und politisch mit dem Sozialdepartement verknüpft, aber nicht der Verwaltung unterstellt."
     }
   ]
 }

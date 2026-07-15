@@ -46,6 +46,7 @@ function LegendContent({ t, c }: { t: ReturnType<typeof getT>; c: typeof city.th
 
       <Heading mt>{t('headingMarker')}</Heading>
       <Row dashed dashColor={city.theme.konflikt}>{t('konflikt')}</Row>
+      <Row line dashColor={city.theme.konflikt}>{t('aufsicht')}</Row>
     </>
   );
 }
@@ -59,13 +60,15 @@ function Heading({ children, mt }: { children: React.ReactNode; mt?: boolean }) 
 }
 
 function Row({
-  color, sq, dia, round, hex, dashed, dashColor, outlined, children,
+  color, sq, dia, round, hex, dashed, line, dashColor, outlined, children,
 }: {
   color?: string; sq?: boolean; dia?: boolean; round?: boolean; hex?: boolean; dashed?: boolean;
-  dashColor?: string; outlined?: boolean;
+  line?: boolean; dashColor?: string; outlined?: boolean;
   children: React.ReactNode;
 }) {
-  const style: React.CSSProperties = dashed
+  const style: React.CSSProperties = line
+    ? { background: 'transparent', borderTop: `2px dashed ${dashColor ?? 'currentColor'}`, width: 14, height: 0, borderRadius: 0 }
+    : dashed
     ? { background: 'transparent', border: `2px dashed ${dashColor ?? 'currentColor'}`, width: 14, height: 14, borderRadius: 3 }
     : hex
     ? {

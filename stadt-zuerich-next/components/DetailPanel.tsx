@@ -154,6 +154,23 @@ export default function DetailPanel({
     });
   }
 
+  // Verwaltungsunabhängigkeit: die Einheit ist einem Departement/BUG nur zur
+  // Gruppierung zugeordnet, ihm aber nicht unterstellt. Die tatsächliche
+  // Wahl/Aufsicht bzw. fachlich-politische Verknüpfung steht in relationships.
+  for (const rel of (data.relationships ?? []).filter((r) => r.to === selectedId)) {
+    const fromName = findItem(data, rel.from)?.name ?? rel.from;
+    rows.push({
+      k: <span className="text-[var(--color-konflikt)]">{t('independentLabel')}</span>,
+      v: (
+        <span className="text-[var(--color-konflikt)]">
+          {rel.type === 'wahl_und_aufsicht'
+            ? t('independentOversight', { from: fromName })
+            : t('independentLink', { from: fromName })}
+        </span>
+      ),
+    });
+  }
+
   return (
     <aside
       role="region"
