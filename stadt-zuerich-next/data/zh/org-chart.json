@@ -1,10 +1,11 @@
 {
   "_meta": {
     "schemaVersion": 1,
-    "stand": "2026-05-27",
+    "stand": "2026-06-01",
     "license": "CC-BY 4.0 (abgeleitete/aggregierte Daten); Originalquellen siehe quellen[]",
     "quellen": [
       "Organigramm Stadt Zürich «Behörden und Verwaltung», Stand 27. Mai 2026 (PDF)",
+      "Reglement über Organisation, Aufgaben und Befugnisse der Stadtverwaltung (ROAB), in Kraft ab 1. Juni 2026",
       "https://www.stadt-zuerich.ch/ – Organigramm und Departementsseiten",
       "Geschäftsbericht Stadt Zürich – Aufwand pro Dienstabteilung",
       "Beteiligungsbericht Stadt Zürich – verselbständigte Betriebe und Beteiligungen",
@@ -12,6 +13,8 @@
     ],
     "hinweise": [
       "Struktur abgeglichen mit dem offiziellen Organigramm, Stand 27. Mai 2026: Bevölkerungsamt neu im PRD, Immobilien im HBD, ERZ-Teilbereiche zu 'Entsorgung + Recycling' konsolidiert (Fernwärme beim ewz), Sonderpädagogik fasst HPS/SKB/SFS zusammen.",
+      "Nachgeführt auf ROAB per 1. Juni 2026: Fachstelle für Gewaltprävention (SSD-ffg) als Departementsstelle des SSD ergänzt; Stadtratsausschüsse Bausektion (BUG-baus) und Plan Lumière (BUG-plum) als Ausschuss-Knoten aufgenommen. PRD-stab von 'Betreibungsämter' auf offizielle Bezeichnung 'Stadtammann- und Betreibungsämter' korrigiert; Human Resources Management (FD-pers) als Dienstabteilung (kind 'unit' statt 'staff') eingestuft.",
+      "Sammelknoten statt Einzelstellen: die 12 Stadtammann- und Betreibungsämter, 6 Friedensrichterämter, 7 Kreisschulbehörden und 2 Schulkommissionen des Zentralorganigramms werden bewusst je als ein aggregierter Knoten geführt (Budget/FTE liegen nur aggregiert vor).",
       "Personen bewusst als Rolle gehalten ('Stadtpräsident:in', 'Stadtrat / Stadträtin') – Namen wechseln, Strukturen bleiben länger stabil.",
       "Budget-/FTE-Zahlen stammen aus der Zeit vor dem Organigramm 2026: Umhängungen und Konsolidierungen sind budgetseitig erst ab Budget 2027 nativ abgebildet; aggregierte Einheiten sind mit _aggregiertAus markiert.",
       "Unit-IDs sind stabil und ändern sich bei Umhängungen nicht (Deep-Links, Mapping) – das Departements-Präfix kann daher historisch sein (z. B. SiD-bev im PRD).",
@@ -576,7 +579,7 @@
     {
       "id": "PRD-stab",
       "parent": "PRD",
-      "name": "Betreibungsämter",
+      "name": "Stadtammann- und Betreibungsämter",
       "kind": "spezial",
       "budget": {
         "jahr": 2025,
@@ -691,7 +694,7 @@
       "id": "FD-pers",
       "parent": "FD",
       "name": "Human Resources Management",
-      "kind": "staff",
+      "kind": "unit",
       "budget": {
         "jahr": 2025,
         "typ": "RECHNUNG",
@@ -1876,6 +1879,14 @@
       }
     },
     {
+      "id": "SSD-ffg",
+      "parent": "SSD",
+      "name": "Fachstelle für Gewaltprävention",
+      "kind": "staff",
+      "budget": null,
+      "fte": null
+    },
+    {
       "id": "DIB-ewz",
       "parent": "DIB",
       "name": "ewz (Elektrizitätswerk)",
@@ -3058,6 +3069,22 @@
         "womenInManagement": 31,
         "menInManagement": 69
       }
+    },
+    {
+      "id": "BUG-baus",
+      "parent": "BUG",
+      "name": "Bausektion des Stadtrats",
+      "kind": "committee",
+      "budget": null,
+      "fte": null
+    },
+    {
+      "id": "BUG-plum",
+      "parent": "BUG",
+      "name": "Ausschuss Plan Lumière",
+      "kind": "committee",
+      "budget": null,
+      "fte": null
     },
     {
       "id": "SSD-ksp",
