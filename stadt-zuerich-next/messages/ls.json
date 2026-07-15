@@ -79,7 +79,10 @@
     "popupTitle": "Abteilung",
     "linkToChart": "Im Organigramm zeigen",
     "verfahren": "Diese Ämter machen das",
-    "noLayer": "Sie haben nichts ausgewählt. Bitte wählen Sie oben mindestens eine Gruppe."
+    "noLayer": "Sie haben nichts ausgewählt. Bitte wählen Sie oben mindestens eine Gruppe.",
+    "layerHealth": "Gesundheits-Zentren für alte Menschen",
+    "layerPolice": "Polizei-Wachen",
+    "layerRecyclinghof": "Recycling-Höfe"
   },
   "Nav": {
     "graph": "Bild",
@@ -270,7 +273,9 @@
     "detailDiversityMen": "Männer",
     "independentLabel": "Unabhängig von der Verwaltung",
     "independentOversight": "Gewählt und beaufsichtigt von: {from}",
-    "independentLink": "Arbeitet mit {from} zusammen. Aber nicht unterstellt."
+    "independentLink": "Arbeitet mit {from} zusammen. Aber nicht unterstellt.",
+    "locations": "Orte",
+    "locationsLink": "Auf der Karte anschauen"
   },
   "Legend": {
     "headingTop": "Die Chefs der Stadt",

@@ -12,8 +12,18 @@ import {
   budgetSharePercent,
 } from '@/lib/budget-context';
 import { city, externalSearchUrl } from '@/config/city.config';
+import geoLayers from '@/config/geo-layers.json';
 import ParlamentsGeschaefte from './ParlamentsGeschaefte';
 import MicroFeedback from './MicroFeedback';
+
+// Einheit-ID → Territory-Layer-ID: erlaubt den Deep-Link «Standorte auf der
+// Karte» im Detail einer Dienstabteilung, die einen publizierten Geo-Layer hat
+// (Quelle: config/geo-layers.json, Feld `unit`).
+const UNIT_LAYER: Record<string, string> = Object.fromEntries(
+  (geoLayers.layers as Array<{ id: string; unit?: string }>)
+    .filter((l) => l.unit)
+    .map((l) => [l.unit as string, l.id]),
+);
 
 type T = ReturnType<typeof useTranslations<'Detail'>>;
 
@@ -167,6 +177,23 @@ export default function DetailPanel({
             ? t('independentOversight', { from: fromName })
             : t('independentLink', { from: fromName })}
         </span>
+      ),
+    });
+  }
+
+  // Standorte-Deep-Link: hat die Einheit einen publizierten Geo-Layer, in die
+  // Territory-Karte mit genau diesem Layer springen.
+  const layerId = 'parent' in item ? UNIT_LAYER[item.id] : undefined;
+  if (layerId) {
+    rows.push({
+      k: t('locations'),
+      v: (
+        <Link
+          href={`/territory?layer=${layerId}`}
+          className="text-[var(--color-accent)] underline underline-offset-2"
+        >
+          {t('locationsLink')}
+        </Link>
       ),
     });
   }

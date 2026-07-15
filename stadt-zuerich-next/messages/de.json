@@ -79,7 +79,10 @@
     "popupTitle": "Departement",
     "linkToChart": "Im Organigramm zeigen",
     "verfahren": "Zuständige Verfahren",
-    "noLayer": "Kein Layer ausgewählt – wählen Sie oben mindestens eine Kategorie."
+    "noLayer": "Kein Layer ausgewählt – wählen Sie oben mindestens eine Kategorie.",
+    "layerHealth": "Gesundheitszentren für das Alter",
+    "layerPolice": "Polizeiwachen",
+    "layerRecyclinghof": "Recyclinghöfe"
   },
   "Nav": {
     "graph": "Maschinerie",
@@ -270,7 +273,9 @@
     "detailDiversityMen": "Männer",
     "independentLabel": "Verwaltungsunabhängig",
     "independentOversight": "Wahl & Aufsicht durch {from}",
-    "independentLink": "Mit {from} verknüpft, ohne Unterstellung"
+    "independentLink": "Mit {from} verknüpft, ohne Unterstellung",
+    "locations": "Standorte",
+    "locationsLink": "Auf der Karte ansehen"
   },
   "Legend": {
     "headingTop": "Stadtrat & Departemente",

@@ -79,7 +79,10 @@
     "popupTitle": "Dipartimento",
     "linkToChart": "Mostra nell'organigramma",
     "verfahren": "Procedure competenti",
-    "noLayer": "Nessun livello selezionato – scegli almeno una categoria qui sopra."
+    "noLayer": "Nessun livello selezionato – scegli almeno una categoria qui sopra.",
+    "layerHealth": "Centri sanitari per anziani",
+    "layerPolice": "Posti di polizia",
+    "layerRecyclinghof": "Centri di riciclaggio"
   },
   "Nav": {
     "graph": "Macchina",
@@ -270,7 +273,9 @@
     "detailDiversityMen": "Uomini",
     "independentLabel": "Indipendente dall'amministrazione",
     "independentOversight": "Eletto e vigilato da {from}",
-    "independentLink": "Collegato a {from}, senza subordinazione"
+    "independentLink": "Collegato a {from}, senza subordinazione",
+    "locations": "Sedi",
+    "locationsLink": "Vedi sulla mappa"
   },
   "Legend": {
     "headingTop": "Consiglio municipale e dipartimenti",
