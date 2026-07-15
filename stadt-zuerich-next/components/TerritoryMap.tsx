@@ -10,6 +10,7 @@ import 'leaflet.markercluster';
 import 'leaflet.markercluster/dist/MarkerCluster.css';
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 import { useTranslations, useLocale } from 'next-intl';
+import { useSearchParams } from 'next/navigation';
 import DataQualityBadge from '@/components/DataQualityBadge';
 import { routing } from '@/i18n/routing';
 
@@ -23,8 +24,34 @@ type I18nString = { de: string } & Partial<Record<string, string>>;
 type VerfahrenRef = { city: string; id: string; slug: string; titel: I18nString };
 type Zustaendigkeit = Record<string, VerfahrenRef[]>;
 
-type LayerId = 'schools' | 'recycling' | 'playgrounds' | 'amtshaeuser';
-const LAYER_IDS: LayerId[] = ['schools', 'recycling', 'playgrounds', 'amtshaeuser'];
+type LayerId =
+  | 'schools'
+  | 'recycling'
+  | 'playgrounds'
+  | 'amtshaeuser'
+  | 'health'
+  | 'police'
+  | 'recyclinghof';
+const LAYER_IDS: LayerId[] = [
+  'schools',
+  'recycling',
+  'playgrounds',
+  'amtshaeuser',
+  'health',
+  'police',
+  'recyclinghof',
+];
+
+/** i18n-Key je Layer für die Checkbox-Beschriftung. */
+const LAYER_LABEL_KEY: Record<LayerId, string> = {
+  schools: 'layerSchools',
+  recycling: 'layerRecycling',
+  playgrounds: 'layerPlaygrounds',
+  amtshaeuser: 'layerAmtshaeuser',
+  health: 'layerHealth',
+  police: 'layerPolice',
+  recyclinghof: 'layerRecyclinghof',
+};
 
 /** Pro Layer gecachte Daten (verhindert erneutes Laden beim Ein-/Ausblenden). */
 type LayerData = {
@@ -43,6 +70,9 @@ const LAYER_STYLE: Record<LayerId, { color: string; emoji: string }> = {
   recycling: { color: '#15803d', emoji: '♻️' }, // Grün
   playgrounds: { color: '#b45309', emoji: '🛝' }, // Amber
   amtshaeuser: { color: '#6d28d9', emoji: '🏛️' }, // Violett
+  health: { color: '#be123c', emoji: '🏥' }, // Rosé/Rot
+  police: { color: '#0f766e', emoji: '🚓' }, // Teal
+  recyclinghof: { color: '#4d7c0f', emoji: '🗑️' }, // Olivgrün
 };
 
 /** HTML-escapen — Popup-Inhalt wird als String gebaut (markercluster bindPopup). */
@@ -148,8 +178,16 @@ export default function TerritoryMap() {
   const locale = (routing.locales as readonly string[]).includes(rawLocale) ? rawLocale : routing.defaultLocale;
 
   // Mehrfachauswahl: mehrere Layer gleichzeitig sichtbar (durch Farbcodierung
-  // unterscheidbar). Start mit den Schulanlagen.
-  const [activeLayers, setActiveLayers] = useState<Set<LayerId>>(() => new Set<LayerId>(['schools']));
+  // unterscheidbar). Start-Layer aus dem ?layer=-Query (Deep-Link aus dem
+  // DetailPanel einer Einheit), sonst die Schulanlagen.
+  const searchParams = useSearchParams();
+  const [activeLayers, setActiveLayers] = useState<Set<LayerId>>(() => {
+    const requested = searchParams.get('layer');
+    const initial: LayerId = LAYER_IDS.includes(requested as LayerId)
+      ? (requested as LayerId)
+      : 'schools';
+    return new Set<LayerId>([initial]);
+  });
   const [layerData, setLayerData] = useState<Partial<Record<LayerId, LayerData>>>({});
 
   // Aktive Layer laden (gecacht — bereits geladene werden nicht erneut geholt).
@@ -250,15 +288,7 @@ export default function TerritoryMap() {
               >
                 {LAYER_STYLE[id].emoji}
               </span>
-              {t(
-                id === 'schools'
-                  ? 'layerSchools'
-                  : id === 'recycling'
-                    ? 'layerRecycling'
-                    : id === 'playgrounds'
-                      ? 'layerPlaygrounds'
-                      : 'layerAmtshaeuser',
-              )}
+              {t(LAYER_LABEL_KEY[id] as Parameters<typeof t>[0])}
             </label>
           ))}
         </fieldset>

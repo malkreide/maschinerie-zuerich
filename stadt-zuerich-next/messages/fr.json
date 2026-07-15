@@ -79,7 +79,10 @@
     "popupTitle": "Département",
     "linkToChart": "Voir dans l'organigramme",
     "verfahren": "Procédures compétentes",
-    "noLayer": "Aucune couche sélectionnée – choisissez au moins une catégorie ci-dessus."
+    "noLayer": "Aucune couche sélectionnée – choisissez au moins une catégorie ci-dessus.",
+    "layerHealth": "Centres de santé pour personnes âgées",
+    "layerPolice": "Postes de police",
+    "layerRecyclinghof": "Déchetteries"
   },
   "Nav": {
     "graph": "Mécanique",
@@ -270,7 +273,9 @@
     "detailDiversityMen": "Hommes",
     "independentLabel": "Indépendant de l'administration",
     "independentOversight": "Élu·e et supervisé·e par {from}",
-    "independentLink": "Lié à {from}, sans subordination"
+    "independentLink": "Lié à {from}, sans subordination",
+    "locations": "Emplacements",
+    "locationsLink": "Voir sur la carte"
   },
   "Legend": {
     "headingTop": "Conseil municipal et départements",

@@ -70,6 +70,45 @@
         "keyField": "poi_id",
         "departmentOverride": "data/geo/zh/amtshaeuser-departments.json"
       }
+    },
+    {
+      "id": "health",
+      "label": "Gesundheitszentren für das Alter",
+      "department": "GUD",
+      "unit": "GUD-pflege",
+      "namePrefix": "Gesundheitszentrum",
+      "demoCount": 28,
+      "source": {
+        "title": "Gesundheitszentrum (Stadt Zürich)",
+        "datasetUrl": "https://data.stadt-zuerich.ch/dataset/geo_gesundheitszentrum",
+        "nameField": "name"
+      }
+    },
+    {
+      "id": "police",
+      "label": "Polizeiwachen (Regional-, Quartier- und Revierwachen)",
+      "department": "SiD",
+      "unit": "SiD-stapo",
+      "namePrefix": "Polizeiwache",
+      "demoCount": 10,
+      "source": {
+        "title": "Stadtpolizei (Standorte der Wachen)",
+        "datasetUrl": "https://data.stadt-zuerich.ch/dataset/geo_stadtpolizei",
+        "nameField": "name"
+      }
+    },
+    {
+      "id": "recyclinghof",
+      "label": "Recyclinghöfe",
+      "department": "TED",
+      "unit": "TED-erz",
+      "namePrefix": "Recyclinghof",
+      "demoCount": 12,
+      "source": {
+        "title": "Recyclinghof (Entsorgung + Recycling Zürich)",
+        "datasetUrl": "https://data.stadt-zuerich.ch/dataset/geo_recyclinghof",
+        "nameField": "name"
+      }
     }
   ]
 }

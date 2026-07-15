@@ -79,7 +79,10 @@
     "popupTitle": "Department",
     "linkToChart": "Show in org chart",
     "verfahren": "Responsible procedures",
-    "noLayer": "No layer selected – pick at least one category above."
+    "noLayer": "No layer selected – pick at least one category above.",
+    "layerHealth": "Health centres for the elderly",
+    "layerPolice": "Police stations",
+    "layerRecyclinghof": "Recycling centres"
   },
   "Nav": {
     "graph": "Machinery",
@@ -270,7 +273,9 @@
     "detailDiversityMen": "Men",
     "independentLabel": "Administratively independent",
     "independentOversight": "Elected & supervised by {from}",
-    "independentLink": "Linked to {from}, not subordinate"
+    "independentLink": "Linked to {from}, not subordinate",
+    "locations": "Locations",
+    "locationsLink": "View on the map"
   },
   "Legend": {
     "headingTop": "City council & departments",

@@ -1,0 +1,37 @@
+{
+  "_doc": [
+    "Mapping zwischen den IDs des offiziellen Stadt-Organigramms (organigramm-",
+    "web/-pdf, ROAB — z. B. 'ssd-sam') und den internen Lösungs-IDs dieser",
+    "Codebasis (data/zh/org-chart.json — z. B. 'SSD-schule').",
+    "",
+    "Zweck: Das offizielle Organigramm und seine operative Vertiefung",
+    "(organigramm_stadt_zuerich_operativ_2026.json) referenzieren Einheiten über",
+    "die amtlichen IDs; diese Codebasis führt eigene, historisch stabile IDs. Ohne",
+    "Übersetzung sind die beiden Welten nicht verbunden. Diese Tabelle ist die",
+    "Voraussetzung für eine spätere Ingestion operativer Daten (Standorte,",
+    "Angebote) und für den Abgleich mit dem amtlichen Bestand.",
+    "",
+    "Abgedeckt sind aktuell die Muttereinheiten (parent_unit_id), auf die die",
+    "operative Vertiefung 2026 verweist. Die Tabelle ist bewusst erweiterbar —",
+    "weitere amtliche IDs können bei Bedarf ergänzt werden. Wert null = im",
+    "offiziellen Organigramm geführt, aber ohne 1:1-Entsprechung in der Lösung",
+    "(z. B. der Wurzelknoten der Stadt).",
+    "",
+    "Quellen: organigramm_stadt_zuerich_2026.json (amtliche IDs),",
+    "data/zh/org-chart.json (Lösungs-IDs)."
+  ],
+  "official_to_solution": {
+    "ssd-sam": "SSD-schule",
+    "ssd-fsv": "SSD-fsv",
+    "ssd-mkz": "SSD-mkz",
+    "gud-gfa": "GUD-pflege",
+    "gud-stz": "GUD-spital",
+    "sd-seb": "SD-seb",
+    "sd-sod": "SD-soz",
+    "sid-stapo": "SiD-stapo",
+    "sid-srz": "SiD-srz",
+    "dib-vbz": "DIB-vbz",
+    "ted-erz": "TED-erz",
+    "stadt-zuerich": null
+  }
+}
