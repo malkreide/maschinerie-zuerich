@@ -242,6 +242,12 @@
     "sektor": "Sector",
     "participationSource": "Holdings report",
     "abbreviation": "Code",
+    "abbrInfoLabel": "Explain code",
+    "abbrInfo": "Internal short code of the organisational unit within the city administration.",
+    "netExpenseInfoLabel": "Explain net expense",
+    "netExpenseInfo": "Expenditure minus revenue (e.g. fees, contributions) — what the city bears on its own.",
+    "fteInfoLabel": "Explain FTE",
+    "fteInfo": "Full-time equivalents. Two 50% positions add up to 1 FTE.",
     "expense": "Expense",
     "income": "Income",
     "netExpense": "Net expense",
@@ -297,7 +303,10 @@
     "beteiligung": "Holding / foundation",
     "konflikt": "Citizen/Audit assignment diverges",
     "committee": "Committee / Commission",
-    "aufsicht": "Oversight without subordination"
+    "aufsicht": "Oversight without subordination",
+    "markerInfoLabel": "Explain marker",
+    "konfliktInfo": "Parliamentary oversight (RPK) sits with a different department than the organisational assignment.",
+    "aufsichtInfo": "This body is supervised but not directly subordinate to any department."
   },
   "Hint": "Hover = explore · Click = select · Scroll = zoom · Search also knows concerns",
   "Simulator": {

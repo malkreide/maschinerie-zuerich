@@ -242,6 +242,12 @@
     "sektor": "Sektor",
     "participationSource": "Beteiligungsbericht",
     "abbreviation": "Kürzel",
+    "abbrInfoLabel": "Kürzel erklären",
+    "abbrInfo": "Internes Kurzzeichen der Organisationseinheit in der Stadtverwaltung.",
+    "netExpenseInfoLabel": "Nettoaufwand erklären",
+    "netExpenseInfo": "Aufwand minus Erträge (z. B. Gebühren, Beiträge) — was die Stadt netto selbst trägt.",
+    "fteInfoLabel": "FTE erklären",
+    "fteInfo": "Vollzeitstellen (Full-Time Equivalents). Zwei 50-%-Stellen ergeben 1 FTE.",
     "expense": "Aufwand",
     "income": "Ertrag",
     "netExpense": "Nettoaufwand",
@@ -297,7 +303,10 @@
     "beteiligung": "Beteiligung / Stiftung",
     "konflikt": "Bürger-/RPK-Zuordnung divergiert",
     "committee": "Ausschuss / Kommission",
-    "aufsicht": "Aufsicht ohne Unterstellung"
+    "aufsicht": "Aufsicht ohne Unterstellung",
+    "markerInfoLabel": "Marker erklären",
+    "konfliktInfo": "Die parlamentarische Aufsicht (RPK) liegt bei einem anderen Departement als die organisatorische Zuordnung.",
+    "aufsichtInfo": "Diese Stelle wird beaufsichtigt, ist aber keinem Departement direkt unterstellt."
   },
   "Hint": "Hover = erkunden · Klick = auswählen · Scroll = zoomen · Suche kennt auch Anliegen",
   "Simulator": {

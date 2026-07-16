@@ -15,6 +15,7 @@ import { city, externalSearchUrl } from '@/config/city.config';
 import geoLayers from '@/config/geo-layers.json';
 import ParlamentsGeschaefte from './ParlamentsGeschaefte';
 import MicroFeedback from './MicroFeedback';
+import InfoTip from './InfoTip';
 
 // Einheit-ID → Territory-Layer-ID: erlaubt den Deep-Link «Standorte auf der
 // Karte» im Detail einer Dienstabteilung, die einen publizierten Geo-Layer hat
@@ -251,7 +252,12 @@ export default function DetailPanel({
       <h3 className="m-0 mb-1 text-[15px] font-semibold">{item.name}</h3>
       <div className="text-xs text-[var(--color-mute)] mb-2">
         {tType(kind as Parameters<typeof tType>[0])}
-        {isDep && ` · ${t('abbreviation')}: ${item.id}`}
+        {isDep && (
+          <>
+            {' · '}{t('abbreviation')}: {item.id}{' '}
+            <InfoTip label={t('abbrInfoLabel')} text={t('abbrInfo')} />
+          </>
+        )}
       </div>
       {rows.map((r, i) => (
         <div key={i} className="flex justify-between gap-3 py-0.5 border-b border-dashed border-[var(--color-line)] last:border-0">
@@ -408,7 +414,7 @@ function budgetRows(
   // jeweils darüberstehenden Betrag beziehen.
   rows.push(...auxBudgetRows(b.aufwand, t, totalAufwand, population));
   rows.push({ k: `  ${t('income')}`,     v: <span className="flex items-center justify-end">{fmtCHF(b.ertrag)}{trendErtrag}</span> });
-  rows.push({ k: `  ${t('netExpense')}`, v: <span className="flex items-center justify-end">{fmtCHF(b.nettoaufwand)}{trendNetto}</span> });
+  rows.push({ k: <span>{'  '}{t('netExpense')}{' '}<InfoTip label={t('netExpenseInfoLabel')} text={t('netExpenseInfo')} /></span>, v: <span className="flex items-center justify-end">{fmtCHF(b.nettoaufwand)}{trendNetto}</span> });
   // Beim Netto nur Pro-Kopf, kein Anteil: das Stadt-weite Netto liegt nahe
   // bei null (Steuern zählen als Ertrag), ein Prozentwert dazu wäre absurd.
   rows.push(...auxBudgetRows(b.nettoaufwand, t, undefined, population));
@@ -454,7 +460,7 @@ function auxBudgetRows(
 function fteRows(f: Fte, t: T): Row[] {
   if (f.quelle === 'pdf') {
     return [{
-      k: `${f.einheit ?? t('fteUnitFallback')} (${f.jahr ?? '?'})`,
+      k: <span>{f.einheit ?? t('fteUnitFallback')} ({f.jahr ?? '?'}){' '}<InfoTip label={t('fteInfoLabel')} text={t('fteInfo')} /></span>,
       v: (
         <span>
           <strong>{fmtNumber(f.schaetzung)}</strong>{' '}
@@ -467,7 +473,7 @@ function fteRows(f: Fte, t: T): Row[] {
     }];
   }
   return [{
-    k: t('fte'),
+    k: <span>{t('fte')}{' '}<InfoTip label={t('fteInfoLabel')} text={t('fteInfo')} /></span>,
     v: (
       <span>
         ~{fmtNumber(f.schaetzung)}{' '}

@@ -242,6 +242,12 @@
     "sektor": "Secteur",
     "participationSource": "Rapport sur les participations",
     "abbreviation": "Sigle",
+    "abbrInfoLabel": "Expliquer le sigle",
+    "abbrInfo": "Code interne abrégé de l’unité organisationnelle au sein de l’administration municipale.",
+    "netExpenseInfoLabel": "Expliquer la charge nette",
+    "netExpenseInfo": "Charges moins revenus (p. ex. taxes, contributions) — ce que la ville assume elle-même.",
+    "fteInfoLabel": "Expliquer l’EPT",
+    "fteInfo": "Équivalents plein temps. Deux postes à 50 % font 1 EPT.",
     "expense": "Charge",
     "income": "Recette",
     "netExpense": "Charge nette",
@@ -297,7 +303,10 @@
     "beteiligung": "Participation / fondation",
     "konflikt": "Affectation citoyenne ≠ RPK",
     "committee": "Comité / Commission",
-    "aufsicht": "Surveillance sans subordination"
+    "aufsicht": "Surveillance sans subordination",
+    "markerInfoLabel": "Expliquer le marqueur",
+    "konfliktInfo": "La surveillance parlementaire (RPK) relève d’un autre département que le rattachement organisationnel.",
+    "aufsichtInfo": "Cette entité est surveillée mais n’est directement subordonnée à aucun département."
   },
   "Hint": "Survol = explorer · Clic = sélectionner · Molette = zoomer · La recherche connaît aussi les démarches",
   "Simulator": {
