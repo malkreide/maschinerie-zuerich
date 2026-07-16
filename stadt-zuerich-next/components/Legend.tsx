@@ -1,6 +1,7 @@
 import { getT } from '@/lib/i18n-server';
 import type { Locale } from '@/i18n/routing';
 import { city } from '@/config/city.config';
+import InfoTip from './InfoTip';
 
 export default function Legend({ locale }: { locale: Locale }) {
   const t = getT(locale, 'Legend');
@@ -45,8 +46,8 @@ function LegendContent({ t, c }: { t: ReturnType<typeof getT>; c: typeof city.th
       <Row color={c.beteiligung} dia>{t('beteiligung')}</Row>
 
       <Heading mt>{t('headingMarker')}</Heading>
-      <Row dashed dashColor={city.theme.konflikt}>{t('konflikt')}</Row>
-      <Row line dashColor={city.theme.konflikt}>{t('aufsicht')}</Row>
+      <Row dashed dashColor={city.theme.konflikt}>{t('konflikt')}{' '}<InfoTip label={t('markerInfoLabel')} text={t('konfliktInfo')} /></Row>
+      <Row line dashColor={city.theme.konflikt}>{t('aufsicht')}{' '}<InfoTip label={t('markerInfoLabel')} text={t('aufsichtInfo')} /></Row>
     </>
   );
 }

@@ -242,6 +242,12 @@
     "sektor": "Bereich",
     "participationSource": "Bericht zu Beteiligungen",
     "abbreviation": "Kurzwort",
+    "abbrInfoLabel": "Kurzwort erklären",
+    "abbrInfo": "Das ist ein kurzer Name für die Stelle in der Verwaltung.",
+    "netExpenseInfoLabel": "Netto-Ausgaben erklären",
+    "netExpenseInfo": "Das Geld, das die Stadt ausgibt. Minus das Geld, das sie einnimmt.",
+    "fteInfoLabel": "Stellen erklären",
+    "fteInfo": "So viele volle Stellen gibt es. Zwei halbe Stellen sind eine volle Stelle.",
     "expense": "Ausgaben",
     "income": "Einnahmen",
     "netExpense": "Ausgaben minus Einnahmen",
@@ -297,7 +303,10 @@
     "beteiligung": "Stiftung oder Beteiligung",
     "konflikt": "Hier passt etwas nicht zusammen.",
     "committee": "Ausschuss / Kommission",
-    "aufsicht": "Aufsicht, aber nicht unterstellt"
+    "aufsicht": "Aufsicht, aber nicht unterstellt",
+    "markerInfoLabel": "Zeichen erklären",
+    "konfliktInfo": "Die Kontrolle im Parlament und die Zuordnung passen nicht zusammen.",
+    "aufsichtInfo": "Jemand kontrolliert diese Stelle. Aber sie gehört zu keinem Departement."
   },
   "Hint": "Mit der Maus über die Bilder fahren · Klicken: auswählen · Mit dem Rad gross machen · Sie können auch nach Wörtern suchen",
   "Simulator": {

@@ -242,6 +242,12 @@
     "sektor": "Settore",
     "participationSource": "Rapporto sulle partecipazioni",
     "abbreviation": "Sigla",
+    "abbrInfoLabel": "Spiega la sigla",
+    "abbrInfo": "Codice interno abbreviato dell’unità organizzativa nell’amministrazione cittadina.",
+    "netExpenseInfoLabel": "Spiega la spesa netta",
+    "netExpenseInfo": "Spese meno ricavi (p. es. tasse, contributi) — ciò che la città sostiene da sé.",
+    "fteInfoLabel": "Spiega ETP",
+    "fteInfo": "Equivalenti a tempo pieno. Due posti al 50% fanno 1 ETP.",
     "expense": "Spesa",
     "income": "Ricavo",
     "netExpense": "Spesa netta",
@@ -297,7 +303,10 @@
     "beteiligung": "Partecipazione / fondazione",
     "konflikt": "Assegnazione cittadini ≠ RPK",
     "committee": "Comitato / Commissione",
-    "aufsicht": "Vigilanza senza subordinazione"
+    "aufsicht": "Vigilanza senza subordinazione",
+    "markerInfoLabel": "Spiega il marcatore",
+    "konfliktInfo": "La vigilanza parlamentare (RPK) spetta a un dipartimento diverso da quello dell’assegnazione organizzativa.",
+    "aufsichtInfo": "Questo ente è vigilato ma non è direttamente subordinato ad alcun dipartimento."
   },
   "Hint": "Hover = esplorare · Clic = selezionare · Rotella = zoom · La ricerca conosce anche le pratiche",
   "Simulator": {
