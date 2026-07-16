@@ -18,8 +18,8 @@ Gute Nachricht: Alle drei Findings haben Effort **S–M**. Welle 1 (zwei S-Fixes
 
 ## Welle 2 — Inhalt/Verständlichkeit (medium)
 
-- [ ] **USE-002** Fachjargon für public (medium/partial, S–M) — [Finding](findings/2026-07-15-USE-002.md)
-      Erster Schritt: Info-Popover für «Nettoaufwand», «FTE», «Kürzel» + Klartext-Zeile in der Marker-Legende (i18n-Strings existieren bereits).
+- [x] **USE-002** Fachjargon für public (medium/partial, S–M) — [Finding](findings/2026-07-15-USE-002.md) ✅ PR #206
+      Zugängliche InfoTip-Komponente für «Nettoaufwand»/«FTE»/«Kürzel» (DetailPanel) + Marker-Legende, Glossar in 5 Sprachen. Re-Audit 2026-07-16: Struktur/A11y live bestätigt.
 
 ## Welle 3 — Polish (low, Backlog)
 

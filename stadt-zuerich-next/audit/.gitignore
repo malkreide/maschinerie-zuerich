@@ -1,1 +1,5 @@
-audit/lighthouse.json
+# Lighthouse-Rohreports: grosse generierte Maschinendateien (~470 KB).
+# Die relevanten Kennzahlen stehen in den Reports unter reports/.
+# Pfade sind relativ zu diesem Verzeichnis — diese .gitignore liegt in audit/.
+lighthouse.json
+lighthouse-reaudit.json
