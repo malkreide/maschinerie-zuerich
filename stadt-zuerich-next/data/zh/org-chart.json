@@ -1250,7 +1250,33 @@
           "3535",
           "3560"
         ]
-      }
+      },
+      "subunits": [
+        {
+          "id": "TED-erz-abfall",
+          "name": "Abfall",
+          "odz": {
+            "kurzname": "ERZ-Abf",
+            "key": "3550"
+          }
+        },
+        {
+          "id": "TED-erz-abwasser",
+          "name": "Abwasser",
+          "odz": {
+            "kurzname": "ERZ-Abw",
+            "key": "3535"
+          }
+        },
+        {
+          "id": "TED-erz-reinigung",
+          "name": "Stadtreinigung",
+          "odz": {
+            "kurzname": "ERZ-R",
+            "key": "3560"
+          }
+        }
+      ]
     },
     {
       "id": "TED-geo",
@@ -1688,7 +1714,17 @@
       "diversity": {
         "womenInManagement": 36,
         "menInManagement": 64
-      }
+      },
+      "subunits": [
+        {
+          "id": "SSD-schule-sbmv",
+          "name": "Schul- und Büromaterialverwaltung",
+          "odz": {
+            "kurzname": "SBMV",
+            "key": "5005"
+          }
+        }
+      ]
     },
     {
       "id": "SSD-mkz",
@@ -1863,7 +1899,17 @@
       "diversity": {
         "womenInManagement": 26,
         "menInManagement": 74
-      }
+      },
+      "subunits": [
+        {
+          "id": "SSD-fsv-v15",
+          "name": "Viventa15plus",
+          "odz": {
+            "kurzname": "V15",
+            "key": "5033"
+          }
+        }
+      ]
     },
     {
       "id": "SSD-sport",
