@@ -11,12 +11,12 @@ profile:
   interaction: read-only       # Browse + Suche, keine Datenmutation
   compliance: eCH-0059         # Verwaltungsdaten, öffentliche Zielgruppe -> A11Y-Eskalation aktiv
   viewports: [mobile, desktop]
-  baseline_report: none        # Erst-Audit
+  baseline_report: reports/2026-07-16-re-audit.md   # letzter Report (Re-Audit)
 
 audit_meta:
-  catalog_version: 0.1.0
-  last_audit: 2026-07-15
-  last_score: 89
+  catalog_version: 0.1.1
+  last_audit: 2026-07-16          # Re-Audit (Phase C)
+  last_score: 100                 # 89 -> 100; PERF-001 LCP-Watch offen (siehe Re-Audit §5)
   journeys:
     - "Startseite -> Suche 'Pass' -> Treffer/Detail"
     - "Startseite -> Departement -> Dienstabteilung-Detail (Dialog)"
