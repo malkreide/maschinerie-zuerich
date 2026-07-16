@@ -39,8 +39,10 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
     if (focusId) {
       const u = data.units.find((x) => x.id === focusId);
       const b = data.beteiligungen.find((x) => x.id === focusId);
+      const su = data.units.find((x) => x.subunits?.some((s) => s.id === focusId));
       if (u) set.add(u.parent);
       if (b) set.add(b.verbunden);
+      if (su) set.add(su.parent);
     }
     return set;
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -56,7 +58,8 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
     if (!focusId) return expanded;
     const u = data.units.find((x) => x.id === focusId);
     const b = data.beteiligungen.find((x) => x.id === focusId);
-    const parent = u?.parent ?? b?.verbunden;
+    const suParent = data.units.find((x) => x.subunits?.some((s) => s.id === focusId))?.parent;
+    const parent = u?.parent ?? b?.verbunden ?? suParent;
     if (parent && !expanded.has(parent)) {
       const next = new Set(expanded);
       next.add(parent);
@@ -82,6 +85,12 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
       for (const b of data.beteiligungen) {
         if (!expandedWithFocus.has(b.verbunden)) continue;
         list.push({ id: b.id, name: b.name, type: 'beteiligung', parent: depMap.get(b.verbunden) ?? b.verbunden, budget: b.budget, fte: b.fte });
+      }
+      for (const u of data.units) {
+        if (!expandedWithFocus.has(u.parent)) continue;
+        for (const su of u.subunits ?? []) {
+          list.push({ id: su.id, name: su.name, type: 'subunit', parent: u.name });
+        }
       }
     }
     return list;
@@ -252,7 +261,8 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
     }
     const u = data.units.find((x) => x.id === focusId);
     const b = data.beteiligungen.find((x) => x.id === focusId);
-    const parentToOpen = u?.parent ?? b?.verbunden;
+    const suParent = data.units.find((x) => x.subunits?.some((s) => s.id === focusId))?.parent;
+    const parentToOpen = u?.parent ?? b?.verbunden ?? suParent;
     if (parentToOpen && !expandedRef.current.has(parentToOpen)) {
       setExpanded((prev) => {
         const next = new Set(prev);
@@ -515,6 +525,19 @@ function buildElements(d: StadtData, expanded: Set<string>, locale: string | und
     if (!isCompound) {
       edges.push({ data: { id: `e-${u.parent}-${u.id}`, source: u.parent, target: u.id, color } });
     }
+    // Teileinheiten (z. B. die Sonderschulen der Sonderpädagogik) als feinste
+    // Ebene an der Dienstabteilung — nicht in Leichter Sprache.
+    if (!isLs && u.subunits?.length) {
+      for (const su of u.subunits) {
+        nodes.push({
+          data: {
+            id: su.id, label: su.name, type: 'subunit', level: 3, parentDep: u.parent,
+            odz: su.odz, color,
+          },
+        });
+        edges.push({ data: { id: `e-${u.id}-${su.id}`, source: u.id, target: su.id, color } });
+      }
+    }
   }
 
   for (const b of d.beteiligungen) {
@@ -637,6 +660,12 @@ function getGraphStyle(locale?: string, klimaModus?: boolean, gudBudgetDelta: nu
         'background-color': 'data(color)', 'shape': 'round-rectangle', 'width': 22 * mul, 'height': 16 * mul } },
     { selector: 'node[type = "staff"]', style: {
         'background-color': 'data(color)', 'shape': 'round-rectangle', 'width': 22 * mul, 'height': 16 * mul } },
+    // Teileinheit: kleiner und mit heller Kontur — feinste Ebene unter einer
+    // Dienstabteilung (z. B. Sonderschulen).
+    { selector: 'node[type = "subunit"]', style: {
+        'background-color': 'data(color)', 'shape': 'round-rectangle',
+        'width': 15 * mul, 'height': 11 * mul, 'opacity': 0.85,
+        'border-width': 1 * mul, 'border-color': 'rgba(255,255,255,.6)' } },
     // Spezialverwaltungsbehörde: weisse Box mit kräftiger Kontur — spiegelt
     // die Darstellung im offiziellen Organigramm der Stadt.
     { selector: 'node[type = "spezial"]', style: {

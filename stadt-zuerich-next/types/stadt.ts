@@ -67,6 +67,17 @@ export interface Department {
   federationLinks?: FederationLink[];
 }
 
+// Feinste Ebene: eine benannte Teileinheit innerhalb einer Dienstabteilung
+// (z. B. die drei Sonderschulen der Sonderpädagogik). Bewusst schlank — Budget/
+// FTE liegen nur aggregiert bei der Muttereinheit vor und werden hier NICHT
+// dupliziert. Inline auf der Unit geführt, damit die bestehende Unit-Iteration
+// (Budget-Summen, Suche, Export) unberührt bleibt.
+export interface SubUnit {
+  id: string;
+  name: string;
+  odz?: Odz;
+}
+
 export interface Unit {
   id: string;
   parent: DepartmentId;
@@ -79,6 +90,7 @@ export interface Unit {
   konflikt?: Konflikt;
   klima?: KlimaImpact;
   federationLinks?: FederationLink[];
+  subunits?: SubUnit[];  // benannte Teileinheiten (optional, additiv)
 }
 
 // Klassifikation öffentlicher Beteiligungen (Transparenz / Open Data).

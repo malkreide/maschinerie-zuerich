@@ -183,6 +183,20 @@ function UnitDetail({
         totalAufwand={totalAufwand}
         population={population}
       />
+      {unit.subunits?.length ? (
+        <div className="units">
+          {unit.subunits.map((su) => (
+            <details className="unit" id={`unit-${su.id}`} key={su.id}>
+              <summary>
+                {su.name}
+                {su.odz && (
+                  <span className="text-[var(--color-mute)] text-xs"> ({su.odz.kurzname})</span>
+                )}
+              </summary>
+            </details>
+          ))}
+        </div>
+      ) : null}
     </details>
   );
 }

@@ -169,6 +169,28 @@
         "federationLinks": {
           "type": "array",
           "items": { "$ref": "#/definitions/FederationLink" }
+        },
+        "subunits": {
+          "type": "array",
+          "description": "Benannte Teileinheiten innerhalb der Dienstabteilung (z. B. die Sonderschulen der Sonderpädagogik). Budget/FTE liegen aggregiert bei der Muttereinheit.",
+          "items": { "$ref": "#/definitions/SubUnit" }
+        }
+      }
+    },
+    "SubUnit": {
+      "type": "object",
+      "required": ["id", "name"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "odz": {
+          "type": "object",
+          "description": "Optionaler OGD-/RPK-Schlüssel der Teileinheit.",
+          "properties": {
+            "key": { "type": "string" },
+            "kurzname": { "type": "string" },
+            "bezeichnung": { "type": "string" }
+          }
         }
       }
     },

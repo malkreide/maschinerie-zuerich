@@ -286,7 +286,9 @@
     "relations": "Verbindung zur Stadt",
     "relationType": "Art",
     "purpose": "Zweck",
-    "source": "Quelle"
+    "source": "Quelle",
+    "partOf": "Gehört zu",
+    "subunits": "Teil-Einheiten"
   },
   "Legend": {
     "headingTop": "Die Chefs der Stadt",
@@ -348,7 +350,8 @@
     "extern": "Eigene Firma der Stadt",
     "spezial": "Besondere Behörde",
     "committee": "Ausschuss / Kommission",
-    "beteiligung": "Stiftung oder Beteiligung"
+    "beteiligung": "Stiftung oder Beteiligung",
+    "subunit": "Teil-Einheit"
   },
   "Prozesse": {
     "title": "Abläufe in der Stadt",
