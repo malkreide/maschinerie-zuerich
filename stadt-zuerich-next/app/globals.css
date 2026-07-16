@@ -142,3 +142,22 @@ html, body { height: 100%; background: var(--color-bg); color: var(--color-ink);
   border: 3px solid rgba(255,255,255,.85); box-shadow: 0 1px 5px rgba(0,0,0,.4);
   font-variant-numeric: tabular-nums;
 }
+
+/* Reduced Motion: respektiert die System-Präferenz von Nutzer:innen mit
+ * vestibulären Beschwerden. Schaltet Animationen/Transitions global auf
+ * ~0 und stoppt das kontinuierliche Pulsieren des Onboarding-Beacons
+ * (react-joyride). Deckt WCAG 2.2.2 (auto-bewegter Inhalt) und 2.3.3 ab.
+ * Siehe audit/findings/2026-07-15-A11Y-009.md. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .react-joyride__beacon,
+  .react-joyride__beacon *,
+  .react-joyride__beacon span {
+    animation: none !important;
+  }
+}

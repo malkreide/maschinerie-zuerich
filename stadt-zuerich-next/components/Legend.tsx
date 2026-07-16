@@ -52,10 +52,15 @@ function LegendContent({ t, c }: { t: ReturnType<typeof getT>; c: typeof city.th
 }
 
 function Heading({ children, mt }: { children: React.ReactNode; mt?: boolean }) {
+  // h2: Die Legende ist ein complementary-Landmark direkt unter dem Seiten-h1;
+  // ihre Abschnittstitel sind daher Ebene 2. Vorher <h4> (nach Optik gewählt),
+  // was die Überschriften-Outline für Screenreader mit einem Sprung h1->h4
+  // durchbrach. Optik (11px uppercase) bleibt über die Utility-Klasse.
+  // Siehe audit/findings/2026-07-15-A11Y-004.md.
   return (
-    <h4 className={`m-0 text-[11px] uppercase text-[var(--color-mute)] tracking-wider font-semibold ${mt ? 'mt-2' : ''} mb-1`}>
+    <h2 className={`m-0 text-[11px] uppercase text-[var(--color-mute)] tracking-wider font-semibold ${mt ? 'mt-2' : ''} mb-1`}>
       {children}
-    </h4>
+    </h2>
   );
 }
 
