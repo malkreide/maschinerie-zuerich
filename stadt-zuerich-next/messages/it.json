@@ -228,7 +228,8 @@
     "ariaLabel": "Amministrazione della {cityName} come gerarchia testuale",
     "beteiligungenHeading": "Partecipazioni e fondazioni",
     "noUnits": "Nessuna suddivisione registrata.",
-    "noBudget": "Nessun dato di budget registrato per questo ufficio."
+    "noBudget": "Nessun dato di budget registrato per questo ufficio.",
+    "aussenbeziehungenHeading": "Relazioni esterne"
   },
   "Detail": {
     "close": "Chiudi pannello dettagli",
@@ -276,7 +277,10 @@
     "independentLink": "Collegato a {from}, senza subordinazione",
     "locations": "Sedi",
     "locationsLink": "Vedi sulla mappa",
-    "relations": "Relazione con la città"
+    "relations": "Relazione con la città",
+    "relationType": "Tipo",
+    "purpose": "Scopo",
+    "source": "Fonte"
   },
   "Legend": {
     "headingTop": "Consiglio municipale e dipartimenti",

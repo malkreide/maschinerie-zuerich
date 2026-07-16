@@ -1,7 +1,7 @@
 // Server-renderbare semantische <details>-Hierarchie für Screenreader und
 // Tastatur-Navigation. Kein 'use client' — pure HTML, kein State.
 
-import type { StadtData, Department, Unit, Beteiligung, Fte } from '@/types/stadt';
+import type { StadtData, Department, Unit, Beteiligung, Aussenbeziehung, Fte } from '@/types/stadt';
 import type { Locale } from '@/i18n/routing';
 import { getT } from '@/lib/i18n-server';
 import { fmtCHF, fmtNumber } from '@/lib/search';
@@ -15,6 +15,13 @@ import ListExportButton from './ListExportButton';
 import ListFocusSync from './ListFocusSync';
 
 type TFn = ReturnType<typeof getT>;
+
+const AUSSEN_TYP_DE: Record<string, string> = {
+  partnerstadt: 'Städtepartnerschaft',
+  netzwerk: 'Netzwerk',
+  regionale_kooperation: 'Regionale Kooperation',
+  subventionierter_verein: 'Subventionierter Verein',
+};
 
 export default function ListView({ data, locale }: { data: StadtData; locale: Locale }) {
   const t = getT(locale, 'List');
@@ -75,7 +82,21 @@ export default function ListView({ data, locale }: { data: StadtData; locale: Lo
           </div>
         </details>
       )}
-      
+
+      {(data.aussenbeziehungen?.length ?? 0) > 0 && (
+        <details className="dep">
+          <summary>
+            {t('aussenbeziehungenHeading')}{' '}
+            <span className="text-[var(--color-mute)] text-[13px]">({data.aussenbeziehungen!.length})</span>
+          </summary>
+          <div className="units">
+            {data.aussenbeziehungen!.map((a) => (
+              <AussenDetail key={a.id} a={a} tDetail={tDetail} />
+            ))}
+          </div>
+        </details>
+      )}
+
       <ListFocusSync data={data} />
     </main>
   );
@@ -183,6 +204,46 @@ function BetDetail({
         totalAufwand={totalAufwand}
         population={population}
       />
+    </details>
+  );
+}
+
+function AussenDetail({ a, tDetail }: { a: Aussenbeziehung; tDetail: TFn }) {
+  const t = tDetail;
+  const typ =
+    (AUSSEN_TYP_DE[a.typ] ?? a.typ) +
+    (a.rolle ? ` – ${a.rolle}` : '') +
+    (a.seit ? ` (seit ${a.seit})` : '');
+  return (
+    <details className="unit" id={`ab-${a.id}`}>
+      <summary>{a.name}</summary>
+      <dl className="meta">
+        <span style={{ display: 'contents' }}>
+          <dt>{t('relationType')}</dt>
+          <dd>{typ}</dd>
+        </span>
+        {a.zweck && (
+          <span style={{ display: 'contents' }}>
+            <dt>{t('purpose')}</dt>
+            <dd>{a.zweck}</dd>
+          </span>
+        )}
+        {a.referenz && (
+          <span style={{ display: 'contents' }}>
+            <dt>{t('source')}</dt>
+            <dd>
+              <a
+                href={a.referenz.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[var(--color-accent)] underline underline-offset-2"
+              >
+                {a.referenz.label}
+              </a>
+            </dd>
+          </span>
+        )}
+      </dl>
     </details>
   );
 }

@@ -3624,6 +3624,159 @@
           "rolle": "Vertretung in den strategischen Organen"
         }
       ]
+    },
+    {
+      "id": "B-kw-waegital",
+      "name": "AG Kraftwerk Wägital",
+      "verbunden": "DIB",
+      "rechtsform": "ag",
+      "beteiligungsart": "strategisch",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2023",
+      "provenance": "publiziert",
+      "sektor": "energie",
+      "zweck": "Partnerwerk zur Stromproduktion (Wasserkraft)."
+    },
+    {
+      "id": "B-kwo",
+      "name": "Kraftwerke Oberhasli AG",
+      "verbunden": "DIB",
+      "rechtsform": "ag",
+      "beteiligungsart": "strategisch",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2023",
+      "provenance": "publiziert",
+      "sektor": "energie",
+      "zweck": "Partnerwerk zur Stromproduktion (Wasserkraft)."
+    },
+    {
+      "id": "B-maggia",
+      "name": "Maggia Kraftwerke AG",
+      "verbunden": "DIB",
+      "rechtsform": "ag",
+      "beteiligungsart": "strategisch",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2023",
+      "provenance": "publiziert",
+      "sektor": "energie",
+      "zweck": "Partnerwerk zur Stromproduktion (Wasserkraft)."
+    },
+    {
+      "id": "B-blenio",
+      "name": "Blenio-Kraftwerke AG",
+      "verbunden": "DIB",
+      "rechtsform": "ag",
+      "beteiligungsart": "strategisch",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2023",
+      "provenance": "publiziert",
+      "sektor": "energie",
+      "zweck": "Partnerwerk zur Stromproduktion (Wasserkraft)."
+    },
+    {
+      "id": "B-khinterrhein",
+      "name": "Kraftwerke Hinterrhein AG",
+      "verbunden": "DIB",
+      "rechtsform": "ag",
+      "beteiligungsart": "strategisch",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2023",
+      "provenance": "publiziert",
+      "sektor": "energie",
+      "zweck": "Partnerwerk zur Stromproduktion (Wasserkraft)."
+    },
+    {
+      "id": "B-swissgrid",
+      "name": "Swissgrid AG",
+      "verbunden": "DIB",
+      "rechtsform": "ag",
+      "beteiligungsart": "strategisch",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2023",
+      "provenance": "publiziert",
+      "sektor": "energie",
+      "zweck": "Nationale Stromnetzgesellschaft (Übertragungsnetz)."
+    },
+    {
+      "id": "B-hhkw-aubrugg",
+      "name": "HHKW Aubrugg AG",
+      "verbunden": "DIB",
+      "rechtsform": "ag",
+      "beteiligungsart": "strategisch",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2023",
+      "provenance": "publiziert",
+      "sektor": "energie",
+      "zweck": "Holzheizkraftwerk zur Wärme- und Stromproduktion."
+    },
+    {
+      "id": "B-fernwaerme-zuerich",
+      "name": "Fernwärme Zürich AG (FWZ)",
+      "verbunden": "DIB",
+      "rechtsform": "ag",
+      "beteiligungsart": "strategisch",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2023",
+      "provenance": "publiziert",
+      "sektor": "energie",
+      "zweck": "Fernwärmeversorgung im Raum Zürich."
+    },
+    {
+      "id": "B-lazur",
+      "name": "LaZur Energie AG",
+      "verbunden": "DIB",
+      "rechtsform": "ag",
+      "beteiligungsart": "strategisch",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2023",
+      "provenance": "publiziert",
+      "sektor": "energie",
+      "zweck": "Beteiligung im Energiebereich."
+    },
+    {
+      "id": "B-energie-mollendruz",
+      "name": "Energie Naturelle Mollendruz SA",
+      "verbunden": "DIB",
+      "rechtsform": "ag",
+      "beteiligungsart": "strategisch",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2023",
+      "provenance": "publiziert",
+      "sektor": "energie",
+      "zweck": "Erneuerbare Energieproduktion."
+    },
+    {
+      "id": "B-biogas-zuerich",
+      "name": "Biogas Zürich AG",
+      "verbunden": "DIB",
+      "rechtsform": "ag",
+      "beteiligungsart": "strategisch",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2023",
+      "provenance": "publiziert",
+      "sektor": "energie",
+      "zweck": "Produktion und Einspeisung von Biogas."
+    },
+    {
+      "id": "B-zwz",
+      "name": "ZWZ AG",
+      "verbunden": "DIB",
+      "rechtsform": "ag",
+      "beteiligungsart": "strategisch",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2023",
+      "provenance": "publiziert"
+    },
+    {
+      "id": "B-zav-logistik",
+      "name": "ZAV Logistik AG",
+      "verbunden": "TED",
+      "rechtsform": "ag",
+      "beteiligungsart": "strategisch",
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/finanzen/beteiligungen.html",
+      "stand": "2023",
+      "provenance": "publiziert",
+      "zweck": "Logistik für die Abfallentsorgung (Bahntransport)."
     }
   ],
   "relationships": [
@@ -3668,6 +3821,141 @@
       "to": "SD-sozb",
       "type": "fachlich_politische_verknuepfung",
       "description": "Fachlich und politisch mit dem Sozialdepartement verknüpft, aber nicht der Verwaltung unterstellt."
+    }
+  ],
+  "aussenbeziehungen": [
+    {
+      "id": "AB-kunstgesellschaft",
+      "name": "Zürcher Kunstgesellschaft (Kunsthaus)",
+      "typ": "subventionierter_verein",
+      "sektor": "kultur",
+      "zweck": "Trägerin des Kunsthauses Zürich; Subventionsvertrag mit der Stadt.",
+      "rolle": "Subventionierter Verein",
+      "referenz": {
+        "label": "Subventionsvertrag (AS 442.110)",
+        "url": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/politik-und-recht/amtliche-sammlung/4/442/110/110-v10.html"
+      },
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/politik-und-recht/amtliche-sammlung/4/442/110/110-v10.html",
+      "stand": "2026",
+      "provenance": "publiziert"
+    },
+    {
+      "id": "AB-zko",
+      "name": "Verein Zürcher Kammerorchester (ZKO)",
+      "typ": "subventionierter_verein",
+      "sektor": "kultur",
+      "zweck": "Kammerorchester mit Subventionsvertrag der Stadt.",
+      "rolle": "Subventionierter Verein",
+      "referenz": {
+        "label": "Subventionsvertrag (AS 444.120)",
+        "url": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/politik-und-recht/amtliche-sammlung/4/444/120/120-v9.html"
+      },
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/politik-und-recht/amtliche-sammlung/4/444/120/120-v9.html",
+      "stand": "2026",
+      "provenance": "publiziert"
+    },
+    {
+      "id": "AB-gessnerallee",
+      "name": "Verein Theaterhaus Gessnerallee",
+      "typ": "subventionierter_verein",
+      "sektor": "kultur",
+      "zweck": "Theaterhaus mit städtischem Kulturbeitrag.",
+      "rolle": "Subventionierter Verein",
+      "referenz": {
+        "label": "Kulturbeiträge 2026 und 2027",
+        "url": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/politik-und-recht/stadtratsbeschluesse/2026/06/stzh-strb-2026-2258.html"
+      },
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/politik-und-recht/stadtratsbeschluesse/2026/06/stzh-strb-2026-2258.html",
+      "stand": "2026",
+      "provenance": "publiziert"
+    },
+    {
+      "id": "AB-metropolitanraum",
+      "name": "Verein Metropolitanraum Zürich",
+      "typ": "netzwerk",
+      "zweck": "Regionale Zusammenarbeit im Metropolitanraum Zürich.",
+      "rolle": "Gründungsmitglied",
+      "referenz": {
+        "label": "Beiträge 2025–2030 (STRB 2024-3101)",
+        "url": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/politik-und-recht/stadtratsbeschluesse/2024/Okt/stzh-strb-2024-3101.html"
+      },
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/politik-und-recht/stadtratsbeschluesse/2024/Okt/stzh-strb-2024-3101.html",
+      "stand": "2026",
+      "provenance": "publiziert"
+    },
+    {
+      "id": "AB-eurocities",
+      "name": "Eurocities",
+      "typ": "netzwerk",
+      "zweck": "Europäisches Städtenetzwerk.",
+      "rolle": "Mitglied",
+      "referenz": {
+        "label": "Mitgliedschaft (Medienmitteilung)",
+        "url": "https://www.stadt-zuerich.ch/misc/de/mitteilungsarchiv/medienmitteilungen/2010/01/100127d.html"
+      },
+      "quelle": "https://www.stadt-zuerich.ch/misc/de/mitteilungsarchiv/medienmitteilungen/2010/01/100127d.html",
+      "stand": "2026",
+      "provenance": "publiziert"
+    },
+    {
+      "id": "AB-san-francisco",
+      "name": "City and County of San Francisco",
+      "typ": "partnerstadt",
+      "seit": "2003",
+      "zweck": "Städtepartnerschaft (Kultur, Klima, Bildung, Stadtentwicklung, Gesundheit).",
+      "rolle": "Partnerstadt",
+      "referenz": {
+        "label": "Aussenbeziehungen der Stadt Zürich",
+        "url": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/politik-und-recht/strategie-politikfelder/aussenbeziehungen.html"
+      },
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/politik-und-recht/strategie-politikfelder/aussenbeziehungen.html",
+      "stand": "2026",
+      "provenance": "publiziert"
+    },
+    {
+      "id": "AB-kunming",
+      "name": "Stadt Kunming",
+      "typ": "partnerstadt",
+      "seit": "1982",
+      "zweck": "Städtepartnerschaft (Kultur, Trink- und Abwasser).",
+      "rolle": "Partnerstadt",
+      "referenz": {
+        "label": "Aussenbeziehungen der Stadt Zürich",
+        "url": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/politik-und-recht/strategie-politikfelder/aussenbeziehungen.html"
+      },
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/politik-und-recht/strategie-politikfelder/aussenbeziehungen.html",
+      "stand": "2026",
+      "provenance": "publiziert"
+    },
+    {
+      "id": "AB-tyros",
+      "name": "Stadt Tyros",
+      "typ": "partnerstadt",
+      "seit": "2017",
+      "zweck": "Temporäre Entwicklungszusammenarbeit.",
+      "rolle": "Partnerstadt (Entwicklungszusammenarbeit)",
+      "referenz": {
+        "label": "Aussenbeziehungen der Stadt Zürich",
+        "url": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/politik-und-recht/strategie-politikfelder/aussenbeziehungen.html"
+      },
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/politik-und-recht/strategie-politikfelder/aussenbeziehungen.html",
+      "stand": "2026",
+      "provenance": "publiziert"
+    },
+    {
+      "id": "AB-rvkz",
+      "name": "Regionale Verkehrskonferenz Zürich (RVKZ)",
+      "typ": "regionale_kooperation",
+      "sektor": "verkehr",
+      "zweck": "Regionale Koordination im öffentlichen Verkehr.",
+      "rolle": "Beteiligte Kommune",
+      "referenz": {
+        "label": "Aussenbeziehungen der Stadt Zürich",
+        "url": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/politik-und-recht/strategie-politikfelder/aussenbeziehungen.html"
+      },
+      "quelle": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/politik-und-recht/strategie-politikfelder/aussenbeziehungen.html",
+      "stand": "2026",
+      "provenance": "publiziert"
     }
   ]
 }

@@ -228,7 +228,8 @@
     "ariaLabel": "Administration de la {cityName} en hiérarchie textuelle",
     "beteiligungenHeading": "Participations et fondations",
     "noUnits": "Aucune subdivision enregistrée.",
-    "noBudget": "Aucune donnée budgétaire enregistrée pour ce service."
+    "noBudget": "Aucune donnée budgétaire enregistrée pour ce service.",
+    "aussenbeziehungenHeading": "Relations extérieures"
   },
   "Detail": {
     "close": "Fermer le panneau de détail",
@@ -276,7 +277,10 @@
     "independentLink": "Lié à {from}, sans subordination",
     "locations": "Emplacements",
     "locationsLink": "Voir sur la carte",
-    "relations": "Relation avec la ville"
+    "relations": "Relation avec la ville",
+    "relationType": "Type",
+    "purpose": "But",
+    "source": "Source"
   },
   "Legend": {
     "headingTop": "Conseil municipal et départements",

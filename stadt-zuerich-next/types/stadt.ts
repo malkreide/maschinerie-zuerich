@@ -164,6 +164,32 @@ export interface Beteiligung {
   beziehungen?: BeteiligungBeziehung[]; // typisierte Beziehungen der Stadt (optional, additiv)
 }
 
+// Aussenbeziehungen der Stadt, die KEINE Kapitalbeteiligungen sind:
+// Städtepartnerschaften, Netzwerk-Mitgliedschaften, regionale Kooperationen und
+// subventionierte Vereine. Bewusst als eigene Klasse geführt (nicht als
+// Beteiligung), damit das Bild transparent und korrekt bleibt.
+export const AUSSENBEZIEHUNG_TYPEN = [
+  'partnerstadt',            // Städtepartnerschaft (z. B. San Francisco, Kunming)
+  'netzwerk',                // Mitgliedschaft in einem Städte-/Institutionennetzwerk (z. B. Eurocities)
+  'regionale_kooperation',   // regionale Koordinations-/Kooperationsbeziehung (z. B. RVKZ)
+  'subventionierter_verein', // Verein mit Subventions-/Leistungsvertrag der Stadt (z. B. Kunstgesellschaft)
+] as const;
+export type AussenbeziehungTyp = (typeof AUSSENBEZIEHUNG_TYPEN)[number];
+
+export interface Aussenbeziehung {
+  id: string;
+  name: string;
+  typ: AussenbeziehungTyp;
+  sektor?: BeteiligungSektor;  // wo passend (z. B. kultur); bei Partnerstädten/Netzwerken oft leer
+  zweck?: string;              // Kurzbeschreibung (de)
+  rolle?: string;              // z. B. «Gründungsmitglied», «Partnerstadt»
+  seit?: string;               // Beginn der Beziehung (Jahr)
+  referenz?: { label: string; url: string }; // Deep-Link auf die amtliche Grundlage
+  quelle?: string;             // Beleg-URL
+  stand?: string;              // Datenstand
+  provenance?: Provenance;
+}
+
 export interface Center {
   id: string;
   name: string;
@@ -280,6 +306,7 @@ export interface StadtData {
   departments: Department[];
   units: Unit[];
   beteiligungen: Beteiligung[];
+  aussenbeziehungen?: Aussenbeziehung[];  // Partnerstädte, Netzwerke, subventionierte Vereine (optional)
   relationships?: Relationship[];  // nicht-hierarchische Verknüpfungen (optional)
   lebenslagen?: Lebenslage[];  // optional, wird zur Laufzeit beigeladen
 }

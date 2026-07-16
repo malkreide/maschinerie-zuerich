@@ -228,7 +228,8 @@
     "ariaLabel": "Verwaltung der {cityName} als textuelle Hierarchie",
     "beteiligungenHeading": "Beteiligungen und Stiftungen",
     "noUnits": "Keine Unterstellen erfasst.",
-    "noBudget": "Noch keine Budgetdaten für dieses Amt hinterlegt."
+    "noBudget": "Noch keine Budgetdaten für dieses Amt hinterlegt.",
+    "aussenbeziehungenHeading": "Aussenbeziehungen"
   },
   "Detail": {
     "close": "Detail-Panel schliessen",
@@ -276,7 +277,10 @@
     "independentLink": "Mit {from} verknüpft, ohne Unterstellung",
     "locations": "Standorte",
     "locationsLink": "Auf der Karte ansehen",
-    "relations": "Beziehung zur Stadt"
+    "relations": "Beziehung zur Stadt",
+    "relationType": "Art",
+    "purpose": "Zweck",
+    "source": "Quelle"
   },
   "Legend": {
     "headingTop": "Stadtrat & Departemente",
