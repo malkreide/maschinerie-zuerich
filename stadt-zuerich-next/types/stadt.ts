@@ -123,6 +123,28 @@ export const PROVENANCE = [
 ] as const;
 export type Provenance = (typeof PROVENANCE)[number];
 
+// Typisierte Beziehung der Stadt zu einer assoziierten Organisation — jenseits
+// der reinen Kapitalbeteiligung, die schon durch die Zugehörigkeit zu
+// `beteiligungen` ausgedrückt ist. Macht Trägerschaften, Verwaltungsrats-
+// Vertretungen, Subventions- und Leistungsverträge sichtbar. Bindende Werte
+// (Quoten, Beträge) werden NICHT gerendert — nur als `referenz`-Deep-Link auf
+// die amtliche Quelle (Kardinalregel «Link, don't assert»).
+export const BETEILIGUNG_BEZIEHUNGS_TYPEN = [
+  'traegerschaft',      // öffentlich-rechtliche Trägerschaft/Stifterin (public_law_sponsorship)
+  'mit_traegerschaft',  // gemeinsame Trägerschaft, z. B. mit dem Kanton (joint_sponsorship)
+  'vr_vertretung',      // Vertretung in Verwaltungs-/Stiftungsrat (board_representation)
+  'subvention',         // Subventions-/Leistungsvertrag mit Beitrag (subsidy_contract)
+  'leistungsauftrag',   // Leistungsauftrag ohne Subventionscharakter (service_mandate)
+] as const;
+export type BeteiligungBeziehungsTyp = (typeof BETEILIGUNG_BEZIEHUNGS_TYPEN)[number];
+
+export interface BeteiligungBeziehung {
+  typ: BeteiligungBeziehungsTyp;
+  rolle?: string;              // z. B. «Trägerin bzw. Stifterin», «Mehrheitsaktionärin»
+  mittraeger?: string[];       // Mit-Träger bei gemeinsamer Trägerschaft, z. B. ["Kanton Zürich"]
+  referenz?: { label: string; url: string }; // Deep-Link auf amtliche Grundlage (kein gerenderter Wert)
+}
+
 export interface Beteiligung {
   id: string;
   name: string;
@@ -139,6 +161,33 @@ export interface Beteiligung {
   quelle?: string;      // Beleg-URL (z. B. Beteiligungsbericht)
   stand?: string;       // Datenstand (Jahr oder ISO-Datum)
   provenance?: Provenance; // maschinenlesbare Datenherkunft
+  beziehungen?: BeteiligungBeziehung[]; // typisierte Beziehungen der Stadt (optional, additiv)
+}
+
+// Aussenbeziehungen der Stadt, die KEINE Kapitalbeteiligungen sind:
+// Städtepartnerschaften, Netzwerk-Mitgliedschaften, regionale Kooperationen und
+// subventionierte Vereine. Bewusst als eigene Klasse geführt (nicht als
+// Beteiligung), damit das Bild transparent und korrekt bleibt.
+export const AUSSENBEZIEHUNG_TYPEN = [
+  'partnerstadt',            // Städtepartnerschaft (z. B. San Francisco, Kunming)
+  'netzwerk',                // Mitgliedschaft in einem Städte-/Institutionennetzwerk (z. B. Eurocities)
+  'regionale_kooperation',   // regionale Koordinations-/Kooperationsbeziehung (z. B. RVKZ)
+  'subventionierter_verein', // Verein mit Subventions-/Leistungsvertrag der Stadt (z. B. Kunstgesellschaft)
+] as const;
+export type AussenbeziehungTyp = (typeof AUSSENBEZIEHUNG_TYPEN)[number];
+
+export interface Aussenbeziehung {
+  id: string;
+  name: string;
+  typ: AussenbeziehungTyp;
+  sektor?: BeteiligungSektor;  // wo passend (z. B. kultur); bei Partnerstädten/Netzwerken oft leer
+  zweck?: string;              // Kurzbeschreibung (de)
+  rolle?: string;              // z. B. «Gründungsmitglied», «Partnerstadt»
+  seit?: string;               // Beginn der Beziehung (Jahr)
+  referenz?: { label: string; url: string }; // Deep-Link auf die amtliche Grundlage
+  quelle?: string;             // Beleg-URL
+  stand?: string;              // Datenstand
+  provenance?: Provenance;
 }
 
 export interface Center {
@@ -257,6 +306,7 @@ export interface StadtData {
   departments: Department[];
   units: Unit[];
   beteiligungen: Beteiligung[];
+  aussenbeziehungen?: Aussenbeziehung[];  // Partnerstädte, Netzwerke, subventionierte Vereine (optional)
   relationships?: Relationship[];  // nicht-hierarchische Verknüpfungen (optional)
   lebenslagen?: Lebenslage[];  // optional, wird zur Laufzeit beigeladen
 }

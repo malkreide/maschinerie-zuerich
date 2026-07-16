@@ -63,6 +63,19 @@ export default function ListExportButton({ data, locale, label }: Props) {
       }
     }
 
+    // Aussenbeziehungen (Partnerstädte, Netzwerke, subventionierte Vereine) —
+    // Satelliten der Stadt, keine Beteiligungen.
+    if (!isLs) {
+      for (const a of data.aussenbeziehungen ?? []) {
+        nodes.push({
+          id: a.id,
+          name: a.name,
+          type: 'aussenbeziehung',
+          parent: data.center.id,
+        });
+      }
+    }
+
     downloadNodesAsCSV(nodes, `maschinerie-zuerich-liste-${locale}.csv`);
   };
 

@@ -228,7 +228,8 @@
     "ariaLabel": "Die Stadt-Verwaltung als Liste",
     "beteiligungenHeading": "Andere Stellen von der Stadt",
     "noUnits": "Keine Unter-Stellen.",
-    "noBudget": "Noch keine Zahlen für diese Stelle."
+    "noBudget": "Noch keine Zahlen für diese Stelle.",
+    "aussenbeziehungenHeading": "Verbindungen nach aussen"
   },
   "Detail": {
     "close": "Dieses Fenster schliessen",
@@ -275,7 +276,11 @@
     "independentOversight": "Gewählt und beaufsichtigt von: {from}",
     "independentLink": "Arbeitet mit {from} zusammen. Aber nicht unterstellt.",
     "locations": "Orte",
-    "locationsLink": "Auf der Karte anschauen"
+    "locationsLink": "Auf der Karte anschauen",
+    "relations": "Verbindung zur Stadt",
+    "relationType": "Art",
+    "purpose": "Zweck",
+    "source": "Quelle"
   },
   "Legend": {
     "headingTop": "Die Chefs der Stadt",

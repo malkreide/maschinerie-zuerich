@@ -228,7 +228,8 @@
     "ariaLabel": "{cityName} administration as textual hierarchy",
     "beteiligungenHeading": "Holdings and foundations",
     "noUnits": "No subdivisions recorded.",
-    "noBudget": "No budget data recorded for this office yet."
+    "noBudget": "No budget data recorded for this office yet.",
+    "aussenbeziehungenHeading": "External relations"
   },
   "Detail": {
     "close": "Close detail panel",
@@ -275,7 +276,11 @@
     "independentOversight": "Elected & supervised by {from}",
     "independentLink": "Linked to {from}, not subordinate",
     "locations": "Locations",
-    "locationsLink": "View on the map"
+    "locationsLink": "View on the map",
+    "relations": "Relationship to the city",
+    "relationType": "Type",
+    "purpose": "Purpose",
+    "source": "Source"
   },
   "Legend": {
     "headingTop": "City council & departments",

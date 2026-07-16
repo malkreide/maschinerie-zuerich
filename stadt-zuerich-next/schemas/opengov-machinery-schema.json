@@ -57,9 +57,48 @@
       "type": "array",
       "description": "Nicht-hierarchische Verknüpfungen zwischen Einheiten — z.B. Wahl/Aufsicht ohne Verwaltungsunterstellung. Ergänzt die hierarchische parent-Beziehung, ersetzt sie nicht.",
       "items": { "$ref": "#/definitions/Relationship" }
+    },
+    "aussenbeziehungen": {
+      "type": "array",
+      "description": "Aussenbeziehungen der Stadt, die keine Kapitalbeteiligungen sind: Städtepartnerschaften, Netzwerk-Mitgliedschaften, regionale Kooperationen, subventionierte Vereine.",
+      "items": { "$ref": "#/definitions/Aussenbeziehung" }
     }
   },
   "definitions": {
+    "Aussenbeziehung": {
+      "type": "object",
+      "required": ["id", "name", "typ"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "typ": {
+          "type": "string",
+          "enum": ["partnerstadt", "netzwerk", "regionale_kooperation", "subventionierter_verein"],
+          "description": "partnerstadt = Städtepartnerschaft; netzwerk = Mitgliedschaft in einem Städte-/Institutionennetzwerk; regionale_kooperation = regionale Koordinations-/Kooperationsbeziehung; subventionierter_verein = Verein mit Subventions-/Leistungsvertrag."
+        },
+        "sektor": {
+          "type": "string",
+          "enum": ["energie", "verkehr", "finanzen", "wohnen", "kultur", "soziales", "freizeit", "gesundheit"]
+        },
+        "zweck": { "type": "string" },
+        "rolle": { "type": "string" },
+        "seit": { "type": "string", "description": "Beginn der Beziehung (Jahr)." },
+        "referenz": {
+          "type": "object",
+          "required": ["label", "url"],
+          "properties": {
+            "label": { "type": "string" },
+            "url": { "type": "string", "format": "uri" }
+          }
+        },
+        "quelle": { "type": "string" },
+        "stand": { "type": "string" },
+        "provenance": {
+          "type": "string",
+          "enum": ["publiziert", "aggregiert", "geschaetzt", "manuell", "api", "pdf", "demo"]
+        }
+      }
+    },
     "Relationship": {
       "type": "object",
       "required": ["from", "to", "type"],
@@ -162,6 +201,37 @@
           "type": "string",
           "enum": ["publiziert", "aggregiert", "geschaetzt", "manuell", "api", "pdf", "demo"],
           "description": "Maschinenlesbare Datenherkunft."
+        },
+        "beziehungen": {
+          "type": "array",
+          "description": "Typisierte Beziehungen der Stadt zur Organisation (Trägerschaft, VR-Vertretung, Subvention, Leistungsauftrag). Bindende Werte nur als referenz-Deep-Link, nie als gerenderter Wert (Kardinalregel).",
+          "items": { "$ref": "#/definitions/BeteiligungBeziehung" }
+        }
+      }
+    },
+    "BeteiligungBeziehung": {
+      "type": "object",
+      "required": ["typ"],
+      "properties": {
+        "typ": {
+          "type": "string",
+          "enum": ["traegerschaft", "mit_traegerschaft", "vr_vertretung", "subvention", "leistungsauftrag"],
+          "description": "traegerschaft = öffentlich-rechtliche Trägerschaft; mit_traegerschaft = gemeinsame Trägerschaft (z. B. mit Kanton); vr_vertretung = Verwaltungs-/Stiftungsrats-Vertretung; subvention = Subventions-/Leistungsvertrag; leistungsauftrag = Leistungsauftrag ohne Subventionscharakter."
+        },
+        "rolle": { "type": "string", "description": "Rolle der Stadt (de), z. B. «Trägerin bzw. Stifterin»." },
+        "mittraeger": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Mit-Träger bei gemeinsamer Trägerschaft, z. B. [\"Kanton Zürich\"]."
+        },
+        "referenz": {
+          "type": "object",
+          "required": ["label", "url"],
+          "properties": {
+            "label": { "type": "string" },
+            "url": { "type": "string", "format": "uri", "description": "Deep-Link auf die amtliche Grundlage." }
+          },
+          "description": "Deep-Link auf die amtliche Grundlage — kein gerenderter bindender Wert (Kardinalregel)."
         }
       }
     }
