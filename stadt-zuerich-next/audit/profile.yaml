@@ -1,0 +1,28 @@
+# ux-audit Profil — maschinerie-zuerich
+# Erstellt: 2026-07-15, abgeleitet aus Live-URL + Repo (User-Bestätigung: URL geliefert)
+
+profile:
+  name: maschinerie-zuerich
+  solution_url: https://maschinerie-zuerich.vercel.app/de
+  repo_path: C:\Users\hayal\maschinerie-zuerich\stadt-zuerich-next
+  app_type: web-app            # interaktiver Verwaltungs-Explorer (d3/cytoscape/xyflow)
+  target_audience: public      # Bürger:innen der Stadt Zürich
+  languages: [de, en, fr, it, ls]  # ls = Leichte Sprache (messages/*.json)
+  interaction: read-only       # Browse + Suche, keine Datenmutation
+  compliance: eCH-0059         # Verwaltungsdaten, öffentliche Zielgruppe -> A11Y-Eskalation aktiv
+  viewports: [mobile, desktop]
+  baseline_report: none        # Erst-Audit
+
+audit_meta:
+  catalog_version: 0.1.0
+  last_audit: 2026-07-15
+  last_score: 89
+  journeys:
+    - "Startseite -> Suche 'Pass' -> Treffer/Detail"
+    - "Startseite -> Departement -> Dienstabteilung-Detail (Dialog)"
+    - "Navigation -> Simulator"
+    - "Mobile: Startseite -> Suche (Viewport 375px)"
+
+# Abweichungen / Hinweise:
+# - Deployment zeigt Routen (territory, portfolio, wirkung, roadmap), die im lokalen
+#   Repo-Stand fehlen -> lokaler Stand evtl. hinter Deployment. Code-Evidenz kann abweichen.
