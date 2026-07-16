@@ -286,7 +286,9 @@
     "relations": "Beziehung zur Stadt",
     "relationType": "Art",
     "purpose": "Zweck",
-    "source": "Quelle"
+    "source": "Quelle",
+    "partOf": "Teil von",
+    "subunits": "Teileinheiten"
   },
   "Legend": {
     "headingTop": "Stadtrat & Departemente",
@@ -348,7 +350,8 @@
     "extern": "Verselbständigter Betrieb",
     "spezial": "Spezialverwaltungsbehörde",
     "committee": "Ausschuss / Kommission",
-    "beteiligung": "Beteiligung / Stiftung"
+    "beteiligung": "Beteiligung / Stiftung",
+    "subunit": "Teileinheit"
   },
   "Prozesse": {
     "title": "Verwaltungsprozesse",

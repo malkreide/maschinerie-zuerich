@@ -137,7 +137,41 @@ export default function DetailPanel({
 
   if (!selectedId) return null;
   const item = findItem(data, selectedId);
-  if (!item) return null;
+  if (!item) {
+    // Teileinheit (z. B. eine Sonderschule der Sonderpädagogik): schlankes
+    // eigenes Panel — hält die typisierte Haupt-Render-Logik unberührt.
+    const parentUnit = data.units.find((u) => u.subunits?.some((s) => s.id === selectedId));
+    const sub = parentUnit?.subunits?.find((s) => s.id === selectedId);
+    if (!sub) return null;
+    return (
+      <aside
+        role="region"
+        aria-label={t('ariaLabel')}
+        aria-live="polite"
+        className="fixed bottom-3 right-3 z-[9] w-[calc(100vw-24px)] sm:w-[320px] bg-[var(--color-panel)] px-4 py-3.5 rounded-lg shadow text-[13px] leading-snug"
+      >
+        <button
+          onClick={close}
+          aria-label={t('close')}
+          className="absolute top-2 right-2.5 bg-transparent border-0 text-[var(--color-mute)] cursor-pointer text-base"
+        >×</button>
+        <h3 className="m-0 mb-1 text-[15px] font-semibold">{sub.name}</h3>
+        <div className="text-xs text-[var(--color-mute)] mb-2">{tType('subunit')}</div>
+        {parentUnit && (
+          <div className="flex justify-between gap-3 py-0.5 border-b border-dashed border-[var(--color-line)]">
+            <span className="text-[var(--color-mute)]">{t('partOf')}</span>
+            <span className="text-right">{parentUnit.name}</span>
+          </div>
+        )}
+        {sub.odz && (
+          <div className="flex justify-between gap-3 py-0.5">
+            <span className="text-[var(--color-mute)]">{t('ogdKey')}</span>
+            <span className="text-right">{sub.odz.kurzname} · key {sub.odz.key}</span>
+          </div>
+        )}
+      </aside>
+    );
+  }
 
   const isDep = 'vorsteher' in item;
   const kind = isDep ? 'department'
@@ -154,6 +188,20 @@ export default function DetailPanel({
   if (item.fte)    rows.push(...fteRows(item.fte, t));
   if ('diversity' in item && item.diversity) rows.push(...diversityRows(item.diversity as { womenInManagement: number; menInManagement: number }, t));
   if (item.odz)    rows.push({ k: t('ogdKey'), v: `${item.odz.kurzname} · key ${item.odz.key}` });
+  if ('subunits' in item && item.subunits?.length) {
+    rows.push({
+      k: t('subunits'),
+      v: (
+        <span>
+          {item.subunits.map((s) => (
+            <span key={s.id} className="block">
+              {s.name}{s.odz ? ` · ${s.odz.kurzname}` : ''}
+            </span>
+          ))}
+        </span>
+      ),
+    });
+  }
   if ('verbunden' in item) {
     const b = item as Beteiligung;
     if (b.rechtsform)      rows.push({ k: t('rechtsform'), v: RECHTSFORM_DE[b.rechtsform] ?? b.rechtsform });

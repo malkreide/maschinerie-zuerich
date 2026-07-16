@@ -286,7 +286,9 @@
     "relations": "Relationship to the city",
     "relationType": "Type",
     "purpose": "Purpose",
-    "source": "Source"
+    "source": "Source",
+    "partOf": "Part of",
+    "subunits": "Sub-units"
   },
   "Legend": {
     "headingTop": "City council & departments",
@@ -348,7 +350,8 @@
     "extern": "Independent operation",
     "spezial": "Special administrative authority",
     "committee": "Committee / Commission",
-    "beteiligung": "Holding / foundation"
+    "beteiligung": "Holding / foundation",
+    "subunit": "Sub-unit"
   },
   "Prozesse": {
     "title": "Administrative processes",

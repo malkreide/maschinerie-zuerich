@@ -286,7 +286,9 @@
     "relations": "Relazione con la città",
     "relationType": "Tipo",
     "purpose": "Scopo",
-    "source": "Fonte"
+    "source": "Fonte",
+    "partOf": "Parte di",
+    "subunits": "Sotto-unità"
   },
   "Legend": {
     "headingTop": "Consiglio municipale e dipartimenti",
@@ -348,7 +350,8 @@
     "extern": "Azienda autonoma",
     "spezial": "Autorità amministrativa speciale",
     "committee": "Comitato / Commissione",
-    "beteiligung": "Partecipazione / fondazione"
+    "beteiligung": "Partecipazione / fondazione",
+    "subunit": "Sotto-unità"
   },
   "Prozesse": {
     "title": "Procedure amministrative",

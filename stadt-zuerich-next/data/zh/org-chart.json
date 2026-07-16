@@ -1795,7 +1795,33 @@
           "5031",
           "5032"
         ]
-      }
+      },
+      "subunits": [
+        {
+          "id": "SSD-sopaed-hps",
+          "name": "Heilpädagogische Schule Zürich",
+          "odz": {
+            "kurzname": "HPS",
+            "key": "5030"
+          }
+        },
+        {
+          "id": "SSD-sopaed-skb",
+          "name": "Schule für Kinder und Jugendliche mit Körper- und Mehrfachbehinderungen Zürich",
+          "odz": {
+            "kurzname": "SKB",
+            "key": "5031"
+          }
+        },
+        {
+          "id": "SSD-sopaed-sfs",
+          "name": "Schule Fokus Sehen",
+          "odz": {
+            "kurzname": "SFS",
+            "key": "5032"
+          }
+        }
+      ]
     },
     {
       "id": "SSD-fsv",
