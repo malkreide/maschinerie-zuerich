@@ -26,6 +26,11 @@ export interface SimulatorDept {
 const SLIDER_MIN = -50;
 const SLIDER_MAX = 50;
 const SLIDER_STEP = 1;
+// Weiche, überwindbare Rast-Zone (in Prozentpunkten) um den Neutralpunkt 0 %:
+// Werte knapp um 0 fangen beim Ziehen auf 0 ein, damit man leicht auf
+// «unverändert» zurückfindet. Bewusst klein und nicht fixierend — ein
+// weiterer Zug über die Zone hinaus überwindet sie sofort.
+const ZERO_SNAP = 2;
 
 // Double-Encoding: Farbe ALLEINE reicht nicht (≈8 % der Männer haben eine
 // Rot-Grün-Schwäche). Wir koppeln jede Status-Farbe an ein Form-Icon —
@@ -119,8 +124,10 @@ export default function BudgetSimulator({
       className="absolute top-14 inset-x-0 bottom-0 px-6 pt-4 pb-10 overflow-y-auto bg-[var(--color-bg)]"
       aria-label={t('ariaLabel')}
     >
-      <h2 className="text-lg font-semibold m-0 mb-1">{t('title')}</h2>
-      <p className="text-[13px] text-[var(--color-mute)] mb-4 max-w-[80ch]">
+      {/* Titel und Intro auf Desktop nach rechts einrücken: die global fixierte
+          Such-Box oben links (top-64, bis ~380px breit) verdeckte sie sonst. */}
+      <h2 className="text-lg font-semibold m-0 mb-1 sm:pl-[332px]">{t('title')}</h2>
+      <p className="text-[13px] text-[var(--color-mute)] mb-4 max-w-[80ch] sm:pl-[332px]">
         {t('intro')}
         {jahr ? <> · <em>{t('yearLabel', { jahr })}</em></> : null}
       </p>
@@ -130,7 +137,7 @@ export default function BudgetSimulator({
           jeder Slider-Bewegung gemeldet, ohne dass der Fokus verloren geht. */}
       <section
         aria-live="polite"
-        className="mb-5 p-4 rounded-lg bg-[var(--color-panel)] border border-[var(--color-line)] shadow flex flex-wrap items-center gap-x-6 gap-y-3 max-w-[80ch]"
+        className="mb-5 p-4 rounded-lg bg-[var(--color-panel)] border border-[var(--color-line)] shadow flex flex-wrap items-center gap-x-6 gap-y-3"
       >
         <Metric label={t('originalLabel')} value={`${fmtMio(totalOriginal)} CHF`} />
         <Metric label={t('simulatedLabel')} value={`${fmtMio(totalSimulated)} CHF`} />
@@ -181,7 +188,10 @@ export default function BudgetSimulator({
         {t('departmentsHeading')}
       </h3>
 
-      <ol className="grid gap-2.5 list-none m-0 p-0 max-w-[80ch]">
+      {/* Mehrspaltiges Raster statt einer einzelnen langen Spalte — nutzt die
+          Seitenbreite und macht mehr Departemente ohne Scrollen sichtbar.
+          Spaltenzahl skaliert mit der Viewport-Breite. */}
+      <ol className="grid gap-3 list-none m-0 p-0 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
         {departments.map((dep, i) => {
           const sim = simulated[i];
           const pct = deltas[dep.id] ?? 0;
@@ -279,7 +289,40 @@ function SliderRow({
         max={SLIDER_MAX}
         step={SLIDER_STEP}
         value={pct}
-        onChange={(e) => onChange(Number(e.currentTarget.value))}
+        onChange={(e) => {
+          // onChange stammt hier nur noch von Zeiger-/Touch-Interaktion — die
+          // Tastatur-Steps fängt onKeyDown ab (siehe unten) und ruft onChange
+          // direkt ohne Rast-Zone auf, damit Tastatur-Nutzer nicht bei 0
+          // hängenbleiben (jeder Pfeil-Tick läge sonst in der Snap-Zone).
+          const raw = Number(e.currentTarget.value);
+          // Magnetische, überwindbare Rast-Zone am Neutralpunkt: Werte knapp
+          // um 0 fangen auf 0 ein (weich, nicht fixiert — weiter ziehen setzt
+          // den echten Wert).
+          const snapped = Math.abs(raw) <= ZERO_SNAP ? 0 : raw;
+          // Haptisches Signal beim Einrasten auf 0 — nur beim Übergang
+          // ungleich-0 → 0 und nur auf Geräten mit Vibrationsmotor (Mobile).
+          if (snapped === 0 && pct !== 0 && typeof navigator !== 'undefined' && 'vibrate' in navigator) {
+            navigator.vibrate(12);
+          }
+          onChange(snapped);
+        }}
+        onKeyDown={(e) => {
+          // Tastatur-Steuerung präzise halten (auch kleine ±1/±2-Werte
+          // erreichbar) und die pointer-only Rast-Zone umgehen.
+          const clamp = (v: number) => Math.max(SLIDER_MIN, Math.min(SLIDER_MAX, v));
+          let next: number | null = null;
+          switch (e.key) {
+            case 'ArrowRight': case 'ArrowUp':   next = clamp(pct + SLIDER_STEP); break;
+            case 'ArrowLeft':  case 'ArrowDown': next = clamp(pct - SLIDER_STEP); break;
+            case 'PageUp':   next = clamp(pct + 10); break;
+            case 'PageDown': next = clamp(pct - 10); break;
+            case 'Home': next = SLIDER_MIN; break;
+            case 'End':  next = SLIDER_MAX; break;
+            default: return;
+          }
+          e.preventDefault();
+          onChange(next);
+        }}
         aria-label={labels.slider}
         // Akzentfarbe färbt Daumen/Track im modernen Browser; sonst Default.
         style={{ accentColor: dep.color }}
