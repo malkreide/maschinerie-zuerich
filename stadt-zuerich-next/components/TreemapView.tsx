@@ -80,8 +80,12 @@ export default function TreemapView({
   return (
     <main className="absolute top-14 inset-x-0 bottom-0 p-4 pb-10 overflow-hidden"
           aria-label={t('ariaLabel')}>
-      <h2 className="text-lg font-semibold m-0 mb-1">{t('title')}</h2>
-      <p className="text-[13px] text-[var(--color-mute)] mb-3">
+      {/* Titel und Intro auf Desktop nach rechts einrücken: die global fixierte
+          Such-Box liegt oben links (top-64, bis ~380px breit) und verdeckte
+          sonst genau diese beiden Zeilen. Die tiefer stehenden Hinweise und
+          das Treemap selbst nutzen weiterhin die volle Breite. */}
+      <h2 className="text-lg font-semibold m-0 mb-1 sm:pl-[332px]">{t('title')}</h2>
+      <p className="text-[13px] text-[var(--color-mute)] mb-3 sm:pl-[332px]">
         {t('intro', { jahr: sampleJahr })}
         {root && <strong>{t('total', { sum: fmtMio(root.value ?? 0) })}</strong>}
         {/* Pro-Kopf-Einordnung der Gesamtsumme — macht aus "1.4 Mrd CHF"
@@ -327,7 +331,13 @@ function renderTree(
   const total = root.value ?? 1;
   return (
     <>
-      {showHeaders && root.children?.map((d) => (
+      {showHeaders && root.children?.map((d) => {
+        const wDep = d.x1 - d.x0;
+        // Kopfzeilen-Label auf das Departement-Rechteck begrenzen — sonst
+        // laufen lange Departementsnamen (z. B. «Gesundheits- und
+        // Umweltdepartement») in die Nachbarkachel und überlagern sie.
+        const clipId = `tmch-${d.data.id ?? Math.round(d.x0)}`;
+        return (
         <g key={d.data.id} style={{ cursor: 'pointer' }}
            tabIndex={0}
            role="button"
@@ -341,13 +351,17 @@ function renderTree(
            onClick={() => d.data.id && onDepClick(d.data.id)}
            className="focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-[var(--color-accent)]"
         >
-          <rect x={d.x0} y={d.y0} width={d.x1 - d.x0} height={22}
+          <clipPath id={clipId}>
+            <rect x={d.x0} y={d.y0} width={wDep} height={22} />
+          </clipPath>
+          <rect x={d.x0} y={d.y0} width={wDep} height={22}
                 fill={colorOf(d.data.id ?? '')} opacity={1} />
-          <text x={d.x0 + 6} y={d.y0 + 15} className="dep-label">
+          <text x={d.x0 + 6} y={d.y0 + 15} className="dep-label" clipPath={`url(#${clipId})`}>
             {labelDep(d, d.value ?? 0)}
           </text>
         </g>
-      ))}
+        );
+      })}
       {root.leaves().map((d, i) => (
         <Leaf key={d.data.id ?? `${d.x0}-${d.y0}-${i}`} d={d} colorOf={colorOf}
               total={total} setTooltip={setTooltip} onDepClick={onDepClick} setMobileSelected={setMobileSelected} />
@@ -376,10 +390,20 @@ function Leaf({
   let line1 = '';
   let line2 = '';
 
-  const nameWidth = d.data.name.length * 6.0 + 10;
-  const kurzWidth = kurz.length * 6.5 + 10;
-  const combinedFullWidth = (d.data.name.length + budgetStr.length + 3) * 6.0 + 10;
-  const combinedKurzWidth = (kurz.length + budgetStr.length + 3) * 6.0 + 10;
+  // Breiten-Schätzung: Zeile 1 ist 12px/fett (~6.7px pro Zeichen), plus 5px
+  // Rand links + etwas Puffer rechts, damit die frühere Unterschätzung keine
+  // in die Nachbarkachel laufenden Labels mehr erzeugt. Ein zusätzliches
+  // clipPath (unten) kappt hart, falls die Schätzung doch danebenliegt.
+  const CH = 6.7;
+  const PAD = 12;
+  const nameWidth = d.data.name.length * CH + PAD;
+  const kurzWidth = kurz.length * CH + PAD;
+  const combinedFullWidth = (d.data.name.length + budgetStr.length + 3) * CH + PAD;
+  const combinedKurzWidth = (kurz.length + budgetStr.length + 3) * CH + PAD;
+  const truncate = () => {
+    const maxChars = Math.max(0, Math.floor((w - PAD) / CH));
+    return maxChars > 1 ? d.data.name.slice(0, maxChars - 1) + '…' : '';
+  };
 
   if (h >= 30) {
     if (w >= nameWidth) {
@@ -389,8 +413,7 @@ function Leaf({
       line1 = kurz;
       line2 = budgetStr;
     } else if (w >= 30) {
-      const maxChars = Math.max(0, Math.floor((w - 10) / 6.0));
-      line1 = maxChars > 1 ? d.data.name.slice(0, maxChars) + '…' : '';
+      line1 = truncate();
     }
   } else if (h >= 16) {
     if (w >= combinedFullWidth) {
@@ -402,10 +425,14 @@ function Leaf({
     } else if (w >= kurzWidth) {
       line1 = kurz;
     } else if (w >= 30) {
-      const maxChars = Math.max(0, Math.floor((w - 10) / 6.0));
-      line1 = maxChars > 1 ? d.data.name.slice(0, maxChars) + '…' : '';
+      line1 = truncate();
     }
   }
+
+  // Hart-Clip auf die Kachel: Selbst wenn die Breiten-Heuristik oben ein
+  // minimal zu langes Label wählt, wird nichts über den Kachelrand hinaus
+  // gezeichnet — keine Überlagerung benachbarter Kacheln mehr.
+  const clipId = `tmcl-${d.data.id ?? `${Math.round(d.x0)}-${Math.round(d.y0)}`}`;
 
   return (
     <g
@@ -439,7 +466,10 @@ function Leaf({
               strokeDasharray="4 3" pointerEvents="none" />
       )}
       {(line1 || line2) && (
-        <>
+        <g clipPath={`url(#${clipId})`}>
+          <clipPath id={clipId}>
+            <rect x={d.x0} y={d.y0} width={w} height={h} />
+          </clipPath>
           {/* Kontrast-sicheres Label-Band: dezenter Streifen in Panel-Farbe
               hinter der Beschriftung, Text in --color-ink. Garantiert hohen
               Kontrast (≥12:1) unabhängig von der Departements-Farbe und passt
@@ -455,16 +485,16 @@ function Leaf({
             pointerEvents="none"
           />
           {line1 && (
-            <text x={d.x0 + 5} y={d.y0 + 14} fill="var(--color-ink)" fontWeight="600" fontSize={12}>
+            <text className="leaf-label" x={d.x0 + 5} y={d.y0 + 14} fill="var(--color-ink)" fontWeight="600" fontSize={12}>
               {line1}
             </text>
           )}
           {line2 && (
-            <text x={d.x0 + 5} y={d.y0 + 27} fontSize={10} fill="var(--color-ink)">
+            <text className="leaf-label" x={d.x0 + 5} y={d.y0 + 27} fontSize={10} fill="var(--color-ink)">
               {line2}
             </text>
           )}
-        </>
+        </g>
       )}
     </g>
   );

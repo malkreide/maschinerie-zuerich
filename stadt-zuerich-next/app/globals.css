@@ -76,6 +76,10 @@ html, body { height: 100%; background: var(--color-bg); color: var(--color-ink);
 #treemap-svg rect:hover { opacity: .85; }
 #treemap-svg text { fill: white; font-size: 11px; pointer-events: none; }
 #treemap-svg .dep-label { font-size: 13px; font-weight: 600; }
+/* Blatt-Labels liegen auf einem hellen Kontrast-Band (--color-panel), daher
+   dunkle Tinte statt Weiss. Die id+class-Regel schlägt die generische
+   `#treemap-svg text { fill: white }`-Regel per Spezifität. */
+#treemap-svg .leaf-label { fill: var(--color-ink); }
 
 /* Liste: <details> styling */
 .liste details { margin: 6px 0; }
