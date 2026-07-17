@@ -632,20 +632,29 @@ function getGraphStyle(locale?: string, klimaModus?: boolean, gudBudgetDelta: nu
 
   const styles: cytoscape.StylesheetStyle[] = [
     { selector: 'node', style: {
-        'label': 'data(label)', 'font-size': 9 * mul,
+        'label': 'data(label)', 'font-size': 10 * mul,
+        // Feine Blattknoten (Dienstabteilungen, Beteiligungen, Teileinheiten)
+        // sind zahlreich. Wird der Graph so weit herausgezoomt, dass ihre
+        // Beschriftung unter diese gerenderte Pixelgrösse fiele, blendet
+        // Cytoscape sie aus — statt eines unlesbaren Text-Schmiers bleibt eine
+        // saubere Konstellation. Beim Hineinzoomen/Hovern erscheinen sie wieder.
+        'min-zoomed-font-size': 9,
         'text-valign': 'bottom', 'text-halign': 'center',
         'text-margin-y': 4 * mul,
-        'color': '#1a1f2e', 'text-outline-color': '#fff', 'text-outline-width': 2 * mul,
+        'color': '#1a1f2e', 'text-outline-color': '#fff', 'text-outline-width': 2.5 * mul,
         'border-width': 1 * mul, 'border-color': 'rgba(0,0,0,.2)', 'width': 18 * mul, 'height': 18 * mul } },
+    // Zentrum und Departemente bilden das lesbare Rückgrat des Graphen und
+    // behalten ihre Beschriftung auf jeder Zoomstufe (min-zoomed-font-size: 0).
     { selector: 'node[type = "center"]', style: {
         'background-color': 'data(color)', 'shape': 'ellipse',
-        'width': 64 * mul, 'height': 64 * mul, 'font-size': 12 * mul, 'color': '#fff',
+        'width': 64 * mul, 'height': 64 * mul, 'font-size': 15 * mul, 'font-weight': 'bold',
+        'color': '#fff', 'min-zoomed-font-size': 0,
         'text-valign': 'center', 'text-margin-y': 0,
         'text-outline-color': 'data(color)' } },
     { selector: 'node[type = "department"]', style: {
         'background-color': 'data(color)', 'shape': 'round-rectangle',
-        'width': 120 * mul, 'height': 52 * mul, 'font-size': 11 * mul, 'font-weight': 'bold',
-        'color': '#fff', 'text-outline-color': 'data(color)',
+        'width': 120 * mul, 'height': 52 * mul, 'font-size': 12 * mul, 'font-weight': 'bold',
+        'color': '#fff', 'text-outline-color': 'data(color)', 'min-zoomed-font-size': 0,
         'text-valign': 'center', 'text-margin-y': 0,
         'text-wrap': 'wrap', 'text-max-width': String(112 * mul), 'padding': String(4 * mul) } },
     { selector: 'node[type = "department"]:parent', style: {
@@ -653,8 +662,8 @@ function getGraphStyle(locale?: string, klimaModus?: boolean, gudBudgetDelta: nu
         'border-width': 2 * mul, 'border-color': 'data(color)',
         'shape': 'round-rectangle', 'padding': String(16 * mul),
         'text-valign': 'top', 'text-halign': 'center',
-        'color': 'data(color)', 'text-outline-width': 0,
-        'font-size': 11 * mul, 'text-margin-y': -8 * mul,
+        'color': 'data(color)', 'text-outline-width': 0, 'min-zoomed-font-size': 0,
+        'font-size': 12 * mul, 'font-weight': 'bold', 'text-margin-y': -8 * mul,
     } },
     { selector: 'node[type = "unit"]', style: {
         'background-color': 'data(color)', 'shape': 'round-rectangle', 'width': 22 * mul, 'height': 16 * mul } },
