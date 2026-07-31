@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v6
         with:
-          node-version: 24.18.0
+          node-version: 24.18.1
           cache: npm
           cache-dependency-path: stadt-zuerich-next/package-lock.json
       - run: npm ci
@@ -33,7 +33,7 @@ jobs:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v6
         with:
-          node-version: 24.18.0
+          node-version: 24.18.1
       # Die Prüfregeln leben in scripts/validate-lebenslagen.mjs (stdlib-only,
       # auch lokal via `npm run validate:lebenslagen` ausführbar). Früher war
       # dieselbe Logik als node -e-Heredoc hier eingebettet — zwei Wahrheiten,
@@ -51,7 +51,7 @@ jobs:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v6
         with:
-          node-version: 24.18.0
+          node-version: 24.18.1
           cache: npm
           cache-dependency-path: stadt-zuerich-next/package-lock.json
       - run: npm ci
@@ -82,7 +82,7 @@ jobs:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v6
         with:
-          node-version: 24.18.0
+          node-version: 24.18.1
       # Keine npm-Abhängigkeiten nötig: die reine Ableitungs-Funktion
       # importiert nur node:test + type-only Typen (Node-Type-Stripping).
       - run: npm run test:unit
@@ -102,7 +102,7 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-node@v6
         with:
-          node-version: 24.18.0
+          node-version: 24.18.1
       - name: Basis-Branch holen
         run: git fetch --no-tags origin "$GITHUB_BASE_REF"
       - name: Handgepflegte Texte gegen Basis schützen
@@ -126,7 +126,7 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-node@v6
         with:
-          node-version: 24.18.0
+          node-version: 24.18.1
       - name: Basis-Branch holen
         run: git fetch --no-tags origin "$GITHUB_BASE_REF"
       - name: Neue/geänderte References live prüfen
@@ -147,7 +147,7 @@ jobs:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v6
         with:
-          node-version: 24.18.0
+          node-version: 24.18.1
           cache: npm
           cache-dependency-path: stadt-zuerich-next/package-lock.json
       - run: npm ci
