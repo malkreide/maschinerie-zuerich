@@ -36,7 +36,7 @@ jobs:
         working-directory: stadt-zuerich-next
     steps:
       - uses: actions/checkout@v7
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with:
           node-version: 24.18.1
           cache: npm
