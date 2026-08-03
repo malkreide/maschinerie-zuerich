@@ -80,7 +80,7 @@
     "ajv-formats": "^3.0.1",
     "eslint": "^9.39.5",
     "eslint-config-next": "^16.2.12",
-    "postcss": "^8.5.22",
+    "postcss": "^8.5.25",
     "tailwindcss": "^4.3.3",
     "typescript": "^5.9.3"
   }
