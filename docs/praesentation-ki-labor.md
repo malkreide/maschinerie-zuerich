@@ -1,157 +1,153 @@
-# Präsentationsdrehbuch: KI-Fachgruppe & Smart City
+# Präsentationsdrehbücher: KI-Fachgruppe und Smart City
 
-**Zweck:** Die Maschinerie so vorstellen, dass Zweck, Ziele und Funktionsweise in
-zwanzig Minuten sitzen — und ein konkretes Experiment fürs geplante KI-Labor
-vorschlagen.
+**Zweck:** Zwei getrennte Termine à 15 Minuten. Dieses Dokument enthält beide
+Abläufe vollständig — Folien, Sprechtext, Zeitmarken.
 
 **Status:** Arbeitsdokument, kein Datenvertrag. Alle Zahlen sind aus dem Repo
-erhoben (Stand 2026-08-10) und beim nächsten Einsatz neu zu prüfen.
+erhoben (Stand 2026-08-10) und vor dem Einsatz neu zu prüfen. Quellen am Ende.
 
 ---
 
-## Die eine Botschaft
+## Der eigentliche Unterschied
 
-> Das Sprachmodell darf Struktur vorschlagen. Es darf keine Frist und keine
-> Gebühr behaupten. Genau dieses Verbot macht KI in einem rechtlich heiklen Feld
-> einsetzbar.
+Nicht zwei Längen desselben Vortrags — zwei Thesen. Wer denselben Foliensatz
+zweimal zeigt, verschenkt einen der beiden Termine.
 
-Wenn nach zwanzig Minuten nur ein Satz hängen bleibt, soll es dieser sein. Jede
-Folie zahlt darauf ein: die Demo zeigt, wofür es gut ist, die Falle zeigt, warum
-es nötig ist, die Gates zeigen, dass es hält.
-
----
-
-## Dramaturgie (20 Minuten)
-
-Zeigen, dann erklären — nie umgekehrt. Erst der Nutzen, den man sieht, dann das
-Risiko, das man nicht sieht, dann der Mechanismus, der es einfängt. Wer mit der
-Architektur beginnt, verliert den Raum in Minute drei.
-
-| Zeit | Inhalt | Folien |
+| | KI-Fachgruppe | Smart City |
 |---|---|---|
-| 0–2′ | Aufhänger und die eine Botschaft | 1–2 |
-| 2–5′ | Live-Demo | 3 |
-| 5–7′ | Stand in Zahlen, warum Handarbeit nicht skaliert | 4–5 |
-| 7–11′ | **Herzstück:** die Falle und die Kardinalregel | 6–7 |
-| 11–15′ | Funktionsweise, Gates, abgestufte Autonomie | 8–10 |
-| 15–18′ | Das übertragbare Muster, Experimentvorschlag | 11–12 |
-| 18–20′ | Grenzen offenlegen, dann der Ask | 13–14 |
+| **Deine These** | Es gibt ein Verfahren, unter dem ein Sprachmodell in einem haftungsrelevanten Feld arbeiten darf | Bereits offene Daten werden zu einem Dienst, den Bürger:innen verstehen — ohne neue Infrastruktur |
+| **Was sie beurteilen** | Ob die Methode trägt: Halluzinationsrisiko, Gates, Autonomiegrade, Nachvollziehbarkeit | Ob der Nutzen echt ist und ins Portfolio passt: Zielgruppe, Strategieanschluss, Übertragbarkeit, Kosten |
+| **Was sie fürchten** | Ein weiteres KI-Demo ohne Governance | Ein stadtnahes Angebot, das eine falsche Frist ausgibt und auf die Stadt zurückfällt |
+| **Herzstück** | Die Falle und die Kardinalregel (A5–A6) | Die Demo (B3), drei Minuten am Stück |
+| **Demo** | 80 Sekunden — nur damit der Gegenstand real wird | 3 Minuten — das *ist* der Termin |
+| **Strategiebezüge** | **Weglassen.** Nur auf Nachfrage | **Eigene Folie.** Smart City ist die Stelle, wo das hingehört |
+| **Der Ask** | Methodische Rückendeckung plus fünf Prozesse als Methodenexperiment | Slot im KI-Labor, Prozessauswahl, Fachstelle für Hochrisikofälle |
 
-### Notfallvariante (5 Minuten)
+**Empfehlung zur Reihenfolge:** Wenn du es beeinflussen kannst, **KI-Fachgruppe
+zuerst**. Dann kannst du im Smart-City-Termin sagen, dass die Fachgruppe das
+Verfahren angeschaut hat — das nimmt genau die Sorge weg, die dort im Raum steht.
+Umgekehrt bringt die Reihenfolge nichts: Ein Smart-City-Ja hilft der Fachgruppe
+bei der Methodenfrage nicht weiter.
 
-Traktanden verschieben sich. Diese vier tragen die Botschaft allein — alles
-andere ersatzlos streichen, nicht schneller sprechen.
+---
 
-1. **Folie 6** — die Falle (der falsch zugeordnete 30-Tage-Fall).
-2. **Folie 7** — «Link, don't assert» und der Linter, der sie durchsetzt.
-3. **Folie 3** — 60 Sekunden live: Suche → Prozessgraph → Reference anklicken.
-4. **Folie 12** — der Experimentvorschlag.
+## Die eine Botschaft — je Publikum gespitzt
 
-### Demo-Checkliste
+> **KI-Fachgruppe:** Das Modell darf Struktur vorschlagen. Es darf keine Frist und
+> keine Gebühr behaupten. Genau dieses Verbot macht es einsetzbar.
 
-Alle Tabs vorher öffnen und einmal durchklicken.
+> **Smart City:** Alles hier ist aus bereits publizierten offenen Daten gebaut —
+> und keine einzige Frist und keine Gebühr ist von uns behauptet.
+
+Beide Fassungen sagen dasselbe. Die erste betont das Verfahren, die zweite die
+Unbedenklichkeit. Sag deine Fassung im ersten *und* im letzten Satz des Termins.
+
+---
+
+## Demo-Checkliste (beide Termine)
+
+Alle Tabs vorher öffnen und einmal durchklicken. Eine Demo, die im Raum lädt,
+kostet mehr Aufmerksamkeit, als sie einbringt.
 
 - [ ] Startseite mit interaktivem Organigramm
 - [ ] `/steuerfranken` — Treemap
-- [ ] Lebenslagen-Suche, Suchfeld leer
+- [ ] Lebenslagen-Suche, Suchfeld leer und bereit
 - [ ] `/prozesse/zh/hund-anmelden` — der einfache Fall
-- [ ] `/prozesse/zh/baugesuch` — Hochrisiko-Disclaimer sichtbar
+- [ ] `/prozesse/zh/baugesuch` — Hochrisiko-Hinweis sichtbar
 - [ ] `/api/v1/prozesse` — rohes JSON
-- [ ] Sprachumschalter einmal auf Leichte Sprache
+- [ ] Sprachumschalter einmal auf Leichte Sprache gestellt
 - [ ] Screenshots als Fallback, falls Netz oder Preview streiken
 
-**Regieanweisung:** Nicht die ganze App vorführen. *Ein* Klickpfad, durchgehend:
-Suchfeld → Lebenslage → Prozessgraph → Klick auf eine Reference → die amtliche
-Quelle öffnet sich. Dieser Pfad ist das Argument.
+**Der Unterschied im Klickpfad:**
+*Fachgruppe* — nur ein Pfad: Suche → Prozessgraph → Reference anklicken →
+amtliche Quelle öffnet sich. Ziel ist allein, dass der Gegenstand real wird.
+*Smart City* — der volle Rundgang: Organigramm, Treemap, Suche, Prozessgraph,
+Hochrisiko-Hinweis, zum Schluss auf Leichte Sprache umschalten.
 
 ---
 
-## Folien
+# Variante A — KI-Fachgruppe
 
-### 1 — Titel (≈ 45 Sek)
+**These:** Es gibt ein laufendes Verfahren, unter dem ein Sprachmodell in einem
+haftungsrelevanten Feld produktiv arbeiten darf — ohne je eine Frist zu behaupten.
 
-**Die Maschinerie.** Verwaltungsprozesse als Karte — und ein KI-Verfahren, das
-nichts behaupten darf.
+## Ablauf A — 11 Min Vortrag, 4 Min Diskussion
 
-*Sprechtext:* Drei Dinge ankündigen — Nutzen für Bürger:innen, Funktionsweise der
-KI, und warum sie in einem rechtlich heiklen Feld eingesetzt werden darf. Die
-kürzeste Fassung vorwegnehmen. **Gleich zu Beginn sagen, dass es ein privates
-Projekt ohne offiziellen Auftrag ist** — das entwaffnet die Frage, die sonst die
-ganze Zeit im Raum steht.
+| Zeit | Folie | Dauer |
+|---|---|---|
+| 0:00 | A1 · Titel und die eine Botschaft | 40″ |
+| 0:40 | A2 · Was das Ding ist, in Zahlen | 50″ |
+| 1:30 | A3 · Demo, ein Klickpfad *(live)* | 80″ |
+| 2:50 | A4 · Warum überhaupt KI | 35″ |
+| 3:25 | A5 · **Die Falle** | 90″ |
+| 4:55 | A6 · **Link, don't assert** | 90″ |
+| 6:25 | A7 · Pipeline und Gates | 90″ |
+| 7:55 | A8 · Abgestufte Autonomie | 50″ |
+| 8:45 | A9 · Das übertragbare Muster | 45″ |
+| 9:30 | A10 · Experimentvorschlag | 75″ |
+| 10:45 | A11 · Grenzen und der Ask | 55″ |
+| 11:40 | *Diskussion* | 3:20 |
 
-### 2 — Zweck (≈ 75 Sek)
+**Zeitkontrolle:** Bei Minute 5 musst du auf A5 sein. Bist du später dran,
+streiche A4 ersatzlos. Was du niemals kürzt: A5 und A6 — das ist der Termin.
 
-**Die Verwaltung ist öffentlich. Verständlich ist sie damit noch nicht.**
+### A1 — Titel (40″)
 
-| Frage | Heutige Antwort |
-|---|---|
-| «Wie ist diese Stadt organisiert?» | Organigramm als PDF, ohne Bezug zu Geld oder Stellen |
-| «Wohin geht mein Steuerfranken?» | Die Rechnung als Tabellenwerk — korrekt, vollständig, unlesbar |
-| «Was muss ich tun, um X zu erledigen?» | Merkblatt-Prosa über mehrere Ämter, Kanton und Bund verteilt |
+**Belegen statt behaupten.** Ein laufendes Verfahren, das ein Sprachmodell in
+einem haftungsrelevanten Feld arbeiten lässt — ohne dass es je eine Frist
+behaupten darf.
 
-→ **Die Daten sind längst offen. Was fehlt, ist die Karte.**
+*Sprechtext:* «Ich zeige euch kein KI-Produkt, sondern eine Anordnung. Das Modell
+darf Struktur vorschlagen und muss bei jeder Frist und jeder Gebühr schweigen. Ob
+diese Anordnung trägt, ist die Frage, die ich euch mitbringe.» Sofort sagen, dass
+es ein privates Projekt ohne Auftrag ist — in diesem Gremium kein Makel, sondern
+der Grund, warum du offen über Fehler reden kannst.
 
-*Sprechtext:* Bewusst **keine** Strategie-Folie hier. Die Rückbindung (Zürich
-2040, Digitalisierungsstrategie, Service Standard, Smart City) ist dokumentiert
-und wird auf Nachfrage nachgereicht — vorangestellt wirkt sie wie eine
-Legitimationssuche.
+### A2 — Kontext, knapp (50″)
 
-### 3 — Demo (≈ 3 Min, live)
-
-Nicht vorlesen. Landkarte für den Klickpfad:
-
-1. **Organigramm als interaktiver Graph** — Departemente bis Beteiligungen, mit
-   Budget und Stellenwerten aus offenen Daten.
-2. **«Wohin geht mein Steuerfranken?»** — Treemap auf Ist-Werten aus dem
-   Geschäftsbericht, nicht auf Budgetzahlen.
-3. **Lebenslagen-Suche** — Alltagssprache statt Verwaltungssprache.
-4. **Prozessgraph** — gerichteter Graph aus Schritten mit
-   Vorgängerbeziehungen, Akteuren, Unterlagen und belegten Verweisen.
-
-Nebenbei erwähnen, nicht ausbreiten: fünf Sprachen inkl. Leichter Sprache, ohne
-JavaScript bedienbar, Screenreader-Tabelle hinter dem Graphen, offene REST-API
-unter `/api/v1`, Deep-Links.
-
-*Sprechtext:* Wenn Zeit bleibt, einmal auf Leichte Sprache umschalten — der Graph
-räumt sich auf, Boxen und Schrift werden grösser. Barrierefreiheit als Verhalten,
-nicht als Häkchen.
-
-### 4 — Stand (≈ 60 Sek)
-
-**Kein Konzept. Ein laufender Stand.**
+Eine Karte der Stadtverwaltung und ihrer Prozesse.
 
 | 17 | 193 | 56 | 5 | 0 |
 |---|---|---|---|---|
-| Prozesse | Schritte | belegte Verweise | Sprachen inkl. LS | automatische Merges |
+| Prozesse | Schritte | belegte Verweise | Sprachen inkl. LS | Auto-Merges |
 
-- Nutzennachweis **förmlich abgenommen am 2026-06-29** — erst danach wurde die
-  Automatisierung freigegeben. Die Reihenfolge war ein Gate, kein Vorsatz.
-- Auf offenen Daten gebaut, ohne neue Infrastruktur (CC-BY 4.0).
-- Abgeleitete Werte werden geprüft: Stellen pro Einheit sind ein Näherungswert
-  aus dem Personalaufwand, gegen den publizierten Wert des Steueramts geprüft
-  (227 vs. 222 = 2 % Abweichung) — und auch als Näherungswert beschriftet.
+Öffentlich, quelloffen, auf bereits publizierten offenen Daten. Der Nutzennachweis
+wurde am 2026-06-29 förmlich abgenommen — *erst danach* wurde die Automatisierung
+freigegeben.
 
-*Sprechtext:* Die Null ist die wichtigste Zahl auf der Folie: nichts geht ohne
-Mensch nach `main`.
+*Sprechtext:* Bewusst knapp. **Für dieses Publikum ist die App der Anlass, nicht
+das Thema.** Nur die Null betonen: nichts geht ohne Mensch nach `main`.
 
-### 5 — Warum KI (≈ 60 Sek)
+### A3 — Demo (80″, live)
+
+Ein Klickpfad: Suchfeld → «Hund anmelden» → Prozessgraph → Klick auf eine
+Reference → die amtliche Quelle öffnet sich.
+
+Der Satz während des letzten Klicks: *«Achtet auf diesen Klick. Die Frist steht
+nicht bei uns. Sie steht dort — und wir zeigen nur den Weg dorthin und den Satz,
+der dort steht.»*
+
+*Sprechtext:* Der Reference-Klick ist die Brücke zum Rest. Wenn du ihn beiläufig
+machst, musst du A6 doppelt erklären. Kein Sprachumschalter, keine Treemap — das
+gehört in den Smart-City-Termin.
+
+### A4 — Der Übergang (35″)
 
 **17 Prozesse sind der Beweis. Die Lösung sind sie nicht.**
 
-- Von Hand modellieren kostet: lesen, modellieren, jeden bindenden Wert wörtlich
+- Jeder Prozess von Hand: lesen, modellieren, jeden bindenden Wert wörtlich
   belegen, in fünf Sprachen ausformulieren.
-- Die Stadt hat hunderte Lebenslagen — bei diesem Tempo ein Jahrzehntprojekt.
-- Und der Boden bewegt sich: Beim ersten Live-Check waren **25 hinterlegte Links
-  tot**. Pflege ist kein Restposten, sondern der Hauptaufwand.
+- Die Stadt hat hunderte Lebenslagen. Und der Boden bewegt sich: beim ersten
+  Live-Check waren **25 hinterlegte Links tot**.
 
-→ **Skalieren heisst extrahieren. Extrahieren heisst Sprachmodell. Und genau da
-fängt das Risiko an.**
+→ Skalieren heisst extrahieren. Extrahieren heisst Sprachmodell. Und genau da
+fängt das Risiko an.
 
-*Sprechtext:* Wir sind nicht aus Begeisterung für KI bei KI gelandet, sondern
-weil Handarbeit nachweislich nicht reicht. Für dieses Gremium der glaubwürdigere
-Einstieg.
+*Sprechtext:* «Wir sind nicht aus Begeisterung für KI bei KI gelandet, sondern
+weil Handarbeit nachweislich nicht reicht.» Bei Verzug: streichen, Inhalt als
+Halbsatz vor A5.
 
-### 6 — Das Risiko (≈ 2 Min, Herzstück)
+### A5 — Das Risiko (90″, Herzstück)
 
 **Der gefährlichste Output ist nicht der Fehlschlag. Es ist der plausible
 Treffer.**
@@ -165,23 +161,20 @@ Realer Fall aus der Arbeit am Repo:
 - Richtige Domain, richtiges Gesetz, richtige Zahl, falsche Zuordnung. Kein
   Warnzeichen an keiner Stelle.
 
-Dieselbe Fehlerklasse: Pass ≠ Identitätskarte (andere Gebühr), Erwachsene ≠
-Kinder (andere Gültigkeit).
+Dieselbe Fehlerklasse: Pass ≠ Identitätskarte (andere Gebühr), Erwachsene ≠ Kinder
+(andere Gültigkeit).
 
-→ **Ein sichtbarer Fehler wird korrigiert. Dieser hier wird geglaubt** — und
-jemand verpasst darauf gestützt eine Rechtsmittelfrist.
+→ **Ein sichtbarer Fehler wird korrigiert. Dieser wird geglaubt** — und jemand
+verpasst darauf gestützt eine Rechtsmittelfrist.
 
-*Sprechtext:* Langsam sprechen; das ist die Folie, an die sich der Raum morgen
-noch erinnert. Danach eine Pause — die nächste Folie ist die Antwort und wirkt
-nur, wenn die Frage kurz stehen bleibt.
+*Sprechtext:* Langsam sprechen. «Man erwartet von einem Sprachmodell erfundene
+Quellen. Das eigentliche Problem ist das Gegenteil: eine echte Quelle, eine echte
+Zahl — am falschen Sachverhalt.» Danach eine Pause. Wenn eingeworfen wird: nach
+spätestens zwei Wortmeldungen auf A6 weitergehen, Rest auf die Diskussion vertagen.
 
-### 7 — Die Antwort (≈ 2 Min, Herzstück)
+### A6 — Die Antwort (90″, Herzstück)
 
 **Link, don't assert.**
-
-Bindende Werte — Fristen, Gebühren, Rekursfristen — erscheinen nie als
-eigenständiger, gerenderter Wert. Nur als Reference: Bezeichnung, Deep-Link auf
-die exakte Originalseite, und der wörtliche Satz von dort.
 
 | Verboten — behauptet | Vertrag — belegt |
 |---|---|
@@ -194,14 +187,12 @@ die exakte Originalseite, und der wörtliche Satz von dort.
 prüft bei jedem Commit, dass in keinem Schritt-Label eine bindende Zahl steht —
 sonst wird der Build rot.
 
-*Sprechtext:* «Wir haben dem Modell die riskante Aussage nicht verboten — wir
-haben ihr den Platz weggenommen.» Falls jemand einwendet, das sei unbequem für
-Nutzende: Ja. Und es ist der Grund, warum man das Ding öffentlich zeigen kann.
-Ein Wert ohne Quelle ist kein Service, sondern ein Risiko mit Benutzeroberfläche.
+*Sprechtext:* Der Satz, der sitzt: «**Wir haben dem Modell die riskante Aussage
+nicht verboten — wir haben ihr den Platz weggenommen.**» Falls jemand einwendet,
+das sei unbequem für Nutzende: Ja. Und es ist der Grund, warum man das Ding
+öffentlich zeigen kann.
 
-### 8 — Funktionsweise (≈ 2 Min)
-
-**Zwei Systeme, ein Vertrag, vier Stufen.**
+### A7 — Funktionsweise (90″)
 
 ```
 Amtliche Quellen  →  Extraktion (Python)      →  Mechanische Gates (CI)  →  Mensch  →  Öffentliche Ansicht
@@ -213,38 +204,19 @@ Amtliche Quellen  →  Extraktion (Python)      →  Mechanische Gates (CI)  →
                             ↑─────────────  rote Prüfung = harter Stopp ─────┘
 ```
 
-- Die Extraktion liefert bewusst **nur Struktur**: deutsche Schritte und
-  Abhängigkeiten, Übersetzungsfelder leer. Bestehende geprüfte Texte werden
-  feldweise zusammengeführt und nie überschrieben.
-- Der **Datenvertrag ist kanonisch** und liegt bei der Visualisierung (JSON-Schema
-  mit Version). Weicht die Extraktion ab, gilt der Vertrag — nicht umgekehrt.
+→ Rote Prüfung heisst harter Stopp. Der Agent wird so gebaut, dass er die Gates
+erfüllt — nicht so, dass er sie umgeht.
 
-*Sprechtext:* Die Trennung ist der Punkt. Der Agent hat auf das publizierende
-System nur Schreibrecht in Form eines Vorschlags. Die vierte Stufe hervorheben:
-Die ersten drei sind gut automatisierbar; die vierte — belegt diese Passage
-*genau* den behaupteten Wert? — ist die gefährliche. Deshalb steht sie separat
-und darf mit «weiss nicht» enden.
+*Sprechtext:* Zwei Punkte, mehr nicht. **Erstens die Trennung:** Die Extraktion hat
+keinen Schreibzugriff auf die publizierte Darstellung, sie kann ausschliesslich
+einen Vorschlag einreichen. **Zweitens die vierte Stufe:** Die ersten drei sind gut
+automatisierbar; das Urteil — belegt diese Passage *genau* den behaupteten Wert? —
+ist die gefährliche und darf mit «weiss nicht» enden. Falls nach dem
+Regressionsschutz gefragt wird: verhindert, dass eine automatische Lieferung
+geprüfte Texte leert, gemergt wird feldweise; die begründungspflichtige Ausnahme
+ist ausdrücklich kein Weg, den Schutz zu umgehen.
 
-### 9 — Die Leitplanken (≈ 75 Sek)
-
-**Mechanische Prüfungen sind verlässlicher als das Urteil des Modells.**
-
-| Prüfung | Was sie verhindert |
-|---|---|
-| Schema- und Vertragsvalidierung | Struktur ausserhalb des Vertrags; Verweise ohne wörtlichen Beleg |
-| Kardinalregel-Lint | Eine bindende Zahl, die sich in ein Label oder eine Beschreibung geschlichen hat |
-| Regressionsschutz | Dass eine automatische Lieferung geprüfte Texte leert; gemergt wird feldweise |
-| Link-Prüfung, zeitgesteuert | Dass tote Quellen unbemerkt stehen bleiben (tot ≠ blockiert ≠ Netzfehler) |
-| Kein automatischer Merge | Dass irgendetwas ohne menschliche Freigabe öffentlich wird |
-
-→ **Rote Prüfung heisst harter Stopp. Der Agent wird so gebaut, dass er die Gates
-erfüllt — nicht so, dass er sie umgeht.**
-
-*Sprechtext:* Der am ehesten übertragbare Teil. Falls nach der Ausnahmemöglichkeit
-im Regressionsschutz gefragt wird: Ja, sie existiert, ist begründungspflichtig
-und ausdrücklich kein Weg, den Schutz zu umgehen.
-
-### 10 — Governance (≈ 60 Sek)
+### A8 — Governance (50″)
 
 **Autonomie wird nach Risiko abgestuft, nicht ein- oder ausgeschaltet.**
 
@@ -258,165 +230,318 @@ und ausdrücklich kein Weg, den Schutz zu umgehen.
 **Voreinstellung: Abstinenz.** Bei Mehrdeutigkeit wird nicht publiziert, sondern
 als offen markiert — mit Begründung.
 
-*Sprechtext:* «Darf der Agent das?» ist falsch gestellt. Richtig ist: «Bei welcher
-Aufgabe darf er wie weit gehen?» In der Verwaltung ist eine Lücke ein bekannter
-Zustand; eine falsche Angabe ist ein neues Problem.
+*Sprechtext:* «Die übliche Frage lautet: Darf der Agent das? Sie ist falsch
+gestellt. Richtig ist: Bei welcher Aufgabe darf er wie weit gehen?» In der
+Verwaltung ist eine Lücke ein bekannter Zustand — eine falsche Angabe ist ein
+neues Problem.
 
-### 11 — Das Angebot (≈ 75 Sek)
+### A9 — Das Angebot (45″)
 
 **Das Muster ist die Lieferung. Nicht die App.**
 
 1. Ein **kanonischer Datenvertrag**, maschinenlesbar und versioniert — statt eines
    Prompts, an den man glaubt.
-2. Eine **Kardinalregel**, die dem Modell die riskante Aussage strukturell
-   verunmöglicht, statt sie ihm zu untersagen.
+2. Eine **Kardinalregel**, die die riskante Aussage strukturell verunmöglicht.
 3. **Mechanische Gates** statt Vertrauen in die Selbsteinschätzung des Modells.
 4. **Risikoabgestufte Autonomie** statt der Frage, ob KI eingesetzt wird.
-5. **Der Mensch genau dort, wo Haftung entsteht** — und nur dort, damit das Review
-   nicht zur Attrappe wird.
-
-→ Anwendbar auf jede Domäne, in der die Verwaltung verbindliche Aussagen macht.
+5. **Der Mensch genau dort, wo Haftung entsteht** — und nur dort.
 
 *Sprechtext:* Punkt 5 absichern: Menschliches Review wirkt nur, wenn es selten und
-gezielt ist. Wer alles reviewen lässt, bekommt Durchwinken.
+gezielt ist. **Wer alles reviewen lässt, bekommt Durchwinken.**
 
-### 12 — Experimentvorschlag (≈ 2,5 Min)
-
-**Ein enges Experiment, das in acht Wochen eine belastbare Antwort liefert.**
+### A10 — Experimentvorschlag (75″)
 
 > **Die Frage:** Wie viel Prozessstruktur kann ein Agent liefern, ohne dass die
 > Verwaltung dabei Haftungsrisiko übernimmt?
 
-**Aufbau**
+| Kennzahl | Zielwert |
+|---|---|
+| Abstinenztreue — bindende Werte ohne eigene Behauptung | **100 %.** Jede Verletzung ist ein **Abbruchkriterium**, keine Kennzahl |
+| Strukturpräzision — Schritte ohne inhaltliche Korrektur übernommen | Zu erheben. Die eigentliche offene Frage |
+| Belegquote — Verweise mit verifiziertem wörtlichem Zitat | Höher ist besser, nachrangig gegenüber Abstinenztreue |
+| Reviewaufwand — Minuten pro Prozess | Deutlich unter Handarbeit, sonst trägt das Verfahren nicht |
+| Quellenstabilität — Quell-URLs nach 90 Tagen | Zu erheben. Bestimmt den Pflegeaufwand |
 
-- Fünf Prozesse aus einem Bereich, den die Fachgruppe wählt — gern einen, der als
-  mühsam gilt.
-- Die Extraktion läuft und liefert Vorschläge als Pull Requests, struktur-only.
-- Fachpersonen reviewen gegen die bestehenden Gates. Nichts geht ohne Freigabe live.
-- Ergebnis öffentlich im Preview, durchgehend als inoffiziell gekennzeichnet.
+Aufwand: fünf Prozesse, rund zwei Stunden Fachreview je Prozess, acht Wochen.
+Ergebnis: laufender öffentlicher Preview, Bericht gegen die vorab gesetzten Ziele,
+Gate-Konfiguration als wiederverwendbare Vorlage.
 
-**Was die Fachgruppe beisteuert**
+*Sprechtext:* «Die Messgrössen legen wir vorher fest — sonst wird am Ende das
+gemessen, was gut aussieht. Und ein negatives Ergebnis wird publiziert.» Die
+Abstinenztreue als **Abbruchkriterium** formulieren, nicht als Zielwert.
 
-- Die Auswahl der fünf Prozesse.
-- Rund zwei Stunden Fachreview je Prozess — insgesamt etwa ein Personentag.
-- Eine Ansprechperson für die Rückfragen, die der Agent bewusst offenlässt.
-- Einverständnis, dass das Ergebnis als inoffizielle Darstellung öffentlich ist.
+### A11 — Grenzen und Ask (55″)
 
-**Messgrössen — vorher festgelegt, nachher nicht verhandelbar**
-
-| Kennzahl | Definition | Zielwert |
-|---|---|---|
-| Abstinenztreue | Anteil bindender Werte ohne eigene Behauptung des Agenten | **100 %** — jede Verletzung ist ein Abbruchkriterium, keine Kennzahl |
-| Strukturpräzision | Anteil vorgeschlagener Schritte, die ohne inhaltliche Korrektur übernommen werden | Zu erheben — die eigentliche offene Frage |
-| Belegquote | Anteil Verweise mit verifiziertem wörtlichem Zitat an der Live-Quelle | Höher ist besser, nachrangig gegenüber Abstinenztreue |
-| Reviewaufwand | Minuten pro Prozess, gegen Handmodellierung gemessen | Deutlich unter Handarbeit, sonst trägt das Verfahren nicht |
-| Quellenstabilität | Anteil Quell-URLs, die nach 90 Tagen noch erreichbar sind | Zu erheben — bestimmt den Pflegeaufwand |
-
-**Was am Ende vorliegt:** ein laufender öffentlicher Preview mit den fünf
-Prozessen, ein Bericht mit den fünf Kennzahlen gegen die vorab gesetzten Ziele,
-und die Gate-Konfiguration als wiederverwendbare Vorlage. **Auch ein Nein ist ein
-verwertbares Ergebnis** — dann wissen wir belegt, wo die Grenze liegt.
-
-*Sprechtext:* Bewusst etwas Kleines vorschlagen. Die Abstinenztreue als
-Abbruchkriterium formulieren, nicht als Zielwert — das ist der Punkt, an dem eine
-Fachgruppe merkt, dass hier jemand mit Risiko gerechnet hat und nicht mit Erfolg.
-Ausdrücklich sagen: Ein negatives Ergebnis wird publiziert.
-
-### 13 — Grenzen (≈ 60 Sek)
-
-**Was es nicht ist.**
-
-- **Kein offizielles Angebot der Stadt.** Privates Open-Source-Projekt ohne
-  Auftrag; jede Prozessseite trägt einen sichtbaren Hinweis.
-- **Keine Rechtsauskunft.** Verbindlich ist ausschliesslich die verlinkte amtliche
-  Quelle. Genau deshalb die Kardinalregel.
-- **Kein amtlicher Digitalisierungsgrad.** Die Bewertung ist ein Ist-Schnappschuss
-  der Modelldaten und wird so beschriftet. Kein Indikator wird geraten — was nicht
+- **Kein offizielles Angebot der Stadt,** keine Rechtsauskunft. Verbindlich ist
+  ausschliesslich die verlinkte amtliche Quelle.
+- **Kein amtlicher Digitalisierungsgrad.** Kein Indikator wird geraten — was nicht
   belegt oder berechnet ist, steht als unbekannt.
-- **Offene Punkte:** FR/IT-Erstbefüllung braucht Muttersprachen-Review, Leichte
-  Sprache ein Fachreview, tabellarische Gebühren aus Tarif-Widgets sind ungelöst —
-  dort wird konsequent abstiniert.
+- **Ungelöst:** tabellarische Gebühren aus Tarif-Widgets. Dort wird abstiniert.
 
-*Sprechtext:* **Diese Folie kommt vor den Fragen, nicht danach.** Wer die Grenzen
-selbst nennt, bevor jemand sie sucht, gewinnt den Rest der Diskussion. Und: Die
-offenen Punkte sind genau die Stellen, an denen ein Labor helfen könnte.
-
-### 14 — Der Ask (≈ 45 Sek)
-
-1. **Klein:** fünf Prozesse und je zwei Stunden Fachreview für das Experiment.
-2. **Mittel:** zusätzlich eine Fachstelle als Gesprächspartnerin für die
-   Hochrisikofälle.
-3. **Gross:** wenn das Muster trägt, wird die Gate-Konfiguration zur Vorlage für
-   weitere KI-Vorhaben im Labor.
+**Der Ask:** (1) klein — fünf Prozesse und je zwei Stunden Fachreview;
+(2) mittel — methodische Rückendeckung für den Smart-City-Termin;
+(3) gross — die Gate-Konfiguration als Vorlage für weitere KI-Vorhaben im Labor.
 
 → **Belegen statt behaupten. Wenn das Muster hält, ist es mehr wert als die App.**
 
-*Sprechtext:* Mit der kleinsten Variante schliessen und dort stehen bleiben. Ein
-Personentag ist im Raum entscheidbar, ein Grundsatzentscheid nicht — und ein
-vertagter Grundsatzentscheid ist ein toter Termin. Danach schweigen.
+*Sprechtext:* **Grenzen vor den Fragen nennen, nicht danach.** Mit der kleinsten
+Variante schliessen und dort stehen bleiben. Danach schweigen.
+
+---
+
+# Variante B — Smart City
+
+**These:** Bereits publizierte offene Daten werden zu einem Dienst, den
+Bürger:innen verstehen — ohne neue Infrastruktur, ohne neue Datenerhebung,
+übertragbar auf andere Städte.
+
+## Ablauf B — 11 Min Vortrag, 4 Min Diskussion
+
+| Zeit | Folie | Dauer |
+|---|---|---|
+| 0:00 | B1 · Titel und die eine Botschaft | 40″ |
+| 0:40 | B2 · Die Bürgerfrage | 55″ |
+| 1:35 | B3 · **Demo — der volle Rundgang** *(live)* | 3:00 |
+| 4:35 | B4 · Auf offenen Daten, ohne neue Infrastruktur | 55″ |
+| 5:30 | B5 · Zugänglichkeit als Verhalten | 45″ |
+| 6:15 | B6 · **Warum keine falsche Frist entstehen kann** | 85″ |
+| 7:40 | B7 · Wie es skaliert — die KI dahinter | 70″ |
+| 8:50 | B8 · Übertragbar auf andere Städte | 55″ |
+| 9:45 | B9 · Grenzen | 40″ |
+| 10:25 | B10 · Experiment im KI-Labor und der Ask | 75″ |
+| 11:40 | *Diskussion* | 3:20 |
+
+**Zeitkontrolle:** Bei Minute 5 musst du aus der Demo raus sein — nimm dir vor,
+sie bei 4:35 zu beenden, egal wo du bist. Was du niemals kürzt: B6. Ohne die
+Unbedenklichkeitsfolie bleibt die Sorge im Raum.
+
+### B1 — Titel (40″)
+
+**Die Maschinerie.** Offene Daten der Stadt werden zu einer Karte, die
+Bürger:innen verstehen — ohne neue Infrastruktur, ohne neue Datenerhebung.
+
+*Sprechtext:* «Ich zeige euch etwas, das seit Monaten läuft und komplett auf Daten
+gebaut ist, die die Stadt bereits publiziert. Und keine einzige Frist und keine
+Gebühr darin ist von uns behauptet — dazu komme ich später, weil es der Punkt ist,
+an dem so etwas sonst scheitert.» Den Unbedenklichkeits-Halbsatz gleich am Anfang
+setzen; dann hört der Raum die Demo entspannt.
+
+### B2 — Zweck (55″)
+
+**Die Verwaltung ist öffentlich. Verständlich ist sie damit noch nicht.**
+
+| Frage | Heutige Antwort |
+|---|---|
+| «Wie ist diese Stadt organisiert?» | Organigramm als PDF, ohne Bezug zu Geld oder Stellen |
+| «Wohin geht mein Steuerfranken?» | Die Rechnung als Tabellenwerk — korrekt, vollständig, unlesbar |
+| «Was muss ich tun, um X zu erledigen?» | Merkblatt-Prosa über mehrere Ämter, Kanton und Bund verteilt |
+
+→ **Die Daten sind längst offen. Was fehlt, ist die Karte.**
+
+*Sprechtext:* Hier **noch keine** Strategiebezüge — die kommen auf B8, wenn der
+Nutzen gezeigt ist. Vorangestellt wirken sie wie eine Legitimationssuche.
+
+### B3 — Demo (3:00, live, Herzstück)
+
+In dieser Reihenfolge, ohne Abzweigungen:
+
+1. **Organigramm** — Departemente bis Beteiligungen, mit Budget und Stellenwerten *(≈ 40 Sek)*
+2. **«Wohin geht mein Steuerfranken?»** — Treemap auf Ist-Werten aus dem Geschäftsbericht *(≈ 30 Sek)*
+3. **Lebenslagen-Suche** — «Hund anmelden» findet das Steueramt *(≈ 25 Sek)*
+4. **Prozessgraph** — Schritte, Reihenfolge, Zuständigkeiten, Unterlagen; dann Klick auf eine Reference *(≈ 45 Sek)*
+5. **Baugesuch** — der rot hervorgehobene Hochrisiko-Hinweis *(≈ 15 Sek)*
+6. **Auf Leichte Sprache umschalten** — der Graph räumt sich auf *(≈ 25 Sek)*
+
+*Sprechtext:* Reden aufhören, klicken. Zwei Momente lohnen einen Satz: der
+Reference-Klick («die Frist steht nicht bei uns — sie steht dort») und die Leichte
+Sprache («das ist nicht nur einfacherer Text, das ist ein anderes Layout»). Der
+Leichte-Sprache-Moment ist erfahrungsgemäss der, bei dem im Raum jemand nickt —
+deshalb steht er am Schluss. **Harte Grenze bei 4:35:** Wenn du dann bei Punkt 4
+bist, überspring 5 und mach nur noch die Leichte Sprache.
+
+### B4 — Kosten und Herkunft (55″)
+
+**Alles daraus gebaut, was die Stadt schon publiziert.**
+
+- **Quellen:** publiziertes Organigramm, Finanzdaten des offenen Datenportals,
+  Stellenwerte aus der Rechnung — alles CC-BY 4.0.
+- **Keine Beschaffung, keine neue Infrastruktur.** Der Aufwand steckt in
+  Modellierung und Pflege, nicht in Technik.
+- **Abgeleitete Werte werden geprüft und beschriftet:** Stellen pro Einheit sind
+  ein Näherungswert aus dem Personalaufwand — gegen den publizierten Wert des
+  Steueramts geprüft: 227 gegenüber 222, also 2 % Abweichung.
+
+*Sprechtext:* «Für ein Smart-City-Portfolio ist das vielleicht das Interessanteste:
+Es brauchte keine neue Datenerhebung und keine neue Plattform.»
+
+### B5 — Zugang (45″)
+
+**Zugänglichkeit als Verhalten, nicht als Häkchen.**
+
+- Fünf Sprachen inklusive Leichter Sprache — und in Leichter Sprache ändert sich
+  nicht nur der Text, sondern auch der Graph: weniger Elemente, grössere Boxen.
+- Ohne JavaScript bedienbar; Liste und Suche funktionieren auch ohne Graph.
+- Screenreader-Tabelle hinter dem Graphen: Baumstruktur, Budgets und Stellen sind
+  nativ als Tabelle auslesbar.
+- Mobile zuerst: auf kleinen Geräten ersetzt die Liste den interaktiven Graphen.
+
+*Sprechtext:* «Der städtische Service Standard verlangt Barrierefreiheit nach
+WCAG 2.1 AA und leicht verständliche Sprache. Das ist die einzige messbare Norm in
+allen einschlägigen Strategiedokumenten.» Ehrlich bleiben, falls nach einem Audit
+gefragt wird: **Ein formales WCAG-Audit gibt es nicht.** Die genannten
+Eigenschaften sind belegbar, die Konformitätsaussage wäre es nicht.
+
+### B6 — Die Unbedenklichkeit (85″, Herzstück)
+
+**Warum hier keine falsche Frist entstehen kann.**
+
+Das Risiko in zwei Sätzen: Bei der Arbeit am Projekt fand die Recherche zur
+Einsprachefrist die richtige amtliche Steuerseite mit der korrekten Wendung
+«innert 30 Tagen» — nur gehörte diese Frist zur **Bezahlung** und nicht zur
+**Einsprache**. Richtige Quelle, richtige Zahl, falscher Sachverhalt.
+
+| So nicht — behauptet | So ist es gebaut — belegt |
+|---|---|
+| «Einsprache innert 30 Tagen erheben» | «Einsprache erheben» |
+| Die Zahl steht bei uns, ohne Quelle, ohne Datum | Verweist auf einen belegten Verweis: Bezeichnung + Link auf die exakte amtliche Seite + wörtliches Zitat. **Dort** lebt die Zahl |
+
+→ Fristen, Gebühren und Rekursfristen erscheinen nie als eigener Wert — nur als
+Link mit wörtlichem Zitat. Eine automatische Prüfung erzwingt das bei jeder
+Änderung.
+
+*Sprechtext:* Die Anekdote hier **knapp** halten — zwei Sätze. Der Satz, der die
+Sorge im Raum auflöst: «**Wenn wir uns irren, irren wir uns über die Reihenfolge
+von Schritten — nie über eine Frist.** Über Fristen sagen wir nichts, wir zeigen
+nur, wo sie stehen.»
+
+### B7 — Skalierung (70″)
+
+17 Prozesse sind von Hand modelliert. Die Stadt hat hunderte Lebenslagen — und die
+Quellen bewegen sich: beim ersten Live-Check waren 25 hinterlegte Links tot.
+Deshalb der zweite Teil: eine Pipeline, die Prozessstruktur aus amtlichen Seiten
+extrahiert.
+
+```
+Amtliche Quellen  →  Extraktion mit KI        →  Automatische Prüfung   →  Mensch    →  Öffentliche Ansicht
+                      1 Quelle finden             Belegpflicht             Freigabe     Graph, 5 Sprachen,
+                      2 Seite beschaffen          keine Zahl ohne Quelle   jeder        offene API
+                      3 Passage vorschlagen       nichts Geprüftes         Änderung
+                      4 Urteil — oder schweigen   geht verloren            nichts
+                                                  Links erreichbar         automatisch
+                            ↑──────────  Prüfung fehlgeschlagen = Stopp ───┘
+```
+
+*Sprechtext:* Ein einziger Punkt, mehr braucht dieser Termin nicht: **«Die KI
+schlägt vor. Sie veröffentlicht nie.»** Alles andere auf dem Bild ist Beleg dafür.
+Falls nach der Technik gefragt wird, kurz halten und vertagen — hier ist die
+interessantere Frage, welche Prozesse sie im Experiment sehen wollen.
+
+### B8 — Portfolio-Anschluss (55″)
+
+**Bewusst so gebaut, dass andere Städte es übernehmen können.**
+
+- Organisationsdaten und Sprache sind entkoppelt. Eine weitere Stadt braucht eine
+  Konfiguration, einen Datenadapter und ihre Daten — nicht einen neuen Aufbau.
+- Die Prozessstruktur ist ein dokumentierter, versionierter Datenvertrag mit
+  offener Schnittstelle.
+
+| Bezug | Beitrag |
+|---|---|
+| Smart City Zürich | Leichtgewichtiger Pilot: offene Daten ohne neue Infrastruktur zu einem Dienst kombiniert |
+| Digitalisierungsstrategie der Stadt | Nutzerzentrierter Dienst: Struktur in Alltagssprache, barrierefrei, mehrsprachig |
+| Service Standard | WCAG 2.1 AA und leicht verständliche Sprache als Bauprinzip |
+| Strategien Zürich 2040 | Verwaltung als Ganzes sichtbar — Transparenz über Strukturen, Budgets, Stellen |
+| Digitale Schweiz | Konkrete Nachnutzung offener Verwaltungsdaten, übertragbar auf andere Städte |
+
+*Sprechtext:* «Das Projekt ist bottom-up entstanden, nicht aus einem
+Strategiepapier. Trotzdem passt es an fünf Stellen — und ich sage euch gern auch,
+wo der Anschluss dünn ist.» In `docs/bewertung-strategiebezug.md` ist für jeden
+Indikator vermerkt, ob der Anker direkt, schwach oder gar nicht vorhanden ist.
+
+### B9 — Grenzen (40″)
+
+- **Kein offizielles Angebot der Stadt.** Privates Open-Source-Projekt ohne
+  Auftrag; jede Prozessseite trägt einen sichtbaren Hinweis.
+- **Keine Rechtsauskunft.** Verbindlich ist die verlinkte amtliche Quelle.
+- **Kein amtlicher Digitalisierungsgrad.** Die Prozessbewertung ist ein
+  Schnappschuss der Modelldaten.
+- **Offen:** FR/IT brauchen Muttersprachen-Review, Leichte Sprache ein Fachreview.
+
+*Sprechtext:* **Vor den Fragen, nicht danach.** Übergang zum Ask: «Die offenen
+Punkte sind genau die Stellen, an denen ein Labor helfen könnte — Fachpersonen für
+Leichte Sprache und Recht sind bei euch, nicht bei mir.»
+
+### B10 — Vorschlag und Ask (75″)
+
+> **Die Frage:** Wie viel Prozessstruktur kann eine KI liefern, ohne dass die Stadt
+> dabei Haftungsrisiko übernimmt?
+
+**Aufbau:** Fünf Prozesse aus einem Bereich, den ihr wählt — gern einen, der als
+mühsam gilt. Acht Wochen. Ergebnis öffentlich im Preview, durchgehend als
+inoffiziell gekennzeichnet. Messgrössen vorher festgelegt; ein negatives Ergebnis
+wird publiziert.
+
+**Was ich brauche:** die Auswahl der fünf Prozesse, rund zwei Stunden Fachreview
+je Prozess (insgesamt etwa ein Personentag), eine Fachstelle als
+Gesprächspartnerin für die Hochrisikofälle.
+
+**Was am Ende vorliegt:** ein laufender öffentlicher Preview, ein Bericht mit
+Zahlen gegen die vorab gesetzten Ziele, und ein wiederverwendbares Prüfmuster für
+weitere KI-Vorhaben im Labor.
+
+*Sprechtext:* Mit der kleinsten Variante schliessen — fünf Prozesse und ein
+Personentag Review ist im Raum entscheidbar, ein Grundsatzentscheid wird vertagt.
+Wenn der Fachgruppen-Termin schon war, hier ergänzen, dass die KI-Fachgruppe das
+Verfahren angeschaut hat. Danach schweigen.
 
 ---
 
 ## Anhang: die harten Fragen
 
-**Warum nicht einfach ein Chatbot auf den Stadtseiten?**
+Die Marke zeigt, in welchem Termin die Frage erfahrungsgemäss kommt.
+
+**Warum nicht einfach ein Chatbot auf den Stadtseiten?** *(beide)*
 Ein Chatbot behauptet — das ist seine Funktionsweise. Hier ist Behaupten
 strukturell ausgeschlossen: Der Wert existiert nur innerhalb eines wörtlichen
 Zitats mit Link. Dazu zeigt ein Graph Reihenfolge, Abhängigkeiten und Rücksprünge,
-ein Chatfenster nicht. Beides lässt sich kombinieren — die geprüfte Struktur muss
-zuerst da sein.
+ein Chatfenster nicht.
 
-**Wer haftet, wenn etwas falsch ist?**
+**Wer haftet, wenn etwas falsch ist?** *(Smart City)*
 Bei bindenden Werten steht keiner drin, der falsch sein könnte — deshalb ist die
 Kardinalregel keine Kosmetik, sondern die Haftungsarchitektur. Falsch zugeordnete
-Struktur ist korrigierbar, als inoffiziell gekennzeichnet und führt nicht zu einer
-Fristversäumnis.
+Struktur ist korrigierbar und führt nicht zu einer Fristversäumnis.
 
-**Was, wenn das Modell die Quelle falsch liest?**
+**Was, wenn das Modell die Quelle falsch liest?** *(Fachgruppe)*
 Dann greift die Belegpflicht in der Validierung, oder das menschliche Review, oder
-der Wert wird gar nicht publiziert. Voreinstellung bei Mehrdeutigkeit ist Abstinenz
-mit Begründung, nicht der beste Rateversuch.
+der Wert wird gar nicht publiziert. Voreinstellung bei Mehrdeutigkeit ist
+Abstinenz mit Begründung.
 
-**Wie schnell veralten die Daten?**
-Ständig. stadt-zuerich.ch hat die URL-Struktur umgestellt, kantonale Seiten sind
-verschoben, eine Bundesseite war innerhalb weniger Tage erst erreichbar und dann
-weg. Beim ersten Live-Check waren 25 Links tot. Deshalb läuft die Link-Prüfung
-zeitgesteuert und unterscheidet tot / blockiert / Netzfehler — sonst erscheinen
-Umgebungsprobleme als Datenfehler.
+**Wie messt ihr, ob die KI gut war?** *(Fachgruppe)*
+Fünf vorab festgelegte Kennzahlen: Abstinenztreue (Abbruchkriterium bei 100 %),
+Strukturpräzision, Belegquote, Reviewaufwand, Quellenstabilität nach 90 Tagen.
+Keine wird nachträglich angepasst; ein negatives Ergebnis wird publiziert.
 
-**Was kostet das die Stadt?**
+**Wie schnell veralten die Daten?** *(beide)*
+Ständig. stadt-zuerich.ch hat die URL-Struktur umgestellt, eine Bundesseite war
+innerhalb weniger Tage erst erreichbar und dann weg. Beim ersten Live-Check waren
+25 Links tot. Deshalb läuft die Link-Prüfung zeitgesteuert und unterscheidet
+tot / blockiert / Netzfehler.
+
+**Was kostet das die Stadt?** *(Smart City)*
 Im Experiment nur Reviewzeit, rund ein Personentag. Keine Beschaffung, keine neue
 Infrastruktur, keine neue Datenerhebung.
 
-**Und der Datenschutz?**
-Keine Personendaten. Der Rückkanal für Feedback ist datensparsam, es stehen keine
-Personendaten in URLs, Query-Strings oder Logs, die öffentliche Roadmap wird ohne
-Personenbezug erzeugt.
+**Und der Datenschutz?** *(beide)*
+Keine Personendaten. Der Rückkanal für Feedback ist datensparsam, keine
+Personendaten in URLs, Query-Strings oder Logs.
 
-**Warum zwei getrennte Systeme statt eines?**
+**Warum zwei getrennte Systeme statt eines?** *(Fachgruppe)*
 Weil die Trennung die Sicherheitseigenschaft ist. Die Extraktion hat keinen
-Schreibzugriff auf die publizierte Darstellung — sie kann ausschliesslich einen
-Vorschlag einreichen, der durch Prüfungen und ein menschliches Review muss.
+Schreibzugriff auf die publizierte Darstellung.
 
----
-
-## Anhang: Anschlussfähigkeit (nur auf Nachfrage)
-
-Das Projekt ist bottom-up entstanden. Die Rückbindung ist in
-[`docs/bewertung-strategiebezug.md`](bewertung-strategiebezug.md) dokumentiert und
-ehrlich abgestuft — wo ein Anker schwach oder nicht vorhanden ist, steht das dort.
-
-| Bezug | Beitrag |
-|---|---|
-| Strategien Zürich 2040 | Verwaltung als Ganzes sichtbar — Transparenz über Strukturen, Budgets, Stellen |
-| Digitalisierungsstrategie der Stadt | Nutzerzentrierter Dienst: Struktur in Alltagssprache, barrierefrei, mehrsprachig |
-| Service Standard (Nutzendenzentrierung) | Liefert die einzige messbare Norm der Referenzdokumente (WCAG 2.1 AA) sowie leicht verständliche Sprache |
-| Smart City Zürich | Leichtgewichtiger Pilot: offene Daten ohne neue Infrastruktur zu einem Dienst kombiniert |
-| Digitale Schweiz | Konkrete Nachnutzung von OGD, bewusst auf andere Schweizer Städte übertragbar |
-
-**Sprachregelung:** Kontext, nicht Autorität. Erst zeigen, wenn danach gefragt
-wird — eine Präsentation, die mit Strategiezitaten beginnt, wirkt, als suche sie
-Erlaubnis.
+**Ist das barrierefrei zertifiziert?** *(Smart City)*
+Nein — und das gehört so gesagt. Ein formales WCAG-Audit gibt es nicht. Belegbar
+sind die einzelnen Eigenschaften; eine Konformitätsaussage wäre es nicht.
 
 ---
 
@@ -429,4 +554,5 @@ Erlaubnis.
 | 25 tote Links beim ersten Live-Check | [`docs/agent-lessons.md`](agent-lessons.md), Abschnitt B.1 |
 | § 140 / § 178, Einsprache vs. Bezahlung | [`docs/agent-lessons.md`](agent-lessons.md), Abschnitt B.5 |
 | FTE-Proxy 227 vs. 222 publiziert | [`README.md`](../README.md), Abschnitt Datenquellen |
-| Gates und Kardinalregel | [`CLAUDE.md`](../CLAUDE.md), [`docs/process-data-contract.md`](process-data-contract.md) |
+| Gates, Kardinalregel, Hochrisikofälle | [`CLAUDE.md`](../CLAUDE.md), [`docs/process-data-contract.md`](process-data-contract.md) |
+| Strategieanker und ihre Stärke | [`docs/bewertung-strategiebezug.md`](bewertung-strategiebezug.md) |
