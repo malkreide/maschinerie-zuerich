@@ -122,9 +122,9 @@
         "ls": "Frist beim Wegzug"
       },
       "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/wegzug.html",
-      "source_quote": "melden Sie Ihren Wegzug innerhalb von 14 Tagen nach Ihrem Auszug (Meldepflicht).",
+      "source_quote": "Melden Sie Ihren Wegzug innert 14 Tagen nach Ihrem Auszug.",
       "status": "verifiziert",
-      "retrieved_at": "2026-06-28"
+      "retrieved_at": "2026-10-05"
     },
     {
       "reference_id": 7,
@@ -136,9 +136,9 @@
         "ls": "Wann Sie den Wegzug frühestens melden können"
       },
       "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/wegzug.html",
-      "source_quote": "Das Personenmeldeamt nimmt Ihre Wegzugsmeldung frühestens 30 Tage vor Ihrem geplanten Auszug entgegen.",
+      "source_quote": "Die Meldung ist frühestens 30 Tage vor dem geplanten Wegzug möglich.",
       "status": "verifiziert",
-      "retrieved_at": "2026-06-28"
+      "retrieved_at": "2026-10-05"
     },
     {
       "reference_id": 8,
@@ -150,9 +150,9 @@
         "ls": "Gebühr für die Abmeldebestätigung"
       },
       "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/wegzug.html",
-      "source_quote": "Fr. 20.– für eine Abmeldebestätigung / Wohnsitzattest (bevorzugt: Karte und Twint)",
+      "source_quote": "Fr. 20.– für eine Abmeldebestätigung",
       "status": "verifiziert",
-      "retrieved_at": "2026-06-28"
+      "retrieved_at": "2026-10-05"
     }
   ],
   "actors": [
