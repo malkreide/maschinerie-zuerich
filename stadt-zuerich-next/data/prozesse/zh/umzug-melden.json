@@ -12,19 +12,19 @@
     "ls": "Umzug melden (neue Adresse)"
   },
   "description": {
-    "de": "Wer in die Stadt Zürich zieht oder innerhalb der Stadt umzieht, muss sich innert der gesetzlichen Meldefrist beim Bevölkerungsamt an- bzw. ummelden. Für Schweizer:innen weitgehend online über eUmzugCH; für ausländische Staatsangehörige gelten Zusatzschritte.",
-    "en": "Anyone moving to or within the City of Zurich must register or update their address with the population office within the statutory deadline. Largely online via eUmzugCH for Swiss citizens; foreign nationals have additional steps.",
-    "fr": "Toute personne qui emménage dans la ville de Zurich ou qui déménage à l'intérieur de la ville doit s'annoncer ou faire mettre à jour son adresse auprès du contrôle des habitants dans le délai légal d'annonce. En grande partie en ligne via eUmzugCH pour les ressortissant-e-s suisses; des étapes supplémentaires s'appliquent aux ressortissant-e-s étrangers.",
-    "it": "Chi si trasferisce nella città di Zurigo o trasloca all'interno della città deve annunciarsi o aggiornare il proprio indirizzo presso il controllo abitanti entro il termine legale di notifica. In gran parte online tramite eUmzugCH per i cittadini svizzeri; per i cittadini stranieri valgono passaggi aggiuntivi.",
-    "ls": "Sie ziehen in die Stadt Zürich? Oder Sie ziehen in eine neue Wohnung in der Stadt? Dann müssen Sie das melden. Melden Sie das schnell. Es gibt eine Frist. Das macht das Bevölkerungs-Amt. Schweizerinnen und Schweizer können das im Internet machen."
+    "de": "Wer in die Stadt Zürich zieht oder innerhalb der Stadt umzieht, muss sich innert der gesetzlichen Meldefrist beim Bevölkerungsamt an- bzw. ummelden. Für Schweizer:innen weitgehend online über eUmzugCH; für ausländische Staatsangehörige gelten Zusatzschritte. Auch der Wegzug aus der Stadt muss gemeldet werden; eine Abmeldebestätigung kann danach im Webshop bestellt werden.",
+    "en": "Anyone moving to or within the City of Zurich must register or update their address with the population office within the statutory deadline. Largely online via eUmzugCH for Swiss citizens; foreign nationals have additional steps. Moving away from the city must also be reported; a deregistration confirmation can then be ordered in the web shop.",
+    "fr": "Toute personne qui emménage dans la ville de Zurich ou qui déménage à l'intérieur de la ville doit s'annoncer ou faire mettre à jour son adresse auprès du contrôle des habitants dans le délai légal d'annonce. En grande partie en ligne via eUmzugCH pour les ressortissant-e-s suisses; des étapes supplémentaires s'appliquent aux ressortissant-e-s étrangers. Le départ de la ville doit également être annoncé ; une attestation de départ peut ensuite être commandée dans la boutique en ligne.",
+    "it": "Chi si trasferisce nella città di Zurigo o trasloca all'interno della città deve annunciarsi o aggiornare il proprio indirizzo presso il controllo abitanti entro il termine legale di notifica. In gran parte online tramite eUmzugCH per i cittadini svizzeri; per i cittadini stranieri valgono passaggi aggiuntivi. Anche la partenza dalla città va notificata; una conferma di disdetta può poi essere ordinata nel webshop.",
+    "ls": "Sie ziehen in die Stadt Zürich? Oder Sie ziehen in eine neue Wohnung in der Stadt? Dann müssen Sie das melden. Melden Sie das schnell. Es gibt eine Frist. Das macht das Bevölkerungs-Amt. Schweizerinnen und Schweizer können das im Internet machen. Sie ziehen aus Zürich weg? Dann müssen Sie sich abmelden."
   },
   "target_audience": "bevoelkerung",
   "preconditions": [
     {
-      "de": "Sie ziehen neu in die Stadt Zürich oder innerhalb der Stadt um.",
-      "fr": "Vous emménagez dans la ville de Zurich ou vous déménagez à l'intérieur de la ville.",
-      "it": "Vi trasferite nella città di Zurigo o traslocate all'interno della città.",
-      "ls": "Sie ziehen nach Zürich. Oder Sie ziehen in Zürich um."
+      "de": "Sie ziehen neu in die Stadt Zürich, innerhalb der Stadt um oder aus der Stadt weg.",
+      "fr": "Vous emménagez dans la ville de Zurich, vous déménagez à l'intérieur de la ville ou vous quittez la ville.",
+      "it": "Vi trasferite nella città di Zurigo, traslocate all'interno della città o lasciate la città.",
+      "ls": "Sie ziehen nach Zürich. Oder Sie ziehen in Zürich um. Oder Sie ziehen weg."
     },
     {
       "de": "Beim Zuzug aus einer anderen Schweizer Gemeinde müssen Sie sich zuerst bei Ihrer bisherigen Wohnsitzgemeinde abmelden.",
@@ -227,7 +227,15 @@
         "ls": "Wichtig: Melden Sie den Umzug schnell. Es gibt eine Frist."
       },
       "depends_on": [
-        1
+        {
+          "step_id": 14,
+          "condition": {
+            "de": "Zuzug oder Umzug in der Stadt",
+            "en": "moving in or within the city",
+            "fr": "arrivée ou déménagement dans la ville",
+            "it": "arrivo o trasloco in città"
+          }
+        }
       ],
       "reference_ids": [
         2
@@ -395,7 +403,7 @@
         "en": "Check registration and documents",
         "fr": "Vérifier l'annonce et les documents",
         "it": "Verificare l'annuncio e i documenti",
-        "ls": "Sie ziehen in eine andere Gemeinde? Sie melden sich ab."
+        "ls": "Das Amt prüft Ihre Meldung"
       },
       "depends_on": [
         4,
@@ -407,11 +415,7 @@
         "en": "The population office verifies the data and matches it against the cantonal person register.",
         "fr": "Le contrôle des habitants vérifie les indications et les compare avec le registre cantonal des personnes.",
         "it": "Il controllo abitanti verifica le indicazioni e le confronta con il registro cantonale delle persone."
-      },
-      "reference_ids": [
-        6,
-        7
-      ]
+      }
     },
     {
       "step_id": 7,
@@ -426,11 +430,7 @@
       "depends_on": [
         6
       ],
-      "type": "entscheidung",
-      "reference_ids": [
-        6,
-        8
-      ]
+      "type": "entscheidung"
     },
     {
       "step_id": 8,
@@ -456,9 +456,6 @@
       "type": "loop",
       "loops_back_to": [
         6
-      ],
-      "reference_ids": [
-        8
       ]
     },
     {
@@ -579,6 +576,281 @@
         12
       ],
       "type": "ende"
+    },
+    {
+      "step_id": 14,
+      "actor": "person",
+      "depends_on": [
+        1
+      ],
+      "type": "entscheidung",
+      "label": {
+        "de": "Zuzug, Umzug oder Wegzug?",
+        "en": "Moving in, within or away?",
+        "fr": "Arrivée, déménagement ou départ ?",
+        "it": "Arrivo, trasloco o partenza?",
+        "ls": "Ziehen Sie nach Zürich, in Zürich um oder weg?"
+      }
+    },
+    {
+      "step_id": 15,
+      "actor": "person",
+      "depends_on": [
+        {
+          "step_id": 14,
+          "condition": {
+            "de": "Wegzug aus der Stadt",
+            "en": "moving away from the city",
+            "fr": "départ de la ville",
+            "it": "partenza dalla città"
+          }
+        }
+      ],
+      "type": "input",
+      "reference_ids": [
+        6,
+        7
+      ],
+      "source_id": "q-stz-wegzug",
+      "label": {
+        "de": "Meldefrist für den Wegzug beachten",
+        "en": "Observe the deadline for reporting a move away",
+        "fr": "Respecter le délai d'annonce du départ",
+        "it": "Rispettare il termine di notifica della partenza",
+        "ls": "Wichtig: Melden Sie den Wegzug rechtzeitig. Es gibt eine Frist."
+      },
+      "description": {
+        "de": "Der Wegzug muss innert einer Frist nach dem Auszug gemeldet werden und ist frühestens eine bestimmte Zeit vorher möglich – siehe Belege.",
+        "en": "The move away must be reported within a deadline after moving out and can be reported only a certain time in advance at the earliest – see references.",
+        "fr": "Le départ doit être annoncé dans un délai après le déménagement et peut être annoncé au plus tôt un certain temps à l'avance – voir les références.",
+        "it": "La partenza va notificata entro un termine dopo il trasloco e può essere notificata al più presto un certo tempo prima – vedi riferimenti."
+      }
+    },
+    {
+      "step_id": 16,
+      "actor": "person",
+      "depends_on": [
+        15
+      ],
+      "type": "entscheidung",
+      "source_id": "q-stz-wegzug",
+      "label": {
+        "de": "Wie abmelden?",
+        "en": "How to deregister?",
+        "fr": "Comment se désinscrire ?",
+        "it": "Come disdire la residenza?",
+        "ls": "Wie wollen Sie sich abmelden?"
+      }
+    },
+    {
+      "step_id": 17,
+      "actor": "person",
+      "type": "input",
+      "source_id": "q-eumzug",
+      "depends_on": [
+        {
+          "step_id": 16,
+          "condition": {
+            "de": "Wegzug innerhalb der Schweiz (online)",
+            "en": "moving within Switzerland (online)",
+            "fr": "départ en Suisse (en ligne)",
+            "it": "partenza all'interno della Svizzera (online)"
+          }
+        }
+      ],
+      "label": {
+        "de": "Online abmelden über eUmzugCH",
+        "en": "Deregister online via eUmzugCH",
+        "fr": "Se désinscrire en ligne via eUmzugCH",
+        "it": "Disdire online tramite eUmzugCH",
+        "ls": "Im Internet abmelden (eUmzug)"
+      },
+      "description": {
+        "de": "Bei einem Wegzug in eine andere Schweizer Gemeinde.",
+        "en": "When moving to another Swiss municipality.",
+        "fr": "En cas de départ vers une autre commune suisse.",
+        "it": "In caso di partenza verso un altro Comune svizzero."
+      }
+    },
+    {
+      "step_id": 18,
+      "actor": "person",
+      "type": "input",
+      "source_id": "q-stz-wegzug",
+      "depends_on": [
+        {
+          "step_id": 16,
+          "condition": {
+            "de": "Wegzug ins Ausland oder Ende Wochenaufenthalt",
+            "en": "moving abroad or ending weekly residence",
+            "fr": "départ à l'étranger ou fin du séjour hebdomadaire",
+            "it": "partenza all'estero o fine del soggiorno settimanale"
+          }
+        }
+      ],
+      "label": {
+        "de": "Abmeldeerklärung über das Kontaktformular einreichen",
+        "en": "Submit the deregistration form via the contact form",
+        "fr": "Remettre la déclaration de départ via le formulaire de contact",
+        "it": "Inoltrare la dichiarazione di partenza tramite il modulo di contatto",
+        "ls": "Ein Formular ausfüllen und schicken"
+      },
+      "documents": [
+        {
+          "label": {
+            "de": "Abmeldeerklärung, vollständig ausgefüllt und unterschrieben",
+            "en": "Deregistration form, fully completed and signed",
+            "fr": "Déclaration de départ, entièrement remplie et signée",
+            "it": "Dichiarazione di partenza, compilata integralmente e firmata"
+          },
+          "required": true
+        }
+      ]
+    },
+    {
+      "step_id": 19,
+      "actor": "person",
+      "type": "input",
+      "source_id": "q-stz-wegzug",
+      "reference_ids": [
+        8
+      ],
+      "depends_on": [
+        {
+          "step_id": 16,
+          "condition": {
+            "de": "persönlich (wenn online nicht möglich)",
+            "en": "in person (if online is not possible)",
+            "fr": "en personne (si en ligne impossible)",
+            "it": "di persona (se online non è possibile)"
+          }
+        }
+      ],
+      "label": {
+        "de": "Persönlich mit Termin abmelden",
+        "en": "Deregister in person by appointment",
+        "fr": "Se désinscrire en personne sur rendez-vous",
+        "it": "Disdire di persona su appuntamento",
+        "ls": "Mit Termin beim Amt vorbeigehen"
+      },
+      "description": {
+        "de": "Beim Personenmeldeamt Zürich Nord oder Zürich West; ein Termin ist erforderlich.",
+        "en": "At the Personenmeldeamt Zürich Nord or Zürich West; an appointment is required.",
+        "fr": "Au Personenmeldeamt Zürich Nord ou Zürich West ; un rendez-vous est nécessaire.",
+        "it": "Presso il Personenmeldeamt Zürich Nord o Zürich West; è necessario un appuntamento."
+      },
+      "documents": [
+        {
+          "label": {
+            "de": "Pass oder ID",
+            "en": "Passport or identity card",
+            "fr": "Passeport ou carte d'identité",
+            "it": "Passaporto o carta d'identità"
+          },
+          "required": true
+        },
+        {
+          "label": {
+            "de": "Ausländerausweis (für ausländische Staatsangehörige)",
+            "en": "Foreigner's permit (for foreign nationals)",
+            "fr": "Titre de séjour (pour les ressortissant-e-s étrangers)",
+            "it": "Permesso per stranieri (per cittadini stranieri)"
+          },
+          "required": false
+        }
+      ]
+    },
+    {
+      "step_id": 20,
+      "actor": "bev",
+      "type": "prozess",
+      "depends_on": [
+        17,
+        18,
+        19
+      ],
+      "label": {
+        "de": "Abmeldung im Einwohnerregister verarbeiten",
+        "en": "Process the deregistration in the residents' register",
+        "fr": "Traiter la désinscription dans le registre des habitants",
+        "it": "Elaborare la disdetta nel registro degli abitanti",
+        "ls": "Das Amt trägt Ihren Wegzug ein"
+      }
+    },
+    {
+      "step_id": 21,
+      "actor": "person",
+      "type": "entscheidung",
+      "depends_on": [
+        20
+      ],
+      "label": {
+        "de": "Abmeldebestätigung benötigt?",
+        "en": "Deregistration confirmation needed?",
+        "fr": "Attestation de départ nécessaire ?",
+        "it": "Serve una conferma di disdetta?",
+        "ls": "Brauchen Sie eine Bestätigung?"
+      },
+      "description": {
+        "de": "Wird z. B. für die Kündigung von Verträgen (Krankenversicherung, Bank), für Steuerangelegenheiten oder die Ummeldung von Fahrzeugen gebraucht.",
+        "en": "Needed e.g. to cancel contracts (health insurance, bank), for tax matters or to re-register vehicles.",
+        "fr": "Nécessaire p. ex. pour résilier des contrats (assurance-maladie, banque), pour les impôts ou pour l'immatriculation de véhicules.",
+        "it": "Serve p. es. per disdire contratti (cassa malati, banca), per questioni fiscali o per la nuova immatricolazione di veicoli."
+      }
+    },
+    {
+      "step_id": 22,
+      "actor": "person",
+      "type": "input",
+      "source_id": "q-stz-wegzug",
+      "depends_on": [
+        {
+          "step_id": 21,
+          "condition": {
+            "de": "ja",
+            "en": "yes",
+            "fr": "oui",
+            "it": "sì"
+          }
+        }
+      ],
+      "label": {
+        "de": "Abmeldebestätigung im Webshop bestellen",
+        "en": "Order the deregistration confirmation in the web shop",
+        "fr": "Commander l'attestation de départ dans la boutique en ligne",
+        "it": "Ordinare la conferma di disdetta nel webshop",
+        "ls": "Die Bestätigung im Internet bestellen"
+      },
+      "description": {
+        "de": "Erst nach der erfolgten Abmeldung möglich, im Webshop der Stadt Zürich.",
+        "en": "Only possible after the deregistration has been completed, in the City of Zurich web shop.",
+        "fr": "Possible seulement une fois la désinscription effectuée, dans la boutique en ligne de la Ville de Zurich.",
+        "it": "Possibile solo dopo l'avvenuta disdetta, nel webshop della Città di Zurigo."
+      }
+    },
+    {
+      "step_id": 23,
+      "actor": "person",
+      "type": "ende",
+      "depends_on": [
+        {
+          "step_id": 21,
+          "condition": {
+            "de": "nein",
+            "en": "no",
+            "fr": "non",
+            "it": "no"
+          }
+        },
+        22
+      ],
+      "label": {
+        "de": "Aus der Stadt Zürich abgemeldet",
+        "en": "Deregistered from the City of Zurich",
+        "fr": "Désinscrit-e de la Ville de Zurich",
+        "it": "Disdetta dalla Città di Zurigo registrata",
+        "ls": "Fertig: Sie sind abgemeldet"
+      }
     }
   ],
   "legal_basis": [
@@ -607,6 +879,12 @@
       "title": "eUmzugCH – Umzug online melden",
       "url": "https://www.eumzugch.ch/",
       "retrieved_at": "2026-06-06"
+    },
+    {
+      "id": "q-stz-wegzug",
+      "title": "Stadt Zürich – Wegzug melden",
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/wegzug.html",
+      "retrieved_at": "2026-10-05"
     }
   ],
   "reife": {
