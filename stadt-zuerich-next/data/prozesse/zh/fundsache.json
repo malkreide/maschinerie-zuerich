@@ -30,7 +30,7 @@
         "en": "Fee charged when collecting a found item at the lost-property office",
         "fr": "Émolument perçu lors du retrait d'un objet trouvé au bureau des objets trouvés",
         "it": "Tassa riscossa al ritiro di un oggetto trovato presso l'ufficio oggetti smarriti",
-        "ls": "Die Express-Suche kostet extra Geld."
+        "ls": "Wenn Sie eine Sache abholen, kostet das Geld."
       },
       "source_url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero.html",
       "source_quote": "Bei Abholung eines Fundgegenstandes wird eine Gebühr erhoben.",
@@ -44,7 +44,7 @@
         "en": "Express surcharge in addition to the standard fee",
         "fr": "Supplément express en plus de l'émolument ordinaire",
         "it": "Supplemento express in aggiunta alla tassa ordinaria",
-        "ls": "Ab wann Sie am nächsten Tag im Fundbüro nachfragen können."
+        "ls": "Die Express-Suche kostet extra Geld."
       },
       "source_url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/verloren.html",
       "source_quote": "Wenn der Gegenstand gefunden wird, zahlen Sie zusätzlich zur normalen Gebühr einen Express-Zuschlag von 50 Schweizer Franken.",
@@ -58,7 +58,7 @@
         "en": "Items eligible for the express service",
         "fr": "Objets pouvant bénéficier du service express",
         "it": "Oggetti ammessi al servizio express",
-        "ls": "Wenn Sie eine Sache abholen, kostet das Geld."
+        "ls": "Wann Sie eine Express-Suche machen können."
       },
       "source_url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/verloren.html",
       "source_quote": "Brauchen Sie den Gegenstand dringend? Dann können Sie eine Express-Suche beantragen. Dafür zahlen Sie einen Zuschlag.",
@@ -72,7 +72,7 @@
         "en": "Storage period at VBZ and Forchbahn before sale",
         "fr": "Délai de conservation auprès des VBZ et de la Forchbahn avant la vente",
         "it": "Termine di conservazione presso VBZ e Forchbahn prima della vendita",
-        "ls": "Wie lange Fundsachen vom öffentlichen Grund aufbewahrt werden."
+        "ls": "Wie lange VBZ und Forchbahn Fundsachen aufbewahren."
       },
       "source_url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/versteigerung.html",
       "source_quote": "Die VBZ und die Forchbahn bewahren gefundene Gegenstände 3 Monate lang auf. Danach verkauft die Firma fundsachenverkauf.ch die Gegenstände öffentlich.",
@@ -86,7 +86,7 @@
         "en": "Storage period for items found on public ground before auction",
         "fr": "Délai de conservation des objets trouvés sur le domaine public avant la mise aux enchères",
         "it": "Termine di conservazione degli oggetti trovati su suolo pubblico prima dell'asta",
-        "ls": "Wie lange VBZ und Forchbahn Fundsachen aufbewahren."
+        "ls": "Wie lange Fundsachen vom öffentlichen Grund aufbewahrt werden."
       },
       "source_url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/versteigerung.html",
       "source_quote": "Wenn jemand Gegenstände auf öffentlichem Grund findet, bewahrt man sie 12 Monate lang auf.",
@@ -292,7 +292,7 @@
         "en": "Match against the found-items inventory",
         "fr": "Comparer avec le stock des objets trouvés",
         "it": "Confrontare con l'inventario degli oggetti trovati",
-        "ls": "Bei der Abholung zahlen Sie eine Gebühr."
+        "ls": "Das Fund-Büro vergleicht mit den Fundsachen"
       },
       "depends_on": [
         6
