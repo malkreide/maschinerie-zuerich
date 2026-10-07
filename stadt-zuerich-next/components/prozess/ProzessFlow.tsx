@@ -14,17 +14,21 @@ import {
   ReactFlow,
   ReactFlowProvider,
   Background,
+  BaseEdge,
   Controls,
+  EdgeLabelRenderer,
   MiniMap,
   MarkerType,
   ViewportPortal,
+  getBezierPath,
   type Edge,
+  type EdgeProps,
   type Node,
   type ColorMode,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import { nodeTypes, flowNodeType, type ProzessNodeData, type ProzessNodeReferenz } from './ProzessNodes';
-import type { Layout, LayoutLane } from '@/lib/prozess-layout';
+import { LAYOUT_CONSTANTS, type Layout, type LayoutKantenLabel, type LayoutLane } from '@/lib/prozess-layout';
 import type { SchrittTyp } from '@/types/prozess';
 
 export interface ProzessFlowSchritt {
@@ -133,6 +137,43 @@ function assignDecisionSlots(positions: RelPos[]): string[] {
   return positions.map((_, i) => (i === 0 ? 'up' : i === n - 1 ? 'down' : 'right'));
 }
 
+type BedingungEdgeData = { box: LayoutKantenLabel } & Record<string, unknown>;
+
+/** Kante mit Bedingungs-Beschriftung. Die Linie ist die übliche Bézier-Kurve;
+ *  die Beschriftung sitzt nicht in der Kantenmitte (dort überdeckte sie
+ *  Knoten), sondern an der vom Layout berechneten Stelle vor dem Zielknoten
+ *  (lib/prozess-layout.ts). Als HTML-Element statt SVG-Text, damit lange
+ *  Bedingungen in der reservierten Breite umbrechen. */
+function BedingungEdge({
+  id, sourceX, sourceY, targetX, targetY, sourcePosition, targetPosition,
+  markerEnd, style, label, data,
+}: EdgeProps<Edge<BedingungEdgeData>>) {
+  const [path] = getBezierPath({ sourceX, sourceY, sourcePosition, targetX, targetY, targetPosition });
+  const box = data?.box;
+  return (
+    <>
+      <BaseEdge id={id} path={path} markerEnd={markerEnd} style={style} />
+      {box && label && (
+        <EdgeLabelRenderer>
+          <div
+            className="absolute text-center text-[11px] text-[var(--color-mute)] bg-[var(--color-bg)] rounded-sm [overflow-wrap:anywhere]"
+            style={{
+              transform: `translate(-50%, -50%) translate(${box.x}px, ${box.y}px)`,
+              width: box.width,
+              lineHeight: `${LAYOUT_CONSTANTS.LABEL_LINE_H}px`,
+              padding: `${LAYOUT_CONSTANTS.LABEL_PAD_Y}px ${LAYOUT_CONSTANTS.LABEL_PAD_X}px`,
+            }}
+          >
+            {label}
+          </div>
+        </EdgeLabelRenderer>
+      )}
+    </>
+  );
+}
+
+const edgeTypes = { bedingung: BedingungEdge };
+
 export default function ProzessFlow(props: ProzessFlowProps) {
   return (
     <ReactFlowProvider>
@@ -194,6 +235,7 @@ function ProzessFlowInner({ titel, schritte, kanten, akteure, layout, colorMode 
     // gleiche → rechts), damit mehrwertige Verzweigungen sich nicht überlagern.
     const typById = new Map(schritte.map((s) => [s.id, s.typ]));
     const posById = new Map(layout.nodes.map((n) => [n.id, n]));
+    const labelBoxByEdge = new Map(layout.kantenLabels.map((l) => [`${l.von}->${l.nach}`, l]));
     const centerY = (id: string) => {
       const n = posById.get(id);
       return n ? n.y + n.height / 2 : 0;
@@ -241,14 +283,23 @@ function ProzessFlowInner({ titel, schritte, kanten, akteure, layout, colorMode 
       }
 
       const istEntscheidung = typById.get(k.von) === 'entscheidung';
+      const label = k.label ?? k.bedingung;
+      // Vom Layout platzierte Beschriftung → eigener Kanten-Typ. Ohne Platz
+      // (Layout ohne Beschriftungen berechnet) bleibt es bei React Flows
+      // Standard-Label in der Kantenmitte.
+      const box = label ? labelBoxByEdge.get(`${k.von}->${k.nach}`) : undefined;
       return {
         id: k.id,
         source: k.von,
         target: k.nach,
         sourceHandle: istEntscheidung ? (handleByEdge.get(k.id) ?? 'right') : undefined,
-        label: k.label ?? k.bedingung,
-        labelStyle: { fontSize: 11, fill: 'var(--color-mute)' },
-        labelBgStyle: { fill: 'var(--color-bg)' },
+        label,
+        ...(box
+          ? { type: 'bedingung', data: { box } }
+          : {
+              labelStyle: { fontSize: 11, fill: 'var(--color-mute)' },
+              labelBgStyle: { fill: 'var(--color-bg)' },
+            }),
         markerEnd: { type: MarkerType.ArrowClosed, color: 'var(--color-ink)' },
         style: { stroke: 'var(--color-ink)' },
       } satisfies Edge;
@@ -269,6 +320,7 @@ function ProzessFlowInner({ titel, schritte, kanten, akteure, layout, colorMode 
         nodes={nodes}
         edges={edges}
         nodeTypes={nodeTypes}
+        edgeTypes={edgeTypes}
         fitView
         fitViewOptions={{ padding: 0.1 }}
         minZoom={0.3}
