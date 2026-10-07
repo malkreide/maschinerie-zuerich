@@ -40,8 +40,11 @@ const HATCH_STYLE: React.CSSProperties = {
     'repeating-linear-gradient(45deg, var(--color-line) 0, var(--color-line) 1px, transparent 1px, transparent 5px)',
 };
 
+/** Status-Wort einer Zelle. `t` ist der Translator des 'Prozesse'-Namespace;
+ *  die Texte liegen dort unter bewertung.status.* — nicht unter status.*
+ *  (das ist der Reife-Status eines Prozesses: beobachtet, validiert …). */
 function statusLabel(t: T, status: IndikatorStatus): string {
-  return t(`status.${status}`); // aus dem 'Prozesse'-Namespace (bewertung.status.*)
+  return t(`bewertung.status.${status}`);
 }
 
 /** Eine Indikator-Zelle. `gezaehlt=false` (informativ, z.B. eid-noetig) wird
@@ -65,7 +68,7 @@ function Zelle({
   if (!gezaehlt) {
     const sym = status === 'erfuellt' ? '+' : status === 'nicht-erfuellt' ? '–' : '?';
     const txt =
-      status === 'erfuellt' ? tP('ja') : status === 'nicht-erfuellt' ? tP('nein') : statusLabel(tP, status);
+      status === 'erfuellt' ? tP('bewertung.ja') : status === 'nicht-erfuellt' ? tP('bewertung.nein') : statusLabel(tP, status);
     return (
       <td
         className="text-center align-middle border border-[var(--color-line)] bg-[var(--color-bg)] text-[var(--color-mute)] w-9 h-9"
@@ -175,7 +178,7 @@ export default function PortfolioHeatmap({
   locale: Locale;
 }) {
   const t = getT(locale, 'Portfolio');
-  const tP = getT(locale, 'Prozesse'); // bewertung.indikator.* / status.* / kategorie.*
+  const tP = getT(locale, 'Prozesse'); // bewertung.indikator.* / bewertung.status.* / bewertung.kategorie.*
 
   const indikatorLabel = (key: string) => tP(`bewertung.indikator.${key}`);
 
