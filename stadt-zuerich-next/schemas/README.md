@@ -59,7 +59,8 @@ Prüft zwei Stufen:
    - Unerreichbare Schritte → Warnung (kein Fehler)
 
 Der Validator läuft auch in CI als eigener Job `prozesse-validation`
-(siehe `.github/workflows/ci.yml`).
+(siehe `.github/workflows/ci.yml`). Warnungen brechen den Job nicht ab; sie
+erscheinen dort als Annotation an der betroffenen Datei im Pull Request.
 
 ## Struktur-Cheatsheet
 

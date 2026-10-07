@@ -35,7 +35,8 @@
 //      - Städte ohne Daten überspringen die Checks mit Warnung
 //
 // Exit-Code: 0 = alles gut. 1 = Fehler. Warnungen stehen auf stderr, brechen
-// aber nicht ab.
+// aber nicht ab. In GitHub Actions erscheint jede Warnung zusätzlich als
+// `::warning`-Annotation an der Datei (scripts/lib/gh-annotations.mjs).
 
 import { readFile, readdir, stat } from 'node:fs/promises';
 import path from 'node:path';
@@ -44,9 +45,11 @@ import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
 import { findBindingValue } from './lib/binding-values.mjs';
 import { lintLsConsistency } from './lib/ls-consistency.mjs';
+import { ghAnnotation, inGitHubActions } from './lib/gh-annotations.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(here, '..');
+const repoRoot = path.resolve(projectRoot, '..');
 const SCHEMA_PATH = path.join(projectRoot, 'schemas', 'opengov-process-schema.json');
 const PROZESSE_ROOT = path.join(projectRoot, 'data', 'prozesse');
 const CITY_CONFIG_PATH = path.join(projectRoot, 'config', 'city.config.json');
@@ -375,6 +378,7 @@ async function main() {
 
   let anyError = false;
   let anyWarn = false;
+  const annotate = inGitHubActions();
 
   for (const { city, file, abs } of files) {
     const rel = path.relative(projectRoot, abs);
@@ -462,6 +466,12 @@ async function main() {
       anyWarn = true;
       console.error(c.yellow(`⚠ ${rel}: warnings`));
       for (const w of warnings) console.error(c.yellow(`  - ${w}`));
+      // In GitHub Actions zusätzlich als Annotation, damit die Warnung im PR
+      // sichtbar wird und nicht nur im Job-Log steht.
+      if (annotate) {
+        const file = path.relative(repoRoot, abs);
+        for (const w of warnings) console.log(ghAnnotation('warning', w, { file, title: 'validate:prozesse' }));
+      }
       if (!hasError) {
         console.log(c.dim(`  (${rel} passes schema + semantic — warnings only)`));
       }

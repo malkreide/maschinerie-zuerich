@@ -234,7 +234,9 @@ falschen Element. Anlass waren gegeneinander verschobene `ls`-Labels in
 Der Lint ist eine Wortlisten-Heuristik für die gröbste Fehlerklasse und
 ersetzt den Abgleich durch einen Menschen nicht: Vertauschungen innerhalb
 desselben Themas (zwei Fristen untereinander) und alle Schritt-Labels bleiben
-ungeprüft. Fehlende `ls`-Texte sind kein Befund. Die Wortlisten leben
+ungeprüft. Fehlende `ls`-Texte sind kein Befund. In CI erscheint die Warnung
+— wie jede Warnung des Validators — als Annotation an der Datei im Pull
+Request. Die Wortlisten leben
 unit-getestet in
 [`scripts/lib/ls-consistency.mjs`](../stadt-zuerich-next/scripts/lib/ls-consistency.mjs).
 
