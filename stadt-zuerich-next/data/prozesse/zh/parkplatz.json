@@ -44,7 +44,7 @@
         "en": "Validity period of the resident parking permit",
         "fr": "Durée de validité de la carte de stationnement pour riverains",
         "it": "Durata di validità della carta di posteggio per residenti",
-        "ls": "Bei Rueckgabe bekommen Sie Geld zurueck fuer ganze Monate."
+        "ls": "Wie lange die Park-Karte gültig ist"
       },
       "source_url": "https://www.stadt-zuerich.ch/de/mobilitaet/parkieren/parkbewilligungen/anwohnerparkkarte.html",
       "source_quote": "Die Parkkarte des*der Halter*in des Fahrzeuges wird jährlich automatisch erneuert.",
@@ -57,7 +57,8 @@
         "de": "Verrechnung angebrochener Monate bei Rueckgabe",
         "en": "Charging of started months upon return",
         "fr": "Facturation des mois entamés en cas de restitution",
-        "it": "Fatturazione dei mesi iniziati in caso di restituzione"
+        "it": "Fatturazione dei mesi iniziati in caso di restituzione",
+        "ls": "Bei Rückgabe bekommen Sie Geld zurück für ganze Monate."
       },
       "source_url": "https://www.stadt-zuerich.ch/de/mobilitaet/parkieren/parkbewilligungen/anwohnerparkkarte.html",
       "source_quote": "Angebrochene Monate werden voll in Rechnung gestellt. Bei Rückgabe der Parkkarte wird die Gebühr für alle nicht angebrochenen Monate zurückerstattet.",
@@ -215,7 +216,7 @@
         "en": "Check application (residence, holdership, zone)",
         "fr": "Examiner la demande (domicile, détention, zone)",
         "it": "Esaminare la domanda (domicilio, detenzione, zona)",
-        "ls": "Sie waehlen, wie Sie bezahlen wollen."
+        "ls": "Das Amt prüft den Antrag"
       },
       "depends_on": [
         3
@@ -569,7 +570,7 @@
       "de": "Fahrzeughalter*innen mit Zuercher Nummernschildern und registrierte Gewerbebetriebe koennen die Parkkarten online, telefonisch oder schriftlich anfordern.",
       "fr": "Les détenteurs de véhicules avec des plaques zurichoises et les entreprises enregistrées peuvent demander les cartes de stationnement en ligne, par téléphone ou par écrit.",
       "it": "I detentori di veicoli con targhe zurighesi e le aziende registrate possono richiedere le carte di posteggio online, per telefono o per iscritto.",
-      "ls": "Sie haben ein Auto mit Zuercher Nummernschild. Dann koennen Sie eine Parkkarte beantragen."
+      "ls": "Sie haben ein Auto mit Zürcher Nummernschild. Dann können Sie eine Parkkarte beantragen."
     },
     {
       "de": "Wochenaufenthalter*innen, Halter*innen von Fahrzeugen mit ausserkantonalen oder auslaendischen Nummernschildern und Gewerbebetriebe muessen die Parkkarten schriftlich beantragen.",
@@ -580,12 +581,13 @@
       "de": "Bei Carsharing darf kein Mitglied der Gruppe Halter*in eines weiteren leichten Motorfahrzeugs sein.",
       "fr": "En cas d'autopartage, aucun membre du groupe ne doit être détenteur d'un autre véhicule automobile léger.",
       "it": "In caso di car sharing, nessun membro del gruppo può essere detentore di un altro veicolo a motore leggero.",
-      "ls": "Sie bekommen keinen festen Parkplatz."
+      "ls": "Sie teilen ein Auto mit anderen (Carsharing)? Dann darf niemand aus der Gruppe noch ein anderes Auto haben."
     },
     {
       "de": "Mit dem Erwerb einer Anwohnerparkkarte entsteht kein Anspruch auf einen Parkplatz in der Blauen Zone.",
       "fr": "L'acquisition d'une carte de stationnement pour riverains ne donne aucun droit à une place de stationnement dans la zone bleue.",
-      "it": "L'acquisto di una carta di posteggio per residenti non dà alcun diritto a un posteggio nella zona blu."
+      "it": "L'acquisto di una carta di posteggio per residenti non dà alcun diritto a un posteggio nella zona blu.",
+      "ls": "Sie bekommen keinen festen Parkplatz."
     }
   ],
   "bewertung": {
