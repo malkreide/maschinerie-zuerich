@@ -40,7 +40,7 @@
     {
       "reference_id": 2,
       "label": {
-        "de": "Mindest-Vorlaufzeit fuer die Planung eines Sanitaetsdienstes durch Schutz & Rettung Zuerich",
+        "de": "Mindest-Vorlaufzeit für die Planung eines Sanitätsdienstes durch Schutz & Rettung Zürich",
         "en": "",
         "fr": "",
         "it": ""
@@ -140,7 +140,7 @@
       "documents": [
         {
           "label": {
-            "de": "Plan mit aller Infrastruktur (Buehnen, Baenke, Tische, Zelte)"
+            "de": "Plan mit aller Infrastruktur (Bühnen, Bänke, Tische, Zelte)"
           },
           "required": true
         }
@@ -521,17 +521,17 @@
   },
   "preconditions": [
     {
-      "de": "Sie planen, oeffentlichen Grund zu benuetzen.",
+      "de": "Sie planen, öffentlichen Grund zu benützen.",
       "ls": "Sie wollen öffentlichen Grund benutzen."
     },
     {
       "de": "Sie planen, im Freien Lautsprecher einzusetzen."
     },
     {
-      "de": "Sie planen, auf oeffentlichem Grund Infrastruktur jeglicher Art aufzubauen (Zelte, Buehnen, Schaustellgeschaefte usw.)."
+      "de": "Sie planen, auf öffentlichem Grund Infrastruktur jeglicher Art aufzubauen (Zelte, Bühnen, Schaustellgeschäfte usw.)."
     },
     {
-      "de": "Sie planen, Getraenke und Speisen zu verkaufen."
+      "de": "Sie planen, Getränke und Speisen zu verkaufen."
     }
   ]
 }
