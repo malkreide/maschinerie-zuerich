@@ -256,7 +256,7 @@ export default function TreemapView({
                 if (mobileSelected.node.depId) setFocus(mobileSelected.node.depId);
                 setMobileSelected(null);
               }}
-              className="w-full bg-[var(--color-accent)] text-white font-semibold py-3 rounded-xl flex justify-center items-center shadow-md active:scale-[0.98] transition-transform"
+              className="w-full bg-[var(--color-accent)] text-[var(--color-on-accent)] font-semibold py-3 rounded-xl flex justify-center items-center shadow-md active:scale-[0.98] transition-transform"
             >
               Departement öffnen
             </button>

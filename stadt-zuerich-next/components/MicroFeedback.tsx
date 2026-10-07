@@ -98,7 +98,7 @@ export default function MicroFeedback({ contextId }: { contextId: string; contex
                 className={
                   'px-2 py-0.5 rounded-full border text-[11px] cursor-pointer transition-colors ' +
                   (active
-                    ? 'bg-[var(--color-accent)] text-white border-[var(--color-accent)]'
+                    ? 'bg-[var(--color-accent)] text-[var(--color-on-accent)] border-[var(--color-accent)]'
                     : 'bg-[var(--color-bg)] text-[var(--color-ink)] border-[var(--color-line)] hover:bg-black/5 dark:hover:bg-white/10')
                 }
               >
@@ -147,7 +147,7 @@ export default function MicroFeedback({ contextId }: { contextId: string; contex
         <button
           type="submit"
           disabled={sending}
-          className="px-3 py-1 rounded text-[11px] font-semibold bg-[var(--color-accent)] text-white cursor-pointer disabled:opacity-60"
+          className="px-3 py-1 rounded text-[11px] font-semibold bg-[var(--color-accent)] text-[var(--color-on-accent)] cursor-pointer disabled:opacity-60"
         >
           {t('submit')}
         </button>

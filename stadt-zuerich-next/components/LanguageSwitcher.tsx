@@ -47,7 +47,8 @@ export default function LanguageSwitcher() {
           const next = e.target.value as Locale;
           startTransition(() => router.replace(targetPath, { locale: next }));
         }}
-        className="bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-md px-2 py-1 text-xs cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/40"
+        // Sitzt im Header auf der Akzent-Fläche → --color-on-accent statt Weiss.
+        className="bg-[var(--color-on-accent)]/10 hover:bg-[var(--color-on-accent)]/20 text-[var(--color-on-accent)] border border-[var(--color-on-accent)]/20 rounded-md px-2 py-1 text-xs cursor-pointer focus:outline-none focus:ring-2 focus:ring-[var(--color-on-accent)]/40"
       >
         {routing.locales.map((l) => (
           <option key={l} value={l} className="text-[var(--color-ink)] bg-[var(--color-panel)]">

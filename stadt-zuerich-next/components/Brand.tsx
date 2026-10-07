@@ -6,7 +6,7 @@
 // Inline-SVG (statt <img src=".../zh-logo.svg">) damit das Glyph
 // `currentColor` der Header-Schriftfarbe erbt. Im Light-Mode ist der
 // Header dunkelblau mit weisser Schrift, im Dark-Mode hellblau mit
-// weisser Schrift — inlining mit currentColor garantiert, dass das
+// dunkler Schrift (--color-on-accent) — inlining mit currentColor garantiert, dass das
 // Logo in beiden Varianten sichtbar bleibt, ohne zwei SVG-Assets
 // pflegen zu müssen.
 

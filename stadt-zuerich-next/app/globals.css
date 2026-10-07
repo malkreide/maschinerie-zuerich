@@ -57,7 +57,7 @@ html, body { height: 100%; background: var(--color-bg); color: var(--color-ink);
 /* Skip-Link */
 .skip-link {
   position: absolute; top: 8px; left: 8px; z-index: 1000;
-  background: var(--color-accent); color: white;
+  background: var(--color-accent); color: var(--color-on-accent);
   padding: 8px 12px; border-radius: 6px; font-size: 13px;
   text-decoration: none; transform: translateY(-200%);
   transition: transform .15s;
