@@ -1,10 +1,10 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import type { Result } from 'axe-core';
 
 // Accessibility-Smoke-Tests als Release-Gate (Strategie: Barrierefreiheit ist
 // Grundbedingung, kein Feature). Wir prüfen die Hauptseiten mit axe-core gegen
-// WCAG 2.0/2.1 A + AA.
+// WCAG 2.0/2.1 A + AA — im hellen und im dunklen Farbmodus.
 //
 // Gate-Schwelle: 'serious' + 'critical' lassen den Test scheitern. 'moderate'
 // und 'minor' werden nur geloggt — so ist der Gate von Anfang an durchsetzbar
@@ -58,32 +58,65 @@ function summarize(route: string, violations: Result[]): string {
   return lines.join('\n');
 }
 
+/** Lädt die Route, lässt axe laufen und erwartet keine blockierenden
+ *  Verstösse. `name` erscheint in Log und Fehlermeldung (Route plus ggf.
+ *  Farbmodus). */
+async function expectRouteAccessible(page: Page, route: string, name = route) {
+  await page.goto(route);
+  // Auf den Haupt-Landmark warten, damit Client-Komponenten gerendert sind.
+  await page.locator('main').first().waitFor({ state: 'attached', timeout: 15_000 });
+
+  const results = await new AxeBuilder({ page })
+    .withTags(WCAG_TAGS)
+    // Drittanbieter-Wasserzeichen (React Flow), nicht unser Markup.
+    .exclude('.react-flow__attribution')
+    .analyze();
+
+  const blocking = results.violations.filter(isBlocking);
+  const advisory = results.violations.filter((v) => !isBlocking(v));
+
+  if (advisory.length) {
+    console.log(`ℹ︎ ${name}: ${advisory.length} nicht-blockierende Hinweise (moderate/minor): ` +
+      advisory.map((v) => v.id).join(', '));
+  }
+  if (blocking.length) {
+    console.log(summarize(name, blocking));
+  }
+
+  expect(blocking, `${blocking.length} serious/critical a11y-Verstösse auf ${name}`).toEqual([]);
+}
+
 for (const route of ROUTES) {
   test(`a11y: ${route}`, async ({ page }) => {
-    await page.goto(route);
-    // Auf den Haupt-Landmark warten, damit Client-Komponenten gerendert sind.
-    await page.locator('main').first().waitFor({ state: 'attached', timeout: 15_000 });
-
-    const results = await new AxeBuilder({ page })
-      .withTags(WCAG_TAGS)
-      // Drittanbieter-Wasserzeichen (React Flow), nicht unser Markup.
-      .exclude('.react-flow__attribution')
-      .analyze();
-
-    const blocking = results.violations.filter(isBlocking);
-    const advisory = results.violations.filter((v) => !isBlocking(v));
-
-    if (advisory.length) {
-      console.log(`ℹ︎ ${route}: ${advisory.length} nicht-blockierende Hinweise (moderate/minor): ` +
-        advisory.map((v) => v.id).join(', '));
-    }
-    if (blocking.length) {
-      console.log(summarize(route, blocking));
-    }
-
-    expect(blocking, `${blocking.length} serious/critical a11y-Verstösse auf ${route}`).toEqual([]);
+    await expectRouteAccessible(page, route);
   });
 }
+
+// Dunkelmodus: dieselben Routen noch einmal mit dunklem Farbschema.
+//
+// Die Farb-Tokens haben je Modus eigene Werte (app/globals.css, html.dark),
+// und --color-accent ist im Dunkelmodus hell statt dunkel. Was im hellen
+// Modus AA-konform ist, kann im dunklen durchfallen: weisse Schrift auf der
+// Akzentfarbe hatte dort nur ≈ 2.4:1 — in der ganzen Kopfzeile, vom hellen
+// Lauf unbemerkt.
+//
+// Aktiviert wird der Modus wie im echten Betrieb über das Cookie, das der
+// Server beim Rendern liest (THEME_COOKIE in lib/theme.ts) — nicht über eine
+// nachträglich gesetzte Klasse. So prüft der Test auch den Weg dorthin.
+test.describe('Dunkelmodus', () => {
+  test.beforeEach(async ({ context, baseURL }) => {
+    await context.addCookies([{ name: 'mog-theme', value: 'dark', url: baseURL! }]);
+  });
+
+  for (const route of ROUTES) {
+    test(`a11y: ${route} (dunkel)`, async ({ page }) => {
+      await expectRouteAccessible(page, route, `${route} (dunkel)`);
+      // Wächter gegen einen stillen Fehlschlag: griffe das Cookie nicht, liefe
+      // der Test im hellen Modus und wäre grün, ohne etwas zu prüfen.
+      await expect(page.locator('html')).toHaveClass(/(^|\s)dark(\s|$)/);
+    });
+  }
+});
 
 // Territory-Karte (Leaflet): eigener Test, weil die Karte client-only via
 // next/dynamic(ssr:false) lädt — wir warten daher explizit auf das Control-
