@@ -53,6 +53,8 @@ Prüft zwei Stufen:
      nicht-leeres `source_quote` (Fehler); `unverifiziert` ohne Zitat → Warnung
    - Kardinalregel-Lint: Zahl + bindende Einheit (CHF, Fr., Franken, %,
      Tag(e), Woche(n), Monat(e), Jahr(e)) in gerenderten Texten → Fehler
+   - Konsistenz-Lint Leichte Sprache: `ls`-Label einer Reference nennt
+     Kosten oder Frist, das deutsche Label nicht (oder umgekehrt) → Warnung
    - `lebenslage_ref` existiert in den Lebenslagen der Stadt und verlinkt zurück
    - Unerreichbare Schritte → Warnung (kein Fehler)
 

@@ -22,6 +22,10 @@
 //      - Kardinalregel-Lint: Zahl + bindende Einheit (CHF, Fr., Franken,
 //        %, Tag(e), Woche(n), Monat(e), Jahr(e)) in gerenderten Texten
 //        ist ein FEHLER — bindende Werte nur als Reference
+//      - Konsistenz-Lint Leichte Sprache: nennt das ls-Label einer
+//        Reference Kosten oder eine Frist, das deutsche Label aber nicht
+//        (oder umgekehrt), ist das eine WARNUNG — Hinweis auf einen
+//        vertauschten ls-Text
 //      - steps[].actor referenziert actors[].id (falls actors vorhanden);
 //        steps[].source_id referenziert sources[].id
 //   3. Cross-Reference gegen Stadt-Daten:
@@ -39,6 +43,7 @@ import { fileURLToPath } from 'node:url';
 import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
 import { findBindingValue } from './lib/binding-values.mjs';
+import { lintLsConsistency } from './lib/ls-consistency.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(here, '..');
@@ -328,6 +333,10 @@ function semanticCheck(prozess) {
 
   // Kardinalregel-Lint (Fehler)
   errors.push(...lintBindingValues(prozess));
+
+  // Konsistenz-Lint Leichte Sprache (Warnung): ls-Label einer Reference trägt
+  // ein anderes Thema (Kosten/Frist) als das deutsche Label.
+  warnings.push(...lintLsConsistency(prozess));
 
   // Hochrisiko-Disclaimer-Gate (CLAUDE.md): definierte Hochrisiko-Rechtsfälle
   // MÜSSEN den sichtbaren Hochrisiko-Disclaimer tragen (disclaimer_key
