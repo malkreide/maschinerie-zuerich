@@ -196,7 +196,14 @@ export default async function ProzessDetailPage({
     };
   });
 
-  const layout = layoutProzess(prozess);
+  // Das Layout kennt die (bereits übersetzten) Kanten-Beschriftungen, damit es
+  // vor dem Zielknoten Platz für sie reserviert — sonst überdecken sie Knoten.
+  const kantenLabels: Record<string, string> = {};
+  for (const k of kanten) {
+    const text = k.kind === 'forward' ? (k.label ?? k.bedingung) : undefined;
+    if (text) kantenLabels[`${k.von}->${k.nach}`] = text;
+  }
+  const layout = layoutProzess(prozess, { kantenLabels });
 
   // Legende für das Diagramm: nur die tatsächlich vorkommenden Schritt-Typen,
   // in kanonischer Ablauf-Reihenfolge. Labels aus dem bestehenden
