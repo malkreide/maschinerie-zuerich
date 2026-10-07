@@ -68,7 +68,8 @@
         "de": "Amt für Hochbauten",
         "en": "Department of Buildings",
         "fr": "Office des constructions",
-        "it": "Ufficio delle costruzioni edili"
+        "it": "Ufficio delle costruzioni edili",
+        "ls": "Hochbau-Amt"
       },
       "type": "fachstelle",
       "einheit_ref": "HBD-hb"

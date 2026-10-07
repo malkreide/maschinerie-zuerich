@@ -172,7 +172,8 @@
         "de": "Über das Online-Portal der Dienstabteilung Verkehr. Papiereingabe weiterhin möglich, dauert aber länger.",
         "en": "Via the DAV online portal. Paper submission still possible but slower.",
         "fr": "Via le portail en ligne du Service de la circulation. Le dépôt sur papier reste possible, mais prend plus de temps.",
-        "it": "Tramite il portale online del Servizio della circolazione. La presentazione cartacea resta possibile, ma richiede più tempo."
+        "it": "Tramite il portale online del Servizio della circolazione. La presentazione cartacea resta possibile, ma richiede più tempo.",
+        "ls": "Das geht im Internet beim Verkehrs-Amt. Du kannst den Antrag auch auf Papier schicken. Das dauert aber länger."
       },
       "documents": [
         {
@@ -226,7 +227,8 @@
         "de": "Die DAV gleicht die Angaben mit dem Einwohnerregister und dem Fahrzeugregister ab. Bei klaren Fällen vollautomatisiert.",
         "en": "The DAV cross-checks the data against the population register and the vehicle register. Fully automated in clear cases.",
         "fr": "Le DAV vérifie les indications avec le registre des habitants et le registre des véhicules. Entièrement automatisé dans les cas clairs.",
-        "it": "Il DAV confronta le indicazioni con il registro degli abitanti e il registro dei veicoli. Completamente automatizzato nei casi chiari."
+        "it": "Il DAV confronta le indicazioni con il registro degli abitanti e il registro dei veicoli. Completamente automatizzato nei casi chiari.",
+        "ls": "Das Amt vergleicht deine Angaben mit dem Einwohner-Register und dem Fahrzeug-Register. Ist alles klar? Dann macht das der Computer allein."
       }
     },
     {
@@ -356,7 +358,8 @@
         "de": "Ab Aktivierung ist das Fahrzeug in der registrierten Zone dauerparkberechtigt. Kontrollen erfolgen durch Kennzeichen-Abgleich mit dem System.",
         "en": "Once activated, the vehicle is permanently authorised in the registered zone; enforcement is done via plate matching.",
         "fr": "Dès l'activation, le véhicule est autorisé à stationner en permanence dans la zone enregistrée. Les contrôles s'effectuent par comparaison de la plaque de contrôle avec le système.",
-        "it": "Dall'attivazione, il veicolo è autorizzato al posteggio permanente nella zona registrata. I controlli avvengono mediante confronto della targa con il sistema."
+        "it": "Dall'attivazione, il veicolo è autorizzato al posteggio permanente nella zona registrata. I controlli avvengono mediante confronto della targa con il sistema.",
+        "ls": "Ab jetzt darfst du in deiner Zone so lange parkieren, wie du willst. Bei einer Kontrolle wird dein Kontrollschild mit dem Computer verglichen."
       }
     },
     {
@@ -435,7 +438,8 @@
         "de": "Über Kennzeichen-Scanner. Keine separate Handlung der Halter:in nötig — die Parkberechtigung gilt einfach.",
         "en": "Via licence-plate scanners. No separate action by the holder needed — the parking authorisation simply applies.",
         "fr": "Au moyen de scanners de plaques de contrôle. Aucune démarche distincte du détenteur n'est nécessaire — l'autorisation de stationner s'applique simplement.",
-        "it": "Tramite scanner delle targhe di controllo. Non è necessaria alcuna azione separata da parte del detentore — l'autorizzazione al posteggio è semplicemente valida."
+        "it": "Tramite scanner delle targhe di controllo. Non è necessaria alcuna azione separata da parte del detentore — l'autorizzazione al posteggio è semplicemente valida.",
+        "ls": "Die Polizei liest dein Kontrollschild mit einem Gerät. Du musst nichts tun. Deine Park-Karte gilt einfach."
       }
     },
     {
@@ -575,7 +579,8 @@
     {
       "de": "Wochenaufenthalter*innen, Halter*innen von Fahrzeugen mit ausserkantonalen oder ausländischen Nummernschildern und Gewerbebetriebe müssen die Parkkarten schriftlich beantragen.",
       "fr": "Les résidents à la semaine, les détenteurs de véhicules avec des plaques hors canton ou étrangères et les entreprises doivent demander les cartes de stationnement par écrit.",
-      "it": "I residenti settimanali, i detentori di veicoli con targhe extracantonali o estere e le aziende devono richiedere le carte di posteggio per iscritto."
+      "it": "I residenti settimanali, i detentori di veicoli con targhe extracantonali o estere e le aziende devono richiedere le carte di posteggio per iscritto.",
+      "ls": "Sie wohnen nur unter der Woche in Zürich? Oder Ihr Auto hat ein Nummernschild aus einem anderen Kanton oder aus dem Ausland? Oder Sie sind ein Betrieb? Dann müssen Sie die Parkkarte schriftlich beantragen."
     },
     {
       "de": "Bei Carsharing darf kein Mitglied der Gruppe Halter*in eines weiteren leichten Motorfahrzeugs sein.",

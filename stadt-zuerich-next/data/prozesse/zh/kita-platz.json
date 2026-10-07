@@ -29,7 +29,8 @@
         "de": "Kita-Tarif und einkommensabhängiger Elternbeitrag (Betreuungsgutschein)",
         "en": "Childcare tariff and income-based parental contribution (childcare voucher)",
         "fr": "Tarif de crèche et participation parentale dépendant du revenu (bon de garde)",
-        "it": "Tariffa dell'asilo nido e partecipazione dei genitori dipendente dal reddito (buono per la custodia)"
+        "it": "Tariffa dell'asilo nido e partecipazione dei genitori dipendente dal reddito (buono per la custodia)",
+        "ls": "Was die Kita kostet und wie viel Sie je nach Einkommen selbst zahlen"
       },
       "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/betreuungskosten-und-subventionen.html",
       "source_quote": "Mit dem Beitragsfaktor rechnen wir aus, wie viel Subventionen Sie bekommen. Das hängt davon ab, wie viel Sie verdienen und wie viel Vermögen Sie haben.",
@@ -42,7 +43,8 @@
         "de": "Maximale Weitersubventionierung bei freiwilliger Abwesenheit des Kindes",
         "en": "",
         "fr": "",
-        "it": ""
+        "it": "",
+        "ls": "Wie viele Wochen die Stadt weiter zahlt, wenn Ihr Kind freiwillig fehlt"
       },
       "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/faq.html",
       "source_quote": "Bei subventionierten Kindern werden bei freiwilliger Abwesenheit maximal 7 Wochen weiter subventioniert.",
@@ -187,7 +189,8 @@
         "de": "In vielen Quartieren übersteigt die Nachfrage das Angebot — Wartezeiten von mehreren Monaten sind häufig.",
         "en": "In many neighbourhoods demand exceeds supply — waiting times of several months are common.",
         "fr": "Dans de nombreux quartiers, la demande dépasse l'offre — des temps d'attente de plusieurs mois sont fréquents.",
-        "it": "In molti quartieri la domanda supera l'offerta — tempi d'attesa di diversi mesi sono frequenti."
+        "it": "In molti quartieri la domanda supera l'offerta — tempi d'attesa di diversi mesi sono frequenti.",
+        "ls": "In vielen Quartieren gibt es zu wenig Plätze. Oft warten Eltern mehrere Monate."
       },
       "loops_back_to": [
         2
@@ -298,7 +301,8 @@
         "de": "Das Schulamt prüft Wohnsitz, Erwerbs-/Ausbildungspensum und das massgebende Einkommen.",
         "en": "The school office checks residence, employment/education level and the relevant income.",
         "fr": "L'office des écoles vérifie le domicile, le taux d'activité ou de formation et le revenu déterminant.",
-        "it": "L'ufficio delle scuole verifica il domicilio, il grado di occupazione o formazione e il reddito determinante."
+        "it": "L'ufficio delle scuole verifica il domicilio, il grado di occupazione o formazione e il reddito determinante.",
+        "ls": "Das Schul-Amt prüft: Wo wohnen Sie? Wie viel arbeiten oder lernen Sie? Wie viel verdienen Sie?"
       }
     },
     {
@@ -355,7 +359,8 @@
         "de": "Die Höhe richtet sich nach massgebendem Einkommen, Beschäftigungsgrad und Betreuungsumfang.",
         "en": "The amount depends on relevant income, employment level and care volume.",
         "fr": "Le montant dépend du revenu déterminant, du taux d'activité et de l'ampleur de la garde.",
-        "it": "L'importo dipende dal reddito determinante, dal grado di occupazione e dall'entità della custodia."
+        "it": "L'importo dipende dal reddito determinante, dal grado di occupazione e dall'entità della custodia.",
+        "ls": "Der Gutschein hängt davon ab: Wie viel verdienen Sie? Wie viel arbeiten Sie? Wie viele Tage ist Ihr Kind in der Kita?"
       },
       "reference_ids": [
         1
@@ -379,7 +384,8 @@
         "de": "Das Schulamt verfügt den einkommensabhängigen Beitragsfaktor. Dieser bestimmt, wie stark der Elternbeitrag subventioniert wird.",
         "en": "The school office grants the income-based contribution factor, which determines how much the parental contribution is subsidised.",
         "fr": "L'office des écoles statue sur le facteur de contribution dépendant du revenu. Celui-ci détermine dans quelle mesure la participation parentale est subventionnée.",
-        "it": "L'ufficio delle scuole decide il fattore di contribuzione dipendente dal reddito. Questo determina in quale misura la partecipazione dei genitori viene sovvenzionata."
+        "it": "L'ufficio delle scuole decide il fattore di contribuzione dipendente dal reddito. Questo determina in quale misura la partecipazione dei genitori viene sovvenzionata.",
+        "ls": "Das Schul-Amt legt den Beitrags-Faktor fest. Er hängt von Ihrem Einkommen ab. Der Faktor bestimmt: So viel zahlt die Stadt an Ihre Kita-Kosten."
       },
       "source_id": "q-stz-betreuungskosten"
     },
@@ -401,7 +407,8 @@
         "de": "Auf Basis des verfügten Beitragsfaktors finanziert das Sozialdepartement die Subvention und richtet sie der Kita aus, sodass sich der von den Eltern zu zahlende Beitrag reduziert.",
         "en": "Based on the granted contribution factor, the Social Welfare Department finances the subsidy and pays it to the daycare centre, reducing the amount the parents pay.",
         "fr": "Sur la base du facteur de contribution arrêté, le Département des affaires sociales finance la subvention et la verse à la crèche, de sorte que la participation à payer par les parents diminue.",
-        "it": "Sulla base del fattore di contribuzione stabilito, il Dipartimento sociale finanzia la sovvenzione e la versa all'asilo nido, riducendo così la partecipazione a carico dei genitori."
+        "it": "Sulla base del fattore di contribuzione stabilito, il Dipartimento sociale finanzia la sovvenzione e la versa all'asilo nido, riducendo così la partecipazione a carico dei genitori.",
+        "ls": "Das Sozial-Departement zahlt das Geld direkt an die Kita. Darum zahlen Sie weniger."
       },
       "source_id": "q-stz-kitafin"
     },
