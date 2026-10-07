@@ -30,6 +30,9 @@ export interface ProzessNodeData extends Record<string, unknown> {
   /** i18n-Wort für unverifizierte Referenzen (server-seitig aufgelöst). */
   referenzUnverifiziertLabel?: string;
   typ: SchrittTyp;
+  /** Höhe aus dem Layout (lib/prozess-layout.ts) — Rechteck-Knoten wachsen
+   *  mit der Zahl ihrer Belege, damit kein Inhalt über den Rahmen läuft. */
+  boxHeight?: number;
 }
 
 const baseClass =
@@ -40,21 +43,26 @@ function Base({
   className = '',
   shape = 'rect',
   ariaLabel,
+  height,
 }: {
   children: React.ReactNode;
   className?: string;
   shape?: 'rect' | 'pill' | 'diamond';
   ariaLabel: string;
+  height?: number;
 }) {
   const shapeClass =
     shape === 'pill' ? 'rounded-full' : shape === 'diamond' ? 'rotate-45' : 'rounded-lg';
-  const innerRotate = shape === 'diamond' ? '-rotate-45 flex items-center justify-center h-full w-full' : '';
+  // min-w-0 + w-full: ohne Breitenbegrenzung wächst das Flex-Kind auf die
+  // Breite seines längsten nicht umbrechenden Inhalts (gekürzte Belege) und
+  // läuft rechts aus dem Rahmen.
+  const innerRotate = shape === 'diamond' ? '-rotate-45 flex items-center justify-center h-full w-full' : 'min-w-0 w-full';
   return (
     <div
       role="group"
       aria-label={ariaLabel}
       className={`${baseClass} ${shapeClass} ${className} w-[200px] h-[80px] flex items-center`}
-      style={shape === 'diamond' ? { width: 140, height: 140 } : undefined}
+      style={shape === 'diamond' ? { width: 140, height: 140 } : height ? { height } : undefined}
     >
       <div className={innerRotate}>{children}</div>
     </div>
@@ -70,7 +78,10 @@ function MetaRow({
 }) {
   if (!referenzen || referenzen.length === 0) return null;
   return (
-    <div className="mt-1 text-[11px] flex gap-2 flex-wrap">
+    // Je Beleg eine Zeile, gekürzt: die Knotenhöhe ist darauf ausgelegt
+    // (REF_LINE_H in lib/prozess-layout.ts). Volles Label im Tooltip und in
+    // der textuellen Schrittliste unter dem Diagramm.
+    <div className="mt-1 text-[11px] leading-[16px] flex flex-col min-w-0">
       {referenzen.map((r) => {
         const marker = r.unverifiziert && (
           // Kompakter „ungeprüft"-Marker im Node; der volle Hinweis steht im
@@ -83,8 +94,8 @@ function MetaRow({
             href={r.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[var(--color-accent)] underline decoration-dotted hover:decoration-solid"
-            title={r.unverifiziert ? unverifiziertLabel : undefined}
+            className="block truncate text-[var(--color-accent)] underline decoration-dotted hover:decoration-solid"
+            title={r.unverifiziert && unverifiziertLabel ? `${r.label} — ${unverifiziertLabel}` : r.label}
           >
             {marker}
             {r.label} ↗
@@ -92,8 +103,8 @@ function MetaRow({
         ) : (
           <span
             key={`|${r.label}`}
-            className="text-[var(--color-accent)]"
-            title={r.unverifiziert ? unverifiziertLabel : undefined}
+            className="block truncate text-[var(--color-accent)]"
+            title={r.unverifiziert && unverifiziertLabel ? `${r.label} — ${unverifiziertLabel}` : r.label}
           >
             {marker}
             {r.label}
@@ -133,7 +144,7 @@ export function InputNode({ data }: NodeProps) {
   return (
     <>
       <Handle type="target" position={Position.Left} />
-      <Base className="border-[var(--color-line)] border-l-4 border-l-[var(--color-accent)]" ariaLabel={`Input: ${d.label}`}>
+      <Base className="border-[var(--color-line)] border-l-4 border-l-[var(--color-accent)]" ariaLabel={`Input: ${d.label}`} height={d.boxHeight}>
         <div className="w-full">
           <div className="font-semibold line-clamp-2">{d.label}</div>
           <MetaRow referenzen={d.referenzen} unverifiziertLabel={d.referenzUnverifiziertLabel} />
@@ -149,7 +160,7 @@ export function ProzessNode({ data }: NodeProps) {
   return (
     <>
       <Handle type="target" position={Position.Left} />
-      <Base className="border-[var(--color-line)]" ariaLabel={`Prozessschritt: ${d.label}`}>
+      <Base className="border-[var(--color-line)]" ariaLabel={`Prozessschritt: ${d.label}`} height={d.boxHeight}>
         <div className="w-full">
           <div className="font-semibold line-clamp-2">{d.label}</div>
           <MetaRow referenzen={d.referenzen} unverifiziertLabel={d.referenzUnverifiziertLabel} />
@@ -186,9 +197,9 @@ export function LoopNode({ data }: NodeProps) {
   return (
     <>
       <Handle type="target" position={Position.Left} />
-      <Base className="border-dashed border-[var(--color-mute)]" ariaLabel={`Schleife: ${d.label}`}>
+      <Base className="border-dashed border-[var(--color-mute)]" ariaLabel={`Schleife: ${d.label}`} height={d.boxHeight}>
         <div className="w-full">
-          <div className="font-semibold flex items-center gap-1"><span aria-hidden>↻</span>{d.label}</div>
+          <div className="font-semibold flex items-center gap-1"><span aria-hidden>↻</span><span className="line-clamp-2">{d.label}</span></div>
           <MetaRow referenzen={d.referenzen} unverifiziertLabel={d.referenzUnverifiziertLabel} />
         </div>
       </Base>
@@ -205,9 +216,9 @@ export function WartenNode({ data }: NodeProps) {
   return (
     <>
       <Handle type="target" position={Position.Left} />
-      <Base className="border-[var(--color-line)] italic" ariaLabel={`Wartezeit: ${d.label}`}>
+      <Base className="border-[var(--color-line)] italic" ariaLabel={`Wartezeit: ${d.label}`} height={d.boxHeight}>
         <div className="w-full">
-          <div className="font-semibold flex items-center gap-1"><span aria-hidden>⏳</span>{d.label}</div>
+          <div className="font-semibold flex items-center gap-1"><span aria-hidden>⏳</span><span className="line-clamp-2">{d.label}</span></div>
           <MetaRow referenzen={d.referenzen} unverifiziertLabel={d.referenzUnverifiziertLabel} />
         </div>
       </Base>
@@ -216,10 +227,18 @@ export function WartenNode({ data }: NodeProps) {
   );
 }
 
+/** React-Flow-Typname je SchrittTyp. 'input' ist in React Flow ein
+ *  eingebauter Knotentyp mit eigenem Styling (Rahmen, Breite, Padding via
+ *  .react-flow__node-input) — das zeichnete einen zweiten, versetzten Rahmen
+ *  hinter jeden Input-Schritt. Darum unter eigenem Namen registrieren. */
+export function flowNodeType(typ: SchrittTyp): string {
+  return typ === 'input' ? 'eingabe' : typ;
+}
+
 export const nodeTypes = {
   start: StartNode,
   ende: EndeNode,
-  input: InputNode,
+  eingabe: InputNode,
   prozess: ProzessNode,
   entscheidung: EntscheidungNode,
   loop: LoopNode,
