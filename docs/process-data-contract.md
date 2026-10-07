@@ -197,6 +197,8 @@ den sichtbaren Quell-Link + Abrufdatum des Disclaimers.
 9. **Regression-Guard** (CI-Fehler, nur auf Pull Requests): an einer bereits
    bestehenden Prozessdatei darf kein belegter lokalisierter Text (`i18n`-Locale
    oder `description`) von „befüllt" auf „leer/fehlend" zurückfallen, siehe unten.
+10. **Konsistenz-Lint Leichte Sprache** (Warnung): `ls`-Label einer Reference
+    trägt ein anderes Thema (Kosten, Frist) als das deutsche Label, siehe unten.
 
 ### Kardinalregel-Lint
 
@@ -219,6 +221,22 @@ Geprüfte Felder:
 
 Erlaubt sind solche Angaben ausschliesslich im Feld `source_quote` einer
 Reference.
+
+### Konsistenz-Lint Leichte Sprache
+
+Eine **Warnung** (kein CI-Fehler) an `references[].label`: Nennt das
+`ls`-Label ausdrücklich Kosten («kostet», «Gebühr», «Geld») oder eine Frist
+(«Frist», «wie lange», «bis wann»), das deutsche Label aber nichts aus
+demselben Themenfeld — oder umgekehrt —, sitzt der `ls`-Text vermutlich am
+falschen Element. Anlass waren gegeneinander verschobene `ls`-Labels in
+`fundsache`, `parkplatz` und `umzug-melden`, bei denen de/en/fr/it stimmten.
+
+Der Lint ist eine Wortlisten-Heuristik für die gröbste Fehlerklasse und
+ersetzt den Abgleich durch einen Menschen nicht: Vertauschungen innerhalb
+desselben Themas (zwei Fristen untereinander) und alle Schritt-Labels bleiben
+ungeprüft. Fehlende `ls`-Texte sind kein Befund. Die Wortlisten leben
+unit-getestet in
+[`scripts/lib/ls-consistency.mjs`](../stadt-zuerich-next/scripts/lib/ls-consistency.mjs).
 
 ### Regression-Guard (Handdaten)
 
