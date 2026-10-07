@@ -355,7 +355,7 @@
             "en": "in person",
             "fr": "en personne",
             "it": "di persona",
-            "ls": "persönlich beim Amt"
+            "ls": "persönlich"
           }
         }
       ],
@@ -747,7 +747,7 @@
             "en": "in person (if online is not possible)",
             "fr": "en personne (si en ligne impossible)",
             "it": "di persona (se online non è possibile)",
-            "ls": "persönlich (wenn es im Internet nicht geht)"
+            "ls": "persönlich (wenn es online nicht geht)"
           }
         }
       ],
