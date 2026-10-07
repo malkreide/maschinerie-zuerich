@@ -134,7 +134,8 @@
             "de": "Lohnausweis",
             "en": "Salary statement",
             "fr": "Certificat de salaire",
-            "it": "Certificato di salario"
+            "it": "Certificato di salario",
+            "ls": "Lohn-Ausweis"
           },
           "required": true
         },
@@ -143,7 +144,8 @@
             "de": "Belege zu Abzügen (z. B. Versicherung, Weiterbildung)",
             "en": "Receipts for deductions (e.g. insurance, training)",
             "fr": "Justificatifs des déductions (p. ex. assurance, formation continue)",
-            "it": "Giustificativi delle deduzioni (p. es. assicurazione, formazione continua)"
+            "it": "Giustificativi delle deduzioni (p. es. assicurazione, formazione continua)",
+            "ls": "Belege für Abzüge (zum Beispiel Versicherung oder Weiterbildung)"
           },
           "required": false
         },
@@ -152,7 +154,8 @@
             "de": "Bescheinigungen zu Vermögen und Schulden",
             "en": "Statements of assets and debts",
             "fr": "Attestations relatives à la fortune et aux dettes",
-            "it": "Attestazioni relative alla sostanza e ai debiti"
+            "it": "Attestazioni relative alla sostanza e ai debiti",
+            "ls": "Bescheinigungen für Vermögen und Schulden"
           },
           "required": false
         }
@@ -190,7 +193,8 @@
             "de": "online",
             "en": "online",
             "fr": "en ligne",
-            "it": "online"
+            "it": "online",
+            "ls": "im Internet"
           }
         }
       ],
@@ -214,7 +218,8 @@
             "de": "Papier",
             "en": "paper",
             "fr": "papier",
-            "it": "carta"
+            "it": "carta",
+            "ls": "auf Papier"
           }
         }
       ],
@@ -253,7 +258,8 @@
             "de": "Frist reicht nicht",
             "en": "deadline not enough",
             "fr": "délai insuffisant",
-            "it": "termine insufficiente"
+            "it": "termine insufficiente",
+            "ls": "die Zeit reicht nicht"
           }
         }
       ],
@@ -280,7 +286,8 @@
             "de": "rechtzeitig",
             "en": "in time",
             "fr": "à temps",
-            "it": "in tempo"
+            "it": "in tempo",
+            "ls": "die Zeit reicht"
           }
         },
         7
@@ -360,7 +367,8 @@
             "de": "nein",
             "en": "no",
             "fr": "non",
-            "it": "no"
+            "it": "no",
+            "ls": "nein"
           }
         }
       ],
@@ -397,7 +405,8 @@
             "de": "ja",
             "en": "yes",
             "fr": "oui",
-            "it": "sì"
+            "it": "sì",
+            "ls": "ja"
           }
         }
       ],

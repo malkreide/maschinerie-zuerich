@@ -139,7 +139,8 @@
             "de": "Hauskehricht",
             "en": "household refuse",
             "fr": "ordures ménagères",
-            "it": "spazzatura domestica"
+            "it": "spazzatura domestica",
+            "ls": "normaler Müll"
           }
         }
       ],
@@ -204,7 +205,8 @@
             "de": "Wertstoffe",
             "en": "recyclables",
             "fr": "matières recyclables",
-            "it": "materiali riciclabili"
+            "it": "materiali riciclabili",
+            "ls": "Recycling"
           }
         }
       ],
@@ -243,7 +245,8 @@
             "de": "Abholung",
             "en": "kerbside collection",
             "fr": "collecte au bord de la route",
-            "it": "raccolta a bordo strada"
+            "it": "raccolta a bordo strada",
+            "ls": "es wird abgeholt"
           }
         }
       ],
@@ -267,7 +270,8 @@
             "de": "Sammelstelle",
             "en": "drop-off point",
             "fr": "point de collecte",
-            "it": "punto di raccolta"
+            "it": "punto di raccolta",
+            "ls": "Sie bringen es hin"
           }
         }
       ],
@@ -306,7 +310,8 @@
             "de": "Sperrgut",
             "en": "bulky waste",
             "fr": "encombrants",
-            "it": "ingombranti"
+            "it": "ingombranti",
+            "ls": "grosse Sachen"
           }
         }
       ],
@@ -340,7 +345,8 @@
             "de": "Sonderabfall",
             "en": "hazardous waste",
             "fr": "déchets spéciaux",
-            "it": "rifiuti speciali"
+            "it": "rifiuti speciali",
+            "ls": "Gift, Farben oder Batterien"
           }
         }
       ],

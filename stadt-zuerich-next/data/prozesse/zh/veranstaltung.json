@@ -141,7 +141,8 @@
       "documents": [
         {
           "label": {
-            "de": "Plan mit aller Infrastruktur (Bühnen, Bänke, Tische, Zelte)"
+            "de": "Plan mit aller Infrastruktur (Bühnen, Bänke, Tische, Zelte)",
+            "ls": "Plan mit allem, was Sie aufbauen (Bühnen, Bänke, Tische, Zelte)"
           },
           "required": true
         }
@@ -174,7 +175,8 @@
             "de": "Situationsplan / Aufbauplan",
             "en": "Site/setup plan",
             "fr": "Plan de situation / plan de montage",
-            "it": "Piano di situazione / piano di allestimento"
+            "it": "Piano di situazione / piano di allestimento",
+            "ls": "Situations-Plan oder Aufbau-Plan"
           },
           "required": true
         },
@@ -183,7 +185,8 @@
             "de": "Programm und Zeitplan",
             "en": "Programme and schedule",
             "fr": "Programme et horaire",
-            "it": "Programma e orario"
+            "it": "Programma e orario",
+            "ls": "Programm und Zeit-Plan"
           },
           "required": true
         },
@@ -192,7 +195,8 @@
             "de": "Bei Ausschank: Angaben zum Getränkeangebot",
             "en": "For alcohol service: details of the offering",
             "fr": "En cas de débit de boissons: indications sur l'offre de boissons",
-            "it": "In caso di mescita: indicazioni sull'offerta di bevande"
+            "it": "In caso di mescita: indicazioni sull'offerta di bevande",
+            "ls": "Wenn Sie Getränke ausschenken: Angaben zu den Getränken"
           },
           "required": false
         }
@@ -264,7 +268,8 @@
             "de": "unvollständig",
             "en": "incomplete",
             "fr": "incomplet",
-            "it": "incompleto"
+            "it": "incompleto",
+            "ls": "es fehlt etwas"
           }
         }
       ],
@@ -290,7 +295,8 @@
             "de": "vollständig",
             "en": "complete",
             "fr": "complet",
-            "it": "completo"
+            "it": "completo",
+            "ls": "alles da"
           }
         }
       ],
@@ -310,7 +316,8 @@
         {
           "step_id": 8,
           "condition": {
-            "de": "ja"
+            "de": "ja",
+            "ls": "ja"
           }
         }
       ],
@@ -367,7 +374,8 @@
         {
           "step_id": 8,
           "condition": {
-            "de": "nein"
+            "de": "nein",
+            "ls": "nein"
           }
         }
       ],
@@ -402,7 +410,8 @@
         {
           "step_id": 13,
           "condition": {
-            "de": "ja"
+            "de": "ja",
+            "ls": "ja"
           }
         }
       ],
@@ -425,7 +434,8 @@
         {
           "step_id": 13,
           "condition": {
-            "de": "nein"
+            "de": "nein",
+            "ls": "nein"
           }
         }
       ],
