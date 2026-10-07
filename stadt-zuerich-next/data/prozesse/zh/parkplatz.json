@@ -44,7 +44,7 @@
         "en": "Validity period of the resident parking permit",
         "fr": "Durée de validité de la carte de stationnement pour riverains",
         "it": "Durata di validità della carta di posteggio per residenti",
-        "ls": "Bei Rueckgabe bekommen Sie Geld zurueck fuer ganze Monate."
+        "ls": "Wie lange die Park-Karte gültig ist"
       },
       "source_url": "https://www.stadt-zuerich.ch/de/mobilitaet/parkieren/parkbewilligungen/anwohnerparkkarte.html",
       "source_quote": "Die Parkkarte des*der Halter*in des Fahrzeuges wird jährlich automatisch erneuert.",
@@ -57,7 +57,8 @@
         "de": "Verrechnung angebrochener Monate bei Rueckgabe",
         "en": "Charging of started months upon return",
         "fr": "Facturation des mois entamés en cas de restitution",
-        "it": "Fatturazione dei mesi iniziati in caso di restituzione"
+        "it": "Fatturazione dei mesi iniziati in caso di restituzione",
+        "ls": "Bei Rückgabe bekommen Sie Geld zurück für ganze Monate."
       },
       "source_url": "https://www.stadt-zuerich.ch/de/mobilitaet/parkieren/parkbewilligungen/anwohnerparkkarte.html",
       "source_quote": "Angebrochene Monate werden voll in Rechnung gestellt. Bei Rückgabe der Parkkarte wird die Gebühr für alle nicht angebrochenen Monate zurückerstattet.",
@@ -215,7 +216,7 @@
         "en": "Check application (residence, holdership, zone)",
         "fr": "Examiner la demande (domicile, détention, zone)",
         "it": "Esaminare la domanda (domicilio, detenzione, zona)",
-        "ls": "Sie waehlen, wie Sie bezahlen wollen."
+        "ls": "Das Amt prüft den Antrag"
       },
       "depends_on": [
         3

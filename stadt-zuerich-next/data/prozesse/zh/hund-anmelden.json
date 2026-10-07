@@ -270,7 +270,7 @@
         "en": "Match registration against AMICUS",
         "fr": "Comparer l'annonce avec AMICUS",
         "it": "Confrontare l'annuncio con AMICUS",
-        "ls": "Ist der Hund noch nicht bei AMICUS? Dann meldet ihn der Tierarzt an."
+        "ls": "Das Steuer-Amt vergleicht die Anmeldung mit AMICUS"
       },
       "depends_on": [
         4
