@@ -54,7 +54,7 @@
     {
       "reference_id": 3,
       "label": {
-        "de": "Verrechnung angebrochener Monate bei Rueckgabe",
+        "de": "Verrechnung angebrochener Monate bei Rückgabe",
         "en": "Charging of started months upon return",
         "fr": "Facturation des mois entamés en cas de restitution",
         "it": "Fatturazione dei mesi iniziati in caso di restituzione",
@@ -567,13 +567,13 @@
   },
   "preconditions": [
     {
-      "de": "Fahrzeughalter*innen mit Zuercher Nummernschildern und registrierte Gewerbebetriebe koennen die Parkkarten online, telefonisch oder schriftlich anfordern.",
+      "de": "Fahrzeughalter*innen mit Zürcher Nummernschildern und registrierte Gewerbebetriebe können die Parkkarten online, telefonisch oder schriftlich anfordern.",
       "fr": "Les détenteurs de véhicules avec des plaques zurichoises et les entreprises enregistrées peuvent demander les cartes de stationnement en ligne, par téléphone ou par écrit.",
       "it": "I detentori di veicoli con targhe zurighesi e le aziende registrate possono richiedere le carte di posteggio online, per telefono o per iscritto.",
       "ls": "Sie haben ein Auto mit Zürcher Nummernschild. Dann können Sie eine Parkkarte beantragen."
     },
     {
-      "de": "Wochenaufenthalter*innen, Halter*innen von Fahrzeugen mit ausserkantonalen oder auslaendischen Nummernschildern und Gewerbebetriebe muessen die Parkkarten schriftlich beantragen.",
+      "de": "Wochenaufenthalter*innen, Halter*innen von Fahrzeugen mit ausserkantonalen oder ausländischen Nummernschildern und Gewerbebetriebe müssen die Parkkarten schriftlich beantragen.",
       "fr": "Les résidents à la semaine, les détenteurs de véhicules avec des plaques hors canton ou étrangères et les entreprises doivent demander les cartes de stationnement par écrit.",
       "it": "I residenti settimanali, i detentori di veicoli con targhe extracantonali o estere e le aziende devono richiedere le carte di posteggio per iscritto."
     },
