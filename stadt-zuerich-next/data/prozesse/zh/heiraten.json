@@ -155,7 +155,8 @@
             "de": "Ausweis (Pass oder Identitätskarte) beider Personen",
             "en": "Identity document (passport or ID card) of both persons",
             "fr": "Pièce d'identité (passeport ou carte d'identité) des deux personnes",
-            "it": "Documento d'identità (passaporto o carta d'identità) di entrambe le persone"
+            "it": "Documento d'identità (passaporto o carta d'identità) di entrambe le persone",
+            "ls": "Ausweis von beiden Personen (Pass oder Identitäts-Karte)"
           },
           "required": true
         },
@@ -164,7 +165,8 @@
             "de": "Wohnsitzbescheinigung",
             "en": "Proof of residence",
             "fr": "Attestation de domicile",
-            "it": "Attestazione di domicilio"
+            "it": "Attestazione di domicilio",
+            "ls": "Wohnsitz-Bescheinigung"
           },
           "required": true
         },
@@ -173,7 +175,8 @@
             "de": "Personenstandsausweis / Geburtsurkunde",
             "en": "Civil-status document / birth certificate",
             "fr": "Acte d'état civil / acte de naissance",
-            "it": "Documento dello stato civile / atto di nascita"
+            "it": "Documento dello stato civile / atto di nascita",
+            "ls": "Personenstands-Ausweis oder Geburts-Urkunde"
           },
           "required": true
         },
@@ -182,7 +185,8 @@
             "de": "Bei ausländischer Staatsangehörigkeit: Ehefähigkeitsnachweis und Aufenthaltsnachweis",
             "en": "For foreign nationals: proof of capacity to marry and proof of lawful residence",
             "fr": "En cas de nationalité étrangère : certificat de capacité matrimoniale et justificatif de séjour",
-            "it": "In caso di cittadinanza straniera: certificato di capacità matrimoniale e attestazione di soggiorno"
+            "it": "In caso di cittadinanza straniera: certificato di capacità matrimoniale e attestazione di soggiorno",
+            "ls": "Für Menschen aus dem Ausland: Ehefähigkeits-Nachweis und Aufenthalts-Nachweis"
           },
           "required": false
         }
@@ -247,7 +251,8 @@
             "de": "ja",
             "en": "yes",
             "fr": "oui",
-            "it": "sì"
+            "it": "sì",
+            "ls": "ja"
           }
         }
       ],
@@ -277,7 +282,8 @@
             "de": "nein",
             "en": "no",
             "fr": "non",
-            "it": "no"
+            "it": "no",
+            "ls": "nein"
           }
         },
         5

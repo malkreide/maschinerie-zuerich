@@ -204,7 +204,8 @@
             "de": "Bisheriger Pass oder bisherige Identitätskarte (falls vorhanden)",
             "en": "Previous passport or identity card (if available)",
             "fr": "Ancien passeport ou ancienne carte d'identité (si disponible)",
-            "it": "Passaporto o carta d'identità precedente (se disponibile)"
+            "it": "Passaporto o carta d'identità precedente (se disponibile)",
+            "ls": "Ihr alter Pass oder Ihre alte Identitäts-Karte (wenn Sie so einen Ausweis haben)"
           },
           "required": false
         },
@@ -213,7 +214,8 @@
             "de": "Angaben zur Wohnadresse in der Stadt Zürich",
             "en": "Details of the residential address in the City of Zurich",
             "fr": "Indications relatives à l'adresse de domicile en ville de Zurich",
-            "it": "Indicazioni sull'indirizzo di domicilio nella città di Zurigo"
+            "it": "Indicazioni sull'indirizzo di domicilio nella città di Zurigo",
+            "ls": "Ihre Wohn-Adresse in der Stadt Zürich"
           },
           "required": true
         }
@@ -252,7 +254,8 @@
             "de": "Pass oder Kombi-Angebot",
             "en": "passport or combined offer",
             "fr": "passeport ou offre combinée",
-            "it": "passaporto o offerta combinata"
+            "it": "passaporto o offerta combinata",
+            "ls": "Pass oder beides zusammen"
           }
         }
       ],
@@ -270,7 +273,8 @@
             "de": "Gültiges Ausweisdokument zur Identifikation",
             "en": "Valid identity document for identification",
             "fr": "Document d'identité valable pour l'identification",
-            "it": "Documento d'identità valido per l'identificazione"
+            "it": "Documento d'identità valido per l'identificazione",
+            "ls": "Ein gültiger Ausweis (er zeigt, wer Sie sind)"
           },
           "required": true
         }
@@ -294,7 +298,8 @@
             "de": "nur Identitätskarte",
             "en": "ID only",
             "fr": "carte d'identité uniquement",
-            "it": "solo carta d'identità"
+            "it": "solo carta d'identità",
+            "ls": "nur Identitäts-Karte"
           }
         }
       ],

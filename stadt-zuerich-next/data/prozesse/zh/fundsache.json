@@ -207,7 +207,8 @@
             "de": "gefunden",
             "en": "found",
             "fr": "trouvé",
-            "it": "trovato"
+            "it": "trovato",
+            "ls": "gefunden"
           }
         }
       ],
@@ -272,7 +273,8 @@
             "de": "verloren",
             "en": "lost",
             "fr": "perdu",
-            "it": "smarrito"
+            "it": "smarrito",
+            "ls": "verloren"
           }
         }
       ],
@@ -338,7 +340,8 @@
           "condition": {
             "de": "ja",
             "fr": "oui",
-            "it": "sì"
+            "it": "sì",
+            "ls": "ja"
           }
         }
       ],
@@ -388,7 +391,8 @@
           "condition": {
             "de": "nein",
             "fr": "non",
-            "it": "no"
+            "it": "no",
+            "ls": "nein"
           }
         }
       ],

@@ -190,7 +190,8 @@
             "de": "noch nicht registriert",
             "en": "not yet registered",
             "fr": "pas encore enregistré",
-            "it": "non ancora registrato"
+            "it": "non ancora registrato",
+            "ls": "noch nicht in der Datenbank"
           }
         }
       ],
@@ -224,7 +225,8 @@
             "de": "bereits in AMICUS",
             "en": "already in AMICUS",
             "fr": "déjà dans AMICUS",
-            "it": "già in AMICUS"
+            "it": "già in AMICUS",
+            "ls": "schon in der Datenbank"
           }
         },
         3
@@ -246,7 +248,8 @@
             "de": "AMICUS-Nummer / Heimtierausweis",
             "en": "AMICUS number / pet passport",
             "fr": "Numéro AMICUS / passeport pour animal de compagnie",
-            "it": "Numero AMICUS / passaporto per animali da compagnia"
+            "it": "Numero AMICUS / passaporto per animali da compagnia",
+            "ls": "AMICUS-Nummer oder Heimtier-Ausweis"
           },
           "required": true
         },
@@ -255,7 +258,8 @@
             "de": "Haftpflichtversicherungs-Nachweis",
             "en": "Liability insurance proof",
             "fr": "Attestation d'assurance responsabilité civile",
-            "it": "Attestato di assicurazione di responsabilità civile"
+            "it": "Attestato di assicurazione di responsabilità civile",
+            "ls": "Nachweis für die Haftpflicht-Versicherung"
           },
           "required": false
         }
@@ -366,7 +370,8 @@
           "condition": {
             "de": "Die haltende Person ist zur praktischen Ausbildung verpflichtet und nicht ausgenommen.",
             "fr": "La personne détentrice est soumise à l'obligation d'éducation pratique et n'en est pas exemptée.",
-            "it": "La persona detentrice è soggetta all'obbligo di educazione pratica e non ne è esentata."
+            "it": "La persona detentrice è soggetta all'obbligo di educazione pratica e non ne è esentata.",
+            "ls": "Sie müssen den Praxiskurs machen. Für Sie gilt keine Ausnahme."
           }
         }
       ]

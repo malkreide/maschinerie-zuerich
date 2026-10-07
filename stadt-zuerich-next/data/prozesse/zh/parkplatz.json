@@ -181,7 +181,8 @@
             "de": "Kopie Fahrzeugausweis",
             "en": "Copy of vehicle registration",
             "fr": "Copie du permis de circulation",
-            "it": "Copia della licenza di circolazione"
+            "it": "Copia della licenza di circolazione",
+            "ls": "Kopie vom Fahrzeug-Ausweis"
           },
           "required": true
         },
@@ -190,7 +191,8 @@
             "de": "Meldebestätigung / Wohnsitznachweis",
             "en": "Proof of residence",
             "fr": "Attestation de domicile / justificatif de domicile",
-            "it": "Attestazione di domicilio / prova di residenza"
+            "it": "Attestazione di domicilio / prova di residenza",
+            "ls": "Melde-Bestätigung oder Wohnsitz-Nachweis"
           },
           "required": true
         },
@@ -199,7 +201,8 @@
             "de": "Bei Firmenfahrzeug: Bestätigung des Dauernutzungsrechts",
             "en": "For company cars: permanent-use confirmation",
             "fr": "Pour un véhicule d'entreprise : confirmation du droit d'utilisation permanente",
-            "it": "Per veicolo aziendale: conferma del diritto di utilizzo permanente"
+            "it": "Per veicolo aziendale: conferma del diritto di utilizzo permanente",
+            "ls": "Bei einem Firmen-Auto: Bestätigung, dass du das Auto dauernd benutzen darfst"
           },
           "required": false
         }
@@ -267,7 +270,8 @@
             "de": "unvollständig",
             "en": "incomplete",
             "fr": "incomplet",
-            "it": "incompleto"
+            "it": "incompleto",
+            "ls": "es fehlt etwas"
           }
         }
       ],
@@ -293,7 +297,8 @@
             "de": "vollständig",
             "en": "complete",
             "fr": "complet",
-            "it": "completo"
+            "it": "completo",
+            "ls": "alles da"
           }
         }
       ],
@@ -313,7 +318,8 @@
         {
           "step_id": 7,
           "condition": {
-            "de": "ja"
+            "de": "ja",
+            "ls": "ja"
           }
         }
       ],
@@ -376,7 +382,8 @@
         {
           "step_id": 7,
           "condition": {
-            "de": "nein"
+            "de": "nein",
+            "ls": "nein"
           }
         }
       ],
@@ -411,7 +418,8 @@
         {
           "step_id": 12,
           "condition": {
-            "de": "ja"
+            "de": "ja",
+            "ls": "ja"
           }
         }
       ],
@@ -474,7 +482,8 @@
         {
           "step_id": 12,
           "condition": {
-            "de": "nein"
+            "de": "nein",
+            "ls": "nein"
           }
         }
       ],

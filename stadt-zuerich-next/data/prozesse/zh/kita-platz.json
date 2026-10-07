@@ -180,7 +180,8 @@
             "de": "kein Platz",
             "en": "no place",
             "fr": "pas de place",
-            "it": "nessun posto"
+            "it": "nessun posto",
+            "ls": "kein Platz frei"
           }
         }
       ],
@@ -222,7 +223,8 @@
             "de": "Platz frei",
             "en": "place available",
             "fr": "place disponible",
-            "it": "posto disponibile"
+            "it": "posto disponibile",
+            "ls": "Platz frei"
           }
         }
       ],
@@ -258,7 +260,8 @@
             "de": "Betreuungsvertrag der Kita",
             "en": "Daycare care contract",
             "fr": "Contrat de garde de la crèche",
-            "it": "Contratto di custodia dell'asilo nido"
+            "it": "Contratto di custodia dell'asilo nido",
+            "ls": "Betreuungs-Vertrag mit der Kita"
           },
           "required": true
         },
@@ -267,7 +270,8 @@
             "de": "Einkommensnachweis (Lohnausweis / Steuerunterlagen)",
             "en": "Proof of income (salary statement / tax documents)",
             "fr": "Justificatif de revenu (certificat de salaire / documents fiscaux)",
-            "it": "Prova del reddito (certificato di salario / documenti fiscali)"
+            "it": "Prova del reddito (certificato di salario / documenti fiscali)",
+            "ls": "Nachweis für Ihr Einkommen (Lohn-Ausweis oder Steuer-Papiere)"
           },
           "required": true
         },
@@ -276,7 +280,8 @@
             "de": "Nachweis Erwerbstätigkeit oder Ausbildung beider Eltern",
             "en": "Proof of employment or education of both parents",
             "fr": "Justificatif d'activité lucrative ou de formation des deux parents",
-            "it": "Prova dell'attività lavorativa o della formazione di entrambi i genitori"
+            "it": "Prova dell'attività lavorativa o della formazione di entrambi i genitori",
+            "ls": "Nachweis, dass beide Eltern arbeiten oder in Ausbildung sind"
           },
           "required": true
         }
@@ -350,7 +355,8 @@
         {
           "step_id": 8,
           "condition": {
-            "de": "ja"
+            "de": "ja",
+            "ls": "ja"
           }
         }
       ],
@@ -441,7 +447,8 @@
         {
           "step_id": 8,
           "condition": {
-            "de": "nein"
+            "de": "nein",
+            "ls": "nein"
           }
         }
       ],
@@ -476,7 +483,8 @@
         {
           "step_id": 14,
           "condition": {
-            "de": "ja"
+            "de": "ja",
+            "ls": "ja"
           }
         }
       ],
@@ -499,7 +507,8 @@
         {
           "step_id": 14,
           "condition": {
-            "de": "nein"
+            "de": "nein",
+            "ls": "nein"
           }
         }
       ],

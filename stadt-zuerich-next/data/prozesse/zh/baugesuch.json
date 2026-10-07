@@ -149,7 +149,8 @@
             "de": "Baugesuchsformular",
             "en": "Building application form",
             "fr": "Formulaire de demande de permis de construire",
-            "it": "Modulo di domanda di licenza edilizia"
+            "it": "Modulo di domanda di licenza edilizia",
+            "ls": "Formular für das Baugesuch"
           },
           "url": "https://www.stadt-zuerich.ch/de/planen-und-bauen/baubewilligungen/bewilligungsprozess/baugesuch-einreichen.html",
           "required": true
@@ -159,7 +160,8 @@
             "de": "Situationsplan 1:500",
             "en": "Site plan 1:500",
             "fr": "Plan de situation 1:500",
-            "it": "Piano di situazione 1:500"
+            "it": "Piano di situazione 1:500",
+            "ls": "Situations-Plan (Massstab 1:500)"
           },
           "required": true
         },
@@ -168,7 +170,8 @@
             "de": "Grundriss / Schnitt / Fassade 1:100",
             "en": "Floor plan / section / facade 1:100",
             "fr": "Plan / coupe / façade 1:100",
-            "it": "Pianta / sezione / facciata 1:100"
+            "it": "Pianta / sezione / facciata 1:100",
+            "ls": "Pläne vom Gebäude: Grundriss, Schnitt und Fassade (Massstab 1:100)"
           },
           "required": true
         },
@@ -177,7 +180,8 @@
             "de": "Energetischer Nachweis (MuKEn)",
             "en": "Energy compliance proof (MuKEn)",
             "fr": "Justificatif énergétique (MoPEC)",
-            "it": "Attestato energetico (MoPEC)"
+            "it": "Attestato energetico (MoPEC)",
+            "ls": "Nachweis zur Energie (MuKEn)"
           },
           "required": true
         },
@@ -186,7 +190,8 @@
             "de": "Umgebungsplan",
             "en": "Surroundings plan",
             "fr": "Plan d'aménagement extérieur",
-            "it": "Piano delle sistemazioni esterne"
+            "it": "Piano delle sistemazioni esterne",
+            "ls": "Plan von der Umgebung"
           },
           "required": true
         }
@@ -266,7 +271,8 @@
             "de": "unvollständig",
             "en": "incomplete",
             "fr": "incomplet",
-            "it": "incompleto"
+            "it": "incompleto",
+            "ls": "es fehlt etwas"
           }
         }
       ],
@@ -292,7 +298,8 @@
             "de": "vollständig",
             "en": "complete",
             "fr": "complet",
-            "it": "completo"
+            "it": "completo",
+            "ls": "alles da"
           }
         }
       ],
@@ -327,7 +334,8 @@
         {
           "step_id": 8,
           "condition": {
-            "de": "ja"
+            "de": "ja",
+            "ls": "ja"
           }
         }
       ],
@@ -348,7 +356,8 @@
         {
           "step_id": 8,
           "condition": {
-            "de": "nein"
+            "de": "nein",
+            "ls": "nein"
           }
         }
       ],
@@ -398,7 +407,8 @@
         {
           "step_id": 12,
           "condition": {
-            "de": "ja"
+            "de": "ja",
+            "ls": "ja"
           }
         }
       ],
@@ -418,7 +428,8 @@
         {
           "step_id": 12,
           "condition": {
-            "de": "nein"
+            "de": "nein",
+            "ls": "nein"
           }
         }
       ],
@@ -453,7 +464,8 @@
         {
           "step_id": 15,
           "condition": {
-            "de": "ja"
+            "de": "ja",
+            "ls": "ja"
           }
         }
       ],
@@ -491,7 +503,8 @@
         {
           "step_id": 15,
           "condition": {
-            "de": "nein"
+            "de": "nein",
+            "ls": "nein"
           }
         }
       ],
