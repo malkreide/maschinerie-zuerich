@@ -35,7 +35,8 @@
     {
       "de": "Für die Online-Umzugsmeldung innerhalb der Stadt müssen Sie bereits in der Stadt Zürich angemeldet sowie volljährig und handlungsfähig sein.",
       "fr": "Pour l'annonce de déménagement en ligne à l'intérieur de la ville, vous devez déjà être annoncé-e dans la ville de Zurich, être majeur-e et capable de discernement.",
-      "it": "Per la notifica di trasloco online all'interno della città, dovete essere già annunciati nella città di Zurigo, maggiorenni e capaci di agire."
+      "it": "Per la notifica di trasloco online all'interno della città, dovete essere già annunciati nella città di Zurigo, maggiorenni e capaci di agire.",
+      "ls": "Sie wollen den Umzug in der Stadt im Internet melden? Dann müssen Sie schon in Zürich angemeldet sein. Und Sie müssen erwachsen sein und selbst für sich handeln dürfen (handlungsfähig)."
     }
   ],
   "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/zuzug.html",
@@ -414,7 +415,8 @@
         "de": "Das Bevölkerungsamt prüft die Angaben und gleicht sie mit dem kantonalen Personenregister ab.",
         "en": "The population office verifies the data and matches it against the cantonal person register.",
         "fr": "Le contrôle des habitants vérifie les indications et les compare avec le registre cantonal des personnes.",
-        "it": "Il controllo abitanti verifica le indicazioni e le confronta con il registro cantonale delle persone."
+        "it": "Il controllo abitanti verifica le indicazioni e le confronta con il registro cantonale delle persone.",
+        "ls": "Das Bevölkerungs-Amt prüft Ihre Angaben. Es vergleicht sie mit dem Personen-Register vom Kanton."
       }
     },
     {
@@ -506,7 +508,8 @@
         "de": "Bei Zuzug aus einer anderen Gemeinde/Land wird der Ausländerausweis auf die neue Adresse nachgeführt.",
         "en": "When moving from another municipality/country, the foreigner's permit is updated to the new address.",
         "fr": "En cas d'arrivée depuis une autre commune ou un autre pays, le titre de séjour pour étrangers est mis à jour avec la nouvelle adresse.",
-        "it": "In caso di arrivo da un altro Comune o Paese, il permesso per stranieri viene aggiornato con il nuovo indirizzo."
+        "it": "In caso di arrivo da un altro Comune o Paese, il permesso per stranieri viene aggiornato con il nuovo indirizzo.",
+        "ls": "Sie ziehen aus einer anderen Gemeinde oder aus einem anderen Land zu? Dann kommt die neue Adresse auf Ihren Ausländer-Ausweis."
       }
     },
     {
@@ -538,7 +541,8 @@
         "de": "Die neue Adresse wird im Einwohnerregister hinterlegt; bei Zuzug wird der Heimatschein abgelegt.",
         "en": "The new address is recorded in the residents' register; for new arrivals the place-of-origin certificate is deposited.",
         "fr": "La nouvelle adresse est enregistrée dans le registre des habitants; en cas d'arrivée, l'acte d'origine est déposé.",
-        "it": "Il nuovo indirizzo viene registrato nel registro degli abitanti; in caso di arrivo, l'atto d'origine viene depositato."
+        "it": "Il nuovo indirizzo viene registrato nel registro degli abitanti; in caso di arrivo, l'atto d'origine viene depositato.",
+        "ls": "Das Amt trägt Ihre neue Adresse ins Einwohner-Register ein. Ziehen Sie neu nach Zürich? Dann bewahrt das Amt Ihren Heimatschein auf."
       }
     },
     {
@@ -559,7 +563,8 @@
         "de": "Auf Wunsch als Wohnsitzbescheinigung — wird oft für Verträge, Schule oder Behördengänge gebraucht.",
         "en": "On request as a certificate of residence — often needed for contracts, schools or other administrative matters.",
         "fr": "Sur demande sous forme d'attestation de domicile — souvent nécessaire pour des contrats, l'école ou des démarches administratives.",
-        "it": "Su richiesta come attestato di domicilio — spesso necessario per contratti, scuola o pratiche amministrative."
+        "it": "Su richiesta come attestato di domicilio — spesso necessario per contratti, scuola o pratiche amministrative.",
+        "ls": "Wenn Sie wollen, bekommen Sie eine Wohnsitz-Bescheinigung. Die brauchen Sie oft für Verträge, für die Schule oder bei Ämtern."
       }
     },
     {
@@ -623,7 +628,8 @@
         "de": "Der Wegzug muss innert einer Frist nach dem Auszug gemeldet werden und ist frühestens eine bestimmte Zeit vorher möglich – siehe Belege.",
         "en": "The move away must be reported within a deadline after moving out and can be reported only a certain time in advance at the earliest – see references.",
         "fr": "Le départ doit être annoncé dans un délai après le déménagement et peut être annoncé au plus tôt un certain temps à l'avance – voir les références.",
-        "it": "La partenza va notificata entro un termine dopo il trasloco e può essere notificata al più presto un certo tempo prima – vedi riferimenti."
+        "it": "La partenza va notificata entro un termine dopo il trasloco e può essere notificata al più presto un certo tempo prima – vedi riferimenti.",
+        "ls": "Sie müssen den Wegzug innerhalb einer Frist nach dem Auszug melden. Sie können ihn auch schon vorher melden, aber nicht zu früh. Die genauen Fristen stehen in den Belegen."
       }
     },
     {
@@ -669,7 +675,8 @@
         "de": "Bei einem Wegzug in eine andere Schweizer Gemeinde.",
         "en": "When moving to another Swiss municipality.",
         "fr": "En cas de départ vers une autre commune suisse.",
-        "it": "In caso di partenza verso un altro Comune svizzero."
+        "it": "In caso di partenza verso un altro Comune svizzero.",
+        "ls": "Das geht, wenn Sie in eine andere Gemeinde in der Schweiz ziehen."
       }
     },
     {
@@ -737,7 +744,8 @@
         "de": "Beim Personenmeldeamt Zürich Nord oder Zürich West; ein Termin ist erforderlich.",
         "en": "At the Personenmeldeamt Zürich Nord or Zürich West; an appointment is required.",
         "fr": "Au Personenmeldeamt Zürich Nord ou Zürich West ; un rendez-vous est nécessaire.",
-        "it": "Presso il Personenmeldeamt Zürich Nord o Zürich West; è necessario un appuntamento."
+        "it": "Presso il Personenmeldeamt Zürich Nord o Zürich West; è necessario un appuntamento.",
+        "ls": "Sie gehen zum Personen-Meldeamt Zürich Nord oder Zürich West. Sie brauchen einen Termin."
       },
       "documents": [
         {
@@ -795,7 +803,8 @@
         "de": "Wird z. B. für die Kündigung von Verträgen (Krankenversicherung, Bank), für Steuerangelegenheiten oder die Ummeldung von Fahrzeugen gebraucht.",
         "en": "Needed e.g. to cancel contracts (health insurance, bank), for tax matters or to re-register vehicles.",
         "fr": "Nécessaire p. ex. pour résilier des contrats (assurance-maladie, banque), pour les impôts ou pour l'immatriculation de véhicules.",
-        "it": "Serve p. es. per disdire contratti (cassa malati, banca), per questioni fiscali o per la nuova immatricolazione di veicoli."
+        "it": "Serve p. es. per disdire contratti (cassa malati, banca), per questioni fiscali o per la nuova immatricolazione di veicoli.",
+        "ls": "Die Bestätigung brauchen Sie zum Beispiel, wenn Sie Verträge kündigen (Krankenkasse, Bank). Oder für die Steuern. Oder wenn Sie Ihr Auto ummelden."
       }
     },
     {
@@ -825,7 +834,8 @@
         "de": "Erst nach der erfolgten Abmeldung möglich, im Webshop der Stadt Zürich.",
         "en": "Only possible after the deregistration has been completed, in the City of Zurich web shop.",
         "fr": "Possible seulement une fois la désinscription effectuée, dans la boutique en ligne de la Ville de Zurich.",
-        "it": "Possibile solo dopo l'avvenuta disdetta, nel webshop della Città di Zurigo."
+        "it": "Possibile solo dopo l'avvenuta disdetta, nel webshop della Città di Zurigo.",
+        "ls": "Das geht erst, wenn Sie abgemeldet sind. Sie bestellen im Webshop der Stadt Zürich."
       }
     },
     {

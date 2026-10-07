@@ -99,7 +99,8 @@
         "de": "Wertgrenze und Aufbewahrungsfrist für vorzeitigen Verkauf von Fundsachen",
         "en": "Value threshold and storage period for early sale of found items",
         "fr": "Valeur limite et délai de conservation pour la vente anticipée d'objets trouvés",
-        "it": "Valore limite e termine di conservazione per la vendita anticipata di oggetti trovati"
+        "it": "Valore limite e termine di conservazione per la vendita anticipata di oggetti trovati",
+        "ls": "Wann Fundsachen mit wenig Wert früher verkauft werden dürfen."
       },
       "source_url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/rechtsgrundlage.html",
       "source_quote": "Fundsachen mit einem Zeitwert von höchstens 50 Franken dürfen bereits nach Ablauf eines Monats versteigert oder freihändig verkauft werden.",
@@ -112,7 +113,8 @@
         "de": "Wertgrenze für die Pflicht zur Fundanzeige bei der Polizei",
         "en": "Value threshold for the obligation to report a find to the police",
         "fr": "Valeur limite déclenchant l'obligation d'annoncer la trouvaille à la police",
-        "it": "Valore limite per l'obbligo di segnalare il ritrovamento alla polizia"
+        "it": "Valore limite per l'obbligo di segnalare il ritrovamento alla polizia",
+        "ls": "Ab welchem Wert Sie einen Fund der Polizei melden müssen."
       },
       "source_url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/rechtsgrundlage.html",
       "source_quote": "Zur Anzeige an die Polizei ist er verpflichtet, wenn der Wert der Sache offenbar 10 Franken übersteigt.",
@@ -125,7 +127,8 @@
         "de": "Finderlohn-Anspruch bei Funden in einem Unternehmen oder Fahrzeug",
         "en": "Finder's reward claim for items found in a company or vehicle",
         "fr": "Droit à la récompense pour les objets trouvés dans une entreprise ou un véhicule",
-        "it": "Diritto alla mancia di ritrovamento per oggetti trovati in un'azienda o in un veicolo"
+        "it": "Diritto alla mancia di ritrovamento per oggetti trovati in un'azienda o in un veicolo",
+        "ls": "Ob Sie Finder-Lohn bekommen, wenn Sie etwas in einer Firma oder in einem Fahrzeug finden."
       },
       "source_url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/rechtsgrundlage.html",
       "source_quote": "Das Unternehmen wird als Finderin betrachtet, kann aber keinen Finderlohn beanspruchen.",
@@ -213,7 +216,8 @@
         "de": "Fundsache online melden und/oder beim Fundbüro abgeben. Wertgegenstände möglichst rasch übergeben.",
         "en": "Report the found item online and/or hand it in at the lost property office; valuables as soon as possible.",
         "fr": "Annoncer l'objet trouvé en ligne et/ou le remettre au bureau des objets trouvés; remettre les objets de valeur le plus rapidement possible.",
-        "it": "Segnalare l'oggetto trovato online e/o consegnarlo all'ufficio oggetti smarriti; consegnare gli oggetti di valore il più rapidamente possibile."
+        "it": "Segnalare l'oggetto trovato online e/o consegnarlo all'ufficio oggetti smarriti; consegnare gli oggetti di valore il più rapidamente possibile.",
+        "ls": "Sie melden die Sache im Internet oder bringen sie zum Fund-Büro. Wertvolle Sachen geben Sie bitte schnell ab."
       },
       "source_id": "q-stz-fundbuero",
       "reference_ids": [
@@ -277,7 +281,8 @@
         "de": "Online-Verlustmeldung mit Beschreibung des Gegenstands, Verlustort und -datum.",
         "en": "Online loss report with a description of the item, place and date of loss.",
         "fr": "Annonce de perte en ligne avec description de l'objet, lieu et date de la perte.",
-        "it": "Segnalazione di smarrimento online con descrizione dell'oggetto, luogo e data dello smarrimento."
+        "it": "Segnalazione di smarrimento online con descrizione dell'oggetto, luogo e data dello smarrimento.",
+        "ls": "Sie melden den Verlust im Internet. Sie beschreiben die Sache. Sie sagen, wo und wann Sie die Sache verloren haben."
       },
       "source_id": "q-stz-fundbuero",
       "reference_ids": [
@@ -345,7 +350,8 @@
         "de": "Abholung gegen Identitätsnachweis; allfällige Aufbewahrungs-/Bearbeitungsgebühr und Finderlohn nach OR.",
         "en": "Collection against proof of identity; any storage/handling fee and finder's reward under the Code of Obligations.",
         "fr": "Retrait sur présentation d'une preuve d'identité; éventuel émolument de conservation/de traitement et récompense selon le CO.",
-        "it": "Ritiro dietro presentazione di una prova d'identità; eventuale tassa di conservazione/di trattamento e mancia di ritrovamento secondo il CO."
+        "it": "Ritiro dietro presentazione di una prova d'identità; eventuale tassa di conservazione/di trattamento e mancia di ritrovamento secondo il CO.",
+        "ls": "Zeigen Sie beim Abholen Ihren Ausweis. Vielleicht müssen Sie eine Gebühr und Finder-Lohn zahlen."
       }
     },
     {
@@ -391,7 +397,8 @@
         "de": "Fundsachen werden eine gesetzliche Frist aufbewahrt; meldet sich ein passender Fund, wird die Person benachrichtigt.",
         "en": "Found items are kept for a statutory period; if a matching item appears, the person is notified.",
         "fr": "Les objets trouvés sont conservés pendant un délai légal; si un objet correspondant est annoncé, la personne en est informée.",
-        "it": "Gli oggetti trovati vengono conservati per un termine legale; se viene segnalato un oggetto corrispondente, la persona viene avvisata."
+        "it": "Gli oggetti trovati vengono conservati per un termine legale; se viene segnalato un oggetto corrispondente, la persona viene avvisata.",
+        "ls": "Das Fund-Büro bewahrt Fundsachen eine bestimmte Zeit auf. Taucht Ihre Sache auf? Dann bekommen Sie eine Nachricht."
       }
     },
     {

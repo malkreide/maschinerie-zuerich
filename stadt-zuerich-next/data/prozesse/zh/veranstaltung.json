@@ -43,7 +43,8 @@
         "de": "Mindest-Vorlaufzeit für die Planung eines Sanitätsdienstes durch Schutz & Rettung Zürich",
         "en": "",
         "fr": "",
-        "it": ""
+        "it": "",
+        "ls": "So früh braucht Schutz & Rettung Zürich Bescheid, um einen Sanitäts-Dienst zu planen"
       },
       "source_url": "https://www.stadt-zuerich.ch/de/stadtleben/veranstaltungen-und-bewilligungen/veranstaltungen/infrastruktur-sicherheit.html",
       "source_quote": "dass für die Planung von Sanitätsdiensten an Veranstaltungen eine Vorlaufzeit von mindestens 6 Wochen benötigt wird.",
@@ -525,13 +526,16 @@
       "ls": "Sie wollen öffentlichen Grund benutzen."
     },
     {
-      "de": "Sie planen, im Freien Lautsprecher einzusetzen."
+      "de": "Sie planen, im Freien Lautsprecher einzusetzen.",
+      "ls": "Sie wollen draussen Lautsprecher benutzen."
     },
     {
-      "de": "Sie planen, auf öffentlichem Grund Infrastruktur jeglicher Art aufzubauen (Zelte, Bühnen, Schaustellgeschäfte usw.)."
+      "de": "Sie planen, auf öffentlichem Grund Infrastruktur jeglicher Art aufzubauen (Zelte, Bühnen, Schaustellgeschäfte usw.).",
+      "ls": "Sie wollen auf öffentlichem Grund etwas aufbauen. Zum Beispiel Zelte, Bühnen oder Schausteller-Stände."
     },
     {
-      "de": "Sie planen, Getränke und Speisen zu verkaufen."
+      "de": "Sie planen, Getränke und Speisen zu verkaufen.",
+      "ls": "Sie wollen Getränke und Essen verkaufen."
     }
   ]
 }
