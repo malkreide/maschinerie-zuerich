@@ -35,18 +35,33 @@ export interface ProzessNodeData extends Record<string, unknown> {
   boxHeight?: number;
 }
 
-const baseClass =
-  'px-3 py-2 text-[13px] leading-snug border bg-[var(--color-panel)] text-[var(--color-ink)] shadow-sm';
+// Bewusst OHNE Hintergrund- und Textfarbe: die kommen ausschliesslich über
+// `surface`. Stehen zwei Farb-Utilities derselben Eigenschaft am Element
+// (Basis + Variante), entscheidet bei Tailwind die Reihenfolge im Stylesheet,
+// nicht die im class-Attribut. So bekam der Start-Knoten früher den weissen
+// Panel-Hintergrund der Basis, aber die weisse Schrift der Variante — und
+// sein Text war unsichtbar.
+const baseClass = 'px-3 py-2 text-[13px] leading-snug border shadow-sm';
+
+/** Standard-Fläche eines Knotens: Panel mit normaler Textfarbe. */
+const SURFACE_PANEL = 'bg-[var(--color-panel)] text-[var(--color-ink)]';
+/** Akzent-Fläche (Start). --color-on-accent ist die dazu lesbare Textfarbe
+ *  je Farbmodus (app/globals.css) — im Dunkelmodus ist der Akzent hell. */
+const SURFACE_ACCENT = 'bg-[var(--color-accent)] text-[var(--color-on-accent)]';
 
 function Base({
   children,
   className = '',
+  surface = SURFACE_PANEL,
   shape = 'rect',
   ariaLabel,
   height,
 }: {
   children: React.ReactNode;
+  /** Rahmen und Schrift-Stil der Variante — keine bg-/text-Farbe (siehe surface). */
   className?: string;
+  /** Hintergrund- und Textfarbe, genau ein Paar je Knoten. */
+  surface?: string;
   shape?: 'rect' | 'pill' | 'diamond';
   ariaLabel: string;
   height?: number;
@@ -61,7 +76,7 @@ function Base({
     <div
       role="group"
       aria-label={ariaLabel}
-      className={`${baseClass} ${shapeClass} ${className} w-[200px] h-[80px] flex items-center`}
+      className={`${baseClass} ${surface} ${shapeClass} ${className} w-[200px] h-[80px] flex items-center`}
       style={shape === 'diamond' ? { width: 140, height: 140 } : height ? { height } : undefined}
     >
       <div className={innerRotate}>{children}</div>
@@ -119,7 +134,7 @@ export function StartNode({ data }: NodeProps) {
   const d = data as ProzessNodeData;
   return (
     <>
-      <Base shape="pill" className="border-[var(--color-accent)] bg-[var(--color-accent)] text-white" ariaLabel={`Start: ${d.label}`}>
+      <Base shape="pill" surface={SURFACE_ACCENT} className="border-[var(--color-accent)]" ariaLabel={`Start: ${d.label}`}>
         <div className="w-full text-center font-semibold line-clamp-2">{d.label}</div>
       </Base>
       <Handle type="source" position={Position.Right} />
@@ -132,7 +147,10 @@ export function EndeNode({ data }: NodeProps) {
   return (
     <>
       <Handle type="target" position={Position.Left} />
-      <Base shape="pill" className="border-[var(--color-line)] bg-[var(--color-bg)]" ariaLabel={`Ende: ${d.label}`}>
+      {/* Panel-Fläche wie bisher gerendert. Die frühere Klasse
+          bg-[var(--color-bg)] griff nie (gleiche Ursache wie beim Start-
+          Knoten) und ist darum entfernt — das Aussehen bleibt unverändert. */}
+      <Base shape="pill" className="border-[var(--color-line)]" ariaLabel={`Ende: ${d.label}`}>
         <div className="w-full text-center font-semibold line-clamp-2">{d.label}</div>
       </Base>
     </>
@@ -180,7 +198,7 @@ export function EntscheidungNode({ data }: NodeProps) {
   return (
     <>
       <Handle type="target" position={Position.Left} />
-      <Base shape="diamond" className="border-[var(--color-accent)] bg-[var(--color-panel)]" ariaLabel={`Entscheidung: ${d.label}`}>
+      <Base shape="diamond" className="border-[var(--color-accent)]" ariaLabel={`Entscheidung: ${d.label}`}>
         <div className="text-center text-[12px] font-semibold px-2" style={{ maxWidth: 120 }}>
           {d.label}
         </div>

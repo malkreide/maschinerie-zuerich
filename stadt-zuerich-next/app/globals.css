@@ -15,6 +15,10 @@
   --color-ink: #1a1f2e;
   --color-mute: #5b6478;
   --color-line: #e3e6ef;
+  /* Textfarbe auf einer --color-accent-Fläche. Hell: Weiss auf dem dunklen
+   * Stadt-Akzent (Zürich #0F05A0 ≈ 13.5:1). Die Dunkel-Variante steht unten
+   * bei html.dark, weil dort der Akzent selbst hell ist. */
+  --color-on-accent: #ffffff;
   /* Status-Farben für semantische Anzeigen (Defizit/Überschuss, Mehrausgabe/
    * Einsparung). Bewusst eigene Variablen statt der Departement-Palette,
    * damit die Bedeutung («positiv» vs. «negativ») nicht mit Tenant-Branding
@@ -36,6 +40,9 @@ html.dark {
   --color-mute: #8a93a8;
   --color-line: #232838;
   --color-accent: #6ea8ff;
+  /* Auf dem hellen Dunkelmodus-Akzent wäre Weiss unlesbar (≈ 2.4:1);
+   * #0e1118 (= --color-bg) erreicht ≈ 7.8:1. */
+  --color-on-accent: #0e1118;
   /* Im Dark Mode aufgehellte Varianten — Hintergrund ist sehr dunkel,
    * helle Status-Farben kommen besser durch. Geprüft gegen #161a24:
    *   #3ec9a8 (positiv) ≈ 6.2:1
