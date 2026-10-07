@@ -17,12 +17,13 @@ import {
   Controls,
   MiniMap,
   MarkerType,
+  ViewportPortal,
   type Edge,
   type Node,
   type ColorMode,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
-import { nodeTypes, type ProzessNodeData, type ProzessNodeReferenz } from './ProzessNodes';
+import { nodeTypes, flowNodeType, type ProzessNodeData, type ProzessNodeReferenz } from './ProzessNodes';
 import type { Layout, LayoutLane } from '@/lib/prozess-layout';
 import type { SchrittTyp } from '@/types/prozess';
 
@@ -146,9 +147,10 @@ function ProzessFlowInner({ titel, schritte, kanten, akteure, layout, colorMode 
       const ln = layout.nodes.find((n) => n.id === s.id);
       return {
         id: s.id,
-        type: s.typ,
+        type: flowNodeType(s.typ),
         position: { x: ln?.x ?? 0, y: ln?.y ?? 0 },
         data: {
+          boxHeight: ln?.height,
           label: s.label,
           beschreibung: s.beschreibung,
           akteurLabel: s.akteurLabel,
@@ -263,12 +265,6 @@ function ProzessFlowInner({ titel, schritte, kanten, akteure, layout, colorMode 
         role="application"
         aria-label={`Prozess-Diagramm: ${titel}`}
       >
-      <SwimlaneOverlay
-        lanes={layout.lanes}
-        akteure={akteure}
-        height={layout.height}
-        goToUnitLabelTemplate={goToUnitLabelTemplate}
-      />
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -284,6 +280,19 @@ function ProzessFlowInner({ titel, schritte, kanten, akteure, layout, colorMode 
         proOptions={{ hideAttribution: false }}
       >
         <Background gap={24} />
+        {/* Swimlanes im Koordinatensystem des Graphen: sie zoomen und schwenken
+            mit den Knoten mit, sodass jeder Knoten sichtbar in seiner Bahn liegt
+            (vorher absolut in Bildschirm-Pixeln — bei fitView-Zoom ≠ 1 lagen
+            Knoten optisch in fremden Bahnen). */}
+        <ViewportPortal>
+          <SwimlaneOverlay
+            lanes={layout.lanes}
+            akteure={akteure}
+            width={layout.width}
+            height={layout.height}
+            goToUnitLabelTemplate={goToUnitLabelTemplate}
+          />
+        </ViewportPortal>
         <Controls showInteractive={false} position="bottom-right" className="sm:mb-0 mb-4" />
         {/* MiniMap oben rechts (nicht unten rechts — dort sitzen die Controls)
             und auf kleinen Screens ausgeblendet, wo sie nur Platz und Knoten
@@ -343,26 +352,29 @@ function LegendeSwatch({ typ }: { typ: SchrittTyp }) {
 }
 
 /** Swimlane-Überlagerung: horizontale Bänder mit Akteur-Label links.
- *  Wird absolut positioniert, damit React Flow's Pan/Zoom sie nicht mitbewegt
- *  — hier akzeptiert; für präzise Synchronisation mit Pan müsste man die
- *  Lanes als NodeType rendern. Kompromiss zugunsten Einfachheit. */
+ *  Wird via ViewportPortal in Flow-Koordinaten gerendert (gleiche Pan/Zoom-
+ *  Transformation wie die Knoten). z-index -1 legt die Bänder innerhalb des
+ *  Viewport-Stapels hinter Kanten und Knoten; die Labels sitzen in der von
+ *  LANE_LABEL_WIDTH freigehaltenen Spalte links, wo keine Knoten liegen. */
 function SwimlaneOverlay({
   lanes,
   akteure,
+  width,
   height,
   goToUnitLabelTemplate,
 }: {
   lanes: LayoutLane[];
   akteure: ProzessFlowAkteur[];
+  width: number;
   height: number;
   goToUnitLabelTemplate?: string;
 }) {
   const akteurMap = new Map(akteure.map((a) => [a.id, a]));
   return (
     <div
-      className="absolute inset-0 pointer-events-none"
+      className="absolute left-0 top-0 pointer-events-none"
       aria-hidden
-      style={{ height }}
+      style={{ width, height, zIndex: -1 }}
     >
       {lanes.map((lane, i) => {
         const a = akteurMap.get(lane.akteurId);
@@ -395,7 +407,7 @@ function SwimlaneOverlay({
               borderColor: 'var(--color-line)',
             }}
           >
-            <div className="absolute left-2 top-2 text-[9px] sm:text-[11px] font-semibold uppercase tracking-wider text-[var(--color-mute)] max-w-[80px] sm:max-w-[140px] leading-tight break-words">
+            <div className="absolute left-2 top-2 text-[12px] font-semibold uppercase tracking-wider text-[var(--color-mute)] max-w-[200px] leading-tight break-words">
               {inner}
             </div>
           </div>
