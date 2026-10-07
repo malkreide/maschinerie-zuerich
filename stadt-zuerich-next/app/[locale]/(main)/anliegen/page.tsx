@@ -82,7 +82,7 @@ export default async function AnliegenPage({
         />
         <button
           type="submit"
-          className="px-4 py-2 bg-[var(--color-accent)] text-white rounded text-sm font-semibold hover:opacity-90"
+          className="px-4 py-2 bg-[var(--color-accent)] text-[var(--color-on-accent)] rounded text-sm font-semibold hover:opacity-90"
         >
           {tSearch('submit')}
         </button>
@@ -181,7 +181,7 @@ export default async function AnliegenPage({
                         <Link
                           key={pe.slug}
                           href={{ pathname: `/prozesse/${pe.city}/${pe.id}` }}
-                          className="inline-flex items-center gap-1 text-[12px] px-2 py-1 rounded-full border border-[var(--color-accent)] text-[var(--color-accent)] no-underline hover:bg-[var(--color-accent)] hover:text-white transition-colors"
+                          className="inline-flex items-center gap-1 text-[12px] px-2 py-1 rounded-full border border-[var(--color-accent)] text-[var(--color-accent)] no-underline hover:bg-[var(--color-accent)] hover:text-[var(--color-on-accent)] transition-colors"
                         >
                           <span aria-hidden>⚙</span>
                           {t('relatedProcess')}: {resolveI18n(pe.titel, locale as ProzessLocale)}
@@ -253,7 +253,7 @@ function chipClass(active: boolean): string {
   return [
     'inline-block px-3 py-1 rounded-full text-[13px] no-underline border transition-colors',
     active
-      ? 'bg-[var(--color-accent)] text-white border-[var(--color-accent)]'
+      ? 'bg-[var(--color-accent)] text-[var(--color-on-accent)] border-[var(--color-accent)]'
       : 'bg-[var(--color-panel)] text-[var(--color-ink)] border-[var(--color-line)] hover:bg-[var(--color-bg)]',
   ].join(' ');
 }

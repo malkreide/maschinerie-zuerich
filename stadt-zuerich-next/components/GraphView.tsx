@@ -395,7 +395,7 @@ function Toolbar({
   const btn = (active: boolean) =>
     'px-2.5 py-1.5 text-xs rounded border ' +
     (active
-      ? 'bg-[var(--color-accent)] text-white border-[var(--color-accent)]'
+      ? 'bg-[var(--color-accent)] text-[var(--color-on-accent)] border-[var(--color-accent)]'
       : 'bg-transparent text-[var(--color-ink)] border-[var(--color-line)] hover:bg-[var(--color-bg)]');
   return (
     <div role="toolbar" aria-label="Diagramm-Werkzeuge"

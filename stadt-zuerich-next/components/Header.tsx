@@ -48,14 +48,18 @@ export default function Header({ dataStand }: { dataStand: DataStandInfo }) {
       `mog-theme=${next ? 'dark' : 'light'}; path=/; max-age=${COOKIE_MAX_AGE}; samesite=lax`;
   }
 
+  // Alles auf der Akzent-Fläche nutzt --color-on-accent (app/globals.css)
+  // statt Weiss — Schrift, halbtransparente Flächen und Rahmen. Im hellen
+  // Modus ist das Weiss; im dunklen ist der Akzent selbst hell, dort wäre
+  // Weiss unlesbar (≈ 2.4:1).
   return (
     <header className="fixed inset-x-0 top-0 h-14 z-10 flex items-center px-2 sm:px-4
-                       bg-[var(--color-accent)] text-white overflow-hidden">
+                       bg-[var(--color-accent)] text-[var(--color-on-accent)] overflow-hidden">
       <div className="flex items-center shrink-0 min-w-0">
         <Link
           href="/"
           onClick={() => window.dispatchEvent(new Event('mog:graph:reset'))}
-          className="flex items-center no-underline text-white hover:opacity-85 transition-opacity"
+          className="flex items-center no-underline text-[var(--color-on-accent)] hover:opacity-85 transition-opacity"
         >
           <Brand className="mr-2 sm:mr-2.5 shrink-0" />
           <h1 className="text-sm sm:text-base font-semibold m-0 hidden xs:block sm:block truncate">{t('title')}</h1>
@@ -79,7 +83,7 @@ export default function Header({ dataStand }: { dataStand: DataStandInfo }) {
                     stand: dataStand.stand,
                   })
             }
-            className="ml-2 sm:ml-3 text-[10px] sm:text-[11px] px-2 py-0.5 rounded-full bg-white/15 border border-white/25 text-white whitespace-nowrap shrink-0"
+            className="ml-2 sm:ml-3 text-[10px] sm:text-[11px] px-2 py-0.5 rounded-full bg-[var(--color-on-accent)]/15 border border-[var(--color-on-accent)]/25 text-[var(--color-on-accent)] whitespace-nowrap shrink-0"
           >
             <span className="hidden md:inline">{t('dataStand', { jahr: dataStand.jahr })}</span>
             <span className="md:hidden">{t('dataStandShort', { jahr: dataStand.jahr })}</span>
@@ -95,7 +99,7 @@ export default function Header({ dataStand }: { dataStand: DataStandInfo }) {
                 href={city.parentOrganizationUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-2.5 sm:px-3.5 py-1.5 rounded-md text-xs border border-white/40 bg-white/20 hover:bg-white/30 text-white no-underline whitespace-nowrap flex items-center mr-2 shrink-0"
+                className="px-2.5 sm:px-3.5 py-1.5 rounded-md text-xs border border-[var(--color-on-accent)]/40 bg-[var(--color-on-accent)]/20 hover:bg-[var(--color-on-accent)]/30 text-[var(--color-on-accent)] no-underline whitespace-nowrap flex items-center mr-2 shrink-0"
                 title={`Wechseln zu ${city.parentOrganizationId}`}
               >
                 <span className="mr-1">↑</span> Übergeordnet
@@ -114,10 +118,10 @@ export default function Header({ dataStand }: { dataStand: DataStandInfo }) {
                   aria-current={active ? 'page' : undefined}
                   prefetch
                   className={
-                    'px-2.5 sm:px-3.5 py-1.5 rounded-md text-xs border border-white/20 no-underline whitespace-nowrap ' +
+                    'px-2.5 sm:px-3.5 py-1.5 rounded-md text-xs border border-[var(--color-on-accent)]/20 no-underline whitespace-nowrap ' +
                     (active
-                      ? 'bg-white text-[var(--color-accent)] font-semibold '
-                      : 'bg-white/10 hover:bg-white/20 text-white ') +
+                      ? 'bg-[var(--color-on-accent)] text-[var(--color-accent)] font-semibold '
+                      : 'bg-[var(--color-on-accent)]/10 hover:bg-[var(--color-on-accent)]/20 text-[var(--color-on-accent)] ') +
                     (r.key === 'list' ? 'hidden sm:block' : '')
                   }
                 >
@@ -134,7 +138,7 @@ export default function Header({ dataStand }: { dataStand: DataStandInfo }) {
             // CustomEvent statt globaler Store: Onboarding-Komponente lebt im
             // selben Tree, hört im useEffect mit. Hält den Header schlank.
             onClick={() => window.dispatchEvent(new Event('mog:onboarding:reopen'))}
-            className="ml-1 mr-1 px-2.5 py-1.5 rounded-md text-xs border border-white/20 bg-white/10 hover:bg-white/20 font-semibold shrink-0"
+            className="ml-1 mr-1 px-2.5 py-1.5 rounded-md text-xs border border-[var(--color-on-accent)]/20 bg-[var(--color-on-accent)]/10 hover:bg-[var(--color-on-accent)]/20 font-semibold shrink-0"
           >
             ?
             <span className="sr-only">{t('helpButtonLabel')}</span>
@@ -144,7 +148,7 @@ export default function Header({ dataStand }: { dataStand: DataStandInfo }) {
             aria-pressed={dark ?? false}
             aria-label={dark ? tNav('darkOff') : tNav('darkOn')}
             onClick={toggleTheme}
-            className="px-2.5 py-1.5 rounded-md text-xs border border-white/20 bg-white/10 hover:bg-white/20 shrink-0 whitespace-nowrap"
+            className="px-2.5 py-1.5 rounded-md text-xs border border-[var(--color-on-accent)]/20 bg-[var(--color-on-accent)]/10 hover:bg-[var(--color-on-accent)]/20 shrink-0 whitespace-nowrap"
           >
             {dark === null ? tNav('darkLabelLoading') : dark ? tNav('darkLabelLight') : tNav('darkLabelDark')}
           </button>
