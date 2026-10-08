@@ -58,7 +58,7 @@
         "en": "Charging of started months upon return",
         "fr": "Facturation des mois entamés en cas de restitution",
         "it": "Fatturazione dei mesi iniziati in caso di restituzione",
-        "ls": "Bei Rückgabe bekommen Sie Geld zurück für ganze Monate."
+        "ls": "Was bei der Rückgabe der Park-Karte mit dem Geld passiert"
       },
       "source_url": "https://www.stadt-zuerich.ch/de/mobilitaet/parkieren/parkbewilligungen/anwohnerparkkarte.html",
       "source_quote": "Angebrochene Monate werden voll in Rechnung gestellt. Bei Rückgabe der Parkkarte wird die Gebühr für alle nicht angebrochenen Monate zurückerstattet.",
@@ -458,7 +458,7 @@
         "en": "Permit active",
         "fr": "Carte de stationnement active",
         "it": "Carta di posteggio attiva",
-        "ls": "Ihre Park-Karte funktioniert jetzt."
+        "ls": "Fertig: Die Park-Karte gilt"
       },
       "depends_on": [
         14

@@ -200,7 +200,7 @@
         {
           "label": {
             "de": "Beitragsfaktorbestätigung",
-            "ls": "Die Beitragsfaktorbestätigung."
+            "ls": "Bestätigung vom Beitrags-Faktor"
           },
           "required": true
         }
@@ -328,14 +328,14 @@
         {
           "label": {
             "de": "Beitragsfaktorbestätigung",
-            "ls": "Die Beitragsfaktorbestätigung."
+            "ls": "Bestätigung vom Beitrags-Faktor"
           },
           "required": true
         },
         {
           "label": {
             "de": "Bestätigung über den subventionsberechtigten Betreuungsumfang (SBU)",
-            "ls": "Die SBU-Bestätigung."
+            "ls": "Bestätigung: Für so viel Betreuung zahlt die Stadt mit (SBU)"
           },
           "required": true
         }
