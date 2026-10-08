@@ -348,7 +348,7 @@
         "en": "Submit the theory course exam confirmation to the municipality of residence",
         "fr": "Remettre l'attestation d'examen du cours théorique à la commune de domicile",
         "it": "Presentare l'attestato d'esame del corso teorico al comune di domicilio",
-        "ls": "Geben Sie die Bestätigung bei der Gemeinde ab."
+        "ls": "Die Bestätigung vom Theorie-Kurs bei der Gemeinde abgeben"
       },
       "depends_on": [
         1
@@ -362,7 +362,7 @@
         "en": "Complete the practical training course, if required",
         "fr": "Suivre le cours d'éducation pratique, si obligatoire",
         "it": "Frequentare il corso di educazione pratica, se obbligatorio",
-        "ls": "Sie müssen einen Praxiskurs mit dem Hund machen."
+        "ls": "Den Praxiskurs mit dem Hund machen (wenn Sie müssen)"
       },
       "depends_on": [
         {
@@ -384,7 +384,7 @@
         "en": "Record successful completion of the practical course in AMICUS and hand over the learning assessment",
         "fr": "Inscrire la réussite du cours pratique dans AMICUS et remettre le contrôle des acquis",
         "it": "Registrare il superamento del corso pratico in AMICUS e consegnare il controllo dell'apprendimento",
-        "ls": "Die Ausbildnerin trägt den Praxiskurs bei AMICUS ein. Sie bekommen eine Bestätigung."
+        "ls": "Die Ausbildnerin oder der Ausbildner trägt den Praxiskurs bei AMICUS ein. Sie bekommen eine Bestätigung."
       },
       "depends_on": [
         10
