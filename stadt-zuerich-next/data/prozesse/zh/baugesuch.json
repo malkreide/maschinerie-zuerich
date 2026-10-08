@@ -16,7 +16,7 @@
     "en": "Building-permit workflow in the City of Zurich under the cantonal Planning and Building Act, including public notice, objections, decision and appeal.",
     "fr": "Déroulement d'un permis de construire pour les projets soumis à autorisation dans la ville de Zurich selon la loi sur l'aménagement du territoire et les constructions (PBG). Comprend l'examen préalable, la mise à l'enquête publique, les oppositions, la décision et la procédure de recours.",
     "it": "Iter di una licenza edilizia per progetti soggetti ad autorizzazione nella città di Zurigo secondo la legge sulla pianificazione e le costruzioni (PBG). Comprende l'esame preliminare, la pubblicazione, le opposizioni, la decisione e la procedura di ricorso.",
-    "ls": "So bekommst du die Erlaubnis, ein Haus zu bauen oder umzubauen. Du schickst einen Antrag an das Amt. Das Amt prüft. Nachbarn dürfen Einwände machen. Am Schluss sagt das Amt: Ja oder Nein."
+    "ls": "So bekommen Sie die Erlaubnis, ein Haus zu bauen oder umzubauen. Sie schicken einen Antrag an das Amt. Das Amt prüft. Nachbarn dürfen Einwände machen. Am Schluss sagt das Amt: Ja oder Nein."
   },
   "target_audience": "bevoelkerung",
   "source_url": "https://www.stadt-zuerich.ch/de/planen-und-bauen/baubewilligungen/bewilligungsprozess/baugesuch-einreichen.html",
@@ -46,7 +46,7 @@
         "en": "Applicant",
         "fr": "Maître d'ouvrage",
         "it": "Committente",
-        "ls": "Du (die Person, die bauen will)"
+        "ls": "Sie (Sie wollen bauen)"
       },
       "type": "antragsteller"
     },
@@ -117,7 +117,7 @@
         "en": "Building project planned",
         "fr": "Projet de construction planifié",
         "it": "Progetto di costruzione pianificato",
-        "ls": "Du willst etwas bauen"
+        "ls": "Sie wollen etwas bauen"
       },
       "depends_on": [],
       "type": "start"
@@ -130,7 +130,7 @@
         "en": "Prepare building application",
         "fr": "Établir la demande de permis de construire",
         "it": "Allestire la domanda di licenza edilizia",
-        "ls": "Du sammelst alle Papiere"
+        "ls": "Sie sammeln alle Papiere"
       },
       "depends_on": [
         1
@@ -141,7 +141,7 @@
         "en": "Plans, project description, evidence of energy/acoustics/statics and application forms.",
         "fr": "Réunir les plans, la description du projet, les justificatifs (énergie, acoustique, statique) et les formulaires selon le guide.",
         "it": "Raccogliere piani, descrizione del progetto, attestati (energia, acustica, statica) e moduli secondo la guida.",
-        "ls": "Du sammelst: Pläne, eine Beschreibung von deinem Bau-Projekt und alle Formulare. Eine Anleitung vom Amt sagt dir: Diese Papiere brauchst du."
+        "ls": "Sie sammeln: Pläne, eine Beschreibung von Ihrem Bau-Projekt und alle Formulare. Eine Anleitung vom Amt sagt Ihnen: Diese Papiere brauchen Sie."
       },
       "documents": [
         {
@@ -206,7 +206,7 @@
         "en": "Submit application (eBaugesuche)",
         "fr": "Déposer la demande de permis de construire (eBaugesuche)",
         "it": "Inoltrare la domanda di licenza edilizia (eBaugesuche)",
-        "ls": "Du reichst die Papiere online ein"
+        "ls": "Sie reichen die Papiere online ein"
       },
       "depends_on": [
         2
@@ -443,7 +443,7 @@
         "en": "File appeal?",
         "fr": "Former un recours ?",
         "it": "Presentare ricorso?",
-        "ls": "Willst du dagegen klagen?"
+        "ls": "Wollen Sie dagegen klagen?"
       },
       "depends_on": [
         14
@@ -482,7 +482,7 @@
         "en": "Construction may begin (after legal force)",
         "fr": "Construction possible (après entrée en force)",
         "it": "Costruzione possibile (dopo il passaggio in giudicato)",
-        "ls": "Du darfst bauen"
+        "ls": "Sie dürfen bauen"
       },
       "depends_on": [
         13
@@ -497,7 +497,7 @@
         "en": "Application denied (final)",
         "fr": "Procédure close avec entrée en force (sans autorisation)",
         "it": "Procedura conclusa con passaggio in giudicato (senza licenza)",
-        "ls": "Du darfst nicht bauen"
+        "ls": "Sie dürfen nicht bauen"
       },
       "depends_on": [
         {
