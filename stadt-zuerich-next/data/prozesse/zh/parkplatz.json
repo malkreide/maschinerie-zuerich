@@ -9,14 +9,14 @@
     "en": "Resident parking permit (blue zone)",
     "fr": "Carte de stationnement pour riverains (zone bleue)",
     "it": "Carta di parcheggio per residenti (zona blu)",
-    "ls": "Park-Karte für deine Strasse (blaue Zone)"
+    "ls": "Park-Karte für Ihre Strasse (blaue Zone)"
   },
   "description": {
     "de": "Ablauf für den Bezug einer Anwohnerparkkarte in der Stadt Zürich. Berechtigt zum Dauerparkieren in der eigenen blauen Zone. Seit 2023 rein digital: das Kontrollschild wird im System hinterlegt, es gibt keine physische Karte mehr.",
     "en": "Process for obtaining a resident parking permit in the City of Zurich. Grants permanent parking rights within one's own blue zone. Fully digital since 2023 — the licence plate is registered in the control system, no physical badge.",
     "fr": "Procédure pour l'obtention d'une carte de stationnement pour riverains dans la ville de Zurich. Elle donne droit au stationnement permanent dans sa propre zone bleue. Entièrement numérique depuis 2023 : la plaque de contrôle est enregistrée dans le système, il n'y a plus de carte physique.",
     "it": "Procedura per ottenere una carta di posteggio per residenti nella città di Zurigo. Dà diritto al posteggio permanente nella propria zona blu. Completamente digitale dal 2023: la targa di controllo viene registrata nel sistema, non esiste più alcuna carta fisica.",
-    "ls": "Du wohnst in einer blauen Zone. Du hast ein Auto. Dann kannst du eine Park-Karte kaufen. Damit darfst du in deiner Strasse parkieren, so lange du willst. Die Karte ist digital. Die Polizei liest dein Kennzeichen."
+    "ls": "Sie wohnen in einer blauen Zone. Sie haben ein Auto. Dann können Sie eine Park-Karte kaufen. Damit dürfen Sie in Ihrer Strasse parkieren, so lange Sie wollen. Die Karte ist digital. Die Polizei liest Ihr Kennzeichen."
   },
   "target_audience": "bevoelkerung",
   "source_url": "https://www.stadt-zuerich.ch/de/mobilitaet/parkieren/parkbewilligungen.html",
@@ -74,7 +74,7 @@
         "en": "Vehicle holder (resident)",
         "fr": "Détenteur du véhicule (riverain)",
         "it": "Detentore del veicolo (residente)",
-        "ls": "Du (du wohnst hier und hast ein Auto)"
+        "ls": "Sie (Sie wohnen hier und haben ein Auto)"
       },
       "type": "antragsteller"
     },
@@ -123,7 +123,7 @@
         "en": "Residence in blue zone + vehicle",
         "fr": "Domicile en zone bleue + véhicule",
         "it": "Domicilio in zona blu + veicolo",
-        "ls": "Du wohnst in einer blauen Zone und hast ein Auto"
+        "ls": "Sie wohnen in einer blauen Zone und haben ein Auto"
       },
       "depends_on": [],
       "type": "start",
@@ -139,7 +139,7 @@
         "en": "Self-check eligibility",
         "fr": "Vérifier soi-même les conditions",
         "it": "Verificare personalmente i requisiti",
-        "ls": "Du schaust: Passt das für dich?"
+        "ls": "Sie schauen: Passt das für Sie?"
       },
       "depends_on": [
         1
@@ -150,7 +150,7 @@
         "en": "Main residence in the blue zone, vehicle holder or permanent user, vehicle registered with licence plate.",
         "fr": "Domicile principal dans la zone bleue (attestation de domicile) ; détenteur ou utilisateur permanent du véhicule ; le véhicule doit être immatriculé.",
         "it": "Domicilio principale nella zona blu (attestazione di domicilio); detentore o utilizzatore permanente del veicolo; il veicolo deve essere immatricolato.",
-        "ls": "Du brauchst: Deine Wohn-Adresse in der blauen Zone. Du bist Besitzer vom Auto. Das Auto hat ein Kontrollschild."
+        "ls": "Sie brauchen: Ihre Wohn-Adresse in der blauen Zone. Das Auto gehört Ihnen. Das Auto hat ein Kontrollschild."
       },
       "source_id": "q-stz-parkkarten"
     },
@@ -162,7 +162,7 @@
         "en": "Submit application online",
         "fr": "Déposer la demande en ligne",
         "it": "Presentare la domanda online",
-        "ls": "Du füllst das Formular im Internet aus"
+        "ls": "Sie füllen das Formular im Internet aus"
       },
       "depends_on": [
         2
@@ -173,7 +173,7 @@
         "en": "Via the DAV online portal. Paper submission still possible but slower.",
         "fr": "Via le portail en ligne du Service de la circulation. Le dépôt sur papier reste possible, mais prend plus de temps.",
         "it": "Tramite il portale online del Servizio della circolazione. La presentazione cartacea resta possibile, ma richiede più tempo.",
-        "ls": "Das geht im Internet beim Verkehrs-Amt. Du kannst den Antrag auch auf Papier schicken. Das dauert aber länger."
+        "ls": "Das geht im Internet beim Verkehrs-Amt. Sie können den Antrag auch auf Papier schicken. Das dauert aber länger."
       },
       "documents": [
         {
@@ -202,7 +202,7 @@
             "en": "For company cars: permanent-use confirmation",
             "fr": "Pour un véhicule d'entreprise : confirmation du droit d'utilisation permanente",
             "it": "Per veicolo aziendale: conferma del diritto di utilizzo permanente",
-            "ls": "Bei einem Firmen-Auto: Bestätigung, dass du das Auto dauernd benutzen darfst"
+            "ls": "Bei einem Firmen-Auto: Bestätigung, dass Sie das Auto dauernd benutzen dürfen"
           },
           "required": false
         }
@@ -231,7 +231,7 @@
         "en": "The DAV cross-checks the data against the population register and the vehicle register. Fully automated in clear cases.",
         "fr": "Le DAV vérifie les indications avec le registre des habitants et le registre des véhicules. Entièrement automatisé dans les cas clairs.",
         "it": "Il DAV confronta le indicazioni con il registro degli abitanti e il registro dei veicoli. Completamente automatizzato nei casi chiari.",
-        "ls": "Das Amt vergleicht deine Angaben mit dem Einwohner-Register und dem Fahrzeug-Register. Ist alles klar? Dann macht das der Computer allein."
+        "ls": "Das Amt vergleicht Ihre Angaben mit dem Einwohner-Register und dem Fahrzeug-Register. Ist alles klar? Dann macht das der Computer allein."
       }
     },
     {
@@ -288,7 +288,7 @@
         "en": "Entitled?",
         "fr": "Ayant droit ?",
         "it": "Avente diritto?",
-        "ls": "Darfst du die Karte bekommen?"
+        "ls": "Dürfen Sie die Karte bekommen?"
       },
       "depends_on": [
         {
@@ -312,7 +312,7 @@
         "en": "Issue invoice",
         "fr": "Envoyer la facture",
         "it": "Inviare la fattura",
-        "ls": "Du bekommst eine Rechnung"
+        "ls": "Sie bekommen eine Rechnung"
       },
       "depends_on": [
         {
@@ -336,7 +336,7 @@
         "en": "Pay invoice",
         "fr": "Payer la facture",
         "it": "Pagare la fattura",
-        "ls": "Du zahlst die Rechnung"
+        "ls": "Sie zahlen die Rechnung"
       },
       "depends_on": [
         8
@@ -354,7 +354,7 @@
         "en": "Activate licence plate in permit system",
         "fr": "Activer la plaque de contrôle dans le système des cartes de stationnement",
         "it": "Attivare la targa di controllo nel sistema delle carte di posteggio",
-        "ls": "Dein Kontrollschild kommt in den Computer"
+        "ls": "Ihr Kontrollschild kommt in den Computer"
       },
       "depends_on": [
         9
@@ -365,7 +365,7 @@
         "en": "Once activated, the vehicle is permanently authorised in the registered zone; enforcement is done via plate matching.",
         "fr": "Dès l'activation, le véhicule est autorisé à stationner en permanence dans la zone enregistrée. Les contrôles s'effectuent par comparaison de la plaque de contrôle avec le système.",
         "it": "Dall'attivazione, il veicolo è autorizzato al posteggio permanente nella zona registrata. I controlli avvengono mediante confronto della targa con il sistema.",
-        "ls": "Ab jetzt darfst du in deiner Zone so lange parkieren, wie du willst. Bei einer Kontrolle wird dein Kontrollschild mit dem Computer verglichen."
+        "ls": "Ab jetzt dürfen Sie in Ihrer Zone so lange parkieren, wie Sie wollen. Bei einer Kontrolle wird Ihr Kontrollschild mit dem Computer verglichen."
       }
     },
     {
@@ -397,7 +397,7 @@
         "en": "File appeal?",
         "fr": "Déposer un recours ?",
         "it": "Presentare ricorso?",
-        "ls": "Willst du dich beschweren?"
+        "ls": "Wollen Sie sich beschweren?"
       },
       "depends_on": [
         11
@@ -436,7 +436,7 @@
         "en": "Ongoing police enforcement",
         "fr": "Contrôle continu par la police municipale",
         "it": "Controllo continuo da parte della polizia comunale",
-        "ls": "Die Polizei schaut immer wieder, ob dein Auto eingetragen ist"
+        "ls": "Die Polizei schaut immer wieder, ob Ihr Auto eingetragen ist"
       },
       "depends_on": [
         10
@@ -447,7 +447,7 @@
         "en": "Via licence-plate scanners. No separate action by the holder needed — the parking authorisation simply applies.",
         "fr": "Au moyen de scanners de plaques de contrôle. Aucune démarche distincte du détenteur n'est nécessaire — l'autorisation de stationner s'applique simplement.",
         "it": "Tramite scanner delle targhe di controllo. Non è necessaria alcuna azione separata da parte del detentore — l'autorizzazione al posteggio è semplicemente valida.",
-        "ls": "Die Polizei liest dein Kontrollschild mit einem Gerät. Du musst nichts tun. Deine Park-Karte gilt einfach."
+        "ls": "Die Polizei liest Ihr Kontrollschild mit einem Gerät. Sie müssen nichts tun. Ihre Park-Karte gilt einfach."
       }
     },
     {
@@ -476,7 +476,7 @@
         "en": "Application rejected (final)",
         "fr": "Demande rejetée de manière définitive",
         "it": "Domanda respinta in via definitiva",
-        "ls": "Du bekommst keine Park-Karte"
+        "ls": "Sie bekommen keine Park-Karte"
       },
       "depends_on": [
         {
