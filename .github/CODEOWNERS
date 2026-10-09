@@ -24,6 +24,8 @@
 /stadt-zuerich-next/scripts/check-links.mjs @malkreide
 /stadt-zuerich-next/scripts/check-refs-gate.mjs @malkreide
 /stadt-zuerich-next/scripts/lib/ @malkreide
+# Geprüfte Ausnahmen des Regression-Guards (jede Freigabe einzeln reviewt)
+/stadt-zuerich-next/config/regression-ausnahmen.json @malkreide
 
 # Verbindliche Session-Regeln für Agents
 /CLAUDE.md @malkreide

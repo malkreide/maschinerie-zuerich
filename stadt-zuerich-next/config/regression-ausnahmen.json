@@ -1,0 +1,20 @@
+{
+  "$comment": "Geprüfte Ausnahmen für npm run check:regression. Jeder Eintrag erlaubt für genau eine Prozessdatei den exakten Rückgang der Abdeckung je Locale (von → auf). Feld-Verluste und Beleg-Erosion deckt er nie ab. Nach dem Merge greift der Eintrag nicht mehr und kann entfernt werden. Änderungen an dieser Datei brauchen ein CODEOWNERS-Review. Logik: scripts/lib/regression-ausnahmen.mjs",
+  "ausnahmen": [
+    {
+      "datei": "data/prozesse/zh/veranstaltung.json",
+      "abdeckung": {
+        "de": {
+          "von": 49,
+          "auf": 48
+        },
+        "ls": {
+          "von": 49,
+          "auf": 48
+        }
+      },
+      "begruendung": "Schritt 3 «Gesuch online einreichen»: «Situationsplan / Aufbauplan» und der inhaltsgleiche tessera-Eintrag «Plan mit aller Infrastruktur (Bühnen, Bänke, Tische, Zelte)» zu einem Dokument zusammengeführt; die Aufzählung steckt im zusammengeführten Label, nichts geht inhaltlich verloren.",
+      "pr": 284
+    }
+  ]
+}

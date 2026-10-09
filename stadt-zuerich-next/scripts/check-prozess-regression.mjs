@@ -27,8 +27,13 @@
 // origin/main. Lässt sich die Basis nicht auflösen (z. B. fehlende Historie),
 // wird mit Warnung übersprungen statt fälschlich blockiert.
 //
-// Bewusste Reduktion gewünscht? `ALLOW_PROZESS_SHRINK=1` setzt den Check auf
-// reine Warnung herab (Escape-Hatch für seltene, beabsichtigte Streichungen).
+// Bewusste Reduktion gewünscht? Zwei Wege:
+//   • Geprüfte Ausnahme im Repo: config/regression-ausnahmen.json nennt Datei,
+//     Locale und exakten Übergang «von → auf» samt Begründung; der Eintrag
+//     läuft durch CODEOWNERS-Review. Deckt nur Abdeckungs-Verluste ab, nie
+//     Feld-Verluste oder Beleg-Erosion (Details: scripts/lib/regression-ausnahmen.mjs).
+//   • `ALLOW_PROZESS_SHRINK=1` setzt den Check lokal auf reine Warnung herab
+//     (in der CI bewusst nicht gesetzt).
 //
 // Exit-Code: 0 = keine Regression. 1 = Regression gefunden.
 
@@ -36,11 +41,13 @@ import { readFile, readdir, stat } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { passendeAusnahme, validiereAusnahmen } from './lib/regression-ausnahmen.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(here, '..');
 const repoRoot = path.resolve(projectRoot, '..');
 const PROZESSE_ROOT = path.join(projectRoot, 'data', 'prozesse');
+const AUSNAHMEN_FILE = path.join(projectRoot, 'config', 'regression-ausnahmen.json');
 
 const LOCALES = ['de', 'en', 'fr', 'it', 'ls'];
 const ALLOW_SHRINK = process.env.ALLOW_PROZESS_SHRINK === '1';
@@ -259,6 +266,24 @@ async function main() {
     return;
   }
 
+  let ausnahmen = [];
+  try {
+    const doc = JSON.parse(await readFile(AUSNAHMEN_FILE, 'utf-8'));
+    const fehler = validiereAusnahmen(doc);
+    if (fehler.length) {
+      console.error(col.red(`✗ ${path.relative(projectRoot, AUSNAHMEN_FILE)} ungültig:`));
+      for (const f of fehler) console.error(col.red(`  - ${f}`));
+      process.exit(1);
+    }
+    ausnahmen = doc.ausnahmen;
+  } catch (err) {
+    if (err.code !== 'ENOENT') {
+      console.error(col.red(`✗ ${path.relative(projectRoot, AUSNAHMEN_FILE)} nicht lesbar: ${err.message}`));
+      process.exit(1);
+    }
+  }
+  const genutzt = new Set();
+
   const files = await listProzessFiles();
   let regressionFiles = 0;
 
@@ -305,14 +330,25 @@ async function main() {
       continue;
     }
 
-    const { fieldLosses, covLosses, baseCov, headCov, quoteLosses, quoteCountLoss } =
-      compare(baseData, headData);
+    const befund = compare(baseData, headData);
+    const { fieldLosses, covLosses, baseCov, headCov, quoteLosses, quoteCountLoss } = befund;
 
     if (
       fieldLosses.length === 0 && covLosses.length === 0 &&
       quoteLosses.length === 0 && quoteCountLoss === null
     ) {
       console.log(col.green(`✓ ${rel}`));
+      continue;
+    }
+
+    const ausnahme = passendeAusnahme(rel.split(path.sep).join('/'), befund, ausnahmen);
+    if (ausnahme) {
+      genutzt.add(ausnahme);
+      const pr = ausnahme.pr ? ` (PR #${ausnahme.pr})` : '';
+      console.log(col.yellow(`⚠ ${rel}: geprüfte Ausnahme${pr} — ${ausnahme.begruendung}`));
+      for (const { loc, base, head } of covLosses) {
+        console.log(col.dim(`    Abdeckung ${loc}: ${base} → ${head} (freigegeben)`));
+      }
       continue;
     }
 
@@ -351,6 +387,13 @@ async function main() {
         `    Abdeckung gesamt: ${LOCALES.map((l) => `${l} ${baseCov[l]}→${headCov[l]}`).join(', ')}`,
       ),
     );
+  }
+
+  const veraltet = ausnahmen.filter((a) => !genutzt.has(a));
+  if (veraltet.length) {
+    console.log('');
+    console.log(col.dim(`${veraltet.length} Ausnahme(n) greifen gegen ${baseRef} nicht (mehr) — nach dem Merge entfernbar:`));
+    for (const a of veraltet) console.log(col.dim(`  · ${a.datei}${a.pr ? ` (PR #${a.pr})` : ''}`));
   }
 
   console.log('');

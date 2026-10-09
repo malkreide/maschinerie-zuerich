@@ -263,8 +263,14 @@ Locale-Gesamtabdeckung gegen die Basis-Version (`origin/<base>`):
   Zitat (auch via Downgrade auf `unverifiziert` + Leeren) oder sinkt die
   Gesamtzahl belegter Zitate einer Datei, schlägt CI fehl.
 - Neue Dateien (keine Basis) werden übersprungen.
-- Ist eine Reduktion **wirklich** beabsichtigt: `ALLOW_PROZESS_SHRINK=1` schaltet
-  den Guard auf Warnung herab.
+- Ist eine Reduktion **wirklich** beabsichtigt (z.B. zwei doppelte Einträge
+  werden zusammengeführt): Eintrag in `stadt-zuerich-next/config/regression-ausnahmen.json`
+  mit Datei, Locale, exaktem Übergang `{ von, auf }`, Begründung und PR-Nummer.
+  Der Eintrag läuft durch CODEOWNERS-Review, gibt nur genau diesen
+  Abdeckungs-Rückgang frei (nie Feld-Verluste, nie `source_quote`-Erosion) und
+  greift nach dem Merge nicht mehr (neue Basis). Lokal schaltet
+  `ALLOW_PROZESS_SHRINK=1` den Guard zusätzlich auf Warnung herab; in der CI ist
+  das bewusst nicht gesetzt.
 
 > Der eigentliche Fix gehört in den Extraktor (tessera `pr.py`: bei bestehender
 > Handdatei feldweise mergen statt per PUT überschreiben). Dieser Guard ist das

@@ -55,6 +55,10 @@ Maschinerie.
   feldweise + Locale-Gesamtabdeckung gegen `origin/<base>`).
 - Escape-Hatch `ALLOW_PROZESS_SHRINK=1` existiert nur für bewusste, begründete
   Ausnahmen – **nicht** benutzen, um den Guard zu umgehen.
+- Bewusste Reduktion (z.B. Duplikate zusammenführen) läuft über einen Eintrag in
+  `stadt-zuerich-next/config/regression-ausnahmen.json` (Datei, Locale, exakter
+  Übergang «von → auf», Begründung, PR) – CODEOWNERS-Review, deckt nie
+  Feld-Verluste oder Beleg-Erosion ab. Keine Fülltexte, um die Zählung zu retten.
 - `npm run validate:prozesse`: Schema-/Vertrags-Validierung jeder Prozess-Datei.
 
 ## Eingehende tessera-PRs
