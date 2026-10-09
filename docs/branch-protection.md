@@ -64,7 +64,9 @@ wo Required-Checks greifen. Auf `main`-Pushes fehlen sie erwartungsgemäss.
   für alle kritischen Pfade auch technisch.
 - **Escape-Hatch `ALLOW_PROZESS_SHRINK=1`** ist in der CI nicht gesetzt und
   kann dank CODEOWNERS-Pflicht auf `.github/` nicht unbemerkt per PR in
-  den Workflow injiziert werden.
+  den Workflow injiziert werden. Bewusste Reduktionen laufen stattdessen
+  über `stadt-zuerich-next/config/regression-ausnahmen.json` — eng gefasst
+  (exakter Abdeckungs-Übergang je Datei/Locale) und ebenfalls CODEOWNERS-pflichtig.
 - Das **Referenzen-Gate** (`scripts/check-refs-gate.mjs`) prüft bei jedem
   PR die im Diff neu hinzugekommenen oder geänderten References live:
   tote Deep-Links (404/410/5xx) und `source_quote`s, die nicht wörtlich

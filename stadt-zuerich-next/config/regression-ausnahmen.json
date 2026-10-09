@@ -1,0 +1,4 @@
+{
+  "$comment": "Geprüfte Ausnahmen für npm run check:regression. Jeder Eintrag erlaubt für genau eine Prozessdatei den exakten Rückgang der Abdeckung je Locale (von → auf). Feld-Verluste und Beleg-Erosion deckt er nie ab. Nach dem Merge greift der Eintrag nicht mehr und kann entfernt werden. Änderungen an dieser Datei brauchen ein CODEOWNERS-Review. Logik: scripts/lib/regression-ausnahmen.mjs",
+  "ausnahmen": []
+}
