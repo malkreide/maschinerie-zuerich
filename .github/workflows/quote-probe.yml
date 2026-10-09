@@ -22,8 +22,9 @@ jobs:
           cat > /tmp/probe.mjs <<'JS'
           import { htmlToText, normWs } from './scripts/lib/html-text.mjs';
           const base = 'https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/';
-          const urls = ['faq.html', 'kitaplatz-finden.html', 'betreuungskosten-und-subventionen.html'].map((u) => base + u);
-          const re = /(Beitragsfaktor|SBU|Betreuungsumfang|Bestätigung|Warteliste|Kita-Leitung|Kitaleitung|abgeben|einreichen|vor dem Eintritt|vor Betreuungsbeginn)/i;
+          const urls = ['faq.html', 'kitaplatz-finden.html', 'betreuungskosten-und-subventionen.html'].map((u) => base + u)
+            .concat(['https://www.stadt-zuerich.ch/de/stadtleben/wirtschaft-und-gewerbe/fuer-kitas/subventionen.html']);
+          const re = /(Vertrag|Betreuungsvertrag|Anmeldung|anmelden|bevor|zuerst|vorher|beantragen|Antrag|Gutschein|rückwirkend|Platz|Reihenfolge|Eintritt|Beginn|Kontrakt|Maximaltarif|Vollkosten)/i;
           for (const url of urls) {
             const res = await fetch(url, { headers: { 'user-agent': 'Mozilla/5.0 maschinerie-zuerich-quote-probe/1.0', 'accept-language': 'de-CH,de;q=0.9' } });
             const text = normWs(htmlToText(await res.text()));
