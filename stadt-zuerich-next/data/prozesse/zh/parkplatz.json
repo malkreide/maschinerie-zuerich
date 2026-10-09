@@ -126,10 +126,7 @@
         "ls": "Sie wohnen in einer blauen Zone und haben ein Auto"
       },
       "depends_on": [],
-      "type": "start",
-      "reference_ids": [
-        1
-      ]
+      "type": "start"
     },
     {
       "step_id": 2,
@@ -207,10 +204,7 @@
           "required": false
         }
       ],
-      "source_id": "q-stz-online",
-      "reference_ids": [
-        2
-      ]
+      "source_id": "q-stz-online"
     },
     {
       "step_id": 4,
@@ -247,11 +241,7 @@
       "depends_on": [
         4
       ],
-      "type": "entscheidung",
-      "reference_ids": [
-        1,
-        2
-      ]
+      "type": "entscheidung"
     },
     {
       "step_id": 6,

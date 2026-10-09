@@ -222,8 +222,7 @@
       },
       "source_id": "q-stz-fundbuero",
       "reference_ids": [
-        2,
-        3
+        7
       ]
     },
     {
@@ -254,7 +253,10 @@
       "depends_on": [
         4
       ],
-      "type": "ende"
+      "type": "ende",
+      "reference_ids": [
+        8
+      ]
     },
     {
       "step_id": 6,
@@ -288,7 +290,8 @@
       },
       "source_id": "q-stz-fundbuero",
       "reference_ids": [
-        1
+        2,
+        3
       ]
     },
     {
@@ -304,10 +307,7 @@
       "depends_on": [
         6
       ],
-      "type": "prozess",
-      "reference_ids": [
-        1
-      ]
+      "type": "prozess"
     },
     {
       "step_id": 8,
@@ -370,10 +370,7 @@
       "depends_on": [
         9
       ],
-      "type": "ende",
-      "reference_ids": [
-        7
-      ]
+      "type": "ende"
     },
     {
       "step_id": 11,
