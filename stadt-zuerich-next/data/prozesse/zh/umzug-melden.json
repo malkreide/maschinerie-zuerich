@@ -240,7 +240,8 @@
         }
       ],
       "reference_ids": [
-        2
+        2,
+        4
       ],
       "type": "input",
       "description": {
@@ -265,10 +266,7 @@
       "depends_on": [
         2
       ],
-      "type": "entscheidung",
-      "reference_ids": [
-        3
-      ]
+      "type": "entscheidung"
     },
     {
       "step_id": 4,
@@ -334,7 +332,8 @@
       ],
       "source_id": "q-eumzug",
       "reference_ids": [
-        3
+        3,
+        5
       ]
     },
     {
@@ -401,8 +400,7 @@
       ],
       "source_id": "q-stz-umzug",
       "reference_ids": [
-        4,
-        5
+        3
       ]
     },
     {
@@ -522,7 +520,10 @@
         "fr": "En cas d'arrivée depuis une autre commune ou un autre pays, le titre de séjour pour étrangers est mis à jour avec la nouvelle adresse.",
         "it": "In caso di arrivo da un altro Comune o Paese, il permesso per stranieri viene aggiornato con il nuovo indirizzo.",
         "ls": "Sie ziehen aus einer anderen Gemeinde oder aus einem anderen Land zu? Dann kommt die neue Adresse auf Ihren Ausländer-Ausweis."
-      }
+      },
+      "reference_ids": [
+        1
+      ]
     },
     {
       "step_id": 11,
@@ -545,9 +546,6 @@
           }
         },
         10
-      ],
-      "reference_ids": [
-        1
       ],
       "type": "prozess",
       "description": {
