@@ -50,6 +50,34 @@
       "source_quote": "Bei subventionierten Kindern werden bei freiwilliger Abwesenheit maximal 7 Wochen weiter subventioniert.",
       "status": "verifiziert",
       "retrieved_at": "2026-07-01"
+    },
+    {
+      "reference_id": 3,
+      "label": {
+        "de": "Subventionsunterlagen bei der Kitaleitung abgeben",
+        "en": "Hand in the subsidy documents to the daycare management",
+        "fr": "Remettre les justificatifs de subvention à la direction de la crèche",
+        "it": "Consegnare i documenti per la sovvenzione alla direzione dell'asilo nido",
+        "ls": "Die Bestätigungen der Kita geben"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/faq.html",
+      "source_quote": "Geben Sie Ihrer Kitaleitung bei der Anmeldung Ihre Subventionsunterlagen ab: Die Beitragsfaktorbestätigung und die Bestätigung über den subventionsberechtigten Betreuungsumfang (SBU)",
+      "status": "verifiziert",
+      "retrieved_at": "2026-10-09"
+    },
+    {
+      "reference_id": 4,
+      "label": {
+        "de": "Auszahlung nur mit beiden gültigen Bestätigungen",
+        "en": "Payment only with both valid confirmations",
+        "fr": "Versement uniquement avec les deux confirmations valables",
+        "it": "Versamento solo con entrambe le conferme valide",
+        "ls": "Wann die Stadt das Geld zahlt"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/faq.html",
+      "source_quote": "Subventionen können nur ausbezahlt werden, wenn Sie sowohl eine gültige Beitragsfaktorbestätigung als auch eine gültige Bestätigung über den subventionsberechtigten Betreuungsumfang (SBU) haben.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-10-09"
     }
   ],
   "actors": [
@@ -195,15 +223,6 @@
       },
       "loops_back_to": [
         2
-      ],
-      "documents": [
-        {
-          "label": {
-            "de": "Beitragsfaktorbestätigung",
-            "ls": "Bestätigung vom Beitrags-Faktor"
-          },
-          "required": true
-        }
       ]
     },
     {
@@ -323,23 +342,7 @@
       "depends_on": [
         7
       ],
-      "type": "entscheidung",
-      "documents": [
-        {
-          "label": {
-            "de": "Beitragsfaktorbestätigung",
-            "ls": "Bestätigung vom Beitrags-Faktor"
-          },
-          "required": true
-        },
-        {
-          "label": {
-            "de": "Bestätigung über den subventionsberechtigten Betreuungsumfang (SBU)",
-            "ls": "Bestätigung: Für so viel Betreuung zahlt die Stadt mit (SBU)"
-          },
-          "required": true
-        }
-      ]
+      "type": "entscheidung"
     },
     {
       "step_id": 9,
@@ -396,6 +399,49 @@
       "source_id": "q-stz-betreuungskosten"
     },
     {
+      "step_id": 17,
+      "actor": "eltern",
+      "label": {
+        "de": "Beide Bestätigungen der Kita abgeben",
+        "en": "Hand both confirmations to the daycare centre",
+        "fr": "Remettre les deux confirmations à la crèche",
+        "it": "Consegnare entrambe le conferme all'asilo nido",
+        "ls": "Sie geben beide Bestätigungen der Kita"
+      },
+      "depends_on": [
+        10
+      ],
+      "type": "input",
+      "description": {
+        "de": "Die Beitragsfaktorbestätigung stellt das Schul- und Sportdepartement aus, die Bestätigung über den subventionsberechtigten Betreuungsumfang (SBU) das Sozialdepartement. Die Kita wird nicht automatisch informiert, dass Anspruch auf Subventionen besteht – die Stadt bittet, die Unterlagen der Kitaleitung bei der Anmeldung abzugeben.",
+        "en": "The contribution-factor confirmation is issued by the School and Sports Department, the confirmation of the subsidised care volume (SBU) by the Social Welfare Department. The daycare centre is not informed automatically that you are entitled to subsidies – the city asks you to hand the documents to the daycare management when you register.",
+        "fr": "La confirmation du facteur de contribution est délivrée par le Département des écoles et du sport, la confirmation de l'ampleur de garde subventionnée (SBU) par le Département des affaires sociales. La crèche n'est pas informée automatiquement de votre droit aux subventions – la ville vous demande de remettre les documents à la direction de la crèche lors de l'inscription.",
+        "it": "La conferma del fattore di contribuzione è rilasciata dal Dipartimento delle scuole e dello sport, la conferma dell'entità di custodia sovvenzionata (SBU) dal Dipartimento sociale. L'asilo nido non viene informato automaticamente del diritto alle sovvenzioni – la città chiede di consegnare i documenti alla direzione dell'asilo nido al momento dell'iscrizione.",
+        "ls": "Sie bekommen zwei Bestätigungen: eine vom Schul- und Sport-Departement und eine vom Sozial-Departement. Die Kita weiss das nicht von selbst. Geben Sie beide Bestätigungen der Kita-Leitung. Am besten schon, wenn Sie Ihr Kind anmelden."
+      },
+      "documents": [
+        {
+          "label": {
+            "de": "Beitragsfaktorbestätigung",
+            "ls": "Bestätigung vom Beitrags-Faktor"
+          },
+          "required": true
+        },
+        {
+          "label": {
+            "de": "Bestätigung über den subventionsberechtigten Betreuungsumfang (SBU)",
+            "ls": "Bestätigung: Für so viel Betreuung zahlt die Stadt mit (SBU)"
+          },
+          "required": true
+        }
+      ],
+      "reference_ids": [
+        3,
+        4
+      ],
+      "source_id": "q-stz-faq"
+    },
+    {
       "step_id": 11,
       "actor": "sozialdept",
       "label": {
@@ -406,7 +452,7 @@
         "ls": "Das Sozial-Departement zahlt das Geld an die Kita"
       },
       "depends_on": [
-        10
+        17
       ],
       "type": "prozess",
       "description": {
@@ -549,6 +595,12 @@
       "title": "Stadt Zürich – Subventionen für Kitas (Finanzierung/Auszahlung)",
       "url": "https://www.stadt-zuerich.ch/de/stadtleben/wirtschaft-und-gewerbe/fuer-kitas/subventionen.html",
       "retrieved_at": "2026-06-06"
+    },
+    {
+      "id": "q-stz-faq",
+      "title": "Stadt Zürich – Häufige Fragen zur familienergänzenden Kinderbetreuung",
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/faq.html",
+      "retrieved_at": "2026-10-09"
     }
   ],
   "reife": {
