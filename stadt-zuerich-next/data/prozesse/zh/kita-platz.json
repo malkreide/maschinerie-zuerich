@@ -190,6 +190,20 @@
       "source_quote": "Die Beitragsfaktorbestätigung bekommen Sie vom Schul- und Sportdepartement.",
       "status": "verifiziert",
       "retrieved_at": "2026-10-09"
+    },
+    {
+      "reference_id": 13,
+      "label": {
+        "de": "Tieferer SBU oder abgelehnte Erhöhung: Kündigungsfrist und Kostenübernahme",
+        "en": "Lower SBU or rejected increase: notice period and cost coverage",
+        "fr": "SBU inférieur ou augmentation refusée : délai de résiliation et prise en charge des coûts",
+        "it": "SBU inferiore o aumento respinto: termine di disdetta e assunzione dei costi",
+        "ls": "Weniger Tage bezahlt: Kündigungs-Frist und wer die Kosten zahlt"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/faq.html",
+      "source_quote": "Ihr neuer SBU ist tiefer als der bisherige oder Ihr Gesuch um Erhöhung des SBU wurde abgelehnt oder nur teilweise gutgeheissen. Bei einer Reduktion des Betreuungsumfangs gilt in der Regel eine Kündigungsfrist. Die entstehenden Kosten bis zum Ende dieser Frist können vom Sozialdepartement übernommen werden.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-10-09"
     }
   ],
   "actors": [
@@ -449,7 +463,17 @@
       "depends_on": [
         18
       ],
-      "type": "prozess"
+      "type": "prozess",
+      "description": {
+        "de": "Fällt der neue SBU tiefer aus als der bisherige oder wird eine Erhöhung abgelehnt bzw. nur teilweise gutgeheissen, gilt bei einer Reduktion des Betreuungsumfangs in der Regel eine Kündigungsfrist. Die Kosten bis zu deren Ende kann das Sozialdepartement übernehmen.",
+        "en": "If the new SBU is lower than the previous one, or an increase is rejected or only partly granted, a notice period usually applies when the care volume is reduced. The Social Welfare Department can cover the costs until it ends.",
+        "fr": "Si le nouveau SBU est inférieur au précédent ou si une augmentation est refusée ou seulement partiellement accordée, un délai de résiliation s'applique en général en cas de réduction de l'ampleur de garde. Le Département des affaires sociales peut prendre en charge les coûts jusqu'à son terme.",
+        "it": "Se il nuovo SBU è inferiore al precedente o un aumento viene respinto o accolto solo in parte, in caso di riduzione dell'entità di custodia vale di regola un termine di disdetta. Il Dipartimento sociale può assumersi i costi fino alla sua scadenza.",
+        "ls": "Manchmal zahlt die Stadt weniger Tage als vorher. Oder sie zahlt nicht mehr Tage, obwohl Sie das beantragt haben. Dann müssen Sie den Kita-Platz vielleicht kürzen. Dafür gibt es meistens eine Kündigungs-Frist. Bis zum Ende dieser Frist kann das Sozial-Departement die Kosten bezahlen."
+      },
+      "reference_ids": [
+        13
+      ]
     },
     {
       "step_id": 2,
