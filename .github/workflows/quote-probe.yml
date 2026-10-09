@@ -13,11 +13,11 @@ jobs:
     steps:
       - name: PDFs holen und durchsuchen
         run: |
-          sudo apt-get -qq install -y poppler-utils >/dev/null 2>&1 || true
+          pip install -q pypdf==5.1.0
           B=https://www.stadt-zuerich.ch/dam/web/de/politik-verwaltung/politik-recht/amtliche-sammlung
           for u in "$B/410/130/410.130-vo-kb-01-2026-v17.pdf" "$B/101/100/101.100-gemeindeordnung-2025.11-v31.pdf"; do
             echo "=== $u"
             curl -sSL -A "Mozilla/5.0 maschinerie-zuerich-quote-probe/1.0" -o doc.pdf "$u" -w "HTTP %{http_code}\n"
-            pdftotext -layout doc.pdf doc.txt
+            python3 -c "import pypdf;r=pypdf.PdfReader('doc.pdf');open('doc.txt','w').write('\n'.join((pg.extract_text() or '') for pg in r.pages))"
             grep -n -i -E -B3 -A6 "Neubeurteilung|Rekurs|Einsprache|Rechtsmittel|Rechtsschutz" doc.txt | cut -c1-220 | head -120
           done
