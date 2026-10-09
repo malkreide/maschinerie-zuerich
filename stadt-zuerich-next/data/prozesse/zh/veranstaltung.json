@@ -164,11 +164,11 @@
       "documents": [
         {
           "label": {
-            "de": "Situationsplan / Aufbauplan",
-            "en": "Site/setup plan",
-            "fr": "Plan de situation / plan de montage",
-            "it": "Piano di situazione / piano di allestimento",
-            "ls": "Situations-Plan oder Aufbau-Plan"
+            "de": "Situationsplan / Aufbauplan mit aller Infrastruktur (Bühnen, Bänke, Tische, Zelte)",
+            "en": "Site/setup plan showing all infrastructure (stages, benches, tables, tents)",
+            "fr": "Plan de situation / plan de montage avec toute l'infrastructure (scènes, bancs, tables, tentes)",
+            "it": "Piano di situazione / piano di allestimento con tutta l'infrastruttura (palchi, panche, tavoli, tende)",
+            "ls": "Plan mit allem, was Sie aufbauen (zum Beispiel Bühnen, Bänke, Tische, Zelte)"
           },
           "required": true
         },
@@ -191,13 +191,6 @@
             "ls": "Wenn Sie Getränke ausschenken: Angaben zu den Getränken"
           },
           "required": false
-        },
-        {
-          "label": {
-            "de": "Plan mit aller Infrastruktur (Bühnen, Bänke, Tische, Zelte)",
-            "ls": "Plan mit allem, was Sie aufbauen (Bühnen, Bänke, Tische, Zelte)"
-          },
-          "required": true
         }
       ],
       "source_id": "q-stz-bewilligungen"
