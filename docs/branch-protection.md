@@ -72,3 +72,9 @@ wo Required-Checks greifen. Auf `main`-Pushes fehlen sie erwartungsgemäss.
   tote Deep-Links (404/410/5xx) und `source_quote`s, die nicht wörtlich
   auf der verlinkten Seite stehen, blockieren den Merge. Damit ist
   `status: "verifiziert"` nicht mehr rein selbst-attestiert.
+- Bestehende, unveränderte References prüft das Gate nicht. Dafür läuft
+  im wöchentlichen Workflow `link-rot.yml` der **Zitat-Drift-Bericht**
+  (`npm run check:quotes:drift`): Er prüft alle `source_quote`s wörtlich
+  gegen die Live-Seite und nennt bei Abweichung den ähnlichsten Satz.
+  Advisory — der Befund steht im Job-Summary; ein Mensch setzt das Zitat
+  neu (Werte prüfen!). Manuell mit `strict_zitate` rot bei Drift.

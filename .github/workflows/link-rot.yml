@@ -9,6 +9,12 @@ name: Link-Rot (Live-HTTP)
 #   • manuell (workflow_dispatch) mit optionalem strict-Modus, der bei echten
 #     toten Links (404/410/5xx) rot wird.
 #
+# Zweiter Schritt: Zitat-Drift. Das Referenzen-Gate (ci.yml) prüft nur
+# References, die ein PR neu hinzufügt oder ändert. Formuliert eine Quellseite
+# später um, steht ein bestehendes source_quote nicht mehr wörtlich dort —
+# das fängt nur dieser Wochenlauf (npm run check:quotes:drift). Ebenfalls
+# advisory; manuell mit strict_zitate rot bei Drift.
+#
 # Der strukturelle Check (npm run check:links) bleibt im normalen CI-Gate
 # (ci.yml) und läuft netzfrei bei jedem PR.
 
@@ -21,6 +27,10 @@ on:
     inputs:
       strict:
         description: 'Bei echten toten Links (404/410/5xx) rot werden'
+        type: boolean
+        default: false
+      strict_zitate:
+        description: 'Bei Zitat-Drift (source_quote nicht mehr wörtlich auf der Seite) rot werden'
         type: boolean
         default: false
 
@@ -58,5 +68,22 @@ jobs:
             echo ''
             echo '```'
             cat link-rot.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+      - name: Zitat-Drift aller References
+        if: ${{ !cancelled() }}
+        env:
+          CHECK_QUOTES_STRICT: ${{ github.event.inputs.strict_zitate == 'true' && '1' || '' }}
+        run: |
+          set -o pipefail
+          npm run --silent check:quotes:drift | tee zitat-drift.txt
+      - name: Zitat-Drift ins Job-Summary schreiben
+        if: ${{ !cancelled() }}
+        run: |
+          {
+            echo '## Zitat-Drift-Befund'
+            echo ''
+            echo '```'
+            cat zitat-drift.txt 2>/dev/null || echo '(kein Bericht)'
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"

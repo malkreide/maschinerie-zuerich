@@ -53,37 +53,37 @@
         "ls": "Was die Anmeldung kosten kann"
       },
       "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/zuzug.html",
-      "source_quote": "Migrationsamtliche Gebühren (je nach Art der Bewilligung unterschiedlich)",
+      "source_quote": "Die Gebühren des Migrationsamts hängen unter anderem von Ihrer Staatsangehörigkeit und der Art der Bewilligung ab.",
       "status": "verifiziert",
-      "retrieved_at": "2026-06-10"
+      "retrieved_at": "2026-10-11"
     },
     {
       "reference_id": 2,
       "label": {
-        "de": "Gesetzliche Meldefrist für die An-/Ummeldung nach Einzug",
-        "en": "Statutory deadline for registering after moving in",
-        "fr": "Délai légal d'annonce pour s'annoncer ou se mettre à jour après l'emménagement",
-        "it": "Termine legale di notifica per annunciarsi o aggiornarsi dopo l'arrivo",
+        "de": "Meldefrist beim Zuzug in die Stadt Zürich",
+        "en": "Notification deadline when moving to the City of Zurich",
+        "fr": "Délai d'annonce en cas d'arrivée dans la ville de Zurich",
+        "it": "Termine di notifica in caso di arrivo nella città di Zurigo",
         "ls": "Wie viel Zeit Sie für die Meldung haben"
       },
       "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/zuzug.html",
-      "source_quote": "Sie müssen sich innerhalb von 14 Tagen bei der Stadt Zürich anmelden (Meldepflicht).",
+      "source_quote": "Den Zuzug in die Stadt Zürich müssen Sie innerhalb von 14 Tagen beim Personenmeldeamt melden.",
       "status": "verifiziert",
-      "retrieved_at": "2026-06-10"
+      "retrieved_at": "2026-10-11"
     },
     {
       "reference_id": 3,
       "label": {
-        "de": "Erforderliche Dokumente für die Anmeldung",
-        "en": "Documents required for registration",
-        "fr": "Documents requis pour s'annoncer",
-        "it": "Documenti necessari per l'annuncio",
-        "ls": "Was Sie für die Anmeldung brauchen"
+        "de": "Unterlagen für die persönliche Anmeldung",
+        "en": "Documents for registering in person",
+        "fr": "Documents pour l'annonce en personne",
+        "it": "Documenti per l'annuncio di persona",
+        "ls": "Was Sie zum Termin mitbringen"
       },
       "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/zuzug.html",
-      "source_quote": "Pass oder Identitätskarte; Mietvertrag, Wohnungsausweis oder Untermietvertrag; Krankenkassenkarte (aller Familienmitglieder)",
+      "source_quote": "Bitte bringen Sie zu Ihrem Termin folgende Unterlagen mit: Pass oder ID Mietvertrag, Wohnungsausweis oder Untermietvertrag oder Einzugsanzeige",
       "status": "verifiziert",
-      "retrieved_at": "2026-06-29"
+      "retrieved_at": "2026-10-11"
     },
     {
       "reference_id": 4,
@@ -95,9 +95,9 @@
         "ls": "Frist beim Umzug in der Stadt"
       },
       "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/umzug.html",
-      "source_quote": "Die Meldepflicht Ihrer Adressänderung beträgt 14 Tage ab Umzug.",
+      "source_quote": "Den Wohnungswechsel müssen Sie innerhalb von 14 Tagen beim Personenmeldeamt melden.",
       "status": "verifiziert",
-      "retrieved_at": "2026-06-28"
+      "retrieved_at": "2026-10-11"
     },
     {
       "reference_id": 5,
@@ -109,9 +109,9 @@
         "ls": "Wann Sie den Umzug frühestens melden können"
       },
       "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/umzug.html",
-      "source_quote": "Die Adressänderung können Sie uns **online frühestens 30 Tage vor Einzug** melden.",
+      "source_quote": "Den Wohnungswechsel können Sie uns frühestens 30 Tage vor dem Einzug online melden.",
       "status": "verifiziert",
-      "retrieved_at": "2026-06-28"
+      "retrieved_at": "2026-10-11"
     },
     {
       "reference_id": 6,
@@ -154,6 +154,20 @@
       "source_quote": "Fr. 20.– für eine Abmeldebestätigung",
       "status": "verifiziert",
       "retrieved_at": "2026-10-05"
+    },
+    {
+      "reference_id": 9,
+      "label": {
+        "de": "Kein Termin innerhalb der Meldefrist: Fristverlängerung beantragen",
+        "en": "No appointment within the deadline: request an extension",
+        "fr": "Pas de rendez-vous dans le délai : demander une prolongation",
+        "it": "Nessun appuntamento entro il termine: chiedere una proroga",
+        "ls": "Kein Termin frei? Dann können Sie mehr Zeit beantragen"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/umzug.html",
+      "source_quote": "Aufgrund der aktuellen Terminsituation sind teilweise erst Termine nach Ablauf der 14-tägigen Meldefrist verfügbar. Bitte buchen Sie dennoch den nächstmöglichen verfügbaren Termin. Beantragen Sie zusätzlich eine Fristverlängerung über unser Kontaktformular.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-10-11"
     }
   ],
   "actors": [
@@ -241,15 +255,16 @@
       ],
       "reference_ids": [
         2,
-        4
+        4,
+        9
       ],
       "type": "input",
       "description": {
-        "de": "Die An-/Ummeldung muss innert der gesetzlichen Meldefrist ab Einzug erfolgen. Verspätung kann gebührenpflichtig sein.",
-        "en": "Registration must happen within the statutory deadline after moving in. Late notification may incur a fee.",
-        "fr": "L'annonce ou la mise à jour doit se faire dans le délai légal d'annonce à compter de l'emménagement. Un retard peut être soumis à émolument.",
-        "it": "L'annuncio o l'aggiornamento deve avvenire entro il termine legale di notifica a partire dall'arrivo. Un ritardo può comportare un emolumento.",
-        "ls": "Melden Sie den Umzug schnell. Sonst kostet es vielleicht Geld."
+        "de": "Die An- oder Ummeldung muss innert der Meldefrist erfolgen. Ist für die persönliche Meldung erst nach Ablauf der Frist ein Termin frei, buchen Sie trotzdem den nächstmöglichen Termin und beantragen Sie zusätzlich eine Fristverlängerung.",
+        "en": "Registration must be made within the notification deadline. If the next appointment for registering in person is only after the deadline, book it anyway and also request an extension.",
+        "fr": "L'annonce ou la mise à jour doit se faire dans le délai d'annonce. Si le prochain rendez-vous pour l'annonce en personne n'est disponible qu'après l'échéance, réservez-le quand même et demandez en plus une prolongation du délai.",
+        "it": "L'annuncio o l'aggiornamento deve avvenire entro il termine di notifica. Se il prossimo appuntamento per l'annuncio di persona è disponibile solo dopo la scadenza, prenotatelo comunque e chiedete in più una proroga del termine.",
+        "ls": "Melden Sie den Umzug rechtzeitig. Gibt es erst später einen Termin? Dann nehmen Sie trotzdem den nächsten Termin. Und beantragen Sie mehr Zeit."
       },
       "source_id": "q-stz-umzug"
     },
@@ -332,7 +347,6 @@
       ],
       "source_id": "q-eumzug",
       "reference_ids": [
-        3,
         5
       ]
     },

@@ -215,7 +215,9 @@ Agent andocken kann:
 - **`extract-quotes.mjs`** — schlägt verbatim `source_quote`-Kandidaten vor,
   rendert via HTTP (`--fetch`, für SSR) oder Headless-Browser (für SPAs),
   grenzt grosse Seiten mit `--grep` ein und prüft bestehende Zitate gegen die
-  Live-Seite (`--all-refs`, Drift-Check). Schreibt nie in die Daten.
+  Live-Seite (`--all-refs`, Drift-Check). `--drift-report` fasst das kompakt
+  zusammen (nur Abweichungen, je mit dem ähnlichsten Satz) und läuft wöchentlich
+  in `link-rot.yml`. Schreibt nie in die Daten.
 
 Beide spiegeln die Prinzipien oben: Tri-State-Erreichbarkeit, multi-modaler
 Fetch, Propose-don't-write, Drift-Verifikation.
