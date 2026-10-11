@@ -26,11 +26,11 @@
     {
       "reference_id": 1,
       "label": {
-        "de": "Empfohlene Vorlaufzeit für Bewilligungsgesuche (je nach Anlassgrösse)",
-        "en": "Recommended lead time for permit applications (depends on event size)",
-        "fr": "Délai recommandé pour les demandes d'autorisation (selon la taille de la manifestation)",
-        "it": "Tempo di preavviso consigliato per le domande di autorizzazione (a seconda delle dimensioni della manifestazione)",
-        "ls": "So früh sollten Sie das Gesuch schicken: Das hängt von der Grösse vom Fest ab"
+        "de": "Einreichefrist für das Bewilligungsgesuch",
+        "en": "Deadline for submitting the permit application",
+        "fr": "Délai de dépôt de la demande d'autorisation",
+        "it": "Termine per presentare la domanda di autorizzazione",
+        "ls": "Bis wann Sie das Gesuch schicken müssen"
       },
       "source_url": "https://www.stadt-zuerich.ch/de/stadtleben/veranstaltungen-und-bewilligungen/veranstaltungen/fest-sportveranstaltung-quartierfest.html",
       "source_quote": "Bitte informieren Sie sich ausführlich, bevor Sie das Gesuch ausfüllen und reichen Sie dieses spätestens vier Wochen vor dem Veranstaltungsbeginn ein.",
@@ -41,9 +41,9 @@
       "reference_id": 2,
       "label": {
         "de": "Mindest-Vorlaufzeit für die Planung eines Sanitätsdienstes durch Schutz & Rettung Zürich",
-        "en": "",
-        "fr": "",
-        "it": "",
+        "en": "Minimum lead time for planning a medical service by Schutz & Rettung Zürich",
+        "fr": "Délai minimal pour la planification d'un service sanitaire par Schutz & Rettung Zürich",
+        "it": "Tempo minimo di preavviso per la pianificazione di un servizio sanitario da parte di Schutz & Rettung Zürich",
         "ls": "So früh braucht Schutz & Rettung Zürich Bescheid, um einen Sanitäts-Dienst zu planen"
       },
       "source_url": "https://www.stadt-zuerich.ch/de/stadtleben/veranstaltungen-und-bewilligungen/veranstaltungen/infrastruktur-sicherheit.html",
@@ -132,11 +132,11 @@
       ],
       "type": "input",
       "description": {
-        "de": "Gesuche müssen je nach Grösse mehrere Wochen im Voraus eingereicht werden (Grossanlässe deutlich früher).",
-        "en": "Depending on size, applications must be submitted several weeks in advance (large events much earlier).",
-        "fr": "Selon la taille, les demandes doivent être déposées plusieurs semaines à l'avance (les grandes manifestations nettement plus tôt).",
-        "it": "A seconda delle dimensioni, le domande devono essere presentate con diverse settimane di anticipo (le grandi manifestazioni nettamente prima).",
-        "ls": "Melden Sie das Fest früh an. Grosse Feste brauchen mehr Zeit."
+        "de": "Das Gesuch muss innert der Einreichefrist vor dem Anlass bei der Stadtpolizei sein. Wer einen Sanitätsdienst braucht, muss dafür mit einer längeren Vorlaufzeit rechnen.",
+        "en": "The application must reach the city police within the submission deadline before the event. If you need a medical service, allow for a longer lead time.",
+        "fr": "La demande doit parvenir à la police municipale dans le délai de dépôt avant la manifestation. Si vous avez besoin d'un service sanitaire, prévoyez un délai plus long.",
+        "it": "La domanda deve pervenire alla polizia municipale entro il termine di presentazione prima della manifestazione. Se serve un servizio sanitario, occorre prevedere un preavviso più lungo.",
+        "ls": "Schicken Sie das Gesuch früh genug an die Stadt-Polizei. Bis wann, steht bei «Wichtige Zahlen». Brauchen Sie Sanitäter? Dann brauchen Sie noch mehr Zeit."
       },
       "source_id": "q-stz-bewilligungen"
     },
