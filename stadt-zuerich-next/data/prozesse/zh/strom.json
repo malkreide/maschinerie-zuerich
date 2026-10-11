@@ -50,6 +50,20 @@
       "source_quote": "Um sicher zu sein, dass die Strom- und Wasserzähler vor Ihrem Einzug abgelesen worden sind, melden Sie sich bitte bei Ihrem Stromversorger ewz und bei der Wasserversorgung an.",
       "status": "verifiziert",
       "retrieved_at": "2026-10-11"
+    },
+    {
+      "reference_id": 3,
+      "label": {
+        "de": "Frist für die Umzugsmeldung bei ewz",
+        "en": "Deadline for notifying ewz of a move",
+        "fr": "Délai pour annoncer le déménagement à ewz",
+        "it": "Termine per annunciare il trasloco a ewz",
+        "ls": "Bis wann Sie ewz den Umzug melden müssen"
+      },
+      "source_url": "https://www.ewz.ch/de/services/umzug.html",
+      "source_quote": "Bitte melden Sie uns Ihren Umzug mindestens 10 Tage vor der Schlüsselübergabe. So können wir sicherstellen, dass Ihr Zählerstand korrekt abgerechnet wird.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-10-11"
     }
   ],
   "actors": [
@@ -126,12 +140,13 @@
       "depends_on": [2],
       "type": "input",
       "description": {
-        "de": "Adressänderung beziehungsweise Umzug online über das Konto bei ewz erfassen.",
-        "en": "Enter the change of address or move online via the ewz account.",
-        "fr": "Saisir le changement d'adresse ou le déménagement en ligne via le compte ewz.",
-        "it": "Inserire il cambio di indirizzo o il trasloco online tramite il conto ewz.",
-        "ls": "Sie geben den Umzug online im ewz-Konto ein."
+        "de": "Adressänderung beziehungsweise Umzug online über das Konto bei ewz erfassen. Die Meldung muss rechtzeitig vor der Schlüsselübergabe erfolgen, damit der Zählerstand korrekt abgerechnet wird.",
+        "en": "Enter the change of address or move online via the ewz account. The notification must be made in good time before the keys are handed over so that the meter reading is billed correctly.",
+        "fr": "Saisir le changement d'adresse ou le déménagement en ligne via le compte ewz. L'annonce doit être faite à temps avant la remise des clés, afin que le relevé du compteur soit facturé correctement.",
+        "it": "Inserire il cambio di indirizzo o il trasloco online tramite il conto ewz. La comunicazione deve avvenire per tempo prima della consegna delle chiavi, affinché la lettura del contatore sia fatturata correttamente.",
+        "ls": "Sie geben den Umzug online im ewz-Konto ein. Melden Sie den Umzug früh genug, bevor Sie die Schlüssel abgeben. Bis wann, steht bei «Wichtige Zahlen»."
       },
+      "reference_ids": [3],
       "source_id": "q-ewz-umzug"
     },
     {
@@ -180,7 +195,7 @@
       "id": "q-ewz-umzug",
       "title": "ewz – Umzug / Adressänderung melden",
       "url": "https://www.ewz.ch/de/services/umzug.html",
-      "retrieved_at": "2026-06-21"
+      "retrieved_at": "2026-10-11"
     },
     {
       "id": "q-stz-erste-schritte",
