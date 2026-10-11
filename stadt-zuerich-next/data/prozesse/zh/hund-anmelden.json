@@ -72,24 +72,24 @@
     {
       "reference_id": 2,
       "label": {
-        "de": "Jährliche Hundesteuer (anteilige Rückerstattung bei unterjähriger Abmeldung)",
-        "en": "Annual dog tax (pro-rata refund on mid-year deregistration)",
-        "fr": "Impôt annuel sur les chiens (remboursement au prorata en cas de désinscription en cours d'année)",
-        "it": "Tassa annuale sui cani (rimborso proporzionale in caso di cancellazione durante l'anno)",
-        "ls": "Dass Sie jedes Jahr Hunde-Steuer zahlen"
+        "de": "Hundesteuer: Rückerstattung beim Tod des Hundes (Stichtag)",
+        "en": "Dog tax: refund if the dog dies (cut-off date)",
+        "fr": "Impôt sur les chiens : remboursement en cas de décès du chien (date butoir)",
+        "it": "Tassa sui cani: rimborso in caso di morte del cane (data limite)",
+        "ls": "Wann Sie Hunde-Steuer zurückbekommen"
       },
       "source_url": "https://www.stadt-zuerich.ch/de/stadtleben/veranstaltungen-und-bewilligungen/hundekontrolle/abmeldung.html",
-      "source_quote": "Bei Tod vor dem 30. Juni wird Ihnen 50 % der Hundesteuer erstattet.",
+      "source_quote": "Bei Tod vor dem 30. Juni wird Ihnen 50 % der Hundesteuer erstattet Bei Tod nach dem 30. Juni erhalten Sie keine Rückerstattung.",
       "status": "verifiziert",
-      "retrieved_at": "2026-06-10"
+      "retrieved_at": "2026-10-11"
     },
     {
       "reference_id": 3,
       "label": {
-        "de": "Frist für die Anmeldung bei Zuzug oder Neuanschaffung (kantonale Vorgabe)",
-        "en": "Deadline for registering after moving in or acquiring a dog (cantonal rule)",
-        "fr": "Délai pour l'annonce en cas d'arrivée ou d'acquisition d'un chien (prescription cantonale)",
-        "it": "Termine per l'annuncio in caso di arrivo o acquisizione di un cane (prescrizione cantonale)",
+        "de": "Frist für die Anmeldung nach Übernahme des Hundes (kantonale Vorgabe)",
+        "en": "Deadline for registering after taking over the dog (cantonal rule)",
+        "fr": "Délai pour l'annonce après la prise en charge du chien (prescription cantonale)",
+        "it": "Termine per l'annuncio dopo la presa in consegna del cane (prescrizione cantonale)",
         "ls": "Wie schnell Sie den Hund anmelden müssen"
       },
       "source_url": "https://www.zh.ch/de/umwelt-tiere/tiere/haustiere-heimtiere/hunde.html",
@@ -236,10 +236,10 @@
       ],
       "type": "input",
       "description": {
-        "de": "Anmeldung als Hundehalter*in mittels Anmeldeformular bei der Wohngemeinde (Hundekontrolle des Steueramts). Bei Zuzug oder Neuanschaffung innert der kantonalen Frist.",
-        "en": "Registration as a dog owner by form at the residential municipality (the tax office's dog registry). On moving in or acquiring a dog, within the cantonal deadline.",
-        "fr": "Annonce en tant que détenteur/-trice de chien au moyen d'un formulaire auprès de la commune de domicile (contrôle des chiens de l'office des impôts). En cas d'arrivée ou d'acquisition, dans le délai cantonal.",
-        "it": "Annuncio come detentore/-trice di cane tramite modulo presso il Comune di domicilio (controllo dei cani dell'ufficio delle imposte). In caso di arrivo o acquisizione, entro il termine cantonale.",
+        "de": "Anmeldung als Hundehalter*in mittels Anmeldeformular bei der Wohngemeinde (Hundekontrolle des Steueramts). Nach der Übernahme eines Hundes innert der kantonalen Frist.",
+        "en": "Registration as a dog owner by form at the residential municipality (the tax office's dog registry). After taking over a dog, within the cantonal deadline.",
+        "fr": "Annonce en tant que détenteur/-trice de chien au moyen d'un formulaire auprès de la commune de domicile (contrôle des chiens de l'office des impôts). Après la prise en charge d'un chien, dans le délai cantonal.",
+        "it": "Annuncio come detentore/-trice di cane tramite modulo presso il Comune di domicilio (controllo dei cani dell'ufficio delle imposte). Dopo la presa in consegna di un cane, entro il termine cantonale.",
         "ls": "Sie melden den Hund beim Steuer-Amt in Ihrer Gemeinde. Dafür brauchen Sie ein Formular."
       },
       "documents": [

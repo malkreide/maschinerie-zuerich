@@ -540,14 +540,17 @@
       ],
       "type": "loop",
       "description": {
-        "de": "In vielen Quartieren übersteigt die Nachfrage das Angebot — Wartezeiten von mehreren Monaten sind häufig.",
-        "en": "In many neighbourhoods demand exceeds supply — waiting times of several months are common.",
-        "fr": "Dans de nombreux quartiers, la demande dépasse l'offre — des temps d'attente de plusieurs mois sont fréquents.",
-        "it": "In molti quartieri la domanda supera l'offerta — tempi d'attesa di diversi mesi sono frequenti.",
-        "ls": "In vielen Quartieren gibt es zu wenig Plätze. Oft warten Eltern mehrere Monate."
+        "de": "Über die Vergabe eines subventionierten Platzes entscheidet die Kita selbst. Wie lange die Wartezeit dauert, lässt sich nicht im Voraus sagen.",
+        "en": "The daycare centre itself decides on allocating a subsidised place. How long the wait will be cannot be said in advance.",
+        "fr": "La crèche décide elle-même de l'attribution d'une place subventionnée. La durée de l'attente ne peut pas être indiquée à l'avance.",
+        "it": "È l'asilo nido stesso a decidere l'assegnazione di un posto sovvenzionato. Quanto durerà l'attesa non si può dire in anticipo.",
+        "ls": "Die Kita entscheidet selbst, wer einen Platz bekommt. Wie lange Sie warten müssen, weiss man vorher nicht."
       },
       "loops_back_to": [
         2
+      ],
+      "reference_ids": [
+        8
       ]
     },
     {

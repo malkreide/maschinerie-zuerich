@@ -54,11 +54,11 @@
     {
       "reference_id": 3,
       "label": {
-        "de": "Ruhezeiten / Nachtruhe",
-        "en": "Quiet hours / night-time rest",
-        "fr": "Heures de repos / repos nocturne",
-        "it": "Orari di quiete / riposo notturno",
-        "ls": "Ruhe-Zeiten in der Nacht"
+        "de": "Rücksicht am Abend und am Sonntag",
+        "en": "Consideration in the evening and on Sundays",
+        "fr": "Égards le soir et le dimanche",
+        "it": "Riguardo la sera e la domenica",
+        "ls": "Am Abend und am Sonntag besonders leise sein"
       },
       "source_url": "https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/oeffentlicher-raum/nachbarschaft-nachtleben/laerm.html",
       "source_quote": "Abends ab 20 Uhr und sonntags ist dem Erholungsbedürfnis der Bevölkerung besonders Rechnung zu tragen, indem lärmintensives Verhalten zu unterlassen ist.",
@@ -78,6 +78,20 @@
       "source_quote": "Bei 117 eingehende Lärmklagen werden in sogenannten Einsatzjournalen gesammelt, die durch die Fachgruppe Lärmschutz der Stadtpolizei Zürich weiterbearbeitet werden.",
       "status": "verifiziert",
       "retrieved_at": "2026-06-21"
+    },
+    {
+      "reference_id": 5,
+      "label": {
+        "de": "Nachtruhe",
+        "en": "Night-time quiet hours",
+        "fr": "Repos nocturne",
+        "it": "Riposo notturno",
+        "ls": "Ruhe-Zeit in der Nacht"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/oeffentlicher-raum/nachbarschaft-nachtleben/laerm.html",
+      "source_quote": "Wann ist Nachtruhe? 22–7 Uhr, während der Sommerzeit freitags und samstags ab 23 Uhr Während der Nachtruhe ist störendes Verhalten verboten.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-10-11"
     }
   ],
   "actors": [
@@ -131,7 +145,8 @@
       "depends_on": [],
       "type": "start",
       "reference_ids": [
-        3
+        3,
+        5
       ]
     },
     {

@@ -134,6 +134,20 @@
       "source_quote": "Das Unternehmen wird als Finderin betrachtet, kann aber keinen Finderlohn beanspruchen.",
       "status": "verifiziert",
       "retrieved_at": "2026-06-28"
+    },
+    {
+      "reference_id": 9,
+      "label": {
+        "de": "Benachrichtigung, wenn der Gegenstand gefunden wird",
+        "en": "Notification when the item is found",
+        "fr": "Avis lorsque l'objet est retrouvé",
+        "it": "Avviso quando l'oggetto viene ritrovato",
+        "ls": "Sie bekommen Bescheid, wenn Ihre Sache auftaucht"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/verloren.html",
+      "source_quote": "Das Fundbüro informiert Sie, wenn der Gegenstand gefunden wurde.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-10-11"
     }
   ],
   "actors": [
@@ -376,10 +390,10 @@
       "step_id": 11,
       "actor": "fundbuero",
       "label": {
-        "de": "Suchauftrag bleibt aktiv (Aufbewahrungsfrist)",
-        "en": "Search request stays active (storage period)",
-        "fr": "La demande de recherche reste active (délai de conservation)",
-        "it": "La richiesta di ricerca resta attiva (termine di conservazione)",
+        "de": "Suchauftrag läuft (Benachrichtigung bei einem Fund)",
+        "en": "Search request ongoing (notification if found)",
+        "fr": "Demande de recherche en cours (avis en cas de découverte)",
+        "it": "Richiesta di ricerca in corso (avviso in caso di ritrovamento)",
         "ls": "Das Fund-Büro sucht weiter"
       },
       "depends_on": [
@@ -395,12 +409,15 @@
       ],
       "type": "warten",
       "description": {
-        "de": "Fundsachen werden eine gesetzliche Frist aufbewahrt; meldet sich ein passender Fund, wird die Person benachrichtigt.",
-        "en": "Found items are kept for a statutory period; if a matching item appears, the person is notified.",
-        "fr": "Les objets trouvés sont conservés pendant un délai légal; si un objet correspondant est annoncé, la personne en est informée.",
-        "it": "Gli oggetti trovati vengono conservati per un termine legale; se viene segnalato un oggetto corrispondente, la persona viene avvisata.",
+        "de": "Fundsachen werden eine bestimmte Zeit aufbewahrt (siehe Belege). Das Fundbüro informiert Sie, wenn der Gegenstand gefunden wurde.",
+        "en": "Found items are kept for a certain time (see sources). The lost-property office informs you if the item has been found.",
+        "fr": "Les objets trouvés sont conservés pendant un certain temps (voir les sources). Le bureau des objets trouvés vous informe si l'objet a été retrouvé.",
+        "it": "Gli oggetti trovati vengono conservati per un certo tempo (vedi fonti). L'ufficio oggetti smarriti vi informa se l'oggetto è stato ritrovato.",
         "ls": "Das Fund-Büro bewahrt Fundsachen eine bestimmte Zeit auf. Taucht Ihre Sache auf? Dann bekommen Sie eine Nachricht."
-      }
+      },
+      "reference_ids": [
+        9
+      ]
     },
     {
       "step_id": 12,

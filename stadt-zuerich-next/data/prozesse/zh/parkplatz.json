@@ -26,16 +26,16 @@
     {
       "reference_id": 1,
       "label": {
-        "de": "Jahresgebühr der Anwohnerparkkarte (tarifabhängig nach Fahrzeug, anteilig bei kürzerer Dauer)",
-        "en": "Annual fee for the resident parking permit (tariff depends on vehicle; pro-rated)",
-        "fr": "Taxe annuelle de la carte de stationnement pour riverains (selon le tarif du véhicule, calculée au prorata pour une durée plus courte)",
-        "it": "Tassa annuale della carta di posteggio per residenti (dipendente dalla tariffa del veicolo, calcolata pro rata per durate più brevi)",
+        "de": "Jahresgebühr der Anwohnerparkkarte",
+        "en": "Annual fee for the resident parking permit",
+        "fr": "Taxe annuelle de la carte de stationnement pour riverains",
+        "it": "Tassa annuale della carta di posteggio per residenti",
         "ls": "Die Karte kostet Geld pro Jahr."
       },
       "source_url": "https://www.stadt-zuerich.ch/de/mobilitaet/parkieren/parkbewilligungen/anwohnerparkkarte.html",
-      "source_quote": "Gebühr: 300 Franken pro Kalenderjahr. … Angebrochene Monate werden voll in Rechnung gestellt. Bei Rückgabe der Parkkarte wird die Gebühr für alle nicht angebrochenen Monate zurückerstattet.",
+      "source_quote": "Gebühr: 300 Franken pro Kalenderjahr",
       "status": "verifiziert",
-      "retrieved_at": "2026-06-10"
+      "retrieved_at": "2026-10-11"
     },
     {
       "reference_id": 2,
