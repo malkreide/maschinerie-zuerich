@@ -40,16 +40,16 @@
     {
       "reference_id": 2,
       "label": {
-        "de": "ewz über den Umzug informieren",
-        "en": "Inform ewz about the move",
-        "fr": "Informer ewz du déménagement",
-        "it": "Informare ewz del trasloco",
-        "ls": "ewz über den Umzug informieren"
+        "de": "Bei ewz anmelden, damit der Zähler vor dem Einzug abgelesen wird",
+        "en": "Register with ewz so the meter is read before moving in",
+        "fr": "S'annoncer auprès d'ewz pour que le compteur soit relevé avant l'emménagement",
+        "it": "Annunciarsi presso ewz affinché il contatore venga letto prima del trasloco",
+        "ls": "Bei ewz anmelden, damit der Strom-Zähler vorher abgelesen wird"
       },
-      "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/umzug.html",
-      "source_quote": "Informieren Sie Ihren Energielieferanten ewz über Ihren Umzug.",
+      "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/neu-in-zuerich/erste-schritte.html",
+      "source_quote": "Um sicher zu sein, dass die Strom- und Wasserzähler vor Ihrem Einzug abgelesen worden sind, melden Sie sich bitte bei Ihrem Stromversorger ewz und bei der Wasserversorgung an.",
       "status": "verifiziert",
-      "retrieved_at": "2026-06-21"
+      "retrieved_at": "2026-10-11"
     }
   ],
   "actors": [
