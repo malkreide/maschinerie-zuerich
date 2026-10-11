@@ -47,6 +47,17 @@
       "einheit_ref": "SD-soz"
     },
     {
+      "id": "neubeurteilung",
+      "label": {
+        "de": "Zuständige Behörde der Stadt (Neubeurteilung)",
+        "en": "Responsible city authority (reassessment)",
+        "fr": "Autorité compétente de la Ville (nouvel examen)",
+        "it": "Autorità competente della Città (riesame)",
+        "ls": "Eine andere Stelle von der Stadt"
+      },
+      "type": "behoerde"
+    },
+    {
       "id": "bezirksrat",
       "label": {
         "de": "Bezirksrat Zürich (Rekursinstanz)",
@@ -370,10 +381,10 @@
       "step_id": 13,
       "actor": "person",
       "label": {
-        "de": "Rekurs einreichen?",
-        "en": "File an appeal?",
-        "fr": "Déposer un recours ?",
-        "it": "Presentare ricorso?",
+        "de": "Neubeurteilung verlangen?",
+        "en": "Request a reassessment?",
+        "fr": "Demander un nouvel examen ?",
+        "it": "Chiedere un riesame?",
         "ls": "Wollen Sie sich beschweren?"
       },
       "depends_on": [
@@ -393,7 +404,7 @@
       },
       "depends_on": [
         {
-          "step_id": 13,
+          "step_id": 18,
           "condition": {
             "de": "ja",
             "ls": "ja"
@@ -401,7 +412,8 @@
         }
       ],
       "reference_ids": [
-        1
+        1,
+        3
       ],
       "type": "loop",
       "loops_back_to": [
@@ -425,9 +437,92 @@
             "de": "nein",
             "ls": "nein"
           }
+        },
+        {
+          "step_id": 18,
+          "condition": {
+            "de": "nein",
+            "ls": "nein"
+          }
         }
       ],
       "type": "ende"
+    },
+    {
+      "step_id": 16,
+      "actor": "neubeurteilung",
+      "label": {
+        "de": "Neubeurteilung: Ablehnung bestätigt?",
+        "en": "Reassessment: rejection confirmed?",
+        "fr": "Nouvel examen : refus confirmé ?",
+        "it": "Riesame: rifiuto confermato?",
+        "ls": "Bleibt die Stadt beim Nein?"
+      },
+      "depends_on": [
+        {
+          "step_id": 13,
+          "condition": {
+            "de": "ja",
+            "ls": "ja"
+          }
+        }
+      ],
+      "reference_ids": [
+        2
+      ],
+      "type": "entscheidung",
+      "description": {
+        "de": "Gegen den Entscheid des Sozialzentrums kann zuerst eine Neubeurteilung innerhalb der Stadt verlangt werden. Erst gegen die Neubeurteilung ist ein Rekurs möglich. Bei welcher Stelle, in welcher Form und innert welcher Frist die Neubeurteilung verlangt werden kann, steht in der Rechtsmittelbelehrung am Ende des Entscheids.",
+        "en": "A reassessment within the city administration can first be requested against the social centre's decision. Only the reassessment can then be appealed. Where, in what form and within what deadline the reassessment can be requested is set out in the notice of appeal rights at the end of the decision.",
+        "fr": "Contre la décision du centre social, il est d'abord possible de demander un nouvel examen au sein de la Ville. Ce n'est que contre ce nouvel examen qu'un recours est possible. L'autorité compétente, la forme et le délai pour demander le nouvel examen figurent dans l'indication des voies de droit à la fin de la décision.",
+        "it": "Contro la decisione del centro sociale si può dapprima chiedere un riesame all'interno della Città. Solo contro il riesame è possibile presentare ricorso. L'autorità competente, la forma e il termine per chiedere il riesame sono indicati nell'indicazione dei rimedi giuridici alla fine della decisione.",
+        "ls": "Sie sind nicht einverstanden? Dann können Sie zuerst verlangen: Eine andere Stelle von der Stadt prüft den Entscheid noch einmal. Am Ende vom Brief steht: Wo machen Sie das? Wie machen Sie das? Bis wann müssen Sie das machen?"
+      }
+    },
+    {
+      "step_id": 17,
+      "actor": "sozialzentrum",
+      "label": {
+        "de": "Anspruch neu prüfen",
+        "en": "Reassess entitlement",
+        "fr": "Réexaminer le droit à l'aide",
+        "it": "Riesaminare il diritto all'aiuto",
+        "ls": "Das Amt prüft Ihren Antrag noch einmal"
+      },
+      "depends_on": [
+        {
+          "step_id": 16,
+          "condition": {
+            "de": "nein",
+            "ls": "nein"
+          }
+        }
+      ],
+      "type": "loop",
+      "loops_back_to": [
+        8
+      ]
+    },
+    {
+      "step_id": 18,
+      "actor": "person",
+      "label": {
+        "de": "Rekurs gegen die Neubeurteilung einreichen?",
+        "en": "Appeal against the reassessment?",
+        "fr": "Recourir contre le nouvel examen ?",
+        "it": "Ricorrere contro il riesame?",
+        "ls": "Wollen Sie sich weiter beschweren?"
+      },
+      "depends_on": [
+        {
+          "step_id": 16,
+          "condition": {
+            "de": "ja",
+            "ls": "ja"
+          }
+        }
+      ],
+      "type": "entscheidung"
     }
   ],
   "references": [
@@ -444,6 +539,34 @@
       "source_quote": "Frist: 30 Tage nach Mitteilung. Die Frist beginnt am Tag nach der Zustellung zu laufen.",
       "status": "verifiziert",
       "retrieved_at": "2026-06-17"
+    },
+    {
+      "reference_id": 2,
+      "label": {
+        "de": "Neubeurteilung vor dem Rekurs (gemeindeinterne Überprüfung)",
+        "en": "Reassessment before an appeal (internal review by the municipality)",
+        "fr": "Nouvel examen avant le recours (contrôle interne de la commune)",
+        "it": "Riesame prima del ricorso (verifica interna del Comune)",
+        "ls": "Zuerst prüft die Stadt noch einmal, dann kommt die Beschwerde beim Kanton"
+      },
+      "source_url": "https://www.zh.ch/de/soziales/sozialhilfe/sozialhilfehandbuch/flexdata-definition/1-grundlagen/1-2-verwaltung-und-rechtsmittelverfahren-im-kanton-zuerich/1-2-02-rechtsmittelverfahren-im-kantonalen-sozialhilferecht.html",
+      "source_quote": "Erst gegen die Neubeurteilung steht der Rekurs nach Verwaltungsrechtspflegegesetz offen",
+      "status": "verifiziert",
+      "retrieved_at": "2026-10-11"
+    },
+    {
+      "reference_id": 3,
+      "label": {
+        "de": "Bezirksrat als Rekursinstanz bei Entscheiden über wirtschaftliche Hilfe",
+        "en": "District council as appeals body for decisions on financial assistance",
+        "fr": "Conseil de district comme instance de recours pour les décisions sur l'aide économique",
+        "it": "Consiglio distrettuale come istanza di ricorso per le decisioni sull'aiuto economico",
+        "ls": "Wer sich um die Beschwerde kümmert"
+      },
+      "source_url": "https://www.zh.ch/de/soziales/sozialhilfe/sozialhilfehandbuch/flexdata-definition/1-grundlagen/1-2-verwaltung-und-rechtsmittelverfahren-im-kanton-zuerich/1-2-02-rechtsmittelverfahren-im-kantonalen-sozialhilferecht.html",
+      "source_quote": "Rekursinstanz bei Entscheiden der Fürsorgebehörden über Art und Mass, Kürzung und Einstellung sowie Rückerstattung der wirtschaftlichen Hilfe",
+      "status": "verifiziert",
+      "retrieved_at": "2026-10-11"
     }
   ],
   "legal_basis": [
@@ -472,6 +595,12 @@
       "title": "Kanton Zürich – Sozialhilfe (Anspruch und Verfahren)",
       "url": "https://www.zh.ch/de/soziales/sozialhilfe.html",
       "retrieved_at": "2026-06-06"
+    },
+    {
+      "id": "q-zh-shb-rechtsmittel",
+      "title": "Kanton Zürich – Sozialhilfehandbuch 1.2.02: Rechtsmittelverfahren im kantonalen Sozialhilferecht",
+      "url": "https://www.zh.ch/de/soziales/sozialhilfe/sozialhilfehandbuch/flexdata-definition/1-grundlagen/1-2-verwaltung-und-rechtsmittelverfahren-im-kanton-zuerich/1-2-02-rechtsmittelverfahren-im-kantonalen-sozialhilferecht.html",
+      "retrieved_at": "2026-10-11"
     }
   ],
   "reife": {
