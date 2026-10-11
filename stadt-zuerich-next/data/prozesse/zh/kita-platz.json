@@ -41,9 +41,9 @@
       "reference_id": 2,
       "label": {
         "de": "Maximale Weitersubventionierung bei freiwilliger Abwesenheit des Kindes",
-        "en": "",
-        "fr": "",
-        "it": "",
+        "en": "Maximum continued subsidy when the child is voluntarily absent",
+        "fr": "Durée maximale de subventionnement en cas d'absence volontaire de l'enfant",
+        "it": "Durata massima del sussidio in caso di assenza volontaria del bambino",
         "ls": "Wie viele Wochen die Stadt weiter zahlt, wenn Ihr Kind freiwillig fehlt"
       },
       "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/faq.html",
@@ -682,6 +682,9 @@
       },
       "depends_on": [
         11
+      ],
+      "reference_ids": [
+        2
       ],
       "type": "ende"
     },
