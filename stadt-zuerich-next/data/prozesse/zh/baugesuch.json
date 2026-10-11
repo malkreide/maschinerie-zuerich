@@ -12,11 +12,11 @@
     "ls": "Bau-Bewilligung in Zürich (normales Verfahren)"
   },
   "description": {
-    "de": "Ablauf einer Baubewilligung für bewilligungspflichtige Bauvorhaben in der Stadt Zürich nach PBG. Umfasst Vorprüfung, öffentliche Auflage, Einsprachen, Entscheid und Rechtsmittelverfahren.",
-    "en": "Building-permit workflow in the City of Zurich under the cantonal Planning and Building Act, including public notice, objections, decision and appeal.",
-    "fr": "Déroulement d'un permis de construire pour les projets soumis à autorisation dans la ville de Zurich selon la loi sur l'aménagement du territoire et les constructions (PBG). Comprend l'examen préalable, la mise à l'enquête publique, les oppositions, la décision et la procédure de recours.",
-    "it": "Iter di una licenza edilizia per progetti soggetti ad autorizzazione nella città di Zurigo secondo la legge sulla pianificazione e le costruzioni (PBG). Comprende l'esame preliminare, la pubblicazione, le opposizioni, la decisione e la procedura di ricorso.",
-    "ls": "So bekommen Sie die Erlaubnis, ein Haus zu bauen oder umzubauen. Sie schicken einen Antrag an das Amt. Das Amt prüft. Nachbarn dürfen Einwände machen. Am Schluss sagt das Amt: Ja oder Nein."
+    "de": "Ablauf einer Baubewilligung für bewilligungspflichtige Bauvorhaben in der Stadt Zürich nach PBG. Umfasst Vorprüfung, öffentliche Auflage, das Anfordern des Bauentscheids durch Interessierte, Entscheid und Rechtsmittelverfahren.",
+    "en": "Building-permit workflow in the City of Zurich under the cantonal Planning and Building Act, including public notice, requests for the building decision by interested parties, decision and appeal.",
+    "fr": "Déroulement d'un permis de construire pour les projets soumis à autorisation dans la ville de Zurich selon la loi sur l'aménagement du territoire et les constructions (PBG). Comprend l'examen préalable, la mise à l'enquête publique, la demande de notification de la décision par les personnes intéressées, la décision et la procédure de recours.",
+    "it": "Iter di una licenza edilizia per progetti soggetti ad autorizzazione nella città di Zurigo secondo la legge sulla pianificazione e le costruzioni (PBG). Comprende l'esame preliminare, la pubblicazione, la richiesta della decisione edilizia da parte degli interessati, la decisione e la procedura di ricorso.",
+    "ls": "So bekommen Sie die Erlaubnis, ein Haus zu bauen oder umzubauen. Sie schicken einen Antrag an das Amt. Das Amt prüft. Nachbarn können den Entscheid vom Amt anfordern. Am Schluss sagt das Amt: Ja oder Nein."
   },
   "target_audience": "bevoelkerung",
   "source_url": "https://www.stadt-zuerich.ch/de/planen-und-bauen/baubewilligungen/bewilligungsprozess/baugesuch-einreichen.html",
@@ -36,6 +36,34 @@
       "source_quote": "Bauentscheide und Bauabnahmen sind kostenpflichtig. Die Höhe der Gebühr hängt bei Neubauten vom Bauvolumen und bei Umbauten von den Baukosten ab.",
       "status": "verifiziert",
       "retrieved_at": "2026-06-10"
+    },
+    {
+      "reference_id": 2,
+      "label": {
+        "de": "Frist, um den Bauentscheid anzufordern",
+        "en": "Deadline for requesting the building decision",
+        "fr": "Délai pour demander la notification de la décision",
+        "it": "Termine per richiedere la decisione edilizia",
+        "ls": "Bis wann man den Entscheid anfordern kann"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/planen-und-bauen/baubewilligungen/bewilligungsprozess/baugesuch-einreichen.html",
+      "source_quote": "Dies ist während 20 Tagen möglich. Interessierte können während dieser Frist den Bauentscheid anfordern.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-10-11"
+    },
+    {
+      "reference_id": 3,
+      "label": {
+        "de": "Rechtsmittelfrist nach dem Bauentscheid",
+        "en": "Time limit for legal remedies after the building decision",
+        "fr": "Délai de recours après la décision en matière de construction",
+        "it": "Termine di ricorso dopo la decisione edilizia",
+        "ls": "Wie viel Zeit es gibt, um sich zu beschweren"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/planen-und-bauen/baubewilligungen/bewilligungsprozess/fristen-und-gebuehren.html",
+      "source_quote": "30 Tage Rechtsmittelfrist (diese Zeit und der Postweg entfallen, wenn die Bauherrschaft keinen Rekurs einreicht)",
+      "status": "verifiziert",
+      "retrieved_at": "2026-10-11"
     }
   ],
   "actors": [
@@ -88,22 +116,22 @@
     {
       "id": "nachbarn",
       "label": {
-        "de": "Einsprachelegitimierte (Nachbarn)",
-        "en": "Objectors (neighbours)",
-        "fr": "Personnes légitimées à faire opposition (voisins)",
-        "it": "Persone legittimate all'opposizione (vicini)",
-        "ls": "Nachbarn"
+        "de": "Nachbarn und weitere Interessierte",
+        "en": "Neighbours and other interested parties",
+        "fr": "Voisins et autres personnes intéressées",
+        "it": "Vicini e altri interessati",
+        "ls": "Nachbarn und andere Personen"
       },
       "type": "dritte"
     },
     {
       "id": "baurekurs",
       "label": {
-        "de": "Baurekursgericht",
-        "en": "Building Appeals Court",
-        "fr": "Tribunal des recours en matière de construction",
-        "it": "Tribunale dei ricorsi in materia edilizia",
-        "ls": "Gericht"
+        "de": "Rechtsmittelinstanz (gemäss Rechtsmittelbelehrung)",
+        "en": "Appeal authority (as stated in the decision)",
+        "fr": "Instance de recours (selon l'indication des voies de droit)",
+        "it": "Istanza di ricorso (secondo l'indicazione dei rimedi giuridici)",
+        "ls": "Die Stelle für Beschwerden (sie steht im Entscheid vom Amt)"
       },
       "type": "gericht"
     }
@@ -309,26 +337,36 @@
       "step_id": 8,
       "actor": "nachbarn",
       "label": {
-        "de": "Einsprachen erhoben?",
-        "en": "Objections filed?",
-        "fr": "Des oppositions ont-elles été formées ?",
-        "it": "Sono state presentate opposizioni?",
-        "ls": "Gibt es Einwände von Nachbarn?"
+        "de": "Bauentscheid anfordern?",
+        "en": "Request the building decision?",
+        "fr": "Demander la notification de la décision ?",
+        "it": "Richiedere la decisione edilizia?",
+        "ls": "Wollen Nachbarn den Entscheid bekommen?"
       },
       "depends_on": [
         7
       ],
-      "type": "entscheidung"
+      "type": "entscheidung",
+      "reference_ids": [
+        2
+      ],
+      "description": {
+        "de": "Ausgeschriebene Baugesuche kann man digital über die Plattform eAuflageZH einsehen. Interessierte können dort während der Auflagefrist die Zustellung des baurechtlichen Entscheids beantragen – das ist nur elektronisch möglich.",
+        "en": "Published building applications can be viewed online on the eAuflageZH platform. During the public-notice period, interested parties can request there that the building decision be sent to them – this is only possible electronically.",
+        "fr": "Les demandes de permis publiées peuvent être consultées en ligne sur la plateforme eAuflageZH. Pendant le délai de mise à l'enquête, les personnes intéressées peuvent y demander la notification de la décision en matière de construction – uniquement par voie électronique.",
+        "it": "Le domande di costruzione pubblicate possono essere consultate online sulla piattaforma eAuflageZH. Durante il periodo di pubblicazione, gli interessati possono richiedervi la notifica della decisione edilizia – solo per via elettronica.",
+        "ls": "Das Amt zeigt im Internet: Hier will jemand bauen. Die Seite heisst eAuflageZH. Nachbarn können dort verlangen: Ich will den Entscheid vom Amt bekommen. Das geht nur im Internet. Bis wann das geht, steht bei «Wichtige Zahlen»."
+      }
     },
     {
       "step_id": 9,
       "actor": "amt-baubewilligungen",
       "label": {
-        "de": "Einsprachen behandeln",
-        "en": "Process objections",
-        "fr": "Traiter les oppositions",
-        "it": "Trattare le opposizioni",
-        "ls": "Das Amt schaut die Einwände an"
+        "de": "Zustellung des Bauentscheids vormerken",
+        "en": "Register request for the building decision",
+        "fr": "Enregistrer la demande de notification de la décision",
+        "it": "Registrare la richiesta della decisione edilizia",
+        "ls": "Das Amt merkt sich: Diese Personen bekommen den Entscheid"
       },
       "depends_on": [
         {
@@ -454,15 +492,22 @@
       "step_id": 16,
       "actor": "baurekurs",
       "label": {
-        "de": "Rekursverfahren Baurekursgericht",
-        "en": "Appeal proceedings",
-        "fr": "Procédure de recours devant le Tribunal des recours en matière de construction",
-        "it": "Procedura di ricorso dinanzi al Tribunale dei ricorsi in materia edilizia",
-        "ls": "Ein Gericht prüft den Entscheid"
+        "de": "Rechtsmittelverfahren gemäss Rechtsmittelbelehrung im Entscheid",
+        "en": "Legal remedy as stated in the decision",
+        "fr": "Voie de droit selon l'indication figurant dans la décision",
+        "it": "Rimedio giuridico secondo l'indicazione nella decisione",
+        "ls": "Sich beschweren, so wie es im Entscheid vom Amt steht"
       },
       "depends_on": [
         {
           "step_id": 15,
+          "condition": {
+            "de": "ja",
+            "ls": "ja"
+          }
+        },
+        {
+          "step_id": 19,
           "condition": {
             "de": "ja",
             "ls": "ja"
@@ -472,7 +517,17 @@
       "type": "loop",
       "loops_back_to": [
         12
-      ]
+      ],
+      "reference_ids": [
+        3
+      ],
+      "description": {
+        "de": "Welche Stelle zuständig ist, in welcher Form und innert welcher Frist ein Rechtsmittel eingereicht werden kann, steht in der Rechtsmittelbelehrung am Ende des Entscheids.",
+        "en": "Which authority is responsible, and in what form and within what deadline a legal remedy can be lodged, is set out in the notice of appeal rights at the end of the decision.",
+        "fr": "L'autorité compétente, ainsi que la forme et le délai pour exercer une voie de droit, figurent dans l'indication des voies de droit à la fin de la décision.",
+        "it": "L'autorità competente, nonché la forma e il termine per esperire un rimedio giuridico, sono indicati nell'indicazione dei rimedi giuridici alla fine della decisione.",
+        "ls": "Am Ende vom Entscheid steht: Wo können Sie sich beschweren? Wie machen Sie das? Bis wann müssen Sie das machen? Halten Sie sich genau daran."
+      }
     },
     {
       "step_id": 17,
@@ -485,7 +540,13 @@
         "ls": "Sie dürfen bauen"
       },
       "depends_on": [
-        13
+        {
+          "step_id": 19,
+          "condition": {
+            "de": "nein",
+            "ls": "nein"
+          }
+        }
       ],
       "type": "ende"
     },
@@ -509,6 +570,21 @@
         }
       ],
       "type": "ende"
+    },
+    {
+      "step_id": 19,
+      "actor": "nachbarn",
+      "label": {
+        "de": "Rechtsmittel gegen die Bewilligung ergreifen?",
+        "en": "Challenge the permit?",
+        "fr": "Contester l'autorisation ?",
+        "it": "Impugnare la licenza?",
+        "ls": "Wollen Nachbarn sich beschweren?"
+      },
+      "depends_on": [
+        13
+      ],
+      "type": "entscheidung"
     }
   ],
   "legal_basis": [
