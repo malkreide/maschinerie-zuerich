@@ -28,7 +28,7 @@
 // Aufruf:
 //   node scripts/extract-quotes.mjs [--fetch] [--city zh] [--file <pfad>]
 //        [--only-unverified] [--all-refs] [--out <pfad>] [--json]
-//        [--timeout 30000] [--concurrency 3]
+//        [--drift-report [--strict]] [--timeout 30000] [--concurrency 3]
 //
 //   --fetch            HTTP statt Browser (SSR-Seiten; proxy-tauglich)
 //   --only-unverified  nur References ohne belegtes source_quote (Default: alle)
@@ -37,6 +37,12 @@
 //   --grep <regex>     nur Seiten-Segmente, die diesem Muster (i) entsprechen —
 //                      nötig bei riesigen Einzelseiten (ganzes ZGB auf einer
 //                      fedlex-Seite), z. B. --grep "Ehefähigkeit"
+//   --drift-report     kompakter Drift-Bericht über ALLE References (impliziert
+//                      --all-refs): nur Zitate, die nicht mehr wörtlich auf der
+//                      Seite stehen, je mit dem ähnlichsten Satz der Seite.
+//                      Advisory (Exit 0); mit --strict bzw.
+//                      CHECK_QUOTES_STRICT=1 Exit 1 bei Drift. Läuft wöchentlich
+//                      in .github/workflows/link-rot.yml.
 //   --file <pfad>      auf eine Prozessdatei beschränken
 //   --json             Report als JSON statt Text
 //   --out <pfad>       Report zusätzlich in Datei schreiben
@@ -48,6 +54,7 @@ import { readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { htmlToText, normWs } from './lib/html-text.mjs';
+import { pruefeZitat } from './lib/quote-drift.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '..');
@@ -62,7 +69,9 @@ const opt = (name, def) => {
 const CITY = opt('--city', 'zh');
 const ONLY_FILE = opt('--file', null);
 const ONLY_UNVERIFIED = flag('--only-unverified');
-const ALL_REFS = flag('--all-refs');
+const DRIFT_REPORT = flag('--drift-report');
+const ALL_REFS = flag('--all-refs') || DRIFT_REPORT;
+const STRICT = flag('--strict') || process.env.CHECK_QUOTES_STRICT === '1';
 const AS_JSON = flag('--json');
 const OUT = opt('--out', null);
 const TIMEOUT = Number(opt('--timeout', '30000'));
@@ -280,6 +289,48 @@ console.error(
   `${FETCH_MODE ? 'Hole (HTTP)' : 'Rendere (Browser)'} ${uniqueUrls.length} Quell-URL(s) für ${refs.length} Reference(s) …`,
 );
 const pages = FETCH_MODE ? await fetchPages(uniqueUrls) : await renderPages(uniqueUrls);
+
+// ── Drift-Bericht (kompakt, für den Wochenlauf) ─────────────────────────────
+if (DRIFT_REPORT) {
+  const drift = [];
+  const offen = [];
+  let woertlich = 0;
+  for (const r of refs) {
+    if (!r.existingQuote) continue;
+    const page = pages.get(r.url);
+    const wo = `${r.rel} · ref ${r.reference_id} «${r.label}»`;
+    if (!page?.ok) {
+      offen.push(`${wo}\n    Seite nicht lesbar (${page?.status ?? '–'}${page?.error ? ', ' + page.error : ''}): ${r.url}`);
+      continue;
+    }
+    const b = pruefeZitat(page.text, r.existingQuote);
+    if (b.status === 'woertlich') woertlich++;
+    else if (b.status === 'nicht-pruefbar') offen.push(`${wo}\n    ${b.grund}: ${r.url}`);
+    else if (b.status === 'drift') {
+      drift.push(
+        `${wo}\n    Seite: ${r.url}\n    Zitat:  «${normWs(r.existingQuote)}»\n` +
+          (b.aehnlich
+            ? `    ähnlichster Satz (${Math.round(b.anteil * 100)} % der Zitatwörter): «${b.aehnlich.slice(0, 400)}»`
+            : '    kein ähnlicher Satz gefunden'),
+      );
+    }
+  }
+  const lines = [`Zitat-Drift-Bericht · ${refs.length} References · Stadt ${CITY}`, ''];
+  if (drift.length) {
+    lines.push(`✗ DRIFT (${drift.length}) — Zitat steht nicht mehr wörtlich auf der Seite. Wert prüfen, Zitat neu setzen:`);
+    for (const d of drift) lines.push(`  ✗ ${d}`);
+    lines.push('');
+  }
+  if (offen.length) {
+    lines.push(`⚠ NICHT PRÜFBAR (${offen.length}) — umgebungsabhängig oder JS-Seite, von Hand prüfen:`);
+    for (const o of offen) lines.push(`  ⚠ ${o}`);
+    lines.push('');
+  }
+  lines.push(`Ergebnis: ${woertlich} wörtlich, ${drift.length} Drift, ${offen.length} nicht prüfbar.`);
+  console.log(lines.join('\n'));
+  if (OUT) await writeFile(path.resolve(OUT), lines.join('\n'));
+  process.exit(STRICT && drift.length ? 1 : 0);
+}
 
 const report = [];
 for (const r of refs) {

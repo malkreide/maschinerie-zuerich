@@ -31,6 +31,7 @@
     "build:portfolio": "node --experimental-strip-types scripts/build-portfolio.mjs",
     "check:portfolio": "node --experimental-strip-types scripts/build-portfolio.mjs --check",
     "extract:quotes": "node scripts/extract-quotes.mjs",
+    "check:quotes:drift": "node scripts/extract-quotes.mjs --fetch --drift-report",
     "migrate:schema:v2": "node scripts/migrate-prozesse-schema-v2.mjs",
     "scaffold:city": "node scripts/scaffold-city.mjs",
     "probe:search": "node scripts/probe-search.mjs",
