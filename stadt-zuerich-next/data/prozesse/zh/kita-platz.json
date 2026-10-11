@@ -256,11 +256,11 @@
     {
       "id": "bezirksrat",
       "label": {
-        "de": "Bezirksrat Zürich (Rekursinstanz)",
-        "en": "District council (appeals body)",
-        "fr": "Conseil de district de Zurich (instance de recours)",
-        "it": "Consiglio distrettuale di Zurigo (istanza di ricorso)",
-        "ls": "Eine Stelle vom Kanton für Beschwerden"
+        "de": "Rechtsmittelinstanz (gemäss Rechtsmittelbelehrung)",
+        "en": "Appeal authority (as stated in the decision)",
+        "fr": "Instance de recours (selon l'indication des voies de droit)",
+        "it": "Istanza di ricorso (secondo l'indicazione dei rimedi giuridici)",
+        "ls": "Die Stelle für Beschwerden (sie steht im Brief vom Amt)"
       },
       "type": "gericht"
     }
@@ -707,10 +707,10 @@
       "step_id": 14,
       "actor": "eltern",
       "label": {
-        "de": "Rekurs einreichen?",
-        "en": "File an appeal?",
-        "fr": "Déposer un recours?",
-        "it": "Presentare un ricorso?",
+        "de": "Rechtsmittel ergreifen?",
+        "en": "Lodge a legal remedy?",
+        "fr": "Exercer une voie de droit ?",
+        "it": "Esperire un rimedio giuridico?",
         "ls": "Wollen Sie sich beschweren?"
       },
       "depends_on": [
@@ -722,11 +722,11 @@
       "step_id": 15,
       "actor": "bezirksrat",
       "label": {
-        "de": "Rekurs beim Bezirksrat",
-        "en": "Appeal to the district council",
-        "fr": "Recours auprès du conseil de district",
-        "it": "Ricorso al consiglio distrettuale",
-        "ls": "Beschwerde bei der Kantonsstelle"
+        "de": "Rechtsmittel gemäss Rechtsmittelbelehrung im Entscheid",
+        "en": "Legal remedy as stated in the decision",
+        "fr": "Voie de droit selon l'indication figurant dans la décision",
+        "it": "Rimedio giuridico secondo l'indicazione nella decisione",
+        "ls": "Sich beschweren, so wie es im Brief vom Amt steht"
       },
       "depends_on": [
         {
@@ -740,7 +740,14 @@
       "type": "loop",
       "loops_back_to": [
         8
-      ]
+      ],
+      "description": {
+        "de": "Welche Stelle zuständig ist, in welcher Form und innert welcher Frist ein Rechtsmittel eingereicht werden kann, steht in der Rechtsmittelbelehrung am Ende des Entscheids.",
+        "en": "Which authority is responsible, and in what form and within what deadline a legal remedy can be lodged, is set out in the notice of appeal rights at the end of the decision.",
+        "fr": "L'autorité compétente, ainsi que la forme et le délai pour exercer une voie de droit, figurent dans l'indication des voies de droit à la fin de la décision.",
+        "it": "L'autorità competente, nonché la forma e il termine per esperire un rimedio giuridico, sono indicati nell'indicazione dei rimedi giuridici alla fine della decisione.",
+        "ls": "Am Ende vom Brief steht: Wo können Sie sich beschweren? Wie machen Sie das? Bis wann müssen Sie das machen? Halten Sie sich genau daran."
+      }
     },
     {
       "step_id": 16,
