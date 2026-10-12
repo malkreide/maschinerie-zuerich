@@ -127,6 +127,10 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version: 24.20.0
+          cache: npm
+          cache-dependency-path: stadt-zuerich-next/package-lock.json
+      # unpdf: PDF-Quellen (z. B. ZHlex-Fassungen) wörtlich prüfen.
+      - run: npm ci
       - name: Basis-Branch holen
         run: git fetch --no-tags origin "$GITHUB_BASE_REF"
       - name: Neue/geänderte References live prüfen

@@ -53,7 +53,8 @@ process.env.NODE_USE_ENV_PROXY ??= '1';
 import { readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { htmlToText, normWs } from './lib/html-text.mjs';
+import { normWs } from './lib/html-text.mjs';
+import { isPdfUrl, responseToText } from './lib/page-text.mjs';
 import { pruefeZitat } from './lib/quote-drift.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -197,8 +198,8 @@ function collectRefs(processes) {
 }
 
 // ── HTTP-Fetch (SSR, kein Browser) ──────────────────────────────────────────
-// HTML→Text-Konvertierung in scripts/lib/html-text.mjs (geteilt mit dem
-// Referenzen-Gate check-refs-gate.mjs).
+// HTML→Text in scripts/lib/html-text.mjs, PDF→Text in scripts/lib/page-text.mjs
+// (beide geteilt mit dem Referenzen-Gate check-refs-gate.mjs).
 
 async function fetchPages(urls) {
   const cache = new Map();
@@ -213,8 +214,7 @@ async function fetchPages(urls) {
           redirect: 'follow',
           signal: AbortSignal.timeout(TIMEOUT),
         });
-        const html = await res.text();
-        const text = htmlToText(html);
+        const text = await responseToText(res);
         cache.set(url, { ok: res.status < 400 && text.length > 0, status: res.status, text });
       } catch (err) {
         cache.set(url, { ok: false, status: 0, text: '', error: err.message.split('\n')[0] });
@@ -227,6 +227,7 @@ async function fetchPages(urls) {
 
 // ── Browser-Rendering ───────────────────────────────────────────────────────
 async function renderPages(urls) {
+  if (!urls.length) return new Map();
   let chromium;
   try {
     ({ chromium } = await import('@playwright/test'));
@@ -288,7 +289,14 @@ const uniqueUrls = [...new Set(refs.map((r) => r.url).filter(Boolean))];
 console.error(
   `${FETCH_MODE ? 'Hole (HTTP)' : 'Rendere (Browser)'} ${uniqueUrls.length} Quell-URL(s) für ${refs.length} Reference(s) …`,
 );
-const pages = FETCH_MODE ? await fetchPages(uniqueUrls) : await renderPages(uniqueUrls);
+// PDFs öffnet der Browser als Download statt als Seite — sie gehen immer
+// über HTTP, auch im Render-Modus.
+const pages = FETCH_MODE
+  ? await fetchPages(uniqueUrls)
+  : new Map([
+      ...(await renderPages(uniqueUrls.filter((u) => !isPdfUrl(u)))),
+      ...(await fetchPages(uniqueUrls.filter(isPdfUrl))),
+    ]);
 
 // ── Drift-Bericht (kompakt, für den Wochenlauf) ─────────────────────────────
 if (DRIFT_REPORT) {

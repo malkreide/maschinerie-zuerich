@@ -17,7 +17,9 @@
 //          abhängig, kein Datenfehler; Taxonomie wie check-links.mjs)
 //        • Netzfehler       → WARNUNG (Netzwerkpolicy, kein Datenfehler)
 //   2. Verbatim: steht das source_quote (whitespace-normalisiert) wörtlich
-//      im Text der Seite? Nur prüfbar, wenn die Seite lesbar war.
+//      im Text der Seite? Nur prüfbar, wenn die Seite lesbar war. PDF-Quellen
+//      werden als Text gelesen, Silbentrennung am Zeilenende aufgehoben
+//      (scripts/lib/page-text.mjs).
 //        • nicht gefunden   → FEHLER (Zitat-Drift oder erfundenes Zitat)
 //        • Seite liefert kaum Text (JS-SPA) → WARNUNG «nicht prüfbar»,
 //          menschliches Review bleibt zuständig (extract-quotes.mjs ohne
@@ -35,7 +37,8 @@ import { readFile } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { htmlToText, normWs } from './lib/html-text.mjs';
+import { normWs } from './lib/html-text.mjs';
+import { responseToText } from './lib/page-text.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const appRoot = path.resolve(here, '..');           // stadt-zuerich-next/
@@ -158,8 +161,7 @@ async function fetchPage(url) {
       redirect: 'follow',
       signal: AbortSignal.timeout(TIMEOUT),
     });
-    const html = await res.text();
-    return { kind: classify(res.status), status: res.status, text: htmlToText(html) };
+    return { kind: classify(res.status), status: res.status, text: await responseToText(res) };
   } catch (err) {
     const reason = err.name === 'TimeoutError' ? 'Timeout' : err.message.split('\n')[0];
     return { kind: 'netzfehler', status: 0, text: '', reason };
