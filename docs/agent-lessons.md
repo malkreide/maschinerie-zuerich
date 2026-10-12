@@ -114,6 +114,12 @@ verschiedene Vertrauensniveaus.
   `retrieved_at` darum die aktuelle Fassung prüfen;
   `http://www.zhlex.zh.ch/Erlass.html?Open&Ordnr=<LS>` leitet immer auf die
   aktuelle Fassung weiter.
+- fedlex (Bundesrecht) ist eine JS-SPA, legt aber jede Fassung als PDF-A in
+  den Filestore: `https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/<…>/<JJJJMMTT>/de/pdf-a/….pdf`.
+  Die aktuelle Fassung (`jolux:dateApplicability` ≤ heute) und ihre
+  Datei-URLs liefert der SPARQL-Endpunkt `https://fedlex.data.admin.ch/sparqlendpoint`.
+  Grosse Erlasse (ZGB: 388 Seiten) mit `#page=N` auf die Seite des Artikels
+  verlinken. Gate und Drift-Bericht ignorieren den Anker beim Abruf.
 
 ### 7. Tooling-Fallen (kosten still Zeit)
 - `npm run script -- --flag` verschluckt die Flags (Windows/PowerShell) → das
