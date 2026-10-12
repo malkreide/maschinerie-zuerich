@@ -100,6 +100,11 @@ verschiedene Vertrauensniveaus.
   Extraktion/Darstellung als Prosa-Zitate; bei unklarer Zuordnung abstinieren.
   (Der gerenderte Tabellentext liess sich später lokal als verbatim Block
   belegen — aber erst, als Browser-Rendering **und** offener Netzzugang da waren.)
+- Auf stadt-zuerich.ch ist das Widget `<stzh-datatable>` mit den JSON-Attributen
+  `columns`/`rows`. `scripts/lib/html-text.mjs` rendert es seit Oktober 2026 als
+  Text (Kopfzeile, dann eine Textzeile je Tabellenzeile). Gate und
+  Drift-Bericht prüfen Tabellen-Zitate darum ohne Browser wörtlich. Andere
+  Widgets bleiben blind; dort gilt weiter: verlinken oder abstinieren.
 
 ### 7. Tooling-Fallen (kosten still Zeit)
 - `npm run script -- --flag` verschluckt die Flags (Windows/PowerShell) → das

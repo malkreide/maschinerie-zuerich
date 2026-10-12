@@ -17,12 +17,56 @@ export function decodeEntities(s) {
     .replace(/&([a-zA-Z]+);/g, (m, n) => (n in NAMED_ENT ? NAMED_ENT[n] : (NAMED_ENT[n.toLowerCase()] ?? m)));
 }
 
+// Öffnender Tag, dessen Attributwerte in "…" stehen und ein rohes «>»
+// enthalten dürfen (die stzh-Web-Komponenten escapen in Attributen nur «"»
+// und «<», nicht «>»).
+const STZH_OPEN_TAG = /<(stzh-[a-z0-9-]+)\b((?:[^>"]|"[^"]*")*)>/gi;
+
+function attr(attrs, name) {
+  const m = attrs.match(new RegExp(`(?:^|\\s)${name}="([^"]*)"`, 'i'));
+  return m ? decodeEntities(m[1]) : null;
+}
+
+function jsonAttr(attrs, name) {
+  const v = attr(attrs, name);
+  if (v == null) return null;
+  try {
+    return JSON.parse(v);
+  } catch {
+    return null;
+  }
+}
+
+// Zellinhalt ist selbst HTML (z. B. «<p>Fr. 0.63</p>», «<stzh-link …>»).
+const cellText = (v) => normWs(htmlToText(String(v ?? '')));
+
+// <stzh-datatable> rendert seine Tabelle im Browser aus den JSON-Attributen
+// `columns` und `rows`; im Markup steht kein Tabellentext. Hier wird daraus
+// der Text, den ein Mensch sieht: Kopfzeile (ausser bei hide-column-headings),
+// dann je Tabellenzeile eine Textzeile mit den Zellen in Spaltenreihenfolge.
+function datatableText(attrs) {
+  const lines = [];
+  const cols = jsonAttr(attrs, 'columns');
+  if (Array.isArray(cols) && !/(?:^|\s)hide-column-headings\b/i.test(attrs)) {
+    lines.push(cols.map((c) => cellText(c?.text)).filter(Boolean).join(' '));
+  }
+  const rows = jsonAttr(attrs, 'rows');
+  if (Array.isArray(rows)) {
+    for (const row of rows) {
+      if (!Array.isArray(row)) continue;
+      lines.push(row.map((c) => cellText(c?.value)).filter(Boolean).join(' '));
+    }
+  }
+  return `\n${lines.filter(Boolean).join('\n')}\n`;
+}
+
 // Konvertiert HTML zu lesbarem Text. Block-Elemente werden zu Zeilen-
 // umbrüchen, damit Sätze nicht über Layoutgrenzen hinweg verkleben.
 export function htmlToText(html) {
   let s = html
     .replace(/<!--[\s\S]*?-->/g, ' ')
     .replace(/<(script|style|noscript|template|svg)\b[\s\S]*?<\/\1>/gi, ' ')
+    .replace(STZH_OPEN_TAG, (_, name, attrs) => (name.toLowerCase() === 'stzh-datatable' ? datatableText(attrs) : ' '))
     .replace(/<\/(p|div|li|ul|ol|h[1-6]|tr|table|section|article|header|footer|main|nav|dd|dt)\s*>/gi, '\n')
     .replace(/<br\s*\/?>/gi, '\n')
     .replace(/<[^>]+>/g, ' ');
