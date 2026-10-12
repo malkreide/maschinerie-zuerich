@@ -324,7 +324,7 @@
       "step_id": 10,
       "actor": "steueramt",
       "label": {
-        "de": "Veranlagungsverfügung und Schlussrechnung zustellen",
+        "de": "Einschätzungsentscheid und Schlussrechnung zustellen",
         "en": "Issue assessment decision and final invoice",
         "fr": "Notifier la décision de taxation et le décompte final",
         "it": "Notificare la decisione di tassazione e il conteggio finale",
