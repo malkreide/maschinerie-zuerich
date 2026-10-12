@@ -60,12 +60,21 @@ function datatableText(attrs) {
   return `\n${lines.filter(Boolean).join('\n')}\n`;
 }
 
+// Inline-Auszeichnung (fett, Link, …) trennt im Browser keine Wörter:
+// «kostet <strong>17 Franken</strong>.» liest sich «kostet 17 Franken.».
+// Ersetzte man diese Tags durch ein Leerzeichen, entstünde «17 Franken .»,
+// und ein wörtliches Zitat passte nicht mehr. Darum fallen sie ersatzlos weg;
+// alle übrigen Tags trennen weiterhin mit einem Leerzeichen.
+const INLINE_TAG =
+  /<\/?(?:a|abbr|b|bdi|bdo|cite|code|data|del|dfn|em|font|i|ins|kbd|mark|q|s|samp|small|span|strong|sub|sup|time|u|var|wbr|stzh-link)\b(?:[^>"]|"[^"]*")*>/gi;
+
 // Konvertiert HTML zu lesbarem Text. Block-Elemente werden zu Zeilen-
 // umbrüchen, damit Sätze nicht über Layoutgrenzen hinweg verkleben.
 export function htmlToText(html) {
   let s = html
     .replace(/<!--[\s\S]*?-->/g, ' ')
     .replace(/<(script|style|noscript|template|svg)\b[\s\S]*?<\/\1>/gi, ' ')
+    .replace(INLINE_TAG, '')
     .replace(STZH_OPEN_TAG, (_, name, attrs) => (name.toLowerCase() === 'stzh-datatable' ? datatableText(attrs) : ' '))
     .replace(/<\/(p|div|li|ul|ol|h[1-6]|tr|table|section|article|header|footer|main|nav|dd|dt)\s*>/gi, '\n')
     .replace(/<br\s*\/?>/gi, '\n')
