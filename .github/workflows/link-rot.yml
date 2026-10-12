@@ -12,8 +12,11 @@ name: Link-Rot (Live-HTTP)
 # Zweiter Schritt: Zitat-Drift. Das Referenzen-Gate (ci.yml) prüft nur
 # References, die ein PR neu hinzufügt oder ändert. Formuliert eine Quellseite
 # später um, steht ein bestehendes source_quote nicht mehr wörtlich dort —
-# das fängt nur dieser Wochenlauf (npm run check:quotes:drift). Ebenfalls
-# advisory; manuell mit strict_zitate rot bei Drift.
+# das fängt nur dieser Wochenlauf (npm run check:quotes:drift). Derselbe
+# Lauf gleicht Gesetzes-PDFs (fedlex, ZHlex) mit der aktuell geltenden
+# Fassung ab: ein neuer Gesetzesstand lässt den alten Link leben und das
+# Zitat wörtlich — nur dieser Abgleich bemerkt ihn. Ebenfalls advisory;
+# manuell mit strict_zitate rot bei Drift oder überholter Fassung.
 #
 # Der strukturelle Check (npm run check:links) bleibt im normalen CI-Gate
 # (ci.yml) und läuft netzfrei bei jedem PR.
@@ -30,7 +33,7 @@ on:
         type: boolean
         default: false
       strict_zitate:
-        description: 'Bei Zitat-Drift (source_quote nicht mehr wörtlich auf der Seite) rot werden'
+        description: 'Bei Zitat-Drift (source_quote nicht mehr wörtlich auf der Seite) oder überholter Gesetzesfassung rot werden'
         type: boolean
         default: false
 
