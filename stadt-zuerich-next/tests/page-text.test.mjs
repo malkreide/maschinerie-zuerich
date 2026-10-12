@@ -96,5 +96,7 @@ test('responseToText unterscheidet PDF und HTML nach Content-Type', async () => 
 
 test('isPdfUrl erkennt die direkte ZHlex-PDF-URL, nicht aber die HTML-Seite', () => {
   assert.ok(isPdfUrl('https://www.notes.zh.ch/appl/zhlex_r.nsf/WebView/A1B7/$File/631.1_8.6.97_132.pdf'));
+  // fedlex mit Seitenanker (heiraten Ref. 1): der Anker zeigt im Browser die Seite des Artikels
+  assert.ok(isPdfUrl('https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/24/233_245_233/20260701/de/pdf-a/fedlex-data-admin-ch-eli-cc-24-233_245_233-20260701-de-pdf-a-1.pdf#page=39'));
   assert.ok(!isPdfUrl('https://www.zh.ch/de/politik-staat/gesetze-beschluesse/gesetzessammlung/zhlex-ls/erlass-631_1-1997_06_08-1999_01_01-132.html'));
 });
