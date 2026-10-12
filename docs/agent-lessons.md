@@ -105,6 +105,15 @@ verschiedene Vertrauensniveaus.
   Text (Kopfzeile, dann eine Textzeile je Tabellenzeile). Gate und
   Drift-Bericht prüfen Tabellen-Zitate darum ohne Browser wörtlich. Andere
   Widgets bleiben blind; dort gilt weiter: verlinken oder abstinieren.
+- ZHlex (Zürcher Gesetzessammlung auf zh.ch) lädt den Erlasstext per
+  JavaScript. Prüfbar ist die PDF-Fassung, aber nur über die **direkte** URL
+  `https://www.notes.zh.ch/appl/zhlex_r.nsf/WebView/<docid>/$File/<LS>_<Datum>_<Nachtrag>.pdf`.
+  Der Download-Link der Seite (`OpenAttachment?…`) liefert nur eine
+  JS-Weiterleitung. Die PDF-URL ist **pro Nachtrag versioniert**. Ein neuer
+  Nachtrag lässt den alten Link leben, Link-Rot meldet also nichts. Bei
+  `retrieved_at` darum die aktuelle Fassung prüfen;
+  `http://www.zhlex.zh.ch/Erlass.html?Open&Ordnr=<LS>` leitet immer auf die
+  aktuelle Fassung weiter.
 
 ### 7. Tooling-Fallen (kosten still Zeit)
 - `npm run script -- --flag` verschluckt die Flags (Windows/PowerShell) → das
