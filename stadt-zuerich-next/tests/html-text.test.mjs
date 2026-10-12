@@ -81,3 +81,27 @@ test('andere stzh-Komponenten mit «>» im Attribut hinterlassen keinen Attribut
 test('gewöhnliches HTML unverändert: Blöcke zu Zeilen, Entities dekodiert', () => {
   assert.equal(htmlToText('<p>Fr.&nbsp;86.50</p><div>a<br>b &laquo;c&raquo;</div>'), 'Fr. 86.50\na\nb «c»');
 });
+
+// betreibungsregisterauszug-bestellen.html (Stand 12.10.2026), wörtlich:
+// Der Satzpunkt folgt direkt auf </strong>. Vorher machte der Extraktor
+// daraus «(A-Post) .», und betreibung Ref. 3 galt fälschlich als Drift.
+test('Inline-Auszeichnung erzeugt kein Leerzeichen vor dem Satzzeichen', () => {
+  const html =
+    '<ul>\n<li>Ein Standard-Auszug kostet <strong>17 Franken plus Porto (A-Post)</strong>. ' +
+    'Betreibungsämter können einen Kostenvorschuss verlangen.</li>\n' +
+    '<li>Zum Inhalt siehe <a title="Sprungmarke" href="#erlaeuterungen" class="icon intern">Erläuterungen zum Betreibungsauszug</a>.</li>\n</ul>';
+  assert.equal(
+    htmlToText(html),
+    'Ein Standard-Auszug kostet 17 Franken plus Porto (A-Post). Betreibungsämter können einen Kostenvorschuss verlangen.\n' +
+      'Zum Inhalt siehe Erläuterungen zum Betreibungsauszug.',
+  );
+  assert.ok(normWs(htmlToText(html)).includes('Ein Standard-Auszug kostet 17 Franken plus Porto (A-Post).'));
+});
+
+test('Block- und Komponenten-Tags trennen weiterhin Wörter, Inline-Tags nicht', () => {
+  assert.equal(htmlToText('<td>Fr. 0.37</td><td>pro Sack</td>'), 'Fr. 0.37 pro Sack');
+  assert.equal(htmlToText('<stzh-heading>Kosten</stzh-heading><stzh-text>Fr. 17</stzh-text>'), 'Kosten Fr. 17');
+  assert.equal(htmlToText('max. 0.5 m<sup>3</sup>, <em>siehe</em> <stzh-link href="/x">Grubengut</stzh-link>.'), 'max. 0.5 m3, siehe Grubengut.');
+  // <img>, <input>, <section> sind keine Inline-Auszeichnung, auch wenn der Name mit i/s beginnt
+  assert.equal(htmlToText('Bild<img src="a.png">Text<section>Abschnitt</section>'), 'Bild Text Abschnitt');
+});
