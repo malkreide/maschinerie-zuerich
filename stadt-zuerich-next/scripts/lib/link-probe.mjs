@@ -12,6 +12,15 @@
 //     Domains zählen jetzt als tot — aber nur, wenn ein öffentlicher
 //     DNS-Resolver das bestätigt (siehe dnsBefundeEinordnen).
 
+// Browser-naher User-Agent: der Node-Default wird von vielen amtlichen Sites
+// (Bot-Schutz) mit 403 quittiert, was den Live-Check unbrauchbar machen würde.
+export const LINKCHECK_HEADERS = {
+  'user-agent':
+    'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) ' +
+    'Chrome/126.0 Safari/537.36 maschinerie-zuerich-linkcheck/1.0',
+  'accept-language': 'de-CH,de;q=0.9',
+};
+
 export function classify(status) {
   if (status < 400) return 'ok';
   if (status === 404 || status === 410 || status >= 500) return 'tot';

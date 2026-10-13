@@ -1,0 +1,46 @@
+name: URL-Diagnose
+
+# Stellt einzelne URLs auf einem Runner mit offenem Netz nach: DNS (lokal und
+# öffentlich per DNS-over-HTTPS), HEAD- und GET-Weiterleitungskette,
+# Zertifikat und die Einordnung des Link-Rot-Berichts.
+#
+# Wozu: Meldet der Link-Rot-Bericht einen «Netzfehler», kann dahinter ein
+# Prüferfehler (amicus.ch: HEAD-Schleife) oder ein Datenfehler (eumzugch.ch:
+# Domain existiert nicht) stecken — siehe docs/agent-lessons.md, B.10. Dieser
+# Workflow ersetzt die Probe-Branches, die dafür bisher von Hand angelegt
+# wurden.
+#
+# Nur manuell. Läuft auf main oder auf dem Branch eines offenen PRs (Feld
+# «Use workflow from»). Die Eingabe sind ausschliesslich URLs; sie gelangt
+# über eine Umgebungsvariable ins Skript und wird dort geprüft, nie direkt in
+# die Shell eingesetzt. Ändert nichts am Repo, Rechte nur lesend.
+
+on:
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: 'URLs, getrennt durch Leerzeichen, Komma oder Zeilenumbruch (höchstens 20)'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    name: URLs diagnostizieren
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: stadt-zuerich-next
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24.20.0
+      # Keine Abhängigkeiten nötig: url-diagnose.mjs nutzt nur Node-Bordmittel.
+      - name: Diagnose
+        env:
+          DIAGNOSE_URLS: ${{ inputs.urls }}
+        run: node scripts/url-diagnose.mjs

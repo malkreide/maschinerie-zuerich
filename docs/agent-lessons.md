@@ -167,6 +167,10 @@ Datenfehler». Beide waren falsch eingeordnet:
   nachstellen (`dig`, `curl -I` gegen `curl` mit GET, `openssl s_client`,
   Node-`fetch` mit `err.cause.code`). Erst die Ursache, dann die Einordnung.
   «fetch failed» allein ist kein Befund.
+  Dafür gibt es den manuellen Workflow «URL-Diagnose»
+  (`.github/workflows/url-diagnose.yml`): URLs eingeben, auf `main` oder dem
+  PR-Branch starten. Keine Probe-Branches mehr; die Sitzung kann sie nicht
+  löschen, sie bleiben sonst liegen.
 
 ---
 
@@ -254,7 +258,7 @@ Datenfehler». Beide waren falsch eingeordnet:
 
 ## E. Werkzeuge, die in dieser Session entstanden sind
 
-Beide leben unter `stadt-zuerich-next/scripts/` und sind Vorlagen, an die ein
+Sie leben unter `stadt-zuerich-next/scripts/` und sind Vorlagen, an die ein
 Agent andocken kann:
 
 - **`check-links.mjs`** — struktureller Link-Check (CI-Gate, netzfrei) plus
@@ -263,6 +267,10 @@ Agent andocken kann:
   Workflow `.github/workflows/link-rot.yml`. Abruf und Einordnung liegen in
   `scripts/lib/link-probe.mjs`: HEAD, bei jedem Scheitern GET;
   NXDOMAIN per DNS-over-HTTPS bestätigt gilt als tot.
+- **`url-diagnose.mjs`** — Einzeldiagnose von URLs (DNS lokal und per DoH,
+  HEAD- und GET-Weiterleitungskette mit Schleifenerkennung, Zertifikat,
+  Einordnung wie Link-Rot). Manuell im Workflow `.github/workflows/url-diagnose.yml`
+  oder lokal mit `npm run diagnose:urls -- <URL> …`.
 - **`extract-quotes.mjs`** — schlägt verbatim `source_quote`-Kandidaten vor,
   rendert via HTTP (`--fetch`, für SSR) oder Headless-Browser (für SPAs),
   grenzt grosse Seiten mit `--grep` ein und prüft bestehende Zitate gegen die
@@ -270,5 +278,5 @@ Agent andocken kann:
   zusammen (nur Abweichungen, je mit dem ähnlichsten Satz) und läuft wöchentlich
   in `link-rot.yml`. Schreibt nie in die Daten.
 
-Beide spiegeln die Prinzipien oben: Tri-State-Erreichbarkeit, multi-modaler
+Sie spiegeln die Prinzipien oben: Tri-State-Erreichbarkeit, multi-modaler
 Fetch, Propose-don't-write, Drift-Verifikation.
