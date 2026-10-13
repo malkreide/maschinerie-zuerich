@@ -24,6 +24,12 @@
 //        • Seite liefert kaum Text (JS-SPA) → WARNUNG «nicht prüfbar»,
 //          menschliches Review bleibt zuständig (extract-quotes.mjs ohne
 //          --fetch rendert solche Seiten im Browser).
+//   3. Fassung: verlinkt die Reference das PDF einer Gesetzesfassung (fedlex,
+//      ZHlex), gilt diese Fassung noch? (scripts/lib/gesetzesfassung.mjs)
+//        • andere Fassung gilt → WARNUNG mit der geltenden Fassung, auch als
+//          Annotation an der Prozessdatei. Kein Fehler: das Zitat kann in der
+//          alten Fassung korrekt belegt sein, ob der Wert noch gilt, prüft
+//          ein Mensch.
 //
 // Exit 1 bei mindestens einem FEHLER. Keine Escape-Hatches: wer einen toten
 // Link oder ein driftendes Zitat mergen will, muss erst die Daten fixen.
@@ -39,6 +45,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { normWs } from './lib/html-text.mjs';
 import { responseToText } from './lib/page-text.mjs';
+import { erkenneFassung, pruefeFassung } from './lib/gesetzesfassung.mjs';
+import { ghAnnotation, inGitHubActions } from './lib/gh-annotations.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const appRoot = path.resolve(here, '..');           // stadt-zuerich-next/
@@ -221,6 +229,38 @@ if (warnings.length) {
   for (const w of warnings) console.log(`  ⚠ ${w}`);
 }
 
+// ── Fassung (Gesetzes-PDFs) ─────────────────────────────────────────────────
+// Eigene Liste: eine Reference kann wörtlich belegt sein UND auf eine
+// überholte Fassung zeigen — sie zählt dann trotzdem als geprüft.
+const fassungsWarnungen = [];
+const fassungsOpts = {
+  cache: new Map(),
+  heute: new Date().toISOString().slice(0, 10),
+  headers: { 'user-agent': UA, 'accept-language': 'de-CH,de;q=0.9' },
+};
+for (const r of toCheck) {
+  const f = erkenneFassung(r.url);
+  if (!f) continue;
+  const b = await pruefeFassung(f, fassungsOpts);
+  const where = `${r.file} ref ${r.reference_id} (${r.reason}) «${r.label}»`;
+  let text = null;
+  if (b.status === 'veraltet') {
+    text =
+      `verlinkt ${b.verlinkt}, es gilt ${b.aktuell} — Zitat in der geltenden Fassung prüfen, Link neu setzen: ${b.neu}`;
+  } else if (b.status === 'nicht-pruefbar') {
+    text = `Fassung nicht prüfbar (${b.grund}): ${r.url}`;
+  }
+  if (!text) continue;
+  fassungsWarnungen.push(`${where}\n    ${text}`);
+  if (inGitHubActions()) {
+    console.log(ghAnnotation('warning', `ref ${r.reference_id} «${r.label}»: ${text}`, { file: r.file, title: 'Gesetzesfassung' }));
+  }
+}
+if (fassungsWarnungen.length) {
+  console.log(`\n⚠ FASSUNG (${fassungsWarnungen.length}) — Gesetzes-PDF einer nicht (mehr) geltenden Fassung, kippt das Gate nicht:`);
+  for (const w of fassungsWarnungen) console.log(`  ⚠ ${w}`);
+}
+
 const checked = toCheck.length - warnings.length - errors.length;
 if (errors.length) {
   console.error(`\n✗ FEHLER (${errors.length}):`);
@@ -231,4 +271,7 @@ if (errors.length) {
   );
   process.exit(1);
 }
-console.log(`\n✓ Referenzen-Gate grün: ${checked} Reference(s) live geprüft, ${warnings.length} nicht prüfbar (Warnung).`);
+console.log(
+  `\n✓ Referenzen-Gate grün: ${checked} Reference(s) live geprüft, ${warnings.length} nicht prüfbar (Warnung)` +
+    (fassungsWarnungen.length ? `, ${fassungsWarnungen.length} Fassungs-Warnung(en).` : '.'),
+);
