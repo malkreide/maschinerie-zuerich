@@ -19,6 +19,11 @@
 //                 nicht erreichbar (Netzwerkpolicy). Ebenfalls umgebungs-
 //                 abhängig, kein Datenfehler.
 //
+// Nicht abgerufen werden Spec-Kennungen (json-schema.org) und Basisadressen:
+// URLs, die nur unter `baseUrl`/`…BaseUrl`/`…RawUrl` stehen, sind Präfixe für
+// die App, keine Links (scripts/lib/basis-urls.mjs). Strukturell geprüft
+// werden sie weiterhin.
+//
 // Exit-Verhalten im Live-Modus:
 //   • advisory (Standard): meldet alles, Exit 0 — die Erreichbarkeit hängt von
 //     der Netzwerkpolicy ab und soll den Build nicht kippen.
@@ -34,6 +39,7 @@
 import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { zaehleBasisUrls } from './lib/basis-urls.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '..');
@@ -71,6 +77,7 @@ const URL_RE = /https?:\/\/[^\s"'<>)\]]+/g;
 const errors = [];
 const occurrences = []; // { url, file }
 const filesByUrl = new Map(); // url -> Set(file)
+const basisVorkommen = new Map(); // url -> Anzahl Vorkommen unter Basis-Schlüsseln
 
 for (const rel of await listFiles()) {
   let text;
@@ -78,6 +85,11 @@ for (const rel of await listFiles()) {
     text = await readFile(path.join(root, rel), 'utf-8');
   } catch {
     continue;
+  }
+  try {
+    zaehleBasisUrls(JSON.parse(text), basisVorkommen);
+  } catch {
+    // kein gültiges JSON → keine Basisadressen; Struktur meldet validate:*
   }
   for (const raw of text.match(URL_RE) ?? []) {
     const url = raw.replace(/[.,]+$/, ''); // evtl. Satzzeichen am Ende abschneiden
@@ -124,7 +136,17 @@ if (!ONLINE) {
 
 // Spec-Identifier sind keine abrufbaren Seiten → aus dem Live-Check nehmen.
 const SKIP_HOSTS = new Set(['json-schema.org']);
-const toCheck = unique.filter((u) => !SKIP_HOSTS.has(new URL(u).hostname));
+// Basisadressen (API-Endpunkt, Repo-Präfix) sind keine Links: abgerufen
+// liefern sie systembedingt 404/403. Übersprungen nur, wenn die URL AUSSCHLIESS-
+// LICH unter einem Basis-Schlüssel steht (scripts/lib/basis-urls.mjs).
+const vorkommen = new Map();
+for (const o of occurrences) vorkommen.set(o.url, (vorkommen.get(o.url) ?? 0) + 1);
+const nurBasis = (u) => (basisVorkommen.get(u) ?? 0) >= (vorkommen.get(u) ?? 0);
+const basisUebersprungen = unique.filter((u) => !SKIP_HOSTS.has(new URL(u).hostname) && nurBasis(u));
+const toCheck = unique.filter((u) => !SKIP_HOSTS.has(new URL(u).hostname) && !nurBasis(u));
+if (basisUebersprungen.length) {
+  console.log(`\nBasisadressen (kein Link, nicht abgerufen): ${basisUebersprungen.join(', ')}`);
+}
 
 function classify(status) {
   if (status < 400) return 'ok';
