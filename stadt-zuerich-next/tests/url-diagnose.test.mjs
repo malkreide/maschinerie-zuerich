@@ -10,7 +10,7 @@
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { MAX_URLS, berichtMarkdown, diagnose, parseUrls, verfolgeWeiterleitungen } from '../scripts/lib/url-diagnose.mjs';
+import { MAX_URLS, berichtMarkdown, diagnose, inlineCode, parseUrls, verfolgeWeiterleitungen } from '../scripts/lib/url-diagnose.mjs';
 
 test('parseUrls: trennt an Leerzeichen, Komma und Zeilenumbruch, entfernt Doppelte', () => {
   assert.deepEqual(parseUrls('https://a.ch/, https://b.ch/x\nhttp://c.ch https://a.ch/'), {
@@ -88,4 +88,13 @@ test('diagnose: unbekannte Domain wird als tot eingeordnet, Bericht nennt NXDOMA
   assert.match(md, /NXDOMAIN \(Domain existiert nicht\)/);
   assert.match(md, /Zertifikat:\*\* Fehler: ENOTFOUND/);
   assert.match(md, /Abgelehnte Eingaben.*`\$\(id\)`/);
+});
+
+test('inlineCode: Backticks im Text brechen den Code-Span nicht (Lauf #1: «``whoami``»)', () => {
+  assert.equal(inlineCode('$(id)'), '`$(id)`');
+  assert.equal(inlineCode('`whoami`'), '`` `whoami` ``');
+  assert.equal(inlineCode('a`b'), '``a`b``');
+  assert.equal(inlineCode('x``y'), '```x``y```');
+  const md = berichtMarkdown([], ['$(id)', '`whoami`', 'https://x.ch/";']);
+  assert.match(md, /: `\$\(id\)`, `` `whoami` ``, `https:\/\/x\.ch\/";`$/m);
 });
