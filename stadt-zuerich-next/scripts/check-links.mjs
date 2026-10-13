@@ -42,7 +42,7 @@ import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { zaehleBasisUrls } from './lib/basis-urls.mjs';
-import { dnsBefundeEinordnen, probeUrl } from './lib/link-probe.mjs';
+import { LINKCHECK_HEADERS, dnsBefundeEinordnen, probeUrl } from './lib/link-probe.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '..');
@@ -51,11 +51,6 @@ const args = new Set(process.argv.slice(2));
 const ONLINE = args.has('--online') || process.env.CHECK_LINKS_ONLINE === '1';
 const STRICT = args.has('--strict') || process.env.CHECK_LINKS_STRICT === '1';
 
-// Browser-naher User-Agent: der Node-Default wird von vielen amtlichen Sites
-// (Bot-Schutz) mit 403 quittiert, was den Live-Check unbrauchbar machen würde.
-const UA =
-  'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) ' +
-  'Chrome/126.0 Safari/537.36 maschinerie-zuerich-linkcheck/1.0';
 const HTTP_TIMEOUT_MS = 15000;
 const CONCURRENCY = 6;
 
@@ -152,7 +147,7 @@ if (basisUebersprungen.length) {
 }
 
 const probe = (url) =>
-  probeUrl(url, { headers: { 'user-agent': UA, 'accept-language': 'de-CH,de;q=0.9' }, timeoutMs: HTTP_TIMEOUT_MS });
+  probeUrl(url, { headers: LINKCHECK_HEADERS, timeoutMs: HTTP_TIMEOUT_MS });
 
 // Einfacher Nebenläufigkeits-Pool, höflich gegenüber den Quellen.
 async function runPool(items, worker, size) {
