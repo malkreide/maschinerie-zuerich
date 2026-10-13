@@ -6,16 +6,18 @@
 // abgeschotteten Umgebungen (Allowlist) verlässlich als CI-Gate läuft.
 //
 // LIVE-HTTP-Modus (--online | CHECK_LINKS_ONLINE=1): ruft zusätzlich jede
-// eindeutige URL real ab (HEAD, GET-Fallback) und meldet Link-Rot. Die
+// eindeutige URL real ab (HEAD; scheitert es, GET) und meldet Link-Rot. Die
 // Befunde werden kategorisiert, weil „nicht erreichbar" je nach Aufrufer
 // Verschiedenes heisst:
 //
-//   • tot       → 404 / 410 / 5xx: die Seite gibt es so nicht mehr. Echtes
-//                 Link-Rot, das in den Daten korrigiert gehört.
+//   • tot       → 404 / 410 / 5xx: die Seite gibt es so nicht mehr. Ebenso
+//                 eine unbekannte Domain, sofern ein öffentlicher DNS-
+//                 Resolver NXDOMAIN bestätigt. Echtes Link-Rot, das in den
+//                 Daten korrigiert gehört.
 //   • blockiert → 401 / 403 / 429: Quelle antwortet, lehnt aber diesen Client
 //                 ab (Bot-Schutz, Rate-Limit, IP-Sperre). Hängt von der
 //                 Umgebung ab, ist KEIN Datenfehler.
-//   • Netzfehler→ Timeout / DNS / Verbindung verweigert: aus dieser Umgebung
+//   • Netzfehler→ Timeout / Verbindung verweigert: aus dieser Umgebung
 //                 nicht erreichbar (Netzwerkpolicy). Ebenfalls umgebungs-
 //                 abhängig, kein Datenfehler.
 //
@@ -40,6 +42,7 @@ import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { zaehleBasisUrls } from './lib/basis-urls.mjs';
+import { dnsBefundeEinordnen, probeUrl } from './lib/link-probe.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '..');
@@ -148,36 +151,8 @@ if (basisUebersprungen.length) {
   console.log(`\nBasisadressen (kein Link, nicht abgerufen): ${basisUebersprungen.join(', ')}`);
 }
 
-function classify(status) {
-  if (status < 400) return 'ok';
-  if (status === 404 || status === 410 || status >= 500) return 'tot';
-  return 'blockiert'; // 401/403/429 u. ä.: Quelle lebt, lehnt diesen Client ab
-}
-
-async function probe(url) {
-  const headers = { 'user-agent': UA, 'accept-language': 'de-CH,de;q=0.9' };
-  try {
-    let res = await fetch(url, {
-      method: 'HEAD',
-      headers,
-      redirect: 'follow',
-      signal: AbortSignal.timeout(HTTP_TIMEOUT_MS),
-    });
-    // Manche Server beantworten HEAD nicht sauber (405/501/000) → GET-Fallback.
-    if (res.status >= 400) {
-      res = await fetch(url, {
-        method: 'GET',
-        headers,
-        redirect: 'follow',
-        signal: AbortSignal.timeout(HTTP_TIMEOUT_MS),
-      });
-    }
-    return { url, kind: classify(res.status), status: res.status };
-  } catch (err) {
-    const reason = err.name === 'TimeoutError' ? 'Timeout' : err.message;
-    return { url, kind: 'netzfehler', status: 0, reason };
-  }
-}
+const probe = (url) =>
+  probeUrl(url, { headers: { 'user-agent': UA, 'accept-language': 'de-CH,de;q=0.9' }, timeoutMs: HTTP_TIMEOUT_MS });
 
 // Einfacher Nebenläufigkeits-Pool, höflich gegenüber den Quellen.
 async function runPool(items, worker, size) {
@@ -195,7 +170,7 @@ async function runPool(items, worker, size) {
 
 console.log(`\nLive-HTTP-Check (${toCheck.length} URLs, ${CONCURRENCY} parallel, Timeout ${HTTP_TIMEOUT_MS / 1000}s) …`);
 
-const results = await runPool(toCheck, probe, CONCURRENCY);
+const results = await dnsBefundeEinordnen(await runPool(toCheck, probe, CONCURRENCY));
 
 const byKind = { tot: [], blockiert: [], netzfehler: [] };
 for (const r of results) {
