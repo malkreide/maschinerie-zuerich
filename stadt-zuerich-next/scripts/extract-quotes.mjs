@@ -40,9 +40,12 @@
 //   --drift-report     kompakter Drift-Bericht über ALLE References (impliziert
 //                      --all-refs): nur Zitate, die nicht mehr wörtlich auf der
 //                      Seite stehen, je mit dem ähnlichsten Satz der Seite.
+//                      Dazu ein Fassungs-Abgleich: verlinkt eine Reference das
+//                      PDF einer Gesetzesfassung (fedlex/ZHlex), wird geprüft,
+//                      ob inzwischen eine andere Fassung gilt.
 //                      Advisory (Exit 0); mit --strict bzw.
-//                      CHECK_QUOTES_STRICT=1 Exit 1 bei Drift. Läuft wöchentlich
-//                      in .github/workflows/link-rot.yml.
+//                      CHECK_QUOTES_STRICT=1 Exit 1 bei Drift oder überholter
+//                      Fassung. Läuft wöchentlich in .github/workflows/link-rot.yml.
 //   --file <pfad>      auf eine Prozessdatei beschränken
 //   --json             Report als JSON statt Text
 //   --out <pfad>       Report zusätzlich in Datei schreiben
@@ -56,6 +59,7 @@ import { fileURLToPath } from 'node:url';
 import { normWs } from './lib/html-text.mjs';
 import { isPdfUrl, responseToText } from './lib/page-text.mjs';
 import { pruefeZitat } from './lib/quote-drift.mjs';
+import { erkenneFassung, fassungsSchluessel, pruefeFassung } from './lib/gesetzesfassung.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '..');
@@ -323,7 +327,33 @@ if (DRIFT_REPORT) {
       );
     }
   }
+  // Fassungs-Abgleich für Gesetzes-PDFs: eine Abfrage je Erlass (cache),
+  // Vergleich je Reference mit der dort verlinkten Fassung.
+  const veraltet = [];
+  const fassungen = refs.map((r) => ({ r, f: erkenneFassung(r.url) })).filter((x) => x.f);
+  const fassungsOpts = {
+    cache: new Map(),
+    heute: new Date().toISOString().slice(0, 10),
+    headers: { 'user-agent': UA, 'accept-language': 'de-CH,de;q=0.9' },
+  };
+  for (const { r, f } of fassungen) {
+    const b = await pruefeFassung(f, fassungsOpts);
+    const wo = `${r.rel} · ref ${r.reference_id} «${r.label}»`;
+    if (b.status === 'veraltet') {
+      veraltet.push(`${wo}\n    verlinkt: ${b.verlinkt} — ${r.url}\n    es gilt:  ${b.aktuell} — ${b.neu}`);
+    } else if (b.status === 'nicht-pruefbar') {
+      offen.push(`${wo}\n    Fassung nicht prüfbar (${b.grund}): ${r.url}`);
+    }
+  }
+
   const lines = [`Zitat-Drift-Bericht · ${refs.length} References · Stadt ${CITY}`, ''];
+  if (veraltet.length) {
+    lines.push(
+      `✗ ÜBERHOLTE FASSUNG (${veraltet.length}) — es gilt eine andere Gesetzesfassung. Zitat in der neuen Fassung prüfen, Link neu setzen:`,
+    );
+    for (const v of veraltet) lines.push(`  ✗ ${v}`);
+    lines.push('');
+  }
   if (drift.length) {
     lines.push(`✗ DRIFT (${drift.length}) — Zitat steht nicht mehr wörtlich auf der Seite. Wert prüfen, Zitat neu setzen:`);
     for (const d of drift) lines.push(`  ✗ ${d}`);
@@ -334,10 +364,13 @@ if (DRIFT_REPORT) {
     for (const o of offen) lines.push(`  ⚠ ${o}`);
     lines.push('');
   }
-  lines.push(`Ergebnis: ${woertlich} wörtlich, ${drift.length} Drift, ${offen.length} nicht prüfbar.`);
+  lines.push(
+    `Ergebnis: ${woertlich} wörtlich, ${drift.length} Drift, ${offen.length} nicht prüfbar; ` +
+      `${fassungen.length} Gesetzes-PDF(s), ${veraltet.length} mit überholter Fassung.`,
+  );
   console.log(lines.join('\n'));
   if (OUT) await writeFile(path.resolve(OUT), lines.join('\n'));
-  process.exit(STRICT && drift.length ? 1 : 0);
+  process.exit(STRICT && (drift.length || veraltet.length) ? 1 : 0);
 }
 
 const report = [];
