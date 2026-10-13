@@ -141,6 +141,33 @@ verschiedene Vertrauensniveaus.
 - Schon verifizierte Zitate können still verrutschen (Seitenedits). Der
   Drift-Check über alle References ist Pflicht-Hygiene, kein Luxus.
 
+### 10. «Netzfehler» kann ein Prüfer- oder ein Datenfehler sein
+Der Link-Rot-Bericht vom 13.10.2026 führte zwei URLs als «Netzfehler, kein
+Datenfehler». Beide waren falsch eingeordnet:
+- **HEAD ist nicht GET.** `www.amicus.ch` beantwortet HEAD mit einer
+  Weiterleitungsschleife (`/Account/Login` → `/Error/Error` → …), GET mit 200.
+  Der Prüfer fiel nur bei einem Fehlerstatus auf GET zurück, nicht bei einem
+  abgebrochenen HEAD. So meldete er jede Woche einen Timeout auf einen
+  lebenden Link. **Konsequenz:** Ein gescheitertes HEAD (Fehlerstatus,
+  Schleife, Timeout) entscheidet nie allein, es folgt immer ein GET.
+- **NXDOMAIN ist Link-Rot.** `www.eumzugch.ch` (Quelle seit Juni 2026) hat
+  keinen DNS-Eintrag. Weil «DNS-Fehler» pauschal als umgebungsbedingt galt,
+  fiel die tote Domain monatelang niemandem auf.
+  Richtig ist `www.eumzug.swiss`; die Stadt verlinkt sie selbst auf ihrer
+  Wegzug-Seite.
+- **Lokales ENOTFOUND beweist nichts.** In abgeschotteten Umgebungen mit
+  Allowlist scheitert DNS auch für Hosts, die es gibt. Der Schluss «andere
+  Hosts antworten, also funktioniert DNS» ist falsch: Dort antworten die
+  erlaubten Hosts, alle übrigen liefern ENOTFOUND. Dieser Ansatz hätte in der
+  Sandbox 109 gültige Links als tot gemeldet. **Konsequenz:** NXDOMAIN bei
+  einem öffentlichen DNS-over-HTTPS-Resolver bestätigen lassen (`dns.google`,
+  als Ersatz `cloudflare-dns.com`, JSON-Antwort `Status: 3`). Antwortet kein
+  Resolver, bleibt es beim Netzfehler.
+- **Vorgehen bei Netzfehlern:** Auf einem Runner mit offenem Netz einzeln
+  nachstellen (`dig`, `curl -I` gegen `curl` mit GET, `openssl s_client`,
+  Node-`fetch` mit `err.cause.code`). Erst die Ursache, dann die Einordnung.
+  «fetch failed» allein ist kein Befund.
+
 ---
 
 ## C. Designprinzipien für den Agenten
@@ -197,7 +224,9 @@ verschiedene Vertrauensniveaus.
 
 11. **Tri-State statt binär bei Erreichbarkeit:** «tot (404/410)» ≠ «blockiert
     (403/Policy)» ≠ «Netzfehler». Diese Unterscheidung verhindert, dass
-    umgebungsbedingte Fehler als Datenfehler erscheinen.
+    umgebungsbedingte Fehler als Datenfehler erscheinen. Sie gilt aber auch
+    umgekehrt: Ein Datenfehler darf sich nicht als Netzfehler tarnen (eine
+    bestätigt unbekannte Domain ist tot, siehe B.10).
 
 12. **Deterministische, selbstprüfende Schritte statt blinder Iteration:**
     Werkzeuge direkt aufrufen, Lib-APIs inspizieren, eigene Annahmen
@@ -231,7 +260,9 @@ Agent andocken kann:
 - **`check-links.mjs`** — struktureller Link-Check (CI-Gate, netzfrei) plus
   Live-HTTP-Modus (`--online`), der tote Links kategorisiert (tot / blockiert /
   netzfehler) und pro Befund die betroffenen Dateien nennt. Zeitgesteuert im
-  Workflow `.github/workflows/link-rot.yml`.
+  Workflow `.github/workflows/link-rot.yml`. Abruf und Einordnung liegen in
+  `scripts/lib/link-probe.mjs`: HEAD, bei jedem Scheitern GET;
+  NXDOMAIN per DNS-over-HTTPS bestätigt gilt als tot.
 - **`extract-quotes.mjs`** — schlägt verbatim `source_quote`-Kandidaten vor,
   rendert via HTTP (`--fetch`, für SSR) oder Headless-Browser (für SPAs),
   grenzt grosse Seiten mit `--grep` ein und prüft bestehende Zitate gegen die
