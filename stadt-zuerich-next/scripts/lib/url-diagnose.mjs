@@ -122,10 +122,24 @@ const fmtKette = (k) => {
 };
 const NX = { true: 'NXDOMAIN (Domain existiert nicht)', false: 'existiert', null: 'nicht prüfbar' };
 
+/**
+ * Inline-Code für Markdown, auch wenn der Text selbst Backticks enthält
+ * (abgelehnte Eingaben wie `whoami`): Der Zaun ist einen Backtick länger als
+ * die längste Folge im Text; beginnt oder endet der Text mit einem Backtick,
+ * trennt je ein Leerzeichen (CommonMark entfernt es beim Rendern).
+ */
+export function inlineCode(text) {
+  const s = String(text);
+  const laengste = Math.max(0, ...(s.match(/`+/g) ?? []).map((f) => f.length));
+  const zaun = '`'.repeat(laengste + 1);
+  const rand = s.startsWith('`') || s.endsWith('`') ? ' ' : '';
+  return `${zaun}${rand}${s}${rand}${zaun}`;
+}
+
 /** Bericht als Markdown (Job-Summary und Konsole). */
 export function berichtMarkdown(befunde, abgelehnt = []) {
   const zeilen = ['## URL-Diagnose', ''];
-  if (abgelehnt.length) zeilen.push(`Abgelehnte Eingaben (keine http(s)-URL): ${abgelehnt.map((a) => `\`${a}\``).join(', ')}`, '');
+  if (abgelehnt.length) zeilen.push(`Abgelehnte Eingaben (keine http(s)-URL): ${abgelehnt.map(inlineCode).join(', ')}`, '');
   for (const b of befunde) {
     const e = b.einordnung;
     zeilen.push(
