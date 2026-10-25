@@ -30,6 +30,8 @@
     "check:refs": "node scripts/check-refs-gate.mjs",
     "build:portfolio": "node --experimental-strip-types scripts/build-portfolio.mjs",
     "check:portfolio": "node --experimental-strip-types scripts/build-portfolio.mjs --check",
+    "build:belege": "node --experimental-strip-types scripts/build-belege.mjs",
+    "check:belege": "node --experimental-strip-types scripts/build-belege.mjs --check",
     "extract:quotes": "node scripts/extract-quotes.mjs",
     "check:quotes:drift": "node scripts/extract-quotes.mjs --fetch --drift-report",
     "diagnose:urls": "node scripts/url-diagnose.mjs",

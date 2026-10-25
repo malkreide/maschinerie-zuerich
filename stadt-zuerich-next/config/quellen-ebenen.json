@@ -1,0 +1,19 @@
+{
+  "$comment": "Staatsebene der Belegquellen für das Belege-Aggregat (npm run build:belege, lib/belege.ts). Ein Eintrag deckt die Domain selbst und alle Subdomains ab ('zh.ch' → 'www.zh.ch', 'www.notes.zh.ch'). Bei mehreren Treffern gewinnt die längste Domain. Hosts ohne Eintrag erscheinen als 'andere' — der Generator listet sie, damit neue Quellen bewusst eingeordnet werden. 'bund' gilt für alle Städte, 'stadt' und 'kanton' je Stadt.",
+  "bund": [
+    "admin.ch",
+    "ch.ch"
+  ],
+  "staedte": {
+    "zh": {
+      "stadt": [
+        "stadt-zuerich.ch",
+        "ewz.ch"
+      ],
+      "kanton": [
+        "zh.ch",
+        "zvv.ch"
+      ]
+    }
+  }
+}

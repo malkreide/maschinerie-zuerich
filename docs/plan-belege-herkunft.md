@@ -1,9 +1,9 @@
 # Plan: Ansicht «Belege & Herkunft»
 
-**Status:** Entwurf zur Entscheidung (2026-10-25). Dieses Dokument ändert
-weder Code noch Daten. Die Umsetzung beginnt erst, wenn der Maintainer die
-offenen Entscheide in [Abschnitt 9](#9-offene-entscheide-maintainer) getroffen
-hat.
+**Status:** Entscheide getroffen (2026-10-25, Maintainer): E1 öffentlich,
+E2–E7 gemäss Empfehlung, siehe [Abschnitt 9](#9-entscheide-maintainer).
+Phase P1 ist umgesetzt (Belege-Aggregat mit Drift-Gate, ohne UI), P2–P5
+folgen.
 
 > **Kardinalregel bleibt:** Die Ansicht zeigt, *dass* und *wie* bindende
 > Angaben belegt sind, nie den bindenden Wert selbst. Zitate (`source_quote`)
@@ -197,19 +197,33 @@ export interface Belege {
     verifiziert: number;
     mitZitat: number;
     hochrisiko: number;
-    /** Hochrisiko-Prozesse, deren disclaimer_key gesetzt ist (Soll: alle) */
-    hochrisikoMitHinweis: number;
     nachEbene: Record<QuellenEbene, number>;
   };
 }
 
+export interface BelegeOptionen {
+  /** Host-Listen je Ebene, für die Stadt aufgelöst */
+  regeln: { stadt: string[]; kanton: string[]; bund: string[] };
+  /** Erkennung von Gesetzes-PDFs; im Generator erkenneFassung() aus
+   *  scripts/lib/gesetzesfassung.mjs (hereingereicht statt dupliziert) */
+  istGesetzesfassung: (url: string) => boolean;
+}
+
 /** Rein und deterministisch; serializeBelege() analog serializePortfolio(). */
-export function buildBelege(city: string, prozesse: Prozess[]): Belege;
+export function buildBelege(city: string, prozesse: Prozess[], opts: BelegeOptionen): Belege;
 ```
 
-> `hochrisikoMitHinweis` ist auf `main` per Definition gleich `hochrisiko`,
-> weil `validate:prozesse` den Key erzwingt. Gezeigt wird die Zahl trotzdem:
-> Sie macht eine Regel sichtbar, die sonst unsichtbar wirkt.
+**Host-Liste (`config/quellen-ebenen.json`):** `bund` gilt für alle Städte,
+`stadt` und `kanton` je Stadt. Ein Eintrag deckt die Domain und alle
+Subdomains ab, verglichen an der Label-Grenze (`notzh.ch` ist keine Subdomain
+von `zh.ch`). Bei mehreren Treffern gewinnt die längste Domain. Der Generator
+listet Hosts, die in `andere` landen, damit neue Quellen bewusst eingeordnet
+werden.
+
+> **Umgesetzt anders als im ersten Entwurf:** Ein Zähler
+> `hochrisikoMitHinweis` entfällt. `validate:prozesse` erzwingt, dass genau
+> die gelisteten Hochrisiko-Fälle den Hinweis tragen; der Zähler wäre also
+> immer gleich `hochrisiko`. Die View kann diese Regel als Text nennen.
 
 ### 5.2 Ebene 2: Wochenbefund (`data/befunde/<city>.json`)
 
@@ -332,7 +346,8 @@ Abschnitte:
    - bindende Angaben, wörtlich belegt (heute 75 von 75)
    - Belege nach Staatsebene (Stadt, Kanton, Bund, andere)
    - letzte Wochenprüfung: Datum, Drift, tote Links, «blockiert» separat
-   - Hochrisiko-Verfahren mit sichtbarem Hinweis (3 von 3)
+   - Hochrisiko-Verfahren (heute 3), alle mit sichtbarem Hinweis, weil
+     `validate:prozesse` das erzwingt
 3. **Prüfkette** als geordnete Liste (`<ol>`). Je Stufe steht, was geprüft
    wird, wann, was *nicht* geprüft wird, und ein Link auf Skript oder Workflow:
    1. Erfassung: Handdaten oder tessera-PR (struktur-only)
@@ -408,18 +423,21 @@ vorhanden (`messages-parity`).
 | **Öffentlich sichtbare Schwachstellen** (Drift, tote Links auf städtischen Seiten) | kommunikativ heikel, kann als Kritik an der eigenen Verwaltung gelesen werden | Formulierung «Link wird korrigiert» (der Fehler liegt im eigenen Deep-Link, nicht bei der Fachstelle); Entscheid E1/E5 vor P3 |
 | **«Blockiert» als «tot» missverstanden** | falsche Aussage über fremde Websites | eigene Kategorie mit eigenem Symbol; Umgebung im Snapshot ausgewiesen |
 | **`meta.herkunft` veraltet**, wenn niemand pflegt | irreführende Herkunftsangabe | tessera setzt das Feld im eigenen PR; der Validator prüft die Konsistenz; «nicht erfasst» statt Default |
+| **Zusätzlicher Schritt bei Daten-PRs:** jede Änderung an Prozessdaten muss `data/belege/<city>.json` neu erzeugen (auch tessera-PRs) | rotes `check:belege`, bis das Aggregat nachgezogen ist | gleiches Muster wie `check:portfolio`; die CI-Meldung nennt den Befehl `npm run build:belege` |
 | **Wöchentliche Bot-PRs als Rauschen** | Review-Müdigkeit | PR nur bei geändertem Befund; ein Sammel-PR pro Woche; kein Auto-Merge |
 | **GitHub-API-Limit** (Änderungsprotokoll) | Abschnitt leer | ISR 300 s, optionaler Token; failed-soft mit Hinweis «Protokoll derzeit nicht abrufbar» |
 | **Scope Creep** Richtung Monitoring-Plattform | Aufwand, Bundle, Wartung | Phasen strikt getrennt; Zeitreihen erst ab ≥ 8 versionierten Wochenbefunden (siehe Abschnitt 10) |
 
 ---
 
-## 9. Offene Entscheide (Maintainer)
+## 9. Entscheide (Maintainer)
 
-| # | Frage | Empfehlung | Begründung |
+Entschieden am 2026-10-25: E1 öffentlich, E2–E7 gemäss Empfehlung.
+
+| # | Frage | Entscheid | Begründung |
 |---|---|---|---|
-| **E1** | Ansicht öffentlich oder nur intern? | **öffentlich** | Transparenz ist der Zweck; intern genügt das Job-Summary. Voraussetzung: E5 ist entschieden |
-| **E2** | Herkunft als Vertragserweiterung `meta.herkunft`? Falls ja: MINOR oder MAJOR? | **ja, MINOR (`0.2.0`)**, optionales Feld | Git ist als Quelle unzuverlässig (flacher Clone, Merges unter einem Konto); eine Datei neben den Prozessen würde `validate:prozesse` brechen. Additiv ist nicht breaking, aber der Vertrag ist hier mehrdeutig |
+| **E1** | Ansicht öffentlich oder nur intern? | **öffentlich** | Transparenz ist der Zweck; intern genügt das Job-Summary. Formulierung toter Links gemäss E5 |
+| **E2** | Herkunft als Vertragserweiterung `meta.herkunft`? Falls ja: MINOR oder MAJOR? | **ja, MINOR (`0.2.0`)**, optionales Feld | Git ist als Quelle unzuverlässig (flacher Clone, Merges unter einem Konto); eine Datei neben den Prozessen würde `validate:prozesse` brechen. Additiv ist nicht breaking; in P4 die mehrdeutige Versionsregel im Vertrag klarstellen |
 | **E3** | Wie kommt der Wochenbefund nach `main`? | **Bot-PR bei Änderung**, ein Mensch merged | Entspricht Human-in-the-Loop, macht den Befund versioniert. Die Alternative, Artefakte zur Laufzeit abzurufen, braucht ein Token in Vercel und umgeht das Review |
 | **E4** | Route und Titel | **`/belege`**, «Belege & Herkunft» | konkret, in Leichte Sprache übertragbar («Woher wir das wissen») |
 | **E5** | Tote Deep-Links öffentlich mit URL nennen? | **ja, neutral formuliert** | Der Link ist unser Datenfehler; ihn zu benennen ist ehrlich und führt zur Korrektur |
