@@ -1,0 +1,1103 @@
+{
+  "schema_version": "1.0.0",
+  "city": "zh",
+  "generator": "lib/belege.ts/buildBelege",
+  "prozesse": [
+    {
+      "slug": "zh/abfall",
+      "city": "zh",
+      "id": "abfall",
+      "hochrisiko": false,
+      "referenzen": [
+        {
+          "reference_id": 1,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-27"
+        },
+        {
+          "reference_id": 2,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-27"
+        }
+      ],
+      "summe": {
+        "referenzen": 2,
+        "verifiziert": 2,
+        "mitZitat": 2,
+        "unverifiziert": 0
+      },
+      "bewertungsBelege": {
+        "gesamt": 0,
+        "verifiziert": 0
+      },
+      "quellen": 2,
+      "rechtsgrundlagen": 2,
+      "abruf": {
+        "aeltester": "2026-06-27",
+        "juengster": "2026-06-27"
+      }
+    },
+    {
+      "slug": "zh/baugesuch",
+      "city": "zh",
+      "id": "baugesuch",
+      "hochrisiko": true,
+      "referenzen": [
+        {
+          "reference_id": 1,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-10"
+        },
+        {
+          "reference_id": 2,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-10-11"
+        },
+        {
+          "reference_id": 3,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-10-11"
+        }
+      ],
+      "summe": {
+        "referenzen": 3,
+        "verifiziert": 3,
+        "mitZitat": 3,
+        "unverifiziert": 0
+      },
+      "bewertungsBelege": {
+        "gesamt": 0,
+        "verifiziert": 0
+      },
+      "quellen": 2,
+      "rechtsgrundlagen": 3,
+      "abruf": {
+        "aeltester": "2026-06-10",
+        "juengster": "2026-10-11"
+      }
+    },
+    {
+      "slug": "zh/betreibung",
+      "city": "zh",
+      "id": "betreibung",
+      "hochrisiko": false,
+      "referenzen": [
+        {
+          "reference_id": 1,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-21"
+        },
+        {
+          "reference_id": 2,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-21"
+        },
+        {
+          "reference_id": 3,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-21"
+        }
+      ],
+      "summe": {
+        "referenzen": 3,
+        "verifiziert": 3,
+        "mitZitat": 3,
+        "unverifiziert": 0
+      },
+      "bewertungsBelege": {
+        "gesamt": 3,
+        "verifiziert": 3
+      },
+      "quellen": 1,
+      "rechtsgrundlagen": 2,
+      "abruf": {
+        "aeltester": "2026-06-21",
+        "juengster": "2026-06-21"
+      }
+    },
+    {
+      "slug": "zh/fundsache",
+      "city": "zh",
+      "id": "fundsache",
+      "hochrisiko": false,
+      "referenzen": [
+        {
+          "reference_id": 1,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-10-05"
+        },
+        {
+          "reference_id": 2,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-28"
+        },
+        {
+          "reference_id": 3,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-28"
+        },
+        {
+          "reference_id": 4,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-28"
+        },
+        {
+          "reference_id": 5,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-28"
+        },
+        {
+          "reference_id": 6,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-28"
+        },
+        {
+          "reference_id": 7,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-28"
+        },
+        {
+          "reference_id": 8,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-28"
+        },
+        {
+          "reference_id": 9,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-10-11"
+        }
+      ],
+      "summe": {
+        "referenzen": 9,
+        "verifiziert": 9,
+        "mitZitat": 9,
+        "unverifiziert": 0
+      },
+      "bewertungsBelege": {
+        "gesamt": 0,
+        "verifiziert": 0
+      },
+      "quellen": 1,
+      "rechtsgrundlagen": 2,
+      "abruf": {
+        "aeltester": "2026-06-28",
+        "juengster": "2026-10-11"
+      }
+    },
+    {
+      "slug": "zh/heiraten",
+      "city": "zh",
+      "id": "heiraten",
+      "hochrisiko": false,
+      "referenzen": [
+        {
+          "reference_id": 1,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "fedlex.data.admin.ch",
+          "ebene": "bund",
+          "gesetzesfassung": true,
+          "retrieved_at": "2026-10-12"
+        },
+        {
+          "reference_id": 2,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "fedlex.data.admin.ch",
+          "ebene": "bund",
+          "gesetzesfassung": true,
+          "retrieved_at": "2026-10-12"
+        },
+        {
+          "reference_id": 3,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-25"
+        }
+      ],
+      "summe": {
+        "referenzen": 3,
+        "verifiziert": 3,
+        "mitZitat": 3,
+        "unverifiziert": 0
+      },
+      "bewertungsBelege": {
+        "gesamt": 0,
+        "verifiziert": 0
+      },
+      "quellen": 1,
+      "rechtsgrundlagen": 2,
+      "abruf": {
+        "aeltester": "2026-06-25",
+        "juengster": "2026-10-12"
+      }
+    },
+    {
+      "slug": "zh/hund-anmelden",
+      "city": "zh",
+      "id": "hund-anmelden",
+      "hochrisiko": false,
+      "referenzen": [
+        {
+          "reference_id": 1,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-10"
+        },
+        {
+          "reference_id": 2,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-10-11"
+        },
+        {
+          "reference_id": 3,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.zh.ch",
+          "ebene": "kanton",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-10"
+        }
+      ],
+      "summe": {
+        "referenzen": 3,
+        "verifiziert": 3,
+        "mitZitat": 3,
+        "unverifiziert": 0
+      },
+      "bewertungsBelege": {
+        "gesamt": 0,
+        "verifiziert": 0
+      },
+      "quellen": 2,
+      "rechtsgrundlagen": 3,
+      "abruf": {
+        "aeltester": "2026-06-10",
+        "juengster": "2026-10-11"
+      }
+    },
+    {
+      "slug": "zh/kita-platz",
+      "city": "zh",
+      "id": "kita-platz",
+      "hochrisiko": false,
+      "referenzen": [
+        {
+          "reference_id": 1,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-10"
+        },
+        {
+          "reference_id": 2,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-07-01"
+        },
+        {
+          "reference_id": 3,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-10-09"
+        },
+        {
+          "reference_id": 4,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-10-09"
+        },
+        {
+          "reference_id": 5,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-10-09"
+        },
+        {
+          "reference_id": 6,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-10-09"
+        },
+        {
+          "reference_id": 7,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-10-09"
+        },
+        {
+          "reference_id": 8,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-10-09"
+        },
+        {
+          "reference_id": 9,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-10-09"
+        },
+        {
+          "reference_id": 10,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-10-09"
+        },
+        {
+          "reference_id": 11,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-10-09"
+        },
+        {
+          "reference_id": 12,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-10-09"
+        },
+        {
+          "reference_id": 13,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-10-09"
+        }
+      ],
+      "summe": {
+        "referenzen": 13,
+        "verifiziert": 13,
+        "mitZitat": 13,
+        "unverifiziert": 0
+      },
+      "bewertungsBelege": {
+        "gesamt": 0,
+        "verifiziert": 0
+      },
+      "quellen": 5,
+      "rechtsgrundlagen": 2,
+      "abruf": {
+        "aeltester": "2026-06-10",
+        "juengster": "2026-10-09"
+      }
+    },
+    {
+      "slug": "zh/oev",
+      "city": "zh",
+      "id": "oev",
+      "hochrisiko": false,
+      "referenzen": [
+        {
+          "reference_id": 1,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-21"
+        },
+        {
+          "reference_id": 2,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-21"
+        },
+        {
+          "reference_id": 3,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.zvv.ch",
+          "ebene": "kanton",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-21"
+        },
+        {
+          "reference_id": 4,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.zvv.ch",
+          "ebene": "kanton",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-21"
+        }
+      ],
+      "summe": {
+        "referenzen": 4,
+        "verifiziert": 4,
+        "mitZitat": 4,
+        "unverifiziert": 0
+      },
+      "bewertungsBelege": {
+        "gesamt": 1,
+        "verifiziert": 1
+      },
+      "quellen": 3,
+      "rechtsgrundlagen": 3,
+      "abruf": {
+        "aeltester": "2026-06-21",
+        "juengster": "2026-06-21"
+      }
+    },
+    {
+      "slug": "zh/parkplatz",
+      "city": "zh",
+      "id": "parkplatz",
+      "hochrisiko": false,
+      "referenzen": [
+        {
+          "reference_id": 1,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-10-11"
+        },
+        {
+          "reference_id": 2,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-10"
+        },
+        {
+          "reference_id": 3,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-28"
+        }
+      ],
+      "summe": {
+        "referenzen": 3,
+        "verifiziert": 3,
+        "mitZitat": 3,
+        "unverifiziert": 0
+      },
+      "bewertungsBelege": {
+        "gesamt": 1,
+        "verifiziert": 1
+      },
+      "quellen": 2,
+      "rechtsgrundlagen": 3,
+      "abruf": {
+        "aeltester": "2026-06-10",
+        "juengster": "2026-10-11"
+      }
+    },
+    {
+      "slug": "zh/pass-id",
+      "city": "zh",
+      "id": "pass-id",
+      "hochrisiko": false,
+      "referenzen": [
+        {
+          "reference_id": 1,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.ch.ch",
+          "ebene": "bund",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-27"
+        },
+        {
+          "reference_id": 2,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.ch.ch",
+          "ebene": "bund",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-27"
+        },
+        {
+          "reference_id": 3,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.ch.ch",
+          "ebene": "bund",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-25"
+        },
+        {
+          "reference_id": 4,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.ch.ch",
+          "ebene": "bund",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-27"
+        }
+      ],
+      "summe": {
+        "referenzen": 4,
+        "verifiziert": 4,
+        "mitZitat": 4,
+        "unverifiziert": 0
+      },
+      "bewertungsBelege": {
+        "gesamt": 3,
+        "verifiziert": 3
+      },
+      "quellen": 2,
+      "rechtsgrundlagen": 2,
+      "abruf": {
+        "aeltester": "2026-06-25",
+        "juengster": "2026-06-27"
+      }
+    },
+    {
+      "slug": "zh/sozialhilfe",
+      "city": "zh",
+      "id": "sozialhilfe",
+      "hochrisiko": true,
+      "referenzen": [
+        {
+          "reference_id": 1,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.zh.ch",
+          "ebene": "kanton",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-17"
+        },
+        {
+          "reference_id": 2,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.zh.ch",
+          "ebene": "kanton",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-10-11"
+        },
+        {
+          "reference_id": 3,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.zh.ch",
+          "ebene": "kanton",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-10-11"
+        }
+      ],
+      "summe": {
+        "referenzen": 3,
+        "verifiziert": 3,
+        "mitZitat": 3,
+        "unverifiziert": 0
+      },
+      "bewertungsBelege": {
+        "gesamt": 0,
+        "verifiziert": 0
+      },
+      "quellen": 3,
+      "rechtsgrundlagen": 3,
+      "abruf": {
+        "aeltester": "2026-06-17",
+        "juengster": "2026-10-11"
+      }
+    },
+    {
+      "slug": "zh/steuern",
+      "city": "zh",
+      "id": "steuern",
+      "hochrisiko": false,
+      "referenzen": [
+        {
+          "reference_id": 1,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.zh.ch",
+          "ebene": "kanton",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-25"
+        },
+        {
+          "reference_id": 2,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.notes.zh.ch",
+          "ebene": "kanton",
+          "gesetzesfassung": true,
+          "retrieved_at": "2026-10-12"
+        },
+        {
+          "reference_id": 3,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-25"
+        }
+      ],
+      "summe": {
+        "referenzen": 3,
+        "verifiziert": 3,
+        "mitZitat": 3,
+        "unverifiziert": 0
+      },
+      "bewertungsBelege": {
+        "gesamt": 2,
+        "verifiziert": 2
+      },
+      "quellen": 2,
+      "rechtsgrundlagen": 2,
+      "abruf": {
+        "aeltester": "2026-06-25",
+        "juengster": "2026-10-12"
+      }
+    },
+    {
+      "slug": "zh/strom",
+      "city": "zh",
+      "id": "strom",
+      "hochrisiko": false,
+      "referenzen": [
+        {
+          "reference_id": 1,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-21"
+        },
+        {
+          "reference_id": 2,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-10-11"
+        },
+        {
+          "reference_id": 3,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.ewz.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-10-11"
+        }
+      ],
+      "summe": {
+        "referenzen": 3,
+        "verifiziert": 3,
+        "mitZitat": 3,
+        "unverifiziert": 0
+      },
+      "bewertungsBelege": {
+        "gesamt": 1,
+        "verifiziert": 1
+      },
+      "quellen": 2,
+      "rechtsgrundlagen": 3,
+      "abruf": {
+        "aeltester": "2026-06-21",
+        "juengster": "2026-10-11"
+      }
+    },
+    {
+      "slug": "zh/umwelt",
+      "city": "zh",
+      "id": "umwelt",
+      "hochrisiko": false,
+      "referenzen": [
+        {
+          "reference_id": 1,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-21"
+        },
+        {
+          "reference_id": 2,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-21"
+        },
+        {
+          "reference_id": 3,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-21"
+        },
+        {
+          "reference_id": 4,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-21"
+        },
+        {
+          "reference_id": 5,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-10-11"
+        }
+      ],
+      "summe": {
+        "referenzen": 5,
+        "verifiziert": 5,
+        "mitZitat": 5,
+        "unverifiziert": 0
+      },
+      "bewertungsBelege": {
+        "gesamt": 0,
+        "verifiziert": 0
+      },
+      "quellen": 1,
+      "rechtsgrundlagen": 3,
+      "abruf": {
+        "aeltester": "2026-06-21",
+        "juengster": "2026-10-11"
+      }
+    },
+    {
+      "slug": "zh/umzug-melden",
+      "city": "zh",
+      "id": "umzug-melden",
+      "hochrisiko": false,
+      "referenzen": [
+        {
+          "reference_id": 1,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-10-11"
+        },
+        {
+          "reference_id": 2,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-10-11"
+        },
+        {
+          "reference_id": 3,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-10-11"
+        },
+        {
+          "reference_id": 4,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-10-11"
+        },
+        {
+          "reference_id": 5,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-10-11"
+        },
+        {
+          "reference_id": 6,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-10-05"
+        },
+        {
+          "reference_id": 7,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-10-05"
+        },
+        {
+          "reference_id": 8,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-10-05"
+        },
+        {
+          "reference_id": 9,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-10-11"
+        }
+      ],
+      "summe": {
+        "referenzen": 9,
+        "verifiziert": 9,
+        "mitZitat": 9,
+        "unverifiziert": 0
+      },
+      "bewertungsBelege": {
+        "gesamt": 1,
+        "verifiziert": 1
+      },
+      "quellen": 3,
+      "rechtsgrundlagen": 3,
+      "abruf": {
+        "aeltester": "2026-10-05",
+        "juengster": "2026-10-11"
+      }
+    },
+    {
+      "slug": "zh/veranstaltung",
+      "city": "zh",
+      "id": "veranstaltung",
+      "hochrisiko": true,
+      "referenzen": [
+        {
+          "reference_id": 1,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-10"
+        },
+        {
+          "reference_id": 2,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-07-04"
+        }
+      ],
+      "summe": {
+        "referenzen": 2,
+        "verifiziert": 2,
+        "mitZitat": 2,
+        "unverifiziert": 0
+      },
+      "bewertungsBelege": {
+        "gesamt": 0,
+        "verifiziert": 0
+      },
+      "quellen": 1,
+      "rechtsgrundlagen": 2,
+      "abruf": {
+        "aeltester": "2026-06-10",
+        "juengster": "2026-07-04"
+      }
+    },
+    {
+      "slug": "zh/wasser",
+      "city": "zh",
+      "id": "wasser",
+      "hochrisiko": false,
+      "referenzen": [
+        {
+          "reference_id": 1,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-21"
+        },
+        {
+          "reference_id": 2,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-21"
+        },
+        {
+          "reference_id": 3,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-06-21"
+        }
+      ],
+      "summe": {
+        "referenzen": 3,
+        "verifiziert": 3,
+        "mitZitat": 3,
+        "unverifiziert": 0
+      },
+      "bewertungsBelege": {
+        "gesamt": 0,
+        "verifiziert": 0
+      },
+      "quellen": 2,
+      "rechtsgrundlagen": 3,
+      "abruf": {
+        "aeltester": "2026-06-21",
+        "juengster": "2026-06-21"
+      }
+    }
+  ],
+  "summary": {
+    "prozesse": 17,
+    "referenzen": 75,
+    "verifiziert": 75,
+    "mitZitat": 75,
+    "hochrisiko": 3,
+    "nachEbene": {
+      "stadt": 61,
+      "kanton": 8,
+      "bund": 6,
+      "andere": 0
+    }
+  }
+}
