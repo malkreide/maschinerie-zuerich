@@ -216,6 +216,20 @@ export function buildBelege(city: string, prozesse: Prozess[], opts: BelegeOptio
   };
 }
 
+/** Ab diesem Alter gilt ein Abruf als «älter als ein Jahr» (Entscheid E7,
+ *  docs/plan-belege-herkunft.md) — nur ein Hinweistext, kein Fehler. */
+export const ABRUF_HINWEIS_TAGE = 365;
+
+/** true, wenn das ISO-Datum `datum` mehr als `tage` Tage vor `heute` liegt.
+ *  `heute` wird hereingereicht: das Aggregat bleibt zeitstempelfrei, die View
+ *  rechnet beim Rendern. Ein unlesbares Datum gilt nie als alt (nichts
+ *  behaupten, was nicht belegt ist). */
+export function istAelterAls(datum: string, heute: Date, tage = ABRUF_HINWEIS_TAGE): boolean {
+  const t = Date.parse(`${datum}T00:00:00Z`);
+  if (Number.isNaN(t)) return false;
+  return heute.getTime() - t > tage * 86_400_000;
+}
+
 /** Kanonische Serialisierung — die EINE Stelle, die das Dateiformat festlegt
  *  (2-Space-Indent + abschliessender Newline). Generator UND Drift-Check nutzen
  *  ausschliesslich diese Funktion. */

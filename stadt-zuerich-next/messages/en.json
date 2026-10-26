@@ -67,7 +67,8 @@
     "bewertungNutzend": "User-centricity",
     "bewertungGesamt": "Overall met",
     "bewertungKeinScore": "no score",
-    "bewertungUnbekanntKurz": "unkn."
+    "bewertungUnbekanntKurz": "unkn.",
+    "belegeLink": "How reliable is this data? Go to “Evidence & provenance” →"
   },
   "Territory": {
     "title": "Locations",
@@ -493,7 +494,8 @@
         "schwach": "weakly anchored",
         "kein": "self-defined"
       }
-    }
+    },
+    "belegeLink": "How these details are documented and checked →"
   },
   "GraphTable": {
     "caption": "Data of the network graph (currently visible nodes)",
@@ -547,6 +549,88 @@
     "belegLueckeTitle": "No digitalisation evidence on file yet — the digital columns stay “unknown”, not “not fulfilled”.",
     "coverageNote": "{ohne, plural, =0 {All {total} processes have substantiated digitalisation indicators.} one {# of {total} processes has no substantiated digitalisation indicators yet — the digital columns stay “unknown”, not “not fulfilled”.} other {# of {total} processes have no substantiated digitalisation indicators yet — the digital columns stay “unknown”, not “not fulfilled”.}}",
     "summaryHeading": "Fulfilment per indicator (across all processes)",
-    "summaryZeile": "{erfuellt} fulfilled · {nichtErfuellt} not fulfilled · {unbekannt} unknown"
+    "summaryZeile": "{erfuellt} fulfilled · {nichtErfuellt} not fulfilled · {unbekannt} unknown",
+    "belegeLink": "How reliable is this data? Go to “Evidence & provenance” →"
+  },
+  "Belege": {
+    "title": "Evidence & provenance",
+    "intro": "How reliable is the information on the procedures? This page shows which binding details – deadlines, fees, legal remedies – are backed by a verbatim quote from an official source, and which checks the data goes through. The values themselves are deliberately not shown here, only on the page of each procedure, always with a link to the original source.",
+    "source": "Derived from the process data",
+    "privacyNote": "Generated deterministically from the process data — no usage or personal data, no invented values.",
+    "empty": "No evidence recorded yet.",
+    "kpiHeading": "Key figures",
+    "kpiBelegt": "binding details with a verbatim quote",
+    "kpiGesetz": "quotes taken directly from the legal text (PDF)",
+    "kpiHochrisiko": "high-risk procedures, all with a visible notice",
+    "kpiWoche": "result of the weekly check",
+    "kpiWocheWert": "coming soon",
+    "ebenenHeading": "Sources of the evidence by level of government",
+    "ebene": {
+      "stadt": "City",
+      "kanton": "Canton",
+      "bund": "Confederation",
+      "andere": "other"
+    },
+    "matrixHeading": "Evidence per procedure",
+    "matrixIntro": "One procedure per row, in alphabetical order. The name leads to the evidence on the procedure’s page.",
+    "matrixFolgt": "Not yet in the table: the result of the weekly check (link reachable? quote still verbatim on the page? legal version still in force?) and the origin of the data (modelled by hand or prepared by machine). Both will follow.",
+    "caption": "Evidence per procedure: binding details, verbatim quotes, sources, legal texts and oldest retrieval",
+    "colProzess": "Procedure",
+    "colReferenzen": "Binding details",
+    "colBelegt": "Quoted verbatim",
+    "colEbenen": "Sources",
+    "colGesetz": "Legal text",
+    "colAbruf": "Oldest retrieval",
+    "belegtWert": "{belegt} of {gesamt}",
+    "belegtAlle": "all quoted verbatim",
+    "belegtNichtAlle": "not all quoted verbatim",
+    "keineAngaben": "no binding details",
+    "abrufAlt": "older than one year",
+    "abrufAltTitle": "This evidence was retrieved more than a year ago. If in doubt, the official source applies.",
+    "detailLink": "Evidence for “{titel}”",
+    "pruefHeading": "How the data is checked",
+    "pruefIntro": "Every change to the process data goes through these stages. No stage replaces the next, and nothing is published without human approval.",
+    "grenzeLabel": "Limit:",
+    "codeLink": "See implementation (GitHub)",
+    "stufe": {
+      "erfassung": {
+        "name": "Capture",
+        "was": "A procedure is modelled by hand or prepared by machine and submitted as a change proposal.",
+        "grenze": "Machine-prepared proposals only supply the structure; existing, reviewed texts and translations are kept."
+      },
+      "schema": {
+        "name": "Data contract",
+        "was": "For every proposal, CI checks that the file meets the data contract: required fields, references, high-risk notice and no binding values outside the quotes.",
+        "grenze": "Checks the form, not whether the content is correct."
+      },
+      "regression": {
+        "name": "Protection of existing texts",
+        "was": "A proposal may not silently empty or remove documented translations and descriptions.",
+        "grenze": "Exceptions are possible, but only individually justified and approved."
+      },
+      "referenzen": {
+        "name": "Evidence check",
+        "was": "For every new or changed binding detail, the linked page is retrieved live: is the link reachable, and is the quote there verbatim?",
+        "grenze": "Existing, unchanged evidence is only checked by the weekly check."
+      },
+      "review": {
+        "name": "Human approval",
+        "was": "A person reviews every change before it is published. Nothing is merged automatically.",
+        "grenze": "Whether a quote reflects the detail correctly is judged by a person, not the machine."
+      },
+      "woche": {
+        "name": "Weekly check",
+        "was": "Once a week, all links are retrieved, all quotes are compared with the source again and linked legal texts are matched against the version in force.",
+        "grenze": "The result is currently only evaluated internally; publication on this page will follow."
+      }
+    },
+    "methodikHeading": "Method and limits",
+    "methodik": {
+      "woertlich": "“Quoted verbatim” means: the quote appeared exactly like this on the linked official page when it was retrieved. It does not mean the detail has been legally reviewed.",
+      "keineWerte": "The binding values themselves are not shown here. They appear only on the procedure’s page, as a quote with a link to the original source.",
+      "erreichbar": "A reachable link does not mean the content is still correct: pages are rewritten, and some only deliver their text in the browser.",
+      "gesperrt": "Some authorities block automated retrieval. A blocked retrieval is not a dead link and is never shown as one.",
+      "verbindlich": "The official source is always binding. If in doubt, seek personal advice."
+    }
   }
 }

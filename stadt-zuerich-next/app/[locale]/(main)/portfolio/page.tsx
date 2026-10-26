@@ -11,6 +11,7 @@ import path from 'node:path';
 import type { Metadata } from 'next';
 import { hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
+import { Link } from '@/i18n/navigation';
 import { routing, type Locale } from '@/i18n/routing';
 import { getT } from '@/lib/i18n-server';
 import { listProzesse } from '@/lib/prozesse';
@@ -76,9 +77,12 @@ export default async function PortfolioPage({
     >
       <h2 id="portfolio-heading" className="text-lg font-semibold mb-1">{t('title')}</h2>
       <p className="text-[13px] text-[var(--color-mute)] mb-3 max-w-[80ch]">{t('intro')}</p>
-      <div className="mb-6">
+      <div className="mb-3">
         <DataQualityBadge status="aggregiert" quelle={t('source')} hinweis={t('privacyNote')} />
       </div>
+      <p className="text-[13px] mb-6 max-w-[80ch]">
+        <Link href="/belege" className="text-[var(--color-accent)] underline">{t('belegeLink')}</Link>
+      </p>
 
       {!hatProzesse ? (
         <p className="text-[var(--color-mute)] max-w-[70ch]">{t('empty')}</p>

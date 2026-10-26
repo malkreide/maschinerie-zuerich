@@ -14,7 +14,7 @@ import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { buildBelege, serializeBelege, ebeneFuerHost, QUELLEN_EBENEN } from '../lib/belege.ts';
+import { buildBelege, serializeBelege, ebeneFuerHost, istAelterAls, QUELLEN_EBENEN } from '../lib/belege.ts';
 import { erkenneFassung } from '../scripts/lib/gesetzesfassung.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -170,6 +170,15 @@ test('Summary: Ebenen in fester Reihenfolge, Summe = alle References', () => {
   assert.deepEqual(b.summary.nachEbene, { stadt: 2, kanton: 1, bund: 1, andere: 1 });
   assert.equal(b.summary.referenzen, 5);
   assert.equal(b.summary.prozesse, 2);
+});
+
+test('istAelterAls: Grenze bei 365 Tagen, unlesbares Datum nie alt', () => {
+  const heute = new Date('2027-06-10T12:00:00Z');
+  assert.equal(istAelterAls('2026-06-10', heute), true); // 365 Tage + 12 h
+  assert.equal(istAelterAls('2026-06-11', heute), false); // 364 Tage + 12 h
+  assert.equal(istAelterAls('2027-06-10', heute), false);
+  assert.equal(istAelterAls('2026-06-10', heute, 400), false);
+  assert.equal(istAelterAls('kein-datum', heute), false);
 });
 
 test('Echte Daten: nur erlaubte Felder je Reference, kein Zitat im Aggregat', async () => {

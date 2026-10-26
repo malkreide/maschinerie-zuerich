@@ -17,28 +17,9 @@ import { getT } from '@/lib/i18n-server';
 import type { Locale } from '@/i18n/routing';
 import type { Portfolio, PortfolioZeile } from '@/lib/portfolio';
 import type { IndikatorStatus, KategorieScore } from '@/lib/bewertung';
+import { HATCH_STYLE, STATUS_CELL, STATUS_SYMBOL } from '@/lib/status-stil';
 
 type T = (key: string, values?: Record<string, string | number>) => string;
-
-const STATUS_SYMBOL: Record<IndikatorStatus, string> = {
-  erfuellt: '✓',
-  'nicht-erfuellt': '✕',
-  unbekannt: '?',
-};
-
-// Gezählte (Score-relevante) Indikatoren: voller Farb-Code.
-const STATUS_CELL: Record<IndikatorStatus, string> = {
-  erfuellt: 'bg-green-100 text-green-900',
-  'nicht-erfuellt': 'bg-amber-100 text-amber-900',
-  unbekannt: 'text-[var(--color-mute)]',
-};
-
-// «unbekannt» bekommt zusätzlich eine diagonale Schraffur — als Textur, damit
-// es auch ohne Farbwahrnehmung klar von «nicht erfüllt» unterscheidbar ist.
-const HATCH_STYLE: React.CSSProperties = {
-  backgroundImage:
-    'repeating-linear-gradient(45deg, var(--color-line) 0, var(--color-line) 1px, transparent 1px, transparent 5px)',
-};
 
 /** Status-Wort einer Zelle. `t` ist der Translator des 'Prozesse'-Namespace;
  *  die Texte liegen dort unter bewertung.status.* — nicht unter status.*
