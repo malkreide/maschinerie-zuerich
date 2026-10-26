@@ -337,11 +337,20 @@ function renderTree(
         // laufen lange Departementsnamen (z. B. «Gesundheits- und
         // Umweltdepartement») in die Nachbarkachel und überlagern sie.
         const clipId = `tmch-${d.data.id ?? Math.round(d.x0)}`;
+        // WCAG 2.5.3 «Label in Name»: der zugängliche Name beginnt mit dem
+        // sichtbaren Text (Kürzel, Betrag), damit Sprachsteuerung die Kachel
+        // per Zuruf des Sichtbaren auslöst.
+        const depSichtbar = labelDep(d, d.value ?? 0);
+        const depAriaLabel = !depSichtbar
+          ? `Departement ${d.data.name} öffnen`
+          : depSichtbar.startsWith(`${d.data.name} `)
+            ? `${depSichtbar} öffnen`
+            : `${depSichtbar} – Departement ${d.data.name} öffnen`;
         return (
         <g key={d.data.id} style={{ cursor: 'pointer' }}
            tabIndex={0}
            role="button"
-           aria-label={`Departement ${d.data.name} öffnen`}
+           aria-label={depAriaLabel}
            onKeyDown={(e) => {
              if (e.key === 'Enter' || e.key === ' ') {
                e.preventDefault();
@@ -434,11 +443,21 @@ function Leaf({
   // gezeichnet — keine Überlagerung benachbarter Kacheln mehr.
   const clipId = `tmcl-${d.data.id ?? `${Math.round(d.x0)}-${Math.round(d.y0)}`}`;
 
+  // WCAG 2.5.3 «Label in Name»: der zugängliche Name beginnt mit dem
+  // sichtbaren Text (Kürzel, gekürzter Name, Betrag), damit Sprachsteuerung
+  // die Kachel per Zuruf des Sichtbaren auslöst.
+  const sichtbar = [line1, line2].filter(Boolean).join(' ');
+  const ariaLabel = !sichtbar || sichtbar === d.data.name
+    ? `${d.data.name} öffnen`
+    : sichtbar.startsWith(`${d.data.name} `)
+      ? `${sichtbar} öffnen`
+      : `${sichtbar} – ${d.data.name} öffnen`;
+
   return (
     <g
       tabIndex={0}
       role="button"
-      aria-label={`${d.data.name} öffnen`}
+      aria-label={ariaLabel}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
@@ -491,7 +510,10 @@ function Leaf({
           )}
           {line2 && (
             <text className="leaf-label" x={d.x0 + 5} y={d.y0 + 27} fontSize={10} fill="var(--color-ink)">
-              {line2}
+              {/* Führendes Leerzeichen: SVG zeigt es am Zeilenanfang nicht,
+                  aber der Textinhalt der Kachel lautet so «VBZ 689 Mio» statt
+                  «VBZ689 Mio» und passt zum zugänglichen Namen (WCAG 2.5.3). */}
+              {` ${line2}`}
             </text>
           )}
         </g>

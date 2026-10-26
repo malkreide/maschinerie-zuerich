@@ -74,6 +74,18 @@ async function waitForProzessGraph(page: Page) {
   await page.locator('.react-flow__edge').first().waitFor({ state: 'attached', timeout: 15_000 });
 }
 
+// --- Treemap (Steuerfranken) ------------------------------------------------
+//
+// Die Treemap misst ihren Container erst nach der Hydration und zeichnet dann
+// alle Kacheln in einem Durchgang. Ohne zu warten prüft axe ein leeres SVG:
+// Verstösse an den Kacheln (z. B. WCAG 2.5.3 «Label in Name») fielen nur
+// auf, wenn das Rendern zufällig schneller war als die Analyse.
+const HAT_TREEMAP = /\/steuerfranken$/;
+
+async function waitForTreemap(page: Page) {
+  await page.locator('svg g[role="button"]').first().waitFor({ state: 'attached', timeout: 15_000 });
+}
+
 /** Mindestkontrast für normalen Text nach WCAG 2.x AA. */
 const KONTRAST_AA = 4.5;
 
@@ -168,6 +180,7 @@ async function expectRouteAccessible(page: Page, route: string, name = route) {
 
   const hatGraph = HAT_PROZESS_GRAPH.test(route);
   if (hatGraph) await waitForProzessGraph(page);
+  if (HAT_TREEMAP.test(route)) await waitForTreemap(page);
 
   const results = await new AxeBuilder({ page })
     .withTags(WCAG_TAGS)
