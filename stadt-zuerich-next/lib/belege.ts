@@ -28,7 +28,7 @@ import type { Prozess } from '@/types/prozess';
 
 /** Schema-Version des Aggregat-Artefakts (rein abgeleitet, unabhängig vom
  *  Prozess-Datenvertrag). MAJOR-Bump bei Strukturänderung des Artefakts. */
-export const BELEGE_SCHEMA_VERSION = '1.0.0';
+export const BELEGE_SCHEMA_VERSION = '1.1.0';
 
 /** Staatsebene der Quelle eines Belegs. */
 export type QuellenEbene = 'stadt' | 'kanton' | 'bund' | 'andere';
@@ -53,6 +53,9 @@ export interface BelegReferenz {
   status: ReferenzStatus;
   /** nicht-leeres source_quote vorhanden */
   mitZitat: boolean;
+  /** source_url (Deep-Link). Seit 1.1.0: daran erkennt die View, ob ein
+   *  Wochenbefund noch für diese Fassung der Reference gilt. */
+  url: string;
   /** Hostname der source_url, z. B. "www.stadt-zuerich.ch" */
   host: string;
   ebene: QuellenEbene;
@@ -151,6 +154,7 @@ function belegZeile(fallbackCity: string, p: Prozess, opts: BelegeOptionen): Bel
         reference_id: r.reference_id,
         status: istVerifiziert(r.status) ? 'verifiziert' : 'unverifiziert',
         mitZitat: hatText(r.source_quote),
+        url: r.source_url,
         host,
         ebene: ebeneFuerHost(host, opts.regeln),
         gesetzesfassung: opts.istGesetzesfassung(r.source_url),

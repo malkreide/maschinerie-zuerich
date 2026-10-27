@@ -621,7 +621,7 @@
       "woche": {
         "name": "Wochenprüfung",
         "was": "Einmal pro Woche werden alle Links abgerufen, alle Zitate erneut mit der Quelle verglichen und verlinkte Gesetzestexte mit der geltenden Fassung abgeglichen.",
-        "grenze": "Das Ergebnis wird derzeit nur intern ausgewertet; die Veröffentlichung auf dieser Seite folgt."
+        "grenze": "Manche Behörden sperren Abrufe aus der Prüfumgebung; gesperrt heisst nicht tot. Neue Befunde erscheinen hier erst, nachdem ein Mensch sie übernommen hat."
       }
     },
     "methodikHeading": "Methodik und Grenzen",
@@ -630,7 +630,44 @@
       "keineWerte": "Die bindenden Werte selbst stehen hier nicht. Sie erscheinen nur auf der Seite des Verfahrens, als Zitat mit Link auf die Originalquelle.",
       "erreichbar": "Ein erreichbarer Link heisst nicht, dass der Inhalt noch stimmt: Seiten werden umgeschrieben, und manche liefern ihren Text erst im Browser.",
       "gesperrt": "Manche Behörden sperren automatische Abrufe. Ein gesperrter Abruf ist kein toter Link und wird nie als solcher dargestellt.",
+      "stand": "Ein Befund gilt nur für die geprüfte Fassung einer Angabe. Wurde sie seither geändert, gilt sie als offen, bis die nächste Prüfung sie erfasst.",
+      "veroeffentlichung": "Die Wochenprüfung veröffentlicht einen neuen Befund nur, wenn sich etwas ändert, und erst nachdem ein Mensch ihn übernommen hat. Das Datum nennt den Lauf, der den aktuellen Stand festgestellt hat.",
       "verbindlich": "Verbindlich ist immer die amtliche Quelle. Holen Sie im Zweifel persönliche Beratung ein."
+    },
+    "kpiOffen": "offene Befunde der Wochenprüfung",
+    "wocheZeile": "Wochenprüfung vom {datum}: {tot, plural, one {# toter Link} other {# tote Links}} · {drift, plural, one {# abweichendes Zitat} other {# abweichende Zitate}} · {ueberholt, plural, one {# überholte Gesetzesfassung} other {# überholte Gesetzesfassungen}} · {gesperrt, plural, one {# Abruf gesperrt oder ohne Antwort} other {# Abrufe gesperrt oder ohne Antwort}} (kein Datenfehler).",
+    "laufLink": "Lauf ansehen (GitHub)",
+    "offenHeading": "Offene Befunde",
+    "offenIntro": "Das hat die letzte Wochenprüfung beanstandet. Der Fehler liegt in diesen Fällen bei unserem Verweis oder Zitat, nicht bei der Behörde; wir korrigieren ihn. Bis dahin gilt die amtliche Quelle.",
+    "offenKeine": "Die letzte Wochenprüfung hat nichts beanstandet.",
+    "offenTot": "{titel}, Angabe {id}: Der Link führt ins Leere ({status}).",
+    "adresseUnbekannt": "Adresse unbekannt",
+    "offenDrift": "{titel}, Angabe {id}: Das Zitat steht nicht mehr wörtlich auf der verlinkten Seite. Wir prüfen, ob sich die Angabe geändert hat.",
+    "offenUeberholt": "{titel}, Angabe {id}: Seither gilt eine neuere Fassung des Gesetzes. Wir prüfen die Angabe.",
+    "offenDetail": "Zu den Belegen →",
+    "matrixFolgtHerkunft": "Noch nicht in der Tabelle: die Herkunft der Daten (von Hand erfasst oder maschinell vorbereitet). Sie folgt.",
+    "befund": {
+      "colLink": "Link erreichbar",
+      "colZitat": "Zitat noch wörtlich",
+      "linkOkKurz": "alle",
+      "zitatOkKurz": "alle",
+      "linkOkLang": "alle Links erreichbar",
+      "linkTotKurz": "{n} tot",
+      "linkTotLang": "{n, plural, one {# Link führt ins Leere} other {# Links führen ins Leere}}",
+      "offenKurz": "{n} offen",
+      "linkOffenLang": "{n, plural, one {# Link nicht geprüft oder Abruf gesperrt} other {# Links nicht geprüft oder Abruf gesperrt}}",
+      "zitatOkLang": "alle Zitate noch wörtlich auf der Seite",
+      "zitatDriftKurz": "{n} abweichend",
+      "zitatDriftLang": "{n, plural, one {# Zitat steht nicht mehr wörtlich auf der Seite} other {# Zitate stehen nicht mehr wörtlich auf der Seite}}",
+      "zitatOffenLang": "{n, plural, one {# Zitat nicht prüfbar oder noch nicht geprüft} other {# Zitate nicht prüfbar oder noch nicht geprüft}}",
+      "fassungAktuellKurz": "{n} aktuell",
+      "fassungAktuellLang": "{n, plural, one {verlinkte Gesetzesfassung gilt noch} other {alle # verlinkten Gesetzesfassungen gelten noch}}",
+      "fassungUeberholtKurz": "{n} überholt",
+      "fassungUeberholtLang": "{n, plural, one {# verlinkte Gesetzesfassung ist überholt} other {# verlinkte Gesetzesfassungen sind überholt}}",
+      "fassungOffenLang": "{n, plural, one {# Gesetzesfassung nicht prüfbar} other {# Gesetzesfassungen nicht prüfbar}}",
+      "legendOk": "in Ordnung",
+      "legendNicht": "Befund: mindestens eine Angabe betroffen",
+      "legendOffen": "offen: nicht prüfbar, Abruf gesperrt oder noch nicht geprüft"
     }
   }
 }

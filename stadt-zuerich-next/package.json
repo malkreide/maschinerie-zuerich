@@ -32,6 +32,8 @@
     "check:portfolio": "node --experimental-strip-types scripts/build-portfolio.mjs --check",
     "build:belege": "node --experimental-strip-types scripts/build-belege.mjs",
     "check:belege": "node --experimental-strip-types scripts/build-belege.mjs --check",
+    "build:befunde": "node --experimental-strip-types scripts/build-befunde.mjs",
+    "validate:befunde": "node --experimental-strip-types scripts/build-befunde.mjs --validate",
     "extract:quotes": "node scripts/extract-quotes.mjs",
     "check:quotes:drift": "node scripts/extract-quotes.mjs --fetch --drift-report",
     "diagnose:urls": "node scripts/url-diagnose.mjs",

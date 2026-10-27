@@ -621,7 +621,7 @@
       "woche": {
         "name": "Contrôle hebdomadaire",
         "was": "Une fois par semaine, tous les liens sont consultés, toutes les citations sont à nouveau comparées à la source et les textes légaux liés sont confrontés à la version en vigueur.",
-        "grenze": "Le résultat n’est pour l’instant évalué qu’en interne ; sa publication sur cette page suivra."
+        "grenze": "Certaines autorités bloquent les consultations depuis l’environnement de contrôle ; bloqué ne signifie pas mort. Les nouveaux constats n’apparaissent ici qu’après avoir été repris par une personne."
       }
     },
     "methodikHeading": "Méthode et limites",
@@ -630,7 +630,44 @@
       "keineWerte": "Les valeurs contraignantes elles-mêmes ne figurent pas ici. Elles apparaissent uniquement sur la page de la procédure, sous forme de citation avec un lien vers la source originale.",
       "erreichbar": "Un lien accessible ne signifie pas que le contenu est toujours exact : les pages sont réécrites, et certaines ne livrent leur texte que dans le navigateur.",
       "gesperrt": "Certaines autorités bloquent les consultations automatiques. Une consultation bloquée n’est pas un lien mort et n’est jamais présentée comme tel.",
+      "stand": "Un constat ne vaut que pour la version contrôlée d’une indication. Si elle a été modifiée depuis, elle est considérée comme ouverte jusqu’au prochain contrôle.",
+      "veroeffentlichung": "Le contrôle hebdomadaire ne publie un nouveau constat que si quelque chose change, et seulement après qu’une personne l’a repris. La date indique l’exécution qui a établi l’état actuel.",
       "verbindlich": "Seule la source officielle fait foi. En cas de doute, demandez un conseil personnalisé."
+    },
+    "kpiOffen": "constats ouverts du contrôle hebdomadaire",
+    "wocheZeile": "Contrôle hebdomadaire du {datum} : {tot, plural, one {# lien mort} other {# liens morts}} · {drift, plural, one {# citation divergente} other {# citations divergentes}} · {ueberholt, plural, one {# version légale dépassée} other {# versions légales dépassées}} · {gesperrt, plural, one {# consultation bloquée ou sans réponse} other {# consultations bloquées ou sans réponse}} (pas une erreur de données).",
+    "laufLink": "Voir l’exécution (GitHub)",
+    "offenHeading": "Constats ouverts",
+    "offenIntro": "Voici ce que le dernier contrôle hebdomadaire a relevé. Dans ces cas, l’erreur se trouve dans notre lien ou notre citation, pas chez l’autorité ; nous la corrigeons. D’ici là, la source officielle fait foi.",
+    "offenKeine": "Le dernier contrôle hebdomadaire n’a rien relevé.",
+    "offenTot": "{titel}, indication {id} : le lien ne mène nulle part ({status}).",
+    "adresseUnbekannt": "adresse inconnue",
+    "offenDrift": "{titel}, indication {id} : la citation ne figure plus textuellement sur la page liée. Nous vérifions si l’indication a changé.",
+    "offenUeberholt": "{titel}, indication {id} : une version plus récente de la loi s’applique désormais. Nous vérifions l’indication.",
+    "offenDetail": "Vers les preuves →",
+    "matrixFolgtHerkunft": "Pas encore dans le tableau : l’origine des données (modélisées à la main ou préparées par machine). Elle suivra.",
+    "befund": {
+      "colLink": "Lien accessible",
+      "colZitat": "Citation toujours textuelle",
+      "linkOkKurz": "tous",
+      "zitatOkKurz": "toutes",
+      "linkOkLang": "tous les liens accessibles",
+      "linkTotKurz": "{n, plural, one {# mort} other {# morts}}",
+      "linkTotLang": "{n, plural, one {# lien ne mène nulle part} other {# liens ne mènent nulle part}}",
+      "offenKurz": "{n, plural, one {# ouvert} other {# ouverts}}",
+      "linkOffenLang": "{n, plural, one {# lien non contrôlé ou consultation bloquée} other {# liens non contrôlés ou consultation bloquée}}",
+      "zitatOkLang": "toutes les citations toujours textuelles sur la page",
+      "zitatDriftKurz": "{n, plural, one {# divergente} other {# divergentes}}",
+      "zitatDriftLang": "{n, plural, one {# citation ne figure plus textuellement sur la page} other {# citations ne figurent plus textuellement sur la page}}",
+      "zitatOffenLang": "{n, plural, one {# citation non vérifiable ou pas encore contrôlée} other {# citations non vérifiables ou pas encore contrôlées}}",
+      "fassungAktuellKurz": "{n} en vigueur",
+      "fassungAktuellLang": "{n, plural, one {la version légale liée est toujours en vigueur} other {les # versions légales liées sont toujours en vigueur}}",
+      "fassungUeberholtKurz": "{n, plural, one {# dépassée} other {# dépassées}}",
+      "fassungUeberholtLang": "{n, plural, one {# version légale liée est dépassée} other {# versions légales liées sont dépassées}}",
+      "fassungOffenLang": "{n, plural, one {# version légale non vérifiable} other {# versions légales non vérifiables}}",
+      "legendOk": "en ordre",
+      "legendNicht": "constat : au moins une indication concernée",
+      "legendOffen": "ouvert : non vérifiable, consultation bloquée ou pas encore contrôlé"
     }
   }
 }

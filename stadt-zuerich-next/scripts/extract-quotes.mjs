@@ -49,6 +49,10 @@
 //   --file <pfad>      auf eine Prozessdatei beschränken
 //   --json             Report als JSON statt Text
 //   --out <pfad>       Report zusätzlich in Datei schreiben
+//   --befund-json <pfad>  nur mit --drift-report: zusätzlich je Reference
+//                      zitat (woertlich|drift|nicht-pruefbar) und fassung
+//                      (aktuell|ueberholt|nicht-pruefbar|nicht-anwendbar)
+//                      maschinenlesbar — Eingabe für scripts/build-befunde.mjs
 
 // Proxy-Egress für Node-fetch (No-op, wenn kein HTTPS_PROXY gesetzt ist).
 process.env.NODE_USE_ENV_PROXY ??= '1';
@@ -79,6 +83,7 @@ const ALL_REFS = flag('--all-refs') || DRIFT_REPORT;
 const STRICT = flag('--strict') || process.env.CHECK_QUOTES_STRICT === '1';
 const AS_JSON = flag('--json');
 const OUT = opt('--out', null);
+const BEFUND_JSON = opt('--befund-json', null);
 const TIMEOUT = Number(opt('--timeout', '30000'));
 const CONCURRENCY = Number(opt('--concurrency', '3'));
 const FETCH_MODE = flag('--fetch');
@@ -307,15 +312,22 @@ if (DRIFT_REPORT) {
   const drift = [];
   const offen = [];
   let woertlich = 0;
+  // Maschinenlesbarer Befund je Reference (--befund-json, für
+  // scripts/build-befunde.mjs): zitat und fassung, ohne Seitentext.
+  const befund = new Map();
+  const befundKey = (r) => `${r.rel}#${r.reference_id}`;
   for (const r of refs) {
     if (!r.existingQuote) continue;
     const page = pages.get(r.url);
     const wo = `${r.rel} · ref ${r.reference_id} «${r.label}»`;
+    const eintrag = { datei: r.rel, reference_id: r.reference_id, url: r.url, zitat: 'nicht-pruefbar', fassung: 'nicht-anwendbar' };
+    befund.set(befundKey(r), eintrag);
     if (!page?.ok) {
       offen.push(`${wo}\n    Seite nicht lesbar (${page?.status ?? '–'}${page?.error ? ', ' + page.error : ''}): ${r.url}`);
       continue;
     }
     const b = pruefeZitat(page.text, r.existingQuote);
+    if (b.status === 'woertlich' || b.status === 'drift') eintrag.zitat = b.status;
     if (b.status === 'woertlich') woertlich++;
     else if (b.status === 'nicht-pruefbar') offen.push(`${wo}\n    ${b.grund}: ${r.url}`);
     else if (b.status === 'drift') {
@@ -338,6 +350,8 @@ if (DRIFT_REPORT) {
   };
   for (const { r, f } of fassungen) {
     const b = await pruefeFassung(f, fassungsOpts);
+    const eintrag = befund.get(befundKey(r));
+    if (eintrag) eintrag.fassung = b.status === 'veraltet' ? 'ueberholt' : b.status;
     const wo = `${r.rel} · ref ${r.reference_id} «${r.label}»`;
     if (b.status === 'veraltet') {
       veraltet.push(`${wo}\n    verlinkt: ${b.verlinkt} — ${r.url}\n    es gilt:  ${b.aktuell} — ${b.neu}`);
@@ -370,6 +384,13 @@ if (DRIFT_REPORT) {
   );
   console.log(lines.join('\n'));
   if (OUT) await writeFile(path.resolve(OUT), lines.join('\n'));
+  if (BEFUND_JSON) {
+    const ergebnisse = [...befund.values()].sort(
+      (a, b) => a.datei.localeCompare(b.datei) || a.reference_id - b.reference_id,
+    );
+    await writeFile(path.resolve(BEFUND_JSON), JSON.stringify({ werkzeug: 'extract-quotes', ergebnisse }, null, 2) + '\n');
+    console.error(`Befund (JSON) geschrieben: ${BEFUND_JSON}`);
+  }
   process.exit(STRICT && (drift.length || veraltet.length) ? 1 : 0);
 }
 

@@ -71,6 +71,10 @@ jobs:
         run: npm run check:belege
         env:
           NO_COLOR: '1'
+      - name: Wochenbefund gegen sein Schema validieren
+        run: npm run validate:befunde
+        env:
+          NO_COLOR: '1'
       - name: OpenAPI + Datenkatalog validieren
         run: npm run validate:catalog
       - name: Links in den Daten prüfen (strukturell)

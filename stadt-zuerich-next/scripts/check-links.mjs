@@ -37,8 +37,12 @@
 // JavaScript-SPAs, die auch bei verschobenem Inhalt ein 200 liefern
 // („soft 404"). Ein grüner Live-Check garantiert also Erreichbarkeit, nicht
 // inhaltliche Richtigkeit der Belegstelle.
+//
+// --befund-json <pfad> (nur Live-Modus): schreibt zusätzlich das Ergebnis je
+// URL maschinenlesbar ({ url, kind, status }) — Eingabe für den Wochenbefund
+// (scripts/build-befunde.mjs). Wird vor dem strict-Exit geschrieben.
 
-import { readFile, readdir } from 'node:fs/promises';
+import { readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { zaehleBasisUrls } from './lib/basis-urls.mjs';
@@ -47,9 +51,12 @@ import { LINKCHECK_HEADERS, dnsBefundeEinordnen, probeUrl } from './lib/link-pro
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '..');
 
-const args = new Set(process.argv.slice(2));
+const argv = process.argv.slice(2);
+const args = new Set(argv);
 const ONLINE = args.has('--online') || process.env.CHECK_LINKS_ONLINE === '1';
 const STRICT = args.has('--strict') || process.env.CHECK_LINKS_STRICT === '1';
+const befundIdx = argv.indexOf('--befund-json');
+const BEFUND_JSON = befundIdx >= 0 ? argv[befundIdx + 1] : null;
 
 const HTTP_TIMEOUT_MS = 15000;
 const CONCURRENCY = 6;
@@ -166,6 +173,14 @@ async function runPool(items, worker, size) {
 console.log(`\nLive-HTTP-Check (${toCheck.length} URLs, ${CONCURRENCY} parallel, Timeout ${HTTP_TIMEOUT_MS / 1000}s) …`);
 
 const results = await dnsBefundeEinordnen(await runPool(toCheck, probe, CONCURRENCY));
+
+if (BEFUND_JSON) {
+  const ergebnisse = [...results]
+    .sort((a, b) => a.url.localeCompare(b.url))
+    .map((r) => ({ url: r.url, kind: r.kind, status: r.status ?? 0 }));
+  await writeFile(path.resolve(BEFUND_JSON), JSON.stringify({ werkzeug: 'check-links', ergebnisse }, null, 2) + '\n');
+  console.log(`Befund (JSON) geschrieben: ${BEFUND_JSON}`);
+}
 
 const byKind = { tot: [], blockiert: [], netzfehler: [] };
 for (const r of results) {

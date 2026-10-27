@@ -621,7 +621,7 @@
       "woche": {
         "name": "Weekly check",
         "was": "Once a week, all links are retrieved, all quotes are compared with the source again and linked legal texts are matched against the version in force.",
-        "grenze": "The result is currently only evaluated internally; publication on this page will follow."
+        "grenze": "Some authorities block retrieval from the checking environment; blocked does not mean dead. New findings only appear here after a person has accepted them."
       }
     },
     "methodikHeading": "Method and limits",
@@ -630,7 +630,44 @@
       "keineWerte": "The binding values themselves are not shown here. They appear only on the procedure’s page, as a quote with a link to the original source.",
       "erreichbar": "A reachable link does not mean the content is still correct: pages are rewritten, and some only deliver their text in the browser.",
       "gesperrt": "Some authorities block automated retrieval. A blocked retrieval is not a dead link and is never shown as one.",
+      "stand": "A finding only applies to the checked version of a detail. If it has been changed since, it counts as open until the next check covers it.",
+      "veroeffentlichung": "The weekly check only publishes a new finding when something changes, and only after a person has accepted it. The date names the run that established the current state.",
       "verbindlich": "The official source is always binding. If in doubt, seek personal advice."
+    },
+    "kpiOffen": "open findings of the weekly check",
+    "wocheZeile": "Weekly check of {datum}: {tot, plural, one {# dead link} other {# dead links}} · {drift, plural, one {# deviating quote} other {# deviating quotes}} · {ueberholt, plural, one {# outdated legal version} other {# outdated legal versions}} · {gesperrt, plural, one {# retrieval blocked or unanswered} other {# retrievals blocked or unanswered}} (not a data error).",
+    "laufLink": "View run (GitHub)",
+    "offenHeading": "Open findings",
+    "offenIntro": "This is what the last weekly check flagged. In these cases the error lies in our link or quote, not with the authority; we will correct it. Until then, the official source applies.",
+    "offenKeine": "The last weekly check found nothing to flag.",
+    "offenTot": "{titel}, detail {id}: the link leads nowhere ({status}).",
+    "adresseUnbekannt": "unknown address",
+    "offenDrift": "{titel}, detail {id}: the quote no longer appears verbatim on the linked page. We are checking whether the detail has changed.",
+    "offenUeberholt": "{titel}, detail {id}: a newer version of the law now applies. We are checking the detail.",
+    "offenDetail": "Go to the evidence →",
+    "matrixFolgtHerkunft": "Not yet in the table: the origin of the data (modelled by hand or prepared by machine). It will follow.",
+    "befund": {
+      "colLink": "Link reachable",
+      "colZitat": "Quote still verbatim",
+      "linkOkKurz": "all",
+      "zitatOkKurz": "all",
+      "linkOkLang": "all links reachable",
+      "linkTotKurz": "{n} dead",
+      "linkTotLang": "{n, plural, one {# link leads nowhere} other {# links lead nowhere}}",
+      "offenKurz": "{n} open",
+      "linkOffenLang": "{n, plural, one {# link not checked or retrieval blocked} other {# links not checked or retrieval blocked}}",
+      "zitatOkLang": "all quotes still verbatim on the page",
+      "zitatDriftKurz": "{n} deviating",
+      "zitatDriftLang": "{n, plural, one {# quote no longer appears verbatim on the page} other {# quotes no longer appear verbatim on the page}}",
+      "zitatOffenLang": "{n, plural, one {# quote not checkable or not yet checked} other {# quotes not checkable or not yet checked}}",
+      "fassungAktuellKurz": "{n} current",
+      "fassungAktuellLang": "{n, plural, one {linked legal version still in force} other {all # linked legal versions still in force}}",
+      "fassungUeberholtKurz": "{n} outdated",
+      "fassungUeberholtLang": "{n, plural, one {# linked legal version is outdated} other {# linked legal versions are outdated}}",
+      "fassungOffenLang": "{n, plural, one {# legal version not checkable} other {# legal versions not checkable}}",
+      "legendOk": "in order",
+      "legendNicht": "finding: at least one detail affected",
+      "legendOffen": "open: not checkable, retrieval blocked or not yet checked"
     }
   }
 }

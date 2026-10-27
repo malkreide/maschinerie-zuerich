@@ -621,7 +621,7 @@
       "woche": {
         "name": "Prüfung jede Woche",
         "was": "Jede Woche prüft der Computer alle Links und alle Belege noch einmal. Er prüft auch: Gilt das Gesetz noch so?",
-        "grenze": "Das Ergebnis zeigen wir hier noch nicht. Das kommt noch."
+        "grenze": "Manche Behörden sperren die Prüfung. Dann ist der Link trotzdem nicht kaputt. Neue Ergebnisse zeigen wir erst, wenn ein Mensch sie angeschaut hat."
       }
     },
     "methodikHeading": "Was ein Beleg bedeutet",
@@ -630,7 +630,44 @@
       "keineWerte": "Die Zahlen selbst stehen nicht hier. Sie stehen bei jedem Ablauf. Dort gibt es den Link zur Behörde.",
       "erreichbar": "Ein Link geht. Das heisst nicht: Alles auf der Seite stimmt noch. Seiten ändern sich.",
       "gesperrt": "Manche Behörden sperren Abrufe vom Computer. Dann ist der Link trotzdem nicht kaputt.",
+      "stand": "Ein Ergebnis gilt nur für die geprüfte Angabe. Wurde die Angabe geändert? Dann ist sie offen. Bis zur nächsten Prüfung.",
+      "veroeffentlichung": "Ein neues Ergebnis zeigen wir nur, wenn sich etwas ändert. Und erst, wenn ein Mensch es angeschaut hat.",
       "verbindlich": "Es gilt immer die Seite der Behörde. Fragen Sie im Zweifel bei der Stadt nach."
+    },
+    "kpiOffen": "Dinge, die die Prüfung gefunden hat",
+    "wocheZeile": "Prüfung vom {datum}: {tot} Links gehen nicht. {drift} Sätze stimmen nicht mehr genau. {ueberholt} Gesetze sind nicht mehr aktuell. {gesperrt} Seiten haben nicht geantwortet. Das ist kein Fehler in den Daten.",
+    "laufLink": "Prüfung ansehen (GitHub)",
+    "offenHeading": "Das müssen wir noch prüfen",
+    "offenIntro": "Das hat die Prüfung gefunden. Der Fehler liegt bei uns. Nicht bei der Behörde. Wir verbessern es. Bis dahin gilt die Seite der Behörde.",
+    "offenKeine": "Die Prüfung hat nichts gefunden.",
+    "offenTot": "{titel}, Angabe {id}: Der Link geht nicht ({status}).",
+    "adresseUnbekannt": "Adresse unbekannt",
+    "offenDrift": "{titel}, Angabe {id}: Der Satz steht nicht mehr genau so auf der Seite. Wir schauen nach, ob sich etwas geändert hat.",
+    "offenUeberholt": "{titel}, Angabe {id}: Es gibt ein neueres Gesetz. Wir schauen nach.",
+    "offenDetail": "Zu den Belegen →",
+    "matrixFolgtHerkunft": "Etwas fehlt noch in der Tabelle: Wer hat die Daten gemacht? Ein Mensch oder eine Maschine? Das kommt noch.",
+    "befund": {
+      "colLink": "Link geht",
+      "colZitat": "Satz stimmt noch",
+      "linkOkKurz": "alle",
+      "zitatOkKurz": "alle",
+      "linkOkLang": "alle Links gehen",
+      "linkTotKurz": "{n} gehen nicht",
+      "linkTotLang": "{n} Links gehen nicht",
+      "offenKurz": "{n} offen",
+      "linkOffenLang": "{n} Links nicht geprüft oder gesperrt",
+      "zitatOkLang": "alle Sätze stimmen noch genau",
+      "zitatDriftKurz": "{n} anders",
+      "zitatDriftLang": "{n} Sätze stimmen nicht mehr genau",
+      "zitatOffenLang": "{n} Sätze nicht geprüft",
+      "fassungAktuellKurz": "{n} aktuell",
+      "fassungAktuellLang": "das Gesetz ist noch aktuell",
+      "fassungUeberholtKurz": "{n} alt",
+      "fassungUeberholtLang": "{n} Gesetze sind nicht mehr aktuell",
+      "fassungOffenLang": "{n} Gesetze nicht geprüft",
+      "legendOk": "alles gut",
+      "legendNicht": "es gibt ein Problem",
+      "legendOffen": "offen: nicht geprüft oder gesperrt"
     }
   }
 }
