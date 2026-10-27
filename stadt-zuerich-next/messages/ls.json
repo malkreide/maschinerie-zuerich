@@ -67,7 +67,8 @@
     "bewertungNutzend": "Ist es einfach?",
     "bewertungGesamt": "Insgesamt erfüllt",
     "bewertungKeinScore": "kein Wert",
-    "bewertungUnbekanntKurz": "unbek."
+    "bewertungUnbekanntKurz": "unbek.",
+    "belegeLink": "Woher wissen wir das? Zu den Belegen →"
   },
   "Territory": {
     "title": "Standorte",
@@ -493,7 +494,8 @@
         "schwach": "steht ungefähr in der Strategie",
         "kein": "wir haben es selbst gewählt"
       }
-    }
+    },
+    "belegeLink": "So prüfen wir diese Angaben →"
   },
   "GraphTable": {
     "caption": "Tabelle mit den Daten aus dem Schau-Bild",
@@ -547,6 +549,88 @@
     "belegLueckeTitle": "Für diesen Prozess fehlen noch Belege. Darum steht in den Digital-Spalten «unbekannt». Das heisst nicht «nicht erfüllt».",
     "coverageNote": "{ohne, plural, =0 {Alle {total} Prozesse haben Belege.} one {# von {total} Prozessen hat noch keine Belege. Darum steht «unbekannt». Das heisst nicht «nicht erfüllt».} other {# von {total} Prozessen haben noch keine Belege. Darum steht «unbekannt». Das heisst nicht «nicht erfüllt».}}",
     "summaryHeading": "Antworten je Frage (über alle Prozesse)",
-    "summaryZeile": "{erfuellt} erfüllt · {nichtErfuellt} nicht erfüllt · {unbekannt} unbekannt"
+    "summaryZeile": "{erfuellt} erfüllt · {nichtErfuellt} nicht erfüllt · {unbekannt} unbekannt",
+    "belegeLink": "Woher wissen wir das? Zu den Belegen →"
+  },
+  "Belege": {
+    "title": "Woher wir das wissen",
+    "intro": "Auf dieser Seite sehen Sie: Woher kommen die wichtigen Angaben? Wichtige Angaben sind zum Beispiel Fristen und Kosten. Für jede wichtige Angabe haben wir einen Beleg. Ein Beleg ist ein genauer Satz von der Internet-Seite der Behörde. Die Zahlen selbst stehen nicht hier. Sie stehen bei jedem Ablauf. Dort gibt es auch den Link zur Behörde.",
+    "source": "Berechnet aus den Daten der Abläufe",
+    "privacyNote": "Alles wird aus den Daten berechnet. Wir sammeln keine Daten über Sie. Wir erfinden keine Werte.",
+    "empty": "Es gibt noch keine Belege.",
+    "kpiHeading": "Zahlen auf einen Blick",
+    "kpiBelegt": "wichtige Angaben mit genauem Satz als Beleg",
+    "kpiGesetz": "Belege direkt aus dem Gesetz",
+    "kpiHochrisiko": "Abläufe mit besonderem Risiko. Bei allen steht ein Hinweis.",
+    "kpiWoche": "Ergebnis der Prüfung jede Woche",
+    "kpiWocheWert": "kommt noch",
+    "ebenenHeading": "Woher die Belege kommen",
+    "ebene": {
+      "stadt": "Stadt",
+      "kanton": "Kanton",
+      "bund": "Bund",
+      "andere": "andere"
+    },
+    "matrixHeading": "Belege für jeden Ablauf",
+    "matrixIntro": "Jede Zeile ist ein Ablauf. Die Abläufe sind nach dem Alphabet geordnet. Klicken Sie auf den Namen. Dann sehen Sie die Belege.",
+    "matrixFolgt": "Zwei Dinge fehlen noch in der Tabelle. Erstens: das Ergebnis der Prüfung jede Woche. Zweitens: Wer hat die Daten gemacht? Ein Mensch oder eine Maschine? Beides kommt noch.",
+    "caption": "Belege für jeden Ablauf",
+    "colProzess": "Ablauf",
+    "colReferenzen": "Wichtige Angaben",
+    "colBelegt": "Mit Beleg",
+    "colEbenen": "Woher",
+    "colGesetz": "Aus dem Gesetz",
+    "colAbruf": "Ältester Beleg vom",
+    "belegtWert": "{belegt} von {gesamt}",
+    "belegtAlle": "alle haben einen Beleg",
+    "belegtNichtAlle": "nicht alle haben einen Beleg",
+    "keineAngaben": "keine wichtigen Angaben",
+    "abrufAlt": "älter als 1 Jahr",
+    "abrufAltTitle": "Wir haben diesen Beleg vor mehr als 1 Jahr geholt. Im Zweifel gilt die Seite der Behörde.",
+    "detailLink": "Zu den Belegen von «{titel}»",
+    "pruefHeading": "So prüfen wir die Daten",
+    "pruefIntro": "Jede Änderung geht durch diese Schritte. Ein Mensch gibt jede Änderung frei.",
+    "grenzeLabel": "Aber:",
+    "codeLink": "So ist es gemacht (GitHub)",
+    "stufe": {
+      "erfassung": {
+        "name": "Daten aufschreiben",
+        "was": "Ein Mensch schreibt einen Ablauf auf. Oder eine Maschine bereitet ihn vor.",
+        "grenze": "Die Maschine liefert nur den Aufbau. Fertige Texte bleiben, wie sie sind."
+      },
+      "schema": {
+        "name": "Form prüfen",
+        "was": "Der Computer prüft: Ist alles da? Steht der Hinweis bei Abläufen mit Risiko?",
+        "grenze": "Er prüft nur die Form. Er prüft nicht, ob alles stimmt."
+      },
+      "regression": {
+        "name": "Texte schützen",
+        "was": "Fertige Texte und Übersetzungen dürfen nicht einfach verschwinden.",
+        "grenze": "Ausnahmen gibt es nur mit Begründung."
+      },
+      "referenzen": {
+        "name": "Belege prüfen",
+        "was": "Ist ein Beleg neu? Dann prüft der Computer: Geht der Link? Steht der Satz genau so auf der Seite?",
+        "grenze": "Alte Belege prüft er erst bei der Prüfung jede Woche."
+      },
+      "review": {
+        "name": "Ein Mensch gibt frei",
+        "was": "Ein Mensch schaut jede Änderung an. Erst dann kommt sie auf die Seite.",
+        "grenze": "Ob ein Satz richtig passt, entscheidet ein Mensch."
+      },
+      "woche": {
+        "name": "Prüfung jede Woche",
+        "was": "Jede Woche prüft der Computer alle Links und alle Belege noch einmal. Er prüft auch: Gilt das Gesetz noch so?",
+        "grenze": "Das Ergebnis zeigen wir hier noch nicht. Das kommt noch."
+      }
+    },
+    "methodikHeading": "Was ein Beleg bedeutet",
+    "methodik": {
+      "woertlich": "Mit Beleg heisst: Der Satz stand genau so auf der Seite der Behörde. Das heisst nicht: Eine Fachperson für Recht hat es geprüft.",
+      "keineWerte": "Die Zahlen selbst stehen nicht hier. Sie stehen bei jedem Ablauf. Dort gibt es den Link zur Behörde.",
+      "erreichbar": "Ein Link geht. Das heisst nicht: Alles auf der Seite stimmt noch. Seiten ändern sich.",
+      "gesperrt": "Manche Behörden sperren Abrufe vom Computer. Dann ist der Link trotzdem nicht kaputt.",
+      "verbindlich": "Es gilt immer die Seite der Behörde. Fragen Sie im Zweifel bei der Stadt nach."
+    }
   }
 }

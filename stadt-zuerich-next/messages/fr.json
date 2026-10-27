@@ -67,7 +67,8 @@
     "bewertungNutzend": "Orientation usagers",
     "bewertungGesamt": "Rempli au total",
     "bewertungKeinScore": "pas de score",
-    "bewertungUnbekanntKurz": "inc."
+    "bewertungUnbekanntKurz": "inc.",
+    "belegeLink": "Quelle est la fiabilité de ces données ? Vers « Preuves et provenance » →"
   },
   "Territory": {
     "title": "Emplacements",
@@ -493,7 +494,8 @@
         "schwach": "faiblement ancré",
         "kein": "défini en propre"
       }
-    }
+    },
+    "belegeLink": "Comment ces indications sont étayées et contrôlées →"
   },
   "GraphTable": {
     "caption": "Données du graphe du réseau (nœuds actuellement visibles)",
@@ -547,6 +549,88 @@
     "belegLueckeTitle": "Aucune preuve de numérisation enregistrée — les colonnes numériques restent « inconnu », pas « non atteint ».",
     "coverageNote": "{ohne, plural, =0 {Les {total} processus disposent tous d’indicateurs de numérisation étayés.} one {# processus sur {total} n’a pas encore d’indicateurs de numérisation étayés — les colonnes numériques restent « inconnu », pas « non atteint ».} other {# processus sur {total} n’ont pas encore d’indicateurs de numérisation étayés — les colonnes numériques restent « inconnu », pas « non atteint ».}}",
     "summaryHeading": "Réalisation par indicateur (sur tous les processus)",
-    "summaryZeile": "{erfuellt} atteint · {nichtErfuellt} non atteint · {unbekannt} inconnu"
+    "summaryZeile": "{erfuellt} atteint · {nichtErfuellt} non atteint · {unbekannt} inconnu",
+    "belegeLink": "Quelle est la fiabilité de ces données ? Vers « Preuves et provenance » →"
+  },
+  "Belege": {
+    "title": "Preuves et provenance",
+    "intro": "Quelle est la fiabilité des informations sur les procédures ? Cette page montre quelles indications contraignantes – délais, émoluments, voies de recours – sont étayées par une citation textuelle d’une source officielle, et quels contrôles les données subissent. Les valeurs elles-mêmes ne figurent volontairement pas ici, mais uniquement sur la page de chaque procédure, toujours avec un lien vers la source originale.",
+    "source": "Dérivé des données des processus",
+    "privacyNote": "Généré de manière déterministe à partir des données des processus — aucune donnée d’utilisation ou personnelle, aucune valeur inventée.",
+    "empty": "Aucune preuve enregistrée pour l’instant.",
+    "kpiHeading": "Chiffres clés",
+    "kpiBelegt": "indications contraignantes avec citation textuelle",
+    "kpiGesetz": "citations tirées directement du texte légal (PDF)",
+    "kpiHochrisiko": "procédures à haut risque, toutes avec un avertissement visible",
+    "kpiWoche": "résultat du contrôle hebdomadaire",
+    "kpiWocheWert": "à venir",
+    "ebenenHeading": "Origine des preuves par niveau institutionnel",
+    "ebene": {
+      "stadt": "Ville",
+      "kanton": "Canton",
+      "bund": "Confédération",
+      "andere": "autres"
+    },
+    "matrixHeading": "Preuves par procédure",
+    "matrixIntro": "Une procédure par ligne, par ordre alphabétique. Le nom mène aux preuves sur la page de la procédure.",
+    "matrixFolgt": "Pas encore dans le tableau : le résultat du contrôle hebdomadaire (lien accessible ? citation toujours textuelle sur la page ? version légale toujours en vigueur ?) et l’origine des données (modélisées à la main ou préparées par machine). Les deux suivront.",
+    "caption": "Preuves par procédure : indications contraignantes, citations textuelles, sources, textes légaux et consultation la plus ancienne",
+    "colProzess": "Procédure",
+    "colReferenzen": "Indications contraignantes",
+    "colBelegt": "Citation textuelle",
+    "colEbenen": "Sources",
+    "colGesetz": "Texte légal",
+    "colAbruf": "Consultation la plus ancienne",
+    "belegtWert": "{belegt} sur {gesamt}",
+    "belegtAlle": "toutes citées textuellement",
+    "belegtNichtAlle": "pas toutes citées textuellement",
+    "keineAngaben": "aucune indication contraignante",
+    "abrufAlt": "plus d’un an",
+    "abrufAltTitle": "Cette preuve a été consultée il y a plus d’un an. En cas de doute, la source officielle fait foi.",
+    "detailLink": "Preuves de « {titel} »",
+    "pruefHeading": "Comment les données sont contrôlées",
+    "pruefIntro": "Chaque modification des données des processus passe par ces étapes. Aucune étape ne remplace la suivante, et rien n’est publié sans validation humaine.",
+    "grenzeLabel": "Limite :",
+    "codeLink": "Voir la mise en œuvre (GitHub)",
+    "stufe": {
+      "erfassung": {
+        "name": "Saisie",
+        "was": "Une procédure est modélisée à la main ou préparée par machine et soumise comme proposition de modification.",
+        "grenze": "Les propositions préparées par machine ne fournissent que la structure ; les textes et traductions existants et vérifiés sont conservés."
+      },
+      "schema": {
+        "name": "Contrat de données",
+        "was": "Pour chaque proposition, la CI vérifie que le fichier respecte le contrat de données : champs obligatoires, références, avertissement de haut risque et aucune valeur contraignante en dehors des citations.",
+        "grenze": "Vérifie la forme, pas l’exactitude du contenu."
+      },
+      "regression": {
+        "name": "Protection des textes existants",
+        "was": "Une proposition ne peut pas vider ou supprimer en silence des traductions et descriptions documentées.",
+        "grenze": "Des exceptions sont possibles, mais seulement justifiées et validées une par une."
+      },
+      "referenzen": {
+        "name": "Contrôle des preuves",
+        "was": "Pour chaque indication contraignante nouvelle ou modifiée, la page liée est consultée en direct : le lien est-il accessible, et la citation y figure-t-elle textuellement ?",
+        "grenze": "Les preuves existantes et inchangées ne sont vérifiées que par le contrôle hebdomadaire."
+      },
+      "review": {
+        "name": "Validation humaine",
+        "was": "Une personne vérifie chaque modification avant sa publication. Rien n’est repris automatiquement.",
+        "grenze": "C’est une personne, et non la machine, qui juge si une citation rend correctement l’indication."
+      },
+      "woche": {
+        "name": "Contrôle hebdomadaire",
+        "was": "Une fois par semaine, tous les liens sont consultés, toutes les citations sont à nouveau comparées à la source et les textes légaux liés sont confrontés à la version en vigueur.",
+        "grenze": "Le résultat n’est pour l’instant évalué qu’en interne ; sa publication sur cette page suivra."
+      }
+    },
+    "methodikHeading": "Méthode et limites",
+    "methodik": {
+      "woertlich": "« Cité textuellement » signifie : la citation figurait exactement ainsi sur la page officielle liée au moment de la consultation. Cela ne signifie pas que l’indication a été vérifiée juridiquement.",
+      "keineWerte": "Les valeurs contraignantes elles-mêmes ne figurent pas ici. Elles apparaissent uniquement sur la page de la procédure, sous forme de citation avec un lien vers la source originale.",
+      "erreichbar": "Un lien accessible ne signifie pas que le contenu est toujours exact : les pages sont réécrites, et certaines ne livrent leur texte que dans le navigateur.",
+      "gesperrt": "Certaines autorités bloquent les consultations automatiques. Une consultation bloquée n’est pas un lien mort et n’est jamais présentée comme tel.",
+      "verbindlich": "Seule la source officielle fait foi. En cas de doute, demandez un conseil personnalisé."
+    }
   }
 }

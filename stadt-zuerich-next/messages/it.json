@@ -67,7 +67,8 @@
     "bewertungNutzend": "Orientamento all’utenza",
     "bewertungGesamt": "Soddisfatto in totale",
     "bewertungKeinScore": "nessun punteggio",
-    "bewertungUnbekanntKurz": "scon."
+    "bewertungUnbekanntKurz": "scon.",
+    "belegeLink": "Quanto sono affidabili questi dati? Vai a «Prove e provenienza» →"
   },
   "Territory": {
     "title": "Sedi",
@@ -493,7 +494,8 @@
         "schwach": "debolmente ancorato",
         "kein": "definito autonomamente"
       }
-    }
+    },
+    "belegeLink": "Come vengono comprovate e controllate queste indicazioni →"
   },
   "GraphTable": {
     "caption": "Dati del grafo della rete (nodi attualmente visibili)",
@@ -547,6 +549,88 @@
     "belegLueckeTitle": "Nessuna prova di digitalizzazione registrata — le colonne digitali restano «sconosciuto», non «non adempiuto».",
     "coverageNote": "{ohne, plural, =0 {Tutti i {total} processi hanno indicatori di digitalizzazione documentati.} one {# processo su {total} non ha ancora indicatori di digitalizzazione documentati — le colonne digitali restano «sconosciuto», non «non adempiuto».} other {# processi su {total} non hanno ancora indicatori di digitalizzazione documentati — le colonne digitali restano «sconosciuto», non «non adempiuto».}}",
     "summaryHeading": "Adempimento per indicatore (su tutti i processi)",
-    "summaryZeile": "{erfuellt} adempiuto · {nichtErfuellt} non adempiuto · {unbekannt} sconosciuto"
+    "summaryZeile": "{erfuellt} adempiuto · {nichtErfuellt} non adempiuto · {unbekannt} sconosciuto",
+    "belegeLink": "Quanto sono affidabili questi dati? Vai a «Prove e provenienza» →"
+  },
+  "Belege": {
+    "title": "Prove e provenienza",
+    "intro": "Quanto sono affidabili le informazioni sulle procedure? Questa pagina mostra quali indicazioni vincolanti – termini, tasse, rimedi giuridici – sono comprovate da una citazione letterale di una fonte ufficiale e quali controlli attraversano i dati. I valori stessi volutamente non figurano qui, ma solo nella pagina della rispettiva procedura, sempre con un link alla fonte originale.",
+    "source": "Derivato dai dati dei processi",
+    "privacyNote": "Generato in modo deterministico dai dati dei processi — nessun dato di utilizzo o personale, nessun valore inventato.",
+    "empty": "Nessuna prova ancora registrata.",
+    "kpiHeading": "Cifre chiave",
+    "kpiBelegt": "indicazioni vincolanti con citazione letterale",
+    "kpiGesetz": "citazioni tratte direttamente dal testo di legge (PDF)",
+    "kpiHochrisiko": "procedure ad alto rischio, tutte con un avviso visibile",
+    "kpiWoche": "risultato del controllo settimanale",
+    "kpiWocheWert": "in arrivo",
+    "ebenenHeading": "Provenienza delle prove per livello istituzionale",
+    "ebene": {
+      "stadt": "Città",
+      "kanton": "Cantone",
+      "bund": "Confederazione",
+      "andere": "altri"
+    },
+    "matrixHeading": "Prove per procedura",
+    "matrixIntro": "Una procedura per riga, in ordine alfabetico. Il nome porta alle prove nella pagina della procedura.",
+    "matrixFolgt": "Non ancora nella tabella: il risultato del controllo settimanale (link raggiungibile? citazione ancora letterale sulla pagina? versione di legge ancora in vigore?) e la provenienza dei dati (modellati a mano o preparati a macchina). Entrambi seguiranno.",
+    "caption": "Prove per procedura: indicazioni vincolanti, citazioni letterali, fonti, testi di legge e consultazione più vecchia",
+    "colProzess": "Procedura",
+    "colReferenzen": "Indicazioni vincolanti",
+    "colBelegt": "Citazione letterale",
+    "colEbenen": "Fonti",
+    "colGesetz": "Testo di legge",
+    "colAbruf": "Consultazione più vecchia",
+    "belegtWert": "{belegt} su {gesamt}",
+    "belegtAlle": "tutte citate letteralmente",
+    "belegtNichtAlle": "non tutte citate letteralmente",
+    "keineAngaben": "nessuna indicazione vincolante",
+    "abrufAlt": "più di un anno fa",
+    "abrufAltTitle": "Questa prova è stata consultata più di un anno fa. In caso di dubbio fa fede la fonte ufficiale.",
+    "detailLink": "Prove di «{titel}»",
+    "pruefHeading": "Come vengono controllati i dati",
+    "pruefIntro": "Ogni modifica ai dati dei processi attraversa queste fasi. Nessuna fase sostituisce la successiva e nulla viene pubblicato senza approvazione umana.",
+    "grenzeLabel": "Limite:",
+    "codeLink": "Vedere l’implementazione (GitHub)",
+    "stufe": {
+      "erfassung": {
+        "name": "Rilevamento",
+        "was": "Una procedura viene modellata a mano o preparata a macchina e presentata come proposta di modifica.",
+        "grenze": "Le proposte preparate a macchina forniscono solo la struttura; i testi e le traduzioni esistenti e verificati vengono mantenuti."
+      },
+      "schema": {
+        "name": "Contratto dei dati",
+        "was": "Per ogni proposta la CI verifica che il file rispetti il contratto dei dati: campi obbligatori, riferimenti, avviso di alto rischio e nessun valore vincolante al di fuori delle citazioni.",
+        "grenze": "Verifica la forma, non la correttezza del contenuto."
+      },
+      "regression": {
+        "name": "Protezione dei testi esistenti",
+        "was": "Una proposta non può svuotare o rimuovere silenziosamente traduzioni e descrizioni documentate.",
+        "grenze": "Le eccezioni sono possibili, ma solo motivate e approvate singolarmente."
+      },
+      "referenzen": {
+        "name": "Controllo delle prove",
+        "was": "Per ogni indicazione vincolante nuova o modificata, la pagina collegata viene consultata in tempo reale: il link è raggiungibile e la citazione vi figura letteralmente?",
+        "grenze": "Le prove esistenti e invariate vengono verificate solo dal controllo settimanale."
+      },
+      "review": {
+        "name": "Approvazione umana",
+        "was": "Una persona verifica ogni modifica prima della pubblicazione. Nulla viene ripreso automaticamente.",
+        "grenze": "Se una citazione rende correttamente l’indicazione lo giudica una persona, non la macchina."
+      },
+      "woche": {
+        "name": "Controllo settimanale",
+        "was": "Una volta alla settimana vengono consultati tutti i link, tutte le citazioni vengono nuovamente confrontate con la fonte e i testi di legge collegati vengono confrontati con la versione in vigore.",
+        "grenze": "Per ora il risultato viene valutato solo internamente; la pubblicazione su questa pagina seguirà."
+      }
+    },
+    "methodikHeading": "Metodo e limiti",
+    "methodik": {
+      "woertlich": "«Citato letteralmente» significa: al momento della consultazione la citazione figurava esattamente così sulla pagina ufficiale collegata. Non significa che l’indicazione sia stata verificata giuridicamente.",
+      "keineWerte": "I valori vincolanti stessi non figurano qui. Appaiono solo nella pagina della procedura, come citazione con un link alla fonte originale.",
+      "erreichbar": "Un link raggiungibile non significa che il contenuto sia ancora corretto: le pagine vengono riscritte e alcune forniscono il loro testo solo nel browser.",
+      "gesperrt": "Alcune autorità bloccano le consultazioni automatiche. Una consultazione bloccata non è un link morto e non viene mai presentata come tale.",
+      "verbindlich": "Fa sempre fede la fonte ufficiale. In caso di dubbio, chiedere una consulenza personale."
+    }
   }
 }

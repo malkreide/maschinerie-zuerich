@@ -2,8 +2,8 @@
 
 **Status:** Entscheide getroffen (2026-10-25, Maintainer): E1 öffentlich,
 E2–E7 gemäss Empfehlung, siehe [Abschnitt 9](#9-entscheide-maintainer).
-Phase P1 ist umgesetzt (Belege-Aggregat mit Drift-Gate, ohne UI), P2–P5
-folgen.
+Umgesetzt: P1 (Belege-Aggregat mit Drift-Gate) und P2 (Route `/belege` mit
+Kennzahlen, Belegmatrix, Prüfkette und Methodik). P3–P5 folgen.
 
 > **Kardinalregel bleibt:** Die Ansicht zeigt, *dass* und *wie* bindende
 > Angaben belegt sind, nie den bindenden Wert selbst. Zitate (`source_quote`)
@@ -378,9 +378,16 @@ Abschnitte:
    Erreichbarkeit heisst nicht Richtigkeit. Dazu Soft-404, JS-Seiten und
    Bot-Sperren. Ein Mensch bleibt für die Bedeutung des Zitats zuständig.
 
-**Wiederverwendung:** `STATUS_SYMBOL` und die Schraffur aus
-`components/PortfolioHeatmap.tsx` werden in eine kleine Komponente
-`components/StatusZelle.tsx` ausgelagert und von beiden Ansichten genutzt.
+> **Umgesetzt in P2, anders als oben skizziert:** Die Spalten der Ebenen 2
+> und 3 (Wochenbefund, Herkunft) erscheinen erst mit P3 bzw. P4. Statt
+> Spalten, die in jeder Zeile nur «nicht erhoben» zeigen würden, nennt ein
+> Hinweis über der Tabelle, welche Angaben noch folgen. Das Änderungsprotokoll
+> (5.) folgt mit P5. Zusätzlich zeigt die Matrix die Quellen je Ebene und die
+> Zahl der Belege aus Gesetzestexten.
+
+**Wiederverwendung:** `STATUS_SYMBOL`, die Zellfarben und die Schraffur aus
+`components/PortfolioHeatmap.tsx` liegen jetzt in `lib/status-stil.ts` und
+werden von beiden Ansichten genutzt.
 
 **Navigation:** Im Header stehen bereits neun Einträge. Vorschlag: vorerst
 **kein** Header-Eintrag. Verlinkt wird von `/wirkung`, `/portfolio` und von

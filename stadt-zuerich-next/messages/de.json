@@ -67,7 +67,8 @@
     "bewertungNutzend": "Nutzendenorientierung",
     "bewertungGesamt": "Gesamt erfüllt",
     "bewertungKeinScore": "kein Score",
-    "bewertungUnbekanntKurz": "unbek."
+    "bewertungUnbekanntKurz": "unbek.",
+    "belegeLink": "Wie belastbar sind diese Daten? Zu «Belege & Herkunft» →"
   },
   "Territory": {
     "title": "Standorte",
@@ -493,7 +494,8 @@
         "schwach": "schwach verankert",
         "kein": "selbst gesetzt"
       }
-    }
+    },
+    "belegeLink": "Wie diese Angaben belegt und geprüft werden →"
   },
   "GraphTable": {
     "caption": "Daten des Netzwerkgraphen (aktuell sichtbare Knoten)",
@@ -547,6 +549,88 @@
     "belegLueckeTitle": "Noch keine Digitalisierungs-Belege hinterlegt — die Digital-Spalten bleiben «unbekannt», nicht «nicht erfüllt».",
     "coverageNote": "{ohne, plural, =0 {Alle {total} Prozesse haben belegte Digitalisierungs-Indikatoren.} one {# von {total} Prozessen hat noch keine belegten Digitalisierungs-Indikatoren — die Digital-Spalten bleiben «unbekannt», nicht «nicht erfüllt».} other {# von {total} Prozessen haben noch keine belegten Digitalisierungs-Indikatoren — die Digital-Spalten bleiben «unbekannt», nicht «nicht erfüllt».}}",
     "summaryHeading": "Erfüllung je Indikator (über alle Prozesse)",
-    "summaryZeile": "{erfuellt} erfüllt · {nichtErfuellt} nicht erfüllt · {unbekannt} unbekannt"
+    "summaryZeile": "{erfuellt} erfüllt · {nichtErfuellt} nicht erfüllt · {unbekannt} unbekannt",
+    "belegeLink": "Wie belastbar sind diese Daten? Zu «Belege & Herkunft» →"
+  },
+  "Belege": {
+    "title": "Belege & Herkunft",
+    "intro": "Wie belastbar sind die Angaben zu den Verfahren? Hier sehen Sie, welche bindenden Angaben – Fristen, Gebühren, Rechtsmittel – mit einem wörtlichen Zitat aus einer amtlichen Quelle belegt sind und welche Prüfungen die Daten durchlaufen. Die Werte selbst stehen bewusst nicht hier, sondern nur auf der Seite des Verfahrens, immer mit Link auf die Originalquelle.",
+    "source": "Abgeleitet aus den Prozessdaten",
+    "privacyNote": "Deterministisch aus den Prozessdaten erzeugt — keine Nutzungs- oder Personendaten, keine erfundenen Werte.",
+    "empty": "Noch keine Belege erfasst.",
+    "kpiHeading": "Kennzahlen",
+    "kpiBelegt": "bindende Angaben mit wörtlichem Beleg",
+    "kpiGesetz": "Belege direkt aus dem Gesetzestext (PDF)",
+    "kpiHochrisiko": "Hochrisiko-Verfahren, alle mit sichtbarem Hinweis",
+    "kpiWoche": "Ergebnis der wöchentlichen Prüfung",
+    "kpiWocheWert": "folgt",
+    "ebenenHeading": "Herkunft der Belege nach Staatsebene",
+    "ebene": {
+      "stadt": "Stadt",
+      "kanton": "Kanton",
+      "bund": "Bund",
+      "andere": "andere"
+    },
+    "matrixHeading": "Belege je Verfahren",
+    "matrixIntro": "Je Zeile ein Verfahren, alphabetisch geordnet. Der Name führt zu den Belegen auf der Seite des Verfahrens.",
+    "matrixFolgt": "Noch nicht in der Tabelle: das Ergebnis der wöchentlichen Prüfung (Link erreichbar? Zitat noch wörtlich auf der Seite? Gesetzesfassung noch gültig?) und die Herkunft der Daten (von Hand erfasst oder maschinell vorbereitet). Beides folgt.",
+    "caption": "Belege je Verfahren: bindende Angaben, wörtliche Belege, Quellen, Gesetzestexte und ältester Abruf",
+    "colProzess": "Verfahren",
+    "colReferenzen": "Bindende Angaben",
+    "colBelegt": "Wörtlich belegt",
+    "colEbenen": "Quellen",
+    "colGesetz": "Gesetzestext",
+    "colAbruf": "Ältester Abruf",
+    "belegtWert": "{belegt} von {gesamt}",
+    "belegtAlle": "alle wörtlich belegt",
+    "belegtNichtAlle": "nicht alle wörtlich belegt",
+    "keineAngaben": "keine bindenden Angaben",
+    "abrufAlt": "älter als ein Jahr",
+    "abrufAltTitle": "Dieser Beleg wurde vor mehr als einem Jahr abgerufen. Im Zweifel gilt die amtliche Quelle.",
+    "detailLink": "Zu den Belegen von «{titel}»",
+    "pruefHeading": "So werden die Daten geprüft",
+    "pruefIntro": "Jede Änderung an den Prozessdaten durchläuft diese Stufen. Keine Stufe ersetzt die nächste, und nichts wird ohne menschliche Freigabe veröffentlicht.",
+    "grenzeLabel": "Grenze:",
+    "codeLink": "Umsetzung ansehen (GitHub)",
+    "stufe": {
+      "erfassung": {
+        "name": "Erfassung",
+        "was": "Ein Verfahren wird von Hand modelliert oder maschinell vorbereitet und als Änderungsvorschlag eingereicht.",
+        "grenze": "Maschinell vorbereitete Vorschläge liefern nur die Struktur; bestehende, geprüfte Texte und Übersetzungen bleiben erhalten."
+      },
+      "schema": {
+        "name": "Datenvertrag",
+        "was": "Bei jedem Vorschlag prüft die CI, ob die Datei dem Datenvertrag entspricht: Pflichtfelder, Verweise, Hochrisiko-Hinweis und keine bindenden Werte ausserhalb der Zitate.",
+        "grenze": "Prüft die Form, nicht die inhaltliche Richtigkeit."
+      },
+      "regression": {
+        "name": "Schutz bestehender Texte",
+        "was": "Ein Vorschlag darf belegte Übersetzungen und Beschreibungen nicht stillschweigend leeren oder entfernen.",
+        "grenze": "Ausnahmen sind möglich, aber nur einzeln begründet und freigegeben."
+      },
+      "referenzen": {
+        "name": "Belegprüfung",
+        "was": "Für jede neue oder geänderte bindende Angabe wird die verlinkte Seite live abgerufen: Ist der Link erreichbar, und steht das Zitat wörtlich dort?",
+        "grenze": "Bestehende, unveränderte Belege prüft erst die Wochenprüfung."
+      },
+      "review": {
+        "name": "Menschliche Freigabe",
+        "was": "Ein Mensch prüft jede Änderung, bevor sie veröffentlicht wird. Nichts wird automatisch übernommen.",
+        "grenze": "Ob ein Zitat die Angabe richtig wiedergibt, beurteilt ein Mensch, nicht die Maschine."
+      },
+      "woche": {
+        "name": "Wochenprüfung",
+        "was": "Einmal pro Woche werden alle Links abgerufen, alle Zitate erneut mit der Quelle verglichen und verlinkte Gesetzestexte mit der geltenden Fassung abgeglichen.",
+        "grenze": "Das Ergebnis wird derzeit nur intern ausgewertet; die Veröffentlichung auf dieser Seite folgt."
+      }
+    },
+    "methodikHeading": "Methodik und Grenzen",
+    "methodik": {
+      "woertlich": "«Wörtlich belegt» heisst: Das Zitat stand beim Abruf genau so auf der verlinkten amtlichen Seite. Es heisst nicht, dass die Angabe rechtlich geprüft ist.",
+      "keineWerte": "Die bindenden Werte selbst stehen hier nicht. Sie erscheinen nur auf der Seite des Verfahrens, als Zitat mit Link auf die Originalquelle.",
+      "erreichbar": "Ein erreichbarer Link heisst nicht, dass der Inhalt noch stimmt: Seiten werden umgeschrieben, und manche liefern ihren Text erst im Browser.",
+      "gesperrt": "Manche Behörden sperren automatische Abrufe. Ein gesperrter Abruf ist kein toter Link und wird nie als solcher dargestellt.",
+      "verbindlich": "Verbindlich ist immer die amtliche Quelle. Holen Sie im Zweifel persönliche Beratung ein."
+    }
   }
 }

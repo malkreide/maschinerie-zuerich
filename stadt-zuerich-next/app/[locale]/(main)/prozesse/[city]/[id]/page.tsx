@@ -530,7 +530,10 @@ export default async function ProzessDetailPage({
       {prozess.references && prozess.references.length > 0 && (
         <section aria-labelledby="referenzen-heading" className="max-w-[80ch] mt-6">
           <h3 id="referenzen-heading" className="text-base font-semibold mb-1">{t('referenzenHeading')}</h3>
-          <p className="text-[12px] text-[var(--color-mute)] mb-2">{t('referenzenHint')}</p>
+          <p className="text-[12px] text-[var(--color-mute)] mb-2">
+            {t('referenzenHint')}{' '}
+            <Link href="/belege" className="text-[var(--color-accent)] underline">{t('belegeLink')}</Link>
+          </p>
           <ul className="list-disc list-inside text-sm space-y-1">
             {prozess.references.map((r) => (
               <li key={r.reference_id}>

@@ -80,13 +80,16 @@ export default async function WirkungPage({
     >
       <h2 id="wirkung-heading" className="text-lg font-semibold mb-1">{t('title')}</h2>
       <p className="text-[13px] text-[var(--color-mute)] mb-3 max-w-[80ch]">{t('intro')}</p>
-      <div className="mb-6">
+      <div className="mb-3">
         <DataQualityBadge
           status="aggregiert"
           quelle={t('source')}
           hinweis={t('privacyNote')}
         />
       </div>
+      <p className="text-[13px] mb-6 max-w-[80ch]">
+        <Link href="/belege" className="text-[var(--color-accent)] underline">{t('belegeLink')}</Link>
+      </p>
 
       {/* KPI-Karten */}
       <section aria-labelledby="kpi-heading" className="mb-8 max-w-[80ch]">

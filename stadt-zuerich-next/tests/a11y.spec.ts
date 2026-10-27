@@ -44,6 +44,8 @@ const ROUTES = [
   '/en/prozesse/zh/sozialhilfe',
   '/de/portfolio',
   '/de/roadmap',
+  '/de/belege',
+  '/ls/belege',
 ];
 
 function summarize(route: string, violations: Result[]): string {
