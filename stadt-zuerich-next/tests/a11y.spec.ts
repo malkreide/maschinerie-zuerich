@@ -88,6 +88,18 @@ async function waitForTreemap(page: Page) {
   await page.locator('svg g[role="button"]').first().waitFor({ state: 'attached', timeout: 15_000 });
 }
 
+// --- Organigramm (Startseite) -----------------------------------------------
+//
+// Die Startseite lädt den Cytoscape-Graphen samt Werkzeugleiste erst nach der
+// Hydration nach (GraphLoader, ssr:false). Gleiche Falle wie bei der Treemap:
+// ohne zu warten blieb der Verstoss am Knopf «Alles zeigen» (WCAG 2.5.3)
+// je nach Timing unentdeckt.
+const HAT_ORGANIGRAMM = /^\/[a-z]{2}$/;
+
+async function waitForOrganigramm(page: Page) {
+  await page.locator('.cy-host').first().waitFor({ state: 'attached', timeout: 15_000 });
+}
+
 /** Mindestkontrast für normalen Text nach WCAG 2.x AA. */
 const KONTRAST_AA = 4.5;
 
@@ -183,6 +195,7 @@ async function expectRouteAccessible(page: Page, route: string, name = route) {
   const hatGraph = HAT_PROZESS_GRAPH.test(route);
   if (hatGraph) await waitForProzessGraph(page);
   if (HAT_TREEMAP.test(route)) await waitForTreemap(page);
+  if (HAT_ORGANIGRAMM.test(route)) await waitForOrganigramm(page);
 
   const results = await new AxeBuilder({ page })
     .withTags(WCAG_TAGS)

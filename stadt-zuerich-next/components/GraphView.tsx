@@ -412,7 +412,7 @@ function Toolbar({
         <button className={btn(false)} onClick={onCenter}
                 aria-label="Auswahl aufheben und Ansicht zurücksetzen">↻ Zurücksetzen</button>
         <button className={btn(false)} onClick={onFit}
-                aria-label="Alle Knoten ins Sichtfeld einpassen">Alles zeigen</button>
+                aria-label="Alles zeigen: alle Knoten ins Sichtfeld einpassen">Alles zeigen</button>
         <button
           className={btn(false)}
           onClick={allExpanded ? onCollapseAll : onExpandAll}
