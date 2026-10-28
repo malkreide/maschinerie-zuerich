@@ -565,15 +565,27 @@
     "kpiWoche": "result of the weekly check",
     "kpiWocheWert": "coming soon",
     "ebenenHeading": "Sources of the evidence by level of government",
+    "herkunftHeading": "Origin of the procedures",
     "ebene": {
       "stadt": "City",
       "kanton": "Canton",
       "bund": "Confederation",
       "andere": "other"
     },
+    "herkunft": {
+      "redaktion": "Editorial",
+      "redaktionTitel": "Compiled editorially: drafts with AI assistance, every item checked by a person",
+      "tessera": "tessera",
+      "tesseraTitel": "Structure proposed by the extraction software tessera, checked by a person",
+      "gemischt": "Mixed",
+      "gemischtTitel": "Compiled editorially and supplemented by proposals from tessera, checked by a person",
+      "nichtErfasst": "not recorded",
+      "nichtErfasstTitel": "The origin of this procedure has not been recorded yet",
+      "prLabel": "Change proposal from tessera"
+    },
     "matrixHeading": "Evidence per procedure",
     "matrixIntro": "One procedure per row, in alphabetical order. The name leads to the evidence on the procedure’s page.",
-    "matrixFolgt": "Not yet in the table: the result of the weekly check (link reachable? quote still verbatim on the page? legal version still in force?) and the origin of the data (modelled by hand or prepared by machine). Both will follow.",
+    "matrixFolgt": "Not yet in the table: the result of the weekly check (link reachable? quote still verbatim on the page? legal version still in force?). It will follow with the first run.",
     "caption": "Evidence per procedure: binding details, verbatim quotes, sources, legal texts and oldest retrieval",
     "colProzess": "Procedure",
     "colReferenzen": "Binding details",
@@ -581,6 +593,7 @@
     "colEbenen": "Sources",
     "colGesetz": "Legal text",
     "colAbruf": "Oldest retrieval",
+    "colHerkunft": "Origin",
     "belegtWert": "{belegt} of {gesamt}",
     "belegtAlle": "all quoted verbatim",
     "belegtNichtAlle": "not all quoted verbatim",
@@ -595,8 +608,8 @@
     "stufe": {
       "erfassung": {
         "name": "Capture",
-        "was": "A procedure is modelled by hand or prepared by machine and submitted as a change proposal.",
-        "grenze": "Machine-prepared proposals only supply the structure; existing, reviewed texts and translations are kept."
+        "was": "A procedure is compiled editorially or prepared by the tessera software and submitted as a change proposal. A language model is involved on both paths.",
+        "grenze": "Proposals from tessera only supply the structure; existing, reviewed texts and translations are kept. For binding values, a language model’s suggestion does not count: they appear only with a verbatim quote from the official source, checked against the page."
       },
       "schema": {
         "name": "Data contract",
@@ -628,6 +641,8 @@
     "methodik": {
       "woertlich": "“Quoted verbatim” means: the quote appeared exactly like this on the linked official page when it was retrieved. It does not mean the detail has been legally reviewed.",
       "keineWerte": "The binding values themselves are not shown here. They appear only on the procedure’s page, as a quote with a link to the original source.",
+      "herkunft": "“Editorial” means: a person worked out the procedure from the official sources. Drafts were produced with AI assistance, and a person checked every item before it was published. “Mixed” means: in addition, the tessera software proposed structure that a person checked and adopted. Binding values never rely on a language model, but always on a verbatim quote from the official source.",
+      "uebersetzung": "English, French, Italian and easy language are derived from the German, partly with AI assistance. Review by native speakers and by easy-language specialists is still pending.",
       "erreichbar": "A reachable link does not mean the content is still correct: pages are rewritten, and some only deliver their text in the browser.",
       "gesperrt": "Some authorities block automated retrieval. A blocked retrieval is not a dead link and is never shown as one.",
       "stand": "A finding only applies to the checked version of a detail. If it has been changed since, it counts as open until the next check covers it.",
@@ -645,7 +660,6 @@
     "offenDrift": "{titel}, detail {id}: the quote no longer appears verbatim on the linked page. We are checking whether the detail has changed.",
     "offenUeberholt": "{titel}, detail {id}: a newer version of the law now applies. We are checking the detail.",
     "offenDetail": "Go to the evidence →",
-    "matrixFolgtHerkunft": "Not yet in the table: the origin of the data (modelled by hand or prepared by machine). It will follow.",
     "befund": {
       "colLink": "Link reachable",
       "colZitat": "Quote still verbatim",

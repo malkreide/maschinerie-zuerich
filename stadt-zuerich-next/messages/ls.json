@@ -565,15 +565,27 @@
     "kpiWoche": "Ergebnis der Prüfung jede Woche",
     "kpiWocheWert": "kommt noch",
     "ebenenHeading": "Woher die Belege kommen",
+    "herkunftHeading": "Wer die Abläufe gemacht hat",
     "ebene": {
       "stadt": "Stadt",
       "kanton": "Kanton",
       "bund": "Bund",
       "andere": "andere"
     },
+    "herkunft": {
+      "redaktion": "Redaktion",
+      "redaktionTitel": "Ein Mensch hat den Ablauf aufgeschrieben. Ein Computer-Programm mit KI hat geholfen. Ein Mensch hat alles geprüft.",
+      "tessera": "tessera",
+      "tesseraTitel": "Das Programm tessera hat den Aufbau vorgeschlagen. Ein Mensch hat alles geprüft.",
+      "gemischt": "Gemischt",
+      "gemischtTitel": "Ein Mensch hat den Ablauf aufgeschrieben. Das Programm tessera hat Teile ergänzt. Ein Mensch hat alles geprüft.",
+      "nichtErfasst": "noch nicht bekannt",
+      "nichtErfasstTitel": "Wir haben noch nicht aufgeschrieben, wer diesen Ablauf gemacht hat.",
+      "prLabel": "Vorschlag von tessera"
+    },
     "matrixHeading": "Belege für jeden Ablauf",
     "matrixIntro": "Jede Zeile ist ein Ablauf. Die Abläufe sind nach dem Alphabet geordnet. Klicken Sie auf den Namen. Dann sehen Sie die Belege.",
-    "matrixFolgt": "Zwei Dinge fehlen noch in der Tabelle. Erstens: das Ergebnis der Prüfung jede Woche. Zweitens: Wer hat die Daten gemacht? Ein Mensch oder eine Maschine? Beides kommt noch.",
+    "matrixFolgt": "Etwas fehlt noch in der Tabelle: das Ergebnis der Prüfung jede Woche. Es kommt nach der ersten Prüfung.",
     "caption": "Belege für jeden Ablauf",
     "colProzess": "Ablauf",
     "colReferenzen": "Wichtige Angaben",
@@ -581,6 +593,7 @@
     "colEbenen": "Woher",
     "colGesetz": "Aus dem Gesetz",
     "colAbruf": "Ältester Beleg vom",
+    "colHerkunft": "Gemacht von",
     "belegtWert": "{belegt} von {gesamt}",
     "belegtAlle": "alle haben einen Beleg",
     "belegtNichtAlle": "nicht alle haben einen Beleg",
@@ -595,8 +608,8 @@
     "stufe": {
       "erfassung": {
         "name": "Daten aufschreiben",
-        "was": "Ein Mensch schreibt einen Ablauf auf. Oder eine Maschine bereitet ihn vor.",
-        "grenze": "Die Maschine liefert nur den Aufbau. Fertige Texte bleiben, wie sie sind."
+        "was": "Ein Mensch schreibt einen Ablauf auf. Oder das Programm tessera bereitet ihn vor. Bei beiden hilft eine KI.",
+        "grenze": "tessera liefert nur den Aufbau. Fertige Texte bleiben, wie sie sind. Wichtige Zahlen kommen nie von der KI. Sie brauchen einen genauen Satz von der Seite der Behörde."
       },
       "schema": {
         "name": "Form prüfen",
@@ -628,6 +641,8 @@
     "methodik": {
       "woertlich": "Mit Beleg heisst: Der Satz stand genau so auf der Seite der Behörde. Das heisst nicht: Eine Fachperson für Recht hat es geprüft.",
       "keineWerte": "Die Zahlen selbst stehen nicht hier. Sie stehen bei jedem Ablauf. Dort gibt es den Link zur Behörde.",
+      "herkunft": "Redaktion heisst: Ein Mensch hat den Ablauf aufgeschrieben. Ein Computer-Programm mit künstlicher Intelligenz (KI) hat dabei geholfen. Ein Mensch hat alles geprüft. Gemischt heisst: Auch das Programm tessera hat etwas vorgeschlagen. Ein Mensch hat es geprüft. Wichtige Zahlen kommen nie von der KI. Sie kommen immer als genauer Satz von der Seite der Behörde.",
+      "uebersetzung": "Die Texte in anderen Sprachen und in Leichter Sprache kommen vom deutschen Text. Eine KI hat beim Übersetzen geholfen. Fachleute müssen die Texte noch prüfen.",
       "erreichbar": "Ein Link geht. Das heisst nicht: Alles auf der Seite stimmt noch. Seiten ändern sich.",
       "gesperrt": "Manche Behörden sperren Abrufe vom Computer. Dann ist der Link trotzdem nicht kaputt.",
       "stand": "Ein Ergebnis gilt nur für die geprüfte Angabe. Wurde die Angabe geändert? Dann ist sie offen. Bis zur nächsten Prüfung.",
@@ -645,7 +660,6 @@
     "offenDrift": "{titel}, Angabe {id}: Der Satz steht nicht mehr genau so auf der Seite. Wir schauen nach, ob sich etwas geändert hat.",
     "offenUeberholt": "{titel}, Angabe {id}: Es gibt ein neueres Gesetz. Wir schauen nach.",
     "offenDetail": "Zu den Belegen →",
-    "matrixFolgtHerkunft": "Etwas fehlt noch in der Tabelle: Wer hat die Daten gemacht? Ein Mensch oder eine Maschine? Das kommt noch.",
     "befund": {
       "colLink": "Link geht",
       "colZitat": "Satz stimmt noch",

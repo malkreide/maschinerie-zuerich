@@ -22,7 +22,7 @@ import { routing, type Locale } from '@/i18n/routing';
 import { getT } from '@/lib/i18n-server';
 import { listProzesse } from '@/lib/prozesse';
 import { resolveI18n, type ProzessLocale } from '@/types/prozess';
-import { QUELLEN_EBENEN, type Belege, type QuellenEbene } from '@/lib/belege';
+import { HERKUNFT_SCHLUESSEL, QUELLEN_EBENEN, type Belege, type HerkunftSchluessel, type QuellenEbene } from '@/lib/belege';
 import { befundLeser, type Wochenbefund } from '@/lib/befunde';
 import DataQualityBadge from '@/components/DataQualityBadge';
 import BelegMatrix, { zaehlungFuer } from '@/components/BelegMatrix';
@@ -40,7 +40,7 @@ const STUFEN = [
   { key: 'woche', pfad: '.github/workflows/link-rot.yml' },
 ] as const;
 
-const METHODIK = ['woertlich', 'keineWerte', 'erreichbar', 'gesperrt', 'stand', 'veroeffentlichung', 'verbindlich'] as const;
+const METHODIK = ['woertlich', 'keineWerte', 'herkunft', 'uebersetzung', 'erreichbar', 'gesperrt', 'stand', 'veroeffentlichung', 'verbindlich'] as const;
 
 export async function generateMetadata({
   params,
@@ -125,6 +125,11 @@ export default async function BelegePage({
   const nachEbene = Object.fromEntries(
     QUELLEN_EBENEN.map((e) => [e, summe((b) => b.summary.nachEbene[e] ?? 0)]),
   ) as Record<QuellenEbene, number>;
+  // Aus den Zeilen gezählt: in einem Aggregat vor 1.2.0 fehlt herkunft, dann
+  // zählt die Zeile als «nicht erfasst» — nichts wird geraten.
+  const nachHerkunft = Object.fromEntries(
+    HERKUNFT_SCHLUESSEL.map((k) => [k, summe((b) => b.prozesse.filter((z) => (z.herkunft?.art ?? 'nicht-erfasst') === k).length)]),
+  ) as Record<HerkunftSchluessel, number>;
   const juengster = belege
     .flatMap((b) => b.prozesse.map((z) => z.abruf.juengster))
     .filter((d): d is string => d !== null)
@@ -194,6 +199,12 @@ export default async function BelegePage({
               <span className="text-[var(--color-mute)]">{t('ebenenHeading')}: </span>
               {QUELLEN_EBENEN.map((e) => `${t(`ebene.${e}`)} ${nachEbene[e]}`).join(' · ')}
             </p>
+            <p className="text-[13px] text-[var(--color-ink)] mt-1">
+              <span className="text-[var(--color-mute)]">{t('herkunftHeading')}: </span>
+              {HERKUNFT_SCHLUESSEL.filter((k) => nachHerkunft[k] > 0)
+                .map((k) => `${t(`herkunft.${k === 'nicht-erfasst' ? 'nichtErfasst' : k}`)} ${nachHerkunft[k]}`)
+                .join(' · ')}
+            </p>
             {befundDatum && (
               <p className="text-[13px] text-[var(--color-ink)] mt-1">
                 {t('wocheZeile', { datum: befundDatum, ...woche })}{' '}
@@ -245,12 +256,14 @@ export default async function BelegePage({
           <section aria-labelledby="belege-matrix-heading" className="mb-10">
             <h3 id="belege-matrix-heading" className={sectionH}>{t('matrixHeading')}</h3>
             <p className="text-[13px] text-[var(--color-mute)] mb-2 max-w-[80ch]">{t('matrixIntro')}</p>
-            <p className="text-[12px] px-2 py-1 mb-4 rounded border border-[var(--color-line)] bg-[var(--color-panel)] text-[var(--color-mute)] max-w-[80ch]">
-              {befundDatum ? t('matrixFolgtHerkunft') : t('matrixFolgt')}
-            </p>
+            {!befundDatum && (
+              <p className="text-[12px] px-2 py-1 mb-4 rounded border border-[var(--color-line)] bg-[var(--color-panel)] text-[var(--color-mute)] max-w-[80ch]">
+                {t('matrixFolgt')}
+              </p>
+            )}
             <div className="space-y-8">
               {belege.map((b) => (
-                <BelegMatrix key={b.city} belege={b} befund={befundVon(b.city)} titel={titel} locale={loc} heute={heute} />
+                <BelegMatrix key={b.city} belege={b} befund={befundVon(b.city)} titel={titel} locale={loc} heute={heute} repoUrl={REPO_URL} />
               ))}
             </div>
           </section>

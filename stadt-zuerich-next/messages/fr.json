@@ -565,15 +565,27 @@
     "kpiWoche": "résultat du contrôle hebdomadaire",
     "kpiWocheWert": "à venir",
     "ebenenHeading": "Origine des preuves par niveau institutionnel",
+    "herkunftHeading": "Origine des procédures",
     "ebene": {
       "stadt": "Ville",
       "kanton": "Canton",
       "bund": "Confédération",
       "andere": "autres"
     },
+    "herkunft": {
+      "redaktion": "Rédaction",
+      "redaktionTitel": "Saisie rédactionnelle : brouillons avec assistance IA, chaque indication vérifiée par une personne",
+      "tessera": "tessera",
+      "tesseraTitel": "Structure proposée par le logiciel d’extraction tessera, vérifiée par une personne",
+      "gemischt": "Mixte",
+      "gemischtTitel": "Saisie rédactionnelle complétée par des propositions de tessera, vérifiée par une personne",
+      "nichtErfasst": "non saisie",
+      "nichtErfasstTitel": "L’origine de cette procédure n’a pas encore été saisie",
+      "prLabel": "Proposition de modification de tessera"
+    },
     "matrixHeading": "Preuves par procédure",
     "matrixIntro": "Une procédure par ligne, par ordre alphabétique. Le nom mène aux preuves sur la page de la procédure.",
-    "matrixFolgt": "Pas encore dans le tableau : le résultat du contrôle hebdomadaire (lien accessible ? citation toujours textuelle sur la page ? version légale toujours en vigueur ?) et l’origine des données (modélisées à la main ou préparées par machine). Les deux suivront.",
+    "matrixFolgt": "Pas encore dans le tableau : le résultat du contrôle hebdomadaire (lien accessible ? citation toujours textuelle sur la page ? version légale toujours en vigueur ?). Il suivra avec la première exécution.",
     "caption": "Preuves par procédure : indications contraignantes, citations textuelles, sources, textes légaux et consultation la plus ancienne",
     "colProzess": "Procédure",
     "colReferenzen": "Indications contraignantes",
@@ -581,6 +593,7 @@
     "colEbenen": "Sources",
     "colGesetz": "Texte légal",
     "colAbruf": "Consultation la plus ancienne",
+    "colHerkunft": "Origine",
     "belegtWert": "{belegt} sur {gesamt}",
     "belegtAlle": "toutes citées textuellement",
     "belegtNichtAlle": "pas toutes citées textuellement",
@@ -595,8 +608,8 @@
     "stufe": {
       "erfassung": {
         "name": "Saisie",
-        "was": "Une procédure est modélisée à la main ou préparée par machine et soumise comme proposition de modification.",
-        "grenze": "Les propositions préparées par machine ne fournissent que la structure ; les textes et traductions existants et vérifiés sont conservés."
+        "was": "Une procédure est saisie de manière rédactionnelle ou préparée par le logiciel tessera et soumise comme proposition de modification. Un modèle de langage intervient dans les deux cas.",
+        "grenze": "Les propositions de tessera ne fournissent que la structure ; les textes et traductions existants et vérifiés sont conservés. Pour les valeurs contraignantes, la suggestion d’un modèle de langage ne compte pas : elles n’apparaissent qu’avec une citation textuelle de la source officielle, vérifiée sur la page."
       },
       "schema": {
         "name": "Contrat de données",
@@ -628,6 +641,8 @@
     "methodik": {
       "woertlich": "« Cité textuellement » signifie : la citation figurait exactement ainsi sur la page officielle liée au moment de la consultation. Cela ne signifie pas que l’indication a été vérifiée juridiquement.",
       "keineWerte": "Les valeurs contraignantes elles-mêmes ne figurent pas ici. Elles apparaissent uniquement sur la page de la procédure, sous forme de citation avec un lien vers la source originale.",
+      "herkunft": "« Rédaction » signifie : une personne a élaboré la procédure à partir des sources officielles. Les brouillons ont été rédigés avec une assistance IA, et une personne a vérifié chaque indication avant sa publication. « Mixte » signifie : en outre, le logiciel tessera a proposé une structure qu’une personne a vérifiée et reprise. Les valeurs contraignantes ne reposent jamais sur un modèle de langage, mais toujours sur une citation textuelle de la source officielle.",
+      "uebersetzung": "L’anglais, le français, l’italien et le langage simplifié sont dérivés de l’allemand, en partie avec une assistance IA. La relecture par des locutrices et locuteurs natifs et par des spécialistes du langage simplifié est encore en attente.",
       "erreichbar": "Un lien accessible ne signifie pas que le contenu est toujours exact : les pages sont réécrites, et certaines ne livrent leur texte que dans le navigateur.",
       "gesperrt": "Certaines autorités bloquent les consultations automatiques. Une consultation bloquée n’est pas un lien mort et n’est jamais présentée comme tel.",
       "stand": "Un constat ne vaut que pour la version contrôlée d’une indication. Si elle a été modifiée depuis, elle est considérée comme ouverte jusqu’au prochain contrôle.",
@@ -645,7 +660,6 @@
     "offenDrift": "{titel}, indication {id} : la citation ne figure plus textuellement sur la page liée. Nous vérifions si l’indication a changé.",
     "offenUeberholt": "{titel}, indication {id} : une version plus récente de la loi s’applique désormais. Nous vérifions l’indication.",
     "offenDetail": "Vers les preuves →",
-    "matrixFolgtHerkunft": "Pas encore dans le tableau : l’origine des données (modélisées à la main ou préparées par machine). Elle suivra.",
     "befund": {
       "colLink": "Lien accessible",
       "colZitat": "Citation toujours textuelle",

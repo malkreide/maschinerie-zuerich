@@ -565,15 +565,27 @@
     "kpiWoche": "risultato del controllo settimanale",
     "kpiWocheWert": "in arrivo",
     "ebenenHeading": "Provenienza delle prove per livello istituzionale",
+    "herkunftHeading": "Provenienza delle procedure",
     "ebene": {
       "stadt": "Città",
       "kanton": "Cantone",
       "bund": "Confederazione",
       "andere": "altri"
     },
+    "herkunft": {
+      "redaktion": "Redazione",
+      "redaktionTitel": "Rilevamento redazionale: bozze con assistenza IA, ogni indicazione verificata da una persona",
+      "tessera": "tessera",
+      "tesseraTitel": "Struttura proposta dal software di estrazione tessera, verificata da una persona",
+      "gemischt": "Misto",
+      "gemischtTitel": "Rilevamento redazionale completato da proposte di tessera, verificato da una persona",
+      "nichtErfasst": "non rilevata",
+      "nichtErfasstTitel": "La provenienza di questa procedura non è ancora stata rilevata",
+      "prLabel": "Proposta di modifica di tessera"
+    },
     "matrixHeading": "Prove per procedura",
     "matrixIntro": "Una procedura per riga, in ordine alfabetico. Il nome porta alle prove nella pagina della procedura.",
-    "matrixFolgt": "Non ancora nella tabella: il risultato del controllo settimanale (link raggiungibile? citazione ancora letterale sulla pagina? versione di legge ancora in vigore?) e la provenienza dei dati (modellati a mano o preparati a macchina). Entrambi seguiranno.",
+    "matrixFolgt": "Non ancora nella tabella: il risultato del controllo settimanale (link raggiungibile? citazione ancora letterale sulla pagina? versione di legge ancora in vigore?). Seguirà con la prima esecuzione.",
     "caption": "Prove per procedura: indicazioni vincolanti, citazioni letterali, fonti, testi di legge e consultazione più vecchia",
     "colProzess": "Procedura",
     "colReferenzen": "Indicazioni vincolanti",
@@ -581,6 +593,7 @@
     "colEbenen": "Fonti",
     "colGesetz": "Testo di legge",
     "colAbruf": "Consultazione più vecchia",
+    "colHerkunft": "Provenienza",
     "belegtWert": "{belegt} su {gesamt}",
     "belegtAlle": "tutte citate letteralmente",
     "belegtNichtAlle": "non tutte citate letteralmente",
@@ -595,8 +608,8 @@
     "stufe": {
       "erfassung": {
         "name": "Rilevamento",
-        "was": "Una procedura viene modellata a mano o preparata a macchina e presentata come proposta di modifica.",
-        "grenze": "Le proposte preparate a macchina forniscono solo la struttura; i testi e le traduzioni esistenti e verificati vengono mantenuti."
+        "was": "Una procedura viene rilevata in modo redazionale o preparata dal software tessera e presentata come proposta di modifica. In entrambi i casi interviene un modello linguistico.",
+        "grenze": "Le proposte di tessera forniscono solo la struttura; i testi e le traduzioni esistenti e verificati vengono mantenuti. Per i valori vincolanti il suggerimento di un modello linguistico non conta: appaiono solo con una citazione letterale della fonte ufficiale, verificata sulla pagina."
       },
       "schema": {
         "name": "Contratto dei dati",
@@ -628,6 +641,8 @@
     "methodik": {
       "woertlich": "«Citato letteralmente» significa: al momento della consultazione la citazione figurava esattamente così sulla pagina ufficiale collegata. Non significa che l’indicazione sia stata verificata giuridicamente.",
       "keineWerte": "I valori vincolanti stessi non figurano qui. Appaiono solo nella pagina della procedura, come citazione con un link alla fonte originale.",
+      "herkunft": "«Redazione» significa: una persona ha elaborato la procedura a partire dalle fonti ufficiali. Le bozze sono state redatte con assistenza IA, e una persona ha verificato ogni indicazione prima della pubblicazione. «Misto» significa: inoltre il software tessera ha proposto una struttura che una persona ha verificato e ripreso. I valori vincolanti non si basano mai su un modello linguistico, ma sempre su una citazione letterale della fonte ufficiale.",
+      "uebersetzung": "Inglese, francese, italiano e lingua facile sono derivati dal tedesco, in parte con assistenza IA. La revisione da parte di madrelingua e di specialisti della lingua facile è ancora in sospeso.",
       "erreichbar": "Un link raggiungibile non significa che il contenuto sia ancora corretto: le pagine vengono riscritte e alcune forniscono il loro testo solo nel browser.",
       "gesperrt": "Alcune autorità bloccano le consultazioni automatiche. Una consultazione bloccata non è un link morto e non viene mai presentata come tale.",
       "stand": "Una risultanza vale solo per la versione controllata di un’indicazione. Se nel frattempo è stata modificata, è considerata aperta fino al prossimo controllo.",
@@ -645,7 +660,6 @@
     "offenDrift": "{titel}, indicazione {id}: la citazione non figura più letteralmente sulla pagina collegata. Verifichiamo se l’indicazione è cambiata.",
     "offenUeberholt": "{titel}, indicazione {id}: ora si applica una versione più recente della legge. Verifichiamo l’indicazione.",
     "offenDetail": "Alle prove →",
-    "matrixFolgtHerkunft": "Non ancora nella tabella: la provenienza dei dati (modellati a mano o preparati a macchina). Seguirà.",
     "befund": {
       "colLink": "Link raggiungibile",
       "colZitat": "Citazione ancora letterale",

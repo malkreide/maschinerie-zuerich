@@ -565,15 +565,27 @@
     "kpiWoche": "Ergebnis der wöchentlichen Prüfung",
     "kpiWocheWert": "folgt",
     "ebenenHeading": "Herkunft der Belege nach Staatsebene",
+    "herkunftHeading": "Herkunft der Verfahren",
     "ebene": {
       "stadt": "Stadt",
       "kanton": "Kanton",
       "bund": "Bund",
       "andere": "andere"
     },
+    "herkunft": {
+      "redaktion": "Redaktion",
+      "redaktionTitel": "Redaktionell erfasst: Entwürfe mit KI-Assistenz, jede Angabe von einem Menschen geprüft",
+      "tessera": "tessera",
+      "tesseraTitel": "Struktur von der Extraktions-Software tessera vorgeschlagen, von einem Menschen geprüft",
+      "gemischt": "Gemischt",
+      "gemischtTitel": "Redaktionell erfasst und durch Vorschläge von tessera ergänzt, von einem Menschen geprüft",
+      "nichtErfasst": "nicht erfasst",
+      "nichtErfasstTitel": "Für dieses Verfahren ist die Herkunft noch nicht erfasst",
+      "prLabel": "Änderungsvorschlag von tessera"
+    },
     "matrixHeading": "Belege je Verfahren",
     "matrixIntro": "Je Zeile ein Verfahren, alphabetisch geordnet. Der Name führt zu den Belegen auf der Seite des Verfahrens.",
-    "matrixFolgt": "Noch nicht in der Tabelle: das Ergebnis der wöchentlichen Prüfung (Link erreichbar? Zitat noch wörtlich auf der Seite? Gesetzesfassung noch gültig?) und die Herkunft der Daten (von Hand erfasst oder maschinell vorbereitet). Beides folgt.",
+    "matrixFolgt": "Noch nicht in der Tabelle: das Ergebnis der wöchentlichen Prüfung (Link erreichbar? Zitat noch wörtlich auf der Seite? Gesetzesfassung noch gültig?). Es folgt mit dem ersten Lauf.",
     "caption": "Belege je Verfahren: bindende Angaben, wörtliche Belege, Quellen, Gesetzestexte und ältester Abruf",
     "colProzess": "Verfahren",
     "colReferenzen": "Bindende Angaben",
@@ -581,6 +593,7 @@
     "colEbenen": "Quellen",
     "colGesetz": "Gesetzestext",
     "colAbruf": "Ältester Abruf",
+    "colHerkunft": "Herkunft",
     "belegtWert": "{belegt} von {gesamt}",
     "belegtAlle": "alle wörtlich belegt",
     "belegtNichtAlle": "nicht alle wörtlich belegt",
@@ -595,8 +608,8 @@
     "stufe": {
       "erfassung": {
         "name": "Erfassung",
-        "was": "Ein Verfahren wird von Hand modelliert oder maschinell vorbereitet und als Änderungsvorschlag eingereicht.",
-        "grenze": "Maschinell vorbereitete Vorschläge liefern nur die Struktur; bestehende, geprüfte Texte und Übersetzungen bleiben erhalten."
+        "was": "Ein Verfahren wird redaktionell erfasst oder von der Software tessera vorbereitet und als Änderungsvorschlag eingereicht. Auf beiden Wegen arbeitet ein Sprachmodell mit.",
+        "grenze": "Vorschläge von tessera liefern nur die Struktur; bestehende, geprüfte Texte und Übersetzungen bleiben erhalten. Bei bindenden Werten zählt der Vorschlag eines Sprachmodells nicht: Sie erscheinen nur mit wörtlichem Zitat aus der amtlichen Quelle, geprüft an der Seite."
       },
       "schema": {
         "name": "Datenvertrag",
@@ -628,6 +641,8 @@
     "methodik": {
       "woertlich": "«Wörtlich belegt» heisst: Das Zitat stand beim Abruf genau so auf der verlinkten amtlichen Seite. Es heisst nicht, dass die Angabe rechtlich geprüft ist.",
       "keineWerte": "Die bindenden Werte selbst stehen hier nicht. Sie erscheinen nur auf der Seite des Verfahrens, als Zitat mit Link auf die Originalquelle.",
+      "herkunft": "«Redaktion» heisst: Ein Mensch hat das Verfahren an den amtlichen Quellen erarbeitet. Entwürfe entstanden mit KI-Assistenz, und ein Mensch hat jede Angabe geprüft, bevor sie veröffentlicht wurde. «Gemischt» heisst: Zusätzlich hat die Software tessera Struktur vorgeschlagen, die ein Mensch geprüft und übernommen hat. Bindende Werte stützen sich nie auf ein Sprachmodell, sondern immer auf ein wörtliches Zitat der amtlichen Quelle.",
+      "uebersetzung": "Englisch, Französisch, Italienisch und Leichte Sprache sind aus dem Deutschen abgeleitet, teils mit KI-Assistenz. Die Prüfung durch Muttersprachige und durch Fachpersonen für Leichte Sprache steht noch aus.",
       "erreichbar": "Ein erreichbarer Link heisst nicht, dass der Inhalt noch stimmt: Seiten werden umgeschrieben, und manche liefern ihren Text erst im Browser.",
       "gesperrt": "Manche Behörden sperren automatische Abrufe. Ein gesperrter Abruf ist kein toter Link und wird nie als solcher dargestellt.",
       "stand": "Ein Befund gilt nur für die geprüfte Fassung einer Angabe. Wurde sie seither geändert, gilt sie als offen, bis die nächste Prüfung sie erfasst.",
@@ -645,7 +660,6 @@
     "offenDrift": "{titel}, Angabe {id}: Das Zitat steht nicht mehr wörtlich auf der verlinkten Seite. Wir prüfen, ob sich die Angabe geändert hat.",
     "offenUeberholt": "{titel}, Angabe {id}: Seither gilt eine neuere Fassung des Gesetzes. Wir prüfen die Angabe.",
     "offenDetail": "Zu den Belegen →",
-    "matrixFolgtHerkunft": "Noch nicht in der Tabelle: die Herkunft der Daten (von Hand erfasst oder maschinell vorbereitet). Sie folgt.",
     "befund": {
       "colLink": "Link erreichbar",
       "colZitat": "Zitat noch wörtlich",

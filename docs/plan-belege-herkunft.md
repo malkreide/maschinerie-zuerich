@@ -4,7 +4,8 @@
 E2–E7 gemäss Empfehlung, siehe [Abschnitt 9](#9-entscheide-maintainer).
 Umgesetzt: P1 (Belege-Aggregat mit Drift-Gate), P2 (Route `/belege` mit
 Kennzahlen, Belegmatrix, Prüfkette und Methodik) und P3 (Wochenbefund per
-Bot-PR, Anzeige auf `/belege`). P4 und P5 folgen.
+Bot-PR, Anzeige auf `/belege`) und P4 (Herkunft als `meta.herkunft`,
+Vertrag 0.2.0, Spalte «Herkunft» auf `/belege`). P5 folgt.
 
 > **Kardinalregel bleibt:** Die Ansicht zeigt, *dass* und *wie* bindende
 > Angaben belegt sind, nie den bindenden Wert selbst. Zitate (`source_quote`)
@@ -310,8 +311,8 @@ Beispiel (PR-Nummern und Daten sind Platzhalter, keine echten Angaben):
 
 | Feld | Typ | Pflicht | Regel (Validator) |
 |---|---|---|---|
-| `art` | enum `hand` \| `tessera` \| `gemischt` | ✓ (wenn `herkunft` gesetzt) | `hand` = nur von Hand modelliert; `tessera` = Struktur aus tessera, von Hand reviewt; `gemischt` = Handdaten, durch tessera feldweise ergänzt |
-| `tessera_prs` | integer[] | ✓ wenn `art` ≠ `hand` | PR-Nummern in diesem Repo; leer bei `hand` |
+| `art` | enum `redaktion` \| `tessera` \| `gemischt` | ✓ (wenn `herkunft` gesetzt) | `redaktion` = redaktionell erfasst, Entwürfe mit KI-Assistenz, von einem Menschen geprüft (umgesetzt statt des ursprünglichen `hand`, siehe E2a); `tessera` = Struktur aus tessera, von einem Menschen geprüft; `gemischt` = redaktionell erfasst, durch tessera feldweise ergänzt |
+| `tessera_prs` | integer[] | ✓ wenn `art` ≠ `redaktion` | PR-Nummern in diesem Repo; leer bei `redaktion` |
 | `geprueft_am` | ISO-Datum | – | letzte **inhaltliche** Prüfung durch einen Menschen; ≥ `meta.erstellt`, nicht in der Zukunft |
 
 - **Keine Namen.** Wer geprüft hat, steht im PR-Review, nicht in den Daten.
@@ -321,7 +322,8 @@ Beispiel (PR-Nummern und Daten sind Platzhalter, keine echten Angaben):
   klären, ob das MINOR (`0.2.0`) oder MAJOR ist (siehe E2). Nicht raten.
 - **Folgeänderung:** Abschnitt «Herkunft & Pflege» im Datenvertrag an die
   Realität seit tessera v1 anpassen.
-- **Ohne `herkunft`** zeigt die View «nicht erfasst», nicht «hand».
+- **Ohne `herkunft`** zeigt die View «nicht erfasst», nicht «redaktion».
+- **Umgesetzt in P4:** Das Belege-Aggregat (1.2.0) übernimmt `herkunft` je Zeile; `/belege` zeigt eine Spalte «Herkunft» mit Links auf die tessera-PRs, eine Zählzeile und zwei Methodik-Punkte (Herkunft, Übersetzungen). Herkunft ist keine Güte und trägt deshalb keine Statusfarbe.
 
 ### 5.4 Ebene 4: Änderungseintrag (`lib/aenderungen.ts`)
 
@@ -461,6 +463,7 @@ Entschieden am 2026-10-25: E1 öffentlich, E2–E7 gemäss Empfehlung.
 |---|---|---|---|
 | **E1** | Ansicht öffentlich oder nur intern? | **öffentlich** | Transparenz ist der Zweck; intern genügt das Job-Summary. Formulierung toter Links gemäss E5 |
 | **E2** | Herkunft als Vertragserweiterung `meta.herkunft`? Falls ja: MINOR oder MAJOR? | **ja, MINOR (`0.2.0`)**, optionales Feld | Git ist als Quelle unzuverlässig (flacher Clone, Merges unter einem Konto); eine Datei neben den Prozessen würde `validate:prozesse` brechen. Additiv ist nicht breaking; in P4 die mehrdeutige Versionsregel im Vertrag klarstellen |
+| **E2a** | (P4, 2026-10-28) Wie mit der KI-Assistenz bei den bisherigen «Handdaten» umgehen? | **offen benennen:** Wert `redaktion` statt `hand` | Die Git-Historie zeigt, dass auch die von Hand modellierten Prozesse mit KI-Assistenz entworfen und von einem Menschen geprüft wurden. «hand» hätte das verschwiegen. `/belege` sagt es in der Methodik, der Datenvertrag in «Herkunft & Pflege». `geprueft_am` bleibt leer, bis ein Mensch ein Datum setzt |
 | **E3** | Wie kommt der Wochenbefund nach `main`? | **Bot-PR bei Änderung**, ein Mensch merged | Entspricht Human-in-the-Loop, macht den Befund versioniert. Die Alternative, Artefakte zur Laufzeit abzurufen, braucht ein Token in Vercel und umgeht das Review |
 | **E4** | Route und Titel | **`/belege`**, «Belege & Herkunft» | konkret, in Leichte Sprache übertragbar («Woher wir das wissen») |
 | **E5** | Tote Deep-Links öffentlich mit URL nennen? | **ja, neutral formuliert** | Der Link ist unser Datenfehler; ihn zu benennen ist ehrlich und führt zur Korrektur |
