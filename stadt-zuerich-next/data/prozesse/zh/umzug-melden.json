@@ -374,10 +374,10 @@
       ],
       "type": "input",
       "description": {
-        "de": "Erforderlich u. a. für ausländische Staatsangehörige (Ausweispapiere, ggf. Heimatschein/Heimatausweis im Original).",
-        "en": "Required e.g. for foreign nationals (ID documents, originals of place-of-origin papers if applicable).",
-        "fr": "Requis notamment pour les ressortissant-e-s étrangers (pièces d'identité, le cas échéant acte d'origine au format original).",
-        "it": "Necessario in particolare per i cittadini stranieri (documenti d'identità, se del caso atto d'origine in originale).",
+        "de": "Erforderlich u. a. beim Zuzug aus dem Ausland und für ausländische Staatsangehörige.",
+        "en": "Required e.g. when moving from abroad and for foreign nationals.",
+        "fr": "Requis notamment en cas d'arrivée de l'étranger et pour les ressortissant-e-s étrangers.",
+        "it": "Necessario in particolare in caso di arrivo dall'estero e per i cittadini stranieri.",
         "ls": "Manche Menschen müssen persönlich kommen. Zum Beispiel Menschen aus dem Ausland."
       },
       "documents": [
@@ -393,13 +393,13 @@
         },
         {
           "label": {
-            "de": "Heimatschein / Heimatausweis (CH) bzw. Ausländerausweis",
-            "en": "Place-of-origin certificate (CH) or foreigner's permit",
-            "fr": "Acte d'origine (CH) ou titre de séjour pour étrangers",
-            "it": "Atto d'origine (CH) o permesso per stranieri",
-            "ls": "Heimatschein oder Heimatausweis (für Schweizerinnen und Schweizer) oder Ausländer-Ausweis"
+            "de": "Ausländerausweis (ausländische Staatsangehörige, die schon in der Schweiz wohnen)",
+            "en": "Foreigner's permit (foreign nationals already living in Switzerland)",
+            "fr": "Titre de séjour (ressortissant-e-s étrangers vivant déjà en Suisse)",
+            "it": "Permesso per stranieri (cittadini stranieri che vivono già in Svizzera)",
+            "ls": "Ausländer-Ausweis (für Menschen aus dem Ausland, die schon in der Schweiz wohnen)"
           },
-          "required": true
+          "required": false
         },
         {
           "label": {
@@ -643,11 +643,11 @@
       ],
       "type": "prozess",
       "description": {
-        "de": "Die neue Adresse wird im Einwohnerregister hinterlegt; bei Zuzug wird der Heimatschein abgelegt.",
-        "en": "The new address is recorded in the residents' register; for new arrivals the place-of-origin certificate is deposited.",
-        "fr": "La nouvelle adresse est enregistrée dans le registre des habitants; en cas d'arrivée, l'acte d'origine est déposé.",
-        "it": "Il nuovo indirizzo viene registrato nel registro degli abitanti; in caso di arrivo, l'atto d'origine viene depositato.",
-        "ls": "Das Amt trägt Ihre neue Adresse ins Einwohner-Register ein. Ziehen Sie neu nach Zürich? Dann bewahrt das Amt Ihren Heimatschein auf."
+        "de": "Die neue Adresse wird im Einwohnerregister hinterlegt.",
+        "en": "The new address is recorded in the residents' register.",
+        "fr": "La nouvelle adresse est enregistrée dans le registre des habitants.",
+        "it": "Il nuovo indirizzo viene registrato nel registro degli abitanti.",
+        "ls": "Das Amt trägt Ihre neue Adresse ins Einwohner-Register ein."
       }
     },
     {
