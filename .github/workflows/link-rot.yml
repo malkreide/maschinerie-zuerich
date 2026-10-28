@@ -18,6 +18,19 @@ name: Link-Rot (Live-HTTP)
 # Zitat wörtlich — nur dieser Abgleich bemerkt ihn. Ebenfalls advisory;
 # manuell mit strict_zitate rot bei Drift oder überholter Fassung.
 #
+# Dritter Schritt: Wochenbefund (docs/plan-belege-herkunft.md, P3). Beide
+# Prüfungen schreiben ihr Ergebnis zusätzlich maschinenlesbar; daraus wird
+# data/befunde/<stadt>.json — öffentlich sichtbar auf /belege. Nur wenn sich
+# der Befund inhaltlich ändert, öffnet (oder aktualisiert) der Lauf einen PR
+# vom Branch bot/wochenbefund. Kein Auto-Merge: ein Mensch prüft und merged.
+#
+# Token: Ist das Secret WOCHENBEFUND_TOKEN gesetzt (fine-grained Token oder
+# GitHub-App, nur dieses Repo, Contents + Pull requests: write), startet die
+# CI auf dem Befund-PR automatisch. Ohne Secret nutzt der Lauf das
+# Standard-Token; dafür startet GitHub keine CI, und der PR-Text sagt, wie man
+# die Pflicht-Checks auslöst. Das Standard-Token braucht zudem die Einstellung
+# «Allow GitHub Actions to create and approve pull requests».
+#
 # Der strukturelle Check (npm run check:links) bleibt im normalen CI-Gate
 # (ci.yml) und läuft netzfrei bei jedem PR.
 
@@ -40,15 +53,25 @@ on:
 permissions:
   contents: read
 
+# Nie zwei Läufe gleichzeitig: beide würden denselben Befund-Branch pushen.
+concurrency:
+  group: link-rot
+  cancel-in-progress: false
+
 jobs:
   link-rot:
     name: URLs live abrufen
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # Befund-Branch bot/wochenbefund pushen
+      pull-requests: write # Befund-PR öffnen oder aktualisieren
     defaults:
       run:
         working-directory: stadt-zuerich-next
     steps:
       - uses: actions/checkout@v7
+        with:
+          token: ${{ secrets.WOCHENBEFUND_TOKEN || github.token }}
       - uses: actions/setup-node@v7
         with:
           node-version: 24.20.0
@@ -62,7 +85,7 @@ jobs:
           NO_COLOR: '1'
         run: |
           set -o pipefail
-          npm run check:links:online | tee link-rot.txt
+          npm run check:links:online -- --befund-json "$RUNNER_TEMP/links.json" | tee link-rot.txt
       - name: Befund ins Job-Summary schreiben
         if: ${{ !cancelled() }}
         run: |
@@ -79,7 +102,7 @@ jobs:
           CHECK_QUOTES_STRICT: ${{ github.event.inputs.strict_zitate == 'true' && '1' || '' }}
         run: |
           set -o pipefail
-          npm run --silent check:quotes:drift | tee zitat-drift.txt
+          npm run --silent check:quotes:drift -- --befund-json "$RUNNER_TEMP/drift.json" | tee zitat-drift.txt
       - name: Zitat-Drift ins Job-Summary schreiben
         if: ${{ !cancelled() }}
         run: |
@@ -90,3 +113,61 @@ jobs:
             cat zitat-drift.txt 2>/dev/null || echo '(kein Bericht)'
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
+      - name: Wochenbefund zusammenführen
+        id: befund
+        if: ${{ !cancelled() }}
+        env:
+          NO_COLOR: '1'
+        run: |
+          if [ ! -f "$RUNNER_TEMP/links.json" ] || [ ! -f "$RUNNER_TEMP/drift.json" ]; then
+            echo 'Rohberichte fehlen — kein Wochenbefund.' | tee befund.txt
+            echo 'geaendert=false' >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          set -o pipefail
+          npm run --silent build:befunde -- --links "$RUNNER_TEMP/links.json" --drift "$RUNNER_TEMP/drift.json" | tee befund.txt
+          {
+            echo '## Wochenbefund'
+            echo ''
+            echo '```'
+            cat befund.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+      - name: Befund-PR öffnen oder aktualisieren
+        if: ${{ !cancelled() && steps.befund.outputs.geaendert == 'true' }}
+        env:
+          GH_TOKEN: ${{ secrets.WOCHENBEFUND_TOKEN || github.token }}
+          EIGENES_TOKEN: ${{ secrets.WOCHENBEFUND_TOKEN != '' }}
+          LAUF_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          BRANCH=bot/wochenbefund
+          DATUM=$(date -u +%F)
+          TITEL="chore(befunde): Wochenbefund vom $DATUM"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git switch -C "$BRANCH"
+          git add data/befunde
+          git commit -m "$TITEL"
+          git push --force origin "$BRANCH"
+          {
+            echo 'Automatisch erzeugt vom Wochenlauf (`.github/workflows/link-rot.yml`). Der Befund erscheint öffentlich auf `/belege`, sobald dieser PR gemergt ist. **Bitte prüfen und von Hand mergen** — kein Auto-Merge.'
+            echo ''
+            echo '```'
+            cat befund.txt
+            echo '```'
+            echo ''
+            echo "Details (tote Links, abweichende Zitate mit ähnlichstem Satz): Job-Summary von [diesem Lauf]($LAUF_URL)."
+            if [ "$EIGENES_TOKEN" != 'true' ]; then
+              echo ''
+              echo '> **Hinweis:** Dieser PR wurde mit dem Standard-Token geöffnet; dafür startet GitHub keine CI. Bitte den PR einmal schliessen und wieder öffnen, dann laufen die Pflicht-Checks. Mit dem Secret `WOCHENBEFUND_TOKEN` entfällt dieser Schritt.'
+            fi
+          } > "$RUNNER_TEMP/pr-body.md"
+          NR=$(gh pr list --head "$BRANCH" --state open --json number --jq '.[0].number // empty')
+          if [ -n "$NR" ]; then
+            gh pr edit "$NR" --title "$TITEL" --body-file "$RUNNER_TEMP/pr-body.md"
+            echo "Befund-PR #$NR aktualisiert." >> "$GITHUB_STEP_SUMMARY"
+          else
+            gh pr create --base main --head "$BRANCH" --title "$TITEL" --body-file "$RUNNER_TEMP/pr-body.md"
+            echo 'Befund-PR geöffnet.' >> "$GITHUB_STEP_SUMMARY"
+          fi

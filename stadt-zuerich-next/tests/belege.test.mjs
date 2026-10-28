@@ -190,7 +190,7 @@ test('Echte Daten: nur erlaubte Felder je Reference, kein Zitat im Aggregat', as
   const cfg = JSON.parse(await readFile(path.join(root, 'config', 'quellen-ebenen.json'), 'utf-8'));
   const regeln = { stadt: cfg.staedte.zh.stadt, kanton: cfg.staedte.zh.kanton, bund: cfg.bund };
   const out = serializeBelege(buildBelege('zh', prozesse, { ...OPTS, regeln }));
-  const erlaubt = ['reference_id', 'status', 'mitZitat', 'host', 'ebene', 'gesetzesfassung', 'retrieved_at'];
+  const erlaubt = ['reference_id', 'status', 'mitZitat', 'url', 'host', 'ebene', 'gesetzesfassung', 'retrieved_at'];
   for (const z of JSON.parse(out).prozesse) {
     for (const r of z.referenzen) assert.deepEqual(Object.keys(r), erlaubt);
   }

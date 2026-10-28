@@ -1,12 +1,14 @@
-// Ansicht «Belege & Herkunft» (docs/plan-belege-herkunft.md, Phase P2): zeigt,
-// wie die bindenden Angaben der Prozesse belegt sind und welche Prüfungen die
-// Daten durchlaufen. Konsumiert das committete, deterministische Aggregat
-// data/belege/<stadt>.json (npm run build:belege, CI-Drift-geschützt); die
-// Seite rechnet nur das Alter der Abrufe beim Rendern.
+// Ansicht «Belege & Herkunft» (docs/plan-belege-herkunft.md, Phasen P2/P3):
+// zeigt, wie die bindenden Angaben der Prozesse belegt sind und welche
+// Prüfungen die Daten durchlaufen. Konsumiert das committete, deterministische
+// Aggregat data/belege/<stadt>.json (npm run build:belege, CI-Drift-geschützt)
+// und, sobald einer gemergt ist, den Wochenbefund data/befunde/<stadt>.json
+// (Bot-PR aus link-rot.yml). Die Seite rechnet nur das Alter der Abrufe.
 //
 // Kardinalregel: keine bindenden Werte, keine Zitate — die stehen auf der
 // Detailseite. Hier nur Status, Quelle, Datum und Link. Keine Inszenierung:
-// kein «live», keine Animation, keine Rangliste.
+// kein «live», keine Animation, keine Rangliste. Tote Links werden mit URL
+// genannt (Entscheid E5), neutral: der Fehler liegt in unserem Verweis.
 //
 // Server-gerendert, ohne Client-JS; i18n hier aufgelöst.
 
@@ -15,13 +17,15 @@ import path from 'node:path';
 import type { Metadata } from 'next';
 import { hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
+import { Link } from '@/i18n/navigation';
 import { routing, type Locale } from '@/i18n/routing';
 import { getT } from '@/lib/i18n-server';
 import { listProzesse } from '@/lib/prozesse';
 import { resolveI18n, type ProzessLocale } from '@/types/prozess';
 import { QUELLEN_EBENEN, type Belege, type QuellenEbene } from '@/lib/belege';
+import { befundLeser, type Wochenbefund } from '@/lib/befunde';
 import DataQualityBadge from '@/components/DataQualityBadge';
-import BelegMatrix from '@/components/BelegMatrix';
+import BelegMatrix, { zaehlungFuer } from '@/components/BelegMatrix';
 
 // Gleiches Repo wie die Roadmap; die Prüfkette verlinkt ihre Umsetzung.
 const REPO_URL = `https://github.com/${process.env.ROADMAP_GITHUB_REPO ?? 'malkreide/maschinerie-zuerich'}`;
@@ -36,7 +40,7 @@ const STUFEN = [
   { key: 'woche', pfad: '.github/workflows/link-rot.yml' },
 ] as const;
 
-const METHODIK = ['woertlich', 'keineWerte', 'erreichbar', 'gesperrt', 'verbindlich'] as const;
+const METHODIK = ['woertlich', 'keineWerte', 'erreichbar', 'gesperrt', 'stand', 'veroeffentlichung', 'verbindlich'] as const;
 
 export async function generateMetadata({
   params,
@@ -48,24 +52,24 @@ export async function generateMetadata({
   return { title: `${t('title')} · ${tApp('title')}`, description: t('intro') };
 }
 
-/** Liest alle committeten Belege-Aggregate (data/belege/<stadt>.json).
- *  Failed-soft pro Datei: defekte Aggregate werden übersprungen (CI fängt
- *  Drift/Defekt im check:belege-Gate ab). */
-async function loadBelege(): Promise<Belege[]> {
-  const dir = path.join(process.cwd(), 'data', 'belege');
+/** Liest alle committeten JSON-Artefakte eines Verzeichnisses unter data/.
+ *  Failed-soft pro Datei: defekte Artefakte werden übersprungen (CI fängt
+ *  Drift/Defekt in check:belege bzw. validate:befunde ab). */
+async function loadJsonDir<T>(sub: string): Promise<T[]> {
+  const dir = path.join(process.cwd(), 'data', sub);
   let files: string[];
   try {
     files = await fs.readdir(dir);
   } catch {
     return [];
   }
-  const out: Belege[] = [];
+  const out: T[] = [];
   for (const file of files.sort()) {
     if (!file.endsWith('.json')) continue;
     try {
-      out.push(JSON.parse(await fs.readFile(path.join(dir, file), 'utf-8')) as Belege);
+      out.push(JSON.parse(await fs.readFile(path.join(dir, file), 'utf-8')) as T);
     } catch {
-      // defektes Aggregat überspringen
+      // defektes Artefakt überspringen
     }
   }
   return out;
@@ -80,6 +84,17 @@ function Kpi({ value, label }: { value: string; label: string }) {
   );
 }
 
+type OffenerBefund = {
+  key: string;
+  art: 'tot' | 'drift' | 'ueberholt';
+  titel: string;
+  city: string;
+  id: string;
+  referenceId: number;
+  url: string;
+  httpStatus: number | null;
+};
+
 export default async function BelegePage({
   params,
 }: { params: Promise<{ locale: string }> }) {
@@ -88,8 +103,13 @@ export default async function BelegePage({
   const loc = locale as Locale;
   const t = getT(loc, 'Belege');
 
-  const [alleBelege, prozesse] = await Promise.all([loadBelege(), listProzesse()]);
+  const [alleBelege, alleBefunde, prozesse] = await Promise.all([
+    loadJsonDir<Belege>('belege'),
+    loadJsonDir<Wochenbefund>('befunde'),
+    listProzesse(),
+  ]);
   const belege = alleBelege.filter((b) => b.prozesse.length > 0);
+  const befundVon = (city: string) => alleBefunde.find((w) => w.city === city) ?? null;
   const heute = new Date();
 
   // slug → aufgelöster Titel (aus dem Prozess-Index; Single Source bleibt dort).
@@ -110,6 +130,36 @@ export default async function BelegePage({
     .filter((d): d is string => d !== null)
     .sort()
     .pop();
+
+  // Wochenbefund: Zählung und offene Befunde — nur für References, deren
+  // geprüfte Fassung (url + retrieved_at) noch gilt.
+  const befunde = belege.map((b) => befundVon(b.city)).filter((w): w is Wochenbefund => w !== null);
+  const befundDatum = befunde.map((w) => w.erhoben_am.slice(0, 10)).sort().pop();
+  const laufUrl = befunde.find((w) => w.lauf_url)?.lauf_url ?? null;
+  const woche = { tot: 0, drift: 0, ueberholt: 0, gesperrt: 0 };
+  const offen: OffenerBefund[] = [];
+  for (const b of belege) {
+    const w = befundVon(b.city);
+    if (!w) continue;
+    const lies = befundLeser(w);
+    for (const z of b.prozesse) {
+      const n = zaehlungFuer(z, lies);
+      woche.tot += n.linkTot;
+      woche.drift += n.zitatDrift;
+      woche.ueberholt += n.fassungUeberholt;
+      woche.gesperrt += n.linkGesperrt;
+      for (const r of z.referenzen) {
+        const f = lies({ slug: z.slug, reference_id: r.reference_id, url: r.url, retrieved_at: r.retrieved_at });
+        if (!f) continue;
+        const basis = { titel: titel[z.slug] ?? z.slug, city: z.city, id: z.id, referenceId: r.reference_id, url: r.url, httpStatus: f.http_status };
+        if (f.erreichbar === 'tot') offen.push({ ...basis, key: `${z.slug}#${r.reference_id}#tot`, art: 'tot' });
+        if (f.zitat === 'drift') offen.push({ ...basis, key: `${z.slug}#${r.reference_id}#drift`, art: 'drift' });
+        if (f.fassung === 'ueberholt') offen.push({ ...basis, key: `${z.slug}#${r.reference_id}#ueberholt`, art: 'ueberholt' });
+      }
+    }
+  }
+  offen.sort((a, b) => a.titel.localeCompare(b.titel, loc) || a.referenceId - b.referenceId);
+  const offeneBefunde = woche.tot + woche.drift + woche.ueberholt;
 
   const sectionH = 'text-sm font-semibold uppercase tracking-wider text-[var(--color-mute)] mb-2';
 
@@ -134,23 +184,73 @@ export default async function BelegePage({
               <Kpi value={`${mitZitat}/${referenzen}`} label={t('kpiBelegt')} />
               <Kpi value={String(gesetz)} label={t('kpiGesetz')} />
               <Kpi value={String(hochrisiko)} label={t('kpiHochrisiko')} />
-              <Kpi value={t('kpiWocheWert')} label={t('kpiWoche')} />
+              {befundDatum ? (
+                <Kpi value={String(offeneBefunde)} label={t('kpiOffen')} />
+              ) : (
+                <Kpi value={t('kpiWocheWert')} label={t('kpiWoche')} />
+              )}
             </div>
             <p className="text-[13px] text-[var(--color-ink)] mt-3">
               <span className="text-[var(--color-mute)]">{t('ebenenHeading')}: </span>
               {QUELLEN_EBENEN.map((e) => `${t(`ebene.${e}`)} ${nachEbene[e]}`).join(' · ')}
             </p>
+            {befundDatum && (
+              <p className="text-[13px] text-[var(--color-ink)] mt-1">
+                {t('wocheZeile', { datum: befundDatum, ...woche })}{' '}
+                {laufUrl && (
+                  <a href={laufUrl} target="_blank" rel="noopener noreferrer" className="text-[var(--color-accent)] underline">
+                    {t('laufLink')}
+                  </a>
+                )}
+              </p>
+            )}
           </section>
+
+          {befundDatum && (
+            <section aria-labelledby="belege-offen-heading" className="mb-8 max-w-[80ch]">
+              <h3 id="belege-offen-heading" className={sectionH}>{t('offenHeading')}</h3>
+              {offen.length === 0 ? (
+                <p className="text-[13px] text-[var(--color-ink)]">{t('offenKeine')}</p>
+              ) : (
+                <>
+                  <p className="text-[13px] text-[var(--color-mute)] mb-2">{t('offenIntro')}</p>
+                  <ul className="list-disc pl-5 space-y-1.5 text-[13px] text-[var(--color-ink)]">
+                    {offen.map((o) => (
+                      <li key={o.key}>
+                        {o.art === 'tot' &&
+                          t('offenTot', {
+                            titel: o.titel,
+                            id: o.referenceId,
+                            status: o.httpStatus !== null ? `HTTP ${o.httpStatus}` : t('adresseUnbekannt'),
+                          })}
+                        {o.art === 'drift' && t('offenDrift', { titel: o.titel, id: o.referenceId })}
+                        {o.art === 'ueberholt' && t('offenUeberholt', { titel: o.titel, id: o.referenceId })}{' '}
+                        {o.art === 'tot' && (
+                          <span className="block font-mono text-[12px] text-[var(--color-mute)] break-all">{o.url}</span>
+                        )}
+                        <Link
+                          href={`/prozesse/${o.city}/${o.id}#referenzen-heading`}
+                          className="text-[var(--color-accent)] underline"
+                        >
+                          {t('offenDetail')}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
+            </section>
+          )}
 
           <section aria-labelledby="belege-matrix-heading" className="mb-10">
             <h3 id="belege-matrix-heading" className={sectionH}>{t('matrixHeading')}</h3>
             <p className="text-[13px] text-[var(--color-mute)] mb-2 max-w-[80ch]">{t('matrixIntro')}</p>
             <p className="text-[12px] px-2 py-1 mb-4 rounded border border-[var(--color-line)] bg-[var(--color-panel)] text-[var(--color-mute)] max-w-[80ch]">
-              {t('matrixFolgt')}
+              {befundDatum ? t('matrixFolgtHerkunft') : t('matrixFolgt')}
             </p>
             <div className="space-y-8">
               {belege.map((b) => (
-                <BelegMatrix key={b.city} belege={b} titel={titel} locale={loc} heute={heute} />
+                <BelegMatrix key={b.city} belege={b} befund={befundVon(b.city)} titel={titel} locale={loc} heute={heute} />
               ))}
             </div>
           </section>

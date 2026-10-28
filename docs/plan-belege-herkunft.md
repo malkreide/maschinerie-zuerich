@@ -2,8 +2,9 @@
 
 **Status:** Entscheide getroffen (2026-10-25, Maintainer): E1 öffentlich,
 E2–E7 gemäss Empfehlung, siehe [Abschnitt 9](#9-entscheide-maintainer).
-Umgesetzt: P1 (Belege-Aggregat mit Drift-Gate) und P2 (Route `/belege` mit
-Kennzahlen, Belegmatrix, Prüfkette und Methodik). P3–P5 folgen.
+Umgesetzt: P1 (Belege-Aggregat mit Drift-Gate), P2 (Route `/belege` mit
+Kennzahlen, Belegmatrix, Prüfkette und Methodik) und P3 (Wochenbefund per
+Bot-PR, Anzeige auf `/belege`). P4 und P5 folgen.
 
 > **Kardinalregel bleibt:** Die Ansicht zeigt, *dass* und *wie* bindende
 > Angaben belegt sind, nie den bindenden Wert selbst. Zitate (`source_quote`)
@@ -136,7 +137,7 @@ So bleibt die Funktion mit `node --test` und Type-Stripping testbar.
 ```ts
 /** Schema-Version des Aggregats (rein abgeleitet, unabhängig vom
  *  Prozess-Datenvertrag). MAJOR-Bump bei Strukturänderung. */
-export const BELEGE_SCHEMA_VERSION = '1.0.0';
+export const BELEGE_SCHEMA_VERSION = '1.1.0'; // 1.1.0: url je Reference (P3)
 
 /** Staatsebene der Quelle, abgeleitet aus dem Host über eine Konfiguration
  *  (config/quellen-ebenen.json), nie geraten: unbekannte Hosts → 'andere'. */
@@ -151,6 +152,8 @@ export interface BelegReferenz {
   status: ReferenzStatus;
   /** nicht-leeres source_quote vorhanden */
   mitZitat: boolean;
+  /** source_url (seit 1.1.0, für den Join mit dem Wochenbefund) */
+  url: string;
   /** Host der source_url, z. B. "www.stadt-zuerich.ch" */
   host: string;
   ebene: QuellenEbene;
@@ -241,6 +244,8 @@ export type FassungBefund = 'aktuell' | 'ueberholt' | 'nicht-pruefbar' | 'nicht-
 export interface ReferenzBefund {
   slug: string; // city/id
   reference_id: number;
+  url: string;          // geprüfte source_url
+  retrieved_at: string; // retrieved_at der Reference zum Prüfzeitpunkt
   erreichbar: Erreichbarkeit;
   http_status: number | null;
   zitat: ZitatBefund;
@@ -250,14 +255,13 @@ export interface ReferenzBefund {
 export interface Wochenbefund {
   schema_version: string;
   city: string;
-  /** ISO-Zeitpunkt des Laufs */
+  /** ISO-Zeitpunkt des Laufs, der den aktuellen Stand festgestellt hat */
   erhoben_am: string;
   /** Link auf den GitHub-Actions-Lauf (Nachvollziehbarkeit) */
   lauf_url: string | null;
   /** Prüfumgebung; GitHub-IPs werden von einzelnen Behörden gesperrt,
    *  darum ist 'blockiert' ein Umgebungs-, kein Datenbefund. */
   umgebung: 'github-actions' | 'lokal';
-  links: { geprueft: number; ok: number; tot: number; blockiert: number; netzfehler: number };
   referenzen: ReferenzBefund[]; // stabil sortiert nach slug, reference_id
 }
 ```
@@ -266,9 +270,20 @@ export interface Wochenbefund {
 Er ist ein Auszug der Quellseite, im Rohbericht des Workflows nützlich, in
 einer öffentlichen Ansicht aber Rauschen. Er bleibt im Job-Summary.
 
-**Join mit Ebene 1:** über `slug` + `reference_id`. Eine Reference ohne Befund
-(neu seit dem letzten Lauf) zeigt die View als «noch nicht erhoben», nie als
-«ok».
+**Join mit Ebene 1:** über `slug` + `reference_id`, aber nur, wenn `url` und
+`retrieved_at` noch mit der aktuellen Reference übereinstimmen
+(`befundLeser`). Ein Befund beschreibt genau eine Fassung einer Reference;
+wurde sie seither korrigiert oder neu belegt, zeigt die View «offen» statt
+eines veralteten Urteils. Dafür trägt das Belege-Aggregat seit 1.1.0 die
+`url` je Reference. Eine Reference ohne Befund (neu seit dem letzten Lauf)
+gilt ebenfalls als «offen», nie als «ok».
+
+> **Umgesetzt in P3, anders als oben skizziert:** Die Summe `links` über alle
+> URLs der offenen Daten entfällt; die Seite zählt nur, was die Belege
+> betrifft. Neu sind `url` und `retrieved_at` je Befund (siehe Join). Der
+> Snapshot wird nur geschrieben, wenn sich der Inhalt ändert (Zeitpunkt und
+> Lauf zählen nicht). Hat mehr als die Hälfte der URLs nicht geantwortet,
+> gilt der Lauf als gestört und schreibt nichts.
 
 ### 5.3 Ebene 3: Herkunft (`meta.herkunft`, Vertragserweiterung)
 
@@ -431,6 +446,7 @@ vorhanden (`messages-parity`).
 | **«Blockiert» als «tot» missverstanden** | falsche Aussage über fremde Websites | eigene Kategorie mit eigenem Symbol; Umgebung im Snapshot ausgewiesen |
 | **`meta.herkunft` veraltet**, wenn niemand pflegt | irreführende Herkunftsangabe | tessera setzt das Feld im eigenen PR; der Validator prüft die Konsistenz; «nicht erfasst» statt Default |
 | **Zusätzlicher Schritt bei Daten-PRs:** jede Änderung an Prozessdaten muss `data/belege/<city>.json` neu erzeugen (auch tessera-PRs) | rotes `check:belege`, bis das Aggregat nachgezogen ist | gleiches Muster wie `check:portfolio`; die CI-Meldung nennt den Befehl `npm run build:belege` |
+| **Bot-PR ohne CI:** PRs, die ein Workflow mit dem Standard-Token öffnet, starten bei GitHub keine CI; die Pflicht-Checks fehlen, der Merge ist blockiert | Befund-PR bleibt hängen | Secret `WOCHENBEFUND_TOKEN` (fine-grained Token oder GitHub-App, nur dieses Repo, Contents + Pull requests: write), dann läuft alles automatisch. Ohne Secret: PR einmal schliessen und wieder öffnen; der PR-Text sagt das |
 | **Wöchentliche Bot-PRs als Rauschen** | Review-Müdigkeit | PR nur bei geändertem Befund; ein Sammel-PR pro Woche; kein Auto-Merge |
 | **GitHub-API-Limit** (Änderungsprotokoll) | Abschnitt leer | ISR 300 s, optionaler Token; failed-soft mit Hinweis «Protokoll derzeit nicht abrufbar» |
 | **Scope Creep** Richtung Monitoring-Plattform | Aufwand, Bundle, Wartung | Phasen strikt getrennt; Zeitreihen erst ab ≥ 8 versionierten Wochenbefunden (siehe Abschnitt 10) |

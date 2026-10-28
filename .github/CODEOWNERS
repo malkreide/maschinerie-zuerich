@@ -18,6 +18,9 @@
 # Prozessdaten (Kardinalregel, Hochrisiko-Fälle, Handdaten)
 /stadt-zuerich-next/data/prozesse/ @malkreide
 
+# Wochenbefund (öffentlich auf /belege, kommt per Bot-PR aus link-rot.yml)
+/stadt-zuerich-next/data/befunde/ @malkreide
+
 # Die Guard-Skripte, die die CI-Gates implementieren
 /stadt-zuerich-next/scripts/validate-prozesse.mjs @malkreide
 /stadt-zuerich-next/scripts/check-prozess-regression.mjs @malkreide

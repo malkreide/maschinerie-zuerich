@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/malkreide/maschinerie-zuerich/main/stadt-zuerich-next/schemas/befunde-schema.json",
+  "title": "Wochenbefund",
+  "description": "Gemessenes Ergebnis des Wochenlaufs (.github/workflows/link-rot.yml) je bindender Reference: Erreichbarkeit des Deep-Links, Zitat noch wörtlich auf der Seite, Gesetzesfassung noch gültig. Snapshot, kein abgeleitetes Aggregat; kommt per Bot-PR nach main, den ein Mensch merged. Enthält bewusst weder Zitate noch Seitentext (Kardinalregel). Erzeugt von scripts/build-befunde.mjs, Modell in lib/befunde.ts.",
+  "type": "object",
+  "required": ["schema_version", "city", "erhoben_am", "lauf_url", "umgebung", "referenzen"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "type": "string", "pattern": "^1\\.\\d+\\.\\d+$" },
+    "city": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "erhoben_am": { "type": "string", "format": "date-time" },
+    "lauf_url": {
+      "description": "Link auf den GitHub-Actions-Lauf; null bei lokalem Lauf.",
+      "oneOf": [
+        { "type": "null" },
+        { "type": "string", "pattern": "^https://github\\.com/[^/]+/[^/]+/actions/runs/\\d+$" }
+      ]
+    },
+    "umgebung": { "enum": ["github-actions", "lokal"] },
+    "referenzen": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["slug", "reference_id", "url", "retrieved_at", "erreichbar", "http_status", "zitat", "fassung"],
+        "additionalProperties": false,
+        "properties": {
+          "slug": { "type": "string", "pattern": "^[a-z0-9-]+/[a-z0-9-]+$" },
+          "reference_id": { "type": "integer", "minimum": 1 },
+          "url": { "type": "string", "pattern": "^https://" },
+          "retrieved_at": { "type": "string", "format": "date" },
+          "erreichbar": { "enum": ["ok", "tot", "blockiert", "netzfehler"] },
+          "http_status": { "oneOf": [{ "type": "null" }, { "type": "integer", "minimum": 100, "maximum": 599 }] },
+          "zitat": { "enum": ["woertlich", "drift", "nicht-pruefbar"] },
+          "fassung": { "enum": ["aktuell", "ueberholt", "nicht-pruefbar", "nicht-anwendbar"] }
+        }
+      }
+    }
+  }
+}
