@@ -14,7 +14,7 @@ import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { buildBelege, serializeBelege, ebeneFuerHost, istAelterAls, QUELLEN_EBENEN } from '../lib/belege.ts';
+import { buildBelege, serializeBelege, ebeneFuerHost, istAelterAls, HERKUNFT_SCHLUESSEL, QUELLEN_EBENEN } from '../lib/belege.ts';
 import { erkenneFassung } from '../scripts/lib/gesetzesfassung.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -170,6 +170,20 @@ test('Summary: Ebenen in fester Reihenfolge, Summe = alle References', () => {
   assert.deepEqual(b.summary.nachEbene, { stadt: 2, kanton: 1, bund: 1, andere: 1 });
   assert.equal(b.summary.referenzen, 5);
   assert.equal(b.summary.prozesse, 2);
+});
+
+test('Herkunft: übernommen, PRs sortiert, fehlend = nicht erfasst (nie redaktion)', () => {
+  const g = prozess('g', { meta: { herkunft: { art: 'gemischt', tessera_prs: [169, 164] } } });
+  const r = prozess('r', { meta: { herkunft: { art: 'redaktion', geprueft_am: '2026-10-01' } } });
+  const n = prozess('n', { meta: { erstellt: '2026-06-06' } });
+  const b = buildBelege('zh', [g, r, n, prozess('o')], OPTS);
+  assert.deepEqual(zeile(b, 'g').herkunft, { art: 'gemischt', tessera_prs: [164, 169], geprueft_am: null });
+  assert.deepEqual(zeile(b, 'r').herkunft, { art: 'redaktion', tessera_prs: [], geprueft_am: '2026-10-01' });
+  assert.equal(zeile(b, 'n').herkunft, null);
+  assert.equal(zeile(b, 'o').herkunft, null);
+  assert.deepEqual(Object.keys(b.summary.nachHerkunft), HERKUNFT_SCHLUESSEL);
+  assert.deepEqual(b.summary.nachHerkunft, { redaktion: 1, tessera: 0, gemischt: 1, 'nicht-erfasst': 2 });
+  assert.deepEqual(g.meta.herkunft.tessera_prs, [169, 164], 'Eingabe darf nicht mutiert werden');
 });
 
 test('istAelterAls: Grenze bei 365 Tagen, unlesbares Datum nie alt', () => {

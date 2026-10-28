@@ -11,7 +11,7 @@
     "schema_version": {
       "type": "string",
       "pattern": "^\\d+\\.\\d+\\.\\d+$",
-      "description": "Vertragsversion (SemVer), z.B. '0.1.0'. Breaking Changes erhöhen MAJOR."
+      "description": "Vertragsversion (SemVer), z.B. '0.2.0'. Breaking Changes erhöhen MAJOR, additive optionale Felder MINOR. Wer ein Feld einer neueren MINOR-Version nutzt (z.B. meta.herkunft ab 0.2.0), deklariert mindestens diese Version."
     },
     "id": {
       "type": "string",
@@ -128,7 +128,34 @@
         "erstellt": { "type": "string", "format": "date" },
         "aktualisiert": { "type": "string", "format": "date" },
         "maintainer": { "type": "string" },
-        "lizenz": { "type": "string", "default": "CC-BY-4.0" }
+        "lizenz": { "type": "string", "default": "CC-BY-4.0" },
+        "herkunft": {
+          "type": "object",
+          "description": "Erweiterung (seit 0.2.0): auf welchem Weg der Prozess entstanden ist. Fehlt das Feld, gilt die Herkunft als nicht erfasst – nie als 'redaktion'. Keine Namen: wer geprüft hat, steht im PR-Review.",
+          "additionalProperties": false,
+          "required": ["art"],
+          "properties": {
+            "art": {
+              "type": "string",
+              "enum": ["redaktion", "tessera", "gemischt"],
+              "description": "redaktion = redaktionell erfasst (Entwürfe mit KI-Assistenz), jede Angabe von einem Menschen geprüft; tessera = Struktur aus einem tessera-PR, von einem Menschen geprüft; gemischt = redaktionell erfasst und durch tessera-PRs feldweise ergänzt."
+            },
+            "tessera_prs": {
+              "type": "array",
+              "description": "Nummern der gemergten tessera-PRs in diesem Repo, die den Prozess angelegt oder ergänzt haben. Pflicht bei art tessera/gemischt, leer oder fehlend bei redaktion.",
+              "items": { "type": "integer", "minimum": 1 },
+              "uniqueItems": true
+            },
+            "geprueft_am": {
+              "type": "string",
+              "format": "date",
+              "description": "Letzte inhaltliche Prüfung des ganzen Prozesses durch einen Menschen. Nicht vor meta.erstellt, nicht in der Zukunft."
+            }
+          },
+          "if": { "properties": { "art": { "enum": ["tessera", "gemischt"] } } },
+          "then": { "required": ["art", "tessera_prs"], "properties": { "tessera_prs": { "minItems": 1 } } },
+          "else": { "properties": { "tessera_prs": { "maxItems": 0 } } }
+        }
       }
     }
   },

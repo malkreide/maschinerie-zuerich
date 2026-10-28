@@ -11,6 +11,7 @@
 #   feedback:*   — Kategorie eines Bürger:innen-Feedbacks (Chip auf der Roadmap)
 #   lang:*       — Sprache eines Feedbacks/Issues (Chip auf der Roadmap)
 #   roadmap      — kuratierte Aufnahme ins öffentliche Roadmap-Board
+#   quelle:*     — Herkunft eines PRs mit Prozessdaten (z. B. tessera)
 #   (funktional) — bestehende Arbeits-Labels der Issue-Templates
 #
 # Die status:*/feedback:*/lang:*/roadmap-Labels werden von der öffentlichen
@@ -86,6 +87,13 @@
 - name: "good first issue"
   color: "7057ff"
   description: "Guter Einstieg für neue Mitwirkende"
+
+# ─── Herkunft von Prozessdaten (Ebene 3, docs/process-data-contract.md) ─────
+# Markiert PRs der Extraktions-Pipeline tessera. Ein gemergter PR mit diesem
+# Label gehört in meta.herkunft.tessera_prs der geänderten Prozesse.
+- name: "quelle:tessera"
+  color: "bfd4f2"
+  description: "PR aus der Extraktions-Pipeline tessera (struktur-only, feldweise mergen)"
 
 # ─── Roadmap-Status (Spalten auf /roadmap) ──────────────────────────────────
 - name: "status:eingegangen"

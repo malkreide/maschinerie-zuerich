@@ -3,7 +3,8 @@
 // deterministische Aggregat data/belege/<stadt>.json (lib/belege.ts) und,
 // falls vorhanden, den Wochenbefund data/befunde/<stadt>.json
 // (lib/befunde.ts) — rechnet selbst nur das Alter der Abrufe (relativ zu
-// `heute`).
+// `heute`). Die Herkunft (meta.herkunft) ist keine Güte: sie erscheint als
+// Text ohne Statusfarbe, fehlend als «nicht erfasst».
 //
 // Kardinalregel: keine bindenden Werte, keine Zitate. Die Zeile verlinkt auf
 // die Referenzen der Detailseite, wo Zitat und Deep-Link stehen.
@@ -19,7 +20,7 @@
 import { Link } from '@/i18n/navigation';
 import { getT } from '@/lib/i18n-server';
 import type { Locale } from '@/i18n/routing';
-import { istAelterAls, QUELLEN_EBENEN, type BelegZeile, type Belege } from '@/lib/belege';
+import { istAelterAls, QUELLEN_EBENEN, type BelegZeile, type Belege, type HerkunftSchluessel } from '@/lib/belege';
 import { befundLeser, zaehleBefunde, type BefundZaehlung, type Wochenbefund } from '@/lib/befunde';
 import type { IndikatorStatus } from '@/lib/bewertung';
 import { HATCH_STYLE, STATUS_CELL, STATUS_SYMBOL } from '@/lib/status-stil';
@@ -46,6 +47,32 @@ function ZustandZelle({ status, kurz, lang }: { status: IndikatorStatus; kurz: s
 }
 
 const Leer = () => <td className={`${TD} text-[var(--color-mute)]`}>–</td>;
+
+/** i18n-Schlüssel je Herkunft ('nicht-erfasst' → 'nichtErfasst'). */
+const herkunftKey = (k: HerkunftSchluessel) => (k === 'nicht-erfasst' ? 'nichtErfasst' : k);
+
+function HerkunftZelle({ z, t, repoUrl }: { z: BelegZeile; t: T; repoUrl: string }) {
+  const k = herkunftKey(z.herkunft?.art ?? 'nicht-erfasst');
+  const prs = z.herkunft?.tessera_prs ?? [];
+  return (
+    <td className={`${TD} whitespace-nowrap`} title={t(`herkunft.${k}Titel`)}>
+      <span className={z.herkunft ? undefined : 'text-[var(--color-mute)]'}>{t(`herkunft.${k}`)}</span>
+      {prs.map((n) => (
+        <span key={n}>
+          {' '}
+          <a
+            href={`${repoUrl}/pull/${n}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[var(--color-accent)] underline tabular-nums"
+          >
+            <span className="sr-only">{t('herkunft.prLabel')} </span>#{n}
+          </a>
+        </span>
+      ))}
+    </td>
+  );
+}
 
 function BelegtZelle({ z, t }: { z: BelegZeile; t: T }) {
   if (z.summe.referenzen === 0) return <ZustandZelle status="unbekannt" kurz="" lang={t('keineAngaben')} />;
@@ -121,6 +148,7 @@ export default function BelegMatrix({
   titel,
   locale,
   heute,
+  repoUrl,
 }: {
   belege: Belege;
   /** Wochenbefund derselben Stadt, falls schon einer veröffentlicht ist. */
@@ -129,6 +157,8 @@ export default function BelegMatrix({
   titel: Record<string, string>;
   locale: Locale;
   heute: Date;
+  /** GitHub-Repo der Daten, für die Links auf tessera-PRs */
+  repoUrl: string;
 }) {
   const t = getT(locale, 'Belege');
   const tP = getT(locale, 'Prozesse');
@@ -159,6 +189,7 @@ export default function BelegMatrix({
               {mitBefund && <th scope="col" className={TH}>{t('befund.colZitat')}</th>}
               <th scope="col" className={mitBefund ? TH : `${TH} text-right`}>{t('colGesetz')}</th>
               <th scope="col" className={TH}>{t('colAbruf')}</th>
+              <th scope="col" className={TH}>{t('colHerkunft')}</th>
             </tr>
           </thead>
           <tbody>
@@ -200,6 +231,7 @@ export default function BelegMatrix({
                       </span>
                     )}
                   </td>
+                  <HerkunftZelle z={z} t={t} repoUrl={repoUrl} />
                 </tr>
               );
             })}

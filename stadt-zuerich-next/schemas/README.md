@@ -56,6 +56,9 @@ Prüft zwei Stufen:
    - Konsistenz-Lint Leichte Sprache: `ls`-Label einer Reference nennt
      Kosten oder Frist, das deutsche Label nicht (oder umgekehrt) → Warnung
    - `lebenslage_ref` existiert in den Lebenslagen der Stadt und verlinkt zurück
+   - Herkunft: `meta.herkunft` verlangt `schema_version` ≥ 0.2.0;
+     `geprueft_am` nicht vor `meta.erstellt` und nicht in der Zukunft;
+     fehlende Herkunft → Warnung
    - Unerreichbare Schritte → Warnung (kein Fehler)
 
 Der Validator läuft auch in CI als eigener Job `prozesse-validation`
@@ -66,7 +69,7 @@ erscheinen dort als Annotation an der betroffenen Datei im Pull Request.
 
 ```jsonc
 {
-  "schema_version": "0.1.0",                 // SemVer der Vertragsversion
+  "schema_version": "0.2.0",                 // SemVer der Vertragsversion
   "id": "baugesuch",                         // [a-z0-9-]+, == lebenslage_ref
   "lebenslage_ref": "baugesuch",             // ID in data/<city>/lebenslagen.json
   "city": "zh",                              // Erweiterung: Kennung, Slug <city>/<id>
@@ -92,7 +95,11 @@ erscheinen dort als Annotation an der betroffenen Datei im Pull Request.
       "depends_on": [ 1, { "step_id": 1, "condition": { "de": "ja" } } ],
       "reference_ids": [1],
       "type": "input|prozess|entscheidung|loop|warten|ende" }
-  ]
+  ],
+  "meta": {                                  // Erweiterung; herkunft ab 0.2.0
+    "erstellt": "2026-06-06",
+    "herkunft": { "art": "redaktion" }       // redaktion|tessera|gemischt (+ tessera_prs)
+  }
 }
 ```
 
@@ -103,8 +110,10 @@ erscheinen dort als Annotation an der betroffenen Datei im Pull Request.
    `lebenslage_ref` der zugehörigen Lebenslage (Vertrag: `id == lebenslage_ref`).
 2. Als erste Zeile `"$schema": "../../../schemas/opengov-process-schema.json"`
    eintragen — dann erkennt VS Code / WebStorm das Schema automatisch.
-3. `npm run validate:prozesse` ausführen bis alles grün.
-4. In `data/prozesse/<city>/README.md` (falls vorhanden) Quelle + Stand
+3. `meta.herkunft` setzen (`redaktion`, bei tessera-PRs `tessera` bzw.
+   `gemischt` mit `tessera_prs`), siehe Datenvertrag «Herkunft & Pflege».
+4. `npm run validate:prozesse` ausführen bis alles grün.
+5. In `data/prozesse/<city>/README.md` (falls vorhanden) Quelle + Stand
    dokumentieren — die CC-BY-Lizenz des Prozesses greift nur, wenn die
    Quelle nachvollziehbar ist.
 

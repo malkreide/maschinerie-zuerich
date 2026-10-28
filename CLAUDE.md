@@ -67,7 +67,8 @@ tessera liefert **struktur-only**: `de` plus leere `en/fr/it`. Solche PRs werden
 **feldweise gemerged** – bestehende, belegte Übersetzungen und `description`-Blöcke
 bleiben erhalten, die Extraktion füllt nur Lücken und ergänzt neue Struktur.
 Review: keine Regression, Zitate (`source_quote`) wörtlich gegen die Quelle prüfen,
-Kardinalregel im Label kontrollieren.
+Kardinalregel im Label kontrollieren, `meta.herkunft` nachführen (`gemischt` bzw.
+`tessera`, PR-Nummer in `tessera_prs`; Label `quelle:tessera`).
 
 ## Hochrisiko-Rechtsfälle (erhöhter Review)
 

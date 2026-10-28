@@ -24,11 +24,11 @@
 // scripts/lib/gesetzesfassung.mjs und wird als Funktion hereingereicht, statt
 // sie hier zu duplizieren.
 
-import type { Prozess } from '@/types/prozess';
+import type { HerkunftArt, Prozess } from '@/types/prozess';
 
 /** Schema-Version des Aggregat-Artefakts (rein abgeleitet, unabhängig vom
  *  Prozess-Datenvertrag). MAJOR-Bump bei Strukturänderung des Artefakts. */
-export const BELEGE_SCHEMA_VERSION = '1.1.0';
+export const BELEGE_SCHEMA_VERSION = '1.2.0';
 
 /** Staatsebene der Quelle eines Belegs. */
 export type QuellenEbene = 'stadt' | 'kanton' | 'bund' | 'andere';
@@ -38,6 +38,20 @@ export type QuellenEbene = 'stadt' | 'kanton' | 'bund' | 'andere';
 export const QUELLEN_EBENEN: QuellenEbene[] = ['stadt', 'kanton', 'bund', 'andere'];
 
 export type ReferenzStatus = 'verifiziert' | 'unverifiziert';
+
+/** Herkunft eines Prozesses (meta.herkunft, Ebene 3). 'nicht-erfasst' steht
+ *  für ein fehlendes Feld — nie stillschweigend 'redaktion'. */
+export type HerkunftSchluessel = HerkunftArt | 'nicht-erfasst';
+
+/** Feste Reihenfolge für summary.nachHerkunft (Bit-Identität). */
+export const HERKUNFT_SCHLUESSEL: HerkunftSchluessel[] = ['redaktion', 'tessera', 'gemischt', 'nicht-erfasst'];
+
+/** Seit 1.2.0: meta.herkunft, unverändert übernommen (PRs sortiert). */
+export interface BelegHerkunft {
+  art: HerkunftArt;
+  tessera_prs: number[];
+  geprueft_am: string | null;
+}
 
 /** Host-Listen je Ebene, bereits für eine Stadt aufgelöst. Ein Eintrag deckt
  *  den Host selbst und alle Subdomains ab ('zh.ch' → 'www.zh.ch'). */
@@ -86,6 +100,8 @@ export interface BelegZeile {
   rechtsgrundlagen: number;
   /** ältester/jüngster retrieved_at über alle References; null ohne References */
   abruf: { aeltester: string | null; juengster: string | null };
+  /** meta.herkunft; null = nicht erfasst */
+  herkunft: BelegHerkunft | null;
 }
 
 export interface Belege {
@@ -102,6 +118,8 @@ export interface Belege {
     hochrisiko: number;
     /** References je Staatsebene der Quelle */
     nachEbene: Record<QuellenEbene, number>;
+    /** Prozesse je Herkunft */
+    nachHerkunft: Record<HerkunftSchluessel, number>;
   };
 }
 
@@ -163,6 +181,7 @@ function belegZeile(fallbackCity: string, p: Prozess, opts: BelegeOptionen): Bel
     });
 
   const verifiziert = referenzen.filter((r) => r.status === 'verifiziert').length;
+  const h = p.meta?.herkunft;
   const daten = referenzen.map((r) => r.retrieved_at).sort();
   const indikatoren = p.bewertung?.indikatoren ?? [];
 
@@ -188,6 +207,13 @@ function belegZeile(fallbackCity: string, p: Prozess, opts: BelegeOptionen): Bel
       aeltester: daten[0] ?? null,
       juengster: daten[daten.length - 1] ?? null,
     },
+    herkunft: h
+      ? {
+          art: h.art,
+          tessera_prs: [...(h.tessera_prs ?? [])].sort((a, b) => a - b),
+          geprueft_am: h.geprueft_am ?? null,
+        }
+      : null,
   };
 }
 
@@ -201,6 +227,8 @@ export function buildBelege(city: string, prozesse: Prozess[], opts: BelegeOptio
 
   const nachEbene = Object.fromEntries(QUELLEN_EBENEN.map((e) => [e, 0])) as Record<QuellenEbene, number>;
   for (const z of zeilen) for (const r of z.referenzen) nachEbene[r.ebene]++;
+  const nachHerkunft = Object.fromEntries(HERKUNFT_SCHLUESSEL.map((k) => [k, 0])) as Record<HerkunftSchluessel, number>;
+  for (const z of zeilen) nachHerkunft[z.herkunft?.art ?? 'nicht-erfasst']++;
 
   const summe = (f: (z: BelegZeile) => number) => zeilen.reduce((n, z) => n + f(z), 0);
 
@@ -216,6 +244,7 @@ export function buildBelege(city: string, prozesse: Prozess[], opts: BelegeOptio
       mitZitat: summe((z) => z.summe.mitZitat),
       hochrisiko: zeilen.filter((z) => z.hochrisiko).length,
       nachEbene,
+      nachHerkunft,
     },
   };
 }
