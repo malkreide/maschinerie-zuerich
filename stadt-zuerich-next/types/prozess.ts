@@ -208,7 +208,23 @@ export interface Prozess {
     aktualisiert?: string;
     maintainer?: string;
     lizenz?: string;
+    /** Erweiterung (Vertrag 0.2.0): Entstehungsweg des Prozesses. Fehlt sie,
+     *  gilt die Herkunft als nicht erfasst. */
+    herkunft?: Herkunft;
   };
+}
+
+/** redaktion = redaktionell erfasst (Entwürfe mit KI-Assistenz), von einem
+ *  Menschen geprüft; tessera = Struktur aus einem tessera-PR; gemischt =
+ *  redaktionell erfasst, durch tessera-PRs feldweise ergänzt. */
+export type HerkunftArt = 'redaktion' | 'tessera' | 'gemischt';
+
+export interface Herkunft {
+  art: HerkunftArt;
+  /** gemergte tessera-PRs in diesem Repo; Pflicht bei tessera/gemischt */
+  tessera_prs?: number[];
+  /** ISO-Datum der letzten inhaltlichen Prüfung durch einen Menschen */
+  geprueft_am?: string;
 }
 
 /** Hilfsfunktion: i18n-String auf aktuelle Locale auflösen (mit Fallback auf 'de'). */

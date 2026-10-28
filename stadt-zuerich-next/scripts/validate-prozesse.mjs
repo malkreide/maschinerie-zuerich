@@ -28,6 +28,9 @@
 //        vertauschten ls-Text
 //      - steps[].actor referenziert actors[].id (falls actors vorhanden);
 //        steps[].source_id referenziert sources[].id
+//      - Herkunft: meta.herkunft verlangt schema_version >= 0.2.0;
+//        geprueft_am nicht vor meta.erstellt und nicht in der Zukunft;
+//        fehlende Herkunft ist eine WARNUNG («nicht erfasst»)
 //   3. Cross-Reference gegen Stadt-Daten:
 //      - actors[].einheit_ref existiert im Org-Chart der Stadt
 //      - lebenslage_ref existiert in data/<city>/lebenslagen.json und die
@@ -218,6 +221,35 @@ function lintBindingValues(prozess) {
   return errors;
 }
 
+/** [MAJOR, MINOR] einer SemVer-Zeichenkette (Format prüft das Schema). */
+const semverMajorMinor = (v) => (v ?? '0.0.0').split('.').slice(0, 2).map(Number);
+
+// Herkunft (meta.herkunft, seit Vertrag 0.2.0). Art und tessera_prs prüft das
+// Schema; hier, was es nicht kann: Version, Datumsgrenzen. Fehlt das Feld,
+// ist das nur eine Warnung — die View zeigt dann «nicht erfasst», nichts wird
+// geraten.
+function herkunftCheck(prozess, warnings) {
+  const errors = [];
+  const h = prozess.meta?.herkunft;
+  if (!h) {
+    warnings.push('meta.herkunft fehlt — /belege zeigt die Herkunft als «nicht erfasst» (docs/process-data-contract.md, «Herkunft & Pflege»)');
+    return errors;
+  }
+  const [major, minor] = semverMajorMinor(prozess.schema_version);
+  if (major === 0 && minor < 2) {
+    errors.push(`meta.herkunft gibt es erst ab Vertrag 0.2.0 — schema_version '${prozess.schema_version}' anheben`);
+  }
+  if (h.geprueft_am) {
+    const heute = new Date().toISOString().slice(0, 10);
+    if (h.geprueft_am > heute) errors.push(`meta.herkunft.geprueft_am ${h.geprueft_am} liegt in der Zukunft`);
+    const erstellt = prozess.meta?.erstellt;
+    if (erstellt && h.geprueft_am < erstellt) {
+      errors.push(`meta.herkunft.geprueft_am ${h.geprueft_am} liegt vor meta.erstellt ${erstellt}`);
+    }
+  }
+  return errors;
+}
+
 function semanticCheck(prozess) {
   const errors = [];
   const warnings = [];
@@ -356,6 +388,8 @@ function semanticCheck(prozess) {
       errors.push(`disclaimer_key '${HIGH_RISK_KEY}' an '${prozess.id}', das nicht als Hochrisiko-Fall gelistet ist — HIGH_RISK_IDS in validate-prozesse.mjs und CLAUDE.md abgleichen`);
     }
   }
+
+  errors.push(...herkunftCheck(prozess, warnings));
 
   return { errors, warnings };
 }

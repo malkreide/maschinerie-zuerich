@@ -5,8 +5,8 @@ Prozess-Schema. Der Entwurf im Repo `tessera` (`docs/data-contract.md`,
 `docs/process.schema.json`) ist ausdrücklich nicht-kanonisch und wird an diese
 Fassung angeglichen.
 
-**Vertragsversion:** `schema_version: "0.1.0"` (SemVer; MAJOR-Bump bei Breaking
-Changes mit Migrationsskript).
+**Vertragsversion:** `schema_version: "0.2.0"` (SemVer, siehe
+[Versionierung](#versionierung)).
 **Maschinenlesbare Definition:** [`stadt-zuerich-next/schemas/opengov-process-schema.json`](../stadt-zuerich-next/schemas/opengov-process-schema.json)
 **TypeScript-Typen:** [`stadt-zuerich-next/types/prozess.ts`](../stadt-zuerich-next/types/prozess.ts)
 **Validator (CI):** `npm run validate:prozesse` ([`scripts/validate-prozesse.mjs`](../stadt-zuerich-next/scripts/validate-prozesse.mjs))
@@ -43,7 +43,7 @@ markierte Felder sind additiv und dürfen von reinen Vertrags-Konsumenten
 
 | Feld | Typ | Pflicht | Bedeutung |
 |---|---|---|---|
-| `schema_version` | string, SemVer | ✓ | Vertragsversion, z. B. `"0.1.0"` |
+| `schema_version` | string, SemVer | ✓ | Vertragsversion, z. B. `"0.2.0"`; mindestens die Version, die alle genutzten Felder kennt |
 | `id` | string, kebab-case | ✓ | **= `lebenslage_ref`** der bestehenden Lebenslage (CI-geprüft) |
 | `lebenslage_ref` | string, kebab-case | ✓ | ID der Lebenslage in `data/<city>/lebenslagen.json`; muss zurückverlinken (`prozesse[]` enthält `<city>/<id>`) |
 | `title` | i18n | ✓ | Titel (`de` Pflicht) |
@@ -61,7 +61,7 @@ markierte Felder sind additiv und dürfen von reinen Vertrags-Konsumenten
 | `sources` | Source[] | – *(Erweiterung)* | Weitere Belegquellen neben `source_url` |
 | `reife` | object | – *(Erweiterung, experimentell)* | Digitale Reife/Medienbrüche — unverändert aus Schema-Gen. 1/2 übernommen, Normalisierung später |
 | `bewertung` | object | – *(Erweiterung)* | Belegte Bewertungs-Indikatoren (Digitalisierung); siehe [Bewertung](#bewertung-erweiterung) |
-| `meta` | { erstellt?, aktualisiert?, maintainer?, lizenz? } | – *(Erweiterung)* | Metadaten |
+| `meta` | { erstellt?, aktualisiert?, maintainer?, lizenz?, herkunft? } | – *(Erweiterung)* | Metadaten; `herkunft` siehe [Herkunft & Pflege](#herkunft--pflege) (ab 0.2.0) |
 
 ### Step
 
@@ -299,14 +299,71 @@ Rücksprünge realer Verfahren (Nachbesserung, Rekurs) sind **nicht** Teil des
 
 ## Herkunft & Pflege
 
-- Prozessdaten werden **von Hand** geschrieben (kein Scraping, keine
-  LLM-Generierung, keine automatische Übersetzung).
-- Jede Reference braucht einen Deep-Link auf eine amtliche Quelle und — sobald
-  verifiziert — die wörtliche Belegstelle. Nichts erfinden.
+Prozessdaten entstehen auf zwei Wegen. Auf beiden arbeitet ein Sprachmodell
+mit, auf beiden entscheidet ein Mensch:
+
+- **Redaktionell:** Ein Mensch erarbeitet den Prozess an den amtlichen
+  Quellen. Entwürfe für Struktur, Texte, Übersetzungen und Leichte Sprache
+  entstehen mit KI-Assistenz (z. B. Claude Code). Der Mensch prüft jede
+  Angabe, bevor er sie mergt.
+- **tessera:** Die Extraktions-Pipeline im Repo `tessera` schlägt Struktur
+  vor und liefert sie als PR, struktur-only (`de`, leere `en/fr/it`). Ein
+  Mensch prüft den PR und merged feldweise (siehe `CLAUDE.md`, «Eingehende
+  tessera-PRs»).
+
+Für beide Wege gilt:
+
+- **Kein Auto-Merge.** Jede Änderung an Prozessdaten wird von einem Menschen
+  reviewt, besonders bindende Werte und die Hochrisiko-Fälle.
+- **Bindende Werte nie aus Modell-Output.** Jede Reference braucht einen
+  Deep-Link auf eine amtliche Quelle und, sobald verifiziert, die wörtliche
+  Belegstelle. Das Referenzen-Gate (`check:refs`) prüft geänderte References
+  live gegen die Quelle, der Wochenlauf alle. Nichts erfinden.
+- **Übersetzungen sind Erstbefüllungen.** `en`, `fr`, `it` und `ls` sind aus
+  dem Deutschen abgeleitet, teils mit KI-Assistenz. Das muttersprachliche
+  Review ist offen (#100 FR, #101 IT); Texte in Leichter Sprache brauchen die
+  Prüfung durch eine Fachperson.
 - `id == lebenslage_ref` bedeutet: pro Lebenslage genau ein kanonischer
   Prozess. Braucht eine Lebenslage später mehrere Verfahren, wird der Vertrag
   per MAJOR-Bump erweitert — nicht stillschweigend aufgeweicht.
-- Schema-Änderungen: MAJOR-Bump + Migrationsskript
-  (`scripts/migrate-prozesse-*.mjs`), dann dieses Dokument aktualisieren.
-  Bei Konflikten zwischen diesem Dokument und dem JSON-Schema gilt: erst
-  klären, dann ändern — nicht raten.
+
+### `meta.herkunft` (ab 0.2.0)
+
+Hält je Prozess fest, auf welchem der beiden Wege er entstanden ist. Die
+Ansicht `/belege` zeigt es öffentlich.
+
+```json
+"meta": {
+  "erstellt": "2026-06-06",
+  "herkunft": { "art": "gemischt", "tessera_prs": [156] }
+}
+```
+
+| Feld | Typ | Pflicht | Regel |
+|---|---|---|---|
+| `art` | enum | ✓ | `redaktion` = redaktionell erfasst; `tessera` = Struktur aus einem tessera-PR; `gemischt` = redaktionell erfasst und durch tessera-PRs feldweise ergänzt |
+| `tessera_prs` | integer[] | bei `tessera`/`gemischt` | Nummern der gemergten tessera-PRs in diesem Repo, die den Prozess angelegt oder ergänzt haben; bei `redaktion` leer oder fehlend |
+| `geprueft_am` | ISO-Datum | – | letzte inhaltliche Prüfung des ganzen Prozesses durch einen Menschen; nicht vor `meta.erstellt`, nicht in der Zukunft |
+
+- **Keine Namen.** Wer geprüft hat, steht im PR-Review, nicht in den Daten.
+- **Fehlt `herkunft`**, zeigt `/belege` «nicht erfasst», nie «redaktion».
+  `validate:prozesse` warnt dann.
+- **tessera setzt das Feld im eigenen PR:** `art: "tessera"` für einen neuen
+  Prozess, sonst `gemischt` und die eigene PR-Nummer in `tessera_prs`
+  ergänzen. Ein `geprueft_am` setzt nur ein Mensch.
+
+### Versionierung
+
+- **MAJOR** bei Breaking Changes (Feld entfernt, umbenannt oder verschärft),
+  immer mit Migrationsskript (`scripts/migrate-prozesse-*.mjs`).
+- **MINOR** für additive, optionale Felder. Bestehende Dateien bleiben gültig;
+  wer ein neues Feld nutzt, deklariert mindestens diese Version
+  (`validate:prozesse` prüft das für `meta.herkunft`).
+- **PATCH** für Klarstellungen ohne Wirkung auf gültige Dateien.
+- Danach dieses Dokument und das JSON-Schema gemeinsam aktualisieren. Bei
+  Konflikten zwischen beiden gilt: erst klären, dann ändern — nicht raten.
+
+| Version | Änderung |
+|---|---|
+| `0.1.0` | kanonischer Vertrag (Migration aus Schema-Generation 2) |
+| `0.2.0` | additiv: `meta.herkunft` |
