@@ -1,6 +1,6 @@
 {
   "$schema": "../../../schemas/opengov-process-schema.json",
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "id": "fundsache",
   "lebenslage_ref": "fundsache",
   "city": "zh",
@@ -510,7 +510,14 @@
     "erstellt": "2026-06-06",
     "aktualisiert": "2026-06-10",
     "maintainer": "malkreide",
-    "lizenz": "CC-BY-4.0"
+    "lizenz": "CC-BY-4.0",
+    "herkunft": {
+      "art": "gemischt",
+      "tessera_prs": [
+        157,
+        159
+      ]
+    }
   },
   "preconditions": [
     {

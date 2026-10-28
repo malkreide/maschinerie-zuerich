@@ -1,6 +1,6 @@
 {
   "$schema": "../../../schemas/opengov-process-schema.json",
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "id": "abfall",
   "lebenslage_ref": "abfall",
   "city": "zh",
@@ -454,6 +454,9 @@
     "erstellt": "2026-06-18",
     "aktualisiert": "2026-06-18",
     "maintainer": "malkreide",
-    "lizenz": "CC-BY-4.0"
+    "lizenz": "CC-BY-4.0",
+    "herkunft": {
+      "art": "redaktion"
+    }
   }
 }
