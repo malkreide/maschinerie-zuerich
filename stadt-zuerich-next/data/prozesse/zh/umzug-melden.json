@@ -81,9 +81,9 @@
         "ls": "Was Sie zum Termin mitbringen"
       },
       "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/zuzug.html",
-      "source_quote": "Bitte bringen Sie zu Ihrem Termin folgende Unterlagen mit: Pass oder ID Mietvertrag, Wohnungsausweis oder Untermietvertrag oder Einzugsanzeige",
+      "source_quote": "Bitte bringen Sie zu Ihrem Termin folgende Unterlagen mit: Pass oder ID (Drittstaatsangehörige: gültiger Reisepass zwingend erforderlich) Mietvertrag, Wohnungsausweis oder Untermietvertrag oder Einzugsanzeige",
       "status": "verifiziert",
-      "retrieved_at": "2026-10-11"
+      "retrieved_at": "2026-10-28"
     },
     {
       "reference_id": 4,
@@ -165,9 +165,9 @@
         "ls": "Kein Termin frei? Dann können Sie mehr Zeit beantragen"
       },
       "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/umzug.html",
-      "source_quote": "Aufgrund der aktuellen Terminsituation sind teilweise erst Termine nach Ablauf der 14-tägigen Meldefrist verfügbar. Bitte buchen Sie dennoch den nächstmöglichen verfügbaren Termin. Beantragen Sie zusätzlich eine Fristverlängerung über unser Kontaktformular.",
+      "source_quote": "Aufgrund der aktuellen Terminsituation sind teilweise erst Termine nach Ablauf der 14-tägigen Meldefrist verfügbar. Bitte buchen Sie dennoch den nächstmöglichen Termin und beantragen Sie zusätzlich eine Fristverlängerung über unser Kontaktformular.",
       "status": "verifiziert",
-      "retrieved_at": "2026-10-11"
+      "retrieved_at": "2026-10-28"
     }
   ],
   "actors": [
