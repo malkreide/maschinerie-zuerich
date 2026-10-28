@@ -663,7 +663,7 @@
           "host": "www.ch.ch",
           "ebene": "bund",
           "gesetzesfassung": false,
-          "retrieved_at": "2026-06-27"
+          "retrieved_at": "2026-10-28"
         },
         {
           "reference_id": 2,
@@ -673,7 +673,7 @@
           "host": "www.ch.ch",
           "ebene": "bund",
           "gesetzesfassung": false,
-          "retrieved_at": "2026-06-27"
+          "retrieved_at": "2026-10-28"
         },
         {
           "reference_id": 3,
@@ -710,7 +710,7 @@
       "rechtsgrundlagen": 2,
       "abruf": {
         "aeltester": "2026-06-25",
-        "juengster": "2026-06-27"
+        "juengster": "2026-10-28"
       }
     },
     {
@@ -983,7 +983,7 @@
           "host": "www.stadt-zuerich.ch",
           "ebene": "stadt",
           "gesetzesfassung": false,
-          "retrieved_at": "2026-10-11"
+          "retrieved_at": "2026-10-28"
         },
         {
           "reference_id": 4,
@@ -1043,7 +1043,7 @@
           "host": "www.stadt-zuerich.ch",
           "ebene": "stadt",
           "gesetzesfassung": false,
-          "retrieved_at": "2026-10-11"
+          "retrieved_at": "2026-10-28"
         }
       ],
       "summe": {
@@ -1060,7 +1060,7 @@
       "rechtsgrundlagen": 3,
       "abruf": {
         "aeltester": "2026-10-05",
-        "juengster": "2026-10-11"
+        "juengster": "2026-10-28"
       }
     },
     {
