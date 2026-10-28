@@ -383,11 +383,11 @@
       "documents": [
         {
           "label": {
-            "de": "Ausweis (ID/Pass)",
-            "en": "Identity document (ID/passport)",
-            "fr": "Pièce d'identité (carte d'identité/passeport)",
-            "it": "Documento d'identità (carta d'identità/passaporto)",
-            "ls": "Ausweis (Identitäts-Karte oder Pass)"
+            "de": "Pass oder ID (Drittstaatsangehörige: gültiger Reisepass zwingend)",
+            "en": "Passport or identity card (third-country nationals: valid passport mandatory)",
+            "fr": "Passeport ou carte d'identité (ressortissant-e-s d'États tiers : passeport valable obligatoire)",
+            "it": "Passaporto o carta d'identità (cittadini di Stati terzi: passaporto valido obbligatorio)",
+            "ls": "Pass oder Identitäts-Karte. Kommen Sie nicht aus der EU oder EFTA? Dann brauchen Sie einen gültigen Pass."
           },
           "required": true
         },
@@ -403,13 +403,93 @@
         },
         {
           "label": {
-            "de": "Mietvertrag oder Wohnungsnachweis",
-            "en": "Tenancy agreement or proof of residence",
-            "fr": "Contrat de bail ou justificatif de logement",
-            "it": "Contratto di locazione o attestato di alloggio",
-            "ls": "Miet-Vertrag oder Wohnungs-Nachweis"
+            "de": "Mietvertrag, Wohnungsausweis, Untermietvertrag oder Einzugsanzeige",
+            "en": "Tenancy agreement, housing certificate, sublease agreement or notice of moving in",
+            "fr": "Contrat de bail, attestation de logement, contrat de sous-location ou avis d'emménagement",
+            "it": "Contratto di locazione, attestato di alloggio, contratto di sublocazione o avviso di entrata",
+            "ls": "Miet-Vertrag, Unter-Miet-Vertrag oder ein anderer Nachweis für die Wohnung"
           },
           "required": true
+        },
+        {
+          "label": {
+            "de": "Zusicherung der Aufenthaltsbewilligung (bei Zuzug aus dem Ausland, sofern vorhanden)",
+            "en": "Assurance of a residence permit (when moving from abroad, if available)",
+            "fr": "Assurance d'autorisation de séjour (en cas d'arrivée de l'étranger, si disponible)",
+            "it": "Assicurazione del permesso di dimora (in caso di arrivo dall'estero, se disponibile)",
+            "ls": "Zusage für die Aufenthalts-Bewilligung (wenn Sie aus dem Ausland kommen und eine Zusage haben)"
+          },
+          "required": false
+        },
+        {
+          "label": {
+            "de": "Ermächtigung der Visumserteilung (bei Zuzug aus dem Ausland, sofern vorhanden)",
+            "en": "Authorisation to issue a visa (when moving from abroad, if available)",
+            "fr": "Autorisation d'octroi du visa (en cas d'arrivée de l'étranger, si disponible)",
+            "it": "Autorizzazione al rilascio del visto (in caso di arrivo dall'estero, se disponibile)",
+            "ls": "Erlaubnis für das Visum (wenn Sie aus dem Ausland kommen und eine Erlaubnis haben)"
+          },
+          "required": false
+        },
+        {
+          "label": {
+            "de": "Arbeitsvertrag oder Studienbestätigung (bei Zuzug aus dem Ausland)",
+            "en": "Employment contract or confirmation of studies (when moving from abroad)",
+            "fr": "Contrat de travail ou attestation d'études (en cas d'arrivée de l'étranger)",
+            "it": "Contratto di lavoro o attestato di studio (in caso di arrivo dall'estero)",
+            "ls": "Arbeits-Vertrag oder Bestätigung von der Hoch-Schule (wenn Sie aus dem Ausland kommen)"
+          },
+          "required": false
+        },
+        {
+          "label": {
+            "de": "Eheschein im Original (bei Zuzug aus dem Ausland, wenn beide Ehepartner zuziehen)",
+            "en": "Original marriage certificate (when moving from abroad, if both spouses move)",
+            "fr": "Acte de mariage original (en cas d'arrivée de l'étranger, si les deux conjoint-e-s emménagent)",
+            "it": "Certificato di matrimonio in originale (in caso di arrivo dall'estero, se si trasferiscono entrambi i coniugi)",
+            "ls": "Ehe-Schein im Original (wenn Sie mit Ihrem Ehe-Partner oder Ihrer Ehe-Partnerin aus dem Ausland kommen)"
+          },
+          "required": false
+        },
+        {
+          "label": {
+            "de": "Geburtsscheine der Kinder im Original (bei Zuzug aus dem Ausland, wenn Kinder mitziehen)",
+            "en": "Original birth certificates of the children (when moving from abroad with children)",
+            "fr": "Actes de naissance originaux des enfants (en cas d'arrivée de l'étranger avec des enfants)",
+            "it": "Certificati di nascita dei figli in originale (in caso di arrivo dall'estero con figli)",
+            "ls": "Geburts-Scheine von Ihren Kindern im Original (wenn Ihre Kinder mit Ihnen aus dem Ausland kommen)"
+          },
+          "required": false
+        },
+        {
+          "label": {
+            "de": "Krankenkassenkarte aller Familienmitglieder (bei Zuzug aus der Schweiz)",
+            "en": "Health insurance card of all family members (when moving from elsewhere in Switzerland)",
+            "fr": "Carte d'assurance maladie de tous les membres de la famille (en cas d'arrivée d'ailleurs en Suisse)",
+            "it": "Tessera della cassa malati di tutti i membri della famiglia (in caso di arrivo da un'altra località svizzera)",
+            "ls": "Kranken-Kassen-Karte von allen in Ihrer Familie (wenn Sie aus einem anderen Ort in der Schweiz kommen)"
+          },
+          "required": false
+        },
+        {
+          "label": {
+            "de": "Meldebestätigung oder Wochenaufenthaltsbewilligung (bei Umzug innerhalb der Stadt, sofern vorhanden)",
+            "en": "Registration confirmation or weekly residence permit (when moving within the city, if available)",
+            "fr": "Attestation d'annonce ou autorisation de séjour à la semaine (en cas de déménagement dans la ville, si disponible)",
+            "it": "Conferma di notifica o permesso di dimora settimanale (in caso di trasloco all'interno della città, se disponibile)",
+            "ls": "Melde-Bestätigung oder Bewilligung für den Wochen-Aufenthalt (wenn Sie in der Stadt Zürich umziehen und so ein Papier haben)"
+          },
+          "required": false
+        },
+        {
+          "label": {
+            "de": "Schriftliche Zustimmung und Ausweiskopie des anderen Elternteils (bei Zuzug eines minderjährigen Kindes mit nur einem Elternteil)",
+            "en": "Written consent and copy of the ID of the other parent (when a minor child moves in with only one parent)",
+            "fr": "Consentement écrit et copie de la pièce d'identité de l'autre parent (si un enfant mineur emménage avec un seul parent)",
+            "it": "Consenso scritto e copia del documento d'identità dell'altro genitore (se un figlio minorenne si trasferisce con un solo genitore)",
+            "ls": "Zieht ein Kind nur mit Mutter oder Vater zu? Dann brauchen Sie eine schriftliche Erlaubnis vom anderen Eltern-Teil und eine Kopie von seinem Ausweis."
+          },
+          "required": false
         }
       ],
       "source_id": "q-stz-umzug",
@@ -929,6 +1009,18 @@
       "title": "Stadt Zürich – Wegzug melden",
       "url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/wegzug.html",
       "retrieved_at": "2026-10-05"
+    },
+    {
+      "id": "q-stz-umzug-stadt",
+      "title": "Stadt Zürich – Wohnungswechsel innerhalb der Stadt",
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/umzug.html",
+      "retrieved_at": "2026-10-28"
+    },
+    {
+      "id": "q-stz-zuzug-schweiz",
+      "title": "Stadt Zürich – Zuzug innerhalb der Schweiz",
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/Zuzug-Innerkantonal.html",
+      "retrieved_at": "2026-10-28"
     }
   ],
   "reife": {
