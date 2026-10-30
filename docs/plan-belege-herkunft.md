@@ -4,8 +4,9 @@
 E2–E7 gemäss Empfehlung, siehe [Abschnitt 9](#9-entscheide-maintainer).
 Umgesetzt: P1 (Belege-Aggregat mit Drift-Gate), P2 (Route `/belege` mit
 Kennzahlen, Belegmatrix, Prüfkette und Methodik) und P3 (Wochenbefund per
-Bot-PR, Anzeige auf `/belege`) und P4 (Herkunft als `meta.herkunft`,
-Vertrag 0.2.0, Spalte «Herkunft» auf `/belege`). P5 folgt.
+Bot-PR, Anzeige auf `/belege`), P4 (Herkunft als `meta.herkunft`,
+Vertrag 0.2.0, Spalte «Herkunft» auf `/belege`) und P5 (Änderungsprotokoll
+auf `/belege`). Damit sind alle Phasen umgesetzt.
 
 > **Kardinalregel bleibt:** Die Ansicht zeigt, *dass* und *wie* bindende
 > Angaben belegt sind, nie den bindenden Wert selbst. Zitate (`source_quote`)
@@ -349,6 +350,20 @@ export function mapCommitToEintrag(raw: RawCommit, prozessIds: Set<string>): Aen
 
 **Datensparsam:** nur der Betreff, kein Commit-Body, keine Autor:innen.
 
+> **Umgesetzt in P5, anders als oben skizziert:**
+> - `prozesse: string[]` statt `prozess`: ein Scope wie
+>   `fix(parkplatz, veranstaltung)` nennt mehrere Prozesse; jeder zählt nur
+>   bei exaktem Treffer (nichts raten).
+> - **Kardinalregel auch für Betreffe:** nennt ein Betreff einen bindenden
+>   Wert (`findBindingValue` aus `scripts/lib/binding-values.mjs`, als Funktion
+>   hereingereicht), ist `titel` null; die Seite verweist dann nur auf den PR.
+> - Merge-Commits (mehrere Eltern) fallen weg; sie doppeln den PR-Commit.
+> - Statt `scripts/probe-aenderungen.mjs` (eine gespiegelte Kopie der Logik,
+>   die driften kann) prüft `tests/aenderungen.test.mjs` die echte Funktion in
+>   `test:unit`, mit Betreffen aus der Historie.
+> - Betreffe sind deutsch: in en/fr/it mit `lang="de"` ausgezeichnet
+>   (WCAG 3.1.2), dazu ein Hinweis in allen Sprachen ausser Deutsch.
+
 ---
 
 ## 6. Ansicht `/belege` (Arbeitstitel «Belege & Herkunft»)
@@ -399,7 +414,7 @@ Abschnitte:
 > und 3 (Wochenbefund, Herkunft) erscheinen erst mit P3 bzw. P4. Statt
 > Spalten, die in jeder Zeile nur «nicht erhoben» zeigen würden, nennt ein
 > Hinweis über der Tabelle, welche Angaben noch folgen. Das Änderungsprotokoll
-> (5.) folgt mit P5. Zusätzlich zeigt die Matrix die Quellen je Ebene und die
+> (5.) kam mit P5 und steht direkt nach der Matrix. Zusätzlich zeigt die Matrix die Quellen je Ebene und die
 > Zahl der Belege aus Gesetzestexten.
 
 **Wiederverwendung:** `STATUS_SYMBOL`, die Zellfarben und die Schraffur aus

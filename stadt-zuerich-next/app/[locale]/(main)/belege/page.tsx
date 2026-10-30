@@ -1,9 +1,11 @@
-// Ansicht «Belege & Herkunft» (docs/plan-belege-herkunft.md, Phasen P2/P3):
+// Ansicht «Belege & Herkunft» (docs/plan-belege-herkunft.md, Phasen P2–P5):
 // zeigt, wie die bindenden Angaben der Prozesse belegt sind und welche
 // Prüfungen die Daten durchlaufen. Konsumiert das committete, deterministische
 // Aggregat data/belege/<stadt>.json (npm run build:belege, CI-Drift-geschützt)
 // und, sobald einer gemergt ist, den Wochenbefund data/befunde/<stadt>.json
 // (Bot-PR aus link-rot.yml). Die Seite rechnet nur das Alter der Abrufe.
+// Das Änderungsprotokoll (lib/aenderungen.ts) kommt live von GitHub (ISR 300 s)
+// und fällt bei einem Ausfall auf einen Hinweis zurück.
 //
 // Kardinalregel: keine bindenden Werte, keine Zitate — die stehen auf der
 // Detailseite. Hier nur Status, Quelle, Datum und Link. Keine Inszenierung:
@@ -26,6 +28,8 @@ import { HERKUNFT_SCHLUESSEL, QUELLEN_EBENEN, type Belege, type HerkunftSchluess
 import { befundLeser, type Wochenbefund } from '@/lib/befunde';
 import DataQualityBadge from '@/components/DataQualityBadge';
 import BelegMatrix, { zaehlungFuer } from '@/components/BelegMatrix';
+import { artVon, fetchAenderungen, PROZESS_PFAD } from '@/lib/aenderungen';
+import { findBindingValue } from '@/scripts/lib/binding-values.mjs';
 
 // Gleiches Repo wie die Roadmap; die Prüfkette verlinkt ihre Umsetzung.
 const REPO_URL = `https://github.com/${process.env.ROADMAP_GITHUB_REPO ?? 'malkreide/maschinerie-zuerich'}`;
@@ -40,7 +44,7 @@ const STUFEN = [
   { key: 'woche', pfad: '.github/workflows/link-rot.yml' },
 ] as const;
 
-const METHODIK = ['woertlich', 'keineWerte', 'herkunft', 'uebersetzung', 'erreichbar', 'gesperrt', 'stand', 'veroeffentlichung', 'verbindlich'] as const;
+const METHODIK = ['woertlich', 'keineWerte', 'herkunft', 'uebersetzung', 'protokoll', 'erreichbar', 'gesperrt', 'stand', 'veroeffentlichung', 'verbindlich'] as const;
 
 export async function generateMetadata({
   params,
@@ -115,6 +119,14 @@ export default async function BelegePage({
   // slug → aufgelöster Titel (aus dem Prozess-Index; Single Source bleibt dort).
   const titel: Record<string, string> = {};
   for (const p of prozesse) titel[p.slug] = resolveI18n(p.titel, loc as ProzessLocale);
+
+  // Kardinalregel auch hier: ein Betreff mit bindendem Wert erscheint nicht.
+  const aenderungen = await fetchAenderungen({
+    prozessSlugs: new Set(prozesse.map((p) => p.slug)),
+    istBindend: (text) => findBindingValue(text) !== null,
+  });
+  // Betreffe sind deutsch; in en/fr/it als Sprachwechsel auszeichnen (WCAG 3.1.2).
+  const betreffLang = loc === 'de' || loc === 'ls' ? undefined : 'de';
 
   // Summen über alle Städte (heute eine; die View bleibt mehrstadtfähig).
   const summe = (f: (b: Belege) => number) => belege.reduce((n, b) => n + f(b), 0);
@@ -269,6 +281,67 @@ export default async function BelegePage({
           </section>
         </>
       )}
+
+      <section aria-labelledby="belege-protokoll-heading" className="mb-10 max-w-[80ch]">
+        <h3 id="belege-protokoll-heading" className={sectionH}>{t('protokollHeading')}</h3>
+        <p className="text-[13px] text-[var(--color-mute)] mb-3">
+          {t('protokollIntro')}
+          {loc !== 'de' && ` ${t('protokollSprache')}`}
+        </p>
+        {aenderungen === null ? (
+          <p className="text-[13px] text-[var(--color-ink)]">{t('protokollFehler')}</p>
+        ) : aenderungen.length === 0 ? (
+          <p className="text-[13px] text-[var(--color-ink)]">{t('protokollLeer')}</p>
+        ) : (
+          <ul className="list-none m-0 p-0 space-y-2.5 text-[13px] text-[var(--color-ink)]">
+            {aenderungen.map((e) => (
+              <li key={e.sha} className="border-l-2 border-[var(--color-line)] pl-3">
+                <span className="text-[var(--color-mute)] tabular-nums">
+                  <time dateTime={e.datum}>{e.datum}</time>
+                </span>
+                {' · '}
+                <span className="font-semibold">{t(`protokollArt.${artVon(e.typ)}`)}</span>
+                {' · '}
+                {e.prozesse.length > 0
+                  ? e.prozesse.map((slug, i) => (
+                      <span key={slug}>
+                        {i > 0 && ', '}
+                        <Link href={`/prozesse/${slug}`} className="text-[var(--color-accent)] underline">
+                          {titel[slug] ?? slug}
+                        </Link>
+                      </span>
+                    ))
+                  : t('protokollAllgemein')}
+                <span className="block mt-0.5">
+                  {e.titel !== null ? <span lang={betreffLang}>{e.titel}</span> : t('protokollZurueckgehalten')}{' '}
+                  <a href={e.url} target="_blank" rel="noopener noreferrer" className="text-[var(--color-accent)] underline tabular-nums">
+                    {e.pr !== null ? (
+                      <>
+                        <span className="sr-only">{t('protokollPrLabel')} </span>#{e.pr}
+                      </>
+                    ) : (
+                      <>
+                        <span className="sr-only">{t('protokollCommitLabel')} </span>
+                        {e.sha}
+                      </>
+                    )}
+                  </a>
+                </span>
+              </li>
+            ))}
+          </ul>
+        )}
+        <p className="text-[12px] mt-3">
+          <a
+            href={`${REPO_URL}/commits/main/${PROZESS_PFAD}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[var(--color-accent)] underline"
+          >
+            {t('protokollAlle')}
+          </a>
+        </p>
+      </section>
 
       <section aria-labelledby="belege-pruef-heading" className="mb-10 max-w-[80ch]">
         <h3 id="belege-pruef-heading" className={sectionH}>{t('pruefHeading')}</h3>
