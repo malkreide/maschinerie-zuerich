@@ -392,27 +392,29 @@ function Toolbar({
   labelDiversityToggle?: string;
   titleDiversityToggle?: string;
 }) {
+  const t = useTranslations('GraphToolbar');
   const btn = (active: boolean) =>
     'px-2.5 py-1.5 text-xs rounded border ' +
     (active
       ? 'bg-[var(--color-accent)] text-[var(--color-on-accent)] border-[var(--color-accent)]'
       : 'bg-transparent text-[var(--color-ink)] border-[var(--color-line)] hover:bg-[var(--color-bg)]');
+  // aria-label beginnt in jeder Sprache mit dem sichtbaren Text (WCAG 2.5.3).
   return (
-    <div role="toolbar" aria-label="Diagramm-Werkzeuge"
+    <div role="toolbar" aria-label={t('label')}
          className="fixed top-[124px] sm:top-[64px] right-3 z-[9] flex flex-col sm:flex-col gap-1.5 items-end pointer-events-none [&>*]:pointer-events-auto">
-      <div role="group" aria-label="Layout"
+      <div role="group" aria-label={t('groupLayout')}
            className="flex gap-1.5 bg-[var(--color-panel)] p-1.5 rounded-lg shadow">
         <button className={btn(layout === 'radial')} aria-pressed={layout === 'radial'}
-                onClick={() => onLayoutChange('radial')}>Radial</button>
+                onClick={() => onLayoutChange('radial')}>{t('radial')}</button>
         <button className={btn(layout === 'force')} aria-pressed={layout === 'force'}
-                onClick={() => onLayoutChange('force')}>Gravitation</button>
+                onClick={() => onLayoutChange('force')}>{t('force')}</button>
       </div>
-      <div role="group" aria-label="Ansicht"
+      <div role="group" aria-label={t('groupView')}
            className="flex gap-1.5 bg-[var(--color-panel)] p-1.5 rounded-lg shadow">
         <button className={btn(false)} onClick={onCenter}
-                aria-label="Auswahl aufheben und Ansicht zurücksetzen">↻ Zurücksetzen</button>
+                aria-label={t('resetLabel')}><span aria-hidden="true">↻ </span>{t('reset')}</button>
         <button className={btn(false)} onClick={onFit}
-                aria-label="Alles zeigen: alle Knoten ins Sichtfeld einpassen">Alles zeigen</button>
+                aria-label={t('fitLabel')}>{t('fit')}</button>
         <button
           className={btn(false)}
           onClick={allExpanded ? onCollapseAll : onExpandAll}
@@ -424,7 +426,7 @@ function Toolbar({
       </div>
       
       {onChangeKlimaModus && (
-        <div role="group" aria-label="Klima" className="flex gap-1.5 bg-[var(--color-panel)] p-1.5 rounded-lg shadow mt-2">
+        <div role="group" aria-label={t('groupClimate')} className="flex gap-1.5 bg-[var(--color-panel)] p-1.5 rounded-lg shadow mt-2">
           <button 
             className={btn(klimaModus ?? false)} 
             onClick={() => {
@@ -440,7 +442,7 @@ function Toolbar({
       )}
 
       {onChangeDiversityModus && (
-        <div role="group" aria-label="Diversity" className="flex gap-1.5 bg-[var(--color-panel)] p-1.5 rounded-lg shadow mt-2">
+        <div role="group" aria-label={t('groupDiversity')} className="flex gap-1.5 bg-[var(--color-panel)] p-1.5 rounded-lg shadow mt-2">
           <button 
             className={btn(diversityModus ?? false)} 
             onClick={() => {
@@ -455,7 +457,7 @@ function Toolbar({
         </div>
       )}
 
-      <div role="group" aria-label="Export" className="flex gap-1.5 bg-[var(--color-panel)] p-1.5 rounded-lg shadow mt-2">
+      <div role="group" aria-label={t('groupExport')} className="flex gap-1.5 bg-[var(--color-panel)] p-1.5 rounded-lg shadow mt-2">
         <button className={btn(false)} onClick={onExportCSV} aria-label={labelExportCSV}>
           {labelExportCSV}
         </button>

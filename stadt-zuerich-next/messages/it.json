@@ -505,6 +505,20 @@
     "colBudget": "Spesa (CHF)",
     "colFte": "Posti (ETP)"
   },
+  "GraphToolbar": {
+    "label": "Strumenti del diagramma",
+    "groupLayout": "Disposizione",
+    "radial": "Radiale",
+    "force": "Gravitazione",
+    "groupView": "Vista",
+    "reset": "Reimposta",
+    "resetLabel": "Reimposta: annulla la selezione e mostra la vista iniziale",
+    "fit": "Mostra tutto",
+    "fitLabel": "Mostra tutto: adatta tutti i nodi alla vista",
+    "groupClimate": "Clima",
+    "groupDiversity": "Diversità",
+    "groupExport": "Esporta"
+  },
   "Export": {
     "csvButton": "Esporta la vista attuale in CSV"
   },

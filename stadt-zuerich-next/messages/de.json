@@ -505,6 +505,20 @@
     "colBudget": "Aufwand (CHF)",
     "colFte": "Stellen (FTE)"
   },
+  "GraphToolbar": {
+    "label": "Diagramm-Werkzeuge",
+    "groupLayout": "Layout",
+    "radial": "Radial",
+    "force": "Gravitation",
+    "groupView": "Ansicht",
+    "reset": "Zurücksetzen",
+    "resetLabel": "Zurücksetzen: Auswahl aufheben und Startansicht zeigen",
+    "fit": "Alles zeigen",
+    "fitLabel": "Alles zeigen: alle Knoten ins Sichtfeld einpassen",
+    "groupClimate": "Klima",
+    "groupDiversity": "Diversity",
+    "groupExport": "Export"
+  },
   "Export": {
     "csvButton": "Aktuelle Ansicht als CSV exportieren"
   },

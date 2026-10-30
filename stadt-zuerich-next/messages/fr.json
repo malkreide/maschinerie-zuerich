@@ -505,6 +505,20 @@
     "colBudget": "Charge (CHF)",
     "colFte": "Postes (EPT)"
   },
+  "GraphToolbar": {
+    "label": "Outils du diagramme",
+    "groupLayout": "Disposition",
+    "radial": "Radiale",
+    "force": "Gravitation",
+    "groupView": "Affichage",
+    "reset": "Réinitialiser",
+    "resetLabel": "Réinitialiser : annuler la sélection et revenir à la vue de départ",
+    "fit": "Tout afficher",
+    "fitLabel": "Tout afficher : faire tenir tous les nœuds dans la vue",
+    "groupClimate": "Climat",
+    "groupDiversity": "Diversité",
+    "groupExport": "Export"
+  },
   "Export": {
     "csvButton": "Exporter la vue actuelle au format CSV"
   },

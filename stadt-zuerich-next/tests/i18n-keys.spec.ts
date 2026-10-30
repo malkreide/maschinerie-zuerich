@@ -1,5 +1,9 @@
 import { test, expect } from '@playwright/test';
 import de from '../messages/de.json' with { type: 'json' };
+import en from '../messages/en.json' with { type: 'json' };
+import fr from '../messages/fr.json' with { type: 'json' };
+import it from '../messages/it.json' with { type: 'json' };
+import ls from '../messages/ls.json' with { type: 'json' };
 
 // Keine rohen Übersetzungs-Schlüssel im gerenderten HTML.
 //
@@ -62,5 +66,24 @@ for (const route of ROUTES) {
     }, RAW_KEY.source);
 
     expect(fundstellen, `rohe Übersetzungs-Schlüssel auf ${route}`).toEqual([]);
+  });
+}
+
+// Werkzeugleiste des Organigramms: stand bis 2026-10 fest auf Deutsch im
+// Code und blieb so auch in en/fr/it/ls. Ein roher Schlüssel wäre oben
+// aufgefallen, ein vergessener deutscher Text nicht — darum hier die Namen
+// je Sprache. Der Graph lädt erst nach der Hydration (GraphLoader, ssr:false).
+for (const [locale, m] of Object.entries({ de, en, fr, it, ls })) {
+  test(`i18n: Werkzeugleiste des Organigramms auf /${locale}`, async ({ page }) => {
+    const tb = m.GraphToolbar;
+    await page.goto(`/${locale}`);
+    const leiste = page.getByRole('toolbar', { name: tb.label, exact: true });
+    await expect(leiste).toBeVisible({ timeout: 15_000 });
+    for (const name of [tb.radial, tb.force, tb.resetLabel, tb.fitLabel]) {
+      await expect(leiste.getByRole('button', { name, exact: true })).toBeVisible();
+    }
+    for (const gruppe of [tb.groupLayout, tb.groupView, tb.groupExport]) {
+      await expect(leiste.getByRole('group', { name: gruppe, exact: true })).toBeVisible();
+    }
   });
 }

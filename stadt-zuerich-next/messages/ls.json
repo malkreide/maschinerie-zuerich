@@ -505,6 +505,20 @@
     "colBudget": "Ausgaben (CHF)",
     "colFte": "Stellen"
   },
+  "GraphToolbar": {
+    "label": "Knöpfe für das Schau-Bild",
+    "groupLayout": "Form vom Bild",
+    "radial": "Im Kreis",
+    "force": "Frei verteilt",
+    "groupView": "Was Sie sehen",
+    "reset": "Zurück zum Anfang",
+    "resetLabel": "Zurück zum Anfang: Auswahl löschen und das Bild wie am Anfang zeigen",
+    "fit": "Alles zeigen",
+    "fitLabel": "Alles zeigen: Das ganze Bild passt auf den Bild-Schirm",
+    "groupClimate": "Klima",
+    "groupDiversity": "Frauen und Männer",
+    "groupExport": "Herunter-laden"
+  },
   "Export": {
     "csvButton": "Alles als CSV-Liste herunter-laden"
   },
