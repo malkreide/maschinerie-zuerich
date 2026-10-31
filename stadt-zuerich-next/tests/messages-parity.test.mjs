@@ -73,3 +73,22 @@ for (const locale of LOCALES) {
     assert.deepEqual(problems, []);
   });
 }
+
+// Werkzeugleiste des Organigramms: ein Knopf mit eigenem aria-label
+// (GraphToolbar.<x>Label) muss mit seinem sichtbaren Text (GraphToolbar.<x>)
+// beginnen — sonst findet ihn die Sprachsteuerung nicht unter dem Wort, das
+// auf dem Knopf steht (WCAG 2.5.3 «Label in Name»). Gilt in jeder Sprache,
+// auch in de.
+for (const locale of ['de', ...LOCALES]) {
+  test(`${locale}.json: GraphToolbar-Namen beginnen mit dem sichtbaren Text`, () => {
+    const tb = load(locale).GraphToolbar;
+    const problems = [];
+    for (const [key, name] of Object.entries(tb)) {
+      if (!key.endsWith('Label') || key === 'label') continue;
+      const sichtbar = tb[key.slice(0, -'Label'.length)];
+      if (typeof sichtbar !== 'string') problems.push(`${key}: kein sichtbarer Text dazu`);
+      else if (!name.startsWith(sichtbar)) problems.push(`${key}: «${name}» beginnt nicht mit «${sichtbar}»`);
+    }
+    assert.deepEqual(problems, []);
+  });
+}

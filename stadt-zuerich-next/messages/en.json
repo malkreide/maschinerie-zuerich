@@ -505,6 +505,20 @@
     "colBudget": "Expense (CHF)",
     "colFte": "Positions (FTE)"
   },
+  "GraphToolbar": {
+    "label": "Diagram tools",
+    "groupLayout": "Layout",
+    "radial": "Radial",
+    "force": "Gravity",
+    "groupView": "View",
+    "reset": "Reset",
+    "resetLabel": "Reset: clear the selection and show the starting view",
+    "fit": "Show all",
+    "fitLabel": "Show all: fit every node into view",
+    "groupClimate": "Climate",
+    "groupDiversity": "Diversity",
+    "groupExport": "Export"
+  },
   "Export": {
     "csvButton": "Export current view as CSV"
   },
