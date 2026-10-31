@@ -54,6 +54,15 @@ html.dark {
 
 html, body { height: 100%; background: var(--color-bg); color: var(--color-ink); }
 
+/* Oberkante der Inhaltsseiten. Das Suchfeld (components/Search.tsx) schwebt
+ * fixiert bei 64–110px, unter dem Header (h-14). Seiten mit Titel und Text
+ * beginnen darunter, sonst verdeckt es Titel und Breadcrumb, und beim Scrollen
+ * läuft der Inhalt darunter durch. Organigramm und Karte liegen bewusst unter
+ * dem Suchfeld; /liste und /anliegen blenden es aus und bleiben bei top-14. */
+@utility top-unter-suche {
+  top: 7.25rem;
+}
+
 /* Skip-Link */
 .skip-link {
   position: absolute; top: 8px; left: 8px; z-index: 1000;

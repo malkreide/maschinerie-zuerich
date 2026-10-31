@@ -83,7 +83,7 @@ export default function MobileExplorer({ data, relatedProzesse }: Props) {
     <div
       role="region"
       aria-label={t('regionLabel')}
-      className="absolute top-14 inset-x-0 bottom-0 px-4 pt-3 pb-10 overflow-y-auto bg-[var(--color-bg)]"
+      className="absolute top-unter-suche inset-x-0 bottom-0 px-4 pt-3 pb-10 overflow-y-auto bg-[var(--color-bg)]"
     >
       <p className="text-[13px] text-[var(--color-mute)] mb-3">{t('intro')}</p>
 

@@ -79,6 +79,7 @@ export default function Search({ lebenslagen }: { lebenslagen: Lebenslage[] }) {
   return (
     <div
       role="search"
+      // Position und Höhe bestimmen top-unter-suche in app/globals.css.
       className="fixed top-[64px] left-3 z-[9] bg-[var(--color-panel)] p-1.5 rounded-lg shadow flex flex-col gap-1 w-[calc(100vw-24px)] sm:w-auto sm:min-w-[320px] max-w-[380px]"
     >
       <form method="get" action={formAction} className="contents">

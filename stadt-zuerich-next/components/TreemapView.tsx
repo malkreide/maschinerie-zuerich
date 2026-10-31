@@ -78,7 +78,7 @@ export default function TreemapView({
   const isEmpty = !tree.children || tree.children.length === 0;
 
   return (
-    <main className="absolute top-14 inset-x-0 bottom-0 p-4 pb-10 overflow-hidden"
+    <main className="absolute top-unter-suche inset-x-0 bottom-0 p-4 pb-10 overflow-hidden"
           aria-label={t('ariaLabel')}>
       {/* Titel und Intro auf Desktop nach rechts einrücken: die global fixierte
           Such-Box liegt oben links (top-64, bis ~380px breit) und verdeckte
