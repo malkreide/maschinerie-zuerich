@@ -434,13 +434,17 @@ function SwimlaneOverlay({
         // Wenn per einheit_ref verlinkt: Swimlane-Label wird zum Link auf die
         // Hauptansicht mit fokussierter Einheit. pointer-events-auto hebt
         // das pointer-events-none des Container-Overlays für genau dieses
-        // Element auf, damit der Link klickbar bleibt.
+        // Element auf, damit der Link klickbar bleibt. tabIndex -1: Das
+        // Overlay ist aria-hidden, ein Tab-Stopp darin wäre für Screenreader
+        // stumm. Tastatur und Screenreader erreichen dieselben Links in der
+        // Schrittliste unter dem Graphen.
         const title = a?.einheitName && goToUnitLabelTemplate
           ? goToUnitLabelTemplate.replace('{name}', a.einheitName)
           : a?.einheitName;
         const inner = a?.einheitHref ? (
           <a
             href={a.einheitHref}
+            tabIndex={-1}
             className="pointer-events-auto underline decoration-dotted hover:text-[var(--color-accent)]"
             title={title}
           >
