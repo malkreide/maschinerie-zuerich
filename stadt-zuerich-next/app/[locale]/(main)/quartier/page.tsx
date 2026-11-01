@@ -87,7 +87,7 @@ export default async function QuartierPage({
       : 'Fläche aus amtlicher Stadtkreis-Geometrie. Standortzahlen erscheinen, sobald die ODZ-Geodaten geladen sind (npm run data:fetch-geo).';
 
   return (
-    <main className="absolute top-14 inset-x-0 bottom-0 p-4 pb-10 overflow-hidden flex flex-col bg-[var(--color-bg)]">
+    <main className="absolute top-unter-suche inset-x-0 bottom-0 p-4 pb-10 overflow-hidden flex flex-col bg-[var(--color-bg)]">
       <div className="max-w-4xl mx-auto w-full flex-1 flex flex-col">
         <h2 className="text-xl font-bold mb-2 text-[var(--color-ink)]">{t('title')}</h2>
         <p className="text-[13px] text-[var(--color-mute)] mb-2 max-w-2xl">

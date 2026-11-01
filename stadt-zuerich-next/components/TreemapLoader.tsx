@@ -17,7 +17,7 @@ const TreemapView = dynamic(() => import('./TreemapView'), {
   loading: () => (
     <main
       aria-busy="true"
-      className="absolute top-14 inset-x-0 bottom-0 flex items-center justify-center"
+      className="absolute top-unter-suche inset-x-0 bottom-0 flex items-center justify-center"
     >
       <div className="text-sm text-[var(--color-mute)]">…</div>
     </main>

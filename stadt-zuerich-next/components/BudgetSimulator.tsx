@@ -110,7 +110,7 @@ export default function BudgetSimulator({
   if (departments.length === 0) {
     return (
       <main
-        className="absolute top-14 inset-x-0 bottom-0 px-6 pt-4 pb-10 overflow-y-auto bg-[var(--color-bg)]"
+        className="absolute top-unter-suche inset-x-0 bottom-0 px-6 pt-4 pb-10 overflow-y-auto bg-[var(--color-bg)]"
         aria-label={t('ariaLabel')}
       >
         <h2 className="text-lg font-semibold m-0 mb-1">{t('title')}</h2>
@@ -121,7 +121,7 @@ export default function BudgetSimulator({
 
   return (
     <main
-      className="absolute top-14 inset-x-0 bottom-0 px-6 pt-4 pb-10 overflow-y-auto bg-[var(--color-bg)]"
+      className="absolute top-unter-suche inset-x-0 bottom-0 px-6 pt-4 pb-10 overflow-y-auto bg-[var(--color-bg)]"
       aria-label={t('ariaLabel')}
     >
       {/* Titel und Intro auf Desktop nach rechts einrücken: die global fixierte

@@ -72,7 +72,7 @@ export default async function PortfolioPage({
 
   return (
     <main
-      className="absolute top-14 inset-x-0 bottom-0 px-4 sm:px-6 pt-4 pb-10 overflow-y-auto bg-[var(--color-bg)]"
+      className="absolute top-unter-suche inset-x-0 bottom-0 px-4 sm:px-6 pt-4 pb-10 overflow-y-auto bg-[var(--color-bg)]"
       aria-labelledby="portfolio-heading"
     >
       <h2 id="portfolio-heading" className="text-lg font-semibold mb-1">{t('title')}</h2>
