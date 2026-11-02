@@ -1,0 +1,759 @@
+{
+  "schema_version": "1.0.0",
+  "city": "zh",
+  "erhoben_am": "2026-11-02T15:53:21.546Z",
+  "lauf_url": "https://github.com/malkreide/maschinerie-zuerich/actions/runs/41475820373",
+  "umgebung": "github-actions",
+  "referenzen": [
+    {
+      "slug": "zh/abfall",
+      "reference_id": 1,
+      "url": "https://www.stadt-zuerich.ch/de/umwelt-und-energie/entsorgung/zueri-sack.html",
+      "retrieved_at": "2026-06-27",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/abfall",
+      "reference_id": 2,
+      "url": "https://www.stadt-zuerich.ch/de/umwelt-und-energie/entsorgung/wo-und-wann-entsorgen/abfuhr-sperrgut-metall-elektro-grubengut.html",
+      "retrieved_at": "2026-06-27",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/baugesuch",
+      "reference_id": 1,
+      "url": "https://www.stadt-zuerich.ch/de/planen-und-bauen/baubewilligungen/bewilligungsprozess/fristen-und-gebuehren.html",
+      "retrieved_at": "2026-06-10",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/baugesuch",
+      "reference_id": 2,
+      "url": "https://www.stadt-zuerich.ch/de/planen-und-bauen/baubewilligungen/bewilligungsprozess/baugesuch-einreichen.html",
+      "retrieved_at": "2026-10-11",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/baugesuch",
+      "reference_id": 3,
+      "url": "https://www.stadt-zuerich.ch/de/planen-und-bauen/baubewilligungen/bewilligungsprozess/fristen-und-gebuehren.html",
+      "retrieved_at": "2026-10-11",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/betreibung",
+      "reference_id": 1,
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/betreibungen/betreibungsregisterauszug-bestellen.html",
+      "retrieved_at": "2026-06-21",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/betreibung",
+      "reference_id": 2,
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/betreibungen/betreibungsregisterauszug-bestellen.html",
+      "retrieved_at": "2026-06-21",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/betreibung",
+      "reference_id": 3,
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/betreibungen/betreibungsregisterauszug-bestellen.html",
+      "retrieved_at": "2026-06-21",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/fundsache",
+      "reference_id": 1,
+      "url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero.html",
+      "retrieved_at": "2026-10-05",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/fundsache",
+      "reference_id": 2,
+      "url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/verloren.html",
+      "retrieved_at": "2026-06-28",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/fundsache",
+      "reference_id": 3,
+      "url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/verloren.html",
+      "retrieved_at": "2026-06-28",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/fundsache",
+      "reference_id": 4,
+      "url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/versteigerung.html",
+      "retrieved_at": "2026-06-28",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/fundsache",
+      "reference_id": 5,
+      "url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/versteigerung.html",
+      "retrieved_at": "2026-06-28",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/fundsache",
+      "reference_id": 6,
+      "url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/rechtsgrundlage.html",
+      "retrieved_at": "2026-06-28",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/fundsache",
+      "reference_id": 7,
+      "url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/rechtsgrundlage.html",
+      "retrieved_at": "2026-06-28",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/fundsache",
+      "reference_id": 8,
+      "url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/rechtsgrundlage.html",
+      "retrieved_at": "2026-06-28",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/fundsache",
+      "reference_id": 9,
+      "url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/verloren.html",
+      "retrieved_at": "2026-10-11",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/heiraten",
+      "reference_id": 1,
+      "url": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/24/233_245_233/20260701/de/pdf-a/fedlex-data-admin-ch-eli-cc-24-233_245_233-20260701-de-pdf-a-1.pdf#page=39",
+      "retrieved_at": "2026-10-12",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "aktuell"
+    },
+    {
+      "slug": "zh/heiraten",
+      "reference_id": 2,
+      "url": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/24/233_245_233/20260701/de/pdf-a/fedlex-data-admin-ch-eli-cc-24-233_245_233-20260701-de-pdf-a-1.pdf#page=41",
+      "retrieved_at": "2026-10-12",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "aktuell"
+    },
+    {
+      "slug": "zh/heiraten",
+      "reference_id": 3,
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/heiraten/ehevorbereitung.html",
+      "retrieved_at": "2026-06-25",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/hund-anmelden",
+      "reference_id": 1,
+      "url": "https://www.stadt-zuerich.ch/de/stadtleben/veranstaltungen-und-bewilligungen/hundekontrolle.html",
+      "retrieved_at": "2026-06-10",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/hund-anmelden",
+      "reference_id": 2,
+      "url": "https://www.stadt-zuerich.ch/de/stadtleben/veranstaltungen-und-bewilligungen/hundekontrolle/abmeldung.html",
+      "retrieved_at": "2026-10-11",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/hund-anmelden",
+      "reference_id": 3,
+      "url": "https://www.zh.ch/de/umwelt-tiere/tiere/haustiere-heimtiere/hunde.html",
+      "retrieved_at": "2026-06-10",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/kita-platz",
+      "reference_id": 1,
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/betreuungskosten-und-subventionen.html",
+      "retrieved_at": "2026-06-10",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/kita-platz",
+      "reference_id": 2,
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/faq.html",
+      "retrieved_at": "2026-07-01",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/kita-platz",
+      "reference_id": 3,
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/faq.html",
+      "retrieved_at": "2026-10-09",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/kita-platz",
+      "reference_id": 4,
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/faq.html",
+      "retrieved_at": "2026-10-09",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/kita-platz",
+      "reference_id": 5,
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/faq.html",
+      "retrieved_at": "2026-10-09",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/kita-platz",
+      "reference_id": 6,
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/faq.html",
+      "retrieved_at": "2026-10-09",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/kita-platz",
+      "reference_id": 7,
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/faq.html",
+      "retrieved_at": "2026-10-09",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/kita-platz",
+      "reference_id": 8,
+      "url": "https://www.stadt-zuerich.ch/de/stadtleben/wirtschaft-und-gewerbe/fuer-kitas/subventionen.html",
+      "retrieved_at": "2026-10-09",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/kita-platz",
+      "reference_id": 9,
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/faq.html",
+      "retrieved_at": "2026-10-09",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/kita-platz",
+      "reference_id": 10,
+      "url": "https://www.stadt-zuerich.ch/de/stadtleben/wirtschaft-und-gewerbe/fuer-kitas/subventionen.html",
+      "retrieved_at": "2026-10-09",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/kita-platz",
+      "reference_id": 11,
+      "url": "https://www.stadt-zuerich.ch/de/stadtleben/wirtschaft-und-gewerbe/fuer-kitas/subventionen.html",
+      "retrieved_at": "2026-10-09",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/kita-platz",
+      "reference_id": 12,
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/faq.html",
+      "retrieved_at": "2026-10-09",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/kita-platz",
+      "reference_id": 13,
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/faq.html",
+      "retrieved_at": "2026-10-09",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/oev",
+      "reference_id": 1,
+      "url": "https://www.stadt-zuerich.ch/vbz/de/tickets.html",
+      "retrieved_at": "2026-06-21",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/oev",
+      "reference_id": 2,
+      "url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/zvv-contact/verkaufsstellen.html",
+      "retrieved_at": "2026-06-21",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/oev",
+      "reference_id": 3,
+      "url": "https://www.zvv.ch/de/service/leichte-sprache/ticket--und-abokauf.html",
+      "retrieved_at": "2026-06-21",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/oev",
+      "reference_id": 4,
+      "url": "https://www.zvv.ch/de/service/leichte-sprache/ticket--und-abokauf.html",
+      "retrieved_at": "2026-06-21",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/parkplatz",
+      "reference_id": 1,
+      "url": "https://www.stadt-zuerich.ch/de/mobilitaet/parkieren/parkbewilligungen/anwohnerparkkarte.html",
+      "retrieved_at": "2026-10-11",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/parkplatz",
+      "reference_id": 2,
+      "url": "https://www.stadt-zuerich.ch/de/mobilitaet/parkieren/parkbewilligungen/anwohnerparkkarte.html",
+      "retrieved_at": "2026-06-10",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/parkplatz",
+      "reference_id": 3,
+      "url": "https://www.stadt-zuerich.ch/de/mobilitaet/parkieren/parkbewilligungen/anwohnerparkkarte.html",
+      "retrieved_at": "2026-06-28",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/pass-id",
+      "reference_id": 1,
+      "url": "https://www.ch.ch/de/gultigkeit-kosten-pass-identitatskarte/",
+      "retrieved_at": "2026-10-28",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/pass-id",
+      "reference_id": 2,
+      "url": "https://www.ch.ch/de/gultigkeit-kosten-pass-identitatskarte/",
+      "retrieved_at": "2026-10-28",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/pass-id",
+      "reference_id": 3,
+      "url": "https://www.ch.ch/de/gultigkeit-kosten-pass-identitatskarte/",
+      "retrieved_at": "2026-06-25",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/pass-id",
+      "reference_id": 4,
+      "url": "https://www.ch.ch/de/reisen-und-auswandern/ins-ausland-reisen/pass-und-identitatskarte/pass-und-identitatskarte-bestellen/",
+      "retrieved_at": "2026-06-27",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/sozialhilfe",
+      "reference_id": 1,
+      "url": "https://www.zh.ch/de/soziales/sozialhilfe/sozialhilfehandbuch/flexdata-definition/1-grundlagen/1-2-verwaltung-und-rechtsmittelverfahren-im-kanton-zuerich/1-2-02-rechtsmittelverfahren-im-kantonalen-sozialhilferecht.html",
+      "retrieved_at": "2026-06-17",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/sozialhilfe",
+      "reference_id": 2,
+      "url": "https://www.zh.ch/de/soziales/sozialhilfe/sozialhilfehandbuch/flexdata-definition/1-grundlagen/1-2-verwaltung-und-rechtsmittelverfahren-im-kanton-zuerich/1-2-02-rechtsmittelverfahren-im-kantonalen-sozialhilferecht.html",
+      "retrieved_at": "2026-10-11",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/sozialhilfe",
+      "reference_id": 3,
+      "url": "https://www.zh.ch/de/soziales/sozialhilfe/sozialhilfehandbuch/flexdata-definition/1-grundlagen/1-2-verwaltung-und-rechtsmittelverfahren-im-kanton-zuerich/1-2-02-rechtsmittelverfahren-im-kantonalen-sozialhilferecht.html",
+      "retrieved_at": "2026-10-11",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/steuern",
+      "reference_id": 1,
+      "url": "https://www.zh.ch/de/steuern-finanzen/steuern/steuern-natuerliche-personen/steuererklaerung-natuerliche-personen.html",
+      "retrieved_at": "2026-06-25",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/steuern",
+      "reference_id": 2,
+      "url": "https://www.notes.zh.ch/appl/zhlex_r.nsf/WebView/A1B72A220CD6E747C1258DC4002A921E/$File/631.1_8.6.97_132.pdf",
+      "retrieved_at": "2026-10-12",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "aktuell"
+    },
+    {
+      "slug": "zh/steuern",
+      "reference_id": 3,
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/steuern/natuerliche-personen/steuern-bezahlen/definitive-rechnung.html",
+      "retrieved_at": "2026-06-25",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/strom",
+      "reference_id": 1,
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/neu-in-zuerich/erste-schritte.html",
+      "retrieved_at": "2026-06-21",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/strom",
+      "reference_id": 2,
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/neu-in-zuerich/erste-schritte.html",
+      "retrieved_at": "2026-10-11",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/strom",
+      "reference_id": 3,
+      "url": "https://www.ewz.ch/de/services/umzug.html",
+      "retrieved_at": "2026-10-11",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/umwelt",
+      "reference_id": 1,
+      "url": "https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/oeffentlicher-raum/nachbarschaft-nachtleben/laerm.html",
+      "retrieved_at": "2026-06-21",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/umwelt",
+      "reference_id": 2,
+      "url": "https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/oeffentlicher-raum/nachbarschaft-nachtleben/laerm.html",
+      "retrieved_at": "2026-06-21",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/umwelt",
+      "reference_id": 3,
+      "url": "https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/oeffentlicher-raum/nachbarschaft-nachtleben/laerm.html",
+      "retrieved_at": "2026-06-21",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/umwelt",
+      "reference_id": 4,
+      "url": "https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/oeffentlicher-raum/nachbarschaft-nachtleben/laerm.html",
+      "retrieved_at": "2026-06-21",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/umwelt",
+      "reference_id": 5,
+      "url": "https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/oeffentlicher-raum/nachbarschaft-nachtleben/laerm.html",
+      "retrieved_at": "2026-10-11",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/umzug-melden",
+      "reference_id": 1,
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/zuzug.html",
+      "retrieved_at": "2026-10-11",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/umzug-melden",
+      "reference_id": 2,
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/zuzug.html",
+      "retrieved_at": "2026-10-11",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/umzug-melden",
+      "reference_id": 3,
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/zuzug.html",
+      "retrieved_at": "2026-10-28",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/umzug-melden",
+      "reference_id": 4,
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/umzug.html",
+      "retrieved_at": "2026-10-11",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/umzug-melden",
+      "reference_id": 5,
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/umzug.html",
+      "retrieved_at": "2026-10-11",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/umzug-melden",
+      "reference_id": 6,
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/wegzug.html",
+      "retrieved_at": "2026-10-05",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/umzug-melden",
+      "reference_id": 7,
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/wegzug.html",
+      "retrieved_at": "2026-10-05",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/umzug-melden",
+      "reference_id": 8,
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/wegzug.html",
+      "retrieved_at": "2026-10-05",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/umzug-melden",
+      "reference_id": 9,
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/umzug.html",
+      "retrieved_at": "2026-10-28",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/veranstaltung",
+      "reference_id": 1,
+      "url": "https://www.stadt-zuerich.ch/de/stadtleben/veranstaltungen-und-bewilligungen/veranstaltungen/fest-sportveranstaltung-quartierfest.html",
+      "retrieved_at": "2026-06-10",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/veranstaltung",
+      "reference_id": 2,
+      "url": "https://www.stadt-zuerich.ch/de/stadtleben/veranstaltungen-und-bewilligungen/veranstaltungen/infrastruktur-sicherheit.html",
+      "retrieved_at": "2026-07-04",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/wasser",
+      "reference_id": 1,
+      "url": "https://www.stadt-zuerich.ch/de/umwelt-und-energie/wasser/trinkwasser/qualitaet-und-kontrolle.html",
+      "retrieved_at": "2026-06-21",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/wasser",
+      "reference_id": 2,
+      "url": "https://www.stadt-zuerich.ch/de/umwelt-und-energie/wasser/trinkwasser/qualitaet-und-kontrolle.html",
+      "retrieved_at": "2026-06-21",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/wasser",
+      "reference_id": 3,
+      "url": "https://www.stadt-zuerich.ch/de/umwelt-und-energie/wasser/trinkwasser/qualitaet-und-kontrolle.html",
+      "retrieved_at": "2026-06-21",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    }
+  ]
+}
