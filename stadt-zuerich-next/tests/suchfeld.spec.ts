@@ -1,4 +1,5 @@
 import { test, expect, type Page } from '@playwright/test';
+import de from '../messages/de.json' with { type: 'json' };
 
 // Das globale Suchfeld (components/Search.tsx) schwebt fixiert oben links.
 // Bis 2026-10 begannen die Inhaltsseiten direkt unter dem Header, und das
@@ -112,6 +113,59 @@ for (const vp of VIEWPORTS) {
           return 'frei';
         }, { message: '/de/territory', timeout: 15_000 })
         .toBe('frei');
+    });
+  });
+}
+
+// Startseite (Organigramm) in niedrigen Fenstern. Die Legende wächst von unten
+// links nach oben. Bis 2026-11 hatte sie ab 640px Breite keine Höhengrenze und
+// lag auf derselben Ebene wie das Suchfeld, aber später im DOM: Bei 1280×420
+// und Handy quer (812×375) verdeckte sie das Suchfeld, bei 1366×650 die Hälfte
+// der Suchvorschläge.
+const NIEDRIG = [
+  { name: '1280×420', width: 1280, height: 420 },
+  { name: 'Handy quer', width: 812, height: 375 },
+  { name: '1366×650', width: 1366, height: 650 },
+];
+
+for (const vp of NIEDRIG) {
+  test.describe(`Legende verdeckt die Suche nicht (${vp.name})`, () => {
+    test.use({ viewport: { width: vp.width, height: vp.height } });
+
+    test('/de', async ({ page }) => {
+      // Einführungstour aus: Ihr Backdrop läge nach 1.5s über allem.
+      await page.addInitScript(() => {
+        try { localStorage.setItem('mog-tour-seen', 'true'); } catch { /* privat */ }
+      });
+      await page.goto('/de');
+      await page.waitForLoadState('networkidle');
+      const suche = page.getByRole('search').first();
+      const legende = page.getByRole('complementary', { name: de.Legend.headingTop, exact: true });
+
+      await expect
+        .poll(async () => {
+          const [s, l] = [await suche.boundingBox(), await legende.boundingBox()];
+          if (!s || !l) return 'nicht messbar';
+          return ueberschneiden(s, l) ? 'Legende liegt über dem Suchfeld' : 'frei';
+        }, { message: 'Suchfeld', timeout: 15_000 })
+        .toBe('frei');
+
+      await page.getByRole('searchbox').first().fill('Schule');
+      const optionen = page.getByRole('listbox').first().getByRole('option');
+      await expect(optionen.first()).toBeVisible();
+      // Nur Vorschläge im Fenster zählen; was unten aus dem Fenster ragt, ist
+      // nicht verdeckt, sondern abgeschnitten (eigenes Thema).
+      const verdeckt = await optionen.evaluateAll((els) =>
+        els
+          .filter((o) => o.getBoundingClientRect().bottom <= window.innerHeight)
+          .filter((o) => {
+            const r = o.getBoundingClientRect();
+            const hit = document.elementFromPoint(r.x + 20, r.y + r.height / 2);
+            return !hit || !o.contains(hit);
+          })
+          .map((o) => o.textContent?.trim().slice(0, 30)),
+      );
+      expect(verdeckt, 'Suchvorschläge unter der Legende').toEqual([]);
     });
   });
 }
