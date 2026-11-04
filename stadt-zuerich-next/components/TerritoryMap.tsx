@@ -254,7 +254,7 @@ export default function TerritoryMap() {
     // isolate: Leaflet stapelt seine Ebenen mit z-index 200–1000, die
     // Kartenebene (.leaflet-map-pane, z-index 400 plus transform) bildet einen
     // eigenen Stapelkontext. Ohne Isolation konkurrierte sie auf Seitenebene
-    // und übermalte das globale Suchfeld (z-[9]) und das Panel unten. Mit
+    // und übermalte das globale Suchfeld (Search.tsx) und das Panel unten. Mit
     // isolate bleibt die Karte darunter, wie in app/globals.css beschrieben.
     <div className="relative isolate w-full h-[calc(100vh-3.5rem)] mt-14">
       {/* Control Panel overlay. z-[1000] wie die Leaflet-Controls, damit es

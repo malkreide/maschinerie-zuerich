@@ -12,6 +12,16 @@ import { normalizeMissQuery } from '@/lib/search-miss';
 // gut unter ein Input-Feld, ohne das Dropdown zu überladen.
 const FALLBACK_SUGGESTIONS = 4;
 
+// Höhe der Klappliste: nie über den Fensterrand hinaus. Sie beginnt bei ~110px
+// (Suchfeld ab 64px); 8rem lassen unten 12px Rand. Sonst ragte sie in
+// niedrigen Fenstern (1280×420, Handy quer) unten hinaus, und die letzten
+// Vorschläge samt «Alle Treffer» bzw. «Vollständige Suche» waren nicht
+// erreichbar. Bei wenig Platz scrollt sie. Die Trefferliste behält zudem ihre
+// 340px; der Nulltreffer-Block nicht, damit sein Datenschutzhinweis unten bei
+// normaler Höhe ohne Scrollen sichtbar bleibt.
+const TREFFER_MAX_H = 'max-h-[min(340px,calc(100dvh-8rem))] overflow-y-auto';
+const NULLTREFFER_MAX_H = 'max-h-[calc(100dvh-8rem)] overflow-y-auto';
+
 export default function Search({ lebenslagen }: { lebenslagen: Lebenslage[] }) {
   const t = useTranslations('Search');
   const locale = useLocale() as Locale;
@@ -80,7 +90,11 @@ export default function Search({ lebenslagen }: { lebenslagen: Lebenslage[] }) {
     <div
       role="search"
       // Position und Höhe bestimmen top-unter-suche in app/globals.css.
-      className="fixed top-[64px] left-3 z-[9] bg-[var(--color-panel)] p-1.5 rounded-lg shadow flex flex-col gap-1 w-[calc(100vw-24px)] sm:w-auto sm:min-w-[320px] max-w-[380px]"
+      // z-[20]: Die Klappliste liegt über dem Seiteninhalt, auch über Inhalt
+      // mit eigenem z-Index (klebende Tabellenspalten z-10 auf /portfolio und
+      // /belege, die sonst über die Vorschläge malten), aber unter Modals und
+      // Sheets (z-50 und höher) und der Einführungstour.
+      className="fixed top-[64px] left-3 z-[20] bg-[var(--color-panel)] p-1.5 rounded-lg shadow flex flex-col gap-1 w-[calc(100vw-24px)] sm:w-auto sm:min-w-[320px] max-w-[380px]"
     >
       <form method="get" action={formAction} className="contents">
         <label htmlFor={id} className="sr-only">{t('label')}</label>
@@ -101,7 +115,7 @@ export default function Search({ lebenslagen }: { lebenslagen: Lebenslage[] }) {
       </form>
       {matches.length > 0 && (
         <div role="listbox" aria-label={t('suggestionsListLabel')}
-             className="max-h-[340px] overflow-y-auto border-t border-[var(--color-line)] pt-1 mt-0.5">
+             className={`${TREFFER_MAX_H} border-t border-[var(--color-line)] pt-1 mt-0.5`}>
           <div className="text-[10px] uppercase text-[var(--color-mute)] tracking-wider px-1.5 pt-1.5 pb-0.5 font-semibold">
             {t('suggestionsTitle')}
           </div>
@@ -133,7 +147,7 @@ export default function Search({ lebenslagen }: { lebenslagen: Lebenslage[] }) {
         <div
           role="status"
           aria-live="polite"
-          className="border-t border-[var(--color-line)] pt-1.5 mt-0.5"
+          className={`${NULLTREFFER_MAX_H} border-t border-[var(--color-line)] pt-1.5 mt-0.5`}
         >
           <div className="text-[12px] text-[var(--color-ink)] px-1.5 pt-1 pb-1 font-semibold">
             {t('noMatchesTitle', { query: trimmed })}
