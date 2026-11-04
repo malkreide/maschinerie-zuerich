@@ -1,5 +1,9 @@
 import { test, expect, type Page } from '@playwright/test';
 import de from '../messages/de.json' with { type: 'json' };
+import en from '../messages/en.json' with { type: 'json' };
+import fr from '../messages/fr.json' with { type: 'json' };
+import it from '../messages/it.json' with { type: 'json' };
+import ls from '../messages/ls.json' with { type: 'json' };
 
 // Das globale Suchfeld (components/Search.tsx) schwebt fixiert oben links.
 // Bis 2026-10 begannen die Inhaltsseiten direkt unter dem Header, und das
@@ -249,5 +253,51 @@ for (const route of ['/de/portfolio', '/de/belege']) {
         .map((o) => o.textContent?.trim().slice(0, 30));
     });
     expect(verdeckt, 'Vorschläge unter der Tabelle').toEqual([]);
+  });
+}
+
+// Budget-Banner der Startseite (components/BudgetSummary.tsx), ab 640px.
+// Bis 2026-11 sass es immer oben mittig: Bis ~1080px lag es in allen Sprachen
+// unter dem Suchfeld, bis 768px je nach Sprache auch in der Werkzeugleiste.
+// Geprüft je Sprache (die Texte sind verschieden lang) über die kritischen
+// Breiten und in niedrigen Fenstern, wo die Legende von unten heranwächst.
+const SPRACHEN = { de, en, fr, it, ls };
+const BANNER_FENSTER: [number, number][] = [
+  [640, 800], [768, 800], [1024, 800], [1100, 800], [1280, 800], [768, 420], [1024, 420],
+];
+
+for (const [sprache, m] of Object.entries(SPRACHEN)) {
+  test(`Budget-Banner überschneidet nichts: /${sprache}`, async ({ page }) => {
+    await page.addInitScript(() => {
+      try { localStorage.setItem('mog-tour-seen', 'true'); } catch { /* privat */ }
+    });
+    await page.goto(`/${sprache}`);
+    await page.waitForLoadState('networkidle');
+    const banner = page.getByRole('complementary', { name: m.BudgetSummary.ariaLabel, exact: true });
+    const andere: Record<string, ReturnType<Page['locator']>> = {
+      Suchfeld: page.getByRole('search').first(),
+      Legende: page.getByRole('complementary', { name: m.Legend.headingTop, exact: true }),
+    };
+    const gruppen = page.getByRole('toolbar').first().getByRole('group');
+
+    for (const [width, height] of BANNER_FENSTER) {
+      await page.setViewportSize({ width, height });
+      await expect
+        .poll(async () => {
+          const b = await banner.boundingBox();
+          if (!b) return 'Banner nicht messbar';
+          const treffer: string[] = [];
+          for (const [name, el] of Object.entries(andere)) {
+            const x = await el.boundingBox();
+            if (x && ueberschneiden(b, x)) treffer.push(name);
+          }
+          for (let i = 0; i < (await gruppen.count()); i++) {
+            const x = await gruppen.nth(i).boundingBox();
+            if (x && ueberschneiden(b, x)) treffer.push(`Werkzeugleiste ${i + 1}`);
+          }
+          return treffer.length ? `überschneidet ${treffer.join(', ')}` : 'frei';
+        }, { message: `/${sprache} ${width}×${height}`, timeout: 5_000 })
+        .toBe('frei');
+    }
   });
 }
