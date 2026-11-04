@@ -22,7 +22,7 @@ const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
 // 'unsafe-eval' nur im Dev-Modus (React Fast Refresh braucht eval).
 //
 // Externe Hosts:
-//   img-src  *.basemaps.cartocdn.com — Leaflet-Kacheln (TerritoryMap)
+//   img-src  tile.openstreetmap.org — Leaflet-Kacheln (TerritoryMap)
 //   connect-src tecdottir.herokuapp.com — Wassertemperatur (LiveClimateWidget)
 const isDev = process.env.NODE_ENV === 'development';
 function csp(frameAncestors: string): string {
@@ -30,7 +30,7 @@ function csp(frameAncestors: string): string {
     "default-src 'self'",
     `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''}`,
     "style-src 'self' 'unsafe-inline'",
-    "img-src 'self' data: blob: https://*.basemaps.cartocdn.com",
+    "img-src 'self' data: blob: https://tile.openstreetmap.org",
     "font-src 'self' data:",
     "connect-src 'self' https://tecdottir.herokuapp.com",
     "object-src 'none'",

@@ -73,6 +73,7 @@
   "Territory": {
     "title": "Locations",
     "intro": "City locations on the map. Pick a category.",
+    "toggleLayers": "Categories ({count})",
     "layerSchools": "School facilities",
     "layerRecycling": "Waste disposal",
     "layerPlaygrounds": "Playgrounds",

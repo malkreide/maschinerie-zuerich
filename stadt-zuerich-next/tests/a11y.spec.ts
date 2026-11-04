@@ -103,22 +103,26 @@ async function waitForOrganigramm(page: Page) {
 /** Mindestkontrast für normalen Text nach WCAG 2.x AA. */
 const KONTRAST_AA = 4.5;
 
-/** Kontrast der Texte im Graphen, direkt aus den berechneten Farben.
+/** Kontrast von Texten auf Flächen, direkt aus den berechneten Farben.
  *
  *  Warum nicht axe: im Graphen liegen mehrere Ebenen übereinander (Kanten,
- *  Beschriftungen, Knoten, Übersichtskarte). axe kann den Hintergrund eines
- *  Knoten-Texts deshalb nicht bestimmen («bgOverlap») und stuft dessen
- *  Kontrast als «nicht bestimmbar» ein — nie als Verstoss. So blieb weisse
- *  Schrift auf weissem Start-Knoten unbemerkt, auch nachdem der Graph
- *  gezeichnet war.
+ *  Beschriftungen, Knoten, Übersichtskarte), über der Karte liegen Panels.
+ *  axe kann den Hintergrund solcher Texte nicht bestimmen («bgOverlap») und
+ *  stuft deren Kontrast als «nicht bestimmbar» ein — nie als Verstoss. So
+ *  blieb weisse Schrift auf weissem Start-Knoten unbemerkt, auch nachdem der
+ *  Graph gezeichnet war, und helle Schrift auf dem weissen Standorte-Panel
+ *  im Dunkelmodus.
  *
- *  Geprüft wird jeder Text gegen die Fläche, auf der er steht: bei Knoten die
- *  Knoten-Fläche (role="group"), bei Kanten-Beschriftungen ihr eigener
- *  Hintergrund. Rein dekorative Zeichen (aria-hidden) zählen nicht.
- *  Liefert je Verstoss eine lesbare Zeile; leer = alles in Ordnung. */
-async function prozessGraphKontrastVerstoesse(page: Page): Promise<string[]> {
+ *  Geprüft wird jeder Text gegen die Fläche, auf der er steht (`selector`).
+ *  Ohne `texte` zählt jedes Element der Fläche mit eigenem Text, sonst nur
+ *  die per `texte` gewählten. Rein dekorative Zeichen (aria-hidden) zählen
+ *  nicht. Liefert je Verstoss eine lesbare Zeile; leer = alles in Ordnung. */
+async function kontrastVerstoesse(
+  page: Page,
+  flaechen: { selector: string; wo: string; texte?: string }[],
+): Promise<string[]> {
   return page.evaluate(
-    ({ knotenSelector, minimum }) => {
+    ({ flaechen, minimum }) => {
       const canvas = document.createElement('canvas');
       canvas.width = canvas.height = 1;
       const ctx = canvas.getContext('2d', { willReadFrequently: true })!;
@@ -149,14 +153,15 @@ async function prozessGraphKontrastVerstoesse(page: Page): Promise<string[]> {
         [...el.childNodes].some((n) => n.nodeType === Node.TEXT_NODE && (n.textContent ?? '').trim() !== '');
 
       const verstoesse: string[] = [];
-      const pruefe = (flaeche: Element, wo: string) => {
+      const pruefe = (flaeche: Element, wo: string, texte?: string) => {
         const flaechenFarbe = getComputedStyle(flaeche).backgroundColor;
         if (istTransparent(flaechenFarbe)) {
           verstoesse.push(`${wo}: Fläche ohne Hintergrundfarbe — Kontrast nicht prüfbar`);
           return;
         }
         const hintergrund = rgb(flaechenFarbe);
-        for (const el of [flaeche, ...flaeche.querySelectorAll('*')]) {
+        const kandidaten = texte ? [...flaeche.querySelectorAll(texte)] : [flaeche, ...flaeche.querySelectorAll('*')];
+        for (const el of kandidaten) {
           if (!hatEigenenText(el) || el.closest('[aria-hidden="true"]')) continue;
           const schrift = rgb(getComputedStyle(el).color, flaechenFarbe);
           const wert = kontrast(schrift, hintergrund);
@@ -170,18 +175,28 @@ async function prozessGraphKontrastVerstoesse(page: Page): Promise<string[]> {
         }
       };
 
-      for (const knoten of document.querySelectorAll(knotenSelector)) {
-        const flaeche = knoten.querySelector('[role="group"]');
-        const typ = [...knoten.classList].find((c) => c.startsWith('react-flow__node-'))?.replace('react-flow__node-', '');
-        if (flaeche) pruefe(flaeche, `Knoten ${knoten.getAttribute('data-id')} (${typ})`);
-      }
-      for (const label of document.querySelectorAll('.react-flow__edgelabel-renderer > div')) {
-        pruefe(label, 'Kanten-Beschriftung');
+      for (const { selector, wo, texte } of flaechen) {
+        for (const flaeche of document.querySelectorAll(selector)) {
+          // Graph-Knoten: Meldung mit ID und Typ, wie vor der Verallgemeinerung.
+          const knoten = flaeche.closest('.react-flow__node');
+          const id = knoten?.getAttribute('data-id');
+          const typ = knoten && [...knoten.classList].find((c) => c.startsWith('react-flow__node-'))?.replace('react-flow__node-', '');
+          pruefe(flaeche, id ? `${wo} ${id} (${typ})` : wo, texte);
+        }
       }
       return verstoesse;
     },
-    { knotenSelector: GRAPH_KNOTEN, minimum: KONTRAST_AA }
+    { flaechen, minimum: KONTRAST_AA }
   );
+}
+
+/** Graph: je Knoten die Knoten-Fläche (role="group"), dazu jede
+ *  Kanten-Beschriftung auf ihrem eigenen Hintergrund. */
+function prozessGraphKontrastVerstoesse(page: Page): Promise<string[]> {
+  return kontrastVerstoesse(page, [
+    { selector: `${GRAPH_KNOTEN} > [role="group"]`, wo: 'Knoten' },
+    { selector: '.react-flow__edgelabel-renderer > div', wo: 'Kanten-Beschriftung' },
+  ]);
 }
 
 /** Lädt die Route, lässt axe laufen und erwartet keine blockierenden
@@ -258,27 +273,42 @@ test.describe('Dunkelmodus', () => {
 // Panel und den Leaflet-Container, bevor axe läuft. Leaflet-eigene Chrome
 // (Zoom-/Attribution-Controls) ist Drittanbieter-Markup und wird ausgeschlossen,
 // analog zum React-Flow-Wasserzeichen.
-test('a11y: /de/territory (Karten-Layer)', async ({ page }) => {
-  await page.goto('/de/territory');
-  await page.locator('input[type="checkbox"]').first().waitFor({ state: 'attached', timeout: 15_000 });
-  await page.locator('.leaflet-container').first().waitFor({ state: 'attached', timeout: 15_000 });
+// Hell und dunkel: Das Standorte-Panel lag lange unter der Kartenebene und
+// war darum nie sichtbar — auch nicht, dass seine Schrift im Dunkelmodus hell
+// auf weissem Grund stand (dark:-Variante statt html.dark).
+for (const dunkel of [false, true]) {
+  const label = `/de/territory${dunkel ? ' (dunkel)' : ''}`;
+  test(`a11y: /de/territory (Karten-Layer${dunkel ? ', dunkel' : ''})`, async ({ page, context, baseURL }) => {
+    if (dunkel) await context.addCookies([{ name: 'mog-theme', value: 'dark', url: baseURL! }]);
+    await page.goto('/de/territory');
+    await page.locator('input[type="checkbox"]').first().waitFor({ state: 'attached', timeout: 15_000 });
+    await page.locator('.leaflet-container').first().waitFor({ state: 'attached', timeout: 15_000 });
+    if (dunkel) await expect(page.locator('html')).toHaveClass(/(^|\s)dark(\s|$)/);
 
-  const results = await new AxeBuilder({ page })
-    .withTags(WCAG_TAGS)
-    .exclude('.react-flow__attribution')
-    .exclude('.leaflet-control-container')
-    .analyze();
+    const results = await new AxeBuilder({ page })
+      .withTags(WCAG_TAGS)
+      .exclude('.react-flow__attribution')
+      .exclude('.leaflet-control-container')
+      .analyze();
 
-  const blocking = results.violations.filter(isBlocking);
-  const advisory = results.violations.filter((v) => !isBlocking(v));
-  if (advisory.length) {
-    console.log(`ℹ︎ /de/territory: ${advisory.length} nicht-blockierende Hinweise (moderate/minor): ` +
-      advisory.map((v) => v.id).join(', '));
-  }
-  if (blocking.length) console.log(summarize('/de/territory', blocking));
+    const blocking = results.violations.filter(isBlocking);
+    const advisory = results.violations.filter((v) => !isBlocking(v));
+    if (advisory.length) {
+      console.log(`ℹ︎ ${label}: ${advisory.length} nicht-blockierende Hinweise (moderate/minor): ` +
+        advisory.map((v) => v.id).join(', '));
+    }
+    if (blocking.length) console.log(summarize(label, blocking));
 
-  expect(blocking, `${blocking.length} serious/critical a11y-Verstösse auf /de/territory`).toEqual([]);
-});
+    expect(blocking, `${blocking.length} serious/critical a11y-Verstösse auf ${label}`).toEqual([]);
+
+    // Das Panel liegt über der Karte: axe stuft seinen Kontrast als «nicht
+    // bestimmbar» ein (siehe kontrastVerstoesse).
+    const kontrast = await kontrastVerstoesse(page, [
+      { selector: 'section[aria-labelledby="territory-titel"]', wo: 'Standorte-Panel', texte: 'h2, p, label' },
+    ]);
+    expect(kontrast, `Kontrast im Standorte-Panel (${label})`).toEqual([]);
+  });
+}
 
 // Mobile-Viewport: deckt den MobileExplorer auf der Hauptseite ab (auf Desktop
 // ist er per sm:hidden ausgeblendet und würde von axe nicht gesehen).
