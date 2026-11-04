@@ -300,9 +300,15 @@ export default function TerritoryMap() {
         style={{ width: '100%', height: '100%' }}
         zoomControl={false}
       >
+        {/* OpenStreetMap-Standardkacheln: ohne Schlüssel (CARTO liefert ohne
+            Schlüssel nur noch ein Wasserzeichen, Stand 2026-11). Nutzung nach
+            der OSM Tile Usage Policy: Attribution sichtbar, Referer kommt
+            über die Referrer-Policy (nur die Domain), moderate Last. Bei
+            viel Verkehr auf einen eigenen Anbieter wechseln. */}
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+          url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+          maxZoom={19}
         />
         {LAYER_IDS.filter((l) => activeLayers.has(l)).map((l) => {
           const d = layerData[l];
