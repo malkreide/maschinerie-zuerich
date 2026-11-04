@@ -169,3 +169,85 @@ for (const vp of NIEDRIG) {
     });
   });
 }
+
+// Klappliste der Suche (components/Search.tsx). Bis 2026-11 war sie bis 340px
+// hoch (Nulltreffer-Block ohne Grenze) und ragte in niedrigen Fenstern unten
+// aus dem Bild: Die letzten Vorschläge und «Alle Treffer» bzw. «Vollständige
+// Suche» waren nicht erreichbar. Geprüft für beide Varianten: Die Liste endet
+// im Fenster, und ihr letzter Link lässt sich ins Bild scrollen und anklicken.
+const KLAPPLISTE = [
+  { fall: 'Treffer', q: 'Schule', liste: '[role=search] [role=listbox]' },
+  { fall: 'Nulltreffer', q: 'xyzqwv', liste: '[role=search] [role=status]' },
+];
+
+for (const vp of NIEDRIG.filter((v) => v.height < 500)) {
+  test.describe(`Klappliste passt ins Fenster (${vp.name})`, () => {
+    test.use({ viewport: { width: vp.width, height: vp.height } });
+
+    for (const k of KLAPPLISTE) {
+      test(`/de/portfolio · ${k.fall}`, async ({ page }) => {
+        // Nulltreffer melden sich nach 1.2s an /api/search-miss: abfangen, damit
+        // der Test kein Backlog-Signal erzeugt.
+        await page.route('**/api/search-miss', (r) => r.fulfill({ status: 204 }));
+        await page.goto('/de/portfolio');
+        await page.getByRole('searchbox').first().fill(k.q);
+        const liste = page.locator(k.liste).first();
+        await expect(liste).toBeVisible();
+
+        const befund = await liste.evaluate((el) => {
+          if (el.getBoundingClientRect().bottom > window.innerHeight) return 'ragt unten aus dem Fenster';
+          const links = el.querySelectorAll('button, a');
+          const letzter = links[links.length - 1] as HTMLElement;
+          letzter.scrollIntoView({ block: 'nearest' });
+          const r = letzter.getBoundingClientRect();
+          if (r.bottom > window.innerHeight) return `«${letzter.textContent?.trim()}» nicht ins Bild scrollbar`;
+          const hit = document.elementFromPoint(r.x + 10, r.y + r.height / 2);
+          return hit && letzter.contains(hit) ? 'erreichbar' : `«${letzter.textContent?.trim()}» verdeckt`;
+        });
+        expect(befund).toBe('erreichbar');
+      });
+    }
+  });
+}
+
+// Auf /portfolio und /belege hat die erste Tabellenspalte position: sticky mit
+// z-10. Bis 2026-11 lag das Suchfeld auf z-[9]: Wer zur Tabelle scrollte und
+// dann suchte, sah die Prozessnamen über den Vorschlägen. Geprüft: Mit der
+// Tabelle direkt unter dem Suchfeld liegt jeder sichtbare Vorschlag zuoberst.
+for (const route of ['/de/portfolio', '/de/belege']) {
+  test(`Klappliste liegt über klebenden Tabellenspalten: ${route}`, async ({ page }) => {
+    await page.goto(route);
+    // /belege baut sich nach dem load-Event noch auf: Ohne networkidle und
+    // Wiederholung liefe das Scrollen ins Leere, und der Test bestünde auch
+    // auf dem fehlerhaften Stand.
+    await page.waitForLoadState('networkidle');
+    await expect
+      .poll(() => page.evaluate(() => {
+        const main = document.querySelector('main');
+        const th = main?.querySelector('th.sticky');
+        if (!main || !th) return null;
+        main.scrollTop += th.getBoundingClientRect().top - main.getBoundingClientRect().top - 20;
+        return Math.round(th.getBoundingClientRect().top - main.getBoundingClientRect().top);
+      }), { message: `${route}: Tabelle unter das Suchfeld scrollen`, timeout: 15_000 })
+      .toBe(20);
+    await page.getByRole('searchbox').first().fill('Schule');
+    const liste = page.getByRole('listbox').first();
+    await expect(liste.getByRole('option').first()).toBeVisible();
+
+    const verdeckt = await liste.evaluate((lb) => {
+      const rahmen = lb.getBoundingClientRect();
+      return [...lb.querySelectorAll('[role=option]')]
+        .filter((o) => {
+          const r = o.getBoundingClientRect();
+          return r.top >= rahmen.top && r.bottom <= Math.min(rahmen.bottom, window.innerHeight);
+        })
+        .filter((o) => {
+          const r = o.getBoundingClientRect();
+          const hit = document.elementFromPoint(r.x + 10, r.y + r.height / 2);
+          return !hit || !o.contains(hit);
+        })
+        .map((o) => o.textContent?.trim().slice(0, 30));
+    });
+    expect(verdeckt, 'Vorschläge unter der Tabelle').toEqual([]);
+  });
+}
