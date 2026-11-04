@@ -510,7 +510,7 @@
     "label": "Outils du diagramme",
     "groupLayout": "Disposition",
     "radial": "Radiale",
-    "force": "Gravitation",
+    "force": "Par groupes",
     "groupView": "Affichage",
     "reset": "Réinitialiser",
     "resetLabel": "Réinitialiser : annuler la sélection et revenir à la vue de départ",
