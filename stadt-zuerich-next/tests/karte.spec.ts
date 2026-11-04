@@ -12,6 +12,9 @@ async function oeffneKarte(page: Page) {
   await page.goto('/de/territory');
   const panel = page.getByRole('region', { name: 'Standorte' });
   await expect(panel).toBeVisible({ timeout: 15_000 });
+  // Erst wenn Marker stehen, sind die Daten geladen; davor zeigt das
+  // Abzeichen kurz «Demodaten» ohne Stand und Quelle.
+  await expect(page.locator('.leaflet-marker-icon').first()).toBeVisible({ timeout: 15_000 });
   return panel;
 }
 
@@ -29,12 +32,20 @@ test.describe('Standorte-Panel auf dem Handy', () => {
     await expect(panel.getByText(/^(Publiziert|Demodaten)$/)).toBeVisible();
     const zu = (await panel.boundingBox())!;
     expect(zu.height, 'Höhe zugeklappt').toBeLessThanOrEqual(110);
+    // Zugeklappt zeigt das Abzeichen nur den Status, Stand und Quelle erst
+    // aufgeklappt — so bleibt das Panel schmal. (Bei Demodaten gibt es
+    // weder Stand noch Quelle.)
+    const details = panel.locator('span', { hasText: /^· / });
+    const publiziert = await panel.getByText('Publiziert', { exact: true }).isVisible();
+    if (publiziert) await expect(details.first()).toBeHidden();
+    expect(zu.width, 'Breite zugeklappt').toBeLessThanOrEqual(280);
 
     // Aufgeklappt: Schalter bedienbar, Zähler folgt der Auswahl.
     await knopf.click();
     await expect(knopf).toHaveAttribute('aria-expanded', 'true');
     await expect(schulen).toBeVisible();
     await expect(schulen).toBeChecked();
+    if (publiziert) await expect(details.first()).toBeVisible();
     await panel.getByRole('checkbox', { name: 'Entsorgung' }).check();
     await expect(panel.getByRole('button', { name: /^Kategorien \(2\)/ })).toBeVisible();
 

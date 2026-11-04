@@ -31,6 +31,7 @@ export default function DataQualityBadge({
   stand,
   quelle,
   hinweis,
+  kompakt = false,
   className = '',
 }: {
   status: DataQualityStatus;
@@ -40,9 +41,14 @@ export default function DataQualityBadge({
   quelle?: string;
   /** Zusätzlicher Hinweis (erscheint als Tooltip + Untertext) */
   hinweis?: string;
+  /** Unter sm nur der Status, Stand und Quelle erst ab sm — für knappen
+   *  Platz, z. B. ein zugeklapptes Panel auf dem Handy. Der Status selbst
+   *  bleibt immer sichtbar, der Tooltip trägt weiterhin alles. */
+  kompakt?: boolean;
   className?: string;
 }) {
   const meta = STATUS_META[status];
+  const detail = kompakt ? 'font-normal hidden sm:inline' : 'font-normal';
   const tooltipParts = [
     `Status: ${meta.label}`,
     stand ? `Stand: ${stand}` : null,
@@ -63,8 +69,8 @@ export default function DataQualityBadge({
       <span>{meta.label}</span>
       {/* font-normal (statt font-medium) de-emphasiert; KEIN opacity, da das den
           Kontrast unter WCAG 2 AA drückte (grün auf grün ~3.5:1). */}
-      {stand && <span className="font-normal">· {stand}</span>}
-      {quelle && <span className="font-normal">· {quelle}</span>}
+      {stand && <span className={detail}>· {stand}</span>}
+      {quelle && <span className={detail}>· {quelle}</span>}
     </span>
   );
 }

@@ -284,14 +284,16 @@ export default function TerritoryMap() {
             Demodaten zeigen, darf nicht hinter einem Klick liegen. */}
         <div className={panelOffen ? 'mb-4' : 'sm:mb-4'}>
           {shownData.length === 0 ? (
-            <DataQualityBadge status="demo" hinweis={t('noLayer')} />
+            <DataQualityBadge status="demo" hinweis={t('noLayer')} kompakt={!panelOffen} />
           ) : anyDemo ? (
             <DataQualityBadge
+              kompakt={!panelOffen}
               status="demo"
               hinweis="Mindestens ein sichtbarer Layer zeigt zufällig generierte Standorte – keine echten Verwaltungsdaten. Mit `npm run data:fetch-geo` durch ODZ-Geodaten ersetzen."
             />
           ) : (
             <DataQualityBadge
+              kompakt={!panelOffen}
               status="publiziert"
               quelle={publishedSample?.attribution ?? 'Open Data Zürich'}
               stand={publishedSample?.stand}
