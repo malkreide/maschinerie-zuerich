@@ -248,9 +248,13 @@ export default function TerritoryMap() {
   const publishedSample = shownData.find((d) => !d.demo);
 
   return (
-    <div className="relative w-full h-[calc(100vh-3.5rem)] mt-14">
-      {/* Control Panel overlay */}
-      <div className="absolute top-4 right-4 z-[400] bg-white dark:bg-[var(--color-panel)] p-4 rounded-xl shadow-xl border border-[var(--color-line)] w-72">
+    // isolate: eigener Stapelkontext. Leaflet stapelt Kacheln und Marker mit
+    // z-index 200–700; ohne ihn lägen sie über dem globalen Suchfeld (z-9).
+    <div className="relative isolate w-full h-[calc(100vh-3.5rem)] mt-14">
+      {/* Control Panel overlay — auf dem Handy unter dem Suchfeld (bis 110px).
+          z-[1000]: über Leaflets Ebenen (bis 700); mit z-[400] lag die
+          Kartenebene darüber und verdeckte Ebenen-Schalter und Demo-Hinweis. */}
+      <div className="absolute top-16 sm:top-4 right-4 z-[1000] bg-[var(--color-panel)] p-4 rounded-xl shadow-xl border border-[var(--color-line)] w-72">
         <h2 className="text-sm font-semibold mb-2">{t('title')}</h2>
         <p className="text-xs text-[var(--color-mute)] mb-2">{t('intro')}</p>
         <div className="mb-4">
