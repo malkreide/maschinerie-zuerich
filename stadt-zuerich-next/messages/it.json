@@ -73,6 +73,7 @@
   "Territory": {
     "title": "Sedi",
     "intro": "Sedi cittadine sulla mappa. Scegli una categoria.",
+    "toggleLayers": "Categorie ({count})",
     "layerSchools": "Strutture scolastiche",
     "layerRecycling": "Smaltimento rifiuti",
     "layerPlaygrounds": "Parchi giochi",

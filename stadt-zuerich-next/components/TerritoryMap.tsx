@@ -189,6 +189,9 @@ export default function TerritoryMap() {
     return new Set<LayerId>([initial]);
   });
   const [layerData, setLayerData] = useState<Partial<Record<LayerId, LayerData>>>({});
+  // Handy: Panel startet zugeklappt (Titel, Datenqualität, Knopf), sonst
+  // deckt es den grössten Teil der Karte ab. Ab sm immer offen (sm:block).
+  const [panelOffen, setPanelOffen] = useState(false);
 
   // Aktive Layer laden (gecacht — bereits geladene werden nicht erneut geholt).
   useEffect(() => {
@@ -260,10 +263,26 @@ export default function TerritoryMap() {
           in GraphView (top-[124px] sm:top-[64px]). bg-[var(--color-panel)]
           statt bg-white dark:…: dark: folgt in Tailwind v4 dem System-Theme,
           nicht dem Theme-Schalter der App (html.dark). */}
-      <div className="absolute top-[68px] sm:top-4 right-4 z-[1000] bg-[var(--color-panel)] p-4 rounded-xl shadow-xl border border-[var(--color-line)] w-72">
-        <h2 className="text-sm font-semibold mb-2">{t('title')}</h2>
-        <p className="text-xs text-[var(--color-mute)] mb-2">{t('intro')}</p>
-        <div className="mb-4">
+      <section
+        aria-labelledby="territory-titel"
+        className={`absolute top-[68px] sm:top-4 right-4 z-[1000] bg-[var(--color-panel)] p-3 sm:p-4 rounded-xl shadow-xl border border-[var(--color-line)] ${panelOffen ? 'w-72' : 'w-auto max-w-[calc(100vw-2rem)]'} sm:w-72`}
+      >
+        <div className="flex items-center justify-between gap-3 mb-2">
+          <h2 id="territory-titel" className="text-sm font-semibold">{t('title')}</h2>
+          <button
+            type="button"
+            className="sm:hidden text-xs px-2 py-1 rounded border border-[var(--color-line)] text-[var(--color-ink)]"
+            aria-expanded={panelOffen}
+            aria-controls="territory-intro territory-ebenen"
+            onClick={() => setPanelOffen((o) => !o)}
+          >
+            {t('toggleLayers', { count: activeLayers.size })} <span aria-hidden="true">{panelOffen ? '▴' : '▾'}</span>
+          </button>
+        </div>
+        <p id="territory-intro" className={`${panelOffen ? 'block' : 'hidden'} sm:block text-xs text-[var(--color-mute)] mb-2`}>{t('intro')}</p>
+        {/* Datenqualität bleibt auch zugeklappt sichtbar: Ob die Marker
+            Demodaten zeigen, darf nicht hinter einem Klick liegen. */}
+        <div className={panelOffen ? 'mb-4' : 'sm:mb-4'}>
           {shownData.length === 0 ? (
             <DataQualityBadge status="demo" hinweis={t('noLayer')} />
           ) : anyDemo ? (
@@ -281,7 +300,7 @@ export default function TerritoryMap() {
           )}
         </div>
 
-        <fieldset className="space-y-2">
+        <fieldset id="territory-ebenen" className={`${panelOffen ? 'block' : 'hidden'} sm:block space-y-2`}>
           <legend className="sr-only">{t('title')}</legend>
           {LAYER_IDS.map((id) => (
             <label key={id} className="flex items-center gap-2 text-sm cursor-pointer">
@@ -302,7 +321,7 @@ export default function TerritoryMap() {
             </label>
           ))}
         </fieldset>
-      </div>
+      </section>
 
       <MapContainer
         center={[47.3769, 8.5417]}

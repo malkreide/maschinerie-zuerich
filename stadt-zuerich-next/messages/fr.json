@@ -73,6 +73,7 @@
   "Territory": {
     "title": "Emplacements",
     "intro": "Emplacements municipaux sur la carte. Choisissez une catégorie.",
+    "toggleLayers": "Catégories ({count})",
     "layerSchools": "Établissements scolaires",
     "layerRecycling": "Déchets",
     "layerPlaygrounds": "Aires de jeux",

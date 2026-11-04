@@ -304,7 +304,7 @@ for (const dunkel of [false, true]) {
     // Das Panel liegt über der Karte: axe stuft seinen Kontrast als «nicht
     // bestimmbar» ein (siehe kontrastVerstoesse).
     const kontrast = await kontrastVerstoesse(page, [
-      { selector: 'main div:has(> h2)', wo: 'Standorte-Panel', texte: ':scope > h2, :scope > p, label' },
+      { selector: 'section[aria-labelledby="territory-titel"]', wo: 'Standorte-Panel', texte: 'h2, p, label' },
     ]);
     expect(kontrast, `Kontrast im Standorte-Panel (${label})`).toEqual([]);
   });

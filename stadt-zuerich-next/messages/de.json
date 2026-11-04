@@ -73,6 +73,7 @@
   "Territory": {
     "title": "Standorte",
     "intro": "Städtische Standorte auf der Karte. Wählen Sie eine Kategorie.",
+    "toggleLayers": "Kategorien ({count})",
     "layerSchools": "Schulanlagen",
     "layerRecycling": "Entsorgung",
     "layerPlaygrounds": "Spielplätze",

@@ -73,6 +73,7 @@
   "Territory": {
     "title": "Standorte",
     "intro": "Orte der Stadt auf der Karte. Wählen Sie eine Gruppe.",
+    "toggleLayers": "Gruppen ({count})",
     "layerSchools": "Schulen",
     "layerRecycling": "Entsorgung",
     "layerPlaygrounds": "Spielplätze",
