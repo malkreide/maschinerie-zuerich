@@ -248,9 +248,19 @@ export default function TerritoryMap() {
   const publishedSample = shownData.find((d) => !d.demo);
 
   return (
-    <div className="relative w-full h-[calc(100vh-3.5rem)] mt-14">
-      {/* Control Panel overlay */}
-      <div className="absolute top-4 right-4 z-[400] bg-white dark:bg-[var(--color-panel)] p-4 rounded-xl shadow-xl border border-[var(--color-line)] w-72">
+    // isolate: Leaflet stapelt seine Ebenen mit z-index 200–1000, die
+    // Kartenebene (.leaflet-map-pane, z-index 400 plus transform) bildet einen
+    // eigenen Stapelkontext. Ohne Isolation konkurrierte sie auf Seitenebene
+    // und übermalte das globale Suchfeld (z-[9]) und das Panel unten. Mit
+    // isolate bleibt die Karte darunter, wie in app/globals.css beschrieben.
+    <div className="relative isolate w-full h-[calc(100vh-3.5rem)] mt-14">
+      {/* Control Panel overlay. z-[1000] wie die Leaflet-Controls, damit es
+          über den Kartenebenen liegt. Auf dem Handy reicht das Suchfeld über
+          die ganze Breite (bis 110px): Panel darunter, wie die Werkzeugleiste
+          in GraphView (top-[124px] sm:top-[64px]). bg-[var(--color-panel)]
+          statt bg-white dark:…: dark: folgt in Tailwind v4 dem System-Theme,
+          nicht dem Theme-Schalter der App (html.dark). */}
+      <div className="absolute top-[68px] sm:top-4 right-4 z-[1000] bg-[var(--color-panel)] p-4 rounded-xl shadow-xl border border-[var(--color-line)] w-72">
         <h2 className="text-sm font-semibold mb-2">{t('title')}</h2>
         <p className="text-xs text-[var(--color-mute)] mb-2">{t('intro')}</p>
         <div className="mb-4">
