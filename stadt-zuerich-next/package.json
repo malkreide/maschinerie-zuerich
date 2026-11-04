@@ -5,7 +5,7 @@
   "license": "MIT",
   "author": "Hayal Oezkan",
   "engines": {
-    "node": ">=24.22.1"
+    "node": ">=24.22.2"
   },
   "scripts": {
     "dev": "next dev",
@@ -89,6 +89,6 @@
     "postcss": "^8.5.32",
     "tailwindcss": "^4.3.3",
     "typescript": "^5.9.3",
-    "unpdf": "^1.9.1"
+    "unpdf": "^2.1.0"
   }
 }

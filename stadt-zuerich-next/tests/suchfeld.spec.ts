@@ -8,7 +8,8 @@ import { test, expect, type Page } from '@playwright/test';
 //
 // Geprüft wird das oberste sichtbare Inhaltselement jeder Seite: Es darf sich
 // nicht mit dem Suchfeld überschneiden. Organigramm (Desktop) und Karte liegen
-// bewusst unter dem Suchfeld und sind nicht dabei.
+// bewusst unter dem Suchfeld und sind hier nicht dabei; für die Karte prüft der
+// Block am Ende, dass sie Suchfeld und Panel nicht übermalt.
 
 const ROUTES = [
   '/de/portfolio',
@@ -73,77 +74,44 @@ test.describe('Suchfeld verdeckt nichts (Handy-Startseite)', () => {
   });
 });
 
-// Karte (/territory): Hier liegt das Suchfeld bewusst über der Karte. Leaflet
-// stapelt Kacheln und Marker mit z-index 200–700; ohne eigenen Stapelkontext
-// lagen sie über dem Suchfeld (z-9), es war auf Desktop und Handy unsichtbar.
-// Ebenso lag die Kartenebene über dem Standorte-Panel (Ebenen-Schalter,
-// Demo-Hinweis). Kacheln sind für elementFromPoint unsichtbar
-// (pointer-events: none), Marker nicht: Der Test schiebt darum einen Marker
-// unter den Prüfpunkt und schaut, was dort zuoberst liegt.
-
-type Punkt = { x: number; y: number };
-
-function mitte(b: Box): Punkt {
-  return { x: b.x + b.width / 2, y: b.y + b.height / 2 };
-}
-
-/** Greift die Karte an einem freien Marker und zieht ihn unter `ziel`. */
-async function markerUnter(page: Page, ziel: Punkt) {
-  const marker = page.locator('.leaflet-marker-icon');
-  await expect(marker.first()).toBeVisible({ timeout: 15_000 });
-  // Nur an einem Marker, den nichts verdeckt, greift die Maus die Karte.
-  const i = await page.evaluate(() =>
-    [...document.querySelectorAll('.leaflet-marker-icon')].findIndex((el) => {
-      const r = el.getBoundingClientRect();
-      return r.width > 0 && document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2)?.closest('.leaflet-marker-icon') === el;
-    }),
-  );
-  expect(i, 'ein freier Marker').toBeGreaterThanOrEqual(0);
-  const m = marker.nth(i);
-  const start = mitte((await m.boundingBox())!);
-  await page.mouse.move(start.x, start.y);
-  await page.mouse.down();
-  await page.mouse.move(ziel.x, ziel.y, { steps: 12 });
-  // Ruhen, dann ein letzter Schritt: Leaflet sieht nur noch diesen einen
-  // Punkt und wirft die Karte beim Loslassen nicht weiter (inertia).
-  await page.waitForTimeout(150);
-  await page.mouse.move(ziel.x + 1, ziel.y);
-  await page.mouse.up();
-  await page.waitForTimeout(300);
-  const neu = (await m.boundingBox())!;
-  expect(
-    neu.x <= ziel.x && ziel.x <= neu.x + neu.width && neu.y <= ziel.y && ziel.y <= neu.y + neu.height,
-    'Marker liegt am Prüfpunkt',
-  ).toBe(true);
-}
-
-async function zuoberst(page: Page, punkt: Punkt, selector: string) {
-  return page.evaluate(
-    ({ x, y, selector }) => Boolean(document.elementFromPoint(x, y)?.closest(selector)),
-    { ...punkt, selector },
-  );
-}
-
+// Die Karte (/territory) liegt bewusst unter dem Suchfeld, ihr Bedienpanel
+// «Standorte» darüber. Bis 2026-11 übermalte die Leaflet-Kartenebene beides:
+// .leaflet-map-pane bildet mit z-index 400 einen eigenen Stapelkontext auf
+// Seitenebene. Suchfeld und Panel waren unsichtbar, aber anklickbar, weil die
+// Kacheln pointer-events: none tragen — ein Box-Vergleich wie oben sieht das
+// nicht. Darum hier mit pointer-events überall an: Dann trifft
+// elementFromPoint, was zuoberst gemalt ist.
 for (const vp of VIEWPORTS) {
-  test.describe(`Karte: Suchfeld und Panel liegen oben (${vp.name})`, () => {
+  test.describe(`Karte übermalt nichts (${vp.name})`, () => {
     test.use({ viewport: { width: vp.width, height: vp.height } });
 
-    test('Suchfeld', async ({ page }) => {
-      // Zugleich: Das Standorte-Panel liegt nicht unter dem Suchfeld.
-      await pruefe(page, '/de/territory');
-      const ziel = mitte((await page.getByRole('search').first().boundingBox())!);
-      await markerUnter(page, ziel);
-      expect(await zuoberst(page, ziel, '[role="search"]'), 'zuoberst liegt das Suchfeld').toBe(true);
-    });
-
-    test('Standorte-Panel', async ({ page }) => {
+    test('/de/territory', async ({ page }) => {
       await page.goto('/de/territory');
       await page.waitForLoadState('networkidle');
-      const titel = page.locator('main h2').first();
-      await expect(titel).toBeVisible({ timeout: 15_000 });
-      const ziel = mitte((await titel.boundingBox())!);
-      await markerUnter(page, ziel);
-      expect(await zuoberst(page, ziel, 'main h2'), 'zuoberst liegt das Panel').toBe(true);
+      // Ohne Kachel an der Stelle wäre «oben» trivial erfüllt: erst messen,
+      // wenn die Kartenebene steht (geladene oder fehlgeschlagene Kacheln
+      // bekommen beide leaflet-tile-loaded und werden gemalt).
+      await expect(page.locator('.leaflet-tile-loaded').first()).toBeAttached({ timeout: 15_000 });
+      await page.addStyleTag({ content: '* { pointer-events: auto !important; }' });
+
+      const suche = page.getByRole('search').first();
+      const panelTitel = page.locator('main h2').first();
+      const zuoberst = (el: Element) => {
+        const b = el.getBoundingClientRect();
+        const hit = document.elementFromPoint(b.x + b.width / 2, b.y + b.height / 2);
+        return !!hit && el.contains(hit);
+      };
+
+      await expect
+        .poll(async () => {
+          const [s, p] = [await suche.boundingBox(), await panelTitel.boundingBox()];
+          if (!s || !p) return 'nicht messbar';
+          if (!(await suche.evaluate(zuoberst))) return 'Karte übermalt das Suchfeld';
+          if (!(await panelTitel.evaluate(zuoberst))) return 'Karte übermalt das Panel';
+          if (ueberschneiden(s, p)) return 'Panel liegt unter dem Suchfeld';
+          return 'frei';
+        }, { message: '/de/territory', timeout: 15_000 })
+        .toBe('frei');
     });
   });
 }
