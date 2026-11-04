@@ -36,12 +36,21 @@ export default function BudgetSummary({
 
   return (
     <aside
-      // Floating top-center, knapp unter dem Header. pointer-events-none auf
-      // das äussere div verhindert, dass die Pille Klicks auf den Graphen
+      // pointer-events-none verhindert, dass die Pille Klicks auf den Graphen
       // schluckt; die Inhalte bleiben aber selektierbar (text-Auswahl).
+      //
+      // Position: Die Startseite rendert das Banner nur ab 640px (Container
+      // «hidden sm:block» in page.tsx). Oben mittig liegt es zwischen Suchfeld
+      // (links, bis 332px) und Werkzeugleiste (rechts). Erst ab 1100px ist dort
+      // in allen Sprachen Platz (längste Variante: ls, 419px breit). Darunter
+      // lag es unter dem Suchfeld und bis 768px in der Werkzeugleiste. Darum
+      // unter 1100px links unter dem Suchfeld (top-unter-suche), schmal und
+      // mehrzeilig; die Legende beginnt dort erst darunter (Legend.tsx).
+      // Umbruchpunkt als min-[68.75rem] (= 1100px) in rem: Mit px sortiert
+      // Tailwind die Media Query vor sm (40rem), und sm:-Klassen gewinnen.
       role="complementary"
       aria-label={t('ariaLabel')}
-      className="fixed bottom-[48px] sm:bottom-auto sm:top-[64px] left-1/2 -translate-x-1/2 z-[8] pointer-events-none flex flex-wrap sm:flex-nowrap items-center justify-center gap-1.5 sm:gap-3 px-3.5 py-1.5 rounded-lg sm:rounded-full bg-[var(--color-panel)]/90 backdrop-blur-sm border border-[var(--color-line)] shadow text-[11px] w-[calc(100vw-24px)] sm:w-auto sm:max-w-[90vw]"
+      className="fixed left-3 top-unter-suche max-w-[236px] flex-wrap justify-start gap-x-3 gap-y-0.5 rounded-lg min-[68.75rem]:left-1/2 min-[68.75rem]:top-[64px] min-[68.75rem]:-translate-x-1/2 min-[68.75rem]:max-w-[90vw] min-[68.75rem]:flex-nowrap min-[68.75rem]:justify-center min-[68.75rem]:gap-3 min-[68.75rem]:rounded-full z-[8] pointer-events-none flex items-center px-3.5 py-1.5 bg-[var(--color-panel)]/90 backdrop-blur-sm border border-[var(--color-line)] shadow text-[11px]"
     >
       <span className="text-[var(--color-mute)] uppercase tracking-wider font-semibold whitespace-nowrap">
         {sampleJahr ? t('eyebrowYear', { jahr: sampleJahr }) : t('eyebrow')}
@@ -65,7 +74,9 @@ function Stat({
   title: string;
 }) {
   return (
-    <span title={title} className="flex items-baseline gap-1.5 whitespace-nowrap">
+    // flex-wrap: Im schmalen Banner (unter 1100px) bricht die Pro-Kopf-Zahl
+    // als Ganzes auf eine eigene Zeile um; die Teile selbst bleiben einzeilig.
+    <span title={title} className="flex flex-wrap min-[68.75rem]:flex-nowrap items-baseline gap-x-1.5 whitespace-nowrap">
       <span className="text-[var(--color-mute)]">{label}</span>
       <strong className="text-[var(--color-ink)] tabular-nums">{value}</strong>
       {perCapita && (
