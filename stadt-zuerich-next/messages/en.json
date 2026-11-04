@@ -510,7 +510,7 @@
     "label": "Diagram tools",
     "groupLayout": "Layout",
     "radial": "Radial",
-    "force": "Force",
+    "force": "Grouped",
     "groupView": "View",
     "reset": "Reset",
     "resetLabel": "Reset: clear the selection and show the starting view",
