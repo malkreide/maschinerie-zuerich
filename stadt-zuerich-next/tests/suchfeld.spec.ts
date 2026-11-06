@@ -263,7 +263,8 @@ for (const route of ['/de/portfolio', '/de/belege']) {
 // Breiten und in niedrigen Fenstern, wo die Legende von unten heranwächst.
 const SPRACHEN = { de, en, fr, it, ls };
 const BANNER_FENSTER: [number, number][] = [
-  [640, 800], [768, 800], [1024, 800], [1100, 800], [1280, 800], [768, 420], [1024, 420],
+  [640, 800], [768, 800], [1024, 800], [1100, 800], [1199, 800], [1200, 800], [1280, 800],
+  [768, 420], [1024, 420],
 ];
 
 for (const [sprache, m] of Object.entries(SPRACHEN)) {
