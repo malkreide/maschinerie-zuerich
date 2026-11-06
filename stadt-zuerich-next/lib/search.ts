@@ -191,8 +191,13 @@ export function fmtNumber(v: number | null | undefined): string {
   return new Intl.NumberFormat('de-CH', { maximumFractionDigits: 0 }).format(Math.round(v));
 }
 
-export function fmtMio(v: number): string {
-  if (v >= 1e9) return (v / 1e9).toFixed(2) + ' Mrd';
-  if (v >= 1e7) return (v / 1e6).toFixed(0) + ' Mio';
-  return (v / 1e6).toFixed(1) + ' Mio';
+/** Einheiten-Kürzel für fmtMio. Ohne Angabe gelten die deutschen; übersetzte
+ *  Ansichten geben ihre eigenen aus messages/*.json mit (z. B. BudgetSummary). */
+export type MioEinheiten = { mrd: string; mio: string };
+const EINHEITEN_DE: MioEinheiten = { mrd: 'Mrd', mio: 'Mio' };
+
+export function fmtMio(v: number, einheit: MioEinheiten = EINHEITEN_DE): string {
+  if (v >= 1e9) return `${(v / 1e9).toFixed(2)} ${einheit.mrd}`;
+  if (v >= 1e7) return `${(v / 1e6).toFixed(0)} ${einheit.mio}`;
+  return `${(v / 1e6).toFixed(1)} ${einheit.mio}`;
 }
