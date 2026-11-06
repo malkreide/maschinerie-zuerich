@@ -54,6 +54,23 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
   const expandedRef = useRef<Set<string>>(initialExpanded);
   useEffect(() => { expandedRef.current = expanded; }, [expanded]);
 
+  // «Gruppiert» zeigt jedes Departement als Kasten mit seinen Ämtern darin.
+  // Zugeklappt sähe es fast aus wie «Radial» – darum klappt der Wechsel alle
+  // Departemente auf. Zurück auf «Radial» kommt der Stand von vorher wieder,
+  // sonst stünde dort ein überfülltes Rad statt des gewohnten Bildes.
+  const expandedBeforeGroupedRef = useRef<Set<string> | null>(null);
+  const changeLayout = (next: Layout) => {
+    if (next === layout) return;
+    if (next === 'force') {
+      expandedBeforeGroupedRef.current = expanded;
+      setExpanded(new Set(data.departments.map((d) => d.id)));
+    } else if (expandedBeforeGroupedRef.current) {
+      setExpanded(expandedBeforeGroupedRef.current);
+      expandedBeforeGroupedRef.current = null;
+    }
+    setLayout(next);
+  };
+
   const expandedWithFocus = useMemo<Set<string>>(() => {
     if (!focusId) return expanded;
     const u = data.units.find((x) => x.id === focusId);
@@ -193,6 +210,7 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
     const handleReset = () => {
       const cy = cyRef.current;
       if (!cy) return;
+      expandedBeforeGroupedRef.current = null;
       setExpanded(new Set());
       suppressFocusEffectRef.current = true;
       focusIdRef.current = null;
@@ -227,7 +245,10 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
     if (!cy) return;
     const target = buildElements(data, expandedWithFocus, locale, layout);
     syncElements(cy, target);
-    const layoutConfig = cy.layout({ ...layoutOptions(layout, true), fit: true } as LayoutOptions);
+    const layoutConfig = cy.layout({
+      ...layoutOptions(layout, true, { w: cy.width(), h: cy.height() }),
+      fit: true,
+    } as LayoutOptions);
     
     const fid = focusIdRef.current;
     if (fid && !suppressFocusEffectRef.current) {
@@ -320,10 +341,11 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
           });
         }}
         layout={layout}
-        onLayoutChange={setLayout}
+        onLayoutChange={changeLayout}
         onCenter={() => {
           const cy = cyRef.current;
           if (!cy) return;
+          expandedBeforeGroupedRef.current = null;
           setExpanded(new Set());
           suppressFocusEffectRef.current = true;
           focusIdRef.current = null;
@@ -606,7 +628,7 @@ function syncElements(cy: Core, target: ElementDefinition[]): void {
   });
 }
 
-function layoutOptions(name: Layout, animate: boolean): LayoutOptions {
+function layoutOptions(name: Layout, animate: boolean, viewport?: { w: number; h: number }): LayoutOptions {
   if (name === 'force') {
     return {
       name: 'fcose', quality: 'proof', animate, animationDuration: 800,
@@ -623,6 +645,13 @@ function layoutOptions(name: Layout, animate: boolean): LayoutOptions {
     spacingFactor: 0.95,
     fit: true, padding: 40,
     avoidOverlap: true, animate, animationDuration: 600,
+    // Ohne boundingBox nimmt breadthfirst den aktuellen Bildausschnitt
+    // (cy.extent()) als Rahmen für den Ring. Nach «Gruppiert» ist weit
+    // herausgezoomt: Der Ring würde fünfmal zu gross, und nach dem Einpassen
+    // wären die Departemente winzig. Ein fester Rahmen in Bildschirmgrösse
+    // gibt immer denselben Ring wie beim ersten Laden (Zoom 1, keine
+    // Verschiebung – dort ist der Bildausschnitt genau dieser Rahmen).
+    ...(viewport ? { boundingBox: { x1: 0, y1: 0, w: viewport.w, h: viewport.h } } : {}),
   } as unknown as LayoutOptions;
 }
 
