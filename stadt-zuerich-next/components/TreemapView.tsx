@@ -6,7 +6,7 @@ import { hierarchy, treemap, type HierarchyRectangularNode } from 'd3-hierarchy'
 import { scaleOrdinal } from 'd3-scale';
 import { Link } from '@/i18n/navigation';
 import type { StadtData, Department, Unit } from '@/types/stadt';
-import { fmtMio, fmtNumber } from '@/lib/search';
+import { fmtMio, fmtNumber, type MioEinheiten } from '@/lib/search';
 import { computeTotalAufwand, perCapitaCHF, budgetSharePercent } from '@/lib/budget-context';
 import { city } from '@/config/city.config';
 
@@ -37,6 +37,10 @@ export default function TreemapView({
   rootName: string;
 }) {
   const t = useTranslations('Treemap');
+  // Einheiten je Sprache (Mio/m/mio/Millionen …) für Summe, Departements-
+  // köpfe und Kacheln: bis 2026-11 fest auf Deutsch aus fmtMio.
+  const tE = useTranslations('Einheiten');
+  const einheiten: MioEinheiten = { mrd: tE('mrd'), mio: tE('mio') };
   const hostRef = useRef<HTMLDivElement>(null);
   const [focus, setFocus] = useState<string | null>(null);
   const [tooltip, setTooltip] = useState<{
@@ -87,7 +91,7 @@ export default function TreemapView({
       <h2 className="text-lg font-semibold m-0 mb-1 sm:pl-[332px]">{t('title')}</h2>
       <p className="text-[13px] text-[var(--color-mute)] mb-3 sm:pl-[332px]">
         {t('intro', { jahr: sampleJahr })}
-        {root && <strong>{t('total', { sum: fmtMio(root.value ?? 0) })}</strong>}
+        {root && <strong>{t('total', { sum: fmtMio(root.value ?? 0, einheiten) })}</strong>}
         {/* Pro-Kopf-Einordnung der Gesamtsumme — macht aus "1.4 Mrd CHF"
             (für die meisten abstrakt) eine greifbare Pro-Kopf-Zahl. */}
         {root && (() => {
@@ -170,7 +174,7 @@ export default function TreemapView({
           height={size.h}
           onClick={(e) => { if (e.target === e.currentTarget) setFocus(null); }}
         >
-          {root && renderTree(root, colorOf, !focus, setFocus, setTooltip, setMobileSelected)}
+          {root && renderTree(root, colorOf, !focus, setFocus, setTooltip, setMobileSelected, einheiten)}
           {focus && (
             <g style={{ cursor: 'pointer' }} onClick={() => setFocus(null)}
                role="button" tabIndex={0} aria-label={t('back')}
@@ -326,7 +330,8 @@ function renderTree(
   showHeaders: boolean,
   onDepClick: (id: string) => void,
   setTooltip: (t: { x: number; y: number; node: Datum; total: number } | null) => void,
-  setMobileSelected: (t: { node: Datum; total: number } | null) => void
+  setMobileSelected: (t: { node: Datum; total: number } | null) => void,
+  einheiten: MioEinheiten,
 ) {
   const total = root.value ?? 1;
   return (
@@ -340,7 +345,7 @@ function renderTree(
         // WCAG 2.5.3 «Label in Name»: der zugängliche Name beginnt mit dem
         // sichtbaren Text (Kürzel, Betrag), damit Sprachsteuerung die Kachel
         // per Zuruf des Sichtbaren auslöst.
-        const depSichtbar = labelDep(d, d.value ?? 0);
+        const depSichtbar = labelDep(d, d.value ?? 0, einheiten);
         const depAriaLabel = !depSichtbar
           ? `Departement ${d.data.name} öffnen`
           : depSichtbar.startsWith(`${d.data.name} `)
@@ -366,21 +371,22 @@ function renderTree(
           <rect x={d.x0} y={d.y0} width={wDep} height={22}
                 fill={colorOf(d.data.id ?? '')} opacity={1} />
           <text x={d.x0 + 6} y={d.y0 + 15} className="dep-label" clipPath={`url(#${clipId})`}>
-            {labelDep(d, d.value ?? 0)}
+            {labelDep(d, d.value ?? 0, einheiten)}
           </text>
         </g>
         );
       })}
       {root.leaves().map((d, i) => (
         <Leaf key={d.data.id ?? `${d.x0}-${d.y0}-${i}`} d={d} colorOf={colorOf}
-              total={total} setTooltip={setTooltip} onDepClick={onDepClick} setMobileSelected={setMobileSelected} />
+              total={total} setTooltip={setTooltip} onDepClick={onDepClick} setMobileSelected={setMobileSelected}
+              einheiten={einheiten} />
       ))}
     </>
   );
 }
 
 function Leaf({
-  d, colorOf, total, setTooltip, onDepClick, setMobileSelected,
+  d, colorOf, total, setTooltip, onDepClick, setMobileSelected, einheiten,
 }: {
   d: HierarchyRectangularNode<Datum>;
   colorOf: (key: string) => string;
@@ -388,13 +394,14 @@ function Leaf({
   setTooltip: (t: { x: number; y: number; node: Datum; total: number } | null) => void;
   onDepClick: (id: string) => void;
   setMobileSelected: (t: { node: Datum; total: number } | null) => void;
+  einheiten: MioEinheiten;
 }) {
   const w = d.x1 - d.x0;
   const h = d.y1 - d.y0;
   const color = colorOf(d.data.depId ?? '');
 
   const kurz = d.data.kurz || d.data.name.substring(0, 4);
-  const budgetStr = fmtMio(d.value ?? 0);
+  const budgetStr = fmtMio(d.value ?? 0, einheiten);
 
   let line1 = '';
   let line2 = '';
@@ -522,10 +529,10 @@ function Leaf({
   );
 }
 
-function labelDep(d: HierarchyRectangularNode<Datum>, value: number) {
+function labelDep(d: HierarchyRectangularNode<Datum>, value: number, einheiten: MioEinheiten) {
   const w = d.x1 - d.x0;
   if (w < 30) return '';
   if (w < 80) return d.data.id ?? '';
-  if (w < 220) return `${d.data.id} · ${fmtMio(value)}`;
-  return `${d.data.name} · ${fmtMio(value)}`;
+  if (w < 220) return `${d.data.id} · ${fmtMio(value, einheiten)}`;
+  return `${d.data.name} · ${fmtMio(value, einheiten)}`;
 }

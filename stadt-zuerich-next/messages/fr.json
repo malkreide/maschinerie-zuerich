@@ -343,9 +343,11 @@
     "eyebrowYear": "Budget {jahr}",
     "aufwandLabel": "Charges",
     "aufwandTitle": "Charges brutes de la ville — somme des charges de tous les départements ; entre parenthèses, le montant par habitant·e.",
-    "einheitMrd": "mrd",
-    "einheitMio": "mio",
     "proKopf": "(≈ {value} par habitant·e)"
+  },
+  "Einheiten": {
+    "mrd": "mrd",
+    "mio": "mio"
   },
   "Type": {
     "center": "Exécutif",

@@ -192,7 +192,8 @@ export function fmtNumber(v: number | null | undefined): string {
 }
 
 /** Einheiten-Kürzel für fmtMio. Ohne Angabe gelten die deutschen; übersetzte
- *  Ansichten geben ihre eigenen aus messages/*.json mit (z. B. BudgetSummary). */
+ *  Ansichten geben die ihrer Sprache aus messages/*.json mit (Namespace
+ *  «Einheiten»: Budget-Banner, Simulator, Treemap). */
 export type MioEinheiten = { mrd: string; mio: string };
 const EINHEITEN_DE: MioEinheiten = { mrd: 'Mrd', mio: 'Mio' };
 

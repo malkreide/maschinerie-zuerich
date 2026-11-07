@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, type Locator } from '@playwright/test';
 import de from '../messages/de.json' with { type: 'json' };
 import en from '../messages/en.json' with { type: 'json' };
 import fr from '../messages/fr.json' with { type: 'json' };
@@ -101,7 +101,7 @@ for (const [locale, m] of Object.entries({ de, en, fr, it, ls })) {
     await expect(banner).toBeVisible({ timeout: 15_000 });
     const text = (await banner.textContent())?.replace(/\s+/g, ' ') ?? '';
 
-    expect(text, 'Einheit der Milliarden').toContain(` ${b.einheitMrd} CHF`);
+    expect(text, 'Einheit der Milliarden').toContain(` ${m.Einheiten.mrd} CHF`);
     const [vorher, nachher] = b.proKopf.split('{value}');
     expect(text, 'Pro-Kopf-Text').toContain(vorher);
     expect(text, 'Pro-Kopf-Text').toContain(nachher);
@@ -110,4 +110,44 @@ for (const [locale, m] of Object.entries({ de, en, fr, it, ls })) {
       expect(text, 'deutsche Einheit «Mrd»').not.toContain('Mrd');
     }
   });
+}
+
+// Simulator und Treemap (/steuerfranken) formatieren Beträge mit derselben
+// Funktion (fmtMio) und zeigten bis 2026-11 ebenfalls «Mrd»/«Mio» in allen
+// Sprachen: in Summen, Departementsköpfen, Kacheln und Schiebereglern. Geprüft
+// je Sprache: Die Einheiten aus messages/*.json (Namespace «Einheiten»)
+// erscheinen, ausser auf Deutsch kein «Mrd» und kein «Mio».
+const DEUTSCHE_EINHEIT = /\b(?:Mrd|Mio)\b/;
+const nachZahl = (einheit: string) =>
+  new RegExp(`\\d ${einheit.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`);
+// Textknoten einzeln, mit Leerzeichen verbunden: textContent klebt die
+// SVG-Texte der Treemap aneinander («657 MioTED»), dann greift \b nicht —
+// weder für die gesuchte noch für die verbotene Einheit.
+const textVon = (el: Locator) => el.evaluate((root) => {
+  const teile: string[] = [];
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+  for (let n = walker.nextNode(); n; n = walker.nextNode()) teile.push(n.textContent ?? '');
+  return teile.join(' ').replace(/\s+/g, ' ');
+});
+
+for (const [locale, m] of Object.entries({ de, en, fr, it, ls })) {
+  for (const seite of ['simulator', 'steuerfranken']) {
+    test(`i18n: Einheiten auf /${locale}/${seite}`, async ({ page }) => {
+      const e = m.Einheiten;
+      await page.goto(`/${locale}/${seite}`);
+      const main = page.locator('main').first();
+      // Die Treemap lädt erst nach der Hydration (TreemapLoader): warten, bis
+      // Milliarden- und Millionenbeträge stehen.
+      await expect
+        .poll(async () => {
+          const text = await textVon(main);
+          return nachZahl(e.mrd).test(text) && nachZahl(e.mio).test(text);
+        }, { message: `«${e.mrd}» und «${e.mio}» nach einer Zahl auf /${locale}/${seite}`, timeout: 15_000 })
+        .toBe(true);
+      if (locale !== 'de') {
+        const text = await textVon(main);
+        expect(text.match(DEUTSCHE_EINHEIT)?.[0], 'deutsche Einheit').toBeUndefined();
+      }
+    });
+  }
 }
