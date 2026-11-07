@@ -124,11 +124,11 @@
     {
       "reference_id": 8,
       "label": {
-        "de": "Finderlohn-Anspruch bei Funden in einem Unternehmen oder Fahrzeug",
-        "en": "Finder's reward claim for items found in a company or vehicle",
-        "fr": "Droit à la récompense pour les objets trouvés dans une entreprise ou un véhicule",
-        "it": "Diritto alla mancia di ritrovamento per oggetti trovati in un'azienda o in un veicolo",
-        "ls": "Ob Sie Finder-Lohn bekommen, wenn Sie etwas in einer Firma oder in einem Fahrzeug finden."
+        "de": "Kein Finderlohn für das Transportunternehmen (Funde in Fahrzeugen oder auf seinem Gebiet)",
+        "en": "No finder's reward for the transport company (items found in its vehicles or on its premises)",
+        "fr": "Pas de récompense pour l'entreprise de transport (objets trouvés dans ses véhicules ou sur son domaine)",
+        "it": "Nessuna mancia di ritrovamento per l'impresa di trasporto (oggetti trovati nei suoi veicoli o nella sua area)",
+        "ls": "Findet die Verkehrs-Firma etwas im Fahrzeug, bekommt sie keinen Finder-Lohn."
       },
       "source_url": "https://www.stadt-zuerich.ch/vbz/de/beratung-service/fundbuero/rechtsgrundlage.html",
       "source_quote": "Das Unternehmen wird als Finderin betrachtet, kann aber keinen Finderlohn beanspruchen.",
@@ -258,10 +258,10 @@
       "step_id": 5,
       "actor": "person",
       "label": {
-        "de": "Fund gemeldet (ggf. Finderlohn-Anspruch)",
-        "en": "Found item reported (possible finder's reward)",
-        "fr": "Objet trouvé annoncé (éventuel droit à la récompense)",
-        "it": "Oggetto trovato segnalato (eventuale diritto alla mancia di ritrovamento)",
+        "de": "Fund gemeldet",
+        "en": "Found item reported",
+        "fr": "Objet trouvé annoncé",
+        "it": "Oggetto trovato segnalato",
         "ls": "Fertig: Die Sache ist gemeldet"
       },
       "depends_on": [
@@ -508,7 +508,7 @@
   },
   "meta": {
     "erstellt": "2026-06-06",
-    "aktualisiert": "2026-06-10",
+    "aktualisiert": "2026-11-07",
     "maintainer": "malkreide",
     "lizenz": "CC-BY-4.0",
     "herkunft": {
