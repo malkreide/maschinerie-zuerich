@@ -87,3 +87,27 @@ for (const [locale, m] of Object.entries({ de, en, fr, it, ls })) {
     }
   });
 }
+
+// Budget-Banner der Startseite (components/BudgetSummary.tsx): Die Einheiten
+// standen bis 2026-11 fest auf Deutsch im Code — «10.97 Mrd CHF (≈ 24'816
+// CHF/Einw.)» auch in en/fr/it/ls. Ein vergessener deutscher Text ist kein
+// roher Schlüssel und fällt oben nicht auf; darum hier je Sprache die
+// Einheiten aus messages/*.json, und ausser auf Deutsch keine deutschen Reste.
+for (const [locale, m] of Object.entries({ de, en, fr, it, ls })) {
+  test(`i18n: Einheiten im Budget-Banner auf /${locale}`, async ({ page }) => {
+    const b = m.BudgetSummary;
+    await page.goto(`/${locale}`);
+    const banner = page.getByRole('complementary', { name: b.ariaLabel, exact: true });
+    await expect(banner).toBeVisible({ timeout: 15_000 });
+    const text = (await banner.textContent())?.replace(/\s+/g, ' ') ?? '';
+
+    expect(text, 'Einheit der Milliarden').toContain(` ${b.einheitMrd} CHF`);
+    const [vorher, nachher] = b.proKopf.split('{value}');
+    expect(text, 'Pro-Kopf-Text').toContain(vorher);
+    expect(text, 'Pro-Kopf-Text').toContain(nachher);
+    if (locale !== 'de') {
+      expect(text, 'deutsche Einheit «Einw.»').not.toContain('Einw.');
+      expect(text, 'deutsche Einheit «Mrd»').not.toContain('Mrd');
+    }
+  });
+}

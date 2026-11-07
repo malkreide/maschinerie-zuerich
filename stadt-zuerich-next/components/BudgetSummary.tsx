@@ -34,6 +34,14 @@ export default function BudgetSummary({
   const aufwandPerCapita = perCapitaCHF(totalAufwand, population);
   const sampleJahr = data.units.find((u) => u.budget?.jahr)?.budget?.jahr;
 
+  // Pro-Kopf-Text je Sprache («(≈ {value}/Einw.)», «(≈ {value} per resident)»
+  // …), an der Zahl geteilt: Nur die Zahl bekommt tabular-nums, wie vor der
+  // Übersetzung. Auf dem ganzen Text änderte tabular-nums auch die Breite von
+  // Satzzeichen, und das deutsche Banner verschob sich um Subpixel.
+  const MARKE = '\u0000';
+  const [vorZahl, nachZahl = ''] = t('proKopf', { value: MARKE }).split(MARKE);
+  const proKopf = aufwandPerCapita ? { vor: vorZahl, wert: aufwandPerCapita, nach: nachZahl } : null;
+
   return (
     <aside
       // pointer-events-none verhindert, dass die Pille Klicks auf den Graphen
@@ -41,24 +49,27 @@ export default function BudgetSummary({
       //
       // Position: Die Startseite rendert das Banner nur ab 640px (Container
       // «hidden sm:block» in page.tsx). Oben mittig liegt es zwischen Suchfeld
-      // (links, bis 332px) und Werkzeugleiste (rechts). Erst ab 1100px ist dort
-      // in allen Sprachen Platz (längste Variante: ls, 419px breit). Darunter
+      // (links, bis 332px) und Werkzeugleiste (rechts). Erst ab 1200px ist dort
+      // in allen Sprachen Platz (längste Variante: ls mit ausgeschriebenen
+      // Einheiten, 520px breit; bei 1200px beginnt sie bei x=340). Darunter
       // lag es unter dem Suchfeld und bis 768px in der Werkzeugleiste. Darum
-      // unter 1100px links unter dem Suchfeld (top-unter-suche), schmal und
+      // unter 1200px links unter dem Suchfeld (top-unter-suche), schmal und
       // mehrzeilig; die Legende beginnt dort erst darunter (Legend.tsx).
-      // Umbruchpunkt als min-[68.75rem] (= 1100px) in rem: Mit px sortiert
+      // Umbruchpunkt als min-[75rem] (= 1200px) in rem: Mit px sortiert
       // Tailwind die Media Query vor sm (40rem), und sm:-Klassen gewinnen.
       role="complementary"
       aria-label={t('ariaLabel')}
-      className="fixed left-3 top-unter-suche max-w-[236px] flex-wrap justify-start gap-x-3 gap-y-0.5 rounded-lg min-[68.75rem]:left-1/2 min-[68.75rem]:top-[64px] min-[68.75rem]:-translate-x-1/2 min-[68.75rem]:max-w-[90vw] min-[68.75rem]:flex-nowrap min-[68.75rem]:justify-center min-[68.75rem]:gap-3 min-[68.75rem]:rounded-full z-[8] pointer-events-none flex items-center px-3.5 py-1.5 bg-[var(--color-panel)]/90 backdrop-blur-sm border border-[var(--color-line)] shadow text-[11px]"
+      className="fixed left-3 top-unter-suche max-w-[236px] flex-wrap justify-start gap-x-3 gap-y-0.5 rounded-lg min-[75rem]:left-1/2 min-[75rem]:top-[64px] min-[75rem]:-translate-x-1/2 min-[75rem]:max-w-[90vw] min-[75rem]:flex-nowrap min-[75rem]:justify-center min-[75rem]:gap-3 min-[75rem]:rounded-full z-[8] pointer-events-none flex items-center px-3.5 py-1.5 bg-[var(--color-panel)]/90 backdrop-blur-sm border border-[var(--color-line)] shadow text-[11px]"
     >
       <span className="text-[var(--color-mute)] uppercase tracking-wider font-semibold whitespace-nowrap">
         {sampleJahr ? t('eyebrowYear', { jahr: sampleJahr }) : t('eyebrow')}
       </span>
       <Stat
         label={t('aufwandLabel')}
-        value={`${fmtMio(totalAufwand)} CHF`}
-        perCapita={aufwandPerCapita}
+        // Einheiten und Pro-Kopf-Text je Sprache: Bis 2026-11 standen
+        // «Mrd» (aus fmtMio) und «/Einw.» fest auf Deutsch, auch in en/fr/it/ls.
+        value={`${fmtMio(totalAufwand, { mrd: t('einheitMrd'), mio: t('einheitMio') })} CHF`}
+        perCapita={proKopf}
         title={t('aufwandTitle')}
       />
     </aside>
@@ -70,18 +81,18 @@ function Stat({
 }: {
   label: string;
   value: string;
-  perCapita: string | null;
+  perCapita: { vor: string; wert: string; nach: string } | null;
   title: string;
 }) {
   return (
-    // flex-wrap: Im schmalen Banner (unter 1100px) bricht die Pro-Kopf-Zahl
+    // flex-wrap: Im schmalen Banner (unter 1200px) bricht die Pro-Kopf-Zahl
     // als Ganzes auf eine eigene Zeile um; die Teile selbst bleiben einzeilig.
-    <span title={title} className="flex flex-wrap min-[68.75rem]:flex-nowrap items-baseline gap-x-1.5 whitespace-nowrap">
+    <span title={title} className="flex flex-wrap min-[75rem]:flex-nowrap items-baseline gap-x-1.5 whitespace-nowrap">
       <span className="text-[var(--color-mute)]">{label}</span>
       <strong className="text-[var(--color-ink)] tabular-nums">{value}</strong>
       {perCapita && (
         <span className="text-[var(--color-mute)]">
-          (≈ <span className="tabular-nums">{perCapita}</span>/Einw.)
+          {perCapita.vor}<span className="tabular-nums">{perCapita.wert}</span>{perCapita.nach}
         </span>
       )}
     </span>

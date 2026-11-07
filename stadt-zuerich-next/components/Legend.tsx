@@ -12,7 +12,7 @@ export default function Legend({ locale }: { locale: Locale }) {
     // app/globals.css), sonst verdeckt sie in niedrigen Fenstern (1280×420,
     // Handy quer) das Suchfeld, quer sogar bis unter den Header; bei wenig
     // Platz scrollt sie. dvh statt vh: Auf Handys zählt die sichtbare Höhe.
-    // Unter 1100px Breite sitzt dort zudem das Budget-Banner (BudgetSummary,
+    // Unter 1200px Breite sitzt dort zudem das Budget-Banner (BudgetSummary,
     // gemessen 116–182px): Die Legende beginnt dann erst bei 12.25rem
     // (13rem minus bottom-3 = 196px), mit Luft für einen längeren Text.
     // z-[8] statt z-[9]: Sie ist reine Information und liegt unter den
@@ -21,7 +21,7 @@ export default function Legend({ locale }: { locale: Locale }) {
     // Hälfte der Suchvorschläge.
     <aside
       aria-label={t('headingTop')}
-      className="fixed left-3 bottom-3 z-[8] bg-[var(--color-panel)] rounded-lg shadow text-xs max-w-[calc(100vw-24px)] sm:max-w-[320px] max-h-[50vh] overflow-y-auto sm:max-h-[calc(100dvh-13rem)] min-[68.75rem]:max-h-[calc(100dvh-8rem)] pointer-events-auto"
+      className="fixed left-3 bottom-3 z-[8] bg-[var(--color-panel)] rounded-lg shadow text-xs max-w-[calc(100vw-24px)] sm:max-w-[320px] max-h-[50vh] overflow-y-auto sm:max-h-[calc(100dvh-13rem)] min-[75rem]:max-h-[calc(100dvh-8rem)] pointer-events-auto"
     >
       <details className="sm:hidden group">
         <summary className="px-3 py-2.5 cursor-pointer font-semibold list-none [&::-webkit-details-marker]:hidden flex justify-between items-center gap-2">
