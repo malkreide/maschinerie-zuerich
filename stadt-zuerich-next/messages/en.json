@@ -342,7 +342,10 @@
     "eyebrow": "Budget",
     "eyebrowYear": "Budget {jahr}",
     "aufwandLabel": "Expense",
-    "aufwandTitle": "Gross expense of the city — sum of all department expenses; in parentheses the per-resident figure."
+    "aufwandTitle": "Gross expense of the city — sum of all department expenses; in parentheses the per-resident figure.",
+    "einheitMrd": "bn",
+    "einheitMio": "m",
+    "proKopf": "(≈ {value} per resident)"
   },
   "Type": {
     "center": "Executive",

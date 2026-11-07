@@ -342,7 +342,10 @@
     "eyebrow": "Budget",
     "eyebrowYear": "Budget {jahr}",
     "aufwandLabel": "Spesa",
-    "aufwandTitle": "Spesa lorda della città — somma delle spese di tutti i dipartimenti; tra parentesi l'importo pro capite."
+    "aufwandTitle": "Spesa lorda della città — somma delle spese di tutti i dipartimenti; tra parentesi l'importo pro capite.",
+    "einheitMrd": "mia",
+    "einheitMio": "mio",
+    "proKopf": "(≈ {value} pro capite)"
   },
   "Type": {
     "center": "Esecutivo",

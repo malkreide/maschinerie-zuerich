@@ -342,7 +342,10 @@
     "eyebrow": "Geld",
     "eyebrowYear": "Geld im Jahr {jahr}",
     "aufwandLabel": "Ausgaben",
-    "aufwandTitle": "So viel Geld gibt die Stadt aus. In Klammern: So viel ist das pro Person."
+    "aufwandTitle": "So viel Geld gibt die Stadt aus. In Klammern: So viel ist das pro Person.",
+    "einheitMrd": "Milliarden",
+    "einheitMio": "Millionen",
+    "proKopf": "(ungefähr {value} pro Person)"
   },
   "Type": {
     "center": "Die Chefs",
