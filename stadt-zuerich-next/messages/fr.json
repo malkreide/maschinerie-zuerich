@@ -222,7 +222,13 @@
     "emptyListLink": "liste des services",
     "emptySearchLink": "recherche de démarches",
     "hiddenDepartments": "{count, plural, one {# département n'est pas visible} other {# départements ne sont pas visibles}} — aucune donnée budgétaire pour : {names}.",
-    "committeeNote": "Astuce : Les lignes pointillées indiquent les services dont la commission de contrôle parlementaire diffère du rattachement organisationnel."
+    "committeeNote": "Astuce : Les lignes pointillées indiquent les services dont la commission de contrôle parlementaire diffère du rattachement organisationnel.",
+    "oeffnen": "{label} – ouvrir",
+    "oeffnenMitName": "{sichtbar} – ouvrir {name}",
+    "departementOeffnen": "Ouvrir le département {name}",
+    "departementOeffnenMitName": "{sichtbar} – ouvrir le département {name}",
+    "departementOeffnenKnopf": "Ouvrir le département",
+    "schliessen": "Fermer"
   },
   "List": {
     "title": "Administration de la {cityName} – aperçu hiérarchique",

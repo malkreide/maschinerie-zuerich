@@ -151,3 +151,42 @@ for (const [locale, m] of Object.entries({ de, en, fr, it, ls })) {
     });
   }
 }
+
+// Treemap (/steuerfranken): Die zugänglichen Namen der Kacheln und
+// Departementsköpfe endeten bis 2026-11 fest auf Deutsch («… öffnen»,
+// «Departement … öffnen»), das Handy-Panel hatte «Schliessen» und
+// «Departement öffnen» fest im Code. Geprüft je Sprache: Jeder Name einer
+// Kachel entspricht einer Vorlage aus messages/*.json, und auf dem Handy
+// tragen beide Knöpfe den Text der Sprache.
+const alsMuster = (vorlage: string) =>
+  new RegExp(`^${vorlage
+    .replace(/[.*+?^$()|[\]\\]/g, '\\$&')
+    .replace(/\{(label|sichtbar|name)\}/g, '.+')}$`);
+
+for (const [locale, m] of Object.entries({ de, en, fr, it, ls })) {
+  test(`i18n: zugängliche Namen der Treemap auf /${locale}`, async ({ page }) => {
+    const tm = m.Treemap;
+    await page.goto(`/${locale}/steuerfranken`);
+    const kacheln = page.locator('main svg g[role="button"]');
+    await expect(kacheln.first()).toBeAttached({ timeout: 15_000 });
+    const namen = await kacheln.evaluateAll((els) => els.map((e) => e.getAttribute('aria-label') ?? ''));
+    const muster = [tm.oeffnen, tm.oeffnenMitName, tm.departementOeffnen, tm.departementOeffnenMitName].map(alsMuster);
+    const fremd = namen.filter((n) => n !== tm.back && !muster.some((re) => re.test(n)));
+    expect(fremd, 'Namen ausserhalb der Vorlagen').toEqual([]);
+    if (['en', 'fr', 'it'].includes(locale)) {
+      expect(namen.filter((n) => n.includes('öffnen')), 'deutsches «öffnen»').toEqual([]);
+    }
+  });
+
+  test(`i18n: Handy-Panel der Treemap auf /${locale}`, async ({ page }) => {
+    const tm = m.Treemap;
+    await page.setViewportSize({ width: 375, height: 812 });
+    await page.goto(`/${locale}/steuerfranken`);
+    // Kachel (nicht Departementskopf): nur Kacheln haben das halbtransparente Rechteck.
+    const kachel = page.locator('main svg g[role="button"]').filter({ has: page.locator('rect[opacity="0.65"]') }).first();
+    await expect(kachel).toBeAttached({ timeout: 15_000 });
+    await kachel.click();
+    await expect(page.getByRole('button', { name: tm.schliessen, exact: true })).toBeVisible();
+    await expect(page.getByRole('button', { name: tm.departementOeffnenKnopf, exact: true })).toBeVisible();
+  });
+}
