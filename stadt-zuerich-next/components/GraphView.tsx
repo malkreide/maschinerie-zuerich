@@ -158,7 +158,7 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
         container: hostRef.current,
         elements,
         style: getGraphStyle(locale, klimaModus, gudBudgetDelta, diversityModus),
-        layout: layoutOptions('radial', false),
+        layout: layoutOptions('radial', false, { locale }),
         wheelSensitivity: 0.2,
         minZoom: 0.15,
         maxZoom: 4,
@@ -246,7 +246,7 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
     const target = buildElements(data, expandedWithFocus, locale, layout);
     syncElements(cy, target);
     const layoutConfig = cy.layout({
-      ...layoutOptions(layout, true, { w: cy.width(), h: cy.height() }),
+      ...layoutOptions(layout, true, { locale, viewport: { w: cy.width(), h: cy.height() } }),
       fit: true,
     } as LayoutOptions);
     
@@ -628,7 +628,11 @@ function syncElements(cy: Core, target: ElementDefinition[]): void {
   });
 }
 
-function layoutOptions(name: Layout, animate: boolean, viewport?: { w: number; h: number }): LayoutOptions {
+function layoutOptions(
+  name: Layout,
+  animate: boolean,
+  { locale, viewport }: { locale?: string; viewport?: { w: number; h: number } } = {},
+): LayoutOptions {
   if (name === 'force') {
     return {
       name: 'fcose', quality: 'proof', animate, animationDuration: 800,
@@ -642,7 +646,12 @@ function layoutOptions(name: Layout, animate: boolean, viewport?: { w: number; h
     circle: true,
     roots: '[type = "center"]',
     nodeDimensionsIncludeLabels: true,
-    spacingFactor: 0.95,
+    // In de/en/fr/it bestimmt der feste Rahmen (unten) den Radius des Rings.
+    // 0.83 gibt dasselbe Startbild wie vor dem festen Rahmen (gemessen bei
+    // 1280×744: Radius 232). In Leichter Sprache bestimmen die grösseren
+    // Knoten den Radius (avoidOverlap); ein kleinerer Faktor schöbe die
+    // Kästen dort zusammen, darum bleibt es bei 0.95.
+    spacingFactor: locale === 'ls' ? 0.95 : 0.83,
     fit: true, padding: 40,
     avoidOverlap: true, animate, animationDuration: 600,
     // Ohne boundingBox nimmt breadthfirst den aktuellen Bildausschnitt
