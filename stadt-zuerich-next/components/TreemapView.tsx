@@ -412,6 +412,11 @@ function Leaf({
   // clipPath (unten) kappt hart, falls die Schätzung doch danebenliegt.
   const CH = 6.7;
   const PAD = 12;
+  // Zeile 2 (Betrag, ab x0+5): gemessen statt geschätzt. Passt der Betrag
+  // nicht ganz, entfällt er, statt am Rand abgeschnitten zu werden — «30 Mi»,
+  // in Leichter Sprache «51 Millioner». 11px, nicht 10: #treemap-svg text in
+  // app/globals.css überstimmt das Attribut fontSize={10}.
+  const betragPasst = textBreite(budgetStr, '11px') + 5 + 1 <= w;
   const nameWidth = d.data.name.length * CH + PAD;
   const kurzWidth = kurz.length * CH + PAD;
   const combinedFullWidth = (d.data.name.length + budgetStr.length + 3) * CH + PAD;
@@ -424,10 +429,10 @@ function Leaf({
   if (h >= 30) {
     if (w >= nameWidth) {
       line1 = d.data.name;
-      line2 = budgetStr;
+      line2 = betragPasst ? budgetStr : '';
     } else if (w >= kurzWidth) {
       line1 = kurz;
-      line2 = budgetStr;
+      line2 = betragPasst ? budgetStr : '';
     } else if (w >= 30) {
       line1 = truncate();
     }
@@ -533,6 +538,31 @@ function labelDep(d: HierarchyRectangularNode<Datum>, value: number, einheiten: 
   const w = d.x1 - d.x0;
   if (w < 30) return '';
   if (w < 80) return d.data.id ?? '';
-  if (w < 220) return `${d.data.id} · ${fmtMio(value, einheiten)}`;
-  return `${d.data.name} · ${fmtMio(value, einheiten)}`;
+  // Längste Variante, die ganz in den Kopf passt (13px halbfett, ab x0+6):
+  // Name · Betrag, sonst Kürzel · Betrag, sonst das Kürzel. Vorher nur nach
+  // Breite gestaffelt, und lange Namen oder Einheiten («Gesundheits- und
+  // Umweltdepartement · 1.4…», «PRD · 328 Millionen») wurden abgeschnitten.
+  const betrag = fmtMio(value, einheiten);
+  const varianten = w < 220
+    ? [`${d.data.id} · ${betrag}`]
+    : [`${d.data.name} · ${betrag}`, `${d.data.id} · ${betrag}`];
+  return varianten.find((v) => textBreite(v, '600 13px') + 6 + 1 <= w) ?? d.data.id ?? '';
+}
+
+// Textbreite, wie der Browser sie zeichnet: Canvas misst mit der Schrift der
+// Seite, die die SVG-Texte erben. TreemapView rendert nur im Browser
+// (TreemapLoader, ssr:false), es gibt also keinen Server-Wert, der beim
+// Hydrieren abweichen könnte. Eine Schätzung pro Zeichen lag je nach Text um
+// bis zu 30 % daneben: Ziffern sind breiter als Buchstaben.
+let messKontext: CanvasRenderingContext2D | null | undefined;
+let seitenSchrift = '';
+function textBreite(text: string, schrift: string): number {
+  if (messKontext === undefined) {
+    messKontext = document.createElement('canvas').getContext('2d');
+    seitenSchrift = getComputedStyle(document.body).fontFamily;
+  }
+  // Ohne Canvas grob schätzen; die Kachel kappt ohnehin hart (clipPath).
+  if (!messKontext) return text.length * 6.7;
+  messKontext.font = `${schrift} ${seitenSchrift}`;
+  return messKontext.measureText(text).width;
 }
