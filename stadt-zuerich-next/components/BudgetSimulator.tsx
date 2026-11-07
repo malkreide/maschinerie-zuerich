@@ -11,7 +11,7 @@
 
 import { useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { fmtCHF, fmtMio } from '@/lib/search';
+import { fmtCHF, fmtMio, type MioEinheiten } from '@/lib/search';
 import { perCapitaCHF } from '@/lib/budget-context';
 
 export interface SimulatorDept {
@@ -71,6 +71,10 @@ export default function BudgetSimulator({
   jahr: number | undefined;
 }) {
   const t = useTranslations('Simulator');
+  // Einheiten je Sprache (Mrd/bn/mrd/mia/Milliarden …): bis 2026-11 fest
+  // auf Deutsch aus fmtMio, auch in en/fr/it/ls.
+  const tE = useTranslations('Einheiten');
+  const einheiten: MioEinheiten = { mrd: tE('mrd'), mio: tE('mio') };
 
   // deltas[depId] = Prozent-Anpassung. Default 0 % pro Departement. Setzen
   // wir bewusst nicht im useState-Initializer mit einem Map-Build — dann
@@ -139,8 +143,8 @@ export default function BudgetSimulator({
         aria-live="polite"
         className="mb-5 p-4 rounded-lg bg-[var(--color-panel)] border border-[var(--color-line)] shadow flex flex-wrap items-center gap-x-6 gap-y-3"
       >
-        <Metric label={t('originalLabel')} value={`${fmtMio(totalOriginal)} CHF`} />
-        <Metric label={t('simulatedLabel')} value={`${fmtMio(totalSimulated)} CHF`} />
+        <Metric label={t('originalLabel')} value={`${fmtMio(totalOriginal, einheiten)} CHF`} />
+        <Metric label={t('simulatedLabel')} value={`${fmtMio(totalSimulated, einheiten)} CHF`} />
         <div>
           <div className="text-[11px] uppercase tracking-wider text-[var(--color-mute)] mb-0.5">
             {t('deltaLabel')}
@@ -152,7 +156,7 @@ export default function BudgetSimulator({
             aria-label={
               deltaSign === 'zero'
                 ? t('balanced')
-                : `${deltaSign === 'pos' ? t('increase') : t('decrease')}: ${fmtMio(Math.abs(deltaTotal))} CHF`
+                : `${deltaSign === 'pos' ? t('increase') : t('decrease')}: ${fmtMio(Math.abs(deltaTotal), einheiten)} CHF`
             }
             className={'text-base font-semibold tabular-nums ' + SIGN_TEXT_CLASS[deltaSign]}
           >
@@ -161,7 +165,7 @@ export default function BudgetSimulator({
               : (
                   <>
                     <span aria-hidden="true">{signIcon(deltaSign)} </span>
-                    {deltaSign === 'pos' ? '+' : '−'} {fmtMio(Math.abs(deltaTotal))} CHF
+                    {deltaSign === 'pos' ? '+' : '−'} {fmtMio(Math.abs(deltaTotal), einheiten)} CHF
                   </>
                 )}
           </div>
@@ -205,6 +209,7 @@ export default function BudgetSimulator({
               maxAufwand={maxAufwand}
               perCapitaDelta={perCapitaCHF(Math.abs(sim.delta), population)}
               onChange={(v) => setDelta(dep.id, v)}
+              einheiten={einheiten}
               labels={{
                 slider: t('sliderLabel', { dep: dep.name }),
                 noChange: t('noChange'),
@@ -236,7 +241,7 @@ function Metric({ label, value }: { label: string; value: string }) {
 }
 
 function SliderRow({
-  dep, pct, simulatedValue, deltaValue, maxAufwand, perCapitaDelta, onChange, labels,
+  dep, pct, simulatedValue, deltaValue, maxAufwand, perCapitaDelta, onChange, einheiten, labels,
 }: {
   dep: SimulatorDept;
   pct: number;
@@ -245,6 +250,7 @@ function SliderRow({
   maxAufwand: number;
   perCapitaDelta: string | null;
   onChange: (v: number) => void;
+  einheiten: MioEinheiten;
   labels: {
     slider: string;
     noChange: string;
@@ -352,7 +358,7 @@ function SliderRow({
 
       <div className="flex items-baseline justify-between gap-3 text-[11px] text-[var(--color-mute)]">
         <span className="tabular-nums">
-          {fmtMio(dep.originalAufwand)} → <strong className="text-[var(--color-ink)]">{fmtMio(simulatedValue)}</strong> CHF
+          {fmtMio(dep.originalAufwand, einheiten)} → <strong className="text-[var(--color-ink)]">{fmtMio(simulatedValue, einheiten)}</strong> CHF
         </span>
         <span className="tabular-nums">
           {sign === 'zero'

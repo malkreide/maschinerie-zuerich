@@ -343,9 +343,11 @@
     "eyebrowYear": "Budget {jahr}",
     "aufwandLabel": "Aufwand",
     "aufwandTitle": "Brutto-Aufwand der Stadt — Summe aller Departement-Aufwände, in Klammern die Pro-Kopf-Zahl (Einwohnerbasis Stadt Zürich).",
-    "einheitMrd": "Mrd",
-    "einheitMio": "Mio",
     "proKopf": "(≈ {value}/Einw.)"
+  },
+  "Einheiten": {
+    "mrd": "Mrd",
+    "mio": "Mio"
   },
   "Type": {
     "center": "Exekutive",

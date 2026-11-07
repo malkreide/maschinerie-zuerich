@@ -24,6 +24,7 @@ export default function BudgetSummary({
   locale: Locale;
 }) {
   const t = getT(locale, 'BudgetSummary');
+  const tE = getT(locale, 'Einheiten');
   const totalAufwand = computeTotalAufwand(data);
   const population   = city.population;
 
@@ -68,7 +69,7 @@ export default function BudgetSummary({
         label={t('aufwandLabel')}
         // Einheiten und Pro-Kopf-Text je Sprache: Bis 2026-11 standen
         // «Mrd» (aus fmtMio) und «/Einw.» fest auf Deutsch, auch in en/fr/it/ls.
-        value={`${fmtMio(totalAufwand, { mrd: t('einheitMrd'), mio: t('einheitMio') })} CHF`}
+        value={`${fmtMio(totalAufwand, { mrd: tE('mrd'), mio: tE('mio') })} CHF`}
         perCapita={proKopf}
         title={t('aufwandTitle')}
       />

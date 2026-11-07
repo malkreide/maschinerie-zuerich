@@ -6,7 +6,7 @@ import { hierarchy, treemap, type HierarchyRectangularNode } from 'd3-hierarchy'
 import { scaleOrdinal } from 'd3-scale';
 import { Link } from '@/i18n/navigation';
 import type { StadtData, Department, Unit } from '@/types/stadt';
-import { fmtMio, fmtNumber } from '@/lib/search';
+import { fmtMio, fmtNumber, type MioEinheiten } from '@/lib/search';
 import { computeTotalAufwand, perCapitaCHF, budgetSharePercent } from '@/lib/budget-context';
 import { city } from '@/config/city.config';
 
@@ -37,6 +37,10 @@ export default function TreemapView({
   rootName: string;
 }) {
   const t = useTranslations('Treemap');
+  // Einheiten je Sprache (Mio/m/mio/Millionen …) für Summe, Departements-
+  // köpfe und Kacheln: bis 2026-11 fest auf Deutsch aus fmtMio.
+  const tE = useTranslations('Einheiten');
+  const einheiten: MioEinheiten = { mrd: tE('mrd'), mio: tE('mio') };
   const hostRef = useRef<HTMLDivElement>(null);
   const [focus, setFocus] = useState<string | null>(null);
   const [tooltip, setTooltip] = useState<{
@@ -87,7 +91,7 @@ export default function TreemapView({
       <h2 className="text-lg font-semibold m-0 mb-1 sm:pl-[332px]">{t('title')}</h2>
       <p className="text-[13px] text-[var(--color-mute)] mb-3 sm:pl-[332px]">
         {t('intro', { jahr: sampleJahr })}
-        {root && <strong>{t('total', { sum: fmtMio(root.value ?? 0) })}</strong>}
+        {root && <strong>{t('total', { sum: fmtMio(root.value ?? 0, einheiten) })}</strong>}
         {/* Pro-Kopf-Einordnung der Gesamtsumme — macht aus "1.4 Mrd CHF"
             (für die meisten abstrakt) eine greifbare Pro-Kopf-Zahl. */}
         {root && (() => {
@@ -170,7 +174,7 @@ export default function TreemapView({
           height={size.h}
           onClick={(e) => { if (e.target === e.currentTarget) setFocus(null); }}
         >
-          {root && renderTree(root, colorOf, !focus, setFocus, setTooltip, setMobileSelected)}
+          {root && renderTree(root, colorOf, !focus, setFocus, setTooltip, setMobileSelected, einheiten)}
           {focus && (
             <g style={{ cursor: 'pointer' }} onClick={() => setFocus(null)}
                role="button" tabIndex={0} aria-label={t('back')}
@@ -326,7 +330,8 @@ function renderTree(
   showHeaders: boolean,
   onDepClick: (id: string) => void,
   setTooltip: (t: { x: number; y: number; node: Datum; total: number } | null) => void,
-  setMobileSelected: (t: { node: Datum; total: number } | null) => void
+  setMobileSelected: (t: { node: Datum; total: number } | null) => void,
+  einheiten: MioEinheiten,
 ) {
   const total = root.value ?? 1;
   return (
@@ -340,7 +345,7 @@ function renderTree(
         // WCAG 2.5.3 «Label in Name»: der zugängliche Name beginnt mit dem
         // sichtbaren Text (Kürzel, Betrag), damit Sprachsteuerung die Kachel
         // per Zuruf des Sichtbaren auslöst.
-        const depSichtbar = labelDep(d, d.value ?? 0);
+        const depSichtbar = labelDep(d, d.value ?? 0, einheiten);
         const depAriaLabel = !depSichtbar
           ? `Departement ${d.data.name} öffnen`
           : depSichtbar.startsWith(`${d.data.name} `)
@@ -366,21 +371,22 @@ function renderTree(
           <rect x={d.x0} y={d.y0} width={wDep} height={22}
                 fill={colorOf(d.data.id ?? '')} opacity={1} />
           <text x={d.x0 + 6} y={d.y0 + 15} className="dep-label" clipPath={`url(#${clipId})`}>
-            {labelDep(d, d.value ?? 0)}
+            {labelDep(d, d.value ?? 0, einheiten)}
           </text>
         </g>
         );
       })}
       {root.leaves().map((d, i) => (
         <Leaf key={d.data.id ?? `${d.x0}-${d.y0}-${i}`} d={d} colorOf={colorOf}
-              total={total} setTooltip={setTooltip} onDepClick={onDepClick} setMobileSelected={setMobileSelected} />
+              total={total} setTooltip={setTooltip} onDepClick={onDepClick} setMobileSelected={setMobileSelected}
+              einheiten={einheiten} />
       ))}
     </>
   );
 }
 
 function Leaf({
-  d, colorOf, total, setTooltip, onDepClick, setMobileSelected,
+  d, colorOf, total, setTooltip, onDepClick, setMobileSelected, einheiten,
 }: {
   d: HierarchyRectangularNode<Datum>;
   colorOf: (key: string) => string;
@@ -388,13 +394,14 @@ function Leaf({
   setTooltip: (t: { x: number; y: number; node: Datum; total: number } | null) => void;
   onDepClick: (id: string) => void;
   setMobileSelected: (t: { node: Datum; total: number } | null) => void;
+  einheiten: MioEinheiten;
 }) {
   const w = d.x1 - d.x0;
   const h = d.y1 - d.y0;
   const color = colorOf(d.data.depId ?? '');
 
   const kurz = d.data.kurz || d.data.name.substring(0, 4);
-  const budgetStr = fmtMio(d.value ?? 0);
+  const budgetStr = fmtMio(d.value ?? 0, einheiten);
 
   let line1 = '';
   let line2 = '';
@@ -405,6 +412,11 @@ function Leaf({
   // clipPath (unten) kappt hart, falls die Schätzung doch danebenliegt.
   const CH = 6.7;
   const PAD = 12;
+  // Zeile 2 (Betrag, ab x0+5): gemessen statt geschätzt. Passt der Betrag
+  // nicht ganz, entfällt er, statt am Rand abgeschnitten zu werden — «30 Mi»,
+  // in Leichter Sprache «51 Millioner». 11px, nicht 10: #treemap-svg text in
+  // app/globals.css überstimmt das Attribut fontSize={10}.
+  const betragPasst = textBreite(budgetStr, '11px') + 5 + 1 <= w;
   const nameWidth = d.data.name.length * CH + PAD;
   const kurzWidth = kurz.length * CH + PAD;
   const combinedFullWidth = (d.data.name.length + budgetStr.length + 3) * CH + PAD;
@@ -417,10 +429,10 @@ function Leaf({
   if (h >= 30) {
     if (w >= nameWidth) {
       line1 = d.data.name;
-      line2 = budgetStr;
+      line2 = betragPasst ? budgetStr : '';
     } else if (w >= kurzWidth) {
       line1 = kurz;
-      line2 = budgetStr;
+      line2 = betragPasst ? budgetStr : '';
     } else if (w >= 30) {
       line1 = truncate();
     }
@@ -522,10 +534,35 @@ function Leaf({
   );
 }
 
-function labelDep(d: HierarchyRectangularNode<Datum>, value: number) {
+function labelDep(d: HierarchyRectangularNode<Datum>, value: number, einheiten: MioEinheiten) {
   const w = d.x1 - d.x0;
   if (w < 30) return '';
   if (w < 80) return d.data.id ?? '';
-  if (w < 220) return `${d.data.id} · ${fmtMio(value)}`;
-  return `${d.data.name} · ${fmtMio(value)}`;
+  // Längste Variante, die ganz in den Kopf passt (13px halbfett, ab x0+6):
+  // Name · Betrag, sonst Kürzel · Betrag, sonst das Kürzel. Vorher nur nach
+  // Breite gestaffelt, und lange Namen oder Einheiten («Gesundheits- und
+  // Umweltdepartement · 1.4…», «PRD · 328 Millionen») wurden abgeschnitten.
+  const betrag = fmtMio(value, einheiten);
+  const varianten = w < 220
+    ? [`${d.data.id} · ${betrag}`]
+    : [`${d.data.name} · ${betrag}`, `${d.data.id} · ${betrag}`];
+  return varianten.find((v) => textBreite(v, '600 13px') + 6 + 1 <= w) ?? d.data.id ?? '';
+}
+
+// Textbreite, wie der Browser sie zeichnet: Canvas misst mit der Schrift der
+// Seite, die die SVG-Texte erben. TreemapView rendert nur im Browser
+// (TreemapLoader, ssr:false), es gibt also keinen Server-Wert, der beim
+// Hydrieren abweichen könnte. Eine Schätzung pro Zeichen lag je nach Text um
+// bis zu 30 % daneben: Ziffern sind breiter als Buchstaben.
+let messKontext: CanvasRenderingContext2D | null | undefined;
+let seitenSchrift = '';
+function textBreite(text: string, schrift: string): number {
+  if (messKontext === undefined) {
+    messKontext = document.createElement('canvas').getContext('2d');
+    seitenSchrift = getComputedStyle(document.body).fontFamily;
+  }
+  // Ohne Canvas grob schätzen; die Kachel kappt ohnehin hart (clipPath).
+  if (!messKontext) return text.length * 6.7;
+  messKontext.font = `${schrift} ${seitenSchrift}`;
+  return messKontext.measureText(text).width;
 }
