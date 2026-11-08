@@ -222,7 +222,13 @@
     "emptyListLink": "Liste der Ämter",
     "emptySearchLink": "Anliegen-Suche",
     "hiddenDepartments": "{count, plural, one {# Departement ist} other {# Departemente sind}} nicht sichtbar — für diese sind keine Budgetdaten hinterlegt: {names}.",
-    "committeeNote": "Tipp: Gestrichelte Linien markieren Ämter, bei denen die parlamentarische Aufsicht (RPK) von der organisatorischen Zuordnung abweicht."
+    "committeeNote": "Tipp: Gestrichelte Linien markieren Ämter, bei denen die parlamentarische Aufsicht (RPK) von der organisatorischen Zuordnung abweicht.",
+    "oeffnen": "{label} öffnen",
+    "oeffnenMitName": "{sichtbar} – {name} öffnen",
+    "departementOeffnen": "Departement {name} öffnen",
+    "departementOeffnenMitName": "{sichtbar} – Departement {name} öffnen",
+    "departementOeffnenKnopf": "Departement öffnen",
+    "schliessen": "Schliessen"
   },
   "List": {
     "title": "Verwaltung der {cityName} – Hierarchische Übersicht",

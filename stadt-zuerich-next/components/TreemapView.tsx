@@ -41,6 +41,14 @@ export default function TreemapView({
   // köpfe und Kacheln: bis 2026-11 fest auf Deutsch aus fmtMio.
   const tE = useTranslations('Einheiten');
   const einheiten: MioEinheiten = { mrd: tE('mrd'), mio: tE('mio') };
+  // Zugängliche Namen der Kacheln und Köpfe je Sprache: bis 2026-11 fest
+  // auf Deutsch («… öffnen»). Der sichtbare Text steht vorne (WCAG 2.5.3).
+  const oeffnen: OeffnenTexte = {
+    oeffnen: (label) => t('oeffnen', { label }),
+    oeffnenMitName: (sichtbar, name) => t('oeffnenMitName', { sichtbar, name }),
+    departement: (name) => t('departementOeffnen', { name }),
+    departementMitName: (sichtbar, name) => t('departementOeffnenMitName', { sichtbar, name }),
+  };
   const hostRef = useRef<HTMLDivElement>(null);
   const [focus, setFocus] = useState<string | null>(null);
   const [tooltip, setTooltip] = useState<{
@@ -174,7 +182,7 @@ export default function TreemapView({
           height={size.h}
           onClick={(e) => { if (e.target === e.currentTarget) setFocus(null); }}
         >
-          {root && renderTree(root, colorOf, !focus, setFocus, setTooltip, setMobileSelected, einheiten)}
+          {root && renderTree(root, colorOf, !focus, setFocus, setTooltip, setMobileSelected, einheiten, oeffnen)}
           {focus && (
             <g style={{ cursor: 'pointer' }} onClick={() => setFocus(null)}
                role="button" tabIndex={0} aria-label={t('back')}
@@ -230,7 +238,7 @@ export default function TreemapView({
                onClick={(e) => e.stopPropagation()}>
             <div className="flex justify-between items-start mb-3">
               <h3 className="text-lg font-semibold m-0 leading-tight pr-4">{mobileSelected.node.name}</h3>
-              <button onClick={() => setMobileSelected(null)} className="p-2 -mr-2 -mt-2 text-[var(--color-mute)]" aria-label="Schliessen">
+              <button onClick={() => setMobileSelected(null)} className="p-2 -mr-2 -mt-2 text-[var(--color-mute)]" aria-label={t('schliessen')}>
                 ✕
               </button>
             </div>
@@ -262,7 +270,7 @@ export default function TreemapView({
               }}
               className="w-full bg-[var(--color-accent)] text-[var(--color-on-accent)] font-semibold py-3 rounded-xl flex justify-center items-center shadow-md active:scale-[0.98] transition-transform"
             >
-              Departement öffnen
+              {t('departementOeffnenKnopf')}
             </button>
           </div>
         </div>
@@ -324,6 +332,14 @@ function computeLayout(data: Datum, w: number, h: number, isFocus: boolean) {
   return root as HierarchyRectangularNode<Datum>;
 }
 
+/** Zugängliche Namen «öffnen» je Sprache (messages/*.json, Namespace Treemap). */
+type OeffnenTexte = {
+  oeffnen: (label: string) => string;
+  oeffnenMitName: (sichtbar: string, name: string) => string;
+  departement: (name: string) => string;
+  departementMitName: (sichtbar: string, name: string) => string;
+};
+
 function renderTree(
   root: HierarchyRectangularNode<Datum>,
   colorOf: (key: string) => string,
@@ -332,6 +348,7 @@ function renderTree(
   setTooltip: (t: { x: number; y: number; node: Datum; total: number } | null) => void,
   setMobileSelected: (t: { node: Datum; total: number } | null) => void,
   einheiten: MioEinheiten,
+  oeffnen: OeffnenTexte,
 ) {
   const total = root.value ?? 1;
   return (
@@ -347,10 +364,10 @@ function renderTree(
         // per Zuruf des Sichtbaren auslöst.
         const depSichtbar = labelDep(d, d.value ?? 0, einheiten);
         const depAriaLabel = !depSichtbar
-          ? `Departement ${d.data.name} öffnen`
+          ? oeffnen.departement(d.data.name)
           : depSichtbar.startsWith(`${d.data.name} `)
-            ? `${depSichtbar} öffnen`
-            : `${depSichtbar} – Departement ${d.data.name} öffnen`;
+            ? oeffnen.oeffnen(depSichtbar)
+            : oeffnen.departementMitName(depSichtbar, d.data.name);
         return (
         <g key={d.data.id} style={{ cursor: 'pointer' }}
            tabIndex={0}
@@ -379,14 +396,14 @@ function renderTree(
       {root.leaves().map((d, i) => (
         <Leaf key={d.data.id ?? `${d.x0}-${d.y0}-${i}`} d={d} colorOf={colorOf}
               total={total} setTooltip={setTooltip} onDepClick={onDepClick} setMobileSelected={setMobileSelected}
-              einheiten={einheiten} />
+              einheiten={einheiten} oeffnen={oeffnen} />
       ))}
     </>
   );
 }
 
 function Leaf({
-  d, colorOf, total, setTooltip, onDepClick, setMobileSelected, einheiten,
+  d, colorOf, total, setTooltip, onDepClick, setMobileSelected, einheiten, oeffnen,
 }: {
   d: HierarchyRectangularNode<Datum>;
   colorOf: (key: string) => string;
@@ -395,6 +412,7 @@ function Leaf({
   onDepClick: (id: string) => void;
   setMobileSelected: (t: { node: Datum; total: number } | null) => void;
   einheiten: MioEinheiten;
+  oeffnen: OeffnenTexte;
 }) {
   const w = d.x1 - d.x0;
   const h = d.y1 - d.y0;
@@ -460,10 +478,10 @@ function Leaf({
   // die Kachel per Zuruf des Sichtbaren auslöst.
   const sichtbar = [line1, line2].filter(Boolean).join(' ');
   const ariaLabel = !sichtbar || sichtbar === d.data.name
-    ? `${d.data.name} öffnen`
+    ? oeffnen.oeffnen(d.data.name)
     : sichtbar.startsWith(`${d.data.name} `)
-      ? `${sichtbar} öffnen`
-      : `${sichtbar} – ${d.data.name} öffnen`;
+      ? oeffnen.oeffnen(sichtbar)
+      : oeffnen.oeffnenMitName(sichtbar, d.data.name);
 
   return (
     <g

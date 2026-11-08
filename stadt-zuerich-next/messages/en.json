@@ -222,7 +222,13 @@
     "emptyListLink": "list of offices",
     "emptySearchLink": "concern search",
     "hiddenDepartments": "{count, plural, one {# department is} other {# departments are}} not shown — no budget data available for: {names}.",
-    "committeeNote": "Tip: Dashed lines indicate departments where the parliamentary audit committee differs from the organizational assignment."
+    "committeeNote": "Tip: Dashed lines indicate departments where the parliamentary audit committee differs from the organizational assignment.",
+    "oeffnen": "{label} – open",
+    "oeffnenMitName": "{sichtbar} – open {name}",
+    "departementOeffnen": "Open department {name}",
+    "departementOeffnenMitName": "{sichtbar} – open department {name}",
+    "departementOeffnenKnopf": "Open department",
+    "schliessen": "Close"
   },
   "List": {
     "title": "{cityName} administration – hierarchical overview",

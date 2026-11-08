@@ -222,7 +222,13 @@
     "emptyListLink": "Liste der Stellen",
     "emptySearchLink": "Suche",
     "hiddenDepartments": "{count, plural, one {# Bereich wird} other {# Bereiche werden}} nicht gezeigt. Dafür gibt es keine Zahlen: {names}.",
-    "committeeNote": "Hinweis: Ein gestrichelter Rahmen bedeutet, dass die Aufsicht durch die Politik hier anders geregelt ist."
+    "committeeNote": "Hinweis: Ein gestrichelter Rahmen bedeutet, dass die Aufsicht durch die Politik hier anders geregelt ist.",
+    "oeffnen": "{label} öffnen",
+    "oeffnenMitName": "{sichtbar} – {name} öffnen",
+    "departementOeffnen": "Bereich {name} öffnen",
+    "departementOeffnenMitName": "{sichtbar} – Bereich {name} öffnen",
+    "departementOeffnenKnopf": "Bereich öffnen",
+    "schliessen": "Fenster schliessen"
   },
   "List": {
     "title": "Die Stadt-Verwaltung in einer Liste",

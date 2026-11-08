@@ -222,7 +222,13 @@
     "emptyListLink": "l'elenco degli uffici",
     "emptySearchLink": "ricerca pratiche",
     "hiddenDepartments": "{count, plural, one {# dipartimento non è mostrato} other {# dipartimenti non sono mostrati}} — nessun dato di budget per: {names}.",
-    "committeeNote": "Suggerimento: Le linee tratteggiate indicano i dipartimenti in cui la commissione di controllo parlamentare differisce dall'assegnazione organizzativa."
+    "committeeNote": "Suggerimento: Le linee tratteggiate indicano i dipartimenti in cui la commissione di controllo parlamentare differisce dall'assegnazione organizzativa.",
+    "oeffnen": "{label} – apri",
+    "oeffnenMitName": "{sichtbar} – apri {name}",
+    "departementOeffnen": "Apri il dipartimento {name}",
+    "departementOeffnenMitName": "{sichtbar} – apri il dipartimento {name}",
+    "departementOeffnenKnopf": "Apri il dipartimento",
+    "schliessen": "Chiudi"
   },
   "List": {
     "title": "Amministrazione della {cityName} – panoramica gerarchica",
