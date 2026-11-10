@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0.0",
   "city": "zh",
-  "erhoben_am": "2026-11-02T15:53:21.546Z",
-  "lauf_url": "https://github.com/malkreide/maschinerie-zuerich/actions/runs/41475820373",
+  "erhoben_am": "2026-11-09T16:19:24.761Z",
+  "lauf_url": "https://github.com/malkreide/maschinerie-zuerich/actions/runs/42653412938",
   "umgebung": "github-actions",
   "referenzen": [
     {
@@ -642,7 +642,7 @@
       "retrieved_at": "2026-10-28",
       "erreichbar": "ok",
       "http_status": 200,
-      "zitat": "woertlich",
+      "zitat": "drift",
       "fassung": "nicht-anwendbar"
     },
     {
