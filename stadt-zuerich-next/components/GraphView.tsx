@@ -158,7 +158,7 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
         container: hostRef.current,
         elements,
         style: getGraphStyle(locale, klimaModus, gudBudgetDelta, diversityModus),
-        layout: layoutOptions('radial', false, { locale }),
+        layout: layoutOptions('radial', false),
         wheelSensitivity: 0.2,
         minZoom: 0.15,
         maxZoom: 4,
@@ -201,7 +201,7 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
       });
       cyRef.current = cy;
       cy.ready(() => {
-        cy.fit(undefined, 40);
+        cy.fit(undefined, RADIAL_PADDING);
         const initialFocus = focusIdRef.current;
         if (initialFocus) applyFocusHighlight(cy, initialFocus);
       });
@@ -245,8 +245,11 @@ export default function GraphView({ data, locale }: { data: StadtData; locale?: 
     if (!cy) return;
     const target = buildElements(data, expandedWithFocus, locale, layout);
     syncElements(cy, target);
+    // Vor cy.one('layoutstop') unten: Der Probelauf in radialFrame soll den
+    // Fokus-Handler nicht auslösen.
+    const viewport = layout === 'radial' ? radialFrame(cy) : undefined;
     const layoutConfig = cy.layout({
-      ...layoutOptions(layout, true, { locale, viewport: { w: cy.width(), h: cy.height() } }),
+      ...layoutOptions(layout, true, { viewport }),
       fit: true,
     } as LayoutOptions);
     
@@ -628,10 +631,36 @@ function syncElements(cy: Core, target: ElementDefinition[]): void {
   });
 }
 
+// Rand beim Einpassen, im Radial-Layout und in cy.fit beim Start gleich.
+const RADIAL_PADDING = 40;
+
+// Rahmen für «Radial» so, wie er früher beim Start entstand: Der erste Lauf
+// hatte den Bildschirm als Rahmen, danach passte cy.fit mit RADIAL_PADDING ein
+// (Zoom z₁), und erst der zweite Lauf ergab das Startbild, mit dem
+// Bildausschnitt bei z₁ als Rahmen, also Bildschirm / z₁. Das hing vom
+// jeweiligen Zoom ab: Nach «Gruppiert» (weit herausgezoomt) wurde der Ring
+// riesig. Hier deterministisch nachgebildet: Ein unsichtbarer Probelauf mit
+// dem Bildschirm als Rahmen liefert z₁; seine Positionen werden im selben
+// Tick wieder zurückgesetzt, bevor gezeichnet wird. So gibt es bei jeder
+// Fenstergrösse und auf jedem Weg das gewohnte Startbild.
+function radialFrame(cy: Core): { w: number; h: number } {
+  const w = cy.width();
+  const h = cy.height();
+  const saved = cy.nodes().map((n) => [n, { ...n.position() }] as const);
+  cy.layout({ ...layoutOptions('radial', false, { viewport: { w, h } }), fit: false } as LayoutOptions).run();
+  const bb = cy.elements().boundingBox();
+  for (const [n, p] of saved) n.position(p);
+  if (!(bb.w > 0 && bb.h > 0)) return { w, h };
+  // Wie cy.getFitViewport: kleinerer der beiden Massstäbe, begrenzt auf min/maxZoom.
+  const fitZoom = Math.min((w - 2 * RADIAL_PADDING) / bb.w, (h - 2 * RADIAL_PADDING) / bb.h);
+  const z1 = Math.min(Math.max(fitZoom, cy.minZoom()), cy.maxZoom());
+  return { w: w / z1, h: h / z1 };
+}
+
 function layoutOptions(
   name: Layout,
   animate: boolean,
-  { locale, viewport }: { locale?: string; viewport?: { w: number; h: number } } = {},
+  { viewport }: { viewport?: { w: number; h: number } } = {},
 ): LayoutOptions {
   if (name === 'force') {
     return {
@@ -646,20 +675,11 @@ function layoutOptions(
     circle: true,
     roots: '[type = "center"]',
     nodeDimensionsIncludeLabels: true,
-    // In de/en/fr/it bestimmt der feste Rahmen (unten) den Radius des Rings.
-    // 0.83 gibt dasselbe Startbild wie vor dem festen Rahmen (gemessen bei
-    // 1280×744: Radius 232). In Leichter Sprache bestimmen die grösseren
-    // Knoten den Radius (avoidOverlap); ein kleinerer Faktor schöbe die
-    // Kästen dort zusammen, darum bleibt es bei 0.95.
-    spacingFactor: locale === 'ls' ? 0.95 : 0.83,
-    fit: true, padding: 40,
+    spacingFactor: 0.95,
+    fit: true, padding: RADIAL_PADDING,
     avoidOverlap: true, animate, animationDuration: 600,
     // Ohne boundingBox nimmt breadthfirst den aktuellen Bildausschnitt
-    // (cy.extent()) als Rahmen für den Ring. Nach «Gruppiert» ist weit
-    // herausgezoomt: Der Ring würde fünfmal zu gross, und nach dem Einpassen
-    // wären die Departemente winzig. Ein fester Rahmen in Bildschirmgrösse
-    // gibt immer denselben Ring wie beim ersten Laden (Zoom 1, keine
-    // Verschiebung – dort ist der Bildausschnitt genau dieser Rahmen).
+    // (cy.extent()) als Rahmen für den Ring – siehe radialFrame.
     ...(viewport ? { boundingBox: { x1: 0, y1: 0, w: viewport.w, h: viewport.h } } : {}),
   } as unknown as LayoutOptions;
 }
