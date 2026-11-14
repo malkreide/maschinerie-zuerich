@@ -355,6 +355,17 @@
     "mrd": "Milliarden",
     "mio": "Millionen"
   },
+  "Embed": {
+    "knopf": "Bild für Ihre Internet-Seite",
+    "titel": "Das Bild auf Ihrer Internet-Seite zeigen",
+    "anleitung": "Haben Sie eine eigene Internet-Seite? Dann können Sie dieses Bild dort zeigen. Kopieren Sie dafür den Code. Fügen Sie den Code auf Ihrer Internet-Seite ein.",
+    "codeLabel": "Code für Ihre Internet-Seite",
+    "kopieren": "Code kopieren",
+    "kopiert": "Der Code ist kopiert.",
+    "kopierenFehler": "Das Kopieren hat nicht geklappt. Der Code ist jetzt markiert. Drücken Sie die Tasten Ctrl und C.",
+    "schliessen": "Fenster schliessen",
+    "quelle": "Von: {name}"
+  },
   "Type": {
     "center": "Die Chefs",
     "department": "Grosser Bereich",

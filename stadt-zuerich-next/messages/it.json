@@ -355,6 +355,17 @@
     "mrd": "mia",
     "mio": "mio"
   },
+  "Embed": {
+    "knopf": "Incorpora il grafico",
+    "titel": "Incorpora la visualizzazione",
+    "anleitung": "Copia questo codice HTML per incorporare il grafico interattivo nel tuo articolo o sito web (ad es. in WordPress).",
+    "codeLabel": "Codice HTML da incorporare",
+    "kopieren": "Copia il codice",
+    "kopiert": "Codice copiato negli appunti.",
+    "kopierenFehler": "Non è stato possibile copiare. Il codice è selezionato: copialo con Ctrl+C (Mac: Cmd+C).",
+    "schliessen": "Chiudi",
+    "quelle": "Fonte: {name}"
+  },
   "Type": {
     "center": "Esecutivo",
     "department": "Dipartimento",

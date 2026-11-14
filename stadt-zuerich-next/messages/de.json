@@ -355,6 +355,17 @@
     "mrd": "Mrd",
     "mio": "Mio"
   },
+  "Embed": {
+    "knopf": "Grafik einbetten",
+    "titel": "Visualisierung einbetten",
+    "anleitung": "Kopieren Sie diesen HTML-Code, um die interaktive Grafik in Ihren Artikel oder Ihre Website einzubetten (z. B. in WordPress).",
+    "codeLabel": "HTML-Code zum Einbetten",
+    "kopieren": "Code kopieren",
+    "kopiert": "Code in die Zwischenablage kopiert.",
+    "kopierenFehler": "Kopieren hat nicht geklappt. Der Code ist markiert: Kopieren Sie ihn mit Ctrl+C (Mac: Cmd+C).",
+    "schliessen": "Schliessen",
+    "quelle": "Quelle: {name}"
+  },
   "Type": {
     "center": "Exekutive",
     "department": "Departement",

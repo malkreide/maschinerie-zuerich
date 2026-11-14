@@ -355,6 +355,17 @@
     "mrd": "bn",
     "mio": "m"
   },
+  "Embed": {
+    "knopf": "Embed chart",
+    "titel": "Embed visualisation",
+    "anleitung": "Copy this HTML code to embed the interactive chart in your article or website (e.g. in WordPress).",
+    "codeLabel": "HTML code for embedding",
+    "kopieren": "Copy code",
+    "kopiert": "Code copied to clipboard.",
+    "kopierenFehler": "Copying did not work. The code is selected: copy it with Ctrl+C (Mac: Cmd+C).",
+    "schliessen": "Close",
+    "quelle": "Source: {name}"
+  },
   "Type": {
     "center": "Executive",
     "department": "Department",

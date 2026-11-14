@@ -24,10 +24,15 @@ export default async function SteuerfrankenPage({
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
   const data = await loadStadtData();
+  // Titel des iframes im kopierten Code: wie der Seitentitel, damit
+  // Screenreader auf der einbettenden Seite sagen, was eingebettet ist.
+  // Vorher nur der Stadtname («Stadt Zürich»).
+  const tApp = getT(locale as Locale, 'App');
+  const t    = getT(locale as Locale, 'Treemap');
   return (
     <>
       <div className="absolute top-16 right-8 z-10 hidden sm:block">
-        <EmbedButton embedPath={`/${locale}/embed/steuerfranken`} title={city.name[locale as Locale]} />
+        <EmbedButton embedPath={`/${locale}/embed/steuerfranken`} title={`${t('title')} · ${tApp('title')}`} />
       </div>
       <TreemapLoader data={data} rootName={city.name[locale as Locale]} />
     </>
