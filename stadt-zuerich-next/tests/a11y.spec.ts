@@ -310,6 +310,36 @@ for (const dunkel of [false, true]) {
   });
 }
 
+// Einbetten-Dialog (/steuerfranken): erscheint erst nach einem Klick, die
+// Routen-Läufe oben sehen ihn nie. Bis 2026-11 fehlte dem Codefeld die
+// Beschriftung (axe «label», kritisch), und der Dialog stand im Dunkelmodus
+// weiss auf dunkler Seite (feste Farben statt Tokens). Hell und dunkel:
+// axe auf den offenen Dialog, dazu der Kontrast der Texte auf seiner Fläche.
+for (const dunkel of [false, true]) {
+  const label = `/de/steuerfranken Einbetten-Dialog${dunkel ? ' (dunkel)' : ''}`;
+  test(`a11y: ${label}`, async ({ page, context, baseURL }) => {
+    if (dunkel) await context.addCookies([{ name: 'mog-theme', value: 'dark', url: baseURL! }]);
+    await page.goto('/de/steuerfranken');
+    await waitForTreemap(page);
+    if (dunkel) await expect(page.locator('html')).toHaveClass(/(^|\s)dark(\s|$)/);
+    await page.getByRole('button', { name: 'Grafik einbetten', exact: true }).click();
+    await page.getByRole('dialog').waitFor({ state: 'visible' });
+
+    const results = await new AxeBuilder({ page })
+      .withTags(WCAG_TAGS)
+      .include('dialog[open]')
+      .analyze();
+    const blocking = results.violations.filter(isBlocking);
+    if (blocking.length) console.log(summarize(label, blocking));
+    expect(blocking, `${blocking.length} serious/critical a11y-Verstösse auf ${label}`).toEqual([]);
+
+    const kontrast = await kontrastVerstoesse(page, [
+      { selector: 'dialog[open]', wo: 'Einbetten-Dialog', texte: 'h2, p, label' },
+    ]);
+    expect(kontrast, `Kontrast im Einbetten-Dialog (${label})`).toEqual([]);
+  });
+}
+
 // Mobile-Viewport: deckt den MobileExplorer auf der Hauptseite ab (auf Desktop
 // ist er per sm:hidden ausgeblendet und würde von axe nicht gesehen).
 test.describe('mobile viewport', () => {
