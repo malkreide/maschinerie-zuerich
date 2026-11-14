@@ -4,6 +4,7 @@ import en from '../messages/en.json' with { type: 'json' };
 import fr from '../messages/fr.json' with { type: 'json' };
 import it from '../messages/it.json' with { type: 'json' };
 import ls from '../messages/ls.json' with { type: 'json' };
+import city from '../config/city.config.json' with { type: 'json' };
 
 // Keine rohen Übersetzungs-Schlüssel im gerenderten HTML.
 //
@@ -188,5 +189,36 @@ for (const [locale, m] of Object.entries({ de, en, fr, it, ls })) {
     await kachel.click();
     await expect(page.getByRole('button', { name: tm.schliessen, exact: true })).toBeVisible();
     await expect(page.getByRole('button', { name: tm.departementOeffnenKnopf, exact: true })).toBeVisible();
+  });
+}
+
+// Einbetten-Dialog (/steuerfranken, components/EmbedButton.tsx): Knopf,
+// Dialog und der kopierte Code standen bis 2026-11 fest auf Deutsch, auch in
+// en/fr/it/ls — samt «Daten bereitgestellt von Maschinerie Zürich» im Code,
+// der auf fremden Seiten landet. Geprüft je Sprache: Texte aus
+// messages/*.json, im Code Titel und Quellenhinweis der Sprache.
+const CITY_NAME = city.name as Record<string, string>;
+for (const [locale, m] of Object.entries({ de, en, fr, it, ls })) {
+  test(`i18n: Einbetten-Dialog auf /${locale}/steuerfranken`, async ({ page }) => {
+    const em = m.Embed;
+    const appTitel = m.App.title.replace('{cityName}', CITY_NAME[locale]);
+    await page.goto(`/${locale}/steuerfranken`);
+    await page.getByRole('button', { name: em.knopf, exact: true }).click();
+    const dialog = page.getByRole('dialog', { name: em.titel, exact: true });
+    await expect(dialog).toBeVisible();
+    await expect(dialog.getByText(em.anleitung, { exact: true })).toBeVisible();
+    await expect(dialog.getByRole('button', { name: em.kopieren, exact: true })).toBeVisible();
+    await expect(dialog.getByRole('button', { name: em.schliessen, exact: true })).toHaveCount(2);
+
+    const code = await dialog.getByRole('textbox', { name: em.codeLabel, exact: true }).inputValue();
+    const html = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    expect(code, 'iframe-Titel').toContain(`title="${html(`${m.Treemap.title} · ${appTitel}`)}"`);
+    const [vor, nach] = em.quelle.split('{name}');
+    expect(code, 'Quellenhinweis').toContain(`${html(vor)}<a href=`);
+    expect(code, 'Quellenhinweis').toContain(`>${html(appTitel)}</a>${html(nach)}`);
+    expect(code, 'Pfad der Sprache').toContain(`/${locale}/embed/steuerfranken"`);
+    if (['en', 'fr', 'it'].includes(locale)) {
+      expect(code.match(/Daten|Maschinerie|Datenvisualisierung/)?.[0], 'deutscher Rest im Code').toBeUndefined();
+    }
   });
 }
