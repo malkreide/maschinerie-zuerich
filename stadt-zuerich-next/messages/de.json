@@ -324,7 +324,7 @@
   "Hint": "Hover = erkunden · Klick = auswählen · Scroll = zoomen · Suche kennt auch Anliegen",
   "Simulator": {
     "title": "Budget-Simulator: Was wäre wenn?",
-    "intro": "Verschiebe testweise Mittel zwischen den Departementen — sieh sofort, wie sich das städtische Gesamtbudget und die Pro-Kopf-Belastung verändern würden. Reine Simulation ohne Wirkung auf echte Finanzdaten.",
+    "intro": "Verschieben Sie testweise Mittel zwischen den Departementen — und sehen Sie sofort, wie sich das städtische Gesamtbudget und die Pro-Kopf-Belastung verändern würden. Reine Simulation ohne Wirkung auf echte Finanzdaten.",
     "ariaLabel": "Interaktiver Budget-Simulator",
     "originalLabel": "Ursprünglich",
     "simulatedLabel": "Simuliert",

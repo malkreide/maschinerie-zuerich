@@ -8,7 +8,14 @@
 //
 // Geprüft werden die Pronomen der Du- und Ihr-Form. Imperative («Tippe»,
 // «Erkunde») lassen sich per Muster nicht sicher von Substantiven und
-// Satzanfängen trennen; die bleiben Sache des Reviews.
+// Satzanfängen trennen; die bleiben Sache des Reviews. So rutschte
+// «Verschiebe … sieh sofort» (Simulator.intro) durch #371.
+//
+// Italienisch (it) folgt seit 2026-11 der Form des Deutschen: Wo das Deutsche
+// siezt, steht «Lei» (klein: «suo», «sua»); wo es den Infinitiv nutzt, der
+// Infinitiv. Knopf- und Linkbeschriftungen bleiben im Imperativ («Cerca»,
+// «Chiudi»), wie in italienischen Oberflächen üblich. Geprüft werden hier die
+// Pronomen der tu-Form («Cerca la tua pratica», «Grazie per il tuo riscontro»).
 //
 // Lauf: node --experimental-strip-types --test tests/anrede.test.mjs
 
@@ -33,6 +40,17 @@ function flatten(obj, prefix = '', out = new Map()) {
   }
   return out;
 }
+
+// Italienisch: Pronomen der tu-Form (tu, ti, te, tuo, tua, tuoi, tue).
+const TU = /(?<![\p{L}\d])(?:tu|ti|te|tuo|tua|tuoi|tue)(?![\p{L}\d])/iu;
+
+test('Anrede: keine tu-Form in messages/it.json', () => {
+  const texte = flatten(JSON.parse(readFileSync(path.join(messagesDir, 'it.json'), 'utf8')));
+  const funde = [...texte]
+    .filter(([, text]) => TU.test(text))
+    .map(([key, text]) => `${key}: «${text.match(TU)[0]}» in «${text.slice(0, 60)}»`);
+  assert.deepEqual(funde, [], `tu-Form statt Lei:\n  ${funde.join('\n  ')}`);
+});
 
 for (const locale of ['de', 'ls']) {
   test(`Anrede: keine Du- oder Ihr-Form in messages/${locale}.json`, () => {
