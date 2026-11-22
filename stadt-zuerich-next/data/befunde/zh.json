@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0.0",
   "city": "zh",
-  "erhoben_am": "2026-11-16T15:47:56.761Z",
-  "lauf_url": "https://github.com/malkreide/maschinerie-zuerich/actions/runs/43899967568",
+  "erhoben_am": "2026-11-22T18:19:52.591Z",
+  "lauf_url": "https://github.com/malkreide/maschinerie-zuerich/actions/runs/45054358514",
   "umgebung": "github-actions",
   "referenzen": [
     {
@@ -629,7 +629,7 @@
       "slug": "zh/umzug-melden",
       "reference_id": 2,
       "url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/zuzug.html",
-      "retrieved_at": "2026-10-11",
+      "retrieved_at": "2026-11-22",
       "erreichbar": "ok",
       "http_status": 200,
       "zitat": "woertlich",
@@ -639,20 +639,20 @@
       "slug": "zh/umzug-melden",
       "reference_id": 3,
       "url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/zuzug.html",
-      "retrieved_at": "2026-10-28",
+      "retrieved_at": "2026-11-22",
       "erreichbar": "ok",
       "http_status": 200,
-      "zitat": "drift",
+      "zitat": "woertlich",
       "fassung": "nicht-anwendbar"
     },
     {
       "slug": "zh/umzug-melden",
       "reference_id": 4,
       "url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/umzug.html",
-      "retrieved_at": "2026-10-11",
+      "retrieved_at": "2026-11-22",
       "erreichbar": "ok",
       "http_status": 200,
-      "zitat": "drift",
+      "zitat": "woertlich",
       "fassung": "nicht-anwendbar"
     },
     {
@@ -700,6 +700,16 @@
       "reference_id": 9,
       "url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/umzug.html",
       "retrieved_at": "2026-10-28",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/umzug-melden",
+      "reference_id": 10,
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/Zuzug-Innerkantonal.html",
+      "retrieved_at": "2026-11-22",
       "erreichbar": "ok",
       "http_status": 200,
       "zitat": "woertlich",
