@@ -91,6 +91,7 @@
     "it": "it-CH",
     "ls": "de-CH"
   },
+  "timeZone": "Europe/Zurich",
   "attribution": "Maschinerie der Stadt Zürich",
   "repoRawUrl": "https://raw.githubusercontent.com/malkreide/maschinerie-zuerich/main/stadt-zuerich-next",
   "geo": {
