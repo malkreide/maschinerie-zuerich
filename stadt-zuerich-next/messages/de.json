@@ -18,14 +18,14 @@
     "done": "Los geht's",
     "dontShowAgain": "Nicht wieder zeigen",
     "step1Eyebrow": "1 · Suchen",
-    "step1Title": "Suche dein Anliegen",
-    "step1Body": "Tippe ein Stichwort in die Suche ein — etwa «Hund anmelden», «Pass» oder «Sozialhilfe». Die Suche zeigt sofort die zuständige Stelle.",
+    "step1Title": "Suchen Sie Ihr Anliegen",
+    "step1Body": "Tippen Sie ein Stichwort in die Suche ein — etwa «Hund anmelden», «Pass» oder «Sozialhilfe». Die Suche zeigt sofort die zuständige Stelle.",
     "step2Eyebrow": "2 · Erkunden",
-    "step2Title": "Erkunde die Ämter",
-    "step2Body": "In der «Maschinerie» siehst du die ganze Stadtverwaltung als Netzwerk. Hover hebt eine Stelle samt Verbindungen hervor, Klick fixiert die Auswahl und öffnet das Detail.",
+    "step2Title": "Erkunden Sie die Ämter",
+    "step2Body": "In der «Maschinerie» sehen Sie die ganze Stadtverwaltung als Netzwerk. Hover hebt eine Stelle samt Verbindungen hervor, Klick fixiert die Auswahl und öffnet das Detail.",
     "step3Eyebrow": "3 · Verstehen",
-    "step3Title": "Verstehe das Budget",
-    "step3Body": "Im Tab «Steuerfranken» wird sichtbar, wohin dein Geld fliesst — jedes Departement als Fläche, gross = viel Aufwand. Klick auf ein Departement zoomt hinein."
+    "step3Title": "Verstehen Sie das Budget",
+    "step3Body": "Im Tab «Steuerfranken» wird sichtbar, wohin Ihr Geld fliesst — jedes Departement als Fläche, gross = viel Aufwand. Klick auf ein Departement zoomt hinein."
   },
   "Wirkung": {
     "title": "Wirkung & Reife",
@@ -114,13 +114,13 @@
   "Search": {
     "label": "Stelle oder Anliegen suchen",
     "placeholder": "Stelle oder Anliegen: 'Hund anmelden', 'Pass'…",
-    "help": "Tippt einen Suchbegriff ein. Vorschläge erscheinen darunter. Enter öffnet die volle Trefferliste auf einer eigenen Seite. Esc leert die Suche.",
+    "help": "Tippen Sie einen Suchbegriff ein. Vorschläge erscheinen darunter. Enter öffnet die volle Trefferliste auf einer eigenen Seite. Esc leert die Suche.",
     "submit": "Suchen",
     "suggestionsTitle": "Anliegen",
     "suggestionsListLabel": "Vorschläge zu Bürger-Anliegen",
     "showAll": "Alle Treffer auf eigener Seite anzeigen →",
     "noMatchesTitle": "Keine schnellen Vorschläge für „{query}\"",
-    "noMatchesHint": "Meintest du vielleicht einen dieser Begriffe?",
+    "noMatchesHint": "Meinten Sie vielleicht einen dieser Begriffe?",
     "popularFallback": "Häufige Anliegen",
     "openFullSearch": "Vollständige Suche öffnen →",
     "missNote": "Anonyme Suchbegriffe ohne Treffer helfen uns, fehlende Anliegen zu erkennen. Wir speichern keine persönlichen Daten."
@@ -193,7 +193,7 @@
   },
   "Anliegen": {
     "title": "Anliegen suchen",
-    "intro": "Suche nach Begriffen wie «Hund anmelden», «Pass», «Sozialhilfe» oder «Strom». Diese Seite funktioniert auch ohne JavaScript — sie ist die Fallback-Variante der Live-Suche oben links.",
+    "intro": "Suchen Sie nach Begriffen wie «Hund anmelden», «Pass», «Sozialhilfe» oder «Strom». Diese Seite funktioniert auch ohne JavaScript — sie ist die Fallback-Variante der Live-Suche oben links.",
     "noResults": "Keine Treffer für „{query}\". Versuchen Sie einen anderen Begriff — z. B. einzelne Schlüsselwörter wie «Steuer», «Wasser» oder «Pflege».",
     "noResultsFallbackHeading": "Das suchen andere häufig",
     "resultsCount": "{count, plural, one {# Treffer} other {# Treffer}} für „{query}\"",

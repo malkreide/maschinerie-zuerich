@@ -37,7 +37,7 @@ export default function Search({ lebenslagen }: { lebenslagen: Lebenslage[] }) {
   );
 
   // Fallback: die ersten N Lebenslagen mit auflösbarem Content in der aktuellen
-  // Locale — genutzt als "Meintest du vielleicht…?"-Block, wenn die Suche leer
+  // Locale — genutzt als "Meinten Sie vielleicht…?"-Block, wenn die Suche leer
   // zurückkommt. Memo, damit es pro Locale nur einmal berechnet wird.
   const fallbacks = useMemo(() => {
     const out: { id: string; frage: string; zustaendig: string }[] = [];
