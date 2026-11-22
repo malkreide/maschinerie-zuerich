@@ -12,10 +12,12 @@
   "Onboarding": {
     "ariaLabel": "Breve tutorial",
     "stepLabel": "Passo {current} di {total}",
+    "progress": "{current} di {total}",
     "skip": "Salta",
     "back": "Indietro",
     "next": "Avanti",
     "done": "Iniziamo",
+    "close": "Chiudi il tutorial",
     "dontShowAgain": "Non mostrare più",
     "step1Eyebrow": "1 · Cerca",
     "step1Title": "Cerca la tua pratica",
@@ -23,6 +25,7 @@
     "step2Eyebrow": "2 · Esplora",
     "step2Title": "Esplora gli uffici",
     "step2Body": "La scheda « Macchina » mostra l'intera amministrazione come rete. Il passaggio del mouse evidenzia un'unità e i suoi collegamenti, il clic fissa la selezione e apre il pannello dei dettagli.",
+    "step2BodyMobile": "La scheda « Macchina » elenca l'intera amministrazione per dipartimento. Tocca un dipartimento per vederne gli uffici.",
     "step3Eyebrow": "3 · Capisci",
     "step3Title": "Capisci il budget",
     "step3Body": "La scheda « Franco fiscale » mostra dove vanno i tuoi soldi — ogni dipartimento come area, più grande = più spesa. Clic su un dipartimento per ingrandire."

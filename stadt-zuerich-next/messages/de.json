@@ -12,10 +12,12 @@
   "Onboarding": {
     "ariaLabel": "Kurzes Tutorial",
     "stepLabel": "Schritt {current} von {total}",
+    "progress": "{current} von {total}",
     "skip": "Überspringen",
     "back": "Zurück",
     "next": "Weiter",
     "done": "Los geht's",
+    "close": "Tutorial schliessen",
     "dontShowAgain": "Nicht wieder zeigen",
     "step1Eyebrow": "1 · Suchen",
     "step1Title": "Suchen Sie Ihr Anliegen",
@@ -23,6 +25,7 @@
     "step2Eyebrow": "2 · Erkunden",
     "step2Title": "Erkunden Sie die Ämter",
     "step2Body": "In der «Maschinerie» sehen Sie die ganze Stadtverwaltung als Netzwerk. Hover hebt eine Stelle samt Verbindungen hervor, Klick fixiert die Auswahl und öffnet das Detail.",
+    "step2BodyMobile": "In der «Maschinerie» finden Sie die ganze Stadtverwaltung, nach Departementen geordnet. Tippen Sie auf ein Departement, um seine Stellen zu sehen.",
     "step3Eyebrow": "3 · Verstehen",
     "step3Title": "Verstehen Sie das Budget",
     "step3Body": "Im Tab «Steuerfranken» wird sichtbar, wohin Ihr Geld fliesst — jedes Departement als Fläche, gross = viel Aufwand. Klick auf ein Departement zoomt hinein."
