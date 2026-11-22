@@ -340,6 +340,36 @@ for (const dunkel of [false, true]) {
   });
 }
 
+// Einführungstour (/de, GuidedTour.tsx): erscheint erst nach dem Klick auf
+// den Beacon, die Routen-Läufe oben sehen den Tooltip nie. Bis 2026-11 stand
+// sein Text im Dunkelmodus hell auf weissem Grund (Farbe aus dem Theme,
+// Fläche fest von Joyride). Hell und dunkel: axe auf den Tooltip, dazu der
+// Kontrast seiner Texte auf seiner Fläche.
+for (const dunkel of [false, true]) {
+  const label = `/de Einführungstour${dunkel ? ' (dunkel)' : ''}`;
+  test(`a11y: ${label}`, async ({ page, context, baseURL }) => {
+    if (dunkel) await context.addCookies([{ name: 'mog-theme', value: 'dark', url: baseURL! }]);
+    await page.goto('/de');
+    await waitForOrganigramm(page);
+    if (dunkel) await expect(page.locator('html')).toHaveClass(/(^|\s)dark(\s|$)/);
+    await page.locator('.react-joyride__beacon').click({ timeout: 10_000 });
+    await page.getByRole('alertdialog').waitFor({ state: 'visible' });
+
+    const results = await new AxeBuilder({ page })
+      .withTags(WCAG_TAGS)
+      .include('.react-joyride__tooltip')
+      .analyze();
+    const blocking = results.violations.filter(isBlocking);
+    if (blocking.length) console.log(summarize(label, blocking));
+    expect(blocking, `${blocking.length} serious/critical a11y-Verstösse auf ${label}`).toEqual([]);
+
+    const kontrast = await kontrastVerstoesse(page, [
+      { selector: '.react-joyride__tooltip', wo: 'Tour-Tooltip', texte: 'h4, p, button[data-action="skip"]' },
+    ]);
+    expect(kontrast, `Kontrast im Tour-Tooltip (${label})`).toEqual([]);
+  });
+}
+
 // Mobile-Viewport: deckt den MobileExplorer auf der Hauptseite ab (auf Desktop
 // ist er per sm:hidden ausgeblendet und würde von axe nicht gesehen).
 test.describe('mobile viewport', () => {
