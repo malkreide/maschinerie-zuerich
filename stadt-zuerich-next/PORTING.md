@@ -49,6 +49,7 @@ Referenz nebenher laufen lassen, bis deine Stadt steht.
 - `parentOrganizationId` (optional) → z.B. `ch.ge.kanton`, wenn diese Stadt mit der Kantons-Instanz föderiert sein soll.
 - `parentOrganizationUrl` (optional) → URL zur Maschinerie-Instanz des übergeordneten Kantons.
 - `dataSources` → die API(s) deiner Stadt; siehe nächster Schritt
+- `timeZone` → bleibt in der ganzen Schweiz `Europe/Zurich`; ausserhalb die IANA-Zeitzone der Stadt (fehlt der Wert, formatiert die App Datum/Uhrzeit in UTC)
 - `theme.accent` etc. → Farben des städtischen Corporate Design (oder lass ZH-Farben stehen — bis auf das Wappen ist Theme-Branding rechtlich unkritisch)
 
 Wenn alles passt:

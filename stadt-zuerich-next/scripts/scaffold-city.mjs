@@ -70,6 +70,9 @@ const configTemplate = {
   homepageUrl: `https://TODO-${id}.example/`,
   orgChartPath: `data/${id}/org-chart.json`,
   lebenslagenPath: `data/${id}/lebenslagen.json`,
+  // IANA-Zeitzone für Datum/Uhrzeit (next-intl). Ganze Schweiz: Europe/Zurich;
+  // ein Fork ausserhalb anpassen. Fehlt der Wert, gilt UTC.
+  timeZone: 'Europe/Zurich',
   brand: {
     logoPath: `/brand/${id}-logo.svg`,
     logoAlt: {
