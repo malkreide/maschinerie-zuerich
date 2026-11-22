@@ -504,6 +504,36 @@
       ]
     },
     {
+      "step_id": 21,
+      "actor": "sozialdept",
+      "label": {
+        "de": "Einsprache beim Sozialdepartement gegen den festgelegten Betreuungsumfang",
+        "en": "Objection to the Social Welfare Department against the set care volume",
+        "fr": "Opposition auprès du Département des affaires sociales contre l'ampleur de garde fixée",
+        "it": "Opposizione presso il Dipartimento sociale contro l'entità di custodia fissata",
+        "ls": "Sie sind nicht einverstanden mit den Tagen? Dann können Sie sich beim Sozial-Departement beschweren."
+      },
+      "depends_on": [
+        {
+          "step_id": 19,
+          "condition": {
+            "de": "nicht einverstanden",
+            "en": "disagree",
+            "fr": "pas d'accord",
+            "it": "non d'accordo",
+            "ls": "nicht einverstanden"
+          }
+        }
+      ],
+      "type": "loop",
+      "loops_back_to": [
+        19
+      ],
+      "reference_ids": [
+        15
+      ]
+    },
+    {
       "step_id": 2,
       "actor": "eltern",
       "label": {
@@ -754,13 +784,13 @@
     },
     {
       "step_id": 15,
-      "actor": "bezirksrat",
+      "actor": "schulamt",
       "label": {
-        "de": "Rechtsmittel gemäss Rechtsmittelbelehrung im Entscheid",
-        "en": "Legal remedy as stated in the decision",
-        "fr": "Voie de droit selon l'indication figurant dans la décision",
-        "it": "Rimedio giuridico secondo l'indicazione nella decisione",
-        "ls": "Sich beschweren, so wie es im Brief vom Amt steht"
+        "de": "Einsprache beim Schulamt (gemäss Rechtsmittelbelehrung)",
+        "en": "Objection to the School Office (as stated in the decision)",
+        "fr": "Opposition auprès de l'Office des écoles (selon l'indication des voies de droit)",
+        "it": "Opposizione presso l'Ufficio delle scuole (secondo l'indicazione dei rimedi giuridici)",
+        "ls": "Sich beim Schul-Amt beschweren, so wie es im Brief vom Amt steht"
       },
       "depends_on": [
         {
@@ -783,8 +813,7 @@
         "ls": "Am Ende vom Brief steht: Wo können Sie sich beschweren? Wie machen Sie das? Bis wann müssen Sie das machen? Halten Sie sich genau daran."
       },
       "reference_ids": [
-        14,
-        15
+        14
       ]
     },
     {
