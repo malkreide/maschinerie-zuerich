@@ -9,11 +9,22 @@ name: Publish Docker image
 #   - Tag-Push v*          (→ :v1.2.3, :1.2.3, :1.2, :1)
 #   - Manuell via UI        (workflow_dispatch)
 #
-# Cache: GitHub Actions cache (type=gha) — hält Layer-Rebuilds unter ~1 min,
-# solange sich package-lock.json nicht ändert.
+# Cache: GitHub Actions cache (type=gha), je Plattform ein eigener Scope —
+# hält Layer-Rebuilds unter ~1 min, solange sich package-lock.json nicht
+# ändert.
 #
 # Multi-Arch: amd64 + arm64, damit auch M1/M2-Macs und Raspberry-Pi-ähnliche
 # Server das Image ziehen können.
+#
+# Jede Plattform baut NATIV auf eigenem Runner (arm64: ubuntu-24.04-arm,
+# für öffentliche Repos kostenlos) und pusht nur per Digest; der Job
+# `merge` setzt daraus die Multi-Arch-Manifest-Liste mit allen Tags
+# zusammen. Früher lief arm64 per QEMU-Emulation auf dem x64-Runner: Der
+# Next.js-Build-Worker starb dort sporadisch mit SIGILL («qemu: uncaught
+# target signal 4 (Illegal instruction)») — 10 von 12 Fehlschlägen dieses
+# Workflows zwischen 2026-10-07 und 2026-11-14, jedes Mal ohne Bezug zum
+# Code. Atomar bleibt es trotzdem: Scheitert eine Plattform, läuft `merge`
+# nicht, und kein Tag (auch nicht :latest) wird verschoben.
 
 on:
   push:
@@ -33,21 +44,43 @@ concurrency:
   group: docker-publish-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  # Muss kleingeschrieben sein (OCI-Referenz) — `outputs: name=` unten
+  # normalisiert nicht selbst wie die metadata-action.
+  REGISTRY_IMAGE: ghcr.io/${{ github.repository }}
+
 jobs:
-  publish:
-    runs-on: ubuntu-latest
+  build:
+    name: build (${{ matrix.platform }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: linux/amd64
+            runner: ubuntu-latest
+          - platform: linux/arm64
+            runner: ubuntu-24.04-arm
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 30
 
     steps:
+      - name: Plattform-Kürzel für Cache-Scope und Artefaktnamen
+        env:
+          PLATFORM: ${{ matrix.platform }}
+        run: echo "PLATFORM_PAIR=${PLATFORM//\//-}" >> "$GITHUB_ENV"
+
       - name: Checkout
         uses: actions/checkout@v7
 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v4
+      - name: Extract metadata (labels)
+        id: meta
+        uses: docker/metadata-action@v6
         with:
-          platforms: arm64
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v4
+          images: ${{ env.REGISTRY_IMAGE }}
+          labels: |
+            org.opencontainers.image.title=Maschinerie der Stadt Zürich
+            org.opencontainers.image.description=Interaktive Visualisierung der Zürcher Stadtverwaltung
+            org.opencontainers.image.licenses=MIT
 
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v4
@@ -56,11 +89,70 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Extract metadata (tags, labels)
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v4
+
+      - name: Build and push by digest
+        id: build
+        uses: docker/build-push-action@v7
+        with:
+          context: ./stadt-zuerich-next
+          file: ./stadt-zuerich-next/Dockerfile
+          platforms: ${{ matrix.platform }}
+          labels: ${{ steps.meta.outputs.labels }}
+          # Ohne Tag pushen — die Tags setzt erst `merge`, wenn beide
+          # Plattformen gebaut sind.
+          outputs: type=image,name=${{ env.REGISTRY_IMAGE }},push-by-digest=true,name-canonical=true,push=true
+          cache-from: type=gha,scope=${{ env.PLATFORM_PAIR }}
+          # ignore-error=true: wenn das GHA-Cache-Backend 502 wirft, soll der
+          # erfolgreich gepushte Build nicht als Failure markiert werden.
+          # Cache ist Speedup — nicht Korrektheit.
+          cache-to: type=gha,scope=${{ env.PLATFORM_PAIR }},mode=max,ignore-error=true
+
+      - name: Digest exportieren
+        env:
+          DIGEST: ${{ steps.build.outputs.digest }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/digests"
+          touch "$RUNNER_TEMP/digests/${DIGEST#sha256:}"
+
+      - name: Digest hochladen
+        uses: actions/upload-artifact@v7
+        with:
+          name: digests-${{ env.PLATFORM_PAIR }}
+          path: ${{ runner.temp }}/digests/*
+          if-no-files-found: error
+          retention-days: 1
+
+  merge:
+    name: Multi-Arch-Manifest taggen
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Digests holen
+        uses: actions/download-artifact@v8
+        with:
+          path: ${{ runner.temp }}/digests
+          pattern: digests-*
+          merge-multiple: true
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v4
+
+      - name: Extract metadata (tags)
         id: meta
         uses: docker/metadata-action@v6
         with:
-          images: ghcr.io/${{ github.repository }}
+          images: ${{ env.REGISTRY_IMAGE }}
           tags: |
             type=ref,event=branch
             type=ref,event=tag
@@ -69,23 +161,16 @@ jobs:
             type=semver,pattern={{major}}
             type=sha,format=short
             type=raw,value=latest,enable={{is_default_branch}}
-          labels: |
-            org.opencontainers.image.title=Maschinerie der Stadt Zürich
-            org.opencontainers.image.description=Interaktive Visualisierung der Zürcher Stadtverwaltung
-            org.opencontainers.image.licenses=MIT
 
-      - name: Build and push
-        uses: docker/build-push-action@v7
-        with:
-          context: ./stadt-zuerich-next
-          file: ./stadt-zuerich-next/Dockerfile
-          platforms: linux/amd64,linux/arm64
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha
-          # ignore-error=true: wenn das GHA-Cache-Backend 502 wirft (passiert
-          # regelmässig bei grossen Multi-Arch-Caches), soll der erfolgreich
-          # gepushte Image-Build nicht als Failure markiert werden. Cache ist
-          # Speedup — nicht Korrektheit.
-          cache-to: type=gha,mode=max,ignore-error=true
+      - name: Manifest-Liste erstellen und pushen
+        working-directory: ${{ runner.temp }}/digests
+        run: |
+          mapfile -t tag_args < <(jq -r '.tags[] | ("-t", .)' <<< "$DOCKER_METADATA_OUTPUT_JSON")
+          sources=()
+          for digest in *; do sources+=("${REGISTRY_IMAGE}@sha256:${digest}"); done
+          docker buildx imagetools create "${tag_args[@]}" "${sources[@]}"
+
+      - name: Image prüfen
+        env:
+          VERSION: ${{ steps.meta.outputs.version }}
+        run: docker buildx imagetools inspect "${REGISTRY_IMAGE}:${VERSION}"
