@@ -55,16 +55,8 @@ const config: NextConfig = {
   // volle `node_modules/` (~500 MB) einbacken müssen.
   // Für Vercel/Netlify/etc. ist die Option harmlos (ignoriert).
   output: 'standalone',
-  // Einstieg '/' → Default-Locale. Bis 2026-11 erledigte das eine Seite
-  // app/page.tsx mit redirect('/de'). Seit Next 16.4 bricht der Build ab,
-  // weil diese Seite kein Root-Layout hat (das Layout liegt unter
-  // app/[locale]/). Die Weiterleitung hier braucht weder Seite noch Layout
-  // und, wie vorher, keine Middleware (siehe Vercel-Probleme im alten
-  // Kommentar von app/page.tsx). Status wie vorher 307, kein Accept-
-  // Language-Abgleich.
-  async redirects() {
-    return [{ source: '/', destination: '/de', permanent: false }];
-  },
+  // Einstieg '/' → '/de': nicht hier als redirects(), sondern als Route
+  // Handler in app/route.ts — begründet dort (Sicherheits-Header).
   async headers() {
     return [
       {
