@@ -547,12 +547,32 @@
           "ebene": "stadt",
           "gesetzesfassung": false,
           "retrieved_at": "2026-10-09"
+        },
+        {
+          "reference_id": 14,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "url": "https://www.stadt-zuerich.ch/content/dam/web/de/lebenslagen/jugend-und-familie/dokumente/kinderbetreuung/muster-beitragsfaktorbestaetigung.pdf",
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-11-22"
+        },
+        {
+          "reference_id": 15,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "url": "https://www.stadt-zuerich.ch/content/dam/web/de/stadtleben/wirtschaft-und-gewerbe/dokumente/kontraktmanagement/merkblatt-subventionsberechtigter-betreuungsumfang.pdf",
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-11-22"
         }
       ],
       "summe": {
-        "referenzen": 13,
-        "verifiziert": 13,
-        "mitZitat": 13,
+        "referenzen": 15,
+        "verifiziert": 15,
+        "mitZitat": 15,
         "unverifiziert": 0
       },
       "bewertungsBelege": {
@@ -563,7 +583,7 @@
       "rechtsgrundlagen": 2,
       "abruf": {
         "aeltester": "2026-06-10",
-        "juengster": "2026-10-09"
+        "juengster": "2026-11-22"
       },
       "herkunft": {
         "art": "gemischt",
@@ -1273,12 +1293,12 @@
   ],
   "summary": {
     "prozesse": 17,
-    "referenzen": 76,
-    "verifiziert": 76,
-    "mitZitat": 76,
+    "referenzen": 78,
+    "verifiziert": 78,
+    "mitZitat": 78,
     "hochrisiko": 3,
     "nachEbene": {
-      "stadt": 62,
+      "stadt": 64,
       "kanton": 8,
       "bund": 6,
       "andere": 0
