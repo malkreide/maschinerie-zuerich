@@ -204,6 +204,34 @@
       "source_quote": "Ihr neuer SBU ist tiefer als der bisherige oder Ihr Gesuch um Erhöhung des SBU wurde abgelehnt oder nur teilweise gutgeheissen. Bei einer Reduktion des Betreuungsumfangs gilt in der Regel eine Kündigungsfrist. Die entstehenden Kosten bis zum Ende dieser Frist können vom Sozialdepartement übernommen werden.",
       "status": "verifiziert",
       "retrieved_at": "2026-10-09"
+    },
+    {
+      "reference_id": 14,
+      "label": {
+        "de": "Einsprache gegen die Beitragsfaktorbestätigung (Frist und Adresse)",
+        "en": "Objection to the contribution-factor confirmation (deadline and address)",
+        "fr": "Opposition à la confirmation du facteur de contribution (délai et adresse)",
+        "it": "Opposizione alla conferma del fattore di contribuzione (termine e indirizzo)",
+        "ls": "Sie sind nicht einverstanden mit dem Beitrags-Faktor? Frist und Adresse, um sich beim Schul-Amt zu wehren."
+      },
+      "source_url": "https://www.stadt-zuerich.ch/content/dam/web/de/lebenslagen/jugend-und-familie/dokumente/kinderbetreuung/muster-beitragsfaktorbestaetigung.pdf",
+      "source_quote": "Gegen diese Anordnung kann innert 30 Tagen nach Erhalt schriftlich Einsprache beim Schulamt, ASB, Einsprache Subvention, Postfach, 8027 Zürich, erhoben werden.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-11-22"
+    },
+    {
+      "reference_id": 15,
+      "label": {
+        "de": "Einsprache gegen den festgelegten Betreuungsumfang (SBU): Frist und Stelle",
+        "en": "Objection to the set care volume (SBU): deadline and office",
+        "fr": "Opposition à l'ampleur de garde fixée (SBU) : délai et service",
+        "it": "Opposizione all'entità di custodia fissata (SBU): termine e servizio",
+        "ls": "Sie sind nicht einverstanden mit den Tagen? Frist und Stelle, um sich beim Sozial-Departement zu wehren."
+      },
+      "source_url": "https://www.stadt-zuerich.ch/content/dam/web/de/stadtleben/wirtschaft-und-gewerbe/dokumente/kontraktmanagement/merkblatt-subventionsberechtigter-betreuungsumfang.pdf",
+      "source_quote": "Gegen die Festlegung des subventionsberechtigten Betreuungsumfangs können Eltern innerhalb von 30 Tagen ab Zustellung der Bestätigung eine Einsprache mit Antrag und Begründung beim Sozialdepartement einreichen.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-11-22"
     }
   ],
   "actors": [
@@ -753,7 +781,11 @@
         "fr": "L'autorité compétente, ainsi que la forme et le délai pour exercer une voie de droit, figurent dans l'indication des voies de droit à la fin de la décision.",
         "it": "L'autorità competente, nonché la forma e il termine per esperire un rimedio giuridico, sono indicati nell'indicazione dei rimedi giuridici alla fine della decisione.",
         "ls": "Am Ende vom Brief steht: Wo können Sie sich beschweren? Wie machen Sie das? Bis wann müssen Sie das machen? Halten Sie sich genau daran."
-      }
+      },
+      "reference_ids": [
+        14,
+        15
+      ]
     },
     {
       "step_id": 16,
@@ -894,7 +926,7 @@
   },
   "meta": {
     "erstellt": "2026-06-06",
-    "aktualisiert": "2026-10-09",
+    "aktualisiert": "2026-11-22",
     "maintainer": "malkreide",
     "lizenz": "CC-BY-4.0",
     "herkunft": {
