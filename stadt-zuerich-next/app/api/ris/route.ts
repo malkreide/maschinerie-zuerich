@@ -41,7 +41,10 @@ export async function GET(request: Request) {
         id: item.Id || item.Geschaeftsnummer || Math.random().toString(),
         titel: item.Titel || item.Gegenstand || "Ohne Titel",
         geschaeftsart: item.Geschaeftsart || "Geschäft",
-        datum: item.Datum || new Date().toISOString().split('T')[0],
+        // Kein Ersatzdatum: Nennt die Quelle keines, bleibt es leer, und die
+        // Oberfläche zeigt keins. Das heutige Datum einzusetzen hiesse, ein
+        // Datum zu behaupten, das der Gemeinderat nie publiziert hat.
+        datum: item.Datum ? String(item.Datum) : '',
         link: item.Url || `https://www.gemeinderat-zuerich.ch/geschaefte/detailansicht-geschaeft?gId=${item.Id}`
       }));
 

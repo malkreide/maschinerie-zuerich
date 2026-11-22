@@ -2,6 +2,7 @@ import { getRequestConfig } from 'next-intl/server';
 import { hasLocale } from 'next-intl';
 import { routing, type Locale } from './routing';
 import { messageFallback, onI18nError } from './fallback';
+import { cityTimeZone } from '../config/city.config';
 
 // Explizite statische Imports statt dynamic import(`../messages/${locale}.json`).
 // Grund: der Template-Literal-Import ist in Vercels Edge-Bundle problematisch
@@ -21,6 +22,8 @@ export default getRequestConfig(async ({ requestLocale }) => {
   return {
     locale,
     messages: MESSAGES[locale as Locale],
+    // Feste Zeitzone statt der des Servers (siehe cityTimeZone).
+    timeZone: cityTimeZone,
     // Fehlende Keys fallen auf de zurück statt als roher Key zu rendern
     // (siehe i18n/fallback.ts).
     getMessageFallback: messageFallback,

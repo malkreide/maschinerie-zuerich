@@ -7,7 +7,7 @@
 import { createTranslator } from 'next-intl';
 import type { Locale } from '@/i18n/routing';
 import { messageFallback, onI18nError } from '@/i18n/fallback';
-import { city } from '@/config/city.config';
+import { city, cityTimeZone } from '@/config/city.config';
 import de from '@/messages/de.json';
 import en from '@/messages/en.json';
 import fr from '@/messages/fr.json';
@@ -43,6 +43,8 @@ export function getT(locale: Locale, namespace?: string): Translator {
     messages: getMessages(locale),
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     namespace: namespace as any,
+    // Feste Zeitzone wie Request-Config und Client-Provider.
+    timeZone: cityTimeZone,
     // Fehlende Keys fallen auf de zurück statt als roher Key zu rendern
     // (siehe i18n/fallback.ts).
     getMessageFallback: messageFallback,

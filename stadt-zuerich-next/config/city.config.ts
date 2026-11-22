@@ -101,6 +101,11 @@ export interface CityConfig {
    *  Stadt-/länderspezifisch — ein Nicht-Schweizer Fork nutzt andere
    *  Regions-Tags. Fehlt der Block, wird der rohe Locale-Code verwendet. */
   htmlLang?: Record<Locale, string>;
+  /** IANA-Zeitzone der Stadt (z. B. 'Europe/Zurich') für next-intl. Server
+   *  (Docker, Vercel) laufen meist in UTC, Browser in der Ortszeit — ohne
+   *  feste Zeitzone formatieren beide Datum/Uhrzeit verschieden
+   *  (Markup-Mismatch). Fehlt der Wert, gilt 'UTC' (siehe cityTimeZone). */
+  timeZone?: string;
   /** Attributions-Text der offenen API (X-Data-Attribution-Header).
    *  Fehlt er, wird generisch aus dem Stadtnamen abgeleitet. */
   attribution?: string;
@@ -149,6 +154,12 @@ export interface CityTheme {
 }
 
 export const city: CityConfig = cfg as CityConfig;
+
+/** Zeitzone für alle drei i18n-Pfade (Request-Config, Client-Provider,
+ *  Server-getT). Fallback 'UTC' statt der Umgebungs-Zeitzone: deterministisch
+ *  auf Server und Client, also kein Mismatch — ein Fork, der Ortszeit will,
+ *  setzt `timeZone` in seiner city.config.json. */
+export const cityTimeZone: string = city.timeZone ?? 'UTC';
 
 /** Baut die URL für "auf Stadt-Website suchen" aus dem Template.
  *  Kapselt die URL-Kodierung, damit Aufrufer das Rohstring übergeben. */
