@@ -7,16 +7,18 @@
 #   builder → kompiliert Next.js mit output=standalone
 #   runner  → schlanker Runtime (~150 MB), läuft als non-root user
 #
-# Die Node-Version kommt aus dem Alpine-Image. Sie muss mit der CI-
-# Version (.github/workflows/ci.yml → node-version) übereinstimmen,
-# sonst löst der npm-Resolver unterschiedliche Peer-Dep-Versionen auf
-# und `npm ci` bricht ab mit "Missing: X from lock file".
+# Die Node-Version kommt aus dem Alpine-Image. Sie muss exakt mit der CI-
+# Version (.github/workflows/ci.yml → node-version) übereinstimmen: Mit
+# Node wechselt auch das mitgelieferte npm, und verschiedene npm-Versionen
+# lösen Peer-Deps unterschiedlich auf — dann bricht `npm ci` ab mit
+# "Missing: X from lock file". Das Lockfile wird mit der CI-Version erzeugt.
 #
-# Aktuell: Node 24-alpine (matcht CI, devcontainer und package.json →
-# engines.node >=24.16.0). Alle vier Stellen müssen übereinstimmen, sonst
-# löst der npm-Resolver unterschiedliche Peer-Dep-Versionen auf.
+# package.json → engines.node ist nur die Untergrenze und muss nicht
+# gleichziehen. Renovate hebt diese Zeile und die CI in getrennten PRs an
+# (so lief das Image 2026-11 auf Node 24, die CI auf 26) — bei jedem
+# Node-Update beide Stellen vergleichen.
 
-ARG NODE_VERSION=24.22.2-alpine
+ARG NODE_VERSION=26.13.0-alpine
 
 # ─── Stage 1: deps ──────────────────────────────────────────────────────────
 # Installiert nur die Abhängigkeiten. Eigener Stage, damit `npm ci` nur
