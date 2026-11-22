@@ -1053,7 +1053,7 @@
           "host": "www.stadt-zuerich.ch",
           "ebene": "stadt",
           "gesetzesfassung": false,
-          "retrieved_at": "2026-10-11"
+          "retrieved_at": "2026-11-22"
         },
         {
           "reference_id": 3,
@@ -1063,7 +1063,7 @@
           "host": "www.stadt-zuerich.ch",
           "ebene": "stadt",
           "gesetzesfassung": false,
-          "retrieved_at": "2026-10-28"
+          "retrieved_at": "2026-11-22"
         },
         {
           "reference_id": 4,
@@ -1073,7 +1073,7 @@
           "host": "www.stadt-zuerich.ch",
           "ebene": "stadt",
           "gesetzesfassung": false,
-          "retrieved_at": "2026-10-11"
+          "retrieved_at": "2026-11-22"
         },
         {
           "reference_id": 5,
@@ -1124,12 +1124,22 @@
           "ebene": "stadt",
           "gesetzesfassung": false,
           "retrieved_at": "2026-10-28"
+        },
+        {
+          "reference_id": 10,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/Zuzug-Innerkantonal.html",
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-11-22"
         }
       ],
       "summe": {
-        "referenzen": 9,
-        "verifiziert": 9,
-        "mitZitat": 9,
+        "referenzen": 10,
+        "verifiziert": 10,
+        "mitZitat": 10,
         "unverifiziert": 0
       },
       "bewertungsBelege": {
@@ -1140,7 +1150,7 @@
       "rechtsgrundlagen": 3,
       "abruf": {
         "aeltester": "2026-10-05",
-        "juengster": "2026-10-28"
+        "juengster": "2026-11-22"
       },
       "herkunft": {
         "art": "gemischt",
@@ -1263,12 +1273,12 @@
   ],
   "summary": {
     "prozesse": 17,
-    "referenzen": 75,
-    "verifiziert": 75,
-    "mitZitat": 75,
+    "referenzen": 76,
+    "verifiziert": 76,
+    "mitZitat": 76,
     "hochrisiko": 3,
     "nachEbene": {
-      "stadt": 61,
+      "stadt": 62,
       "kanton": 8,
       "bund": 6,
       "andere": 0

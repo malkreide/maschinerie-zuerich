@@ -12,11 +12,11 @@
     "ls": "Umzug melden (neue Adresse)"
   },
   "description": {
-    "de": "Wer in die Stadt Zürich zieht oder innerhalb der Stadt umzieht, muss sich innert der gesetzlichen Meldefrist beim Bevölkerungsamt an- bzw. ummelden. Für Schweizer:innen weitgehend online über eUmzugCH; für ausländische Staatsangehörige gelten Zusatzschritte. Auch der Wegzug aus der Stadt muss gemeldet werden; eine Abmeldebestätigung kann danach im Webshop bestellt werden.",
-    "en": "Anyone moving to or within the City of Zurich must register or update their address with the population office within the statutory deadline. Largely online via eUmzugCH for Swiss citizens; foreign nationals have additional steps. Moving away from the city must also be reported; a deregistration confirmation can then be ordered in the web shop.",
-    "fr": "Toute personne qui emménage dans la ville de Zurich ou qui déménage à l'intérieur de la ville doit s'annoncer ou faire mettre à jour son adresse auprès du contrôle des habitants dans le délai légal d'annonce. En grande partie en ligne via eUmzugCH pour les ressortissant-e-s suisses; des étapes supplémentaires s'appliquent aux ressortissant-e-s étrangers. Le départ de la ville doit également être annoncé ; une attestation de départ peut ensuite être commandée dans la boutique en ligne.",
-    "it": "Chi si trasferisce nella città di Zurigo o trasloca all'interno della città deve annunciarsi o aggiornare il proprio indirizzo presso il controllo abitanti entro il termine legale di notifica. In gran parte online tramite eUmzugCH per i cittadini svizzeri; per i cittadini stranieri valgono passaggi aggiuntivi. Anche la partenza dalla città va notificata; una conferma di disdetta può poi essere ordinata nel webshop.",
-    "ls": "Sie ziehen in die Stadt Zürich? Oder Sie ziehen in eine neue Wohnung in der Stadt? Dann müssen Sie das melden. Melden Sie das schnell. Es gibt eine Frist. Das macht das Bevölkerungs-Amt. Schweizerinnen und Schweizer können das im Internet machen. Sie ziehen aus Zürich weg? Dann müssen Sie sich abmelden."
+    "de": "Wer nach Zürich zieht oder innerhalb der Stadt umzieht, muss dies fristgerecht melden. Der Meldeweg hängt davon ab, ob Sie innerhalb der Stadt umziehen, aus einer anderen Schweizer Gemeinde oder aus dem Ausland zuziehen. Auch einen Wegzug müssen Sie melden; danach können Sie eine Abmeldebestätigung im Webshop bestellen.",
+    "en": "If you move to or within the City of Zurich, you must report the move by the deadline. How you report it depends on whether you move within the city, from another Swiss municipality or from abroad. You must also report a move away; you can then order confirmation of deregistration from the web shop.",
+    "fr": "Si vous emménagez à Zurich ou déménagez à l’intérieur de la ville, vous devez l’annoncer dans les délais. La démarche dépend de votre situation : déménagement dans la ville, arrivée d’une autre commune suisse ou arrivée de l’étranger. Vous devez aussi annoncer votre départ. Vous pourrez ensuite commander une attestation de départ dans la boutique en ligne.",
+    "it": "Se vi trasferite a Zurigo o traslocate all’interno della città, dovete comunicarlo entro il termine previsto. La procedura dipende dal luogo di provenienza: la città di Zurigo, un altro comune svizzero o l’estero. Anche la partenza va notificata. In seguito potete ordinare un’attestazione di partenza nel negozio online.",
+    "ls": "Sie ziehen nach Zürich oder in Zürich um? Dann müssen Sie das rechtzeitig melden. Es gibt drei Wege: Sie ziehen in Zürich um. Sie kommen aus einer anderen Schweizer Gemeinde. Oder Sie kommen aus einem anderen Land. Auch einen Wegzug müssen Sie melden. Danach können Sie im Internet eine Bestätigung bestellen."
   },
   "target_audience": "bevoelkerung",
   "preconditions": [
@@ -27,10 +27,11 @@
       "ls": "Sie ziehen nach Zürich. Oder Sie ziehen in Zürich um. Oder Sie ziehen weg."
     },
     {
-      "de": "Beim Zuzug aus einer anderen Schweizer Gemeinde müssen Sie sich zuerst bei Ihrer bisherigen Wohnsitzgemeinde abmelden.",
-      "fr": "En cas d'arrivée depuis une autre commune suisse, vous devez d'abord vous désinscrire auprès de votre commune de domicile précédente.",
-      "it": "In caso di arrivo da un altro Comune svizzero, dovete prima disdire la vostra residenza presso il Comune di domicilio precedente.",
-      "ls": "Sie kommen aus einer anderen Gemeinde? Melden Sie sich dort zuerst ab."
+      "de": "Beim Zuzug aus einer anderen Schweizer Gemeinde erledigt eUmzugCH die Ab- und Anmeldung zusammen. Wenn Sie persönlich melden, müssen Sie sich zuerst bei Ihrer bisherigen Wohngemeinde abmelden.",
+      "en": "When moving from another Swiss municipality, eUmzugCH handles deregistration and registration together. If you report the move in person, first deregister with your previous municipality.",
+      "fr": "Si vous arrivez d’une autre commune suisse, eUmzugCH traite le départ et l’arrivée ensemble. Si vous vous annoncez en personne, annoncez d’abord votre départ à votre ancienne commune.",
+      "it": "Se arrivate da un altro comune svizzero, eUmzugCH gestisce insieme la partenza e l’arrivo. Se vi annunciate di persona, comunicate prima la partenza al comune precedente.",
+      "ls": "Sie kommen aus einer anderen Schweizer Gemeinde? Mit eUmzugCH können Sie sich gleichzeitig abmelden und anmelden. Melden Sie den Umzug persönlich? Dann melden Sie sich zuerst bei Ihrer alten Gemeinde ab."
     },
     {
       "de": "Für die Online-Umzugsmeldung innerhalb der Stadt müssen Sie bereits in der Stadt Zürich angemeldet sowie volljährig und handlungsfähig sein.",
@@ -60,30 +61,30 @@
     {
       "reference_id": 2,
       "label": {
-        "de": "Meldefrist beim Zuzug in die Stadt Zürich",
-        "en": "Notification deadline when moving to the City of Zurich",
-        "fr": "Délai d'annonce en cas d'arrivée dans la ville de Zurich",
-        "it": "Termine di notifica in caso di arrivo nella città di Zurigo",
-        "ls": "Wie viel Zeit Sie für die Meldung haben"
+        "de": "Meldefrist beim Zuzug aus dem Ausland",
+        "en": "Deadline when moving from abroad",
+        "fr": "Délai d’annonce en cas d’arrivée de l’étranger",
+        "it": "Termine di notifica per chi arriva dall’estero",
+        "ls": "Frist beim Zuzug aus einem anderen Land"
       },
       "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/zuzug.html",
-      "source_quote": "Den Zuzug in die Stadt Zürich müssen Sie innerhalb von 14 Tagen beim Personenmeldeamt melden.",
+      "source_quote": "Den Zuzug nach Zürich müssen Sie innerhalb von 14 Tagen beim Personenmeldeamt melden.",
       "status": "verifiziert",
-      "retrieved_at": "2026-10-11"
+      "retrieved_at": "2026-11-22"
     },
     {
       "reference_id": 3,
       "label": {
-        "de": "Unterlagen für die persönliche Anmeldung",
-        "en": "Documents for registering in person",
-        "fr": "Documents pour l'annonce en personne",
-        "it": "Documenti per l'annuncio di persona",
-        "ls": "Was Sie zum Termin mitbringen"
+        "de": "Ausweis für die persönliche Anmeldung beim Zuzug aus dem Ausland",
+        "en": "Identity document for in-person registration when moving from abroad",
+        "fr": "Pièce d’identité pour l’annonce en personne en cas d’arrivée de l’étranger",
+        "it": "Documento d’identità per l’annuncio di persona in caso di arrivo dall’estero",
+        "ls": "Ausweis für den Termin bei einem Zuzug aus einem anderen Land"
       },
       "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/zuzug.html",
-      "source_quote": "Bitte bringen Sie zu Ihrem Termin folgende Unterlagen mit: Pass oder ID (Drittstaatsangehörige: gültiger Reisepass zwingend erforderlich) Mietvertrag, Wohnungsausweis oder Untermietvertrag oder Einzugsanzeige",
+      "source_quote": "Pass oder ID (Drittstaatsangehörige: gültiger Reisepass zwingend erforderlich)",
       "status": "verifiziert",
-      "retrieved_at": "2026-10-28"
+      "retrieved_at": "2026-11-22"
     },
     {
       "reference_id": 4,
@@ -95,9 +96,9 @@
         "ls": "Frist beim Umzug in der Stadt"
       },
       "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/umzug.html",
-      "source_quote": "Den Wohnungswechsel müssen Sie innerhalb von 14 Tagen beim Personenmeldeamt melden.",
+      "source_quote": "Die Meldung Ihres Wohnungswechsels muss innerhalb von 14 Tagen nach dem Einzug erfolgen.",
       "status": "verifiziert",
-      "retrieved_at": "2026-10-11"
+      "retrieved_at": "2026-11-22"
     },
     {
       "reference_id": 5,
@@ -168,6 +169,20 @@
       "source_quote": "Aufgrund der aktuellen Terminsituation sind teilweise erst Termine nach Ablauf der 14-tägigen Meldefrist verfügbar. Bitte buchen Sie dennoch den nächstmöglichen Termin und beantragen Sie zusätzlich eine Fristverlängerung über unser Kontaktformular.",
       "status": "verifiziert",
       "retrieved_at": "2026-10-28"
+    },
+    {
+      "reference_id": 10,
+      "label": {
+        "de": "Meldefrist beim Zuzug aus einer anderen Schweizer Gemeinde",
+        "en": "Deadline when moving from another Swiss municipality",
+        "fr": "Délai d’annonce en cas d’arrivée d’une autre commune suisse",
+        "it": "Termine di notifica per chi arriva da un altro comune svizzero",
+        "ls": "Frist beim Zuzug aus einer anderen Schweizer Gemeinde"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/Zuzug-Innerkantonal.html",
+      "source_quote": "Den Zuzug in die Stadt Zürich müssen Sie innerhalb von 14 Tagen beim Personenmeldeamt melden.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-11-22"
     }
   ],
   "actors": [
@@ -254,29 +269,29 @@
         }
       ],
       "reference_ids": [
-        2,
         4,
+        10,
+        2,
         9
       ],
       "type": "input",
       "description": {
-        "de": "Die An- oder Ummeldung muss innert der Meldefrist erfolgen. Ist für die persönliche Meldung erst nach Ablauf der Frist ein Termin frei, buchen Sie trotzdem den nächstmöglichen Termin und beantragen Sie zusätzlich eine Fristverlängerung.",
-        "en": "Registration must be made within the notification deadline. If the next appointment for registering in person is only after the deadline, book it anyway and also request an extension.",
-        "fr": "L'annonce ou la mise à jour doit se faire dans le délai d'annonce. Si le prochain rendez-vous pour l'annonce en personne n'est disponible qu'après l'échéance, réservez-le quand même et demandez en plus une prolongation du délai.",
-        "it": "L'annuncio o l'aggiornamento deve avvenire entro il termine di notifica. Se il prossimo appuntamento per l'annuncio di persona è disponibile solo dopo la scadenza, prenotatelo comunque e chiedete in più una proroga del termine.",
-        "ls": "Melden Sie den Umzug rechtzeitig. Gibt es erst später einen Termin? Dann nehmen Sie trotzdem den nächsten Termin. Und beantragen Sie mehr Zeit."
-      },
-      "source_id": "q-stz-umzug"
+        "de": "Melden Sie den Umzug innert der Meldefrist nach dem Einzug. Die Frist für Ihren Meldeweg finden Sie in den Belegen. Ist für die persönliche Meldung erst nach Ablauf der Frist ein Termin frei, buchen Sie den nächstmöglichen Termin und beantragen Sie zusätzlich eine Fristverlängerung.",
+        "en": "Report your move by the notification deadline after moving in. See the references for the deadline for your route. If the next in-person appointment is after the deadline, book the earliest available appointment and also request an extension.",
+        "fr": "Annoncez votre déménagement dans le délai prévu après votre emménagement. Consultez les références pour connaître le délai qui s’applique à votre situation. Si le premier rendez-vous disponible est après l’échéance, réservez-le et demandez aussi une prolongation du délai.",
+        "it": "Comunicate il trasloco entro il termine previsto dopo l’arrivo. Consultate i riferimenti per conoscere il termine applicabile al vostro caso. Se il primo appuntamento disponibile è dopo il termine, prenotatelo e chiedete anche una proroga.",
+        "ls": "Melden Sie den Umzug rechtzeitig nach dem Einzug. In den Belegen steht, wie viel Zeit Sie haben. Ist erst später ein Termin frei? Nehmen Sie den nächsten Termin und beantragen Sie mehr Zeit."
+      }
     },
     {
       "step_id": 3,
       "actor": "person",
       "label": {
-        "de": "Wie melden?",
-        "en": "How to register?",
-        "fr": "Comment s'annoncer?",
-        "it": "Come annunciarsi?",
-        "ls": "Wie wollen Sie melden?"
+        "de": "Woher ziehen Sie um und wie können Sie melden?",
+        "en": "Where are you moving from, and how can you report it?",
+        "fr": "D’où venez-vous et comment annoncer votre déménagement ?",
+        "it": "Da dove vi trasferite e come potete comunicarlo?",
+        "ls": "Wo haben Sie vorher gewohnt? Wie melden Sie den Umzug?"
       },
       "depends_on": [
         2
@@ -287,31 +302,31 @@
       "step_id": 4,
       "actor": "person",
       "label": {
-        "de": "Online melden über eUmzugCH",
-        "en": "Register online via eUmzugCH",
-        "fr": "S'annoncer en ligne via eUmzugCH",
-        "it": "Annunciarsi online tramite eUmzugCH",
-        "ls": "Im Internet melden (eUmzug)"
+        "de": "Online melden: Stadt Zürich oder eUmzugCH",
+        "en": "Report online: City of Zurich or eUmzugCH",
+        "fr": "Annoncer en ligne : Ville de Zurich ou eUmzugCH",
+        "it": "Notificare online: Città di Zurigo o eUmzugCH",
+        "ls": "Im Internet melden: bei der Stadt Zürich oder über eUmzugCH"
       },
       "depends_on": [
         {
           "step_id": 3,
           "condition": {
-            "de": "online (eUmzug)",
-            "en": "online (eUmzug)",
-            "fr": "en ligne (eUmzug)",
-            "it": "online (eUmzug)",
-            "ls": "im Internet (eUmzug)"
+            "de": "Online-Meldung möglich",
+            "en": "online reporting is possible",
+            "fr": "annonce en ligne possible",
+            "it": "notifica online possibile",
+            "ls": "Meldung im Internet möglich"
           }
         }
       ],
       "type": "input",
       "description": {
-        "de": "Für Schweizer:innen und niedergelassene Personen ohne offene Spezialfälle. Die alte Gemeinde wird automatisch über den Wegzug informiert.",
-        "en": "For Swiss citizens and settled residents without special cases. The previous municipality is informed of the departure automatically.",
-        "fr": "Pour les ressortissant-e-s suisses et les personnes établies sans cas particulier en suspens. La commune précédente est informée automatiquement du départ.",
-        "it": "Per i cittadini svizzeri e le persone domiciliate senza casi particolari in sospeso. Il Comune precedente viene informato automaticamente della partenza.",
-        "ls": "Das geht am Computer. Ihre alte Gemeinde erfährt das automatisch."
+        "de": "Innerhalb der Stadt Zürich: Nutzen Sie den Online-Dienst der Stadt, wenn Sie bereits in der Stadt angemeldet, volljährig und handlungsfähig sind. Das gilt auch für ausländische Staatsangehörige, die diese Voraussetzungen erfüllen. Aus einer anderen Schweizer Gemeinde: Nutzen Sie eUmzugCH, wenn beide Gemeinden teilnehmen, die meldende Person volljährig und handlungsfähig ist und es um den Hauptwohnsitz geht. Das gilt auch für EU-/EFTA-Staatsangehörige.",
+        "en": "Within the City of Zurich: Use the City's online service if you are already registered in the city, are of legal age and have legal capacity. This also applies to eligible foreign nationals. From another Swiss municipality: Use eUmzugCH if both municipalities participate, the person reporting is of legal age and has legal capacity, and the move is for a primary residence. This also applies to EU/EFTA nationals.",
+        "fr": "Dans la ville de Zurich : utilisez le service en ligne de la Ville si vous y résidez déjà officiellement, êtes majeur·e et avez la capacité d’exercer vos droits civils. Cela vaut aussi pour les personnes de nationalité étrangère qui remplissent ces conditions. Depuis une autre commune suisse : utilisez eUmzugCH si les deux communes y participent, si la personne qui fait l’annonce est majeure et a la capacité d’exercer ses droits civils, et s’il s’agit de la résidence principale. Cela vaut aussi pour les ressortissant·es de l’UE ou de l’AELE.",
+        "it": "All’interno della città di Zurigo: usate il servizio online della Città se siete già registrati in città, maggiorenni e capaci di agire. Vale anche per le persone di cittadinanza straniera che soddisfano questi requisiti. Da un altro comune svizzero: usate eUmzugCH se entrambi i comuni vi partecipano, se la persona che effettua la notifica è maggiorenne e capace di agire e se si tratta della residenza principale. Vale anche per i cittadini UE/AELS.",
+        "ls": "Sie ziehen in der Stadt Zürich um? Nutzen Sie den Internet-Dienst der Stadt. Sie müssen schon in Zürich angemeldet sein. Sie müssen erwachsen sein und selbst für sich handeln dürfen. Auch Menschen ohne Schweizer Pass können diesen Dienst nutzen, wenn sie diese Bedingungen erfüllen. Sie kommen aus einer anderen Schweizer Gemeinde? Nutzen Sie eUmzugCH, wenn beide Gemeinden mitmachen. Die Person, die den Umzug meldet, muss erwachsen sein und selbst für sich handeln dürfen. Die neue Wohnung muss Ihr Haupt-Wohnsitz sein. Das gilt auch für Menschen aus EU- oder EFTA-Ländern."
       },
       "documents": [
         {
@@ -345,20 +360,21 @@
           "required": false
         }
       ],
-      "source_id": "q-eumzug",
       "reference_ids": [
-        5
+        4,
+        5,
+        10
       ]
     },
     {
       "step_id": 5,
       "actor": "person",
       "label": {
-        "de": "Persönlich am Schalter melden",
-        "en": "Register in person at the counter",
-        "fr": "S'annoncer en personne au guichet",
-        "it": "Annunciarsi di persona allo sportello",
-        "ls": "Beim Amt vorbeigehen"
+        "de": "Persönlich mit Termin melden",
+        "en": "Report in person by appointment",
+        "fr": "Annoncer en personne sur rendez-vous",
+        "it": "Notificare di persona su appuntamento",
+        "ls": "Persönlich melden: Sie brauchen einen Termin"
       },
       "depends_on": [
         {
@@ -374,11 +390,11 @@
       ],
       "type": "input",
       "description": {
-        "de": "Erforderlich u. a. beim Zuzug aus dem Ausland und für ausländische Staatsangehörige.",
-        "en": "Required e.g. when moving from abroad and for foreign nationals.",
-        "fr": "Requis notamment en cas d'arrivée de l'étranger et pour les ressortissant-e-s étrangers.",
-        "it": "Necessario in particolare in caso di arrivo dall'estero e per i cittadini stranieri.",
-        "ls": "Manche Menschen müssen persönlich kommen. Zum Beispiel Menschen aus dem Ausland."
+        "de": "Innerhalb der Stadt Zürich oder aus einer anderen Schweizer Gemeinde: Ist die Meldung online nicht möglich, vereinbaren Sie einen Termin beim Personenmeldeamt. Bei einem Zuzug aus der Schweiz müssen Drittstaatsangehörige persönlich vorsprechen. Aus dem Ausland: Melden Sie sich nach dem Einzug persönlich mit Termin beim Personenmeldeamt Zürich Süd. Beachten Sie die Sonderfälle in den FAQ der Stadt.",
+        "en": "Within the City of Zurich or from another Swiss municipality: If you cannot report the move online, book an appointment with the residents' registration office. Third-country nationals moving from elsewhere in Switzerland must attend in person. From abroad: After moving in, register in person by appointment at the Zürich Süd residents' registration office. See the City's FAQ for special cases.",
+        "fr": "Dans la ville de Zurich ou depuis une autre commune suisse : si l’annonce en ligne n’est pas possible, prenez rendez-vous au contrôle des habitants. Les ressortissant·es d’États tiers qui arrivent d’une autre commune suisse doivent se présenter en personne. Depuis l’étranger : après votre emménagement, annoncez-vous en personne sur rendez-vous au contrôle des habitants Zürich Süd. Consultez la FAQ de la Ville pour les cas particuliers.",
+        "it": "All’interno della città di Zurigo o da un altro comune svizzero: se la notifica online non è possibile, prendete appuntamento presso l’ufficio controllo abitanti. I cittadini di Stati terzi che arrivano da un altro comune svizzero devono presentarsi di persona. Dall’estero: dopo il trasloco, annunciatevi di persona su appuntamento presso l’ufficio controllo abitanti Zürich Süd. Per i casi particolari, consultate le FAQ della Città.",
+        "ls": "Sie können den Umzug nicht im Internet melden? Machen Sie einen Termin beim Personen-Melde-Amt. Kommen Sie aus einer anderen Schweizer Gemeinde und haben keinen Pass der Schweiz, der EU oder der EFTA? Dann müssen Sie persönlich zum Termin. Kommen Sie aus einem anderen Land? Melden Sie sich nach dem Einzug mit einem Termin beim Personen-Melde-Amt Zürich Süd. Auf der Internet-Seite der Stadt stehen Ausnahmen."
       },
       "documents": [
         {
@@ -492,8 +508,10 @@
           "required": false
         }
       ],
-      "source_id": "q-stz-umzug",
       "reference_ids": [
+        4,
+        10,
+        2,
         3
       ]
     },
@@ -570,7 +588,7 @@
         "en": "Foreign nationality?",
         "fr": "Nationalité étrangère?",
         "it": "Nazionalità straniera?",
-        "ls": "Kommen Sie aus dem Ausland?"
+        "ls": "Haben Sie eine andere Staats-Angehörigkeit als die schweizerische?"
       },
       "depends_on": [
         {
@@ -609,14 +627,16 @@
       ],
       "type": "prozess",
       "description": {
-        "de": "Bei Zuzug aus einer anderen Gemeinde/Land wird der Ausländerausweis auf die neue Adresse nachgeführt.",
-        "en": "When moving from another municipality/country, the foreigner's permit is updated to the new address.",
-        "fr": "En cas d'arrivée depuis une autre commune ou un autre pays, le titre de séjour pour étrangers est mis à jour avec la nouvelle adresse.",
-        "it": "In caso di arrivo da un altro Comune o Paese, il permesso per stranieri viene aggiornato con il nuovo indirizzo.",
-        "ls": "Sie ziehen aus einer anderen Gemeinde oder aus einem anderen Land zu? Dann kommt die neue Adresse auf Ihren Ausländer-Ausweis."
+        "de": "Je nach Staatsangehörigkeit und Bewilligung sind Schritte beim kantonalen Migrationsamt nötig. Prüfen Sie die Hinweise der Stadt für Ihren Meldeweg.",
+        "en": "Depending on your nationality and permit, the cantonal migration office may need to take further steps. Check the City's information for your reporting route.",
+        "fr": "Selon votre nationalité et votre autorisation, des démarches auprès de l’office cantonal des migrations peuvent être nécessaires. Consultez les indications de la Ville pour votre situation.",
+        "it": "A seconda della cittadinanza e del permesso, possono essere necessari ulteriori passaggi presso l’ufficio cantonale della migrazione. Consultate le indicazioni della Città per il vostro caso.",
+        "ls": "Je nach Staats-Angehörigkeit und Bewilligung muss das Migrations-Amt vielleicht noch etwas machen. Lesen Sie die Hinweise der Stadt für Ihren Umzug."
       },
       "reference_ids": [
-        1
+        1,
+        4,
+        10
       ]
     },
     {
@@ -994,9 +1014,9 @@
   "sources": [
     {
       "id": "q-stz-umzug",
-      "title": "Stadt Zürich – An-, Ab- und Ummeldung",
+      "title": "Stadt Zürich – Zuzug aus dem Ausland",
       "url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/zuzug.html",
-      "retrieved_at": "2026-06-06"
+      "retrieved_at": "2026-11-22"
     },
     {
       "id": "q-eumzug",
@@ -1014,13 +1034,13 @@
       "id": "q-stz-umzug-stadt",
       "title": "Stadt Zürich – Wohnungswechsel innerhalb der Stadt",
       "url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/umzug.html",
-      "retrieved_at": "2026-10-28"
+      "retrieved_at": "2026-11-22"
     },
     {
       "id": "q-stz-zuzug-schweiz",
       "title": "Stadt Zürich – Zuzug innerhalb der Schweiz",
       "url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/Zuzug-Innerkantonal.html",
-      "retrieved_at": "2026-10-28"
+      "retrieved_at": "2026-11-22"
     }
   ],
   "reife": {
@@ -1053,9 +1073,9 @@
     ],
     "painPoints": [
       {
-        "de": "Ausländische Staatsangehörige müssen oft persönlich am Schalter erscheinen.",
-        "en": "Foreign nationals frequently have to appear in person at the counter.",
-        "ls": "Menschen aus dem Ausland müssen oft persönlich kommen."
+        "de": "Ein Termin ist bei amtlichen Spezialfällen oder wenn der Online-Weg nicht möglich ist nötig; beim Zuzug aus dem Ausland ist er der Regelfall.",
+        "en": "An appointment is needed in special cases or when the online route is unavailable; for arrivals from abroad, this is the standard route.",
+        "ls": "Wenn Sie den Umzug nicht im Internet melden können, brauchen Sie einen Termin. Bei einem Zuzug aus einem anderen Land ist ein Termin der normale Weg."
       },
       {
         "de": "Mietvertrag und Personendaten werden erneut erfasst, obwohl Register existieren.",
@@ -1065,9 +1085,9 @@
     ],
     "improvementIdeas": [
       {
-        "de": "Durchgängiger Online-Weg auch für Niederlassungsbewilligungen (ohne Schaltertermin).",
-        "en": "End-to-end online path including residence permits (no counter appointment).",
-        "ls": "Auch Menschen aus dem Ausland sollen alles online machen können."
+        "de": "Für Fälle ohne Online-Meldung Voraussetzungen, Unterlagen und Terminweg früh und klar erklären.",
+        "en": "Explain requirements, documents and appointments early and clearly when online reporting is unavailable.",
+        "ls": "Wenn es im Internet nicht geht: früh erklären, was Sie brauchen und wie Sie einen Termin bekommen."
       },
       {
         "de": "Automatische Datenübernahme von der Wegzugsgemeinde (Once-Only).",
@@ -1083,7 +1103,7 @@
           "en": "Share online",
           "ls": "Wie viel geht online"
         },
-        "wert": "online für CH-Bürger:innen, Schalter für viele Ausländer:innen"
+        "wert": "Online je nach Meldeweg und Voraussetzungen; keine Online-Quote ausgewiesen"
       }
     ]
   },
@@ -1092,16 +1112,16 @@
       {
         "key": "online-antrag",
         "wert": true,
-        "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/zuzug.html",
-        "source_quote": "Melden Sie Ihren Umzug nach Zürich online via eUmzugCH",
+        "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/einwohner-services/umziehen-melden/Zuzug-Innerkantonal.html",
+        "source_quote": "Sie können Ihren Zuzug über das Online-Portal eUmzugCH melden, wenn folgende Voraussetzungen erfüllt sind:",
         "status": "verifiziert",
-        "retrieved_at": "2026-07-01"
+        "retrieved_at": "2026-11-22"
       }
     ]
   },
   "meta": {
     "erstellt": "2026-06-06",
-    "aktualisiert": "2026-06-10",
+    "aktualisiert": "2026-11-22",
     "maintainer": "malkreide",
     "lizenz": "CC-BY-4.0",
     "herkunft": {
