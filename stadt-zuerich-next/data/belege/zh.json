@@ -82,11 +82,11 @@
           "reference_id": 3,
           "status": "verifiziert",
           "mitZitat": true,
-          "url": "https://www.stadt-zuerich.ch/de/planen-und-bauen/baubewilligungen/bewilligungsprozess/fristen-und-gebuehren.html",
+          "url": "https://www.stadt-zuerich.ch/de/planen-und-bauen/baubewilligungen/bewilligungsprozess/ablauf.html",
           "host": "www.stadt-zuerich.ch",
           "ebene": "stadt",
           "gesetzesfassung": false,
-          "retrieved_at": "2026-10-11"
+          "retrieved_at": "2026-11-22"
         }
       ],
       "summe": {
@@ -103,7 +103,7 @@
       "rechtsgrundlagen": 3,
       "abruf": {
         "aeltester": "2026-06-10",
-        "juengster": "2026-10-11"
+        "juengster": "2026-11-22"
       },
       "herkunft": {
         "art": "redaktion",
