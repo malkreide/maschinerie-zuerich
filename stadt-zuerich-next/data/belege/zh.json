@@ -476,7 +476,7 @@
           "host": "www.stadt-zuerich.ch",
           "ebene": "stadt",
           "gesetzesfassung": false,
-          "retrieved_at": "2026-10-09"
+          "retrieved_at": "2026-11-23"
         },
         {
           "reference_id": 7,
@@ -567,12 +567,32 @@
           "ebene": "stadt",
           "gesetzesfassung": false,
           "retrieved_at": "2026-11-22"
+        },
+        {
+          "reference_id": 16,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/faq/rueckwirkende-subventionierung.html",
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-11-23"
+        },
+        {
+          "reference_id": 17,
+          "status": "verifiziert",
+          "mitZitat": true,
+          "url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/faq/rueckwirkende-subventionierung.html",
+          "host": "www.stadt-zuerich.ch",
+          "ebene": "stadt",
+          "gesetzesfassung": false,
+          "retrieved_at": "2026-11-23"
         }
       ],
       "summe": {
-        "referenzen": 15,
-        "verifiziert": 15,
-        "mitZitat": 15,
+        "referenzen": 17,
+        "verifiziert": 17,
+        "mitZitat": 17,
         "unverifiziert": 0
       },
       "bewertungsBelege": {
@@ -583,7 +603,7 @@
       "rechtsgrundlagen": 2,
       "abruf": {
         "aeltester": "2026-06-10",
-        "juengster": "2026-11-22"
+        "juengster": "2026-11-23"
       },
       "herkunft": {
         "art": "gemischt",
@@ -1293,12 +1313,12 @@
   ],
   "summary": {
     "prozesse": 17,
-    "referenzen": 78,
-    "verifiziert": 78,
-    "mitZitat": 78,
+    "referenzen": 80,
+    "verifiziert": 80,
+    "mitZitat": 80,
     "hochrisiko": 3,
     "nachEbene": {
-      "stadt": 64,
+      "stadt": 66,
       "kanton": 8,
       "bund": 6,
       "andere": 0

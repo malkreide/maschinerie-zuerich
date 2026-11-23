@@ -96,16 +96,16 @@
     {
       "reference_id": 6,
       "label": {
-        "de": "Ab wann Subventionen gelten (keine Rückwirkung)",
-        "en": "When subsidies apply (no retroactive payment)",
-        "fr": "À partir de quand les subventions s'appliquent (pas de rétroactivité)",
-        "it": "Da quando valgono le sovvenzioni (nessuna retroattività)",
+        "de": "Ab wann Subventionen gelten",
+        "en": "When subsidies apply",
+        "fr": "À partir de quand les subventions s'appliquent",
+        "it": "Da quando valgono le sovvenzioni",
         "ls": "Ab wann die Stadt bezahlt"
       },
       "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/faq.html",
-      "source_quote": "Sie können Subventionen nicht rückwirkend erhalten.",
+      "source_quote": "Grundsätzlich nein. Sie können Subventionen nicht rückwirkend erhalten.",
       "status": "verifiziert",
-      "retrieved_at": "2026-10-09"
+      "retrieved_at": "2026-11-23"
     },
     {
       "reference_id": 7,
@@ -232,6 +232,34 @@
       "source_quote": "Gegen die Festlegung des subventionsberechtigten Betreuungsumfangs können Eltern innerhalb von 30 Tagen ab Zustellung der Bestätigung eine Einsprache mit Antrag und Begründung beim Sozialdepartement einreichen.",
       "status": "verifiziert",
       "retrieved_at": "2026-11-22"
+    },
+    {
+      "reference_id": 16,
+      "label": {
+        "de": "Rückwirkende Subventionierung bei einer SBU-Lücke in Härtefällen",
+        "en": "Retroactive subsidy for an SBU gap in cases of hardship",
+        "fr": "Subvention rétroactive en cas de rigueur lorsque seul le SBU manque",
+        "it": "Sovvenzione retroattiva in casi di rigore se manca solo l'SBU",
+        "ls": "Hilfe, wenn nur die Bestätigung für die Betreuungs-Tage fehlt"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/faq/rueckwirkende-subventionierung.html",
+      "source_quote": "kann in Härtefällen maximal drei Monate rückwirkend ab Gesuchstellung den subventionsberechtigten Betreuungsumfang verfügen.",
+      "status": "verifiziert",
+      "retrieved_at": "2026-11-23"
+    },
+    {
+      "reference_id": 17,
+      "label": {
+        "de": "Frist für das Gesuch um rückwirkende Subventionierung",
+        "en": "Deadline to apply for retroactive subsidisation",
+        "fr": "Délai pour demander une subvention rétroactive",
+        "it": "Termine per chiedere una sovvenzione retroattiva",
+        "ls": "Bis wann Sie um Hilfe für die Zeit davor bitten können"
+      },
+      "source_url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/faq/rueckwirkende-subventionierung.html",
+      "source_quote": "innerhalb von 30 Tagen nach Zustellung der neuen Festlegung",
+      "status": "verifiziert",
+      "retrieved_at": "2026-11-23"
     }
   ],
   "actors": [
@@ -322,11 +350,11 @@
       ],
       "type": "input",
       "description": {
-        "de": "Beim Schul- und Sportdepartement, online oder per Post. Massgebend sind Einkommen und Vermögen der Familie. Subventionen gibt es nicht rückwirkend – darum rechtzeitig beantragen.",
-        "en": "At the School and Sports Department, online or by post. The family's income and assets are decisive. Subsidies are not paid retroactively – so apply in good time.",
-        "fr": "Auprès du Département des écoles et du sport, en ligne ou par courrier. Le revenu et la fortune de la famille sont déterminants. Les subventions ne sont pas versées rétroactivement – il faut donc la demander à temps.",
-        "it": "Presso il Dipartimento delle scuole e dello sport, online o per posta. Determinanti sono il reddito e il patrimonio della famiglia. Le sovvenzioni non sono versate retroattivamente – occorre quindi richiederla per tempo.",
-        "ls": "Sie beantragen die Bestätigung beim Schul- und Sport-Departement. Im Internet oder mit der Post. Es zählt, wie viel Ihre Familie verdient und wie viel Vermögen sie hat. Beantragen Sie früh. Für die Zeit davor zahlt die Stadt nicht."
+        "de": "Beim Schul- und Sportdepartement, online oder per Post. Massgebend sind Einkommen und Vermögen der Familie. Beantragen Sie die Beitragsfaktorbestätigung und die Bestätigung über den Betreuungsumfang (SBU) rechtzeitig.",
+        "en": "Apply to the School and Sports Department, online or by post. The family's income and assets are decisive. Apply for the contribution-factor confirmation and the subsidised care volume confirmation (SBU) in good time.",
+        "fr": "Auprès du Département des écoles et du sport, en ligne ou par courrier. Le revenu et la fortune de la famille sont déterminants. Demandez à temps la confirmation du facteur de contribution et celle de l'ampleur de garde subventionnée (SBU).",
+        "it": "Presso il Dipartimento delle scuole e dello sport, online o per posta. Sono determinanti il reddito e il patrimonio della famiglia. Richiedete per tempo la conferma del fattore di contribuzione e quella dell'entità di custodia sovvenzionata (SBU).",
+        "ls": "Sie beantragen die Bestätigung beim Schul- und Sport-Departement. Im Internet oder mit der Post. Es zählt, wie viel Ihre Familie verdient und wie viel Vermögen sie hat. Beantragen Sie beide Bestätigungen früh: die zum Beitrags-Faktor und die zu den Betreuungs-Tagen (SBU)."
       },
       "documents": [
         {
@@ -455,11 +483,11 @@
       ],
       "type": "input",
       "description": {
-        "de": "Die Bestätigung über den subventionsberechtigten Betreuungsumfang (SBU) stellt das Sozialdepartement aus. Sie legt fest, für wie viele Tage pro Woche die Stadt Subventionen bezahlt – etwa wegen Erwerbstätigkeit, Aus- und Weiterbildung oder Stellensuche. Beantragt wird sie in der Regel online über «Mein Konto».",
-        "en": "The confirmation of the subsidised care volume (SBU) is issued by the Social Welfare Department. It sets for how many days per week the city pays subsidies – for example because of employment, education or job seeking. It is usually applied for online via «Mein Konto».",
-        "fr": "La confirmation de l'ampleur de garde subventionnée (SBU) est délivrée par le Département des affaires sociales. Elle fixe pour combien de jours par semaine la ville verse des subventions – par exemple en raison d'une activité lucrative, d'une formation ou d'une recherche d'emploi. La demande se fait en général en ligne via «Mein Konto».",
-        "it": "La conferma dell'entità di custodia sovvenzionata (SBU) è rilasciata dal Dipartimento sociale. Stabilisce per quanti giorni alla settimana la città paga sovvenzioni – ad esempio per attività lavorativa, formazione o ricerca d'impiego. Di regola si richiede online tramite «Mein Konto».",
-        "ls": "Das Sozial-Departement gibt Ihnen eine Bestätigung. Darin steht: Für so viele Tage pro Woche zahlt die Stadt. Das hängt zum Beispiel davon ab: Arbeiten Sie? Machen Sie eine Ausbildung? Suchen Sie eine Stelle? Meistens beantragen Sie das im Internet unter «Mein Konto»."
+        "de": "Die Bestätigung über den subventionsberechtigten Betreuungsumfang (SBU) stellt das Sozialdepartement aus. Sie legt fest, für wie viele Tage pro Woche die Stadt Subventionen bezahlt – etwa wegen Erwerbstätigkeit, Aus- und Weiterbildung oder Stellensuche. Beantragt wird sie in der Regel online über «Mein Konto». Ist Ihr Beitragsfaktor gültig und besteht die Subventionslücke nur beim SBU, können Sie nach Erhalt der neuen SBU-Bestätigung beim Sozialdepartement ein Gesuch um rückwirkende Subventionierung stellen. Das Sozialdepartement kann es in Härtefällen bewilligen.",
+        "en": "The confirmation of the subsidised care volume (SBU) is issued by the Social Welfare Department. It sets for how many days per week the city pays subsidies – for example because of employment, education or job seeking. It is usually applied for online via «Mein Konto». If your contribution factor is valid and the subsidy gap concerns only the SBU, you can apply to the Social Welfare Department for retroactive subsidisation after receiving the new SBU confirmation. The department may approve the application in cases of hardship.",
+        "fr": "La confirmation de l'ampleur de garde subventionnée (SBU) est délivrée par le Département des affaires sociales. Elle fixe pour combien de jours par semaine la ville verse des subventions – par exemple en raison d'une activité lucrative, d'une formation ou d'une recherche d'emploi. La demande se fait en général en ligne via «Mein Konto». Si votre facteur de contribution est valable et que l'interruption des subventions concerne uniquement le SBU, vous pouvez demander une subvention rétroactive au Département des affaires sociales après avoir reçu la nouvelle confirmation SBU. Le département peut accepter la demande en cas de rigueur.",
+        "it": "La conferma dell'entità di custodia sovvenzionata (SBU) è rilasciata dal Dipartimento sociale. Stabilisce per quanti giorni alla settimana la città paga sovvenzioni – ad esempio per attività lavorativa, formazione o ricerca d'impiego. Di regola si richiede online tramite «Mein Konto». Se il fattore di contribuzione è valido e l'interruzione delle sovvenzioni riguarda solo l'SBU, dopo aver ricevuto la nuova conferma SBU potete presentare una domanda di sovvenzione retroattiva al Dipartimento sociale. Il dipartimento può accoglierla in casi di rigore.",
+        "ls": "Das Sozial-Departement gibt Ihnen eine Bestätigung. Darin steht: Für so viele Tage pro Woche zahlt die Stadt. Das hängt zum Beispiel davon ab: Arbeiten Sie? Machen Sie eine Ausbildung? Suchen Sie eine Stelle? Meistens beantragen Sie das im Internet unter «Mein Konto». Vielleicht zahlt die Stadt eine Zeit lang nicht. Fehlt nur die Bestätigung für die Betreuungs-Tage? Und ist die Bestätigung zum Beitrags-Faktor noch gültig? Dann können Sie das Sozial-Departement um Hilfe für diese Zeit bitten. Warten Sie zuerst auf die neue Bestätigung für die Betreuungs-Tage. Das Sozial-Departement prüft Ihre Anfrage. In schwierigen Fällen kann es auch für die Zeit davor zahlen."
       },
       "documents": [
         {
@@ -474,7 +502,9 @@
         }
       ],
       "reference_ids": [
-        7
+        7,
+        16,
+        17
       ],
       "source_id": "q-stz-faq"
     },
@@ -955,7 +985,7 @@
   },
   "meta": {
     "erstellt": "2026-06-06",
-    "aktualisiert": "2026-11-22",
+    "aktualisiert": "2026-11-23",
     "maintainer": "malkreide",
     "lizenz": "CC-BY-4.0",
     "herkunft": {
