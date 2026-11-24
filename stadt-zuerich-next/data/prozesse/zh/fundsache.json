@@ -364,11 +364,11 @@
       ],
       "type": "input",
       "description": {
-        "de": "Abholung gegen Identitätsnachweis; allfällige Aufbewahrungs-/Bearbeitungsgebühr und Finderlohn nach OR.",
-        "en": "Collection against proof of identity; any storage/handling fee and finder's reward under the Code of Obligations.",
-        "fr": "Retrait sur présentation d'une preuve d'identité; éventuel émolument de conservation/de traitement et récompense selon le CO.",
-        "it": "Ritiro dietro presentazione di una prova d'identità; eventuale tassa di conservazione/di trattamento e mancia di ritrovamento secondo il CO.",
-        "ls": "Zeigen Sie beim Abholen Ihren Ausweis. Vielleicht müssen Sie eine Gebühr und Finder-Lohn zahlen."
+        "de": "Abholung gegen Identitätsnachweis; allfällige Aufbewahrungs-/Bearbeitungsgebühr.",
+        "en": "Collection against proof of identity; any storage/handling fee.",
+        "fr": "Retrait sur présentation d'une preuve d'identité; éventuel émolument de conservation/de traitement.",
+        "it": "Ritiro dietro presentazione di una prova d'identità; eventuale tassa di conservazione/di trattamento.",
+        "ls": "Zeigen Sie beim Abholen Ihren Ausweis. Vielleicht müssen Sie eine Gebühr zahlen."
       }
     },
     {
