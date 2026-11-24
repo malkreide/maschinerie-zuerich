@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0.0",
   "city": "zh",
-  "erhoben_am": "2026-11-22T18:19:52.591Z",
-  "lauf_url": "https://github.com/malkreide/maschinerie-zuerich/actions/runs/45054358514",
+  "erhoben_am": "2026-11-23T18:09:43.007Z",
+  "lauf_url": "https://github.com/malkreide/maschinerie-zuerich/actions/runs/45235036562",
   "umgebung": "github-actions",
   "referenzen": [
     {
@@ -48,11 +48,11 @@
     {
       "slug": "zh/baugesuch",
       "reference_id": 3,
-      "url": "https://www.stadt-zuerich.ch/de/planen-und-bauen/baubewilligungen/bewilligungsprozess/fristen-und-gebuehren.html",
-      "retrieved_at": "2026-10-11",
+      "url": "https://www.stadt-zuerich.ch/de/planen-und-bauen/baubewilligungen/bewilligungsprozess/ablauf.html",
+      "retrieved_at": "2026-11-22",
       "erreichbar": "ok",
       "http_status": 200,
-      "zitat": "drift",
+      "zitat": "woertlich",
       "fassung": "nicht-anwendbar"
     },
     {
@@ -289,7 +289,7 @@
       "slug": "zh/kita-platz",
       "reference_id": 6,
       "url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/faq.html",
-      "retrieved_at": "2026-10-09",
+      "retrieved_at": "2026-11-23",
       "erreichbar": "ok",
       "http_status": 200,
       "zitat": "woertlich",
@@ -360,6 +360,46 @@
       "reference_id": 13,
       "url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/faq.html",
       "retrieved_at": "2026-10-09",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/kita-platz",
+      "reference_id": 14,
+      "url": "https://www.stadt-zuerich.ch/content/dam/web/de/lebenslagen/jugend-und-familie/dokumente/kinderbetreuung/muster-beitragsfaktorbestaetigung.pdf",
+      "retrieved_at": "2026-11-22",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/kita-platz",
+      "reference_id": 15,
+      "url": "https://www.stadt-zuerich.ch/content/dam/web/de/stadtleben/wirtschaft-und-gewerbe/dokumente/kontraktmanagement/merkblatt-subventionsberechtigter-betreuungsumfang.pdf",
+      "retrieved_at": "2026-11-22",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/kita-platz",
+      "reference_id": 16,
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/faq/rueckwirkende-subventionierung.html",
+      "retrieved_at": "2026-11-23",
+      "erreichbar": "ok",
+      "http_status": 200,
+      "zitat": "woertlich",
+      "fassung": "nicht-anwendbar"
+    },
+    {
+      "slug": "zh/kita-platz",
+      "reference_id": 17,
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienergaenzende-kinderbetreuung/faq/rueckwirkende-subventionierung.html",
+      "retrieved_at": "2026-11-23",
       "erreichbar": "ok",
       "http_status": 200,
       "zitat": "woertlich",
