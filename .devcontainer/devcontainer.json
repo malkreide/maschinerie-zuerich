@@ -1,6 +1,12 @@
 {
   "name": "Maschinerie der Stadt Zürich",
-  "image": "mcr.microsoft.com/devcontainers/javascript-node:1-24-bookworm",
+  // Node-Major wie die CI (.github/workflows/ci.yml → node-version) und das
+  // Dockerfile: Hier entstehen Lockfile-Änderungen, und mit Node wechselt npm.
+  // Für Node 26 gibt es das Image (noch) nicht mit Image-Version vorne
+  // («4-26-…»), nur als «26-bookworm». Das frühere «1-24-bookworm» liefert die
+  // Registry nicht (404, Stand 2026-11) — damit liess sich der Container nicht
+  // bauen.
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:26-bookworm",
 
   "features": {
     "ghcr.io/devcontainers/features/github-cli:1": {}

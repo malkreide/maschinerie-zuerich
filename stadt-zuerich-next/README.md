@@ -33,7 +33,7 @@ installieren:
 [![Use this template](https://img.shields.io/badge/Use%20this%20template-2ea44f?logo=github)](https://github.com/malkreide/maschinerie-zuerich/generate)
 
 - **Vercel** — Fork + Live-Preview unter eigener Subdomain, Build in ~2 Min.
-- **Codespaces** — fertige Dev-Umgebung im Browser (Node 24 vorinstalliert,
+- **Codespaces** — fertige Dev-Umgebung im Browser (Node 26 vorinstalliert,
   Port 3000 automatisch weitergeleitet). Nach dem Start einfach
   `cd stadt-zuerich-next && npm run dev`.
 - **Use this template** — neues Repo mit der Maschinerie als Basis,
