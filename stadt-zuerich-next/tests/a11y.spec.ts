@@ -100,6 +100,32 @@ async function waitForOrganigramm(page: Page) {
   await page.locator('.cy-host').first().waitFor({ state: 'attached', timeout: 15_000 });
 }
 
+/** Wartet, bis ein eingeblendetes Element samt Eltern voll deckend ist.
+ *
+ *  Joyride blendet den Tour-Tooltip per Opacity-Animation ein. «Sichtbar»
+ *  meldet Playwright schon im ersten Frame, axe misst die Farben aber so,
+ *  wie sie gerade gemalt sind. Mitten im Einblenden (gemessen: 11–22 %
+ *  Deckkraft) mischt sich der Text mit dem Hintergrund: Der Kontrast lag je
+ *  nach Timing zwischen 3,6 und 4,3 statt beim Endwert, und der Test schlug
+ *  zufällig fehl (lokal 19 von 20 Läufen). Erst prüfen, wenn nichts mehr
+ *  durchscheint — ein echter Kontrastmangel im Endzustand fällt so weiter
+ *  auf, und zwar jedes Mal. */
+async function waitForFullyOpaque(page: Page, selector: string) {
+  await expect
+    .poll(
+      () =>
+        page.locator(selector).first().evaluate((el) => {
+          let deckkraft = 1;
+          for (let n: Element | null = el; n; n = n.parentElement) {
+            deckkraft *= Number(getComputedStyle(n).opacity);
+          }
+          return deckkraft;
+        }),
+      { message: `${selector} wird nicht voll deckend`, timeout: 5_000 },
+    )
+    .toBe(1);
+}
+
 /** Mindestkontrast für normalen Text nach WCAG 2.x AA. */
 const KONTRAST_AA = 4.5;
 
@@ -354,6 +380,7 @@ for (const dunkel of [false, true]) {
     if (dunkel) await expect(page.locator('html')).toHaveClass(/(^|\s)dark(\s|$)/);
     await page.locator('.react-joyride__beacon').click({ timeout: 10_000 });
     await page.getByRole('alertdialog').waitFor({ state: 'visible' });
+    await waitForFullyOpaque(page, '.react-joyride__tooltip');
 
     const results = await new AxeBuilder({ page })
       .withTags(WCAG_TAGS)
