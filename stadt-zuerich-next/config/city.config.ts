@@ -106,6 +106,13 @@ export interface CityConfig {
    *  feste Zeitzone formatieren beide Datum/Uhrzeit verschieden
    *  (Markup-Mismatch). Fehlt der Wert, gilt 'UTC' (siehe cityTimeZone). */
   timeZone?: string;
+  /** Block «Parlamentarische Geschäfte» im Detail-Panel (Daten über
+   *  /api/ris aus der Geschäfts-API des Gemeinderats). Nur einschalten,
+   *  wenn diese Quelle von aussen erreichbar ist: In Zürich leitet sie seit
+   *  2026-11 auf einen internen Host um, der Block zeigte deshalb immer
+   *  «Keine aktuellen Geschäfte gefunden». Weggelassen oder false = kein
+   *  Block, und /api/ris fragt die Quelle gar nicht erst an. */
+  parlamentsGeschaefte?: boolean;
   /** Attributions-Text der offenen API (X-Data-Attribution-Header).
    *  Fehlt er, wird generisch aus dem Stadtnamen abgeleitet. */
   attribution?: string;
