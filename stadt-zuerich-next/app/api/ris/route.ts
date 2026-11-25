@@ -1,7 +1,14 @@
 import { NextResponse } from 'next/server';
 import { XMLParser } from 'fast-xml-parser';
+import { city } from '@/config/city.config';
 
 export async function GET(request: Request) {
+  // Block ausgeschaltet (city.config.json → parlamentsGeschaefte): die
+  // Quelle gar nicht anfragen, sondern wie bei «keine Treffer» leer antworten.
+  if (!city.parlamentsGeschaefte) {
+    return NextResponse.json([]);
+  }
+
   const { searchParams } = new URL(request.url);
   const departmentName = searchParams.get('q') || '';
 

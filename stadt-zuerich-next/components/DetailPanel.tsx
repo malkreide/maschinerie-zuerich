@@ -341,7 +341,8 @@ export default function DetailPanel({
         relatedLebenslagen={relatedLebenslagen}
         t={t}
       />
-      <ParlamentsGeschaefte departmentName={item.name} />
+      {/* Abschaltbar per city.config.json → parlamentsGeschaefte (Begründung dort). */}
+      {city.parlamentsGeschaefte && <ParlamentsGeschaefte departmentName={item.name} />}
       <div className="mt-2.5">
         <a
           href={item.odz?.kurzname ? externalSearchUrl(item.name) : city.homepageUrl}
