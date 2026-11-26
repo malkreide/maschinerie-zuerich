@@ -93,7 +93,7 @@
 # Label gehört in meta.herkunft.tessera_prs der geänderten Prozesse.
 - name: "quelle:tessera"
   color: "bfd4f2"
-  description: "PR aus der Extraktions-Pipeline tessera (struktur-only, feldweise mergen)"
+  description: "PR aus der Extraktions-Pipeline tessera mit Prozessinhalt (neue Leistung, struktur-only)"
 
 # ─── Roadmap-Status (Spalten auf /roadmap) ──────────────────────────────────
 - name: "status:eingegangen"
