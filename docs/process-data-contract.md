@@ -307,9 +307,11 @@ mit, auf beiden entscheidet ein Mensch:
   entstehen mit KI-Assistenz (z. B. Claude Code). Der Mensch prüft jede
   Angabe, bevor er sie mergt.
 - **tessera:** Die Extraktions-Pipeline im Repo `tessera` schlägt Struktur
-  vor und liefert sie als PR, struktur-only (`de`, leere `en/fr/it`). Ein
-  Mensch prüft den PR und merged feldweise (siehe `CLAUDE.md`, «Eingehende
-  tessera-PRs»).
+  vor und liefert sie als PR: für eine neue Leistung struktur-only (`de`,
+  leere `en/fr/it`), für einen bestehenden Prozess als Abgleich, der nur
+  `retrieved_at` auffrischt und alles Weitere als Vorschlag nennt. Ein
+  Mensch prüft jeden PR und übernimmt Vorschläge von Hand (siehe
+  `CLAUDE.md`, «Eingehende tessera-PRs»).
 
 Für beide Wege gilt:
 

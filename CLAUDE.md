@@ -63,12 +63,23 @@ Maschinerie.
 
 ## Eingehende tessera-PRs
 
-tessera liefert **struktur-only**: `de` plus leere `en/fr/it`. Solche PRs werden
-**feldweise gemerged** – bestehende, belegte Übersetzungen und `description`-Blöcke
-bleiben erhalten, die Extraktion füllt nur Lücken und ergänzt neue Struktur.
-Review: keine Regression, Zitate (`source_quote`) wörtlich gegen die Quelle prüfen,
-Kardinalregel im Label kontrollieren, `meta.herkunft` nachführen (`gemischt` bzw.
-`tessera`, PR-Nummer in `tessera_prs`; Label `quelle:tessera`).
+Zwei Arten, am Titel erkennbar:
+
+- **Neue Leistung** (`tessera v1: <Titel> (<id>)`): Die Datei gibt es noch
+  nicht. tessera liefert **struktur-only**: `de` plus leere `en/fr/it`. Review:
+  Zitate (`source_quote`) wörtlich gegen die Quelle prüfen, Kardinalregel im
+  Label kontrollieren. Ein Folge-Commit setzt `meta.herkunft` auf `tessera` mit
+  der PR-Nummer in `tessera_prs`; Label `quelle:tessera`.
+- **Abgleich** (`tessera v1: Abgleich <Titel> (<id>)`): Die Handdatei gibt es
+  schon, sie ist kanonisch. tessera mergt nichts hinein: Schritt- und
+  Reference-Nummern der Extraktion werden bei jedem Lauf neu vergeben und
+  taugen nicht als Schlüssel. Der PR ändert nur `retrieved_at` – für den
+  Prozess und für jede Reference, deren Zitat tessera auf derselben Seite
+  wörtlich wiedergefunden hat. Alles Weitere steht als Abgleich-Bericht im
+  PR-Body: fehlende Schritte, neue Belegstellen, nicht wiedergefundene Belege.
+  Review: Der Diff darf nur `retrieved_at` ändern; Vorschläge von Hand
+  übernehmen oder verwerfen. `meta.herkunft` bleibt unverändert, kein Label
+  `quelle:tessera`; wer Vorschläge übernimmt, führt die Herkunft nach.
 
 ## Hochrisiko-Rechtsfälle (erhöhter Review)
 
