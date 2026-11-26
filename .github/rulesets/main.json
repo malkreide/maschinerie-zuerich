@@ -1,0 +1,42 @@
+{
+  "name": "main schützen",
+  "target": "branch",
+  "enforcement": "active",
+  "conditions": {
+    "ref_name": {
+      "include": ["~DEFAULT_BRANCH"],
+      "exclude": []
+    }
+  },
+  "bypass_actors": [],
+  "rules": [
+    { "type": "deletion" },
+    { "type": "non_fast_forward" },
+    {
+      "type": "pull_request",
+      "parameters": {
+        "required_approving_review_count": 0,
+        "dismiss_stale_reviews_on_push": false,
+        "require_code_owner_review": false,
+        "require_last_push_approval": false,
+        "required_review_thread_resolution": false
+      }
+    },
+    {
+      "type": "required_status_checks",
+      "parameters": {
+        "strict_required_status_checks_policy": true,
+        "do_not_enforce_on_create": false,
+        "required_status_checks": [
+          { "context": "Next.js typecheck + lint", "integration_id": 15368 },
+          { "context": "org-chart.json + lebenslagen.json validieren", "integration_id": 15368 },
+          { "context": "OpenGov-Schemas validieren (Org-Chart + Prozesse)", "integration_id": 15368 },
+          { "context": "Unit-Tests (Bewertungs-Ableitung)", "integration_id": 15368 },
+          { "context": "Prozess-Daten Regression-Guard (i18n + description)", "integration_id": 15368 },
+          { "context": "Referenzen-Gate (Liveness + Verbatim für geänderte References)", "integration_id": 15368 },
+          { "context": "Accessibility (Playwright + axe-core)", "integration_id": 15368 }
+        ]
+      }
+    }
+  ]
+}
